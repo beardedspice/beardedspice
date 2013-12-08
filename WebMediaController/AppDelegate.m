@@ -28,7 +28,7 @@
     
     for (ChromeWindow *window in chromeApp.windows) {
         for (ChromeTab *tab in window.tabs) {
-            
+            [statusMenu insertItemWithTitle:[tab URL] action:NULL keyEquivalent:@"" atIndex:0];
             NSLog([tab URL]);
         }
     }

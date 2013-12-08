@@ -647,19 +647,7 @@
                 </menuItem>
             </items>
         </menu>
-        <menu title="StatusMenu" id="SbZ-uf-jkn">
-            <items>
-                <menuItem title="Item 1" id="mD1-Lz-ign">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 2" id="4u5-b0-n5t">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 3" id="bah-uu-tdA">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-        </menu>
+        <menu title="StatusMenu" id="SbZ-uf-jkn"/>
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="statusMenu" destination="SbZ-uf-jkn" id="HZF-P6-pFr"/>

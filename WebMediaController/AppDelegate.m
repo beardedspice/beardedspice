@@ -22,8 +22,8 @@
 
 - (void)awakeFromNib
 {
-    chromeApp = [SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"];
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    chromeApp = [[SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"] retain];
+    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     chromeTabArray = [[NSMutableArray alloc] init];
     
     [statusItem setMenu:statusMenu];

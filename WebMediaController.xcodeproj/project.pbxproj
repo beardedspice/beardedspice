@@ -18,6 +18,7 @@
 		967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
 		9679335A1855173100A49AC7 /* WebMediaControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* WebMediaControllerTests.m */; };
+		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		967933551855173100A49AC7 /* WebMediaControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WebMediaControllerTests-Info.plist"; sourceTree = "<group>"; };
 		967933571855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		967933591855173100A49AC7 /* WebMediaControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebMediaControllerTests.m; sourceTree = "<group>"; };
+		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
+		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +99,7 @@
 		9679332E1855173100A49AC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
@@ -115,6 +120,7 @@
 		967933351855173100A49AC7 /* WebMediaController */ = {
 			isa = PBXGroup;
 			children = (
+				9679336318551A8F00A49AC7 /* Chrome.h */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933441855173100A49AC7 /* MainMenu.xib */,

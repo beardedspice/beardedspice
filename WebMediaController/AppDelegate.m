@@ -8,10 +8,10 @@
 
 #import "AppDelegate.h"
 
-
-#import "Chrome.h"
-
 @implementation AppDelegate
+
+@synthesize window;
+@synthesize activeTab;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -20,18 +20,41 @@
 
 - (void)awakeFromNib
 {
-    ChromeApplication * chromeApp = [SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"];
+    chromeApp = [SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"];
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    chromeTabArray = [[NSMutableArray alloc] init];
+    
     [statusItem setMenu:statusMenu];
     [statusItem setTitle:@"Status"];
     [statusItem setHighlightMode:YES];
     
-    for (ChromeWindow *window in chromeApp.windows) {
-        for (ChromeTab *tab in window.tabs) {
-            [statusMenu insertItemWithTitle:[tab URL] action:NULL keyEquivalent:@"" atIndex:0];
-            NSLog([tab URL]);
+    [statusItem setAction:@selector(refreshTabs:)];
+    [statusItem setTarget:self];
+}
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    [self refreshTabs: menu];
+}
+
+- (void)refreshTabs:(id) sender
+{
+    NSLog(@"Sender was: %@", sender);
+    [statusMenu removeAllItems];
+    [chromeTabArray removeAllObjects];
+    for (ChromeWindow *chromeWindow in chromeApp.windows) {
+        for (ChromeTab *tab in chromeWindow.tabs) {
+            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab URL] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
+            [chromeTabArray insertObject:tab atIndex:[statusMenu indexOfItem:tabMenuItem]];
         }
     }
+}
+
+- (void)updateActiveTab:(id) sender
+{
+    NSLog(@"Sender was: %@", sender);
+    [self setActiveTab:[chromeTabArray objectAtIndex:[statusMenu indexOfItem:sender]]];
+    NSLog(@"Active tab now %@", [self activeTab]);
 }
 
 

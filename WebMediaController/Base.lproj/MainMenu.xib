@@ -647,7 +647,11 @@
                 </menuItem>
             </items>
         </menu>
-        <menu title="StatusMenu" id="SbZ-uf-jkn"/>
+        <menu title="StatusMenu" id="SbZ-uf-jkn">
+            <connections>
+                <outlet property="delegate" destination="494" id="6d1-JA-jog"/>
+            </connections>
+        </menu>
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="statusMenu" destination="SbZ-uf-jkn" id="HZF-P6-pFr"/>

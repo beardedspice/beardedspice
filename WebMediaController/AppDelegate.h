@@ -7,13 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Chrome.h"
+
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
     IBOutlet NSMenu *statusMenu;
-    NSStatusItem * statusItem;
+    NSStatusItem *statusItem;
+    ChromeApplication *chromeApp;
+    
+    NSMutableArray *chromeTabArray;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) ChromeTab *activeTab;
 
 @end

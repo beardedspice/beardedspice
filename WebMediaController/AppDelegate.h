@@ -7,14 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SPMediaKeyTap.h"
 #import "Chrome.h"
 
+@interface WebMediaControllerApp : NSApplication
+@end
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
     ChromeApplication *chromeApp;
-    
+    SPMediaKeyTap *keyTap;
     NSMutableArray *chromeTabArray;
 }
 

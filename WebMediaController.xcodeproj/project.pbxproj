@@ -19,6 +19,8 @@
 		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
 		9679335A1855173100A49AC7 /* WebMediaControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* WebMediaControllerTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
+		9679336C18552C7F00A49AC7 /* YoutubeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679336B18552C7F00A49AC7 /* YoutubeHandler.m */; };
+		9679336E18552D1E00A49AC7 /* MediaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679336D18552D1E00A49AC7 /* MediaHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		967933591855173100A49AC7 /* WebMediaControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebMediaControllerTests.m; sourceTree = "<group>"; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		9679336618552B7000A49AC7 /* MediaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaHandler.h; sourceTree = "<group>"; };
+		9679336A18552C7F00A49AC7 /* YoutubeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeHandler.h; sourceTree = "<group>"; };
+		9679336B18552C7F00A49AC7 /* YoutubeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeHandler.m; sourceTree = "<group>"; };
+		9679336D18552D1E00A49AC7 /* MediaHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,7 @@
 		967933351855173100A49AC7 /* WebMediaController */ = {
 			isa = PBXGroup;
 			children = (
+				9679336918552BFF00A49AC7 /* MediaHandlers */,
 				9679336318551A8F00A49AC7 /* Chrome.h */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
@@ -158,6 +165,17 @@
 				967933561855173100A49AC7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9679336918552BFF00A49AC7 /* MediaHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				9679336618552B7000A49AC7 /* MediaHandler.h */,
+				9679336A18552C7F00A49AC7 /* YoutubeHandler.h */,
+				9679336B18552C7F00A49AC7 /* YoutubeHandler.m */,
+				9679336D18552D1E00A49AC7 /* MediaHandler.m */,
+			);
+			name = MediaHandlers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +278,8 @@
 			files = (
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
+				9679336C18552C7F00A49AC7 /* YoutubeHandler.m in Sources */,
+				9679336E18552D1E00A49AC7 /* MediaHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

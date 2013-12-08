@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "YoutubeHandler.h"
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -42,9 +44,10 @@
     NSLog(@"Sender was: %@", sender);
     [statusMenu removeAllItems];
     [chromeTabArray removeAllObjects];
+    
     for (ChromeWindow *chromeWindow in chromeApp.windows) {
         for (ChromeTab *tab in chromeWindow.tabs) {
-            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab URL] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
+            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
             [chromeTabArray insertObject:tab atIndex:[statusMenu indexOfItem:tabMenuItem]];
         }
     }
@@ -56,6 +59,5 @@
     [self setActiveTab:[chromeTabArray objectAtIndex:[statusMenu indexOfItem:sender]]];
     NSLog(@"Active tab now %@", [self activeTab]);
 }
-
 
 @end

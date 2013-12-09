@@ -52,11 +52,13 @@
 - (void)previous
 {
     NSLog(@"Previous on %@", [self.tab title]);
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].previousVideo(); }"];
 }
 
 -(void)next
 {
     NSLog(@"Next on %@", [self.tab title]);
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].nextVideo(); }"];
 }
 
 +(BOOL) isValidFor:(NSString *)url

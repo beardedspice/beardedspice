@@ -42,12 +42,10 @@
 
 - (void) play
 {
-    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].play() }"];
     [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
 }
 - (void) pause
 {
-    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].pause() }"];
     [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
 }
 
@@ -63,7 +61,7 @@
 
 +(BOOL) isValidFor:(NSString *)url
 {
-    return [url isCaseInsensitiveLike:@"*youtube*"];
+    return [url isCaseInsensitiveLike:@"*youtube.com/watch*"];
 }
 
 @end

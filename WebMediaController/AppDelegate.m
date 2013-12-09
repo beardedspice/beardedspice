@@ -42,6 +42,7 @@
 		NSLog(@"Media key monitoring disabled");
 
     availableHandlers = [[[NSMutableArray alloc] init] retain];
+    // TODO: add more handler classes here
     [availableHandlers insertObject:[YoutubeHandler class] atIndex:0];
 }
 
@@ -136,10 +137,12 @@
 				break;
 			case NX_KEYTYPE_FAST:
 				debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
+                [self.activeHandler next];
 				break;
 				
 			case NX_KEYTYPE_REWIND:
 				debugString = [@"Rewind pressed" stringByAppendingString:debugString];
+                [self.activeHandler previous];
 				break;
 			default:
 				debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];

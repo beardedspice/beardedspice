@@ -32,7 +32,7 @@
 
 - (void)toggle
 {
-    NSLog(@"Toggle on %@", [super tab]);
+    NSLog(@"Toggle on %@", [self.tab title]);
     if ([self isPlaying]) {
         [self pause];
     } else {
@@ -42,21 +42,21 @@
 
 - (void) play
 {
-    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
 }
 - (void) pause
 {
-    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
 }
 
 - (void)previous
 {
-    NSLog(@"Previous on %@", [super tab]);
+    NSLog(@"Previous on %@", [self.tab title]);
 }
 
 -(void)next
 {
-    NSLog(@"Next on %@", [super tab]);
+    NSLog(@"Next on %@", [self.tab title]);
 }
 
 +(BOOL) isValidFor:(NSString *)url

@@ -10,28 +10,56 @@
 
 @implementation YoutubeHandler
 
-- (void)play:(ChromeTab *)tab
++ (id)initWithTab:(ChromeTab *)tab
 {
-    NSLog(@"Play on %@", tab);
-    [tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].play() }"];
-    [tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
+    return [super initWithTab:tab];
 }
 
-- (void)pause:(ChromeTab *)tab
+- (BOOL) isPlaying
 {
-    NSLog(@"Pause on %@", tab);
-    
-    [tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].pause() }"];
-    [tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].stopVideo() }"];
+    int *status = (int *)[self.tab executeJavascript:@"function () {var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { return vs[i].getPlayerStatus() }}();"];
+    if (status) {
+        NSLog(@"Status is %d", *status);
+    } else {
+        NSLog(@"Status is not defined!");
+    }
+    return TRUE;
 }
 
-- (void)previous:(ChromeTab *)tab
+- (void)toggle
 {
-    NSLog(@"Previous on %@", tab);
+    NSLog(@"Toggle on %@", [self tab]);
+    if ([self isPlaying]) {
+        [self play];
+    } else {
+        [self pause];
+    }
 }
 
--(void)next:(ChromeTab *)tab
+- (void) play
 {
-    NSLog(@"Next on %@", tab);    
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].play() }"];
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
 }
+- (void) pause
+{
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].pause() }"];
+    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
+}
+
+- (void)previous
+{
+    NSLog(@"Previous on %@", self.tab);
+}
+
+-(void)next
+{
+    NSLog(@"Next on %@", self.tab);
+}
+
++(BOOL) isValidFor:(NSString *)url
+{
+    return [url isCaseInsensitiveLike:@"*youtube*"];
+}
+
 @end

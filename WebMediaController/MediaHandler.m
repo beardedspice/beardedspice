@@ -10,4 +10,12 @@
 
 @implementation MediaHandler
 
+@synthesize tab;
+
++(id) initWithTab:(ChromeTab *)tab
+{
+    MediaHandler *out = [self init];
+    out.tab = [tab retain];
+    return out;
+}
 @end

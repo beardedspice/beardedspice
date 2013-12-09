@@ -10,5 +10,4 @@
 #import "MediaHandler.h"
 
 @interface YoutubeHandler : MediaHandler
-
 @end

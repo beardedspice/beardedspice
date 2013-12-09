@@ -13,15 +13,20 @@
 @interface WebMediaControllerApp : NSApplication
 @end
 
+#import "MediaHandler.h"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
     ChromeApplication *chromeApp;
+
     SPMediaKeyTap *keyTap;
-    NSMutableArray *chromeTabArray;
+
+    NSMutableArray *chromeTabArray;    
+    NSMutableArray *availableHandlers;
 }
 
 @property (assign) IBOutlet NSWindow *window;
-@property (assign) ChromeTab *activeTab;
+@property (assign) MediaHandler *activeHandler;
 
 @end

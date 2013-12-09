@@ -26,7 +26,7 @@
 @implementation AppDelegate
 
 @synthesize window;
-@synthesize activeTab;
+@synthesize activeHandler;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -40,13 +40,16 @@
 		[keyTap startWatchingMediaKeys];
 	else
 		NSLog(@"Media key monitoring disabled");
+
+    availableHandlers = [[[NSMutableArray alloc] init] retain];
+    [availableHandlers insertObject:[YoutubeHandler class] atIndex:0];
 }
 
 - (void)awakeFromNib
 {
     chromeApp = [[SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"] retain];
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    chromeTabArray = [[NSMutableArray alloc] init];
+    chromeTabArray = [[[NSMutableArray alloc] init] retain];
     
     [statusItem setMenu:statusMenu];
     [statusItem setTitle:@"Status"];
@@ -61,25 +64,53 @@
     [self refreshTabs: menu];
 }
 
+/**
+ A bit of hackery to allow us to dynamically determine if the url is valid for the given handler
+*/
+- (BOOL) isValidHandler:(Class) handler forUrl:(NSString *)url
+{
+    if (![handler isSubclassOfClass:[MediaHandler class]]) {
+        return NO;
+    }
+    
+    BOOL output;
+    NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[handler methodSignatureForSelector:@selector(isValidFor:)]];
+    [inv setTarget:handler];
+    [inv setSelector:@selector(isValidFor:)];
+    [inv setArgument:&url atIndex:2]; // 0 is target, 1 is selector
+    [inv invoke];
+    [inv getReturnValue:&output];
+    return output;
+}
+
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Sender was: %@", sender);
+    // TODO: figure out memory issues
     [statusMenu removeAllItems];
     [chromeTabArray removeAllObjects];
     
     for (ChromeWindow *chromeWindow in chromeApp.windows) {
         for (ChromeTab *tab in chromeWindow.tabs) {
-            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
-            [chromeTabArray insertObject:tab atIndex:[statusMenu indexOfItem:tabMenuItem]];
+            for (Class handler in availableHandlers) {
+                if ([self isValidHandler:handler forUrl:[tab URL]]) {
+                    NSLog(@"%@ is valid for url %@", handler, [tab URL]);
+                    NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
+                    MediaHandler *mediaHandler = [[[handler alloc] init] retain];
+                    [mediaHandler setTab:tab];
+                    [chromeTabArray insertObject:mediaHandler atIndex:[statusMenu indexOfItem:tabMenuItem]];
+                    break;
+                }
+            }
         }
     }
 }
 
-- (void)updateActiveTab:(id) sender
+- (void)updateActiveHandler:(id) sender
 {
     NSLog(@"Sender was: %@", sender);
-    [self setActiveTab:[chromeTabArray objectAtIndex:[statusMenu indexOfItem:sender]]];
-    NSLog(@"Active tab now %@", [self activeTab]);
+    [self setActiveHandler:[chromeTabArray objectAtIndex:[statusMenu indexOfItem:sender]]];
+    NSLog(@"Active handler now %@", [self activeHandler]);
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
@@ -97,9 +128,8 @@
 			case NX_KEYTYPE_PLAY:
 				debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
                 // what if there is no active tab...what if!?
-                [[YoutubeHandler new] pause:self.activeTab];
+                [self.activeHandler toggle];
 				break;
-				
 			case NX_KEYTYPE_FAST:
 				debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
 				break;

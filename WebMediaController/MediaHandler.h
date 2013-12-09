@@ -9,8 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Chrome.h"
 @interface MediaHandler : NSObject
--(void) play:(ChromeTab *) tab;
--(void) pause:(ChromeTab *) tab;
--(void) previous:(ChromeTab *) tab;
--(void) next:(ChromeTab *) tab;
++(BOOL) isValidFor:(NSString *)url;
++(id) initWithTab:(ChromeTab *)tab;
+
+-(void) toggle;
+-(void) previous;
+-(void) next;
+
+@property (assign) ChromeTab *tab;
+
 @end

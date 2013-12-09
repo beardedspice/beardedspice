@@ -96,7 +96,11 @@
                 if ([self isValidHandler:handler forUrl:[tab URL]]) {
                     NSLog(@"%@ is valid for url %@", handler, [tab URL]);
                     NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
-                    MediaHandler *mediaHandler = [[[handler alloc] init] retain];
+                    // TODO: how do I memory management in obj-c?
+                    // taking this out makes everything blow up.
+                    // .... halp
+                    [tab retain];
+                    MediaHandler *mediaHandler = [[handler alloc] init];
                     [mediaHandler setTab:tab];
                     [chromeTabArray insertObject:mediaHandler atIndex:[statusMenu indexOfItem:tabMenuItem]];
                     break;

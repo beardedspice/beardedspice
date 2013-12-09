@@ -12,49 +12,53 @@
 
 + (id)initWithTab:(ChromeTab *)tab
 {
-    return [super initWithTab:tab];
+    YoutubeHandler *out = [[YoutubeHandler alloc] init];
+    [tab retain];
+    [out setTab:tab];
+    return out;
 }
 
 - (BOOL) isPlaying
 {
-    int *status = (int *)[self.tab executeJavascript:@"function () {var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { return vs[i].getPlayerStatus() }}();"];
+    NSNumber *status = [[super tab] executeJavascript:@"var i = 0, out = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { out = vs[i].getPlayerState();break; }; out"];
     if (status) {
-        NSLog(@"Status is %d", *status);
+        NSLog(@"Status is %@", status);
+        return [status intValue] == 1;
     } else {
         NSLog(@"Status is not defined!");
+        return NO;
     }
-    return TRUE;
 }
 
 - (void)toggle
 {
-    NSLog(@"Toggle on %@", [self tab]);
+    NSLog(@"Toggle on %@", [super tab]);
     if ([self isPlaying]) {
-        [self play];
-    } else {
         [self pause];
+    } else {
+        [self play];
     }
 }
 
 - (void) play
 {
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].play() }"];
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
+    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].play() }"];
+    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
 }
 - (void) pause
 {
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].pause() }"];
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
+    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('video'); for (i = 0; i < vs.length; i++) { vs[i].pause() }"];
+    [[super tab] executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
 }
 
 - (void)previous
 {
-    NSLog(@"Previous on %@", self.tab);
+    NSLog(@"Previous on %@", [super tab]);
 }
 
 -(void)next
 {
-    NSLog(@"Next on %@", self.tab);
+    NSLog(@"Next on %@", [super tab]);
 }
 
 +(BOOL) isValidFor:(NSString *)url

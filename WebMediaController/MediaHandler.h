@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Chrome.h"
+
 @interface MediaHandler : NSObject
+
 +(BOOL) isValidFor:(NSString *)url;
 +(id) initWithTab:(ChromeTab *)tab;
 

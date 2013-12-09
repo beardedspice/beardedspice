@@ -53,7 +53,7 @@
     chromeTabArray = [[[NSMutableArray alloc] init] retain];
     
     [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"Status"];
+    [statusItem setImage:[NSImage imageNamed:@"youtube-play.png"]];
     [statusItem setHighlightMode:YES];
     
     [statusItem setAction:@selector(refreshTabs:)];

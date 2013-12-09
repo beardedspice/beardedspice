@@ -10,6 +10,7 @@
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
+		03F33ED418559AB200E8F77E /* youtube-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F33ED318559AB200E8F77E /* youtube-play.png */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -42,6 +43,7 @@
 		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		03F33ED318559AB200E8F77E /* youtube-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play.png"; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* WebMediaController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebMediaController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +156,7 @@
 		967933361855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				03F33ED318559AB200E8F77E /* youtube-play.png */,
 				967933371855173100A49AC7 /* WebMediaController-Info.plist */,
 				967933381855173100A49AC7 /* InfoPlist.strings */,
 				9679333B1855173100A49AC7 /* main.m */,
@@ -271,6 +274,7 @@
 				9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				967933401855173100A49AC7 /* Credits.rtf in Resources */,
+				03F33ED418559AB200E8F77E /* youtube-play.png in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

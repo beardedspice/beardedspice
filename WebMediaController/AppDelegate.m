@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "YoutubeHandler.h"
+#import "PandoraHandler.h"
 
 @implementation WebMediaControllerApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -36,14 +37,16 @@
                                                              [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
                                                              nil]];
     keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-	if([SPMediaKeyTap usesGlobalMediaKeyTap])
+	if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
 		[keyTap startWatchingMediaKeys];
-	else
+	} else {
 		NSLog(@"Media key monitoring disabled");
+    }
 
     availableHandlers = [[[NSMutableArray alloc] init] retain];
     // TODO: add more handler classes here
-    [availableHandlers insertObject:[YoutubeHandler class] atIndex:0];
+    [availableHandlers addObject:[YoutubeHandler class]];
+    [availableHandlers addObject:[PandoraHandler class]];
 }
 
 - (void)awakeFromNib

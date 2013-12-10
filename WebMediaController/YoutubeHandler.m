@@ -20,7 +20,7 @@
 
 - (BOOL) isPlaying
 {
-    NSNumber *status = [[super tab] executeJavascript:@"var i = 0, out = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { out = vs[i].getPlayerState();break; }; out"];
+    NSNumber *status = [[super tab] executeJavascript:@"(function(){var e=0,t=0,n=document.querySelectorAll('#movie_player');for(e=0;e<n.length;e++){t=n[e].getPlayerState();break}return t;})()"];
     if (status) {
         NSLog(@"Status is %@", status);
         return [status intValue] == 1;
@@ -42,23 +42,23 @@
 
 - (void) play
 {
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].playVideo() }"];
+    [self.tab executeJavascript:@"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].playVideo()}})()"];
 }
 - (void) pause
 {
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].pauseVideo() }"];
+    [self.tab executeJavascript:@"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].pauseVideo()}})()"];
 }
 
 - (void)previous
 {
     NSLog(@"Previous on %@", [self.tab title]);
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].previousVideo(); }"];
+    [self.tab executeJavascript:@"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].previousVideo()}})()"];
 }
 
 -(void)next
 {
     NSLog(@"Next on %@", [self.tab title]);
-    [self.tab executeJavascript:@"var i = 0, vs = document.querySelectorAll('#movie_player'); for (i = 0; i < vs.length; i++) { vs[i].nextVideo(); }"];
+    [self.tab executeJavascript:@"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].nextVideo()}})()"];
 }
 
 +(BOOL) isValidFor:(NSString *)url

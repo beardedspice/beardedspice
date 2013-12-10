@@ -13,6 +13,7 @@
 		03F33ED418559AB200E8F77E /* youtube-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F33ED318559AB200E8F77E /* youtube-play.png */; };
 		03F33ED91856A82D00E8F77E /* PandoraHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33ED81856A82D00E8F77E /* PandoraHandler.m */; };
 		03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDB1856AF1500E8F77E /* BandCampHandler.m */; };
+		03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -50,6 +51,8 @@
 		03F33ED81856A82D00E8F77E /* PandoraHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PandoraHandler.m; sourceTree = "<group>"; };
 		03F33EDA1856AF1500E8F77E /* BandCampHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandCampHandler.h; sourceTree = "<group>"; };
 		03F33EDB1856AF1500E8F77E /* BandCampHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandCampHandler.m; sourceTree = "<group>"; };
+		03F33EDD1856B21900E8F77E /* GroovesharkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroovesharkHandler.h; sourceTree = "<group>"; };
+		03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroovesharkHandler.m; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* WebMediaController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebMediaController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -201,6 +204,8 @@
 				03F33ED81856A82D00E8F77E /* PandoraHandler.m */,
 				03F33EDA1856AF1500E8F77E /* BandCampHandler.h */,
 				03F33EDB1856AF1500E8F77E /* BandCampHandler.m */,
+				03F33EDD1856B21900E8F77E /* GroovesharkHandler.h */,
+				03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */,
 			);
 			name = MediaHandlers;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */,
 				03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,

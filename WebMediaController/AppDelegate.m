@@ -11,6 +11,7 @@
 #import "YoutubeHandler.h"
 #import "PandoraHandler.h"
 #import "BandCampHandler.h"
+#import "GroovesharkHandler.h"
 
 @implementation WebMediaControllerApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -49,6 +50,7 @@
     [availableHandlers addObject:[YoutubeHandler class]];
     [availableHandlers addObject:[PandoraHandler class]];
     [availableHandlers addObject:[BandCampHandler class]];
+    [availableHandlers addObject:[GroovesharkHandler class]];
 }
 
 - (void)awakeFromNib

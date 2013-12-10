@@ -100,6 +100,9 @@
                     // TODO: how do I memory management in obj-c?
                     // taking this out makes everything blow up.
                     // .... halp
+                    if (self.activeHandler.tab.id == tab.id) {
+                        [tabMenuItem setState:NSOnState];
+                    }
                     [tab retain];
                     MediaHandler *mediaHandler = [[handler alloc] init];
                     [mediaHandler setTab:tab];

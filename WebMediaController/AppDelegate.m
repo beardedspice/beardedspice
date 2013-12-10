@@ -12,6 +12,7 @@
 #import "PandoraHandler.h"
 #import "BandCampHandler.h"
 #import "GroovesharkHandler.h"
+#import "HypeMachineHandler.h"
 
 @implementation WebMediaControllerApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -51,6 +52,7 @@
     [availableHandlers addObject:[PandoraHandler class]];
     [availableHandlers addObject:[BandCampHandler class]];
     [availableHandlers addObject:[GroovesharkHandler class]];
+    [availableHandlers addObject:[HypeMachineHandler class]];
 }
 
 - (void)awakeFromNib

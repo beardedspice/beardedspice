@@ -20,7 +20,7 @@
 
 - (BOOL) isPlaying
 {
-    NSNumber *status = [[super tab] executeJavascript:@"(function(){return document.getElementsByClassName('pauseButton')[0].style.display==='block'})()"];
+    NSNumber *status = [[super tab] executeJavascript:@"(function(){return document.querySelectorAll('.pauseButton')[0].style.display==='block'})()"];
     
     if (status) {
         NSLog(@"Status is %@", status);
@@ -43,11 +43,11 @@
 
 - (void) play
 {
-    [self.tab executeJavascript:@"(function(){return document.getElementsByClassName('playButton')[0].click()})();"];
+    [self.tab executeJavascript:@"(function(){return document.querySelectorAll('.playButton')[0].click()})();"];
 }
 - (void) pause
 {
-    [self.tab executeJavascript:@"(function(){return document.getElementsByClassName('pauseButton')[0].click()})();"];
+    [self.tab executeJavascript:@"(function(){return document.querySelectorAll('.pauseButton')[0].click()})();"];
 }
 
 - (void)previous
@@ -58,7 +58,7 @@
 -(void)next
 {
     NSLog(@"Next on %@", [self.tab title]);
-    [self.tab executeJavascript:@"(function(){return document.getElementsByClassName('skipButton')[0].click()})();"];
+    [self.tab executeJavascript:@"(function(){return document.querySelectorAll('.skipButton')[0].click()})();"];
 }
 
 +(BOOL) isValidFor:(NSString *)url

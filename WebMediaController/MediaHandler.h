@@ -18,6 +18,6 @@
 -(void) previous;
 -(void) next;
 
-@property (assign) Tab *tab;
+@property Tab *tab;
 
 @end

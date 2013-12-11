@@ -13,7 +13,7 @@
 
 +(id) initWithApplication:(SafariApplication *)application andTab:(SafariTab *)tab;
 
-@property (retain) SafariApplication *application;
-@property (retain) SafariTab *tab;
+@property SafariApplication *application;
+@property SafariTab *tab;
 
 @end

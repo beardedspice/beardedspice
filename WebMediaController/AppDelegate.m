@@ -48,7 +48,7 @@
 		NSLog(@"Media key monitoring disabled");
     }
 
-    availableHandlers = [[[NSMutableArray alloc] init] retain];
+    availableHandlers = [[NSMutableArray alloc] init];
     // TODO: add more handler classes here
     [availableHandlers addObject:[YoutubeHandler class]];
     [availableHandlers addObject:[PandoraHandler class]];
@@ -59,10 +59,10 @@
 
 - (void)awakeFromNib
 {
-    chromeApp = [[SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"] retain];
-    safariApp = [[SBApplication applicationWithBundleIdentifier:@"com.apple.Safari"] retain];
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    chromeTabArray = [[[NSMutableArray alloc] init] retain];
+    chromeApp = [SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"];
+    safariApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.Safari"];
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    chromeTabArray = [[NSMutableArray alloc] init];
     
     [statusItem setMenu:statusMenu];
     [statusItem setImage:[NSImage imageNamed:@"youtube-play.png"]];
@@ -133,7 +133,6 @@
             //                    }
             
             MediaHandler *mediaHandler = [[handler alloc] init];
-            [tab retain];
             [mediaHandler setTab:tab];
             [chromeTabArray insertObject:mediaHandler atIndex:[statusMenu indexOfItem:tabMenuItem]];
             break;

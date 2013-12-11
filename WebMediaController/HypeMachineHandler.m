@@ -13,7 +13,6 @@
 + (id)initWithTab:(Tab *)tab
 {
     HypeMachineHandler *out = [[HypeMachineHandler alloc] init];
-    [tab retain];
     [out setTab:tab];
     return out;
 }

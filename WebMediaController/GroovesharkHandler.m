@@ -13,7 +13,6 @@
 + (id)initWithTab:(Tab *)tab
 {
     GroovesharkHandler *out = [[GroovesharkHandler alloc] init];
-    [tab retain];
     [out setTab:tab];
     return out;
 }

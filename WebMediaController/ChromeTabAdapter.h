@@ -13,6 +13,6 @@
 
 +(id) initWithTab:(ChromeTab *)tab;
 
-@property (retain) ChromeTab *tab;
+@property ChromeTab *tab;
 
 @end

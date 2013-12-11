@@ -13,7 +13,6 @@
 + (id)initWithTab:(Tab *)tab
 {
     PandoraHandler *out = [[PandoraHandler alloc] init];
-    [tab retain];
     [out setTab:tab];
     return out;
 }

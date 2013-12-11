@@ -13,7 +13,6 @@
 + (id)initWithTab:(Tab *)tab
 {
     BandCampHandler *out = [[BandCampHandler alloc] init];
-    [tab retain];
     [out setTab:tab];
     return out;
 }

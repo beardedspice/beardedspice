@@ -13,7 +13,6 @@
 + (id)initWithTab:(Tab *)tab
 {
     YoutubeHandler *out = [[YoutubeHandler alloc] init];
-    [tab retain];
     [out setTab:tab];
     return out;
 }

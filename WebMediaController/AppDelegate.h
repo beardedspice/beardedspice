@@ -29,6 +29,6 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
-@property (assign) MediaHandler *activeHandler;
+@property MediaHandler *activeHandler;
 
 @end

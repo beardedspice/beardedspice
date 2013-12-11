@@ -10,7 +10,7 @@
 
 @implementation BandCampHandler
 
-+ (id)initWithTab:(ChromeTab *)tab
++ (id)initWithTab:(Tab *)tab
 {
     BandCampHandler *out = [[BandCampHandler alloc] init];
     [tab retain];

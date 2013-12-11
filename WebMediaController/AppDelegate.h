@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "SPMediaKeyTap.h"
 #import "Chrome.h"
+#import "Safari.h"
 
 @interface WebMediaControllerApp : NSApplication
 @end
@@ -19,6 +20,7 @@
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
     ChromeApplication *chromeApp;
+    SafariApplication *safariApp;
 
     SPMediaKeyTap *keyTap;
 

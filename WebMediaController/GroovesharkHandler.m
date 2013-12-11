@@ -10,7 +10,7 @@
 
 @implementation GroovesharkHandler
 
-+ (id)initWithTab:(ChromeTab *)tab
++ (id)initWithTab:(Tab *)tab
 {
     GroovesharkHandler *out = [[GroovesharkHandler alloc] init];
     [tab retain];

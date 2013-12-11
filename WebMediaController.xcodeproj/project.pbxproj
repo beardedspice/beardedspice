@@ -15,6 +15,9 @@
 		03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDB1856AF1500E8F77E /* BandCampHandler.m */; };
 		03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */; };
 		03F33EE21856B4BC00E8F77E /* HypeMachineHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */; };
+		03F33EE61857E22700E8F77E /* Tab.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EE51857E22700E8F77E /* Tab.m */; };
+		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
+		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -56,6 +59,13 @@
 		03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroovesharkHandler.m; sourceTree = "<group>"; };
 		03F33EE01856B4BC00E8F77E /* HypeMachineHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineHandler.h; sourceTree = "<group>"; };
 		03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineHandler.m; sourceTree = "<group>"; };
+		03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tab.h; sourceTree = "<group>"; };
+		03F33EE51857E22700E8F77E /* Tab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tab.m; sourceTree = "<group>"; };
+		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
+		03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromeTabAdapter.h; sourceTree = "<group>"; };
+		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromeTabAdapter.m; sourceTree = "<group>"; };
+		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariTabAdapter.h; sourceTree = "<group>"; };
+		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTabAdapter.m; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* WebMediaController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebMediaController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +116,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03F33EE31857E21100E8F77E /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				9679336318551A8F00A49AC7 /* Chrome.h */,
+				03F33EE71857E2EE00E8F77E /* Safari.h */,
+				03F33EE41857E22700E8F77E /* Tab.h */,
+				03F33EE51857E22700E8F77E /* Tab.m */,
+				03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
+				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
+				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
+				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
@@ -150,12 +175,12 @@
 		967933351855173100A49AC7 /* WebMediaController */ = {
 			isa = PBXGroup;
 			children = (
+				03F33EE31857E21100E8F77E /* Tabs */,
 				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
 				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				9679336918552BFF00A49AC7 /* MediaHandlers */,
-				9679336318551A8F00A49AC7 /* Chrome.h */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933441855173100A49AC7 /* MainMenu.xib */,
@@ -314,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F33EE61857E22700E8F77E /* Tab.m in Sources */,
 				03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */,
 				03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
@@ -322,8 +348,10 @@
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				03F33EE21856B4BC00E8F77E /* HypeMachineHandler.m in Sources */,
 				9679336C18552C7F00A49AC7 /* YoutubeHandler.m in Sources */,
+				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				9679336E18552D1E00A49AC7 /* MediaHandler.m in Sources */,
 				03F33ED91856A82D00E8F77E /* PandoraHandler.m in Sources */,
+				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

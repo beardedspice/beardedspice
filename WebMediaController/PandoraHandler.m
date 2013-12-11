@@ -10,7 +10,7 @@
 
 @implementation PandoraHandler
 
-+ (id)initWithTab:(ChromeTab *)tab
++ (id)initWithTab:(Tab *)tab
 {
     PandoraHandler *out = [[PandoraHandler alloc] init];
     [tab retain];

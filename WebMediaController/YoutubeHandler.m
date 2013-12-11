@@ -10,7 +10,7 @@
 
 @implementation YoutubeHandler
 
-+ (id)initWithTab:(ChromeTab *)tab
++ (id)initWithTab:(Tab *)tab
 {
     YoutubeHandler *out = [[YoutubeHandler alloc] init];
     [tab retain];

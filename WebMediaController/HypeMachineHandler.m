@@ -10,7 +10,7 @@
 
 @implementation HypeMachineHandler
 
-+ (id)initWithTab:(ChromeTab *)tab
++ (id)initWithTab:(Tab *)tab
 {
     HypeMachineHandler *out = [[HypeMachineHandler alloc] init];
     [tab retain];

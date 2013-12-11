@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Chrome.h"
+#import "Tab.h"
 
 @interface MediaHandler : NSObject
 
 +(BOOL) isValidFor:(NSString *)url;
-+(id) initWithTab:(ChromeTab *)tab;
++(id) initWithTab:(Tab *)tab;
 
 -(void) toggle;
 -(void) previous;
 -(void) next;
 
-@property (assign) ChromeTab *tab;
+@property (assign) Tab *tab;
 
 @end

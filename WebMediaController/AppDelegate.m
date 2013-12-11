@@ -13,6 +13,8 @@
 #import "BandCampHandler.h"
 #import "GroovesharkHandler.h"
 #import "HypeMachineHandler.h"
+#import "ChromeTabAdapter.h"
+#import "SafariTabAdapter.h"
 
 @implementation WebMediaControllerApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -58,6 +60,7 @@
 - (void)awakeFromNib
 {
     chromeApp = [[SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"] retain];
+    safariApp = [[SBApplication applicationWithBundleIdentifier:@"com.apple.Safari"] retain];
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     chromeTabArray = [[[NSMutableArray alloc] init] retain];
     
@@ -101,24 +104,39 @@
     [chromeTabArray removeAllObjects];
     
     for (ChromeWindow *chromeWindow in chromeApp.windows) {
-        for (ChromeTab *tab in chromeWindow.tabs) {
-            for (Class handler in availableHandlers) {
-                if ([self isValidHandler:handler forUrl:[tab URL]]) {
-                    NSLog(@"%@ is valid for url %@", handler, [tab URL]);
-                    NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
-                    // TODO: how do I memory management in obj-c?
-                    // taking this out makes everything blow up.
-                    // .... halp
-                    if (self.activeHandler.tab.id == tab.id) {
-                        [tabMenuItem setState:NSOnState];
-                    }
-                    [tab retain];
-                    MediaHandler *mediaHandler = [[handler alloc] init];
-                    [mediaHandler setTab:tab];
-                    [chromeTabArray insertObject:mediaHandler atIndex:[statusMenu indexOfItem:tabMenuItem]];
-                    break;
-                }
-            }
+        for (ChromeTab *chromeTab in chromeWindow.tabs) {
+            // JF: the chrometabadapter is pretty dumb...
+            [self addHandlersForTab:[ChromeTabAdapter initWithTab:chromeTab]];
+        }
+    }
+    
+    for (SafariWindow *safariWindow in safariApp.windows) {
+        for (SafariTab *safariTab in safariWindow.tabs) {
+            [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andTab:safariTab]];
+        }
+    }
+}
+
+-(void)addHandlersForTab:(Tab *)tab
+{
+    for (Class handler in availableHandlers) {
+        if ([self isValidHandler:handler forUrl:[tab URL]]) {
+            NSLog(@"%@ is valid for url %@", handler, [tab URL]);
+            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
+            // TODO: how do I memory management in obj-c?
+            // taking this out makes everything blow up.
+            // .... halp
+            
+            // JF TODO: i've killed this with my adapater
+            //                    if (self.activeHandler.tab.id == tab.id) {
+            //                        [tabMenuItem setState:NSOnState];
+            //                    }
+            
+            MediaHandler *mediaHandler = [[handler alloc] init];
+            [tab retain];
+            [mediaHandler setTab:tab];
+            [chromeTabArray insertObject:mediaHandler atIndex:[statusMenu indexOfItem:tabMenuItem]];
+            break;
         }
     }
 }

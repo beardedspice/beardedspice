@@ -105,7 +105,7 @@
     
     for (ChromeWindow *chromeWindow in chromeApp.windows) {
         for (ChromeTab *chromeTab in chromeWindow.tabs) {
-            // JF: the chrometabadapter is pretty dumb...
+            // JF: ChromeTab implicitly implements our protocol. we could just cast it (id<Tab>)
             [self addHandlersForTab:[ChromeTabAdapter initWithTab:chromeTab]];
         }
     }
@@ -117,7 +117,7 @@
     }
 }
 
--(void)addHandlersForTab:(Tab *)tab
+-(void)addHandlersForTab:(id <Tab>)tab
 {
     for (Class handler in availableHandlers) {
         if ([self isValidHandler:handler forUrl:[tab URL]]) {
@@ -178,7 +178,7 @@
 				break;
                 // More cases defined in hidsystem/ev_keymap.h
 		}
-        NSLog(debugString);
+        NSLog(@"%@", debugString);
 	}
 }
 

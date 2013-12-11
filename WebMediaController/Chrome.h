@@ -60,7 +60,7 @@
 - (void) goForward;  // Go Forward (If Possible).
 - (void) selectAll;  // Select all.
 - (void) cutSelection;  // Cut selected text (If Possible).
-- (void) copySelection NS_RETURNS_NOT_RETAINED;  // Copy text.
+- (void) copySelection;  // Copy text.
 - (void) pasteSelection;  // Paste text (If Possible).
 - (void) undo;  // Undo the last change.
 - (void) redo;  // Redo the last change.
@@ -107,7 +107,7 @@
 - (void) goForward;  // Go Forward (If Possible).
 - (void) selectAll;  // Select all.
 - (void) cutSelection;  // Cut selected text (If Possible).
-- (void) copySelection NS_RETURNS_NOT_RETAINED;  // Copy text.
+- (void) copySelection;  // Copy text.
 - (void) pasteSelection;  // Paste text (If Possible).
 - (void) undo;  // Undo the last change.
 - (void) redo;  // Redo the last change.
@@ -140,7 +140,7 @@
 - (void) goForward;  // Go Forward (If Possible).
 - (void) selectAll;  // Select all.
 - (void) cutSelection;  // Cut selected text (If Possible).
-- (void) copySelection NS_RETURNS_NOT_RETAINED;  // Copy text.
+- (void) copySelection;  // Copy text.
 - (void) pasteSelection;  // Paste text (If Possible).
 - (void) undo;  // Undo the last change.
 - (void) redo;  // Redo the last change.
@@ -171,7 +171,7 @@
 - (void) goForward;  // Go Forward (If Possible).
 - (void) selectAll;  // Select all.
 - (void) cutSelection;  // Cut selected text (If Possible).
-- (void) copySelection NS_RETURNS_NOT_RETAINED;  // Copy text.
+- (void) copySelection;  // Copy text.
 - (void) pasteSelection;  // Paste text (If Possible).
 - (void) undo;  // Undo the last change.
 - (void) redo;  // Redo the last change.

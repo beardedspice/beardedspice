@@ -6,18 +6,17 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Tab.h"
 
 @interface MediaHandler : NSObject
 
 +(BOOL) isValidFor:(NSString *)url;
-+(id) initWithTab:(Tab *)tab;
++(id) initWithTab:(id <Tab>)tab;
 
 -(void) toggle;
 -(void) previous;
 -(void) next;
 
-@property Tab *tab;
+@property id <Tab> tab;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation PandoraHandler
 
-+ (id)initWithTab:(Tab *)tab
++ (id)initWithTab:(id <Tab>)tab
 {
     PandoraHandler *out = [[PandoraHandler alloc] init];
     [out setTab:tab];

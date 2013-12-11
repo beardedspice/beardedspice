@@ -9,7 +9,7 @@
 #import "Tab.h"
 #import "Chrome.h"
 
-@interface ChromeTabAdapter : Tab
+@interface ChromeTabAdapter : NSObject <Tab>
 
 +(id) initWithTab:(ChromeTab *)tab;
 

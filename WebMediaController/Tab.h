@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-@interface Tab : NSObject
+@protocol Tab
 
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;

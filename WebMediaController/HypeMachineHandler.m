@@ -10,7 +10,7 @@
 
 @implementation HypeMachineHandler
 
-+ (id)initWithTab:(Tab *)tab
++ (id)initWithTab:(id <Tab>)tab
 {
     HypeMachineHandler *out = [[HypeMachineHandler alloc] init];
     [out setTab:tab];

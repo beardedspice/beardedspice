@@ -10,7 +10,7 @@
 
 @implementation YoutubeHandler
 
-+ (id)initWithTab:(Tab *)tab
++ (id)initWithTab:(id <Tab>)tab
 {
     YoutubeHandler *out = [[YoutubeHandler alloc] init];
     [out setTab:tab];

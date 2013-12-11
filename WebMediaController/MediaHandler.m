@@ -12,4 +12,20 @@
 
 @synthesize tab;
 
++(BOOL) isValidFor:(NSString *)url
+{
+    return NO;
+}
+
++(id) initWithTab:(id <Tab>)tab
+{
+    MediaHandler *handler = [[MediaHandler alloc] init];
+    [handler setTab:tab];
+    return handler;
+}
+
+-(void) toggle{}
+-(void) previous{}
+-(void) next{}
+
 @end

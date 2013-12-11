@@ -9,7 +9,7 @@
 #import "Tab.h"
 #import "Safari.h"
 
-@interface SafariTabAdapter : Tab
+@interface SafariTabAdapter : NSObject <Tab>
 
 +(id) initWithApplication:(SafariApplication *)application andTab:(SafariTab *)tab;
 

@@ -10,7 +10,7 @@
 
 @implementation BandCampHandler
 
-+ (id)initWithTab:(Tab *)tab
++ (id)initWithTab:(id <Tab>)tab
 {
     BandCampHandler *out = [[BandCampHandler alloc] init];
     [out setTab:tab];

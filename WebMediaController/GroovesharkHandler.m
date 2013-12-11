@@ -10,7 +10,7 @@
 
 @implementation GroovesharkHandler
 
-+ (id)initWithTab:(Tab *)tab
++ (id)initWithTab:(id <Tab>)tab
 {
     GroovesharkHandler *out = [[GroovesharkHandler alloc] init];
     [out setTab:tab];

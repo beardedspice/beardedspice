@@ -15,7 +15,6 @@
 		03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDB1856AF1500E8F77E /* BandCampHandler.m */; };
 		03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */; };
 		03F33EE21856B4BC00E8F77E /* HypeMachineHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */; };
-		03F33EE61857E22700E8F77E /* Tab.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EE51857E22700E8F77E /* Tab.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
@@ -60,7 +59,6 @@
 		03F33EE01856B4BC00E8F77E /* HypeMachineHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineHandler.h; sourceTree = "<group>"; };
 		03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineHandler.m; sourceTree = "<group>"; };
 		03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tab.h; sourceTree = "<group>"; };
-		03F33EE51857E22700E8F77E /* Tab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tab.m; sourceTree = "<group>"; };
 		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
 		03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromeTabAdapter.h; sourceTree = "<group>"; };
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromeTabAdapter.m; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				9679336318551A8F00A49AC7 /* Chrome.h */,
 				03F33EE71857E2EE00E8F77E /* Safari.h */,
 				03F33EE41857E22700E8F77E /* Tab.h */,
-				03F33EE51857E22700E8F77E /* Tab.m */,
 				03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
 				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
 				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
@@ -339,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F33EE61857E22700E8F77E /* Tab.m in Sources */,
 				03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */,
 				03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,

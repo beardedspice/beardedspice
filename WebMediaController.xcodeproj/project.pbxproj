@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03226DBC185BE8AE000B5CC1 /* SoundCloudHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */; };
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03226DBA185BE8AE000B5CC1 /* SoundCloudHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudHandler.h; sourceTree = "<group>"; };
+		03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudHandler.m; sourceTree = "<group>"; };
 		0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */,
 				03F33EE01856B4BC00E8F77E /* HypeMachineHandler.h */,
 				03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */,
+				03226DBA185BE8AE000B5CC1 /* SoundCloudHandler.h */,
+				03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */,
 			);
 			name = MediaHandlers;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
+				03226DBC185BE8AE000B5CC1 /* SoundCloudHandler.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				03F33EE21856B4BC00E8F77E /* HypeMachineHandler.m in Sources */,

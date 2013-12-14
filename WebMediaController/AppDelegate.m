@@ -15,6 +15,7 @@
 #import "HypeMachineHandler.h"
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
+#import "SoundCloudHandler.h"
 
 @implementation WebMediaControllerApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -55,6 +56,7 @@
     [availableHandlers addObject:[BandCampHandler class]];
     [availableHandlers addObject:[GroovesharkHandler class]];
     [availableHandlers addObject:[HypeMachineHandler class]];
+    [availableHandlers addObject:[SoundCloudHandler class]];
 }
 
 - (void)awakeFromNib

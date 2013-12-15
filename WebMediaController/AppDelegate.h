@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
+#import "MASShortcutView+UserDefaults.h"
 #import "SPMediaKeyTap.h"
+
 #import "Chrome.h"
 #import "Safari.h"
 
@@ -29,6 +32,7 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
 @property MediaHandler *activeHandler;
 
 @end

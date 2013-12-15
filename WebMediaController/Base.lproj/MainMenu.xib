@@ -658,5 +658,9 @@
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
+        <customView id="Hjg-9S-o4W" customClass="MASShortcutView">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        </customView>
     </objects>
 </document>

@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "MASShortcut+Monitoring.h"
+
+#import "Tab.h"
 
 #import "YoutubeHandler.h"
 #import "PandoraHandler.h"
@@ -35,6 +38,8 @@
 @synthesize window;
 @synthesize activeHandler;
 
+NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
@@ -48,6 +53,28 @@
 	} else {
 		NSLog(@"Media key monitoring disabled");
     }
+    
+    MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_F8 modifierFlags:NSCommandKeyMask];
+    [MASShortcut addGlobalHotkeyMonitorWithShortcut:shortcut handler:^{
+        id tab = nil;
+        if (chromeApp.frontmost) {
+            // chromeApp.windows[0] is the front most window.
+            tab = [ChromeTabAdapter initWithTab:[chromeApp.windows[0] activeTab]];
+        } else if (safariApp.frontmost) {
+            // is safari.windows[0] the frontmost?
+            tab = [SafariTabAdapter initWithApplication:safariApp andTab:[safariApp.windows[0] currentTab]];
+        }
+        if (tab) {
+            NSLog(@"Global shortcut encountered. Determining handler for %@", tab);
+            id handler = [self getHandlerForTab:tab];
+            if (handler) {
+                NSLog(@"Using %@ as handler for %@.", handler, tab);
+                [self setActiveHandler: handler];
+            } else {
+                NSLog(@"No valid handler found for %@", tab);
+            }
+        }
+    }];
 
     availableHandlers = [[NSMutableArray alloc] init];
     // TODO: add more handler classes here
@@ -119,26 +146,37 @@
     }
 }
 
--(void)addHandlersForTab:(id <Tab>)tab
+/**
+ Gets the valid handler for the given tab. Returns nil if no applicable handlers are found.
+ */
+-(id)getHandlerForTab:(id <Tab>)tab
 {
     for (Class handler in availableHandlers) {
         if ([self isValidHandler:handler forUrl:[tab URL]]) {
             NSLog(@"%@ is valid for url %@", handler, [tab URL]);
-            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
-            // TODO: how do I memory management in obj-c?
-            // taking this out makes everything blow up.
-            // .... halp
-            
-            // JF TODO: i've killed this with my adapater
-            //                    if (self.activeHandler.tab.id == tab.id) {
-            //                        [tabMenuItem setState:NSOnState];
-            //                    }
-            
             MediaHandler *mediaHandler = [[handler alloc] init];
             [mediaHandler setTab:tab];
-            [chromeTabArray insertObject:mediaHandler atIndex:[statusMenu indexOfItem:tabMenuItem]];
-            break;
+            return mediaHandler;
         }
+    }
+    return nil;
+}
+
+-(void)addHandlersForTab:(id <Tab>)tab
+{
+    MediaHandler *handler = [self getHandlerForTab:tab];
+    if (handler) {
+        NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
+        // TODO: how do I memory management in obj-c?
+        // taking this out makes everything blow up.
+        // .... halp
+        
+        // JF TODO: i've killed this with my adapater
+        //                    if (self.activeHandler.tab.id == tab.id) {
+        //                        [tabMenuItem setState:NSOnState];
+        //                    }
+    
+        [chromeTabArray insertObject:handler atIndex:[statusMenu indexOfItem:tabMenuItem]];
     }
 }
 

@@ -33,5 +33,11 @@
     return [self.tab URL];
 }
 
-
+-(BOOL) isEqual:(__autoreleasing id)object
+{
+    if (![object isKindOfClass:[SafariTabAdapter class]]) return NO;
+    
+    SafariTabAdapter *other = (SafariTabAdapter *)object;
+    return [self.tab isEqual:other.tab];
+}
 @end

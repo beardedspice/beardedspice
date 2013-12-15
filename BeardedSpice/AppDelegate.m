@@ -129,10 +129,9 @@
             // taking this out makes everything blow up.
             // .... halp
             
-            // JF TODO: i've killed this with my adapater
-            //                    if (self.activeHandler.tab.id == tab.id) {
-            //                        [tabMenuItem setState:NSOnState];
-            //                    }
+            if ([self.activeHandler.tab isEqual:tab]) {
+                [tabMenuItem setState:NSOnState];
+            }
             
             MediaHandler *mediaHandler = [[handler alloc] init];
             [mediaHandler setTab:tab];

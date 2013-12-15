@@ -12,4 +12,6 @@
 -(NSString *) title;
 -(NSString *) URL;
 
+-(BOOL) isEqual:(__autoreleasing id)otherTab;
+
 @end

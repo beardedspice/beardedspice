@@ -33,4 +33,12 @@
     return [self.tab URL];
 }
 
+-(BOOL) isEqual:(__autoreleasing id)object
+{
+    if (![object isKindOfClass:[ChromeTabAdapter class]]) return NO;
+    
+    ChromeTabAdapter *other = (ChromeTabAdapter *)object;
+    return [self.tab isEqual:other.tab];
+}
+
 @end

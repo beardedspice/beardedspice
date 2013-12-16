@@ -122,13 +122,24 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     [inv getReturnValue:&output];
     return output;
 }
+- (void)removeAllItems
+{
+    NSInteger count = statusMenu.itemArray.count;
+    for (int i = 0; i < count - 2; i++) {
+        [statusMenu removeItemAtIndex:0];
+    }
+    [chromeTabArray removeAllObjects];
+}
+
+- (IBAction)exitApp:(id)sender {
+    [NSApp terminate: nil];
+}
 
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Sender was: %@", sender);
     // TODO: figure out memory issues
-    [statusMenu removeAllItems];
-    [chromeTabArray removeAllObjects];
+    [self removeAllItems];
 
     chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
     safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
@@ -147,6 +158,11 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
                 [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andWindow:safariWindow andTab:safariTab]];
             }
         }
+    }
+    
+    if (chromeTabArray.count == 0) {
+        NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
+        [item setEnabled:NO];
     }
 }
 

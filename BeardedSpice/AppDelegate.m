@@ -88,8 +88,6 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
 - (void)awakeFromNib
 {
-    chromeApp = [SBApplication applicationWithBundleIdentifier:@"com.google.Chrome"];
-    safariApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.Safari"];
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     chromeTabArray = [[NSMutableArray alloc] init];
 
@@ -132,16 +130,23 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     [statusMenu removeAllItems];
     [chromeTabArray removeAllObjects];
 
-    for (ChromeWindow *chromeWindow in chromeApp.windows) {
-        for (ChromeTab *chromeTab in chromeWindow.tabs) {
-            // JF: ChromeTab implicitly implements our protocol. we could just cast it (id<Tab>)
-            [self addHandlersForTab:[ChromeTabAdapter initWithTab:chromeTab]];
+    chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
+    safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+
+    if (chromeApp != NULL) {
+        for (ChromeWindow *chromeWindow in chromeApp.windows) {
+            for (ChromeTab *chromeTab in chromeWindow.tabs) {
+                // JF: ChromeTab implicitly implements our protocol. we could just cast it (id<Tab>)
+                [self addHandlersForTab:[ChromeTabAdapter initWithTab:chromeTab]];
+            }
         }
     }
-
-    for (SafariWindow *safariWindow in safariApp.windows) {
-        for (SafariTab *safariTab in safariWindow.tabs) {
-            [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andTab:safariTab]];
+    
+    if (safariApp != NULL) {
+        for (SafariWindow *safariWindow in safariApp.windows) {
+            for (SafariTab *safariTab in safariWindow.tabs) {
+                [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andTab:safariTab]];
+            }
         }
     }
 }
@@ -225,6 +230,17 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 		}
         NSLog(@"%@", debugString);
 	}
+}
+
+-(SBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
+{
+    NSArray *apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleIdentifier];
+    if ([apps count] > 0) {
+        NSRunningApplication *app = [apps objectAtIndex:0];
+        NSLog(@"App %@ is running %@", bundleIdentifier, app);
+        return [SBApplication applicationWithProcessIdentifier:[app processIdentifier]];
+    }
+    return NULL;
 }
 
 @end

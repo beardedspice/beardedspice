@@ -10,7 +10,7 @@
 
 @implementation SafariTabAdapter
 
-+ (id)initWithApplication:(SafariApplication *)application andWindow:(SafariWindow*)window andTab:(SafariTab *)tab
++ (id)initWithApplication:(SafariApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
 {
     SafariTabAdapter *out = [[SafariTabAdapter alloc] init];
     [out setTab:tab];

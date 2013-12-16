@@ -578,6 +578,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -592,6 +593,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};

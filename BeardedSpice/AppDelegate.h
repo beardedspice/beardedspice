@@ -13,27 +13,28 @@
 
 #import "Chrome.h"
 #import "Safari.h"
-#import "MediaHandlerRegistry.h"
+#import "Tab.h"
+#import "MediaStrategyRegistry.h"
 
 @interface BeardedSpiceApp : NSApplication
 @end
 
-#import "MediaHandler.h"
+#import "MediaStrategy.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
+    
     ChromeApplication *chromeApp;
     SafariApplication *safariApp;
 
     SPMediaKeyTap *keyTap;
 
-    NSMutableArray *chromeTabArray;
-    MediaHandlerRegistry *mediaHandlerRegistry;
+    id <Tab> activeTab;
+    MediaStrategyRegistry *mediaStrategyRegistry;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
-@property MediaHandler *activeHandler;
 
 @end

@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03226DBC185BE8AE000B5CC1 /* SoundCloudHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */; };
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
-		03A34918185E947500C4A62B /* MediaHandlerRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34917185E947500C4A62B /* MediaHandlerRegistry.m */; };
+		03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
+		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
+		03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34924185EB20E00C4A62B /* YouTubeStrategy.m */; };
+		03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34928185EE58600C4A62B /* PandoraStrategy.m */; };
+		03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492B185EE73700C4A62B /* BandCampStrategy.m */; };
+		03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */; };
+		03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */; };
+		03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */; };
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		03F33ED418559AB200E8F77E /* youtube-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F33ED318559AB200E8F77E /* youtube-play.png */; };
-		03F33ED91856A82D00E8F77E /* PandoraHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33ED81856A82D00E8F77E /* PandoraHandler.m */; };
-		03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDB1856AF1500E8F77E /* BandCampHandler.m */; };
-		03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */; };
-		03F33EE21856B4BC00E8F77E /* HypeMachineHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
@@ -31,8 +33,6 @@
 		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
 		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
-		9679336C18552C7F00A49AC7 /* YoutubeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679336B18552C7F00A49AC7 /* YoutubeHandler.m */; };
-		9679336E18552D1E00A49AC7 /* MediaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679336D18552D1E00A49AC7 /* MediaHandler.m */; };
 		96A681E2185E4CC60015046A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 96A681D5185E4CC60015046A /* .gitignore */; };
 		96A681E3185E4CC60015046A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 96A681D6185E4CC60015046A /* LICENSE */; };
 		96A681E4185E4CC60015046A /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A681D8185E4CC60015046A /* MASShortcut+Monitoring.m */; };
@@ -54,24 +54,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03226DBA185BE8AE000B5CC1 /* SoundCloudHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SoundCloudHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SoundCloudHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
-		03A34916185E947500C4A62B /* MediaHandlerRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaHandlerRegistry.h; sourceTree = "<group>"; };
-		03A34917185E947500C4A62B /* MediaHandlerRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaHandlerRegistry.m; sourceTree = "<group>"; };
+		03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
+		03A3491B185EA03300C4A62B /* MediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategy.m; sourceTree = "<group>"; };
+		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategyRegistry.h; sourceTree = "<group>"; };
+		03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategyRegistry.m; sourceTree = "<group>"; };
+		03A34923185EB20E00C4A62B /* YouTubeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeStrategy.h; sourceTree = "<group>"; };
+		03A34924185EB20E00C4A62B /* YouTubeStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeStrategy.m; sourceTree = "<group>"; };
+		03A34927185EE58600C4A62B /* PandoraStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PandoraStrategy.h; sourceTree = "<group>"; };
+		03A34928185EE58600C4A62B /* PandoraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PandoraStrategy.m; sourceTree = "<group>"; };
+		03A3492A185EE73700C4A62B /* BandCampStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandCampStrategy.h; sourceTree = "<group>"; };
+		03A3492B185EE73700C4A62B /* BandCampStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandCampStrategy.m; sourceTree = "<group>"; };
+		03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrooveSharkStrategy.h; sourceTree = "<group>"; };
+		03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrooveSharkStrategy.m; sourceTree = "<group>"; };
+		03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudStrategy.h; sourceTree = "<group>"; };
+		03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudStrategy.m; sourceTree = "<group>"; };
+		03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineStrategy.h; sourceTree = "<group>"; };
+		03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineStrategy.m; sourceTree = "<group>"; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		03F33ED318559AB200E8F77E /* youtube-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play.png"; sourceTree = "<group>"; };
-		03F33ED71856A82D00E8F77E /* PandoraHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PandoraHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03F33ED81856A82D00E8F77E /* PandoraHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PandoraHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		03F33EDA1856AF1500E8F77E /* BandCampHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BandCampHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03F33EDB1856AF1500E8F77E /* BandCampHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BandCampHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		03F33EDD1856B21900E8F77E /* GroovesharkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GroovesharkHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GroovesharkHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		03F33EE01856B4BC00E8F77E /* HypeMachineHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HypeMachineHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HypeMachineHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Tab.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
 		03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ChromeTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -99,10 +103,6 @@
 		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
-		9679336618552B7000A49AC7 /* MediaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaHandler.h; sourceTree = "<group>"; };
-		9679336A18552C7F00A49AC7 /* YoutubeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeHandler.h; sourceTree = "<group>"; };
-		9679336B18552C7F00A49AC7 /* YoutubeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeHandler.m; sourceTree = "<group>"; };
-		9679336D18552D1E00A49AC7 /* MediaHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaHandler.m; sourceTree = "<group>"; };
 		96A681C7185E4C5D0015046A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		96A681C8185E4C5D0015046A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		96A681C9185E4C5D0015046A /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
@@ -154,6 +154,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
+			isa = PBXGroup;
+			children = (
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
+				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
+				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
+				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
+				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
+				03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
+				03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */,
+				03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
+				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
+				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
+				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
+				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
+			);
+			name = MediaStrategies;
+			sourceTree = "<group>";
+		};
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,12 +237,12 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
+				03A34919185E9FC700C4A62B /* MediaStrategies */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
 				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
-				9679336918552BFF00A49AC7 /* MediaHandlers */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933441855173100A49AC7 /* MainMenu.xib */,
@@ -258,29 +281,6 @@
 				967933561855173100A49AC7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9679336918552BFF00A49AC7 /* MediaHandlers */ = {
-			isa = PBXGroup;
-			children = (
-				9679336618552B7000A49AC7 /* MediaHandler.h */,
-				9679336A18552C7F00A49AC7 /* YoutubeHandler.h */,
-				9679336B18552C7F00A49AC7 /* YoutubeHandler.m */,
-				9679336D18552D1E00A49AC7 /* MediaHandler.m */,
-				03F33ED71856A82D00E8F77E /* PandoraHandler.h */,
-				03F33ED81856A82D00E8F77E /* PandoraHandler.m */,
-				03F33EDA1856AF1500E8F77E /* BandCampHandler.h */,
-				03F33EDB1856AF1500E8F77E /* BandCampHandler.m */,
-				03F33EDD1856B21900E8F77E /* GroovesharkHandler.h */,
-				03F33EDE1856B21900E8F77E /* GroovesharkHandler.m */,
-				03F33EE01856B4BC00E8F77E /* HypeMachineHandler.h */,
-				03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */,
-				03226DBA185BE8AE000B5CC1 /* SoundCloudHandler.h */,
-				03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */,
-				03A34916185E947500C4A62B /* MediaHandlerRegistry.h */,
-				03A34917185E947500C4A62B /* MediaHandlerRegistry.m */,
-			);
-			name = MediaHandlers;
 			sourceTree = "<group>";
 		};
 		96A681C6185E4C5D0015046A /* MASShortcut */ = {
@@ -425,24 +425,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F33EDF1856B21900E8F77E /* GroovesharkHandler.m in Sources */,
-				03F33EDC1856AF1500E8F77E /* BandCampHandler.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				96A681E5185E4CC60015046A /* MASShortcut+UserDefaults.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				96A681E6185E4CC60015046A /* MASShortcut.m in Sources */,
-				03226DBC185BE8AE000B5CC1 /* SoundCloudHandler.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
-				03F33EE21856B4BC00E8F77E /* HypeMachineHandler.m in Sources */,
-				9679336C18552C7F00A49AC7 /* YoutubeHandler.m in Sources */,
 				96A681E4185E4CC60015046A /* MASShortcut+Monitoring.m in Sources */,
+				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
+				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
+				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				96A681E7185E4CC60015046A /* MASShortcutView+UserDefaults.m in Sources */,
+				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
+				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				96A681E8185E4CC60015046A /* MASShortcutView.m in Sources */,
-				9679336E18552D1E00A49AC7 /* MediaHandler.m in Sources */,
-				03A34918185E947500C4A62B /* MediaHandlerRegistry.m in Sources */,
-				03F33ED91856A82D00E8F77E /* PandoraHandler.m in Sources */,
+				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
+				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
+				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

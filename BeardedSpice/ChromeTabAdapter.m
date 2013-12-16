@@ -10,13 +10,13 @@
 
 @implementation ChromeTabAdapter
 
-+ (id)initWithTab:(ChromeTab *)tab
++ (id)initWithTab:(ChromeTab *)tab andWindow:(ChromeWindow *) window
 {
     ChromeTabAdapter *out = [[ChromeTabAdapter alloc] init];
     [out setTab:tab];
+    [out setWindow:window];
     return out;
 }
-
 
 -(id) executeJavascript:(NSString *) javascript
 {
@@ -39,6 +39,11 @@
     
     ChromeTabAdapter *other = (ChromeTabAdapter *)object;
     return self.tab.id == other.tab.id;
+}
+
+-(NSString *) key
+{
+    return [NSString stringWithFormat:@"C:%ld:%ld", [self.window index], [self.tab id]];
 }
 
 @end

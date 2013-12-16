@@ -11,8 +11,9 @@
 
 @interface ChromeTabAdapter : NSObject <Tab>
 
-+(id) initWithTab:(ChromeTab *)tab;
++(id) initWithTab:(ChromeTab *)tab andWindow:(ChromeWindow *) window;
 
 @property ChromeTab *tab;
+@property ChromeWindow *window;
 
 @end

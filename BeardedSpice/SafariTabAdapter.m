@@ -42,4 +42,10 @@
 
     return (self.window.id == other.window.id) && (self.tab.index == other.tab.index);
 }
+
+-(NSString *) key
+{
+    return [NSString stringWithFormat:@"S:%ld:%ld", [self.window index], [self.tab index]];
+}
+
 @end

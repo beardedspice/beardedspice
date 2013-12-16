@@ -11,6 +11,7 @@
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;
 -(NSString *) URL;
+-(NSString *) key;
 
 -(BOOL) isEqual:(__autoreleasing id)otherTab;
 

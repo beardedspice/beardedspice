@@ -9,10 +9,8 @@
 #import "AppDelegate.h"
 #import "MASShortcut+Monitoring.h"
 
-#import "Tab.h"
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
-
 
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -28,9 +26,6 @@
 @end
 
 @implementation AppDelegate
-
-@synthesize window;
-@synthesize activeHandler;
 
 NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
@@ -50,33 +45,26 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
     MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_F8 modifierFlags:NSCommandKeyMask];
     [MASShortcut addGlobalHotkeyMonitorWithShortcut:shortcut handler:^{
-        id tab = nil;
         if (chromeApp.frontmost) {
             // chromeApp.windows[0] is the front most window.
-            tab = [ChromeTabAdapter initWithTab:[chromeApp.windows[0] activeTab]];
+            ChromeWindow *chromeWindow = chromeApp.windows[0];
+            activeTab = [ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow];
         } else if (safariApp.frontmost) {
             // is safari.windows[0] the frontmost?
-            tab = [SafariTabAdapter initWithApplication:safariApp andWindow: safariApp.windows[0] andTab:[safariApp.windows[0] currentTab]];
+            SafariWindow *safariWindow = safariApp.windows[0];
+            activeTab = [SafariTabAdapter initWithApplication:safariApp
+                                                    andWindow:safariWindow
+                                                       andTab:[safariWindow currentTab]];
         }
-        if (tab) {
-            NSLog(@"Global shortcut encountered. Determining handler for %@", tab);
-            id handler = [mediaHandlerRegistry getMediaHandlerForTab:tab];
-            if (handler) {
-                NSLog(@"Using %@ as handler for %@.", handler, tab);
-                [self setActiveHandler: handler];
-            } else {
-                NSLog(@"No valid handler found for %@", tab);
-            }
-        }
+        NSLog(@"Active tab is %@", activeTab);
     }];
     
-    mediaHandlerRegistry = [MediaHandlerRegistry getDefaultRegistry];
+    mediaStrategyRegistry = [MediaStrategyRegistry getDefaultRegistry];
 }
 
 - (void)awakeFromNib
 {
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    chromeTabArray = [[NSMutableArray alloc] init];
 
     [statusItem setMenu:statusMenu];
     [statusItem setImage:[NSImage imageNamed:@"youtube-play.png"]];
@@ -124,25 +112,23 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
 - (void)refreshTabs:(id) sender
 {
-    NSLog(@"Sender was: %@", sender);
-    // TODO: figure out memory issues
+    NSLog(@"Refreshing tabs...");
     [self removeAllItems];
 
     chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
     safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
 
-    if (chromeApp != NULL) {
+    if (chromeApp) {
         for (ChromeWindow *chromeWindow in chromeApp.windows) {
             for (ChromeTab *chromeTab in chromeWindow.tabs) {
-                // JF: ChromeTab implicitly implements our protocol. we could just cast it (id<Tab>)
-                [self addHandlersForTab:[ChromeTabAdapter initWithTab:chromeTab]];
+                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow];
             }
         }
     }
-    if (safariApp != NULL) {
+    if (safariApp) {
         for (SafariWindow *safariWindow in safariApp.windows) {
             for (SafariTab *safariTab in safariWindow.tabs) {
-                [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andWindow:safariWindow andTab:safariTab]];
+                [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
             }
         }
     }
@@ -153,29 +139,55 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     }
 }
 
--(void)addHandlersForTab:(id <Tab>)tab
+-(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow
 {
-    MediaHandler *handler = [mediaHandlerRegistry getMediaHandlerForTab:tab];
-    if (handler) {
-        NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
-
-        if ([self.activeHandler.tab isEqual:tab]) {
-            [tabMenuItem setState:NSOnState];
-        }
-        
-        [chromeTabArray insertObject:handler atIndex:[statusMenu indexOfItem:tabMenuItem]];
+    NSMenuItem *menuItem = [self addStatusMenuItemFor:chromeTab withTitle:[chromeTab title] andURL:[chromeTab URL]];
+    if (menuItem) {
+        id<Tab> tab = [ChromeTabAdapter initWithTab:chromeTab andWindow:chromeWindow];
+        [menuItem setRepresentedObject:tab];
+        [self setStatusMenuItemStatus:menuItem forTab:tab];
     }
 }
 
-- (void)updateActiveHandler:(id) sender
+-(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
-    NSLog(@"Sender was: %@", sender);
-    [self setActiveHandler:[chromeTabArray objectAtIndex:[statusMenu indexOfItem:sender]]];
-    NSLog(@"Active handler now %@", [self activeHandler]);
+    NSMenuItem *menuItem = [self addStatusMenuItemFor:safariTab withTitle:[safariTab name] andURL:[safariTab URL]];
+    if (menuItem) {
+        id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
+                                                  andWindow:safariWindow
+                                                     andTab:safariTab];
+        [menuItem setRepresentedObject:tab];
+        [self setStatusMenuItemStatus:menuItem forTab:tab];
+    }
+}
+
+-(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
+{
+    if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
+        [item setState:NSOnState];
+    }
+}
+
+-(NSMenuItem *)addStatusMenuItemFor:(id)tab withTitle:(NSString *)title andURL:(NSString *)URL
+{
+    if ([mediaStrategyRegistry getMediaStrategyForURL:URL]) {
+        return [statusMenu addItemWithTitle:title action:@selector(updateActiveTab:) keyEquivalent:@""];
+    }
+    return NULL;
+}
+
+- (void)updateActiveTab:(id) sender
+{
+    activeTab = [sender representedObject];
+    NSLog(@"Active tab is %@", activeTab);
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
 {
+    if (!activeTab) {
+        return;
+    }
+    
 	NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
 	// here be dragons...
 	int keyCode = (([event data1] & 0xFFFF0000) >> 16);
@@ -184,21 +196,23 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 	int keyRepeat = (keyFlags & 0x1);
 
 	if (keyIsPressed) {
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForURL:[activeTab URL]];
+        if (!strategy) {
+            return;
+        }
 		NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
 		switch (keyCode) {
 			case NX_KEYTYPE_PLAY:
 				debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
-                // what if there is no active tab...what if!?
-                [self.activeHandler toggle];
+                [activeTab executeJavascript:[strategy toggle]];
 				break;
 			case NX_KEYTYPE_FAST:
 				debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
-                [self.activeHandler next];
+                [activeTab executeJavascript:[strategy next]];
 				break;
-
 			case NX_KEYTYPE_REWIND:
 				debugString = [@"Rewind pressed" stringByAppendingString:debugString];
-                [self.activeHandler previous];
+                [activeTab executeJavascript:[strategy previous]];
 				break;
 			default:
 				debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];

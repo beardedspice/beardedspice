@@ -154,14 +154,6 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     for (Class handler in availableHandlers) {
         if ([self isValidHandler:handler forUrl:[tab URL]]) {
             NSLog(@"%@ is valid for url %@", handler, [tab URL]);
-            NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
-            // TODO: how do I memory management in obj-c?
-            // taking this out makes everything blow up.
-            // .... halp
-
-            if ([self.activeHandler.tab isEqual:tab]) {
-                [tabMenuItem setState:NSOnState];
-            }
 
             MediaHandler *mediaHandler = [[handler alloc] init];
             [mediaHandler setTab:tab];
@@ -184,7 +176,11 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         //                    if (self.activeHandler.tab.id == tab.id) {
         //                        [tabMenuItem setState:NSOnState];
         //                    }
-
+        
+        if ([self.activeHandler.tab isEqual:tab]) {
+            [tabMenuItem setState:NSOnState];
+        }
+        
         [chromeTabArray insertObject:handler atIndex:[statusMenu indexOfItem:tabMenuItem]];
     }
 }

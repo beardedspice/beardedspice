@@ -173,15 +173,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     MediaHandler *handler = [self getHandlerForTab:tab];
     if (handler) {
         NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
-        // TODO: how do I memory management in obj-c?
-        // taking this out makes everything blow up.
-        // .... halp
 
-        // JF TODO: i've killed this with my adapater
-        //                    if (self.activeHandler.tab.id == tab.id) {
-        //                        [tabMenuItem setState:NSOnState];
-        //                    }
-        
         if ([self.activeHandler.tab isEqual:tab]) {
             [tabMenuItem setState:NSOnState];
         }

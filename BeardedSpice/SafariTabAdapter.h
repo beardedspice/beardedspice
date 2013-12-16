@@ -11,9 +11,10 @@
 
 @interface SafariTabAdapter : NSObject <Tab>
 
-+(id) initWithApplication:(SafariApplication *)application andTab:(SafariTab *)tab;
++(id) initWithApplication:(SafariApplication *)application andWindow:(SafariWindow*)window andTab:(SafariTab *)tab;
 
-@property SafariApplication *application;
+@property SafariApplication *application; // we need this for executing js.
+@property SafariWindow *window; // we need this for the equality check
 @property SafariTab *tab;
 
 @end

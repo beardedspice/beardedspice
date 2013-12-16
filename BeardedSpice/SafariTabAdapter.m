@@ -10,10 +10,11 @@
 
 @implementation SafariTabAdapter
 
-+ (id)initWithApplication:(SafariApplication *)application andTab:(SafariTab *)tab
++ (id)initWithApplication:(SafariApplication *)application andWindow:(SafariWindow*)window andTab:(SafariTab *)tab
 {
     SafariTabAdapter *out = [[SafariTabAdapter alloc] init];
     [out setTab:tab];
+    [out setWindow:window];
     [out setApplication:application];
     return out;
 }
@@ -35,9 +36,10 @@
 
 -(BOOL) isEqual:(__autoreleasing id)object
 {
-    if (![object isKindOfClass:[SafariTabAdapter class]]) return NO;
+    if (object == nil || ![object isKindOfClass:[SafariTabAdapter class]]) return NO;
     
     SafariTabAdapter *other = (SafariTabAdapter *)object;
-    return [self.tab isEqual:other.tab];
+
+    return (self.window.id == other.window.id) && (self.tab.index == other.tab.index);
 }
 @end

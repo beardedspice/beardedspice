@@ -62,7 +62,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
             tab = [ChromeTabAdapter initWithTab:[chromeApp.windows[0] activeTab]];
         } else if (safariApp.frontmost) {
             // is safari.windows[0] the frontmost?
-            tab = [SafariTabAdapter initWithApplication:safariApp andTab:[safariApp.windows[0] currentTab]];
+            tab = [SafariTabAdapter initWithApplication:safariApp andWindow: safariApp.windows[0] andTab:[safariApp.windows[0] currentTab]];
         }
         if (tab) {
             NSLog(@"Global shortcut encountered. Determining handler for %@", tab);
@@ -141,11 +141,10 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
             }
         }
     }
-    
     if (safariApp != NULL) {
         for (SafariWindow *safariWindow in safariApp.windows) {
             for (SafariTab *safariTab in safariWindow.tabs) {
-                [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andTab:safariTab]];
+                [self addHandlersForTab:[SafariTabAdapter initWithApplication:safariApp andWindow:safariWindow andTab:safariTab]];
             }
         }
     }

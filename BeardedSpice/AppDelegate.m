@@ -10,15 +10,9 @@
 #import "MASShortcut+Monitoring.h"
 
 #import "Tab.h"
-
-#import "YoutubeHandler.h"
-#import "PandoraHandler.h"
-#import "BandCampHandler.h"
-#import "GroovesharkHandler.h"
-#import "HypeMachineHandler.h"
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
-#import "SoundCloudHandler.h"
+
 
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
@@ -66,7 +60,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         }
         if (tab) {
             NSLog(@"Global shortcut encountered. Determining handler for %@", tab);
-            id handler = [self getHandlerForTab:tab];
+            id handler = [mediaHandlerRegistry getMediaHandlerForTab:tab];
             if (handler) {
                 NSLog(@"Using %@ as handler for %@.", handler, tab);
                 [self setActiveHandler: handler];
@@ -75,15 +69,8 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
             }
         }
     }];
-
-    availableHandlers = [[NSMutableArray alloc] init];
-    // TODO: add more handler classes here
-    [availableHandlers addObject:[YoutubeHandler class]];
-    [availableHandlers addObject:[PandoraHandler class]];
-    [availableHandlers addObject:[BandCampHandler class]];
-    [availableHandlers addObject:[GroovesharkHandler class]];
-    [availableHandlers addObject:[HypeMachineHandler class]];
-    [availableHandlers addObject:[SoundCloudHandler class]];
+    
+    mediaHandlerRegistry = [MediaHandlerRegistry getDefaultRegistry];
 }
 
 - (void)awakeFromNib
@@ -102,25 +89,6 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 - (void)menuWillOpen:(NSMenu *)menu
 {
     [self refreshTabs: menu];
-}
-
-/**
- A bit of hackery to allow us to dynamically determine if the url is valid for the given handler
-*/
-- (BOOL) isValidHandler:(Class) handler forUrl:(NSString *)url
-{
-    if (![handler isSubclassOfClass:[MediaHandler class]]) {
-        return NO;
-    }
-
-    BOOL output;
-    NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[handler methodSignatureForSelector:@selector(isValidFor:)]];
-    [inv setTarget:handler];
-    [inv setSelector:@selector(isValidFor:)];
-    [inv setArgument:&url atIndex:2]; // 0 is target, 1 is selector
-    [inv invoke];
-    [inv getReturnValue:&output];
-    return output;
 }
 
 - (void)refreshTabs:(id) sender
@@ -150,26 +118,9 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     }
 }
 
-/**
- Gets the valid handler for the given tab. Returns nil if no applicable handlers are found.
- */
--(id)getHandlerForTab:(id <Tab>)tab
-{
-    for (Class handler in availableHandlers) {
-        if ([self isValidHandler:handler forUrl:[tab URL]]) {
-            NSLog(@"%@ is valid for url %@", handler, [tab URL]);
-
-            MediaHandler *mediaHandler = [[handler alloc] init];
-            [mediaHandler setTab:tab];
-            return mediaHandler;
-        }
-    }
-    return nil;
-}
-
 -(void)addHandlersForTab:(id <Tab>)tab
 {
-    MediaHandler *handler = [self getHandlerForTab:tab];
+    MediaHandler *handler = [mediaHandlerRegistry getMediaHandlerForTab:tab];
     if (handler) {
         NSMenuItem *tabMenuItem = [statusMenu insertItemWithTitle:[tab title] action:@selector(updateActiveHandler:) keyEquivalent:@"" atIndex:0];
 

@@ -13,6 +13,7 @@
 
 #import "Chrome.h"
 #import "Safari.h"
+#import "MediaHandlerRegistry.h"
 
 @interface BeardedSpiceApp : NSApplication
 @end
@@ -27,8 +28,8 @@
 
     SPMediaKeyTap *keyTap;
 
-    NSMutableArray *chromeTabArray;    
-    NSMutableArray *availableHandlers;
+    NSMutableArray *chromeTabArray;
+    MediaHandlerRegistry *mediaHandlerRegistry;
 }
 
 @property (assign) IBOutlet NSWindow *window;

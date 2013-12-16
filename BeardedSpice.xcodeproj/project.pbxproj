@@ -10,6 +10,7 @@
 		03226DBC185BE8AE000B5CC1 /* SoundCloudHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */; };
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
+		03A34918185E947500C4A62B /* MediaHandlerRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34917185E947500C4A62B /* MediaHandlerRegistry.m */; };
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		03F33ED418559AB200E8F77E /* youtube-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F33ED318559AB200E8F77E /* youtube-play.png */; };
 		03F33ED91856A82D00E8F77E /* PandoraHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33ED81856A82D00E8F77E /* PandoraHandler.m */; };
@@ -59,6 +60,8 @@
 		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		03A34916185E947500C4A62B /* MediaHandlerRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaHandlerRegistry.h; sourceTree = "<group>"; };
+		03A34917185E947500C4A62B /* MediaHandlerRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaHandlerRegistry.m; sourceTree = "<group>"; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		03F33ED318559AB200E8F77E /* youtube-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play.png"; sourceTree = "<group>"; };
 		03F33ED71856A82D00E8F77E /* PandoraHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PandoraHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -223,7 +226,6 @@
 				967933471855173100A49AC7 /* Images.xcassets */,
 				967933361855173100A49AC7 /* Supporting Files */,
 			);
-			name = BeardedSpice;
 			path = BeardedSpice;
 			sourceTree = "<group>";
 		};
@@ -246,7 +248,6 @@
 				967933591855173100A49AC7 /* BeardedSpiceTests.m */,
 				967933541855173100A49AC7 /* Supporting Files */,
 			);
-			name = BeardedSpiceTests;
 			path = BeardedSpiceTests;
 			sourceTree = "<group>";
 		};
@@ -276,6 +277,8 @@
 				03F33EE11856B4BC00E8F77E /* HypeMachineHandler.m */,
 				03226DBA185BE8AE000B5CC1 /* SoundCloudHandler.h */,
 				03226DBB185BE8AE000B5CC1 /* SoundCloudHandler.m */,
+				03A34916185E947500C4A62B /* MediaHandlerRegistry.h */,
+				03A34917185E947500C4A62B /* MediaHandlerRegistry.m */,
 			);
 			name = MediaHandlers;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				96A681E8185E4CC60015046A /* MASShortcutView.m in Sources */,
 				9679336E18552D1E00A49AC7 /* MediaHandler.m in Sources */,
+				03A34918185E947500C4A62B /* MediaHandlerRegistry.m in Sources */,
 				03F33ED91856A82D00E8F77E /* PandoraHandler.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 			);

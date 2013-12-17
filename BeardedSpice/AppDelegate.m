@@ -56,7 +56,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
                                                     andWindow:safariWindow
                                                        andTab:[safariWindow currentTab]];
         }
-        NSLog(@"Active tab is %@", activeTab);
+        NSLog(@"Active tab is %@, %@", activeTab, [activeTab key]);
     }];
     
     mediaStrategyRegistry = [MediaStrategyRegistry getDefaultRegistry];
@@ -79,31 +79,12 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
     [self refreshTabs: menu];
 }
 
-/**
- A bit of hackery to allow us to dynamically determine if the url is valid for the given handler
-*/
-- (BOOL) isValidHandler:(Class) handler forUrl:(NSString *)url
-{
-    if (![handler isSubclassOfClass:[MediaHandler class]]) {
-        return NO;
-    }
-
-    BOOL output;
-    NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[handler methodSignatureForSelector:@selector(isValidFor:)]];
-    [inv setTarget:handler];
-    [inv setSelector:@selector(isValidFor:)];
-    [inv setArgument:&url atIndex:2]; // 0 is target, 1 is selector
-    [inv invoke];
-    [inv getReturnValue:&output];
-    return output;
-}
 - (void)removeAllItems
 {
     NSInteger count = statusMenu.itemArray.count;
     for (int i = 0; i < count - 2; i++) {
         [statusMenu removeItemAtIndex:0];
     }
-    [chromeTabArray removeAllObjects];
 }
 
 - (IBAction)exitApp:(id)sender {
@@ -133,7 +114,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         }
     }
     
-    if (chromeTabArray.count == 0) {
+    if ([statusMenu numberOfItems] == 2) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
     }
@@ -163,6 +144,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
 -(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
 {
+    NSLog(@"FOO %@:%@", [activeTab key], [tab key]);
     if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
         [item setState:NSOnState];
     }
@@ -171,7 +153,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 -(NSMenuItem *)addStatusMenuItemFor:(id)tab withTitle:(NSString *)title andURL:(NSString *)URL
 {
     if ([mediaStrategyRegistry getMediaStrategyForURL:URL]) {
-        return [statusMenu addItemWithTitle:title action:@selector(updateActiveTab:) keyEquivalent:@""];
+        return [statusMenu insertItemWithTitle:title action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
     }
     return NULL;
 }
@@ -179,7 +161,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 - (void)updateActiveTab:(id) sender
 {
     activeTab = [sender representedObject];
-    NSLog(@"Active tab is %@", activeTab);
+    NSLog(@"Active tab is %@, %@", activeTab, [activeTab key]);
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;

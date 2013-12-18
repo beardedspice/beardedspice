@@ -144,7 +144,6 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
 -(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
 {
-    NSLog(@"FOO %@:%@", [activeTab key], [tab key]);
     if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
         [item setState:NSOnState];
     }
@@ -153,7 +152,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 -(NSMenuItem *)addStatusMenuItemFor:(id)tab withTitle:(NSString *)title andURL:(NSString *)URL
 {
     if ([mediaStrategyRegistry getMediaStrategyForURL:URL]) {
-        return [statusMenu insertItemWithTitle:title action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
+        return [statusMenu insertItemWithTitle:[self trim:title toLength:40] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
     }
     return NULL;
 }
@@ -214,6 +213,14 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         return [SBApplication applicationWithProcessIdentifier:[app processIdentifier]];
     }
     return NULL;
+}
+
+-(NSString *)trim:(NSString *)string toLength:(NSInteger)max
+{
+    if ([string length] > max) {
+        return [NSString stringWithFormat:@"%@...", [string substringToIndex:(max - 3)]];
+    }
+    return [string substringToIndex: [string length]];
 }
 
 @end

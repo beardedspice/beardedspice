@@ -86,7 +86,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 - (void)removeAllItems
 {
     NSInteger count = statusMenu.itemArray.count;
-    for (int i = 0; i < count - 2; i++) {
+    for (int i = 0; i < count - 3; i++) {
         [statusMenu removeItemAtIndex:0];
     }
 }
@@ -118,7 +118,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         }
     }
     
-    if ([statusMenu numberOfItems] == 2) {
+    if ([statusMenu numberOfItems] == 3) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
     }

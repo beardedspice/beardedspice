@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="12E3200" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -659,7 +659,13 @@ CQ
 </string>
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
-                <menuItem title="Exit" id="PLq-0w-RnA">
+                <menuItem title="Preferences..." id="Qfc-QT-jQd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showWindow:" target="yHL-86-VO4" id="HfD-Tb-okN"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="PLq-0w-RnA">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="exitApp:" target="494" id="gbU-LE-9g5"/>
@@ -676,9 +682,45 @@ CQ
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
-        <customView id="Hjg-9S-o4W" customClass="MASShortcutView">
-            <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-        </customView>
+        <customObject id="yHL-86-VO4" customClass="PreferencesWindowController">
+            <connections>
+                <outlet property="window" destination="RbV-uI-qti" id="d9w-F1-kEI"/>
+            </connections>
+        </customObject>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="RbV-uI-qti">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <rect key="contentRect" x="428" y="284" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <view key="contentView" id="4iM-cI-ZBG">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hjg-9S-o4W" customClass="MASShortcutView">
+                        <rect key="frame" x="148" y="83" width="183" height="103"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                </subviews>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="9F76F24B-566B-4A08-B96D-C4AF7965AED3" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="spY-Bx-quj">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="52AA5369-E158-4C04-BD75-D17F1A75A3E1" label="General" paletteLabel="General" image="NSPreferencesGeneral" id="viJ-Mf-kOI">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="32"/>
+                        <size key="maxSize" width="32" height="32"/>
+                        <imageView key="view" id="Y2f-QP-ZiP">
+                            <rect key="frame" x="23" y="14" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSPreferencesGeneral" id="WZo-HW-Pt0"/>
+                        </imageView>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="viJ-Mf-kOI"/>
+                </defaultToolbarItems>
+            </toolbar>
+        </window>
     </objects>
+    <resources>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+    </resources>
 </document>

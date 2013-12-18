@@ -48,15 +48,19 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         if (chromeApp.frontmost) {
             // chromeApp.windows[0] is the front most window.
             ChromeWindow *chromeWindow = chromeApp.windows[0];
-            activeTab = [ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow];
+
+            // use 'get' to force a hard reference.
+            activeTab = [ChromeTabAdapter initWithTab:[[chromeWindow activeTab] get] andWindow:chromeWindow];
         } else if (safariApp.frontmost) {
             // is safari.windows[0] the frontmost?
             SafariWindow *safariWindow = safariApp.windows[0];
+
+            // use 'get' to force a hard reference.
             activeTab = [SafariTabAdapter initWithApplication:safariApp
                                                     andWindow:safariWindow
-                                                       andTab:[safariWindow currentTab]];
+                                                       andTab:[[safariWindow currentTab] get]];
         }
-        NSLog(@"Active tab is %@, %@", activeTab, [activeTab key]);
+        NSLog(@"Active tab set to %@", activeTab);
     }];
     
     mediaStrategyRegistry = [MediaStrategyRegistry getDefaultRegistry];
@@ -160,7 +164,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 - (void)updateActiveTab:(id) sender
 {
     activeTab = [sender representedObject];
-    NSLog(@"Active tab is %@, %@", activeTab, [activeTab key]);
+    NSLog(@"Active tab set to %@", activeTab);
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;

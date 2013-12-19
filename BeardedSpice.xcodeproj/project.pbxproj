@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
+		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
+		036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0369231E1862936600E04DDB /* GeneralPreferencesView.xib */; };
+		0369232B1862938E00E04DDB /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 036923231862938E00E04DDB /* LICENSE.md */; };
+		0369232C1862938E00E04DDB /* MASPreferences.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 036923241862938E00E04DDB /* MASPreferences.podspec */; };
+		0369232D1862938E00E04DDB /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036923261862938E00E04DDB /* MASPreferencesWindow.xib */; };
+		0369232E1862938E00E04DDB /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036923281862938E00E04DDB /* MASPreferencesWindowController.m */; };
+		037058841862A0E700C691B3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 037058771862A0E700C691B3 /* .gitignore */; };
+		037058851862A0E700C691B3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 037058781862A0E700C691B3 /* LICENSE */; };
+		037058861862A0E700C691B3 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370587A1862A0E700C691B3 /* MASShortcut+Monitoring.m */; };
+		037058871862A0E700C691B3 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370587C1862A0E700C691B3 /* MASShortcut+UserDefaults.m */; };
+		037058881862A0E700C691B3 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370587E1862A0E700C691B3 /* MASShortcut.m */; };
+		037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */; };
+		0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058821862A0E700C691B3 /* MASShortcutView.m */; };
+		0370588B1862A0E800C691B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 037058831862A0E700C691B3 /* README.md */; };
 		03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34924185EB20E00C4A62B /* YouTubeStrategy.m */; };
@@ -17,7 +31,6 @@
 		03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */; };
 		03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */; };
 		03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */; };
-		03A3493918613F8C00C4A62B /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3493718613F8C00C4A62B /* PreferencesWindowController.m */; };
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		03F33ED418559AB200E8F77E /* youtube-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F33ED318559AB200E8F77E /* youtube-play.png */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
@@ -34,14 +47,6 @@
 		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
 		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
-		96A681E2185E4CC60015046A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 96A681D5185E4CC60015046A /* .gitignore */; };
-		96A681E3185E4CC60015046A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 96A681D6185E4CC60015046A /* LICENSE */; };
-		96A681E4185E4CC60015046A /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A681D8185E4CC60015046A /* MASShortcut+Monitoring.m */; };
-		96A681E5185E4CC60015046A /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A681DA185E4CC60015046A /* MASShortcut+UserDefaults.m */; };
-		96A681E6185E4CC60015046A /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A681DC185E4CC60015046A /* MASShortcut.m */; };
-		96A681E7185E4CC60015046A /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A681DE185E4CC60015046A /* MASShortcutView+UserDefaults.m */; };
-		96A681E8185E4CC60015046A /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A681E0185E4CC60015046A /* MASShortcutView.m */; };
-		96A681E9185E4CC60015046A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 96A681E1185E4CC60015046A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,30 @@
 		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
+		0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
+		0369231E1862936600E04DDB /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
+		036923221862938E00E04DDB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		036923231862938E00E04DDB /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
+		036923241862938E00E04DDB /* MASPreferences.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MASPreferences.podspec; sourceTree = "<group>"; };
+		036923251862938E00E04DDB /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		036923261862938E00E04DDB /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		036923271862938E00E04DDB /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		036923281862938E00E04DDB /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		036923291862938E00E04DDB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		037058771862A0E700C691B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		037058781862A0E700C691B3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		037058791862A0E700C691B3 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
+		0370587A1862A0E700C691B3 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
+		0370587B1862A0E700C691B3 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
+		0370587C1862A0E700C691B3 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
+		0370587D1862A0E700C691B3 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
+		0370587E1862A0E700C691B3 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
+		0370587F1862A0E700C691B3 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
+		037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
+		037058811862A0E700C691B3 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
+		037058821862A0E700C691B3 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
+		037058831862A0E700C691B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
 		03A3491B185EA03300C4A62B /* MediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategy.m; sourceTree = "<group>"; };
 		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategyRegistry.h; sourceTree = "<group>"; };
@@ -75,8 +104,6 @@
 		03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudStrategy.m; sourceTree = "<group>"; };
 		03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineStrategy.h; sourceTree = "<group>"; };
 		03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineStrategy.m; sourceTree = "<group>"; };
-		03A3493618613F8C00C4A62B /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
-		03A3493718613F8C00C4A62B /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		03F33ED318559AB200E8F77E /* youtube-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play.png"; sourceTree = "<group>"; };
 		03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Tab.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -106,32 +133,6 @@
 		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
-		96A681C7185E4C5D0015046A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		96A681C8185E4C5D0015046A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		96A681C9185E4C5D0015046A /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
-		96A681CA185E4C5D0015046A /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
-		96A681CB185E4C5D0015046A /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		96A681CC185E4C5D0015046A /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		96A681CD185E4C5D0015046A /* MASShortcut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		96A681CE185E4C5D0015046A /* MASShortcut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		96A681CF185E4C5D0015046A /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		96A681D0185E4C5D0015046A /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
-		96A681D1185E4C5D0015046A /* MASShortcutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		96A681D2185E4C5D0015046A /* MASShortcutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
-		96A681D3185E4C5D0015046A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		96A681D5185E4CC60015046A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		96A681D6185E4CC60015046A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		96A681D7185E4CC60015046A /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
-		96A681D8185E4CC60015046A /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
-		96A681D9185E4CC60015046A /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		96A681DA185E4CC60015046A /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		96A681DB185E4CC60015046A /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		96A681DC185E4CC60015046A /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		96A681DD185E4CC60015046A /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		96A681DE185E4CC60015046A /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
-		96A681DF185E4CC60015046A /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		96A681E0185E4CC60015046A /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
-		96A681E1185E4CC60015046A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +158,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0369231B1862934000E04DDB /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */,
+				0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */,
+				0369231E1862936600E04DDB /* GeneralPreferencesView.xib */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		036923211862938E00E04DDB /* MASPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				036923221862938E00E04DDB /* .gitignore */,
+				036923231862938E00E04DDB /* LICENSE.md */,
+				036923241862938E00E04DDB /* MASPreferences.podspec */,
+				036923251862938E00E04DDB /* MASPreferencesViewController.h */,
+				036923261862938E00E04DDB /* MASPreferencesWindow.xib */,
+				036923271862938E00E04DDB /* MASPreferencesWindowController.h */,
+				036923281862938E00E04DDB /* MASPreferencesWindowController.m */,
+				036923291862938E00E04DDB /* README.md */,
+			);
+			path = MASPreferences;
+			sourceTree = "<group>";
+		};
+		037058761862A0E700C691B3 /* MASShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				037058771862A0E700C691B3 /* .gitignore */,
+				037058781862A0E700C691B3 /* LICENSE */,
+				037058791862A0E700C691B3 /* MASShortcut+Monitoring.h */,
+				0370587A1862A0E700C691B3 /* MASShortcut+Monitoring.m */,
+				0370587B1862A0E700C691B3 /* MASShortcut+UserDefaults.h */,
+				0370587C1862A0E700C691B3 /* MASShortcut+UserDefaults.m */,
+				0370587D1862A0E700C691B3 /* MASShortcut.h */,
+				0370587E1862A0E700C691B3 /* MASShortcut.m */,
+				0370587F1862A0E700C691B3 /* MASShortcutView+UserDefaults.h */,
+				037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */,
+				037058811862A0E700C691B3 /* MASShortcutView.h */,
+				037058821862A0E700C691B3 /* MASShortcutView.m */,
+				037058831862A0E700C691B3 /* README.md */,
+			);
+			path = MASShortcut;
+			sourceTree = "<group>";
+		};
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +243,8 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
-				96A681D4185E4CC60015046A /* MASShortcut */,
+				037058761862A0E700C691B3 /* MASShortcut */,
+				036923211862938E00E04DDB /* MASPreferences */,
 				967933351855173100A49AC7 /* BeardedSpice */,
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				9679332E1855173100A49AC7 /* Frameworks */,
@@ -217,7 +264,6 @@
 		9679332E1855173100A49AC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				96A681C6185E4C5D0015046A /* MASShortcut */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
 				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
@@ -240,6 +286,7 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
+				0369231B1862934000E04DDB /* Preferences */,
 				03A34919185E9FC700C4A62B /* MediaStrategies */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
@@ -251,8 +298,6 @@
 				967933441855173100A49AC7 /* MainMenu.xib */,
 				967933471855173100A49AC7 /* Images.xcassets */,
 				967933361855173100A49AC7 /* Supporting Files */,
-				03A3493618613F8C00C4A62B /* PreferencesWindowController.h */,
-				03A3493718613F8C00C4A62B /* PreferencesWindowController.m */,
 			);
 			path = BeardedSpice;
 			sourceTree = "<group>";
@@ -286,46 +331,6 @@
 				967933561855173100A49AC7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		96A681C6185E4C5D0015046A /* MASShortcut */ = {
-			isa = PBXGroup;
-			children = (
-				96A681C7185E4C5D0015046A /* .gitignore */,
-				96A681C8185E4C5D0015046A /* LICENSE */,
-				96A681C9185E4C5D0015046A /* MASShortcut+Monitoring.h */,
-				96A681CA185E4C5D0015046A /* MASShortcut+Monitoring.m */,
-				96A681CB185E4C5D0015046A /* MASShortcut+UserDefaults.h */,
-				96A681CC185E4C5D0015046A /* MASShortcut+UserDefaults.m */,
-				96A681CD185E4C5D0015046A /* MASShortcut.h */,
-				96A681CE185E4C5D0015046A /* MASShortcut.m */,
-				96A681CF185E4C5D0015046A /* MASShortcutView+UserDefaults.h */,
-				96A681D0185E4C5D0015046A /* MASShortcutView+UserDefaults.m */,
-				96A681D1185E4C5D0015046A /* MASShortcutView.h */,
-				96A681D2185E4C5D0015046A /* MASShortcutView.m */,
-				96A681D3185E4C5D0015046A /* README.md */,
-			);
-			path = MASShortcut;
-			sourceTree = "<group>";
-		};
-		96A681D4185E4CC60015046A /* MASShortcut */ = {
-			isa = PBXGroup;
-			children = (
-				96A681D5185E4CC60015046A /* .gitignore */,
-				96A681D6185E4CC60015046A /* LICENSE */,
-				96A681D7185E4CC60015046A /* MASShortcut+Monitoring.h */,
-				96A681D8185E4CC60015046A /* MASShortcut+Monitoring.m */,
-				96A681D9185E4CC60015046A /* MASShortcut+UserDefaults.h */,
-				96A681DA185E4CC60015046A /* MASShortcut+UserDefaults.m */,
-				96A681DB185E4CC60015046A /* MASShortcut.h */,
-				96A681DC185E4CC60015046A /* MASShortcut.m */,
-				96A681DD185E4CC60015046A /* MASShortcutView+UserDefaults.h */,
-				96A681DE185E4CC60015046A /* MASShortcutView+UserDefaults.m */,
-				96A681DF185E4CC60015046A /* MASShortcutView.h */,
-				96A681E0185E4CC60015046A /* MASShortcutView.m */,
-				96A681E1185E4CC60015046A /* README.md */,
-			);
-			path = MASShortcut;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,14 +409,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037058841862A0E700C691B3 /* .gitignore in Resources */,
 				9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				967933401855173100A49AC7 /* Credits.rtf in Resources */,
-				96A681E3185E4CC60015046A /* LICENSE in Resources */,
+				036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */,
+				037058851862A0E700C691B3 /* LICENSE in Resources */,
+				0370588B1862A0E800C691B3 /* README.md in Resources */,
+				0369232C1862938E00E04DDB /* MASPreferences.podspec in Resources */,
+				0369232D1862938E00E04DDB /* MASPreferencesWindow.xib in Resources */,
 				03F33ED418559AB200E8F77E /* youtube-play.png in Resources */,
-				96A681E2185E4CC60015046A /* .gitignore in Resources */,
-				96A681E9185E4CC60015046A /* README.md in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
+				0369232B1862938E00E04DDB /* LICENSE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,22 +439,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
-				96A681E5185E4CC60015046A /* MASShortcut+UserDefaults.m in Sources */,
-				03A3493918613F8C00C4A62B /* PreferencesWindowController.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
-				96A681E6185E4CC60015046A /* MASShortcut.m in Sources */,
+				037058881862A0E700C691B3 /* MASShortcut.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
+				037058861862A0E700C691B3 /* MASShortcut+Monitoring.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
-				96A681E4185E4CC60015046A /* MASShortcut+Monitoring.m in Sources */,
+				0369232E1862938E00E04DDB /* MASPreferencesWindowController.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
-				96A681E7185E4CC60015046A /* MASShortcutView+UserDefaults.m in Sources */,
+				0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */,
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
+				037058871862A0E700C691B3 /* MASShortcut+UserDefaults.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
-				96A681E8185E4CC60015046A /* MASShortcutView.m in Sources */,
+				037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,

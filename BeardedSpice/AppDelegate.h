@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "MASShortcutView+UserDefaults.h"
 #import "SPMediaKeyTap.h"
 
 #import "Chrome.h"
@@ -32,9 +31,12 @@
 
     id <Tab> activeTab;
     MediaStrategyRegistry *mediaStrategyRegistry;
+
+    NSWindowController *_preferencesWindowController;
 }
 
-@property (assign) IBOutlet NSWindow *window;
-@property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
+@property (nonatomic, readonly) NSWindowController *preferencesWindowController;
+
+- (IBAction)openPreferences:(id)sender;
 
 @end

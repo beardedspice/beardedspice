@@ -12,6 +12,9 @@
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
 
+#import "MASPreferencesWindowController.h"
+#import "GeneralPreferencesViewController.h"
+
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
 {
@@ -27,8 +30,6 @@
 
 @implementation AppDelegate
 
-NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
@@ -43,16 +44,7 @@ NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut"
 		NSLog(@"Media key monitoring disabled");
     }
 
-    // associate view with userdefaults
-    self.shortcutView.associatedUserDefaultsKey = BeardedSpiceActiveTabShortcut;
-
-    // check if there is a user default
-    if (!self.shortcutView.shortcutValue) {
-        self.shortcutView.shortcutValue = [MASShortcut shortcutWithKeyCode:kVK_F8
-                                                             modifierFlags:NSCommandKeyMask];
-    }
-
-    [self refreshActiveTabShortcut];
+    [self setActiveTabShortcut];
     
     // setup default media strategy
     mediaStrategyRegistry = [MediaStrategyRegistry getDefaultRegistry];
@@ -225,8 +217,21 @@ NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut"
     safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
 }
 
-- (void)refreshActiveTabShortcut
+- (void)setActiveTabShortcut
 {
+    // check if there is a user default
+    NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:BeardedSpiceActiveTabShortcut];
+    MASShortcut *shortcut = [MASShortcut shortcutWithData:data];
+    if (!shortcut) {
+        NSLog(@"Active tab default not set. Defaulting to cmd+f8");
+        shortcut = [MASShortcut shortcutWithKeyCode:kVK_F8
+                                      modifierFlags:NSCommandKeyMask];
+        [MASShortcut setGlobalShortcut:shortcut forUserDefaultsKey:BeardedSpiceActiveTabShortcut];
+
+    } else {
+        NSLog(@"Active tab default key set to %@", shortcut);
+    }
+
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
         if (chromeApp.frontmost) {
             // chromeApp.windows[0] is the front most window.
@@ -248,6 +253,24 @@ NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut"
             NSLog(@"Active tab set to %@", activeTab);
         }
     }];
+}
+
+- (NSWindowController *)preferencesWindowController
+{
+    if (_preferencesWindowController == nil)
+    {
+        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] init];
+        NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
+    
+        NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
+        _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+    }
+    return _preferencesWindowController;
+}
+
+- (IBAction)openPreferences:(id)sender
+{
+    [self.preferencesWindowController showWindow:nil];
 }
 
 @end

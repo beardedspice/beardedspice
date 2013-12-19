@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MASShortcut+Monitoring.h"
+#import "MASShortcut+UserDefaults.h"
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
@@ -27,7 +27,7 @@
 
 @implementation AppDelegate
 
-NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
+NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -43,26 +43,18 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 		NSLog(@"Media key monitoring disabled");
     }
 
-    MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_F8 modifierFlags:NSCommandKeyMask];
-    [MASShortcut addGlobalHotkeyMonitorWithShortcut:shortcut handler:^{
-        if (chromeApp.frontmost) {
-            // chromeApp.windows[0] is the front most window.
-            ChromeWindow *chromeWindow = chromeApp.windows[0];
+    // associate view with userdefaults
+    self.shortcutView.associatedUserDefaultsKey = BeardedSpiceActiveTabShortcut;
 
-            // use 'get' to force a hard reference.
-            activeTab = [ChromeTabAdapter initWithTab:[[chromeWindow activeTab] get] andWindow:chromeWindow];
-        } else if (safariApp.frontmost) {
-            // is safari.windows[0] the frontmost?
-            SafariWindow *safariWindow = safariApp.windows[0];
+    // check if there is a user default
+    if (!self.shortcutView.shortcutValue) {
+        self.shortcutView.shortcutValue = [MASShortcut shortcutWithKeyCode:kVK_F8
+                                                             modifierFlags:NSCommandKeyMask];
+    }
 
-            // use 'get' to force a hard reference.
-            activeTab = [SafariTabAdapter initWithApplication:safariApp
-                                                    andWindow:safariWindow
-                                                       andTab:[[safariWindow currentTab] get]];
-        }
-        NSLog(@"Active tab set to %@", activeTab);
-    }];
+    [self refreshActiveTabShortcut];
     
+    // setup default media strategy
     mediaStrategyRegistry = [MediaStrategyRegistry getDefaultRegistry];
 }
 
@@ -76,6 +68,8 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 
     [statusItem setAction:@selector(refreshTabs:)];
     [statusItem setTarget:self];
+
+    [self refreshApplications];
 }
 
 - (void)menuWillOpen:(NSMenu *)menu
@@ -99,9 +93,7 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
 {
     NSLog(@"Refreshing tabs...");
     [self removeAllItems];
-
-    chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
-    safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+    [self refreshApplications];
 
     if (chromeApp) {
         for (ChromeWindow *chromeWindow in chromeApp.windows) {
@@ -225,6 +217,37 @@ NSString *const preferenceGlobalShortcut = @"ActivateCurrentTab";
         return [NSString stringWithFormat:@"%@...", [string substringToIndex:(max - 3)]];
     }
     return [string substringToIndex: [string length]];
+}
+
+- (void)refreshApplications
+{
+    chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
+    safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+}
+
+- (void)refreshActiveTabShortcut
+{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
+        if (chromeApp.frontmost) {
+            // chromeApp.windows[0] is the front most window.
+            ChromeWindow *chromeWindow = chromeApp.windows[0];
+
+            // use 'get' to force a hard reference.
+            activeTab = [ChromeTabAdapter initWithTab:[[chromeWindow activeTab] get] andWindow:chromeWindow];
+        } else if (safariApp.frontmost) {
+            // is safari.windows[0] the frontmost?
+            SafariWindow *safariWindow = safariApp.windows[0];
+
+            // use 'get' to force a hard reference.
+            activeTab = [SafariTabAdapter initWithApplication:safariApp
+                                                    andWindow:safariWindow
+                                                       andTab:[[safariWindow currentTab] get]];
+        }
+
+        if (activeTab) {
+            NSLog(@"Active tab set to %@", activeTab);
+        }
+    }];
 }
 
 @end

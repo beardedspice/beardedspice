@@ -47,6 +47,7 @@
 		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
 		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
+		969E45721863E5830037226B /* LastFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E45711863E5830037226B /* LastFmStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
+		969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFmStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
 				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
+				969E45701863E5830037226B /* LastFmStrategy.h */,
+				969E45711863E5830037226B /* LastFmStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
+				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 			);

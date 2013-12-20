@@ -13,6 +13,7 @@
 #import "GrooveSharkStrategy.h"
 #import "SoundCloudStrategy.h"
 #import "HypeMachineStrategy.h"
+#import "LastFmStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -101,6 +102,7 @@ NSArray * DefaultMediaStrategies;
             [[GrooveSharkStrategy alloc] init],
             [[HypeMachineStrategy alloc] init],
             [[SoundCloudStrategy alloc] init],
+            [[LastFmStrategy alloc] init],
             nil];
     }
     return DefaultMediaStrategies;

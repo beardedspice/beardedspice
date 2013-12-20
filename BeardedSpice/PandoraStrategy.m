@@ -32,7 +32,7 @@
 
 -(NSString *) pause
 {
-    return @"(function(){var t=document.querySelectorAll('.pauseButton')[0];e.click()})()";    
+    return @"(function(){var t=document.querySelectorAll('.pauseButton')[0].click()})()";    
 }
 
 -(NSString *) displayName

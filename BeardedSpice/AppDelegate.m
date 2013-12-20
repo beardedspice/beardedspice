@@ -245,9 +245,9 @@
         if (chromeApp.frontmost) {
             // chromeApp.windows[0] is the front most window.
             ChromeWindow *chromeWindow = chromeApp.windows[0];
-
+            
             // use 'get' to force a hard reference.
-            [self updateActiveTab:[ChromeTabAdapter initWithTab:[[chromeWindow activeTab] get] andWindow:chromeWindow]];
+            [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
         } else if (safariApp.frontmost) {
             // is safari.windows[0] the frontmost?
             SafariWindow *safariWindow = safariApp.windows[0];
@@ -255,7 +255,7 @@
             // use 'get' to force a hard reference.
             [self updateActiveTab:[SafariTabAdapter initWithApplication:safariApp
                                                     andWindow:safariWindow
-                                                       andTab:[[safariWindow currentTab] get]]];
+                                                       andTab:[safariWindow currentTab]]];
         }
     }];
 }

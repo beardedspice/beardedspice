@@ -13,8 +13,8 @@
 + (id)initWithTab:(ChromeTab *)tab andWindow:(ChromeWindow *) window
 {
     ChromeTabAdapter *out = [[ChromeTabAdapter alloc] init];
-    [out setTab:tab];
-    [out setWindow:window];
+    [out setTab:[tab get]];
+    [out setWindow:[window get]];
     return out;
 }
 

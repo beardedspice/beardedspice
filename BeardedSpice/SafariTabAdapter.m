@@ -13,8 +13,8 @@
 + (id)initWithApplication:(SafariApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
 {
     SafariTabAdapter *out = [[SafariTabAdapter alloc] init];
-    [out setTab:tab];
-    [out setWindow:window];
+    [out setTab:[tab get]];
+    [out setWindow:[window get]];
     [out setApplication:application];
     return out;
 }

@@ -10,9 +10,9 @@
 
 @implementation HypeMachineStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
-    return [url isCaseInsensitiveLike:@"*hypem.com*"];
+    return [[tab URL] isCaseInsensitiveLike:@"*hypem.com*"];
 }
 
 -(NSString *) toggle

@@ -20,6 +20,7 @@
 -(void) addMediaStrategy:(MediaStrategy *) strategy;
 -(void) removeMediaStrategy:(MediaStrategy *) strategy;
 -(void) containsMediaStrategy:(MediaStrategy *) strategy;
--(MediaStrategy *) getMediaStrategyForURL:(NSString *) URL;
+-(MediaStrategy *) getMediaStrategyForTab:(id <Tab>) tab;
+
 
 @end

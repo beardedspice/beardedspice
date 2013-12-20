@@ -10,9 +10,9 @@
 
 @implementation BandCampStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
-    return [url isCaseInsensitiveLike:@"*bandcamp.com*"];
+    return [[tab URL] isCaseInsensitiveLike:@"*bandcamp.com*"];
 }
 
 -(NSString *) toggle

@@ -10,9 +10,9 @@
 
 @implementation GrooveSharkStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
-    return [url isCaseInsensitiveLike:@"*grooveshark.com*"];
+    return [[tab URL] isCaseInsensitiveLike:@"*grooveshark.com*"];
 }
 
 -(NSString *) toggle

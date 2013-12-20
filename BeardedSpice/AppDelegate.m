@@ -139,7 +139,7 @@
 
 -(NSMenuItem *)addStatusMenuItemFor:(id)tab withTitle:(NSString *)title andURL:(NSString *)URL
 {
-    if ([mediaStrategyRegistry getMediaStrategyForURL:URL]) {
+    if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
         return [statusMenu insertItemWithTitle:[self trim:title toLength:40] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
     }
     return NULL;
@@ -165,7 +165,7 @@
 	int keyRepeat = (keyFlags & 0x1);
 
 	if (keyIsPressed) {
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForURL:[activeTab URL]];
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (!strategy) {
             return;
         }

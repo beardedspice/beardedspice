@@ -10,7 +10,7 @@
 
 @implementation MediaStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
     return YES;
 }

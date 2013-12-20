@@ -40,12 +40,12 @@
     [availableStrategies containsObject:strategy];
 }
      
--(MediaStrategy *) getMediaStrategyForURL:(NSString *) URL
+-(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
 {
 
     for (MediaStrategy *strategy in availableStrategies) {
-        if ([strategy accepts:URL]) {
-            NSLog(@"%@ is valid for url %@", strategy, URL);
+        if ([strategy accepts:tab]) {
+            NSLog(@"%@ is valid for %@", strategy, tab);
             return strategy;
         }
     }

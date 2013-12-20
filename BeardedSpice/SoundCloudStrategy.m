@@ -10,9 +10,9 @@
 
 @implementation SoundCloudStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
-    return [url isCaseInsensitiveLike:@"*soundcloud.com*"];
+    return [[tab URL] isCaseInsensitiveLike:@"*soundcloud.com*"];
 }
 
 -(NSString *) toggle

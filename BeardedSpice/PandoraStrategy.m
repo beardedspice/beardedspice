@@ -10,9 +10,9 @@
 
 @implementation PandoraStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
-    return [url isCaseInsensitiveLike:@"*pandora.com*"];
+    return [[tab URL] isCaseInsensitiveLike:@"*pandora.com*"];
 }
 
 -(NSString *) toggle

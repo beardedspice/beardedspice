@@ -10,9 +10,9 @@
 
 @implementation YouTubeStrategy
 
--(BOOL) accepts:(NSString *)url
+-(BOOL) accepts:(id <Tab>)tab
 {
-    return [url isCaseInsensitiveLike:@"*youtube.com/watch*"];
+    return [[tab URL] isCaseInsensitiveLike:@"*youtube.com/watch*"];
 }
 
 -(NSString *) toggle

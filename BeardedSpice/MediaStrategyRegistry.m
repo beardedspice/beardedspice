@@ -14,6 +14,8 @@
 #import "SoundCloudStrategy.h"
 #import "HypeMachineStrategy.h"
 
+NSArray * DefaultMediaStrategies;
+
 @implementation MediaStrategyRegistry
 
 -(id) init
@@ -25,9 +27,40 @@
     return self;
 }
 
+// TODO JF: bah copypasta
+-(id) initWithUserDefaults:(NSString *)userDefaultsKeyPrefix
+{
+    self = [super init];
+    if (self) {
+        availableStrategies = [[NSMutableArray alloc] init];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
+    for (MediaStrategy *strategy in defaultStrategies) {
+        NSString *key = [NSString stringWithFormat:@"%@.%@", userDefaultsKeyPrefix, [strategy displayName]];
+        NSNumber *enabled = [defaults objectForKey:key];
+        if (enabled == nil) {
+            enabled = [NSNumber numberWithBool:YES];
+            [defaults setObject:enabled forKey:key];
+        }
+        
+        if ([enabled intValue] == 1) {
+            [self addMediaStrategy:strategy];
+        }
+    }
+
+    return self;
+}
+
 -(void) addMediaStrategy:(MediaStrategy *) strategy
 {
     [availableStrategies addObject:strategy];
+}
+
+-(void) addMediaStrategies:(NSArray *)strategies
+{
+    [availableStrategies addObjectsFromArray:strategies];
 }
 
 -(void) removeMediaStrategy:(MediaStrategy *) strategy
@@ -52,20 +85,32 @@
     return NULL;
 }
 
-+(id) addDefaultMediaStrategies:(MediaStrategyRegistry *) registry
+-(NSArray *) getMediaStrategies
 {
-    [registry addMediaStrategy:[[YouTubeStrategy alloc] init]];
-    [registry addMediaStrategy:[[PandoraStrategy alloc] init]];
-    [registry addMediaStrategy:[[BandCampStrategy alloc] init]];
-    [registry addMediaStrategy:[[GrooveSharkStrategy alloc] init]];
-    [registry addMediaStrategy:[[HypeMachineStrategy alloc] init]];
-    [registry addMediaStrategy:[[SoundCloudStrategy alloc] init]];
-    return registry;
+    return [NSArray arrayWithArray:availableStrategies];
+}
+
++(NSArray *) getDefaultMediaStrategies
+{
+    if (!DefaultMediaStrategies) {
+        NSLog(@"Initializing default media strategies...");
+        DefaultMediaStrategies = [NSArray arrayWithObjects:
+            [[YouTubeStrategy alloc] init],
+            [[PandoraStrategy alloc] init],
+            [[BandCampStrategy alloc] init],
+            [[GrooveSharkStrategy alloc] init],
+            [[HypeMachineStrategy alloc] init],
+            [[SoundCloudStrategy alloc] init],
+            nil];
+    }
+    return DefaultMediaStrategies;
 }
 
 +(id) getDefaultRegistry
 {
-    return [MediaStrategyRegistry addDefaultMediaStrategies:[[MediaStrategyRegistry alloc] init]];
+    MediaStrategyRegistry *registry = [[MediaStrategyRegistry alloc] init];
+    [registry addMediaStrategies:[MediaStrategyRegistry getDefaultMediaStrategies]];
+    return registry;
 }
 
 

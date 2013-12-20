@@ -9,11 +9,20 @@
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
 #import "MASShortcutView+UserDefaults.h"
+#import "MediaStrategyRegistry.h"
 
 extern NSString *const BeardedSpiceActiveTabShortcut;
+extern NSString *const BeardedSpiceActiveControllers;
 
-@interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController>
+@interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
+{
+    NSArray *availableStrategies;
+    MediaStrategyRegistry *registry;
+}
 
 @property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
+@property (assign) IBOutlet NSTableView *strategiesView;
+
+- (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry;
 
 @end

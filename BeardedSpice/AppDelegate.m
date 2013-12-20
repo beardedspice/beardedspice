@@ -47,7 +47,7 @@
     [self setActiveTabShortcut];
     
     // setup default media strategy
-    mediaStrategyRegistry = [MediaStrategyRegistry getDefaultRegistry];
+    mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
 }
 
 - (void)awakeFromNib
@@ -264,7 +264,7 @@
 {
     if (_preferencesWindowController == nil)
     {
-        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] init];
+        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry];
         NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
     
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");

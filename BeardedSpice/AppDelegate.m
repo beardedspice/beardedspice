@@ -151,7 +151,7 @@
 - (void)updateActiveTab:(id<Tab>) tab
 {
     MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy) {
+    if (strategy && ![tab isEqual:activeTab]) {
         [activeTab executeJavascript:[strategy pause]];
     }
     

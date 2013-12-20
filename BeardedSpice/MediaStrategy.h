@@ -15,4 +15,7 @@
 -(NSString *) previous;
 -(NSString *) next;
 
+// mainly for pausing before switching active tabs
+-(NSString *) pause;
+
 @end

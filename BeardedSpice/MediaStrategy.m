@@ -26,5 +26,9 @@
 {
     return @"";
 }
+-(NSString *) pause
+{
+    return @"";
+}
 
 @end

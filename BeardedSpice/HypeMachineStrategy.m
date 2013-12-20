@@ -30,4 +30,9 @@
     return @"(function(){return document.querySelectorAll('#playerNext')[0].click()})()";
 }
 
+-(NSString *) pause
+{
+    return @"(function(){var play=document.querySelectorAll('#playerPlay')[0]; if(play.classList.contains('pause')){play.click()}})()";
+}
+
 @end

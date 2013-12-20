@@ -30,4 +30,9 @@
     return @"(function(){return document.querySelectorAll('.skipButton')[0].click()})();";
 }
 
+-(NSString *) pause
+{
+    return @"(function(){var t=document.querySelectorAll('.pauseButton')[0];e.click()})()";    
+}
+
 @end

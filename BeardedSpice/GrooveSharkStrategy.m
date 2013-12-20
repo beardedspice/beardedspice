@@ -30,4 +30,10 @@
     return @"(function(){return window.Grooveshark.next()})()";
 }
 
+-(NSString *) pause
+{
+    return @"(function(){return window.Grooveshark.pause()})()";
+   
+}
+
 @end

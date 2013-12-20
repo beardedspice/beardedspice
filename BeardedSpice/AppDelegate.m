@@ -60,8 +60,6 @@
 
     [statusItem setAction:@selector(refreshTabs:)];
     [statusItem setTarget:self];
-
-    [self refreshApplications];
 }
 
 - (void)menuWillOpen:(NSMenu *)menu
@@ -140,14 +138,24 @@
 -(NSMenuItem *)addStatusMenuItemFor:(id)tab withTitle:(NSString *)title andURL:(NSString *)URL
 {
     if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
-        return [statusMenu insertItemWithTitle:[self trim:title toLength:40] action:@selector(updateActiveTab:) keyEquivalent:@"" atIndex:0];
+        return [statusMenu insertItemWithTitle:[self trim:title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
     }
     return NULL;
 }
 
-- (void)updateActiveTab:(id) sender
+- (void)updateActiveTabFromMenuItem:(id) sender
 {
-    activeTab = [sender representedObject];
+    [self updateActiveTab:[sender representedObject]];
+}
+
+- (void)updateActiveTab:(id<Tab>) tab
+{
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    if (strategy) {
+        [activeTab executeJavascript:[strategy pause]];
+    }
+    
+    activeTab = tab;
     NSLog(@"Active tab set to %@", activeTab);
 }
 
@@ -233,24 +241,21 @@
     }
 
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
+        [self refreshApplications];
         if (chromeApp.frontmost) {
             // chromeApp.windows[0] is the front most window.
             ChromeWindow *chromeWindow = chromeApp.windows[0];
 
             // use 'get' to force a hard reference.
-            activeTab = [ChromeTabAdapter initWithTab:[[chromeWindow activeTab] get] andWindow:chromeWindow];
+            [self updateActiveTab:[ChromeTabAdapter initWithTab:[[chromeWindow activeTab] get] andWindow:chromeWindow]];
         } else if (safariApp.frontmost) {
             // is safari.windows[0] the frontmost?
             SafariWindow *safariWindow = safariApp.windows[0];
 
             // use 'get' to force a hard reference.
-            activeTab = [SafariTabAdapter initWithApplication:safariApp
+            [self updateActiveTab:[SafariTabAdapter initWithApplication:safariApp
                                                     andWindow:safariWindow
-                                                       andTab:[[safariWindow currentTab] get]];
-        }
-
-        if (activeTab) {
-            NSLog(@"Active tab set to %@", activeTab);
+                                                       andTab:[[safariWindow currentTab] get]]];
         }
     }];
 }

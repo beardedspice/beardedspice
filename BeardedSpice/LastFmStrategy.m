@@ -10,9 +10,18 @@
 
 @implementation LastFmStrategy
 
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*last.fm/listen*'"];
+    }
+    return self;
+}
+
 -(BOOL) accepts:(id <Tab>)tab
 {
-    return [[tab URL] isCaseInsensitiveLike:@"*last.fm/listen*"];
+    return [predicate evaluateWithObject:[tab URL]];
 }
 
 -(NSString *) toggle

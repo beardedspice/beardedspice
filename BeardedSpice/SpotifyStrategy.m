@@ -10,9 +10,18 @@
 
 @implementation SpotifyStrategy
 
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*play.spotify.com*'"];
+    }
+    return self;
+}
+
 -(BOOL) accepts:(id <Tab>)tab
 {
-    return [[tab URL] isCaseInsensitiveLike:@"*play.spotify.com*"];
+    return [predicate evaluateWithObject:[tab URL]];
 }
 
 -(NSString *) toggle

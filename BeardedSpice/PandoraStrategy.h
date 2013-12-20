@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface PandoraStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

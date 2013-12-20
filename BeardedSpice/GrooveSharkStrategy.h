@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface GrooveSharkStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

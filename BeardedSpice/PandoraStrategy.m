@@ -10,9 +10,18 @@
 
 @implementation PandoraStrategy
 
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*pandora.com*'"];
+    }
+    return self;
+}
+
 -(BOOL) accepts:(id <Tab>)tab
 {
-    return [[tab URL] isCaseInsensitiveLike:@"*pandora.com*"];
+    return [predicate evaluateWithObject:[tab URL]];
 }
 
 -(NSString *) toggle

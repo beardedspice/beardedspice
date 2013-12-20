@@ -10,9 +10,18 @@
 
 @implementation HypeMachineStrategy
 
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*hypem.com*'"];
+    }
+    return self;
+}
+
 -(BOOL) accepts:(id <Tab>)tab
 {
-    return [[tab URL] isCaseInsensitiveLike:@"*hypem.com*"];
+    return [predicate evaluateWithObject:[tab URL]];
 }
 
 -(NSString *) toggle

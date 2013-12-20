@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface HypeMachineStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

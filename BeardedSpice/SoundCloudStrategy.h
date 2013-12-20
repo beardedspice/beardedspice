@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface SoundCloudStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

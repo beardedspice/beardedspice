@@ -10,9 +10,18 @@
 
 @implementation BandCampStrategy
 
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*bandcamp.com*'"];
+    }
+    return self;
+}
+
 -(BOOL) accepts:(id <Tab>)tab
 {
-    return [[tab URL] isCaseInsensitiveLike:@"*bandcamp.com*"];
+    return [predicate evaluateWithObject:[tab URL]];
 }
 
 -(NSString *) toggle

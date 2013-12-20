@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface BandCampStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

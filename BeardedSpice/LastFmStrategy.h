@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface LastFmStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

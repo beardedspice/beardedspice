@@ -9,5 +9,7 @@
 #import "MediaStrategy.h"
 
 @interface YouTubeStrategy : MediaStrategy
-
+{
+    NSPredicate *predicate;
+}
 @end

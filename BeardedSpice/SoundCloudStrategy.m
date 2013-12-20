@@ -35,4 +35,9 @@
     return @"(function(){var play = document.querySelectorAll('.skipControl__next')[0];if(play.classList.contains('sc-button-pause')){play.click();}})()";
 }
 
+-(NSString *) displayName
+{
+    return @"SoundCloud";
+}
+
 @end

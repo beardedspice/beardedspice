@@ -33,7 +33,11 @@
 -(NSString *) pause
 {
     return @"(function(){return window.Grooveshark.pause()})()";
-   
+}
+
+-(NSString *) displayName
+{
+    return @"Grooveshark";
 }
 
 @end

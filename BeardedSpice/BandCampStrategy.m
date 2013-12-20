@@ -34,5 +34,10 @@
 {
     return @"(function(){var play = document.querySelectorAll('div.playbutton')[0];if (play.classList.contains('playing')) {play.click()}})()";    
 }
+    
+-(NSString *) displayName
+{
+    return @"BandCamp";
+}
 
 @end

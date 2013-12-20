@@ -30,5 +30,9 @@
 {
     return @"";
 }
+-(NSString *) displayName
+{
+    return @"";
+}
 
 @end

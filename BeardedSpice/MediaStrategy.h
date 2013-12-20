@@ -14,6 +14,7 @@
 -(NSString *) toggle;
 -(NSString *) previous;
 -(NSString *) next;
+-(NSString *) displayName;
 
 // mainly for pausing before switching active tabs
 -(NSString *) pause;

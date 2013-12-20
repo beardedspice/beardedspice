@@ -35,4 +35,9 @@
     return @"(function(){var play=document.querySelectorAll('#playerPlay')[0]; if(play.classList.contains('pause')){play.click()}})()";
 }
 
+-(NSString *) displayName
+{
+    return @"HypeMachine";
+}
+
 @end

@@ -35,4 +35,9 @@
     return @"(function(){var t=document.querySelectorAll('.pauseButton')[0];e.click()})()";    
 }
 
+-(NSString *) displayName
+{
+    return @"Pandora";
+}
+
 @end

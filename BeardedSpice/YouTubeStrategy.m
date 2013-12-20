@@ -35,4 +35,9 @@
     return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){var n=t[e];n.pauseVideo()}})()";    
 }
 
+-(NSString *) displayName
+{
+    return @"YouTube";
+}
+
 @end

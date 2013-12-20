@@ -14,6 +14,7 @@
 #import "SoundCloudStrategy.h"
 #import "HypeMachineStrategy.h"
 #import "LastFmStrategy.h"
+#import "SpotifyStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -96,14 +97,15 @@ NSArray * DefaultMediaStrategies;
     if (!DefaultMediaStrategies) {
         NSLog(@"Initializing default media strategies...");
         DefaultMediaStrategies = [NSArray arrayWithObjects:
-            [[YouTubeStrategy alloc] init],
-            [[PandoraStrategy alloc] init],
-            [[BandCampStrategy alloc] init],
-            [[GrooveSharkStrategy alloc] init],
-            [[HypeMachineStrategy alloc] init],
-            [[SoundCloudStrategy alloc] init],
-            [[LastFmStrategy alloc] init],
-            nil];
+                                  [[YouTubeStrategy alloc] init],
+                                  [[PandoraStrategy alloc] init],
+                                  [[BandCampStrategy alloc] init],
+                                  [[GrooveSharkStrategy alloc] init],
+                                  [[HypeMachineStrategy alloc] init],
+                                  [[SoundCloudStrategy alloc] init],
+                                  [[LastFmStrategy alloc] init],
+                                  [[SpotifyStrategy alloc] init],
+                                  nil];
     }
     return DefaultMediaStrategies;
 }

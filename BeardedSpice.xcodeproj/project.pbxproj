@@ -23,6 +23,7 @@
 		037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */; };
 		0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058821862A0E700C691B3 /* MASShortcutView.m */; };
 		0370588B1862A0E800C691B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 037058831862A0E700C691B3 /* README.md */; };
+		0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370588D1863F47300C691B3 /* SpotifyStrategy.m */; };
 		03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34924185EB20E00C4A62B /* YouTubeStrategy.m */; };
@@ -89,6 +90,8 @@
 		037058811862A0E700C691B3 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
 		037058821862A0E700C691B3 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
 		037058831862A0E700C691B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0370588C1863F47300C691B3 /* SpotifyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyStrategy.h; sourceTree = "<group>"; };
+		0370588D1863F47300C691B3 /* SpotifyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyStrategy.m; sourceTree = "<group>"; };
 		03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
 		03A3491B185EA03300C4A62B /* MediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategy.m; sourceTree = "<group>"; };
 		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategyRegistry.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
 				969E45701863E5830037226B /* LastFmStrategy.h */,
 				969E45711863E5830037226B /* LastFmStrategy.m */,
+				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
+				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				0369232E1862938E00E04DDB /* MASPreferencesWindowController.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
+				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */,

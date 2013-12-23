@@ -16,7 +16,13 @@ extern NSString *const BeardedSpiceActiveControllers;
 
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 {
+    // array of strategies used to drive the view
     NSArray *availableStrategies;
+    
+    // dictionary of user preferences
+    NSMutableDictionary *userStrategies;
+    
+    // shared registry object for controlling behavior
     MediaStrategyRegistry *registry;
 }
 

@@ -30,23 +30,18 @@ NSArray * DefaultMediaStrategies;
 }
 
 // TODO JF: bah copypasta
--(id) initWithUserDefaults:(NSString *)userDefaultsKeyPrefix
+-(id) initWithUserDefaults:(NSString *)userDefaultsKey
 {
     self = [super init];
     if (self) {
         availableStrategies = [[NSMutableArray alloc] init];
     }
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
     NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
+    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
+
     for (MediaStrategy *strategy in defaultStrategies) {
-        NSString *key = [NSString stringWithFormat:@"%@.%@", userDefaultsKeyPrefix, [strategy displayName]];
-        NSNumber *enabled = [defaults objectForKey:key];
-        if (enabled == nil) {
-            enabled = [NSNumber numberWithBool:YES];
-            [defaults setObject:enabled forKey:key];
-        }
-        
+        NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
         if ([enabled intValue] == 1) {
             [self addMediaStrategy:strategy];
         }

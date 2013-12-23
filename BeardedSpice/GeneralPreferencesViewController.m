@@ -18,6 +18,7 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
     self = [super initWithNibName:@"GeneralPreferencesView" bundle:nil];
     if (self) {
         availableStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
+        userStrategies = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveControllers]];
         registry = mediaStrategyRegistry;
     }
     return self;
@@ -53,8 +54,6 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
                   row:(NSInteger)row {
 
     MediaStrategy *strategy = [availableStrategies objectAtIndex:row];
-    NSString *key = [NSString stringWithFormat:@"%@.%@", BeardedSpiceActiveControllers, [strategy displayName]];
-    
     NSButton *result = [tableView makeViewWithIdentifier:@"AvailbleStrategiesView" owner:self];
 
     // there is no existing cell to reuse so create a new one
@@ -71,14 +70,7 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
         [result setTag:row];
         
         // check the user defaults
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSNumber *enabled = [defaults objectForKey:key];
-        if (enabled == nil) {
-            // default default
-            enabled = [NSNumber numberWithBool:YES];
-            [defaults setObject:enabled forKey:key];
-        }
-        
+        NSNumber *enabled = [userStrategies objectForKey:[strategy displayName]];
         if ([enabled intValue] == 1) {
             [result setState:NSOnState];
         } else {
@@ -95,8 +87,6 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
 -(void)updateMediaStrategyRegistry:(id)sender
 {
     MediaStrategy *strategy = [availableStrategies objectAtIndex:[sender tag]];
-    NSString *key = [NSString stringWithFormat:@"%@.%@", BeardedSpiceActiveControllers, [strategy displayName]];
-    
     BOOL enabled;
     if ([sender state] == NSOnState) {
         [registry addMediaStrategy:strategy];
@@ -106,7 +96,9 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
         enabled = NO;
     }
 
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:key];
+    // save user strategies
+    [userStrategies setObject:[NSNumber numberWithBool:enabled] forKey:[strategy displayName]];
+    [[NSUserDefaults standardUserDefaults] setObject:userStrategies forKey:BeardedSpiceActiveControllers];
 }
 
 

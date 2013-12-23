@@ -44,6 +44,8 @@
 		NSLog(@"Media key monitoring disabled");
     }
 
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
+    
     [self setActiveTabShortcut];
     
     // setup default media strategy
@@ -227,19 +229,6 @@
 
 - (void)setActiveTabShortcut
 {
-    // check if there is a user default
-    NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:BeardedSpiceActiveTabShortcut];
-    MASShortcut *shortcut = [MASShortcut shortcutWithData:data];
-    if (!shortcut) {
-        NSLog(@"Active tab default not set. Defaulting to cmd+f8");
-        shortcut = [MASShortcut shortcutWithKeyCode:kVK_F8
-                                      modifierFlags:NSCommandKeyMask];
-        [MASShortcut setGlobalShortcut:shortcut forUserDefaultsKey:BeardedSpiceActiveTabShortcut];
-
-    } else {
-        NSLog(@"Active tab default key set to %@", shortcut);
-    }
-
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
         [self refreshApplications];
         if (chromeApp.frontmost) {

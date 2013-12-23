@@ -29,24 +29,20 @@ NSArray * DefaultMediaStrategies;
     return self;
 }
 
-// TODO JF: bah copypasta
 -(id) initWithUserDefaults:(NSString *)userDefaultsKey
 {
-    self = [super init];
+    self = [self init];
     if (self) {
-        availableStrategies = [[NSMutableArray alloc] init];
-    }
+        NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
+        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
 
-    NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
-    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
-
-    for (MediaStrategy *strategy in defaultStrategies) {
-        NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-        if ([enabled intValue] == 1) {
-            [self addMediaStrategy:strategy];
+        for (MediaStrategy *strategy in defaultStrategies) {
+            NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
+            if ([enabled intValue] == 1) {
+                [self addMediaStrategy:strategy];
+            }
         }
     }
-
     return self;
 }
 

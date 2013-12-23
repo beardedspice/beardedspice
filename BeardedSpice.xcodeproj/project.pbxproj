@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
+		0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
+		0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
 		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
@@ -34,13 +36,11 @@
 		03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */; };
 		03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */; };
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
-		03F33ED418559AB200E8F77E /* youtube-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F33ED318559AB200E8F77E /* youtube-play.png */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
-		967933401855173100A49AC7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9679333E1855173100A49AC7 /* Credits.rtf */; };
 		967933431855173100A49AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933421855173100A49AC7 /* AppDelegate.m */; };
 		967933461855173100A49AC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967933441855173100A49AC7 /* MainMenu.xib */; };
 		967933481855173100A49AC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967933471855173100A49AC7 /* Images.xcassets */; };
@@ -64,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
+		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
+		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
 		0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
@@ -111,7 +113,6 @@
 		03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineStrategy.h; sourceTree = "<group>"; };
 		03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineStrategy.m; sourceTree = "<group>"; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		03F33ED318559AB200E8F77E /* youtube-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play.png"; sourceTree = "<group>"; };
 		03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Tab.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
 		03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ChromeTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -127,7 +128,6 @@
 		967933391855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9679333B1855173100A49AC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeardedSpice-Prefix.pch"; sourceTree = "<group>"; };
-		9679333F1855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		967933411855173100A49AC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		967933421855173100A49AC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		967933451855173100A49AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -317,13 +317,13 @@
 		967933361855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0320C0531868C7A4009591CA /* beard-highlighted.png */,
+				0320C0511868C6C2009591CA /* beard.png */,
 				030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */,
-				03F33ED318559AB200E8F77E /* youtube-play.png */,
 				967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
 				967933381855173100A49AC7 /* InfoPlist.strings */,
 				9679333B1855173100A49AC7 /* main.m */,
 				9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */,
-				9679333E1855173100A49AC7 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -425,14 +425,14 @@
 				037058841862A0E700C691B3 /* .gitignore in Resources */,
 				9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
-				967933401855173100A49AC7 /* Credits.rtf in Resources */,
+				0320C0521868C6C2009591CA /* beard.png in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */,
 				037058851862A0E700C691B3 /* LICENSE in Resources */,
 				0370588B1862A0E800C691B3 /* README.md in Resources */,
 				0369232C1862938E00E04DDB /* MASPreferences.podspec in Resources */,
 				0369232D1862938E00E04DDB /* MASPreferencesWindow.xib in Resources */,
-				03F33ED418559AB200E8F77E /* youtube-play.png in Resources */,
+				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
 				0369232B1862938E00E04DDB /* LICENSE.md in Resources */,
 			);
@@ -504,14 +504,6 @@
 				967933391855173100A49AC7 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9679333E1855173100A49AC7 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9679333F1855173100A49AC7 /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		967933441855173100A49AC7 /* MainMenu.xib */ = {

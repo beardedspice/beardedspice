@@ -57,8 +57,9 @@
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 
     [statusItem setMenu:statusMenu];
-    [statusItem setImage:[NSImage imageNamed:@"youtube-play.png"]];
+    [statusItem setImage:[NSImage imageNamed:@"beard.png"]];
     [statusItem setHighlightMode:YES];
+    [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted.png"]];
 
     [statusItem setAction:@selector(refreshTabs:)];
     [statusItem setTarget:self];

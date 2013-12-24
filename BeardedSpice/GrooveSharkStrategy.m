@@ -49,4 +49,17 @@
     return @"Grooveshark";
 }
 
+-(Track *) trackInfo:(id<Tab>)tab
+{
+    NSDictionary *status = [tab executeJavascript:@"window.Grooveshark.getCurrentSongStatus()"];
+    NSDictionary *song = [status objectForKey:@"song"];
+
+    Track *track = [[Track alloc] init];
+    track.track = [song objectForKey:@"songName"];
+    track.album = [song objectForKey:@"albumName"];
+    track.artist = [song objectForKey:@"artistName"];
+
+    return track;
+}
+
 @end

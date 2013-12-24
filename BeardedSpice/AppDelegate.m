@@ -48,6 +48,7 @@
     
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
+    [self setupNotificationShortcutCallback];
     
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
@@ -278,6 +279,19 @@
         MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy favorite]];
+        }
+    }];
+}
+
+- (void)setupNotificationShortcutCallback
+{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            Track *track = [strategy trackInfo:activeTab];
+            if (track) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
+            }
         }
     }];
 }

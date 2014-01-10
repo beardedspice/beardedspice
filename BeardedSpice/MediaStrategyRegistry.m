@@ -15,6 +15,7 @@
 #import "HypeMachineStrategy.h"
 #import "LastFmStrategy.h"
 #import "SpotifyStrategy.h"
+#import "GoogleMusicStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -96,6 +97,7 @@ NSArray * DefaultMediaStrategies;
                                   [[SoundCloudStrategy alloc] init],
                                   [[LastFmStrategy alloc] init],
                                   [[SpotifyStrategy alloc] init],
+                                  [[GoogleMusicStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

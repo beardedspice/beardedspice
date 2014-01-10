@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
 		031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */; };
+		031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
 		0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
 		0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
 		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
@@ -67,6 +68,8 @@
 		030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
 		031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMusicStrategy.h; sourceTree = "<group>"; };
 		031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMusicStrategy.m; sourceTree = "<group>"; };
+		031D8147187F982A00A93E00 /* RdioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RdioStrategy.h; sourceTree = "<group>"; };
+		031D8148187F982A00A93E00 /* RdioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RdioStrategy.m; sourceTree = "<group>"; };
 		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
 		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
 		0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
 				031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */,
 				031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
+				031D8147187F982A00A93E00 /* RdioStrategy.h */,
+				031D8148187F982A00A93E00 /* RdioStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
+				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
 				037058881862A0E700C691B3 /* MASShortcut.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
 				037058861862A0E700C691B3 /* MASShortcut+Monitoring.m in Sources */,

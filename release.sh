@@ -3,6 +3,8 @@
 # by Andy Maloney
 # http://asmaloney.com/2013/07/howto/packaging-a-mac-os-x-application-using-a-dmg/
 
+set -e
+
 # make sure we are in the correct dir when we double-click a .command file
 dir=${0%/*}
 if [ -d "$dir" ]; then
@@ -20,11 +22,13 @@ VOL_NAME="${APP_NAME} ${VERSION}"   # volume name will be "SuperCoolApp 1.0.0"
 DMG_TMP="${VOL_NAME}-temp.dmg"
 DMG_FINAL="${VOL_NAME}.dmg"         # final DMG name will be "SuperCoolApp 1.0.0.dmg"
 
-RESOURCE_DIR="./BeardedSpice"
-BUILD_DIR="./build/Release"
-STAGING_DIR="./build/packaged"      # we copy all our stuff into this dir
+CWD=`pwd`
+RESOURCE_DIR="${CWD}/BeardedSpice"
+BUILD_DIR="${CWD}/build/Release"
+STAGING_DIR="${CWD}/build/packaged"      # we copy all our stuff into this dir
 
-DMG_BACKGROUND_IMG="${RESOURCE_DIR}/beard.png"
+DMG_BACKGROUND_IMG_NAME="beard.png"
+DMG_BACKGROUND_IMG="${RESOURCE_DIR}/${DMG_BACKGROUND_IMG_NAME}"
 
 # Check the background image DPI and convert it if it isn't 72x72
 _BACKGROUND_IMAGE_DPI_H=`sips -g dpiHeight ${DMG_BACKGROUND_IMG} | grep -Eo '[0-9]+\.[0-9]+'`
@@ -41,12 +45,15 @@ if [ $(echo " $_BACKGROUND_IMAGE_DPI_H != 72.0 " | bc) -eq 1 -o $(echo " $_BACKG
    DMG_BACKGROUND_IMG="${_DMG_BACKGROUND_TMP}"
 fi
 
+echo 'Cleaning.'
 # clear out any old data
 rm -rf "${STAGING_DIR}" "${DMG_TMP}" "${DMG_FINAL}"
 
+echo 'Building.'
 # build the project
 xcodebuild
 
+echo 'Copying to staging directory.'
 # copy over the stuff we want in the final disk image to our staging dir
 mkdir -p "${STAGING_DIR}"
 cp -rpf "${BUILD_DIR}/${APP_NAME}.app" "${STAGING_DIR}"
@@ -54,17 +61,17 @@ cp -rpf "${BUILD_DIR}/${APP_NAME}.app" "${STAGING_DIR}"
 pushd "${STAGING_DIR}"
 
 # strip the executable
-echo "Stripping ${APP_EXEa}..."
+echo "Stripping ${APP_EXE}."
 strip -u -r "${APP_EXE}"
 
 # compress the executable if we have upx in PATH
 #  UPX: http://upx.sourceforge.net/
 if hash upx 2>/dev/null; then
-   echo "Compressing (UPX) ${APP_EXE}..."
+   echo "Compressing (UPX) ${APP_EXE}."
    upx -9 "${APP_EXE}"
 fi
 
-# ... perform any other stripping/compressing of libs and executables
+# . perform any other stripping/compressing of libs and executables
 
 popd
 
@@ -81,11 +88,10 @@ popd
 #   exit
 #fi
 
+echo 'Creating .dmg.'
 # create the temp DMG file
 hdiutil create -srcfolder "${STAGING_DIR}" -volname "${VOL_NAME}" -fs HFS+ \
       -fsargs "-c c=64,a=16,e=16" -format UDRW -size 1M "${DMG_TMP}"
-
-echo "Created DMG: ${DMG_TMP}"
 
 # mount it and save the device
 DEVICE=$(hdiutil attach -readwrite -noverify "${DMG_TMP}" | \
@@ -94,17 +100,20 @@ DEVICE=$(hdiutil attach -readwrite -noverify "${DMG_TMP}" | \
 sleep 2
 
 # add a link to the Applications dir
-echo "Add link to /Applications"
+echo "Add link to /Applications in ${VOL_NAME}."
 pushd /Volumes/"${VOL_NAME}"
-ln -s /Applications
+ln -fs /Applications
 popd
 
+echo "Adding background image. ${DMG_BACKGROUND_IMG}"
 # add a background image
-mkdir /Volumes/"${VOL_NAME}"/.background
+mkdir -p /Volumes/"${VOL_NAME}"/.background
 cp "${DMG_BACKGROUND_IMG}" /Volumes/"${VOL_NAME}"/.background/
 
+# tr TODO: these are invalid for our app. FIXITFIXITFXIT
 # tell the Finder to resize the window, set the background,
 #  change the icon size, place the icons in the right position, etc.
+echo 'Moving everything to proper location.'
 echo '
    tell application "Finder"
      tell disk "'${VOL_NAME}'"
@@ -116,7 +125,7 @@ echo '
            set viewOptions to the icon view options of container window
            set arrangement of viewOptions to not arranged
            set icon size of viewOptions to 72
-           set background picture of viewOptions to file ".background:'${DMG_BACKGROUND_IMG}'"
+           set background picture of viewOptions to file ".background:'${DMG_BACKGROUND_IMG_NAME}'"
            set position of item "'${APP_NAME}'.app" of container window to {160, 205}
            set position of item "Applications" of container window to {360, 205}
            close
@@ -133,10 +142,11 @@ sync
 hdiutil detach "${DEVICE}"
 
 # now make the final image a compressed disk image
-echo "Creating compressed image"
+echo "Creating compressed image."
 hdiutil convert "${DMG_TMP}" -format UDZO -imagekey zlib-level=9 -o "${DMG_FINAL}"
 
 # clean up
+echo 'Cleaning up.'
 rm -rf "${DMG_TMP}"
 rm -rf "${STAGING_DIR}"
 

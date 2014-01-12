@@ -68,15 +68,18 @@ fi
 
 popd
 
+# tr NOTE: because our app is sub 1m right now, I just hard code the image size to be 1M. Once
+# our app grows, remove the commented section, and add $SIZE to the hdiutil call.
+
 # figure out how big our DMG needs to be
 #  assumes our contents are at least 1M!
 #SIZE=`du -sh "${STAGING_DIR}" | sed 's/\([0-9\.]*\)M\(.*\)/\1/'`
 #SIZE=`echo "${SIZE} + 1.0" | bc | awk '{print int($1+0.5)}'`
 
-if [ $? -ne 0 ]; then
-   echo "Error: Cannot compute size of staging dir"
-   exit
-fi
+#if [ $? -ne 0 ]; then
+#   echo "Error: Cannot compute size of staging dir"
+#   exit
+#fi
 
 # create the temp DMG file
 hdiutil create -srcfolder "${STAGING_DIR}" -volname "${VOL_NAME}" -fs HFS+ \

@@ -1,0 +1,2 @@
+# compresses executable.
+install upx

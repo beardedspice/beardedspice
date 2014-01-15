@@ -1,5 +1,5 @@
 
-## Download
+# Download
 
 Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.1.0.dmg), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 

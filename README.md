@@ -15,12 +15,11 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 
-BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
-
+BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events. **NOTE**: We've asked nevyn to update the SPMediaKeyTap whitelist. While BeardedSpice is not on the whitelist, media key events may not propogate to BeardedSpice. You'll need to keep your Spotify application closed in the meantime.
 
 [![BeardedSpice](http://imgur.com/zoeg3NS.png)](http://imgur.com/zoeg3NS.png)
 
-## Downloading
+## Download
 
 Find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 

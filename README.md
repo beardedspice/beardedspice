@@ -27,3 +27,86 @@ Download the current release here *TODO*.
 ## Features
 
 ## Writing a Handler
+
+Media controllers are written as strategies. Each strategy defines a collection of Javascript functions to be excecuted on particular webpages.
+
+```Objective-C
+@interface MediaStrategy : NSObject
+
+-(BOOL) accepts:(id <Tab>) tab;
+-(NSString *) displayName;
+
+-(NSString *) toggle;
+-(NSString *) previous;
+-(NSString *) next;
+-(NSString *) pause;
+
+@end
+```
+
+The `accepts` method takes a `Tab` object and returns `YES` if the strategy can control the given tab. `displayName` must return a unique string describing the controller and will be used as the name shown in the Preferences panel. All other functions return a Javascript function for the particular action. `pause` is a special case and is used when changing the active tab.
+
+A sample strategy for GrooveShark:
+
+```Objective-C
+@implementation GrooveSharkStrategy
+
+-(id) init
+{
+    self = [super init];
+    if (self) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*grooveshark.com*'"];
+    }
+    return self;
+}
+
+-(BOOL) accepts:(id <Tab>)tab
+{
+    return [predicate evaluateWithObject:[tab URL]];
+}
+
+-(NSString *) toggle
+{
+    return @"(function(){return window.Grooveshark.toggle()})()";
+}
+
+-(NSString *) previous
+{
+    return @"(function(){return window.Grooveshark.previous()})()";
+}
+
+-(NSString *) next
+{
+    return @"(function(){return window.Grooveshark.next()})()";
+}
+
+-(NSString *) pause
+{
+    return @"(function(){return window.Grooveshark.pause()})()";
+}
+
+-(NSString *) displayName
+{
+    return @"Grooveshark";
+}
+
+@end
+```
+
+Update the `MediaStrategyRegistry` to include an instance of your new strategy:
+
+```Objective-C
++(NSArray *) getDefaultMediaStrategies
+{
+        DefaultMediaStrategies = [NSArray arrayWithObjects:
+                                  // ...
+                                  [[GoogleMusicStrategy alloc] init],
+                                  [[RdioStrategy alloc] init],
+                                  // add your new strategy!
+                                  [[GrooveSharkStrategy alloc] init],
+                                  nil];
+}
+```
+
+Finally, update the default preferences plist to include your strategy.
+

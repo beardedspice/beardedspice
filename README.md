@@ -22,7 +22,7 @@ BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTa
 
 ## Downloading
 
-Find all released binaries on the 'releases' branch.
+Find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 
 ## Features
 

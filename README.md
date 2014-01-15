@@ -1,6 +1,13 @@
+
+## Download
+
+Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.1.0.dmg), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
+
+Mac OS X 10.7 or greater required.
+
 # About
 
-[![BeardedSpice](http://imgur.com/zoeg3NS.png)](http://imgur.com/zoeg3NS.png)
+[![BeardedSpice](images/bs.png)](images/bs.png)
 
 BeardedSpice is a menubar application for Mac OSX that allows you to control web based media players with the media keys found on Mac keyboards. It is an extensible application that works with Chrome and Safari, and can control any tab with an applicable media player. BeardedSpice currently supports:
 
@@ -18,10 +25,6 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 
 BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events. **NOTE**: We've asked nevyn to update the SPMediaKeyTap whitelist. While BeardedSpice is not on the whitelist, media key events may not propogate to BeardedSpice. You'll need to keep your Spotify application closed in the meantime.
-
-## Download
-
-Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.1.0.dmg), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 
 ## Features
 

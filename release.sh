@@ -18,9 +18,9 @@ VERSION="0.1.0"
 # you should not need to change these
 APP_EXE="${APP_NAME}.app/Contents/MacOS/${APP_NAME}"
 
-VOL_NAME="${APP_NAME} ${VERSION}"   # volume name will be "SuperCoolApp 1.0.0"
+VOL_NAME="${APP_NAME}-${VERSION}"   # volume name will be "SuperCoolApp-1.0.0"
 DMG_TMP="${VOL_NAME}-temp.dmg"
-DMG_FINAL="${VOL_NAME}.dmg"         # final DMG name will be "SuperCoolApp 1.0.0.dmg"
+DMG_FINAL="${VOL_NAME}.dmg"         # final DMG name will be "SuperCoolApp-1.0.0.dmg"
 
 CWD=`pwd`
 RESOURCE_DIR="${CWD}/BeardedSpice"

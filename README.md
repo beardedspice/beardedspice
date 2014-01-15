@@ -117,3 +117,7 @@ Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspic
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 
+## Contact
+
+- [@chedkid](https://twitter.com/chedkid)
+- [@\_trhodes\_](https://twitter.com/_trhodes_)

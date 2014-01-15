@@ -1,4 +1,4 @@
-# BeardedSpice
+# About
 
 [![BeardedSpice](http://imgur.com/zoeg3NS.png)](http://imgur.com/zoeg3NS.png)
 

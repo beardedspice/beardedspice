@@ -113,6 +113,9 @@ cp "${DMG_BACKGROUND_IMG}" /Volumes/"${VOL_NAME}"/.background/
 # tr TODO: these are invalid for our app. FIXITFIXITFXIT
 # tell the Finder to resize the window, set the background,
 #  change the icon size, place the icons in the right position, etc.
+# add this back once we have a background image
+#            set background picture of viewOptions to file ".background:'${DMG_BACKGROUND_IMG_NAME}'"
+
 echo 'Moving everything to proper location.'
 echo '
    tell application "Finder"
@@ -125,7 +128,6 @@ echo '
            set viewOptions to the icon view options of container window
            set arrangement of viewOptions to not arranged
            set icon size of viewOptions to 72
-           set background picture of viewOptions to file ".background:'${DMG_BACKGROUND_IMG_NAME}'"
            set position of item "'${APP_NAME}'.app" of container window to {160, 205}
            set position of item "Applications" of container window to {360, 205}
            close

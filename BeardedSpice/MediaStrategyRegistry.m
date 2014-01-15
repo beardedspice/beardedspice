@@ -17,6 +17,7 @@
 #import "SpotifyStrategy.h"
 #import "GoogleMusicStrategy.h"
 #import "RdioStrategy.h"
+#import "EightTracksStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -100,6 +101,7 @@ NSArray * DefaultMediaStrategies;
                                   [[SpotifyStrategy alloc] init],
                                   [[GoogleMusicStrategy alloc] init],
                                   [[RdioStrategy alloc] init],
+                                  [[EightTracksStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

@@ -17,6 +17,9 @@ If you want another supported app supported, simply open an issue with the tag '
 
 BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
 
+
+[![BeardedSpice](http://imgur.com/zoeg3NS.png)](http://imgur.com/zoeg3NS.png)
+
 ## Downloading
 
 Download the current release here *TODO*.

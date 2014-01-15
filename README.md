@@ -28,6 +28,8 @@ Download the [latest release](https://github.com/beardedspice/beardedspice/raw/r
 ### Setting an active tab
 Tell BeardedSpice to control a tab by either clicking the menubar icon and selecting a tab from the dropdown, or by pressing the 'Set Active Tab' shortcut when a browser window is active. The shortcut defaults to ⌘+F8, and is configurable in the preferences panel. Switching active tabs will pause the currently active tab (if there is one).
 
+In Chrome you must reset your active tab if you move your tab to a new window. With Safari, reset your active tab when changing the order of your active tab or moving it to a new window.
+
 ### Disabling certain handlers
 From the preferences menu, uncheck any types of webpages that you don't want BeardedSpice to have control over. By default, all implemented handlers are enabled.
 

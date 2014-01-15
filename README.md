@@ -28,7 +28,7 @@ Find all released binaries on the 'releases' branch.
 
 ## Writing a Handler
 
-Media controllers are written as strategies. Each strategy defines a collection of Javascript functions to be excecuted on particular webpages.
+Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategy.h). Each strategy defines a collection of Javascript functions to be excecuted on particular webpages.
 
 ```Objective-C
 @interface MediaStrategy : NSObject
@@ -93,7 +93,7 @@ A sample strategy for GrooveShark:
 @end
 ```
 
-Update the `MediaStrategyRegistry` to include an instance of your new strategy:
+Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategyRegistry.m) to include an instance of your new strategy:
 
 ```Objective-C
 +(NSArray *) getDefaultMediaStrategies
@@ -108,5 +108,5 @@ Update the `MediaStrategyRegistry` to include an instance of your new strategy:
 }
 ```
 
-Finally, update the default preferences plist to include your strategy.
+Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 

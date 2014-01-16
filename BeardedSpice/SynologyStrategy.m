@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){console.log('toggling');document.querySelectorAll('.player-play button')[0].click()})()";
+    return @"(function(){document.querySelectorAll('.player-play button')[0].click()})()";
 }
 
 -(NSString *) previous

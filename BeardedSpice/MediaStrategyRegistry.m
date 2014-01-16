@@ -18,6 +18,7 @@
 #import "GoogleMusicStrategy.h"
 #import "RdioStrategy.h"
 #import "EightTracksStrategy.h"
+#import "SynologyStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -68,7 +69,7 @@ NSArray * DefaultMediaStrategies;
 {
     [availableStrategies containsObject:strategy];
 }
-     
+
 -(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
 {
 
@@ -102,6 +103,7 @@ NSArray * DefaultMediaStrategies;
                                   [[GoogleMusicStrategy alloc] init],
                                   [[RdioStrategy alloc] init],
                                   [[EightTracksStrategy alloc] init],
+                                  [[SynologyStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

@@ -103,7 +103,7 @@ NSArray * DefaultMediaStrategies;
                                   [[GoogleMusicStrategy alloc] init],
                                   [[RdioStrategy alloc] init],
                                   [[EightTracksStrategy alloc] init],
-                                  [[ShufflerFmTracksStrategy alloc] init],
+                                  [[ShufflerFmStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

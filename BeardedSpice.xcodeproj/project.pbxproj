@@ -40,6 +40,7 @@
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -127,6 +128,8 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
+		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -228,6 +231,16 @@
 			children = (
 				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
 				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
+				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
+				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
+				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
+				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
+				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
 				03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
 				9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
@@ -500,6 +513,7 @@
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
+				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

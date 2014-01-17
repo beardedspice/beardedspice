@@ -19,6 +19,7 @@
 #import "RdioStrategy.h"
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
+#import "ShufflerFmStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -104,6 +105,7 @@ NSArray * DefaultMediaStrategies;
                                   [[RdioStrategy alloc] init],
                                   [[EightTracksStrategy alloc] init],
                                   [[SynologyStrategy alloc] init],
+                                  [[ShufflerFmStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

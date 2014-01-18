@@ -54,6 +54,7 @@
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 		969E45721863E5830037226B /* LastFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E45711863E5830037226B /* LastFmStrategy.m */; };
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
+		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,8 @@
 		969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFmStrategy.m; sourceTree = "<group>"; };
 		9AF442D31886F71400CD7266 /* EightTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightTracksStrategy.h; sourceTree = "<group>"; };
 		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EightTracksStrategy.m; sourceTree = "<group>"; };
+		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
+		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +229,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
+				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
 				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
 				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
 				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
@@ -238,22 +243,30 @@
 				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
 				03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
+				9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
+				9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
+				031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */,
+				031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
 				03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */,
 				03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
-				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
-				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
 				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
 				969E45701863E5830037226B /* LastFmStrategy.h */,
 				969E45711863E5830037226B /* LastFmStrategy.m */,
-				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
-				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
-				031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */,
-				031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
+				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
+				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
+				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				031D8147187F982A00A93E00 /* RdioStrategy.h */,
 				031D8148187F982A00A93E00 /* RdioStrategy.m */,
-				9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
-				9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
+				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
+				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
+				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
+				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -493,6 +506,7 @@
 				037058871862A0E700C691B3 /* MASShortcut+UserDefaults.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */,
+				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,

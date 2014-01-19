@@ -25,6 +25,8 @@
     NSStatusItem *statusItem;
     
     ChromeApplication *chromeApp;
+    ChromeApplication *canaryApp;
+    
     SafariApplication *safariApp;
 
     SPMediaKeyTap *keyTap;

@@ -82,26 +82,36 @@
     [NSApp terminate: nil];
 }
 
+- (void)refreshTabsForChrome:(ChromeApplication *) chrome {
+    if (chrome) {
+        for (ChromeWindow *chromeWindow in chrome.windows) {
+            for (ChromeTab *chromeTab in chromeWindow.tabs) {
+                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow];
+            }
+        }
+    }
+}
+
+- (void)refreshTabsForSafari:(SafariApplication *) safari {
+    if (safari) {
+        for (SafariWindow *safariWindow in safari.windows) {
+            for (SafariTab *safariTab in safariWindow.tabs) {
+                [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+            }
+        }
+    }
+}
+
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Refreshing tabs...");
     [self removeAllItems];
     [self refreshApplications];
 
-    if (chromeApp) {
-        for (ChromeWindow *chromeWindow in chromeApp.windows) {
-            for (ChromeTab *chromeTab in chromeWindow.tabs) {
-                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow];
-            }
-        }
-    }
-    if (safariApp) {
-        for (SafariWindow *safariWindow in safariApp.windows) {
-            for (SafariTab *safariTab in safariWindow.tabs) {
-                [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
-            }
-        }
-    }
+    [self refreshTabsForChrome:chromeApp];
+    [self refreshTabsForChrome:canaryApp];
+    [self refreshTabsForSafari:safariApp];
+
     
     if ([statusMenu numberOfItems] == 3) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
@@ -225,7 +235,26 @@
 - (void)refreshApplications
 {
     chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
+    canaryApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
     safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+}
+
+- (void)setActiveTabShortcutForChrome:(ChromeApplication *)chrome {
+    // chromeApp.windows[0] is the front most window.
+    ChromeWindow *chromeWindow = chrome.windows[0];
+    
+    // use 'get' to force a hard reference.
+    [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
+}
+
+- (void)setActiveTabShortcutForSafari:(SafariApplication *)safari {
+    // is safari.windows[0] the frontmost?
+    SafariWindow *safariWindow = safari.windows[0];
+    
+    // use 'get' to force a hard reference.
+    [self updateActiveTab:[SafariTabAdapter initWithApplication:safari
+                                                      andWindow:safariWindow
+                                                         andTab:[safariWindow currentTab]]];
 }
 
 - (void)setActiveTabShortcut
@@ -233,19 +262,11 @@
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
         [self refreshApplications];
         if (chromeApp.frontmost) {
-            // chromeApp.windows[0] is the front most window.
-            ChromeWindow *chromeWindow = chromeApp.windows[0];
-            
-            // use 'get' to force a hard reference.
-            [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
+            [self setActiveTabShortcutForChrome:chromeApp];
+        } else if (canaryApp.frontmost) {
+            [self setActiveTabShortcutForChrome:canaryApp];
         } else if (safariApp.frontmost) {
-            // is safari.windows[0] the frontmost?
-            SafariWindow *safariWindow = safariApp.windows[0];
-
-            // use 'get' to force a hard reference.
-            [self updateActiveTab:[SafariTabAdapter initWithApplication:safariApp
-                                                    andWindow:safariWindow
-                                                       andTab:[safariWindow currentTab]]];
+            [self setActiveTabShortcutForSafari:safariApp];
         }
     }];
 }

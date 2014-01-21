@@ -12,6 +12,7 @@
 #import "MediaStrategyRegistry.h"
 
 extern NSString *const BeardedSpiceActiveTabShortcut;
+extern NSString *const BeardedSpiceSwitchTabShortcut;
 extern NSString *const BeardedSpiceActiveControllers;
 
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
@@ -26,7 +27,8 @@ extern NSString *const BeardedSpiceActiveControllers;
     MediaStrategyRegistry *registry;
 }
 
-@property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
+@property (nonatomic, weak) IBOutlet MASShortcutView *activeShortcutView;
+@property (nonatomic, weak) IBOutlet MASShortcutView *switchShortcutView;
 @property (assign) IBOutlet NSTableView *strategiesView;
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry;

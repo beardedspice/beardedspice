@@ -284,7 +284,19 @@
 
 - (void)setActiveTabShortcut
 {
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dataForKey:BeardedSpiceSwitchTabShortcut]);
+
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
+         if (chromeApp.frontmost) {
+             [self setActiveTabShortcutForChrome:chromeApp];
+         } else if (canaryApp.frontmost) {
+             [self setActiveTabShortcutForChrome:canaryApp];
+         } else if (safariApp.frontmost) {
+             [self setActiveTabShortcutForSafari:safariApp];
+         }
+    }];
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceSwitchTabShortcut handler:^{
         [self refreshApplications];
         
         unsigned long activeTabIndex = NSNotFound;
@@ -329,16 +341,6 @@
             [center deliverNotification:notification];
             center.delegate = self;
         }
-
-        /*
-        if (chromeApp.frontmost) {
-            [self setActiveTabShortcutForChrome:chromeApp];
-        } else if (canaryApp.frontmost) {
-            [self setActiveTabShortcutForChrome:canaryApp];
-        } else if (safariApp.frontmost) {
-            [self setActiveTabShortcutForSafari:safariApp];
-        }
-        */
     }];
 }
 

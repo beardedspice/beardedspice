@@ -20,7 +20,7 @@
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
     
@@ -32,6 +32,7 @@
     SPMediaKeyTap *keyTap;
 
     id <Tab> activeTab;
+    NSMutableArray* tabs;
     MediaStrategyRegistry *mediaStrategyRegistry;
 
     NSWindowController *_preferencesWindowController;

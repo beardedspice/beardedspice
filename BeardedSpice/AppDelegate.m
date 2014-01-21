@@ -282,9 +282,61 @@
                                                          andTab:tab]];
 }
 
+- (void)switchTabInDirection: (int)direction {
+    [self refreshApplications];
+    
+    unsigned long activeTabIndex = NSNotFound;
+    for (unsigned long i = 0; i < tabs.count; ++i) {
+        if ([tabs[i] isEqual: activeTab]) {
+            activeTabIndex = i;
+        }
+    }
+    
+    if (activeTabIndex == NSNotFound) {
+        if (tabs.count > 0) {
+            activeTabIndex = 0;
+        }
+    } else {
+        if (activeTabIndex == 0 && direction < 0) {
+            activeTabIndex = tabs.count + direction;
+        } else {
+            activeTabIndex += direction;
+
+            if (activeTabIndex >= tabs.count) {
+                activeTabIndex = 0;
+            }
+        }
+    }
+    
+    if (activeTabIndex != NSNotFound) {
+        id tab = tabs[activeTabIndex];
+        NSLog(@"Switched to tab: %@", tab);
+        
+        NSString* title;
+        
+        if ([tab isKindOfClass:ChromeTabAdapter.class]) {
+            ChromeTabAdapter* chromeTabAdapter = tab;
+            title = chromeTabAdapter.title;
+            [self setTabShortcutForChrome:chromeApp andTab:chromeTabAdapter.tab];
+        } else {
+            SafariTabAdapter* safariTabAdapter = tab;
+            title = safariTabAdapter.title;
+            [self setTabShortcutForSafari:safariApp andTab:safariTabAdapter.tab];
+        }
+        
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        [notification setTitle:@"Switched Tab"];
+        [notification setInformativeText:title];
+        
+        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [center deliverNotification:notification];
+        center.delegate = self;
+    }
+}
+
 - (void)setActiveTabShortcut
 {
-    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dataForKey:BeardedSpiceSwitchTabShortcut]);
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dataForKey:BeardedSpiceSwitchForwardTabShortcut]);
 
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
          if (chromeApp.frontmost) {
@@ -296,51 +348,12 @@
          }
     }];
     
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceSwitchTabShortcut handler:^{
-        [self refreshApplications];
-        
-        unsigned long activeTabIndex = NSNotFound;
-        for (unsigned long i = 0; i < tabs.count; ++i) {
-            if ([tabs[i] isEqual: activeTab]) {
-                activeTabIndex = i;
-            }
-        }
-        
-        if (activeTabIndex == NSNotFound) {
-            if (tabs.count > 0) {
-                activeTabIndex = 0;
-            }
-        } else {
-            activeTabIndex += 1;
-            if (activeTabIndex >= tabs.count) {
-                activeTabIndex = 0;
-            }
-        }
-
-        if (activeTabIndex != NSNotFound) {
-            id tab = tabs[activeTabIndex];
-            NSLog(@"Switched to tab: %@", tab);
-
-            NSString* title;
-            
-            if ([tab isKindOfClass:ChromeTabAdapter.class]) {
-                ChromeTabAdapter* chromeTabAdapter = tab;
-                title = chromeTabAdapter.title;
-                [self setTabShortcutForChrome:chromeApp andTab:chromeTabAdapter.tab];
-            } else {
-                SafariTabAdapter* safariTabAdapter = tab;
-                title = safariTabAdapter.title;
-                [self setTabShortcutForSafari:safariApp andTab:safariTabAdapter.tab];
-            }
-
-            NSUserNotification *notification = [[NSUserNotification alloc] init];
-            [notification setTitle:@"Switched Tab"];
-            [notification setInformativeText:title];
-            
-            NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-            [center deliverNotification:notification];
-            center.delegate = self;
-        }
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceSwitchForwardTabShortcut handler:^{
+        [self switchTabInDirection: 1];
+    }];
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceSwitchBackwardTabShortcut handler:^{
+        [self switchTabInDirection: -1];
     }];
 }
 

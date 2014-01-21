@@ -292,6 +292,7 @@
         }
     }
     
+    // Find out what the next tab is depending on if we're switching back or forth.
     if (activeTabIndex == NSNotFound) {
         if (tabs.count > 0) {
             activeTabIndex = 0;
@@ -307,7 +308,7 @@
             }
         }
     }
-    
+
     if (activeTabIndex != NSNotFound) {
         id tab = tabs[activeTabIndex];
         NSLog(@"Switched to tab: %@", tab);
@@ -323,9 +324,11 @@
             title = safariTabAdapter.title;
             [self setTabShortcutForSafari:safariApp andTab:safariTabAdapter.tab];
         }
+
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
         
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        [notification setTitle:@"Switched Tab"];
+        [notification setTitle:strategy.displayName];
         [notification setInformativeText:title];
         
         NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];

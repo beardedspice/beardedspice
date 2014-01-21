@@ -336,8 +336,6 @@
 
 - (void)setActiveTabShortcut
 {
-    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dataForKey:BeardedSpiceSwitchForwardTabShortcut]);
-
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
          if (chromeApp.frontmost) {
              [self setActiveTabShortcutForChrome:chromeApp];

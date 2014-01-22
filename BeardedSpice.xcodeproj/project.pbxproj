@@ -16,18 +16,6 @@
 		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
 		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
 		036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0369231E1862936600E04DDB /* GeneralPreferencesView.xib */; };
-		0369232B1862938E00E04DDB /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 036923231862938E00E04DDB /* LICENSE.md */; };
-		0369232C1862938E00E04DDB /* MASPreferences.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 036923241862938E00E04DDB /* MASPreferences.podspec */; };
-		0369232D1862938E00E04DDB /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036923261862938E00E04DDB /* MASPreferencesWindow.xib */; };
-		0369232E1862938E00E04DDB /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036923281862938E00E04DDB /* MASPreferencesWindowController.m */; };
-		037058841862A0E700C691B3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 037058771862A0E700C691B3 /* .gitignore */; };
-		037058851862A0E700C691B3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 037058781862A0E700C691B3 /* LICENSE */; };
-		037058861862A0E700C691B3 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370587A1862A0E700C691B3 /* MASShortcut+Monitoring.m */; };
-		037058871862A0E700C691B3 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370587C1862A0E700C691B3 /* MASShortcut+UserDefaults.m */; };
-		037058881862A0E700C691B3 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370587E1862A0E700C691B3 /* MASShortcut.m */; };
-		037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */; };
-		0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058821862A0E700C691B3 /* MASShortcutView.m */; };
-		0370588B1862A0E800C691B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 037058831862A0E700C691B3 /* README.md */; };
 		0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370588D1863F47300C691B3 /* SpotifyStrategy.m */; };
 		03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
@@ -41,6 +29,7 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
+		58CE63AAD89F4CE498856309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -83,27 +72,6 @@
 		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
 		0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
 		0369231E1862936600E04DDB /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
-		036923221862938E00E04DDB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		036923231862938E00E04DDB /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
-		036923241862938E00E04DDB /* MASPreferences.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MASPreferences.podspec; sourceTree = "<group>"; };
-		036923251862938E00E04DDB /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
-		036923261862938E00E04DDB /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
-		036923271862938E00E04DDB /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
-		036923281862938E00E04DDB /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
-		036923291862938E00E04DDB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		037058771862A0E700C691B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		037058781862A0E700C691B3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		037058791862A0E700C691B3 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
-		0370587A1862A0E700C691B3 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
-		0370587B1862A0E700C691B3 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		0370587C1862A0E700C691B3 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		0370587D1862A0E700C691B3 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		0370587E1862A0E700C691B3 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		0370587F1862A0E700C691B3 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
-		037058811862A0E700C691B3 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		037058821862A0E700C691B3 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
-		037058831862A0E700C691B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		0370588C1863F47300C691B3 /* SpotifyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyStrategy.h; sourceTree = "<group>"; };
 		0370588D1863F47300C691B3 /* SpotifyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyStrategy.m; sourceTree = "<group>"; };
 		03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
@@ -129,8 +97,10 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
 		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
+		5F47F7B626D3424AA8717F41 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -169,6 +139,7 @@
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
+				58CE63AAD89F4CE498856309 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,41 +163,6 @@
 				0369231E1862936600E04DDB /* GeneralPreferencesView.xib */,
 			);
 			name = Preferences;
-			sourceTree = "<group>";
-		};
-		036923211862938E00E04DDB /* MASPreferences */ = {
-			isa = PBXGroup;
-			children = (
-				036923221862938E00E04DDB /* .gitignore */,
-				036923231862938E00E04DDB /* LICENSE.md */,
-				036923241862938E00E04DDB /* MASPreferences.podspec */,
-				036923251862938E00E04DDB /* MASPreferencesViewController.h */,
-				036923261862938E00E04DDB /* MASPreferencesWindow.xib */,
-				036923271862938E00E04DDB /* MASPreferencesWindowController.h */,
-				036923281862938E00E04DDB /* MASPreferencesWindowController.m */,
-				036923291862938E00E04DDB /* README.md */,
-			);
-			path = MASPreferences;
-			sourceTree = "<group>";
-		};
-		037058761862A0E700C691B3 /* MASShortcut */ = {
-			isa = PBXGroup;
-			children = (
-				037058771862A0E700C691B3 /* .gitignore */,
-				037058781862A0E700C691B3 /* LICENSE */,
-				037058791862A0E700C691B3 /* MASShortcut+Monitoring.h */,
-				0370587A1862A0E700C691B3 /* MASShortcut+Monitoring.m */,
-				0370587B1862A0E700C691B3 /* MASShortcut+UserDefaults.h */,
-				0370587C1862A0E700C691B3 /* MASShortcut+UserDefaults.m */,
-				0370587D1862A0E700C691B3 /* MASShortcut.h */,
-				0370587E1862A0E700C691B3 /* MASShortcut.m */,
-				0370587F1862A0E700C691B3 /* MASShortcutView+UserDefaults.h */,
-				037058801862A0E700C691B3 /* MASShortcutView+UserDefaults.m */,
-				037058811862A0E700C691B3 /* MASShortcutView.h */,
-				037058821862A0E700C691B3 /* MASShortcutView.m */,
-				037058831862A0E700C691B3 /* README.md */,
-			);
-			path = MASShortcut;
 			sourceTree = "<group>";
 		};
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
@@ -285,12 +221,11 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
-				037058761862A0E700C691B3 /* MASShortcut */,
-				036923211862938E00E04DDB /* MASPreferences */,
 				967933351855173100A49AC7 /* BeardedSpice */,
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
+				5F47F7B626D3424AA8717F41 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -311,6 +246,7 @@
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
+				2299BC537DEC481A9540F7CA /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -383,9 +319,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */;
 			buildPhases = (
+				1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */,
 				967933281855173100A49AC7 /* Sources */,
 				967933291855173100A49AC7 /* Frameworks */,
 				9679332A1855173100A49AC7 /* Resources */,
+				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -452,19 +390,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				037058841862A0E700C691B3 /* .gitignore in Resources */,
 				9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				0320C0521868C6C2009591CA /* beard.png in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */,
-				037058851862A0E700C691B3 /* LICENSE in Resources */,
-				0370588B1862A0E800C691B3 /* README.md in Resources */,
-				0369232C1862938E00E04DDB /* MASPreferences.podspec in Resources */,
-				0369232D1862938E00E04DDB /* MASPreferencesWindow.xib in Resources */,
 				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
-				0369232B1862938E00E04DDB /* LICENSE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +410,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		967933281855173100A49AC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -487,22 +452,16 @@
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
-				037058881862A0E700C691B3 /* MASShortcut.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
-				037058861862A0E700C691B3 /* MASShortcut+Monitoring.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
-				0369232E1862938E00E04DDB /* MASPreferencesWindowController.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
-				0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */,
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
-				037058871862A0E700C691B3 /* MASShortcut+UserDefaults.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
-				037058891862A0E700C691B3 /* MASShortcutView+UserDefaults.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
@@ -631,6 +590,7 @@
 		};
 		9679335E1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F47F7B626D3424AA8717F41 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -646,6 +606,7 @@
 		};
 		9679335F1855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F47F7B626D3424AA8717F41 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;

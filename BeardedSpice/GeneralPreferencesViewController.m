@@ -10,6 +10,8 @@
 
 NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
+NSString *const BeardedSpiceSwitchForwardTabShortcut = @"BeardedSpiceSwitchForwardTabShortcut";
+NSString *const BeardedSpiceSwitchBackwardTabShortcut = @"BeardedSpiceSwitchBackwardTabShortcut";
 
 @implementation GeneralPreferencesViewController
 
@@ -27,7 +29,9 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
 - (void)awakeFromNib
 {
     // associate view with userdefaults
-    [self.shortcutView setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
+    [self.activeShortcutView setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
+    [self.switchForwardShortcutView setAssociatedUserDefaultsKey:BeardedSpiceSwitchForwardTabShortcut];
+    [self.switchBackwardShortcutView setAssociatedUserDefaultsKey:BeardedSpiceSwitchBackwardTabShortcut];
 }
 
 - (NSString *)identifier

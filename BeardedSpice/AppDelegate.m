@@ -50,6 +50,10 @@
     
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
+    
+    tabs = [[NSMutableArray alloc] init];
+    
+    [self refreshTabs:nil];
 }
 
 - (void)awakeFromNib
@@ -72,6 +76,8 @@
 
 - (void)removeAllItems
 {
+    [tabs removeAllObjects];
+    
     NSInteger count = statusMenu.itemArray.count;
     for (int i = 0; i < count - 3; i++) {
         [statusMenu removeItemAtIndex:0];
@@ -112,7 +118,6 @@
     [self refreshTabsForChrome:canaryApp];
     [self refreshTabsForSafari:safariApp];
 
-    
     if ([statusMenu numberOfItems] == 3) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
@@ -124,6 +129,7 @@
     NSMenuItem *menuItem = [self addStatusMenuItemFor:chromeTab withTitle:[chromeTab title] andURL:[chromeTab URL]];
     if (menuItem) {
         id<Tab> tab = [ChromeTabAdapter initWithTab:chromeTab andWindow:chromeWindow];
+        [tabs addObject:tab];
         [menuItem setRepresentedObject:tab];
         [self setStatusMenuItemStatus:menuItem forTab:tab];
     }
@@ -136,6 +142,7 @@
         id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
                                                   andWindow:safariWindow
                                                      andTab:safariTab];
+        [tabs addObject:tab];
         [menuItem setRepresentedObject:tab];
         [self setStatusMenuItemStatus:menuItem forTab:tab];
     }
@@ -257,18 +264,102 @@
                                                          andTab:[safariWindow currentTab]]];
 }
 
+- (void)setTabShortcutForChrome:(ChromeApplication *)chrome andTab:(ChromeTab*) tab {
+    // chromeApp.windows[0] is the front most window.
+    ChromeWindow *chromeWindow = chrome.windows[0];
+    
+    // use 'get' to force a hard reference.
+    [self updateActiveTab:[ChromeTabAdapter initWithTab:tab andWindow:chromeWindow]];
+}
+
+- (void)setTabShortcutForSafari:(SafariApplication *)safari andTab:(SafariTab*) tab {
+    // is safari.windows[0] the frontmost?
+    SafariWindow *safariWindow = safari.windows[0];
+    
+    // use 'get' to force a hard reference.
+    [self updateActiveTab:[SafariTabAdapter initWithApplication:safari
+                                                      andWindow:safariWindow
+                                                         andTab:tab]];
+}
+
+- (void)switchTabInDirection: (int)direction {
+    [self refreshApplications];
+    
+    unsigned long activeTabIndex = NSNotFound;
+    for (unsigned long i = 0; i < tabs.count; ++i) {
+        if ([tabs[i] isEqual: activeTab]) {
+            activeTabIndex = i;
+        }
+    }
+    
+    // Find out what the next tab is depending on if we're switching back or forth.
+    if (activeTabIndex == NSNotFound) {
+        if (tabs.count > 0) {
+            activeTabIndex = 0;
+        }
+    } else {
+        if (activeTabIndex == 0 && direction < 0) {
+            activeTabIndex = tabs.count + direction;
+        } else {
+            activeTabIndex += direction;
+
+            if (activeTabIndex >= tabs.count) {
+                activeTabIndex = 0;
+            }
+        }
+    }
+
+    if (activeTabIndex != NSNotFound) {
+        id tab = tabs[activeTabIndex];
+        NSLog(@"Switched to tab: %@", tab);
+        
+        NSString* title;
+        
+        if ([tab isKindOfClass:ChromeTabAdapter.class]) {
+            ChromeTabAdapter* chromeTabAdapter = tab;
+            title = chromeTabAdapter.title;
+            [self setTabShortcutForChrome:chromeApp andTab:chromeTabAdapter.tab];
+        } else {
+            SafariTabAdapter* safariTabAdapter = tab;
+            title = safariTabAdapter.title;
+            [self setTabShortcutForSafari:safariApp andTab:safariTabAdapter.tab];
+        }
+
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+        
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        [notification setTitle:strategy.displayName];
+        [notification setInformativeText:title];
+        
+        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [center deliverNotification:notification];
+        center.delegate = self;
+    }
+}
+
 - (void)setActiveTabShortcut
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
-        [self refreshApplications];
-        if (chromeApp.frontmost) {
-            [self setActiveTabShortcutForChrome:chromeApp];
-        } else if (canaryApp.frontmost) {
-            [self setActiveTabShortcutForChrome:canaryApp];
-        } else if (safariApp.frontmost) {
-            [self setActiveTabShortcutForSafari:safariApp];
-        }
+         if (chromeApp.frontmost) {
+             [self setActiveTabShortcutForChrome:chromeApp];
+         } else if (canaryApp.frontmost) {
+             [self setActiveTabShortcutForChrome:canaryApp];
+         } else if (safariApp.frontmost) {
+             [self setActiveTabShortcutForSafari:safariApp];
+         }
     }];
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceSwitchForwardTabShortcut handler:^{
+        [self switchTabInDirection: 1];
+    }];
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceSwitchBackwardTabShortcut handler:^{
+        [self switchTabInDirection: -1];
+    }];
+}
+
+- (BOOL) userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
+    return TRUE;
 }
 
 - (NSWindowController *)preferencesWindowController

@@ -28,6 +28,11 @@
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		58CE63AAD89F4CE498856309 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
+		96381CF918903F59009E9690 /* ChromeTabAdapterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96381CF818903F59009E9690 /* ChromeTabAdapterTest.m */; };
+		96381CFA18904192009E9690 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
+		96381CFE1890441E009E9690 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 96381CFD1890441E009E9690 /* test.html */; };
+		96381D0018904C8C009E9690 /* SafariTabAdapterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96381CFF18904C8C009E9690 /* SafariTabAdapterTest.m */; };
+		96381D03189057D1009E9690 /* MediaStrategyRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96381D02189057D1009E9690 /* MediaStrategyRegistryTest.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -37,7 +42,6 @@
 		9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679334E1855173100A49AC7 /* XCTest.framework */; };
 		967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
-		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 		969E45721863E5830037226B /* LastFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E45711863E5830037226B /* LastFmStrategy.m */; };
 		9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
@@ -95,6 +99,10 @@
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
 		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
 		5F47F7B626D3424AA8717F41 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		96381CF818903F59009E9690 /* ChromeTabAdapterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromeTabAdapterTest.m; sourceTree = "<group>"; };
+		96381CFD1890441E009E9690 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		96381CFF18904C8C009E9690 /* SafariTabAdapterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTabAdapterTest.m; sourceTree = "<group>"; };
+		96381D02189057D1009E9690 /* MediaStrategyRegistryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategyRegistryTest.m; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -112,7 +120,6 @@
 		9679334E1855173100A49AC7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
 		967933571855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
@@ -141,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96381CFA18904192009E9690 /* ScriptingBridge.framework in Frameworks */,
 				967933501855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */,
 			);
@@ -210,6 +218,31 @@
 				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
 			);
 			name = Tabs;
+			sourceTree = "<group>";
+		};
+		96381CF718903F3C009E9690 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				96381CF818903F59009E9690 /* ChromeTabAdapterTest.m */,
+				96381CFF18904C8C009E9690 /* SafariTabAdapterTest.m */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
+		96381CFC1890441E009E9690 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				96381CFD1890441E009E9690 /* test.html */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		96381D01189057AC009E9690 /* MediaStrategies */ = {
+			isa = PBXGroup;
+			children = (
+				96381D02189057D1009E9690 /* MediaStrategyRegistryTest.m */,
+			);
+			name = MediaStrategies;
 			sourceTree = "<group>";
 		};
 		967933231855173100A49AC7 = {
@@ -287,7 +320,9 @@
 		967933531855173100A49AC7 /* BeardedSpiceTests */ = {
 			isa = PBXGroup;
 			children = (
-				967933591855173100A49AC7 /* BeardedSpiceTests.m */,
+				96381D01189057AC009E9690 /* MediaStrategies */,
+				96381CFC1890441E009E9690 /* Fixtures */,
+				96381CF718903F3C009E9690 /* Tabs */,
 				967933541855173100A49AC7 /* Supporting Files */,
 			);
 			path = BeardedSpiceTests;
@@ -394,6 +429,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96381CFE1890441E009E9690 /* test.html in Resources */,
 				967933581855173100A49AC7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +502,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */,
+				96381D03189057D1009E9690 /* MediaStrategyRegistryTest.m in Sources */,
+				96381CF918903F59009E9690 /* ChromeTabAdapterTest.m in Sources */,
+				96381D0018904C8C009E9690 /* SafariTabAdapterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

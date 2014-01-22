@@ -1,13 +1,20 @@
 PODS:
   - MASPreferences (1.1)
   - MASShortcut (1.2.3)
+  - SPMediaKeyTap (0.1.0)
 
 DEPENDENCIES:
   - MASPreferences (~> 1.1)
   - MASShortcut (~> 1.2.3)
+  - SPMediaKeyTap (from `../SPMediaKeyTap/SPMediaKeyTap.podspec`)
+
+EXTERNAL SOURCES:
+  SPMediaKeyTap:
+    :path: ../SPMediaKeyTap/SPMediaKeyTap.podspec
 
 SPEC CHECKSUMS:
   MASPreferences: 103fda1283c701dfed5503edbe24b1ab504ed6d9
   MASShortcut: 6abaedac53a0542f4856f35be4f1f970b652a51e
+  SPMediaKeyTap: 4d7dcd0014402122342c6c2ecc65155800dc9c25
 
 COCOAPODS: 0.29.0

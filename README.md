@@ -26,6 +26,16 @@ If you want another supported app supported, simply open an issue with the tag '
 
 BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
 
+## Dependencies
+
+We use [CocoaPods](http://cocoapods.org/) to manage all obj-c/cocoa dependences. Install them locally using:
+```bash
+sudo gem install cocoapods
+pod install
+```
+
+*Always* use BeardedSpice.xcworkspace for development, *not* BeardedSpice.xcodeproject
+
 ## Features
 
 ### Setting an active tab

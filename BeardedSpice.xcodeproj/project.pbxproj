@@ -29,6 +29,7 @@
 		0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037058821862A0E700C691B3 /* MASShortcutView.m */; };
 		0370588B1862A0E800C691B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 037058831862A0E700C691B3 /* README.md */; };
 		0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370588D1863F47300C691B3 /* SpotifyStrategy.m */; };
+		039D83421892173600DB426D /* SlackerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 039D83411892173600DB426D /* SlackerStrategy.m */; };
 		03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34924185EB20E00C4A62B /* YouTubeStrategy.m */; };
@@ -106,6 +107,8 @@
 		037058831862A0E700C691B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		0370588C1863F47300C691B3 /* SpotifyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyStrategy.h; sourceTree = "<group>"; };
 		0370588D1863F47300C691B3 /* SpotifyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyStrategy.m; sourceTree = "<group>"; };
+		039D83401892173600DB426D /* SlackerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackerStrategy.h; sourceTree = "<group>"; };
+		039D83411892173600DB426D /* SlackerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackerStrategy.m; sourceTree = "<group>"; };
 		03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
 		03A3491B185EA03300C4A62B /* MediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategy.m; sourceTree = "<group>"; };
 		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategyRegistry.h; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				039D83401892173600DB426D /* SlackerStrategy.h */,
+				039D83411892173600DB426D /* SlackerStrategy.m */,
 				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
 				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
@@ -489,6 +494,7 @@
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
 				037058881862A0E700C691B3 /* MASShortcut.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
+				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				037058861862A0E700C691B3 /* MASShortcut+Monitoring.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				0369232E1862938E00E04DDB /* MASPreferencesWindowController.m in Sources */,

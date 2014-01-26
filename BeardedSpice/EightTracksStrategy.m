@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){var play=document.querySelectorAll('#player_play_button')[0];var pause=document.querySelectorAll('#player_pause_button')[0];if(play.style.display==='block'){play.click()}else{pause.click()}})()";
+    return @"(function(){window.mixPlayer.toggle()})()";
 }
 
 -(NSString *) previous
@@ -36,12 +36,12 @@
 
 -(NSString *) next
 {
-    return @"(function(){return document.querySelectorAll('#player_skip_button')[0].click()})()";
+    return @"(function(){window.mixPlayer.next()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){ return document.querySelectorAll('#player_pause_button')[0].click()})()";
+    return @"(function(){window.mixPlayer.pause()})()";
 }
 
 -(NSString *) displayName

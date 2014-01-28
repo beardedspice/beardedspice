@@ -20,6 +20,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - Last.fm
 - Google Music
 - Rdio
+- Beats Music
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 

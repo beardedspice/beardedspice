@@ -42,6 +42,7 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
+		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -134,6 +135,8 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
 		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
+		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
+		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsMusicStrategy.m; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -235,6 +238,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
+				523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */,
 				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
 				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
 				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
@@ -504,6 +509,7 @@
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				0370588A1862A0E800C691B3 /* MASShortcutView.m in Sources */,
+				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				037058871862A0E700C691B3 /* MASShortcut+UserDefaults.m in Sources */,

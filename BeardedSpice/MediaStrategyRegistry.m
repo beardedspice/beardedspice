@@ -22,6 +22,7 @@
 #import "ShufflerFmStrategy.h"
 #import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
+#import "BeatsMusicStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -110,6 +111,7 @@ NSArray * DefaultMediaStrategies;
                                   [[ShufflerFmStrategy alloc] init],
                                   [[SongzaStrategy alloc] init],
                                   [[SlackerStrategy alloc] init],
+                                  [[BeatsMusicStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){return window.Grooveshark.toggle()})()";
+    return @"(function(){return window.Grooveshark.togglePlayPause()})()";
 }
 
 -(NSString *) previous

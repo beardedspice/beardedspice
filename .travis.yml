@@ -1,1 +1,3 @@
 language: objective-c
+xcode_project: BeardedSpice.xcworkspace
+xcode_scheme: BeardedSpice

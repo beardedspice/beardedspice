@@ -1,4 +1,5 @@
 language: objective-c
 xcode_workspace: BeardedSpice.xcworkspace
+xcode_project: BeardedSpice.xcodeproj
 xcode_scheme: BeardedSpice
 before_install: gem install cocoapods

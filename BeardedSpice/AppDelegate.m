@@ -46,7 +46,8 @@
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
     
-    [self setActiveTabShortcut];
+    [self setupActiveTabShortcutCallback];
+    [self setupFavoriteShortcutCallback];
     
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
@@ -257,7 +258,7 @@
                                                          andTab:[safariWindow currentTab]]];
 }
 
-- (void)setActiveTabShortcut
+- (void)setupActiveTabShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
         [self refreshApplications];
@@ -267,6 +268,16 @@
             [self setActiveTabShortcutForChrome:canaryApp];
         } else if (safariApp.frontmost) {
             [self setActiveTabShortcutForSafari:safariApp];
+        }
+    }];
+}
+
+- (void)setupFavoriteShortcutCallback
+{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy favorite]];
         }
     }];
 }

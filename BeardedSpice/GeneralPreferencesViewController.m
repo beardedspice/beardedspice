@@ -9,6 +9,7 @@
 #import "GeneralPreferencesViewController.h"
 
 NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
+NSString *const BeardedSpiceFavoriteShortcut = @"BeardedSpiceFavoriteShortcut";
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 
 @implementation GeneralPreferencesViewController
@@ -27,7 +28,8 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
 - (void)awakeFromNib
 {
     // associate view with userdefaults
-    [self.shortcutView setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
+    [self.setActiveTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
+    [self.favoriteShortcut setAssociatedUserDefaultsKey:BeardedSpiceFavoriteShortcut];
 }
 
 - (NSString *)identifier

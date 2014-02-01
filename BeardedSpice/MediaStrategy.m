@@ -35,4 +35,10 @@
     return @"";
 }
 
+-(NSString *) favorite
+{
+    NSLog(@"Favoriting not yet implemented for %s", [[self displayName] UTF8String]);
+    return @"";
+}
+
 @end

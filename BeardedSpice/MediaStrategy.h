@@ -19,4 +19,7 @@
 // mainly for pausing before switching active tabs
 -(NSString *) pause;
 
+// should noop
+-(NSString *) favorite;
+
 @end

@@ -44,6 +44,11 @@
     return @"(function(){return window.currentPlayerObj[0].pause()})()";
 }
 
+-(NSString *) favorite
+{
+    return @"(function (){return window.toggleFavoriteItem()})()";
+}
+
 -(NSString *) displayName
 {
     return @"HypeMachine";

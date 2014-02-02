@@ -10,6 +10,7 @@
 
 NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
 NSString *const BeardedSpiceFavoriteShortcut = @"BeardedSpiceFavoriteShortcut";
+NSString *const BeardedSpiceNotificationShortcut = @"BeardedSpiceNotificationShortcut";
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 
 @implementation GeneralPreferencesViewController
@@ -30,6 +31,7 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
     // associate view with userdefaults
     [self.setActiveTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
     [self.favoriteShortcut setAssociatedUserDefaultsKey:BeardedSpiceFavoriteShortcut];
+    [self.notificationShortcut setAssociatedUserDefaultsKey:BeardedSpiceNotificationShortcut];
 }
 
 - (NSString *)identifier

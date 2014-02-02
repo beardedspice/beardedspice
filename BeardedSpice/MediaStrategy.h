@@ -8,6 +8,16 @@
 
 #import "Tab.h"
 
+@interface Track : NSObject
+
+-(NSUserNotification *) asNotification;
+
+@property NSString *track;
+@property NSString *album;
+@property NSString *artist;
+
+@end
+
 @interface MediaStrategy : NSObject
 
 -(BOOL) accepts:(id <Tab>) tab;
@@ -15,6 +25,7 @@
 -(NSString *) previous;
 -(NSString *) next;
 -(NSString *) displayName;
+-(Track *) trackInfo:(id <Tab>) tab;
 
 // mainly for pausing before switching active tabs
 -(NSString *) pause;

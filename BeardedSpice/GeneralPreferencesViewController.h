@@ -13,6 +13,7 @@
 
 extern NSString *const BeardedSpiceActiveTabShortcut;
 extern NSString *const BeardedSpiceFavoriteShortcut;
+extern NSString *const BeardedSpiceNotificationShortcut;
 extern NSString *const BeardedSpiceActiveControllers;
 
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
@@ -29,6 +30,7 @@ extern NSString *const BeardedSpiceActiveControllers;
 
 @property (nonatomic, weak) IBOutlet MASShortcutView *setActiveTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *favoriteShortcut;
+@property (nonatomic, weak) IBOutlet MASShortcutView *notificationShortcut;
 @property (assign) IBOutlet NSTableView *strategiesView;
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry;

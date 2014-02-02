@@ -8,6 +8,23 @@
 
 #import "MediaStrategy.h"
 
+@implementation Track
+
+@synthesize track;
+@synthesize album;
+@synthesize artist;
+
+-(NSUserNotification *) asNotification
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = self.track;
+    notification.subtitle = self.album;
+    notification.informativeText = self.artist;
+    return notification;
+}
+
+@end
+
 @implementation MediaStrategy
 
 -(BOOL) accepts:(id <Tab>)tab
@@ -33,6 +50,10 @@
 -(NSString *) displayName
 {
     return @"";
+}
+-(Track *) trackInfo:(id<Tab>)tab
+{
+    return NULL;
 }
 
 -(NSString *) favorite

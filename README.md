@@ -1,4 +1,3 @@
-
 # Download
 
 Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.1.0.dmg), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
@@ -136,4 +135,4 @@ Finally, update the [default preferences plist](https://github.com/beardedspice/
 ## Contact
 
 - [@chedkid](https://twitter.com/chedkid)
-- [@\_trhodes\_](https://twitter.com/_trhodes_)
+- [@trhodeos](https://twitter.com/trhodeos)

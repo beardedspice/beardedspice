@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#include <IOKit/hid/IOHIDUsageTables.h>
+
 #import "MASShortcut+UserDefaults.h"
 
 #import "ChromeTabAdapter.h"
@@ -50,8 +52,23 @@
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     
+    [self refreshMikeys];
+    
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
+}
+
+- (void)refreshMikeys
+{
+    if (mikeys != nil) {
+        [mikeys makeObjectsPerformSelector:@selector(stopListening) withObject:nil];
+    }
+    mikeys = [DDHidAppleMikey allMikeys];
+    // we want to be the delegate of the mikeys
+    [mikeys makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
+    // start listening to all mikey events
+    [mikeys makeObjectsPerformSelector:@selector(setListenInExclusiveMode:) withObject:(id)kCFBooleanTrue];
+    [mikeys makeObjectsPerformSelector:@selector(startListening) withObject:nil];
 }
 
 - (void)awakeFromNib
@@ -313,6 +330,24 @@
 {
     [NSApp activateIgnoringOtherApps:YES];
     [self.preferencesWindowController showWindow:nil];
+}
+
+- (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned)usageId upOrDown:(BOOL)upOrDown
+{
+    MediaStrategy *strategy;
+    if (upOrDown == TRUE) {
+        NSLog(@"Apple Mikey keypress detected: %d", usageId);
+        switch (usageId) {
+            case kHIDUsage_GD_SystemMenu:
+                strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+                if (strategy) {
+                    [activeTab executeJavascript:[strategy toggle]];
+                }
+                break;
+            default:
+                NSLog(@"Unknown key press seen %d", usageId);
+        }
+    }
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <DDHidLib/DDHidLib.h>
+
 #import "SPMediaKeyTap.h"
 
 #import "Chrome.h"
@@ -35,6 +37,8 @@
     MediaStrategyRegistry *mediaStrategyRegistry;
 
     NSWindowController *_preferencesWindowController;
+    
+    NSArray *mikeys;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

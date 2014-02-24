@@ -33,6 +33,7 @@
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89B718BB010600FE0DBB /* MixCloudStrategy.m */; };
+		963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -110,6 +111,8 @@
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsMusicStrategy.m; sourceTree = "<group>"; };
 		963E89B618BB010600FE0DBB /* MixCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCloudStrategy.h; sourceTree = "<group>"; };
 		963E89B718BB010600FE0DBB /* MixCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixCloudStrategy.m; sourceTree = "<group>"; };
+		963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicUnlimitedStrategy.h; sourceTree = "<group>"; };
+		963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicUnlimitedStrategy.m; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -215,6 +218,8 @@
 				9A699C49188B051000BB647E /* SongzaStrategy.m */,
 				963E89B618BB010600FE0DBB /* MixCloudStrategy.h */,
 				963E89B718BB010600FE0DBB /* MixCloudStrategy.m */,
+				963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */,
+				963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
+				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,

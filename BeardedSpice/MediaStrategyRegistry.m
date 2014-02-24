@@ -23,7 +23,8 @@
 #import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
 #import "BeatsMusicStrategy.h"
-#import "MixCloudStrategy.h"
+#import "MixCloudStrategy.h" 
+#import "MusicUnlimitedStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -114,6 +115,7 @@ NSArray * DefaultMediaStrategies;
                                   [[SlackerStrategy alloc] init],
                                   [[BeatsMusicStrategy alloc] init],
                                   [[MixCloudStrategy alloc] init],
+                                  [[MusicUnlimitedStrategy alloc] init],
                                   nil];
     }
     return DefaultMediaStrategies;

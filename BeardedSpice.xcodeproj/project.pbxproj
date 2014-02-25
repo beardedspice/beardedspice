@@ -32,8 +32,7 @@
 		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
-		963FA07418BAB2EB00321A4B /* DDHidLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9685248018BAB2BA003E6155 /* DDHidLib.framework */; };
-		963FA07518BAB35A00321A4B /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9685248018BAB2BA003E6155 /* DDHidLib.framework */; };
+		9626DBF018BCFA41005ACD2D /* DDHidLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 96AEF23718BCF9A70089A8B3 /* DDHidLib.framework */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
@@ -46,6 +45,7 @@
 		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 		969E45721863E5830037226B /* LastFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E45711863E5830037226B /* LastFmStrategy.m */; };
+		96AEF23818BCF9A70089A8B3 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AEF23718BCF9A70089A8B3 /* DDHidLib.framework */; };
 		9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
@@ -68,7 +68,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				963FA07418BAB2EB00321A4B /* DDHidLib.framework in CopyFiles */,
+				9626DBF018BCFA41005ACD2D /* DDHidLib.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,9 +142,9 @@
 		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
-		9685248018BAB2BA003E6155 /* DDHidLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDHidLib.framework; sourceTree = "<group>"; };
 		969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
 		969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFmStrategy.m; sourceTree = "<group>"; };
+		96AEF23718BCF9A70089A8B3 /* DDHidLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDHidLib.framework; sourceTree = "<group>"; };
 		9A699C48188B051000BB647E /* SongzaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongzaStrategy.h; sourceTree = "<group>"; };
 		9A699C49188B051000BB647E /* SongzaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongzaStrategy.m; sourceTree = "<group>"; };
 		9AF442D31886F71400CD7266 /* EightTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightTracksStrategy.h; sourceTree = "<group>"; };
@@ -158,10 +158,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				963FA07518BAB35A00321A4B /* DDHidLib.framework in Frameworks */,
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
+				96AEF23818BCF9A70089A8B3 /* DDHidLib.framework in Frameworks */,
 				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +268,7 @@
 		9679332E1855173100A49AC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9685248018BAB2BA003E6155 /* DDHidLib.framework */,
+				96AEF23718BCF9A70089A8B3 /* DDHidLib.framework */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
 				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
@@ -630,6 +630,7 @@
 					"$(inherited)",
 					/Users/trhodes/workspace/beardedspice,
 					/Users/trhodes/workspace/DDHidLib/build/Release,
+					"/Users/trhodes/workspace/personal/bearded-spice",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
@@ -651,6 +652,7 @@
 					"$(inherited)",
 					/Users/trhodes/workspace/beardedspice,
 					/Users/trhodes/workspace/DDHidLib/build/Release,
+					"/Users/trhodes/workspace/personal/bearded-spice",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";

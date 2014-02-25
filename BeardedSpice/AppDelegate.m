@@ -344,6 +344,18 @@
                     [activeTab executeJavascript:[strategy toggle]];
                 }
                 break;
+            case kHIDUsage_GD_SystemMenuRight:
+                strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+                if (strategy) {
+                    [activeTab executeJavascript:[strategy previous]];
+                }
+                break;
+            case kHIDUsage_GD_SystemMenuLeft:
+                strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+                if (strategy) {
+                    [activeTab executeJavascript:[strategy next]];
+                }
+                break;
             default:
                 NSLog(@"Unknown key press seen %d", usageId);
         }

@@ -12,17 +12,24 @@ Mac OS X 10.7 or greater required.
 
 BeardedSpice is a menubar application for Mac OSX that allows you to control web based media players with the media keys found on Mac keyboards. It is an extensible application that works with Chrome and Safari, and can control any tab with an applicable media player. BeardedSpice currently supports:
 
-- YouTube
-- HypeMachine
-- Spotify (Web)
-- Pandora
-- BandCamp
-- GrooveShark
-- SoundCloud
-- Last.fm
-- Google Music
-- Rdio
-- Beats Music
+- [8Tracks](http://8tracks.com)
+- [BandCamp](http://bandcamp.com)
+- [BeatsMusic](http://listen.beatsmusic.com)
+- [Google Music](https://play.google.com/music/)
+- [GrooveShark](http://grooveshark.com)
+- [HypeMachine](http://hypem.com)
+- [Last.fm](http://last.fm)
+- [Mixcloud](http://mixcloud.com)
+- [Music Unlimited ](https://music.sonyentertainmentnetwork.com)
+- [Pandora](http://pandora.com)
+- [Rdio](http://rdio.com)
+- [Shuffler.fm](http://shuffler.fm/tracks)
+- [Slacker](http://slacker.com)
+- [Songza](http://songza.com)
+- [SoundCloud](https://soundcloud.com)
+- [Spotify (Web)](https://play.spotify.com)
+- [Synology](http://synology.com)
+- [YouTube](http://youtube.com)
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 

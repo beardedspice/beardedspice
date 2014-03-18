@@ -25,6 +25,7 @@
 #import "BeatsMusicStrategy.h"
 #import "MixCloudStrategy.h" 
 #import "MusicUnlimitedStrategy.h"
+#import "YandexMusicStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -97,7 +98,7 @@ NSArray * DefaultMediaStrategies;
 {
     if (!DefaultMediaStrategies) {
         NSLog(@"Initializing default media strategies...");
-        DefaultMediaStrategies = [NSArray arrayWithObjects:
+        DefaultMediaStrategies = @[
                                   [[YouTubeStrategy alloc] init],
                                   [[PandoraStrategy alloc] init],
                                   [[BandCampStrategy alloc] init],
@@ -116,7 +117,8 @@ NSArray * DefaultMediaStrategies;
                                   [[BeatsMusicStrategy alloc] init],
                                   [[MixCloudStrategy alloc] init],
                                   [[MusicUnlimitedStrategy alloc] init],
-                                  nil];
+                                  [[YandexMusicStrategy alloc] init]
+                                  ];
     }
     return DefaultMediaStrategies;
 }

@@ -1,6 +1,6 @@
 # Download
 
-Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.2.0.tar.gz), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
+Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.2.1.tar.gz), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 
 Mac OS X 10.7 or greater required.
 
@@ -23,6 +23,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Last.fm](http://last.fm)
 - [Mixcloud](http://mixcloud.com)
 - [Music Unlimited ](https://music.sonyentertainmentnetwork.com)
+- [Overcast.fm](https://overcast.fm)
 - [Pandora](http://pandora.com)
 - [Rdio](http://rdio.com)
 - [Shuffler.fm](http://shuffler.fm/tracks)

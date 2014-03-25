@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){var play=document.querySelector('.player-play');var pause=document.querySelector('.player-pause');if(document.querySelector('.sz-player').classList.contains('sz-player-play-state-pause')){play.click()}else{pause.click()}})()";
+    return @"(function(){document.querySelector('.miniplayer-control-play-pause').click();})()";
 }
 
 -(NSString *) previous
@@ -36,12 +36,12 @@
 
 -(NSString *) next
 {
-    return @"(function(){return document.querySelector('.player-skip').click()})()";
+    return @"(function(){return document.querySelector('.miniplayer-control-skip').click()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){ return document.querySelector('.player-pause').click()})()";
+    return @"(function(){ if (document.querySelector('.player-wrapper').classList.contains('player-state-play')) document.querySelector('.miniplayer-control-play-pause').click()})()";
 }
 
 -(NSString *) displayName

@@ -44,6 +44,11 @@
     return @"(function(){return window.Grooveshark.pause()})()";
 }
 
+-(NSString *) favorite
+{
+    return @"(function(){return window.Grooveshark.favoriteCurrentSong()})()";
+}
+
 -(NSString *) displayName
 {
     return @"Grooveshark";

@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){document.querySelector('.miniplayer-control-play-pause').click();})()";
+    return @"(function(){document.querySelector('.miniplayer-control-play-pause').click()})()";
 }
 
 -(NSString *) previous
@@ -41,7 +41,12 @@
 
 -(NSString *) pause
 {
-    return @"(function(){ if (document.querySelector('.player-wrapper').classList.contains('player-state-play')) document.querySelector('.miniplayer-control-play-pause').click()})()";
+    return @"(function(){if (document.querySelector('.player-wrapper').classList.contains('player-state-play')) document.querySelector('.miniplayer-control-play-pause').click()})()";
+}
+
+- (NSString *)favorite
+{
+    return @"(function(){document.querySelector('.miniplayer-info-playlist-favorite-status').click()})()";
 }
 
 -(NSString *) displayName

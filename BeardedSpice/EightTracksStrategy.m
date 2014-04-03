@@ -44,6 +44,12 @@
     return @"(function(){window.mixPlayer.pause()})()";
 }
 
+- (NSString *)favorite
+{
+    // NOTE: This favorites the current track, not the current mix
+    return @"(function(){document.querySelector('#now_playing a.fav').click()})()";
+}
+
 -(NSString *) displayName
 {
     return @"8tracks";

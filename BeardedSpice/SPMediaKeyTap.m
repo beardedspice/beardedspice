@@ -2,6 +2,10 @@
 #import "SPMediaKeyTap.h"
 #import "NSObject+SPInvocationGrabbing.h" // https://gist.github.com/511181, in submodule
 
+// custom for BS
+#import <Cocoa/Cocoa.h>
+// custom for BS
+
 @interface SPMediaKeyTap ()
 -(BOOL)shouldInterceptMediaKeyEvents;
 -(void)setShouldInterceptMediaKeyEvents:(BOOL)newSetting;
@@ -273,6 +277,18 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 	[self setShouldInterceptMediaKeyEvents:(err == noErr && same)];	
 
 }
+
+// custom for BS
+-(void)notifyUserOfFocusLost
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"BeardedSpice focus has been lost!";
+    notification.subtitle = @"Key presses will no longer register";
+    notification.informativeText = @"Please press X to re-register";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+// custom for BS
+
 -(void)appIsNowFrontmost:(ProcessSerialNumber)psn;
 {
 	NSValue *psnv = [NSValue valueWithBytes:&psn objCType:@encode(ProcessSerialNumber)];
@@ -285,7 +301,11 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 
 	NSArray *whitelistIdentifiers = [[NSUserDefaults standardUserDefaults] arrayForKey:kMediaKeyUsingBundleIdentifiersDefaultsKey];
 	if(![whitelistIdentifiers containsObject:bundleIdentifier]) return;
-
+    
+    // custom for BS
+    [self notifyUserOfFocusLost];
+    // custom for BS
+    
 	[_mediaKeyAppList removeObject:psnv];
 	[_mediaKeyAppList insertObject:psnv atIndex:0];
 	[self mediaKeyAppListChanged];
@@ -303,7 +323,7 @@ static pascal OSStatus appSwitched (EventHandlerCallRef nextHandler, EventRef ev
 
     ProcessSerialNumber newSerial;
     GetFrontProcess(&newSerial);
-	
+    
 	[self appIsNowFrontmost:newSerial];
 		
     return CallNextEventHandler(nextHandler, evt);

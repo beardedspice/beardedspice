@@ -245,7 +245,6 @@
     // chromeApp.windows[0] is the front most window.
     ChromeWindow *chromeWindow = chrome.windows[0];
     
-    // use 'get' to force a hard reference.
     [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
 }
 

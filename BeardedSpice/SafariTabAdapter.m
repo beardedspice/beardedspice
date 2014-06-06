@@ -13,8 +13,22 @@
 + (id)initWithApplication:(SafariApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
 {
     SafariTabAdapter *out = [[SafariTabAdapter alloc] init];
-    [out setTab:[tab get]];
-    [out setWindow:[window get]];
+    
+    // TODO(trhodeos): I can't remember why we used [object get] instead of the object directly.
+    //   Checking to make sure that the object returned by 'get' is not null before using it, as it
+    //   seems to be an issue w/ safari.
+    SafariTab *gottenTab = [tab get];
+    SafariWindow *gottenWindow = [window get];
+    if (gottenTab != nil) {
+        [out setTab:gottenTab];
+    } else {
+        [out setTab:tab];
+    }
+    if (gottenWindow != nil) {
+        [out setWindow:gottenWindow];
+    } else {
+        [out setWindow:window];
+    }
     [out setApplication:application];
     return out;
 }

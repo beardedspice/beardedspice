@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){window.mixPlayer.toggle()})()";
+    return @"(function(){window.mixPlayer?window.mixPlayer.toggle():document.querySelector('#play_overlay').click()})()";
 }
 
 -(NSString *) previous

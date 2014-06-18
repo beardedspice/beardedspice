@@ -31,6 +31,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Synology](http://synology.com)
 - [XboxMusic](http://music.xbox.com)
 - [YouTube](http://youtube.com)
+- [VK ("My Music" from vk.com)](http://vk.com)
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 

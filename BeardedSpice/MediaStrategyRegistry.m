@@ -28,6 +28,7 @@
 #import "YandexMusicStrategy.h"
 #import "StitcherStrategy.h"
 #import "XboxMusicStrategy.h"
+#import "VkStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -121,7 +122,8 @@ NSArray * DefaultMediaStrategies;
                                   [[MusicUnlimitedStrategy alloc] init],
                                   [[YandexMusicStrategy alloc] init],
                                   [[StitcherStrategy alloc] init],
-                                  [[XboxMusicStrategy alloc] init]
+                                  [[XboxMusicStrategy alloc] init],
+                                  [[VkStrategy alloc] init]
                                   ];
     }
     return DefaultMediaStrategies;

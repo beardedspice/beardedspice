@@ -15,6 +15,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [8Tracks](http://8tracks.com)
 - [BandCamp](http://bandcamp.com)
 - [BeatsMusic](http://listen.beatsmusic.com)
+- [Bop.fm](http://bop.fm)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HypeMachine](http://hypem.com)

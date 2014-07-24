@@ -53,6 +53,7 @@
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
+		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,8 @@
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexMusicStrategy.m; sourceTree = "<group>"; };
 		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
 		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
+		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
+		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BopFm.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +243,8 @@
 				B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
 				8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
 				8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */,
+				D2D98CD7197F34BD00941CBD /* BopFm.h */,
+				D2D98CD8197F34BD00941CBD /* BopFm.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
+				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,

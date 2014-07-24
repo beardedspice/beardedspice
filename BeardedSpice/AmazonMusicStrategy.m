@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*amazon.com/gp/dmusic/cloudplayer/player*' OR '*amazon.com/gp/dmusic/cloudplayer/web*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*amazon.com/gp/dmusic/cloudplayer/*'"];
     }
     return self;
 }

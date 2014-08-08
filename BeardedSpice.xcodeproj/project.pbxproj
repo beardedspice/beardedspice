@@ -37,6 +37,7 @@
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
 		8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
+		8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38FAD51994CE57005C2465 /* VimeoStrategy.m */; };
 		963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89B718BB010600FE0DBB /* MixCloudStrategy.m */; };
 		963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
@@ -126,6 +127,8 @@
 		83AAFD7718E0A79500640767 /* StitcherStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StitcherStrategy.m; sourceTree = "<group>"; };
 		8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XboxMusicStrategy.m; sourceTree = "<group>"; };
 		8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxMusicStrategy.h; sourceTree = "<group>"; };
+		8E38FAD41994CE57005C2465 /* VimeoStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VimeoStrategy.h; sourceTree = "<group>"; };
+		8E38FAD51994CE57005C2465 /* VimeoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VimeoStrategy.m; sourceTree = "<group>"; };
 		963E89B618BB010600FE0DBB /* MixCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCloudStrategy.h; sourceTree = "<group>"; };
 		963E89B718BB010600FE0DBB /* MixCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixCloudStrategy.m; sourceTree = "<group>"; };
 		963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicUnlimitedStrategy.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */,
 				D2D98CD7197F34BD00941CBD /* BopFm.h */,
 				D2D98CD8197F34BD00941CBD /* BopFm.m */,
+				8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
+				8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
+				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,

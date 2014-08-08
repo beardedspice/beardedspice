@@ -23,7 +23,7 @@
 #import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
 #import "BeatsMusicStrategy.h"
-#import "MixCloudStrategy.h" 
+#import "MixCloudStrategy.h"
 #import "MusicUnlimitedStrategy.h"
 #import "YandexMusicStrategy.h"
 #import "StitcherStrategy.h"
@@ -32,7 +32,7 @@
 #import "BopFm.h"
 #import "AmazonMusicStrategy.h"
 #import "OvercastStrategy.h"
-
+#import "VimeoStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -130,7 +130,8 @@ NSArray * DefaultMediaStrategies;
                                   [[VkStrategy alloc] init],
                                   [[BopFm alloc] init],
                                   [[AmazonMusicStrategy alloc] init],
-                                  [[OvercastStrategy alloc] init]
+                                  [[OvercastStrategy alloc] init],
+                                  [[VimeoStrategy alloc] init]
                                   ];
     }
     return DefaultMediaStrategies;

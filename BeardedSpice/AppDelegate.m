@@ -59,9 +59,9 @@
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 
     [statusItem setMenu:statusMenu];
-    [statusItem setImage:[NSImage imageNamed:@"beard.png"]];
+    [statusItem setImage:[NSImage imageNamed:@"beard"]];
     [statusItem setHighlightMode:YES];
-    [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted.png"]];
+    [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted"]];
 
     [statusItem setAction:@selector(refreshTabs:)];
     [statusItem setTarget:self];

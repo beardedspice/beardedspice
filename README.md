@@ -1,6 +1,6 @@
 # Download
 
-Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-370342f1b1.app.tar.gz), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
+Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.2.0.tar.gz), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 
 Mac OS X 10.7 or greater required.
 

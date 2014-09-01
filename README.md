@@ -22,7 +22,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [HypeMachine](http://hypem.com)
 - [Last.fm](http://last.fm)
 - [Mixcloud](http://mixcloud.com)
-- [Music Unlimited ](https://music.sonyentertainmentnetwork.com)
+- [Music Unlimited](https://music.sonyentertainmentnetwork.com)
 - [Pandora](http://pandora.com)
 - [Rdio](http://rdio.com)
 - [Shuffler.fm](http://shuffler.fm/tracks)

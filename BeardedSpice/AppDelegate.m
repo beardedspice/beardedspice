@@ -356,10 +356,35 @@
                     [activeTab executeJavascript:[strategy next]];
                 }
                 break;
+            case kHIDUsage_GD_SystemMenuUp:
+                [self pressKey:NX_KEYTYPE_SOUND_UP];
+                break;
+            case kHIDUsage_GD_SystemMenuDown:
+                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                break;
             default:
                 NSLog(@"Unknown key press seen %d", usageId);
         }
     }
+}
+
+- (void)pressKey:(NSUInteger)keytype {
+    [self keyEvent:keytype state:0xA];  // key down
+    [self keyEvent:keytype state:0xB];  // key up
+}
+
+- (void)keyEvent:(NSUInteger)keytype state:(NSUInteger)state {
+    NSEvent *event = [NSEvent otherEventWithType:NSSystemDefined
+                                        location:NSZeroPoint
+                                   modifierFlags:(state << 2)
+                                       timestamp:0
+                                    windowNumber:0
+                                         context:nil
+                                         subtype:0x8
+                                           data1:(keytype << 16) | (state << 8)
+                                           data2:-1];
+
+    CGEventPost(0, [event CGEvent]);
 }
 
 @end

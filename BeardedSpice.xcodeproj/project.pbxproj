@@ -627,10 +627,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
 					"$(inherited)",
-					/Users/trhodes/workspace/beardedspice,
-					/Users/trhodes/workspace/DDHidLib/build/Release,
-					"/Users/trhodes/workspace/personal/bearded-spice",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
@@ -649,10 +647,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
 					"$(inherited)",
-					/Users/trhodes/workspace/beardedspice,
-					/Users/trhodes/workspace/DDHidLib/build/Release,
-					"/Users/trhodes/workspace/personal/bearded-spice",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";

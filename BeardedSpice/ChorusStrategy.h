@@ -1,5 +1,5 @@
 //
-//  SoundCloudStrategy.h
+//  ChorusStrategy.h
 //  BeardedSpice
 //
 //  Created by Mark Reid on 10/01/14.

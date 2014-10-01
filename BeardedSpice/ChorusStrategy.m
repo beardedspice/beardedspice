@@ -26,22 +26,22 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){return app.audioStreaming.togglePlay();})()";
+    return @"(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.togglePlay() : app.shellView.playerPlay() })()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){return app.audioStreaming.prev()})()";
+    return @"(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.prev() : app.shellView.playerPrev() })()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){return app.audioStreaming.next()})()";
+    return @"(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.next() : app.shellView.playerNext()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){return app.audioStreaming.pause()})()";
+    return @"(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.pause(): true })()";
 }
 
 -(NSString *) displayName

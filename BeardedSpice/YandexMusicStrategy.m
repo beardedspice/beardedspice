@@ -26,22 +26,30 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){document.querySelector('div.b-jambox__play').click()})()";
+    return @"(function(){document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()})()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){document.querySelector('div.b-jambox__prev').click()})()";
+    return @"(function(){document.querySelector('div.b-jambox__prev, .player-controls__btn_prev').click()})()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){document.querySelector('div.b-jambox__next').click()})()";
+    return @"(function(){document.querySelector('div.b-jambox__next, .player-controls__btn_next').click()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var e=document.querySelector('div.b-jambox__play');if(e.classList.contains('b-jambox__playing')){e.click()}})()";
+    return @"(function(){\
+        var e=document.querySelector('.player-controls__btn_play');\
+        if(e!=null){\
+            if(e.classList.contains('player-controls__btn_pause')){e.click()}\
+        }else{\
+            var e=document.querySelector('div.b-jambox__play');\
+            if(e.classList.contains('b-jambox__playing')){e.click()}\
+        }\
+    })()";
 }
 
 -(NSString *) displayName

@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*Chorus.*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '▶ * | Chorus.'"];
     }
     return self;
 }

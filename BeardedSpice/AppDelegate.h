@@ -26,6 +26,7 @@
     
     ChromeApplication *chromeApp;
     ChromeApplication *canaryApp;
+    ChromeApplication *yandexBrowserApp;
     
     SafariApplication *safariApp;
 

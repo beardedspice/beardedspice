@@ -112,6 +112,7 @@
 
     [self refreshTabsForChrome:chromeApp];
     [self refreshTabsForChrome:canaryApp];
+    [self refreshTabsForChrome:yandexBrowserApp];
     [self refreshTabsForSafari:safariApp];
 
     
@@ -238,6 +239,7 @@
 {
     chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
     canaryApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
+    yandexBrowserApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
     safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
 }
 
@@ -267,6 +269,8 @@
             [self setActiveTabShortcutForChrome:chromeApp];
         } else if (canaryApp.frontmost) {
             [self setActiveTabShortcutForChrome:canaryApp];
+        } else if (yandexBrowserApp.frontmost) {
+            [self setActiveTabShortcutForChrome:yandexBrowserApp];
         } else if (safariApp.frontmost) {
             [self setActiveTabShortcutForSafari:safariApp];
         }

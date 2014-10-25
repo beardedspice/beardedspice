@@ -31,6 +31,7 @@
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
+		1E1DD40B19FBADAB00D02C3C /* LogitechMediaServerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1DD40A19FBADAB00D02C3C /* LogitechMediaServerStrategy.m */; };
 		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
@@ -115,6 +116,8 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
+		1E1DD40919FBADAB00D02C3C /* LogitechMediaServerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogitechMediaServerStrategy.h; sourceTree = "<group>"; };
+		1E1DD40A19FBADAB00D02C3C /* LogitechMediaServerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogitechMediaServerStrategy.m; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4D0DDBE639435998222516 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 			children = (
 				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
 				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
+				1E1DD40919FBADAB00D02C3C /* LogitechMediaServerStrategy.h */,
+				1E1DD40A19FBADAB00D02C3C /* LogitechMediaServerStrategy.m */,
 				81DA43D41950BF55000E98AC /* VkStrategy.m */,
 				81DA43D51950BF55000E98AC /* VkStrategy.h */,
 				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
@@ -549,6 +554,7 @@
 				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
 				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
 				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
+				1E1DD40B19FBADAB00D02C3C /* LogitechMediaServerStrategy.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
 			);

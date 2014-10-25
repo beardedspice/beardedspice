@@ -7,6 +7,7 @@
 //
 
 #import "MediaStrategyRegistry.h"
+#import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
 #import "BandCampStrategy.h"
@@ -107,6 +108,7 @@ NSArray * DefaultMediaStrategies;
         NSLog(@"Initializing default media strategies...");
         DefaultMediaStrategies = @[
                                   [[YouTubeStrategy alloc] init],
+                                  [[LogitechMediaServerStrategy alloc] init],
                                   [[PandoraStrategy alloc] init],
                                   [[BandCampStrategy alloc] init],
                                   [[GrooveSharkStrategy alloc] init],

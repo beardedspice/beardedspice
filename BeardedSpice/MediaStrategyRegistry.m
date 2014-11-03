@@ -35,6 +35,11 @@
 #import "VimeoStrategy.h"
 #import "ChorusStrategy.h"
 
+@interface MediaStrategyRegistry ()
+@property (nonatomic, strong) NSMutableDictionary *registeredCache;
+@property (nonatomic, strong) NSMutableSet *keyCache;
+@end
+
 @implementation MediaStrategyRegistry
 
 -(id) init
@@ -42,7 +47,8 @@
     self = [super init];
     if (self)
     {
-        availableStrategies = [NSMutableArray new];
+        self.registeredCache = [NSMutableDictionary dictionary];
+        availableStrategies = [NSMutableArray array];
     }
     return self;
 }
@@ -84,10 +90,41 @@
     [availableStrategies containsObject:strategy];
 }
 
+- (void)clearCache
+{
+    self.registeredCache = [NSMutableDictionary dictionary];
+}
+
+- (void)beginStrategyQueries
+{
+    self.keyCache = [NSMutableSet setWithArray:[_registeredCache allKeys]];
+}
+
+- (void)endStrategyQueries
+{
+    /* Clean the cache of tabs that dont exist anymore */
+    NSSet *updatedKeys = [NSSet setWithArray:[_registeredCache allKeys]];
+    [_keyCache minusSet:updatedKeys];
+    [_registeredCache removeObjectsForKeys:[_keyCache allObjects]];
+
+    self.keyCache = nil;
+}
+
 -(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
 {
-    for (MediaStrategy *strategy in availableStrategies) {
-        if ([strategy accepts:tab]) {
+    NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
+    MediaStrategy *strat = _registeredCache[cacheKey];
+    if (strat)
+        /* Return the equivalent of a full scan except we dont repeat calculations */
+        return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
+
+    for (MediaStrategy *strategy in availableStrategies)
+    {
+        BOOL accepted = [strategy accepts:tab];
+
+        /* Store the result of this calculation for future use */
+        _registeredCache[cacheKey] = accepted ? strategy : @NO;
+        if (accepted) {
             NSLog(@"%@ is valid for %@", strategy, tab);
             return strategy;
         }

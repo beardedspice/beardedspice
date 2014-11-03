@@ -110,11 +110,15 @@
     [self removeAllItems];
     [self refreshApplications];
 
+    [mediaStrategyRegistry beginStrategyQueries];
+
     [self refreshTabsForChrome:chromeApp];
     [self refreshTabsForChrome:canaryApp];
     [self refreshTabsForSafari:safariApp];
 
-    
+    [mediaStrategyRegistry endStrategyQueries];
+
+
     if ([statusMenu numberOfItems] == 3) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];

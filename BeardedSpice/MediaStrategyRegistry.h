@@ -25,5 +25,8 @@
 -(MediaStrategy *) getMediaStrategyForTab:(id <Tab>) tab;
 -(NSArray *) getMediaStrategies;
 
+- (void)clearCache;
+- (void)beginStrategyQueries;
+- (void)endStrategyQueries;
 
 @end

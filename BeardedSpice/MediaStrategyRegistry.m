@@ -35,15 +35,20 @@
 #import "VimeoStrategy.h"
 #import "ChorusStrategy.h"
 
-NSArray * DefaultMediaStrategies;
+@interface MediaStrategyRegistry ()
+@property (nonatomic, strong) NSMutableDictionary *registeredCache;
+@property (nonatomic, strong) NSMutableSet *keyCache;
+@end
 
 @implementation MediaStrategyRegistry
 
 -(id) init
 {
     self = [super init];
-    if (self) {
-        availableStrategies = [[NSMutableArray alloc] init];
+    if (self)
+    {
+        self.registeredCache = [NSMutableDictionary dictionary];
+        availableStrategies = [NSMutableArray array];
     }
     return self;
 }
@@ -85,11 +90,41 @@ NSArray * DefaultMediaStrategies;
     [availableStrategies containsObject:strategy];
 }
 
+- (void)clearCache
+{
+    self.registeredCache = [NSMutableDictionary dictionary];
+}
+
+- (void)beginStrategyQueries
+{
+    self.keyCache = [NSMutableSet setWithArray:[_registeredCache allKeys]];
+}
+
+- (void)endStrategyQueries
+{
+    /* Clean the cache of tabs that dont exist anymore */
+    NSSet *updatedKeys = [NSSet setWithArray:[_registeredCache allKeys]];
+    [_keyCache minusSet:updatedKeys];
+    [_registeredCache removeObjectsForKeys:[_keyCache allObjects]];
+
+    self.keyCache = nil;
+}
+
 -(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
 {
+    NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
+    MediaStrategy *strat = _registeredCache[cacheKey];
+    if (strat)
+        /* Return the equivalent of a full scan except we dont repeat calculations */
+        return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
 
-    for (MediaStrategy *strategy in availableStrategies) {
-        if ([strategy accepts:tab]) {
+    for (MediaStrategy *strategy in availableStrategies)
+    {
+        BOOL accepted = [strategy accepts:tab];
+
+        /* Store the result of this calculation for future use */
+        _registeredCache[cacheKey] = accepted ? strategy : @NO;
+        if (accepted) {
             NSLog(@"%@ is valid for %@", strategy, tab);
             return strategy;
         }
@@ -99,44 +134,47 @@ NSArray * DefaultMediaStrategies;
 
 -(NSArray *) getMediaStrategies
 {
-    return [NSArray arrayWithArray:availableStrategies];
+    return [availableStrategies copy];
 }
 
 +(NSArray *) getDefaultMediaStrategies
 {
-    if (!DefaultMediaStrategies) {
+    static dispatch_once_t setupDefaultStrategies;
+    static NSArray *strategies = nil;
+
+    dispatch_once(&setupDefaultStrategies, ^{
         NSLog(@"Initializing default media strategies...");
-        DefaultMediaStrategies = @[
-                                  [[YouTubeStrategy alloc] init],
-                                  [[PandoraStrategy alloc] init],
-                                  [[BandCampStrategy alloc] init],
-                                  [[GrooveSharkStrategy alloc] init],
-                                  [[HypeMachineStrategy alloc] init],
-                                  [[SoundCloudStrategy alloc] init],
-                                  [[LastFmStrategy alloc] init],
-                                  [[SpotifyStrategy alloc] init],
-                                  [[GoogleMusicStrategy alloc] init],
-                                  [[RdioStrategy alloc] init],
-                                  [[EightTracksStrategy alloc] init],
-                                  [[SynologyStrategy alloc] init],
-                                  [[ShufflerFmStrategy alloc] init],
-                                  [[SongzaStrategy alloc] init],
-                                  [[SlackerStrategy alloc] init],
-                                  [[BeatsMusicStrategy alloc] init],
-                                  [[MixCloudStrategy alloc] init],
-                                  [[MusicUnlimitedStrategy alloc] init],
-                                  [[YandexMusicStrategy alloc] init],
-                                  [[StitcherStrategy alloc] init],
-                                  [[XboxMusicStrategy alloc] init],
-                                  [[VkStrategy alloc] init],
-                                  [[BopFm alloc] init],
-                                  [[AmazonMusicStrategy alloc] init],
-                                  [[OvercastStrategy alloc] init],
-                                  [[VimeoStrategy alloc] init],
-                                  [[ChorusStrategy alloc] init]
-                                  ];
-    }
-    return DefaultMediaStrategies;
+        strategies = @[
+                        [YouTubeStrategy new],
+                        [PandoraStrategy new],
+                        [BandCampStrategy new],
+                        [GrooveSharkStrategy new],
+                        [HypeMachineStrategy new],
+                        [SoundCloudStrategy new],
+                        [LastFmStrategy new],
+                        [SpotifyStrategy new],
+                        [GoogleMusicStrategy new],
+                        [RdioStrategy new],
+                        [EightTracksStrategy new],
+                        [SynologyStrategy new],
+                        [ShufflerFmStrategy new],
+                        [SongzaStrategy new],
+                        [SlackerStrategy new],
+                        [BeatsMusicStrategy new],
+                        [MixCloudStrategy new],
+                        [MusicUnlimitedStrategy new],
+                        [YandexMusicStrategy new],
+                        [StitcherStrategy new],
+                        [XboxMusicStrategy new],
+                        [VkStrategy new],
+                        [BopFm new],
+                        [AmazonMusicStrategy new],
+                        [OvercastStrategy new],
+                        [VimeoStrategy new],
+                        [ChorusStrategy new]
+                    ];
+    });
+    return strategies;
 }
 
 +(id) getDefaultRegistry

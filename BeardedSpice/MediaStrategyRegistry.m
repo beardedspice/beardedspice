@@ -33,6 +33,7 @@
 #import "AmazonMusicStrategy.h"
 #import "OvercastStrategy.h"
 #import "VimeoStrategy.h"
+#import "ChorusStrategy.h"
 
 NSArray * DefaultMediaStrategies;
 
@@ -131,7 +132,8 @@ NSArray * DefaultMediaStrategies;
                                   [[BopFm alloc] init],
                                   [[AmazonMusicStrategy alloc] init],
                                   [[OvercastStrategy alloc] init],
-                                  [[VimeoStrategy alloc] init]
+                                  [[VimeoStrategy alloc] init],
+                                  [[ChorusStrategy alloc] init]
                                   ];
     }
     return DefaultMediaStrategies;

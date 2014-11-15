@@ -59,6 +59,7 @@
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
+		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +172,8 @@
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexMusicStrategy.m; sourceTree = "<group>"; };
 		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
 		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
+		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
+		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BopFm.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -267,6 +270,8 @@
 				9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
 				9A699C48188B051000BB647E /* SongzaStrategy.h */,
 				9A699C49188B051000BB647E /* SongzaStrategy.m */,
+				D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */,
+				D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */,
 				963E89B618BB010600FE0DBB /* MixCloudStrategy.h */,
 				963E89B718BB010600FE0DBB /* MixCloudStrategy.m */,
 				963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */,
@@ -562,6 +567,7 @@
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
+				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
 				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
 				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
 				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,

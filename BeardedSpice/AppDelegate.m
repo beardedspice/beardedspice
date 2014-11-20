@@ -56,10 +56,12 @@
 
 - (void)awakeFromNib
 {
+    NSImage *icon = [NSImage imageNamed:@"beard"];
+    [icon setTemplate:YES]; // Support for Yosemite's dark UI
+    
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-
     [statusItem setMenu:statusMenu];
-    [statusItem setImage:[NSImage imageNamed:@"beard"]];
+    [statusItem setImage:icon];
     [statusItem setHighlightMode:YES];
     [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted"]];
 

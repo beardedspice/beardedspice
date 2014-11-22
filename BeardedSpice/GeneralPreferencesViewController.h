@@ -14,6 +14,7 @@
 extern NSString *const BeardedSpiceActiveTabShortcut;
 extern NSString *const BeardedSpiceFavoriteShortcut;
 extern NSString *const BeardedSpiceNotificationShortcut;
+extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceActiveControllers;
 
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
@@ -24,6 +25,8 @@ extern NSString *const BeardedSpiceActiveControllers;
     // dictionary of user preferences
     NSMutableDictionary *userStrategies;
     
+    NSNumber *alwaysShow;
+    
     // shared registry object for controlling behavior
     MediaStrategyRegistry *registry;
 }
@@ -31,6 +34,7 @@ extern NSString *const BeardedSpiceActiveControllers;
 @property (nonatomic, weak) IBOutlet MASShortcutView *setActiveTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *favoriteShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *notificationShortcut;
+@property (nonatomic, weak) IBOutlet NSButtonCell *alwaysShowNotification;
 @property (assign) IBOutlet NSTableView *strategiesView;
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry;

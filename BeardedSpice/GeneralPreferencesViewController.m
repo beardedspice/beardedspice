@@ -12,6 +12,7 @@ NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut"
 NSString *const BeardedSpiceFavoriteShortcut = @"BeardedSpiceFavoriteShortcut";
 NSString *const BeardedSpiceNotificationShortcut = @"BeardedSpiceNotificationShortcut";
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
+NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 
 @implementation GeneralPreferencesViewController
 
@@ -32,6 +33,15 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
     [self.setActiveTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
     [self.favoriteShortcut setAssociatedUserDefaultsKey:BeardedSpiceFavoriteShortcut];
     [self.notificationShortcut setAssociatedUserDefaultsKey:BeardedSpiceNotificationShortcut];
+    // check the user defaults
+    NSNumber *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification];
+    if ([enabled intValue] == 1) {
+        [self.alwaysShowNotification setState:NSOnState];
+    } else {
+        [self.alwaysShowNotification setState:NSOffState];
+    }
+    [self.alwaysShowNotification setAction:@selector(updateNotificationPreferences:)];
+    
 }
 
 - (NSString *)identifier
@@ -86,6 +96,19 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
     [result setTarget:self];
     [result setAction:@selector(updateMediaStrategyRegistry:)];
     return result;
+}
+
+-(void)updateNotificationPreferences:(id)sender
+{
+    BOOL enabled;
+    if ([self.alwaysShowNotification state] == NSOnState) {
+        enabled = YES;
+    } else {
+        enabled = NO;
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:BeardedSpiceAlwaysShowNotification];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BeardedSpiceUpdatePreferences" object:self];
 }
 
 -(void)updateMediaStrategyRegistry:(id)sender

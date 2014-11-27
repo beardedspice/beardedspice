@@ -34,6 +34,8 @@
 
     id <Tab> activeTab;
     MediaStrategyRegistry *mediaStrategyRegistry;
+    
+    BOOL alwaysShowNotification;
 
     NSWindowController *_preferencesWindowController;
 }
@@ -41,5 +43,6 @@
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 
 - (IBAction)openPreferences:(id)sender;
+- (void)showNotification;
 
 @end

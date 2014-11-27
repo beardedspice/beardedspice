@@ -50,6 +50,9 @@
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     
+    // set whether to always show notifications
+    alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
+    
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
 }
@@ -200,11 +203,11 @@
             return;
         }
 		NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
-		switch (keyCode) {
+        switch (keyCode) {
 			case NX_KEYTYPE_PLAY:
 				debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy toggle]];
-				break;
+                break;
 			case NX_KEYTYPE_FAST:
 				debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy next]];
@@ -218,6 +221,12 @@
 				break;
                 // More cases defined in hidsystem/ev_keymap.h
 		}
+        
+        if (alwaysShowNotification == YES)
+        {
+            [self showNotification];
+        }
+        
         NSLog(@"%@", debugString);
 	}
 }
@@ -296,14 +305,19 @@
 - (void)setupNotificationShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            Track *track = [strategy trackInfo:activeTab];
-            if (track) {
-                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
-            }
-        }
+        [self showNotification];
     }];
+}
+
+- (void)showNotification
+{
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    if (strategy) {
+        Track *track = [strategy trackInfo:activeTab];
+        if (track) {
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
+        }
+    }
 }
 
 - (NSWindowController *)preferencesWindowController
@@ -315,9 +329,26 @@
     
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+        
+        // this is not my favorite. I'd welcome a better way to update alwaysShowNotification
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAlwaysShowNotification:) name:@"BeardedSpiceUpdatePreferences" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesClosed:) name:NSWindowWillCloseNotification object:nil];
+        NSLog(@"THis!");
     }
     return _preferencesWindowController;
 }
+
+-(void)preferencesClosed:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)updateAlwaysShowNotification:(NSNotification *)notification
+{
+    // update whether to always show notifications
+    alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
+}
+
 
 - (IBAction)openPreferences:(id)sender
 {

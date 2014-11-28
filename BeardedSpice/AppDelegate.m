@@ -49,6 +49,7 @@
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
+    [self setupSleepCallback];
     
     // set whether to always show notifications
     alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
@@ -317,6 +318,23 @@
         if (track) {
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
         }
+    }
+}
+
+- (void)setupSleepCallback
+{
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(receiveSleepNote:)
+     name: NSWorkspaceWillSleepNotification object: NULL];
+}
+
+- (void)receiveSleepNote:(NSNotification *)note
+{
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    if (strategy) {
+        NSLog(@"Received sleep note, pausing");
+        [activeTab executeJavascript:[strategy pause]];
     }
 }
 

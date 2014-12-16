@@ -26,17 +26,17 @@
 
 -(NSString *) toggle
 {
-    return @"var p=document.getElementById('audioplayer'); if(p.paused){p.play();}else{p.pause();}";
+    return @"document.getElementById('playpausebutton').click();";
 }
 
 -(NSString *) previous
 {
-    return @"var p=document.getElementById('audioplayer'); p.currentTime=p.currentTime-15;";
+    return @"document.getElementById('seekbackbutton').click();";
 }
 
 -(NSString *) next
 {
-    return @"var p=document.getElementById('audioplayer'); p.currentTime=p.currentTime+30;";
+    return @"document.getElementById('seekforwardbutton').click();";
 }
 
 -(NSString *) displayName

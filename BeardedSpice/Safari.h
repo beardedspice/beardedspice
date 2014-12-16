@@ -9,15 +9,15 @@
 @class SafariItem, SafariApplication, SafariColor, SafariDocument, SafariWindow, SafariAttributeRun, SafariCharacter, SafariParagraph, SafariText, SafariAttachment, SafariWord, SafariTab, SafariPrintSettings;
 
 enum SafariSavo {
-	SafariSavoAsk = 'ask ' /* Ask the user whether or not to save the file. */,
-	SafariSavoNo = 'no  ' /* Do not save the file. */,
-	SafariSavoYes = 'yes ' /* Save the file. */
+       SafariSavoAsk = 'ask ' /* Ask the user whether or not to save the file. */,
+       SafariSavoNo = 'no  ' /* Do not save the file. */,
+       SafariSavoYes = 'yes ' /* Save the file. */
 };
 typedef enum SafariSavo SafariSavo;
 
 enum SafariEnum {
-	SafariEnumStandard = 'lwst' /* Standard PostScript error handling */,
-	SafariEnumDetailed = 'lwdt' /* print a detailed report of PostScript errors */
+       SafariEnumStandard = 'lwst' /* Standard PostScript error handling */,
+       SafariEnumDetailed = 'lwdt' /* print a detailed report of PostScript errors */
 };
 typedef enum SafariEnum SafariEnum;
 

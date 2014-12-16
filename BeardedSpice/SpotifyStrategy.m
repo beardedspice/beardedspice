@@ -49,5 +49,4 @@
     return @"Spotify";
 }
 
-
 @end

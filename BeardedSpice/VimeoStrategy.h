@@ -13,4 +13,5 @@
 {
     NSPredicate *predicate;
 }
+
 @end

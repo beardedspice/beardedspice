@@ -52,4 +52,5 @@
 {
     return @"document.querySelector('#PlayerLike').click()";
 }
+
 @end

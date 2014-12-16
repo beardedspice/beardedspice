@@ -43,7 +43,7 @@
 {
     return @"(function(){gplaylist.pause()})()";
 }
-    
+
 -(NSString *) displayName
 {
     return @"BandCamp";
@@ -52,12 +52,12 @@
 -(Track *) trackInfo:(id<Tab>)tab
 {
     NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:EmbedData.artist, album:EmbedData.album_title, track:gplaylist.get_track_info().title}})()"];
-    
+
     Track *track = [[Track alloc] init];
     track.track = [song objectForKey:@"track"];
     track.album = [song objectForKey:@"album"];
     track.artist = [song objectForKey:@"artist"];
-    
+
     return track;
 }
 

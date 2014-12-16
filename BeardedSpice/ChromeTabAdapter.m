@@ -36,7 +36,7 @@
 -(BOOL) isEqual:(__autoreleasing id)object
 {
     if (object == nil || ![object isKindOfClass:[ChromeTabAdapter class]]) return NO;
-    
+
     ChromeTabAdapter *other = (ChromeTabAdapter *)object;
     return self.tab.id == other.tab.id;
 }

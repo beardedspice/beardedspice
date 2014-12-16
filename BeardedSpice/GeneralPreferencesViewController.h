@@ -21,12 +21,12 @@ extern NSString *const BeardedSpiceActiveControllers;
 {
     // array of strategies used to drive the view
     NSArray *availableStrategies;
-    
+
     // dictionary of user preferences
     NSMutableDictionary *userStrategies;
-    
+
     NSNumber *alwaysShow;
-    
+
     // shared registry object for controlling behavior
     MediaStrategyRegistry *registry;
 }

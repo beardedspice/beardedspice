@@ -45,15 +45,15 @@
     }
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
-    
+
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     [self setupSleepCallback];
-    
+
     // set whether to always show notifications
     alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
-    
+
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
 }
@@ -62,7 +62,7 @@
 {
     NSImage *icon = [NSImage imageNamed:@"beard"];
     [icon setTemplate:YES]; // Support for Yosemite's dark UI
-    
+
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
     [statusItem setImage:icon];
@@ -180,7 +180,7 @@
     if (strategy && ![tab isEqual:activeTab]) {
         [activeTab executeJavascript:[strategy pause]];
     }
-    
+
     activeTab = tab;
     NSLog(@"Active tab set to %@", activeTab);
 }
@@ -190,7 +190,7 @@
     if (!activeTab) {
         return;
     }
-    
+
 	NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
 	// here be dragons...
 	int keyCode = (([event data1] & 0xFFFF0000) >> 16);
@@ -222,12 +222,12 @@
 				break;
                 // More cases defined in hidsystem/ev_keymap.h
 		}
-        
+
         if (alwaysShowNotification == YES)
         {
             [self showNotification];
         }
-        
+
         NSLog(@"%@", debugString);
 	}
 }
@@ -262,7 +262,7 @@
 - (void)setActiveTabShortcutForChrome:(ChromeApplication *)chrome {
     // chromeApp.windows[0] is the front most window.
     ChromeWindow *chromeWindow = chrome.windows[0];
-    
+
     // use 'get' to force a hard reference.
     [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
 }
@@ -270,7 +270,7 @@
 - (void)setActiveTabShortcutForSafari:(SafariApplication *)safari {
     // is safari.windows[0] the frontmost?
     SafariWindow *safariWindow = safari.windows[0];
-    
+
     // use 'get' to force a hard reference.
     [self updateActiveTab:[SafariTabAdapter initWithApplication:safari
                                                       andWindow:safariWindow
@@ -344,10 +344,10 @@
     {
         NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry];
         NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
-    
+
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
-        
+
         // this is not my favorite. I'd welcome a better way to update alwaysShowNotification
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAlwaysShowNotification:) name:@"BeardedSpiceUpdatePreferences" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesClosed:) name:NSWindowWillCloseNotification object:nil];

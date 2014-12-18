@@ -57,11 +57,11 @@
 -(Track *) trackInfo:(id<Tab>)tab
 {
     NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:now_playing[0].text, track:now_playing[2].text}})()"];
-    
+
     Track *track = [[Track alloc] init];
     track.track = [song objectForKey:@"track"];
     track.artist = [song objectForKey:@"artist"];
-    
+
     return track;
 }
 

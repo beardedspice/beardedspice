@@ -18,13 +18,13 @@
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
 {
-	// If event tap is not installed, handle events that reach the app instead
-	BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
+       // If event tap is not installed, handle events that reach the app instead
+       BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
 
-	if(shouldHandleMediaKeyEventLocally && [theEvent type] == NSSystemDefined && [theEvent subtype] == SPSystemDefinedEventMediaKeys) {
-		[(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:theEvent];
-	}
-	[super sendEvent:theEvent];
+       if(shouldHandleMediaKeyEventLocally && [theEvent type] == NSSystemDefined && [theEvent subtype] == SPSystemDefinedEventMediaKeys) {
+              [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:theEvent];
+       }
+       [super sendEvent:theEvent];
 }
 @end
 
@@ -34,26 +34,26 @@
 {
     // Insert code here to initialize your application
     // Register defaults for the whitelist of apps that want to use media keys
-	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+       [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                                                              [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
                                                              nil]];
     keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-	if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-		[keyTap startWatchingMediaKeys];
-	} else {
-		NSLog(@"Media key monitoring disabled");
+       if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+              [keyTap startWatchingMediaKeys];
+       } else {
+              NSLog(@"Media key monitoring disabled");
     }
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
-    
+
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     [self setupSleepCallback];
-    
+
     // set whether to always show notifications
     alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
-    
+
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
 }
@@ -62,7 +62,7 @@
 {
     NSImage *icon = [NSImage imageNamed:@"beard"];
     [icon setTemplate:YES]; // Support for Yosemite's dark UI
-    
+
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
     [statusItem setImage:icon];
@@ -180,7 +180,7 @@
     if (strategy && ![tab isEqual:activeTab]) {
         [activeTab executeJavascript:[strategy pause]];
     }
-    
+
     activeTab = tab;
     NSLog(@"Active tab set to %@", activeTab);
 }
@@ -190,46 +190,46 @@
     if (!activeTab) {
         return;
     }
-    
-	NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
-	// here be dragons...
-	int keyCode = (([event data1] & 0xFFFF0000) >> 16);
-	int keyFlags = ([event data1] & 0x0000FFFF);
-	BOOL keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA;
-	int keyRepeat = (keyFlags & 0x1);
 
-	if (keyIsPressed) {
+       NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
+       // here be dragons...
+       int keyCode = (([event data1] & 0xFFFF0000) >> 16);
+       int keyFlags = ([event data1] & 0x0000FFFF);
+       BOOL keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA;
+       int keyRepeat = (keyFlags & 0x1);
+
+       if (keyIsPressed) {
         MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (!strategy) {
             return;
         }
-		NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
+              NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
         switch (keyCode) {
-			case NX_KEYTYPE_PLAY:
-				debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
+                     case NX_KEYTYPE_PLAY:
+                            debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy toggle]];
                 break;
-			case NX_KEYTYPE_FAST:
-				debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
+                     case NX_KEYTYPE_FAST:
+                            debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy next]];
-				break;
-			case NX_KEYTYPE_REWIND:
-				debugString = [@"Rewind pressed" stringByAppendingString:debugString];
+                            break;
+                     case NX_KEYTYPE_REWIND:
+                            debugString = [@"Rewind pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy previous]];
-				break;
-			default:
-				debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
-				break;
+                            break;
+                     default:
+                            debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
+                            break;
                 // More cases defined in hidsystem/ev_keymap.h
-		}
-        
+              }
+
         if (alwaysShowNotification == YES)
         {
             [self showNotification];
         }
-        
+
         NSLog(@"%@", debugString);
-	}
+       }
 }
 
 -(SBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
@@ -262,7 +262,7 @@
 - (void)setActiveTabShortcutForChrome:(ChromeApplication *)chrome {
     // chromeApp.windows[0] is the front most window.
     ChromeWindow *chromeWindow = chrome.windows[0];
-    
+
     // use 'get' to force a hard reference.
     [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
 }
@@ -270,7 +270,7 @@
 - (void)setActiveTabShortcutForSafari:(SafariApplication *)safari {
     // is safari.windows[0] the frontmost?
     SafariWindow *safariWindow = safari.windows[0];
-    
+
     // use 'get' to force a hard reference.
     [self updateActiveTab:[SafariTabAdapter initWithApplication:safari
                                                       andWindow:safariWindow
@@ -344,10 +344,10 @@
     {
         NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry];
         NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
-    
+
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
-        
+
         // this is not my favorite. I'd welcome a better way to update alwaysShowNotification
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAlwaysShowNotification:) name:@"BeardedSpiceUpdatePreferences" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesClosed:) name:NSWindowWillCloseNotification object:nil];

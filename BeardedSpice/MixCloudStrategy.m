@@ -54,4 +54,5 @@
 {
     return @"document.querySelector('.favorite').click()";
 }
+
 @end

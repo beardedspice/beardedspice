@@ -23,18 +23,18 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
-    
+
     ChromeApplication *chromeApp;
     ChromeApplication *canaryApp;
     ChromeApplication *yandexBrowserApp;
-    
+
     SafariApplication *safariApp;
 
     SPMediaKeyTap *keyTap;
 
     id <Tab> activeTab;
     MediaStrategyRegistry *mediaStrategyRegistry;
-    
+
     BOOL alwaysShowNotification;
 
     NSWindowController *_preferencesWindowController;

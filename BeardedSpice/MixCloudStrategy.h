@@ -12,4 +12,5 @@
 {
     NSPredicate *predicate;
 }
+
 @end

@@ -41,7 +41,7 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
         [self.alwaysShowNotification setState:NSOffState];
     }
     [self.alwaysShowNotification setAction:@selector(updateNotificationPreferences:)];
-    
+
 }
 
 - (NSString *)identifier
@@ -73,16 +73,16 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
         result = [[NSButton alloc] init];
-        
+
         // this allows the cell to be reused.
         result.identifier = @"AvailbleStrategiesView";
-        
+
         // make it a checkbox
         [result setButtonType:NSSwitchButton];
-        
+
         // just so we know the index of this cell
         [result setTag:row];
-        
+
         // check the user defaults
         NSNumber *enabled = [userStrategies objectForKey:[strategy displayName]];
         if ([enabled intValue] == 1) {
@@ -91,7 +91,7 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
             [result setState:NSOffState];
         }
     }
-    
+
     [result setTitle:[strategy displayName]];
     [result setTarget:self];
     [result setAction:@selector(updateMediaStrategyRegistry:)];
@@ -106,7 +106,7 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
     } else {
         enabled = NO;
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:BeardedSpiceAlwaysShowNotification];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"BeardedSpiceUpdatePreferences" object:self];
 }

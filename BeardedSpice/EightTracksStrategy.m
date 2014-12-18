@@ -58,12 +58,12 @@
 -(Track *) trackInfo:(id<Tab>)tab
 {
     NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:mixPlayer.track.get('performer'),album:mixPlayer.track.get('release_name'),track:mixPlayer.track.get('name')}})()"];
-    
+
     Track *track = [[Track alloc] init];
     track.track = [song objectForKey:@"track"];
     track.album = [song objectForKey:@"album"];
     track.artist = [song objectForKey:@"artist"];
-    
+
     return track;
 }
 

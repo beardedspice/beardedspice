@@ -129,6 +129,8 @@
     if ([statusMenu numberOfItems] == 3) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
+    } else {
+        [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     }
 }
 

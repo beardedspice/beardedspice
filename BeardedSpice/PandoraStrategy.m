@@ -36,12 +36,12 @@
 
 -(NSString *) next
 {
-    return @"(function(){return document.querySelector('.skipButton').click()})();";
+    return @"document.querySelector('.skipButton').click();";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var t=document.querySelector('.pauseButton').click()})()";
+    return @"document.querySelector('.pauseButton').click();";
 }
 
 -(NSString *) displayName

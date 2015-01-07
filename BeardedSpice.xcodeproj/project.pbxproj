@@ -62,7 +62,7 @@
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
-		D32F05761A5C877A004D1F69 /* SaavnStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D32F05751A5C877A004D1F69 /* SaavnStrategy.m */; };
+		D3C6EFC51A5CC103008E2144 /* SaavnStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C6EFC41A5CC103008E2144 /* SaavnStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,8 +180,8 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BopFm.m; sourceTree = "<group>"; };
-		D32F05741A5C877A004D1F69 /* SaavnStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaavnStrategy.h; sourceTree = "<group>"; };
-		D32F05751A5C877A004D1F69 /* SaavnStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaavnStrategy.m; sourceTree = "<group>"; };
+		D3C6EFC31A5CC103008E2144 /* SaavnStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaavnStrategy.h; sourceTree = "<group>"; };
+		D3C6EFC41A5CC103008E2144 /* SaavnStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaavnStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +230,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				D3C6EFC31A5CC103008E2144 /* SaavnStrategy.h */,
+				D3C6EFC41A5CC103008E2144 /* SaavnStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
 				1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
 				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
@@ -292,8 +294,6 @@
 				D2D98CD8197F34BD00941CBD /* BopFm.m */,
 				8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
 				8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
-				D32F05741A5C877A004D1F69 /* SaavnStrategy.h */,
-				D32F05751A5C877A004D1F69 /* SaavnStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -577,7 +577,7 @@
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
-				D32F05761A5C877A004D1F69 /* SaavnStrategy.m in Sources */,
+				D3C6EFC51A5CC103008E2144 /* SaavnStrategy.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
 				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,

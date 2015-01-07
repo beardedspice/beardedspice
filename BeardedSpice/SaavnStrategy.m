@@ -26,22 +26,22 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){var e=document.querySelectorAll('#play')[0];var t=document.querySelectorAll('#pause')[0];if(t.className.indexOf('hide')===-1){t.click()}else{e.click()}})()";
+    return @"(function(){var e=document.getElementById('play');var t=document.getElementById('pause');if(t.className.indexOf('hide')===-1){t.click();}else{e.click();}})()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){var e=document.querySelectorAll('#rew')[0];e.click()})()";
+    return @"document.getElementById('rew').click();";
 }
 
 -(NSString *) next
 {
-    return @"(function(){var e=document.querySelectorAll('#fwd')[0];e.click()})()";
+    return @"document.getElementById('fwd').click();";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var e=document.querySelectorAll('#pause')[0];e.click()})()";
+    return @"document.getElementById('pause').click();";
 }
 
 -(NSString *) displayName

@@ -29,6 +29,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Overcast.fm](https://overcast.fm)
 - [Pandora](http://pandora.com)
 - [Rdio](http://rdio.com)
+- [Saavn](http://saavn.com)
 - [Shuffler.fm](http://shuffler.fm/tracks)
 - [Slacker](http://slacker.com)
 - [Songza](http://songza.com)

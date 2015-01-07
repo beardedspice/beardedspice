@@ -26,22 +26,22 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){document.querySelectorAll('[data-action=pause], [data-action=play]')[0].click()})()";
+    return @"(function(){dzPlayer.control.togglePause()})()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){document.querySelectorAll('[data-action=prevSong]')[0].click()})()";
+    return @"(function(){dzPlayer.control.prevSong()})()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){document.querySelectorAll('[data-action=nextSong]')[0].click()})()";
+    return @"(function(){dzPlayer.control.nextSong()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var e=document.querySelectorAll('[data-action=pause]')[0];if(dzPlayer.isPlaying()){e.click()}})()";
+    return @"(function(){dzPlayer.control.pause()})()";
 }
 
 -(NSString *) displayName

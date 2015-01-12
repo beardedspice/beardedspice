@@ -49,6 +49,7 @@ BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTa
 We use [CocoaPods](http://cocoapods.org/) to manage all obj-c/cocoa dependences. Install them locally using:
 ```bash
 sudo gem install cocoapods
+pod setup
 pod install
 ```
 

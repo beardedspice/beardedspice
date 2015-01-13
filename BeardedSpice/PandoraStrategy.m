@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){var e=document.querySelectorAll('.playButton')[0];var t=document.querySelectorAll('.pauseButton')[0];if(t.style.display==='block'){t.click()}else{e.click()}})()";
+    return @"(function(){var e=document.querySelector('.playButton');var t=document.querySelector('.pauseButton');if(t.style.display==='block'){t.click()}else{e.click()}})()";
 }
 
 -(NSString *) previous
@@ -36,12 +36,12 @@
 
 -(NSString *) next
 {
-    return @"(function(){return document.querySelectorAll('.skipButton')[0].click()})();";
+    return @"document.querySelector('.skipButton').click();";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var t=document.querySelectorAll('.pauseButton')[0].click()})()";
+    return @"document.querySelector('.pauseButton').click();";
 }
 
 -(NSString *) displayName

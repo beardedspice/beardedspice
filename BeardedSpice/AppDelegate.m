@@ -129,6 +129,10 @@
     if ([statusMenu numberOfItems] == 3) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
+    } else if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+        [keyTap startWatchingMediaKeys];
+    } else {
+        NSLog(@"Media key monitoring disabled");
     }
 }
 

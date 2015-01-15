@@ -21,6 +21,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Bop.fm](http://bop.fm)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
 - [Deezer](http://deezer.com)
+- [focus@will](https://www.focusatwill.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HypeMachine](http://hypem.com)

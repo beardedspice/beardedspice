@@ -7,6 +7,7 @@
        objects = {
 
 /* Begin PBXBuildFile section */
+        017AA2E71A6734B100EA748C /* TuneInStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 017AA2E61A6734B100EA748C /* TuneInStrategy.m */; };
               0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
               031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */; };
               031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
@@ -76,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+        017AA2E51A67342200EA748C /* TuneInStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuneInStrategy.h; sourceTree = "<group>"; };
+        017AA2E61A6734B100EA748C /* TuneInStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuneInStrategy.m; sourceTree = "<group>"; };
               030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
               031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMusicStrategy.h; sourceTree = "<group>"; };
               031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMusicStrategy.m; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
                             8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
         377A179F1A5C858C005595E5 /* DeezerStrategy.h */,
         377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
+                            017AA2E51A67342200EA748C /* TuneInStrategy.h */,
+                            017AA2E61A6734B100EA748C /* TuneInStrategy.m */,
                      );
                      name = MediaStrategies;
                      sourceTree = "<group>";
@@ -579,6 +584,7 @@
         377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
                             969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
                             03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
+                            017AA2E71A6734B100EA748C /* TuneInStrategy.m in Sources */,
                             D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
                             9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
                             48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,

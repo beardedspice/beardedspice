@@ -37,6 +37,7 @@
 #import "TwentyTwoTracksStrategy.h"
 #import "AudioMackStrategy.h"
 #import "DeezerStrategy.h"
+#import "TuneInStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -177,7 +178,8 @@
                         [ChorusStrategy new],
                         [TwentyTwoTracksStrategy new],
                         [AudioMackStrategy new],
-                        [DeezerStrategy new]
+                        [DeezerStrategy new],
+                        [TuneInStrategy new]
                     ];
     });
     return strategies;

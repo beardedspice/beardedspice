@@ -1,810 +1,816 @@
 // !$*UTF8*$!
 {
-       archiveVersion = 1;
-       classes = {
-       };
-       objectVersion = 46;
-       objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
 
 /* Begin PBXBuildFile section */
-              0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
-              031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */; };
-              031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
-              0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
-              0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
-              0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
-              0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
-              0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
-              036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0369231E1862936600E04DDB /* GeneralPreferencesView.xib */; };
-              0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370588D1863F47300C691B3 /* SpotifyStrategy.m */; };
-              039D83421892173600DB426D /* SlackerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 039D83411892173600DB426D /* SlackerStrategy.m */; };
-              03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
-              03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
-              03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34924185EB20E00C4A62B /* YouTubeStrategy.m */; };
-              03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34928185EE58600C4A62B /* PandoraStrategy.m */; };
-              03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492B185EE73700C4A62B /* BandCampStrategy.m */; };
-              03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */; };
-              03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */; };
-              03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */; };
-              03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
-              03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
-              03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
-              17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
-              17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
-              1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
-              23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
-    377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
-              45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
-              48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
-              4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
-              523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
-              699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
-              81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
-              83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
-              8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
-              8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38FAD51994CE57005C2465 /* VimeoStrategy.m */; };
-              963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89B718BB010600FE0DBB /* MixCloudStrategy.m */; };
-              963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */; };
-              967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
-              9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
-              9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
-              967933431855173100A49AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933421855173100A49AC7 /* AppDelegate.m */; };
-              967933461855173100A49AC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967933441855173100A49AC7 /* MainMenu.xib */; };
-              967933481855173100A49AC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967933471855173100A49AC7 /* Images.xcassets */; };
-              9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679334E1855173100A49AC7 /* XCTest.framework */; };
-              967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
-              967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
-              9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
-              9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
-              969E45721863E5830037226B /* LastFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E45711863E5830037226B /* LastFmStrategy.m */; };
-              9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
-              9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
-              B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
-              CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
-              D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
-              D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
+		031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */; };
+		031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
+		0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
+		0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
+		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
+		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
+		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
+		036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0369231E1862936600E04DDB /* GeneralPreferencesView.xib */; };
+		0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370588D1863F47300C691B3 /* SpotifyStrategy.m */; };
+		039D83421892173600DB426D /* SlackerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 039D83411892173600DB426D /* SlackerStrategy.m */; };
+		03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3491B185EA03300C4A62B /* MediaStrategy.m */; };
+		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
+		03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34924185EB20E00C4A62B /* YouTubeStrategy.m */; };
+		03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34928185EE58600C4A62B /* PandoraStrategy.m */; };
+		03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492B185EE73700C4A62B /* BandCampStrategy.m */; };
+		03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */; };
+		03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */; };
+		03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */; };
+		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
+		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
+		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
+		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
+		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
+		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
+		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
+		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
+		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
+		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
+		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
+		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
+		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
+		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
+		8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
+		8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38FAD51994CE57005C2465 /* VimeoStrategy.m */; };
+		963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89B718BB010600FE0DBB /* MixCloudStrategy.m */; };
+		963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */; };
+		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
+		9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933381855173100A49AC7 /* InfoPlist.strings */; };
+		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
+		967933431855173100A49AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933421855173100A49AC7 /* AppDelegate.m */; };
+		967933461855173100A49AC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967933441855173100A49AC7 /* MainMenu.xib */; };
+		967933481855173100A49AC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967933471855173100A49AC7 /* Images.xcassets */; };
+		9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679334E1855173100A49AC7 /* XCTest.framework */; };
+		967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
+		967933581855173100A49AC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967933561855173100A49AC7 /* InfoPlist.strings */; };
+		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
+		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
+		969E45721863E5830037226B /* LastFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E45711863E5830037226B /* LastFmStrategy.m */; };
+		9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
+		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
+		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
+		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
+		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
+		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
+		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-              967933511855173100A49AC7 /* PBXContainerItemProxy */ = {
-                     isa = PBXContainerItemProxy;
-                     containerPortal = 967933241855173100A49AC7 /* Project object */;
-                     proxyType = 1;
-                     remoteGlobalIDString = 9679332B1855173100A49AC7;
-                     remoteInfo = BeardedSpice;
-              };
+		967933511855173100A49AC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9679332B1855173100A49AC7;
+			remoteInfo = BeardedSpice;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-              030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
-              031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMusicStrategy.h; sourceTree = "<group>"; };
-              031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMusicStrategy.m; sourceTree = "<group>"; };
-              031D8147187F982A00A93E00 /* RdioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RdioStrategy.h; sourceTree = "<group>"; };
-              031D8148187F982A00A93E00 /* RdioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RdioStrategy.m; sourceTree = "<group>"; };
-              0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
-              0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
-              0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
-              0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
-              0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
-              0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
-              0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
-              0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
-              0369231E1862936600E04DDB /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
-              0370588C1863F47300C691B3 /* SpotifyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyStrategy.h; sourceTree = "<group>"; };
-              0370588D1863F47300C691B3 /* SpotifyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyStrategy.m; sourceTree = "<group>"; };
-              039D83401892173600DB426D /* SlackerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackerStrategy.h; sourceTree = "<group>"; };
-              039D83411892173600DB426D /* SlackerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackerStrategy.m; sourceTree = "<group>"; };
-              03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
-              03A3491B185EA03300C4A62B /* MediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategy.m; sourceTree = "<group>"; };
-              03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategyRegistry.h; sourceTree = "<group>"; };
-              03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategyRegistry.m; sourceTree = "<group>"; };
-              03A34923185EB20E00C4A62B /* YouTubeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeStrategy.h; sourceTree = "<group>"; };
-              03A34924185EB20E00C4A62B /* YouTubeStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeStrategy.m; sourceTree = "<group>"; };
-              03A34927185EE58600C4A62B /* PandoraStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PandoraStrategy.h; sourceTree = "<group>"; };
-              03A34928185EE58600C4A62B /* PandoraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PandoraStrategy.m; sourceTree = "<group>"; };
-              03A3492A185EE73700C4A62B /* BandCampStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandCampStrategy.h; sourceTree = "<group>"; };
-              03A3492B185EE73700C4A62B /* BandCampStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandCampStrategy.m; sourceTree = "<group>"; };
-              03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrooveSharkStrategy.h; sourceTree = "<group>"; };
-              03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrooveSharkStrategy.m; sourceTree = "<group>"; };
-              03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudStrategy.h; sourceTree = "<group>"; };
-              03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudStrategy.m; sourceTree = "<group>"; };
-              03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineStrategy.h; sourceTree = "<group>"; };
-              03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineStrategy.m; sourceTree = "<group>"; };
-              03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-              03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Tab.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-              03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
-              03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ChromeTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-              03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-              03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-              03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-              17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
-              17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
-              1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
-              1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMackStrategy.m; sourceTree = "<group>"; };
-              21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-              2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-    377A179F1A5C858C005595E5 /* DeezerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerStrategy.h; sourceTree = "<group>"; };
-    377A17A01A5C858C005595E5 /* DeezerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerStrategy.m; sourceTree = "<group>"; };
-              45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
-              45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
-              48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicStrategy.h; sourceTree = "<group>"; };
-              48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonMusicStrategy.m; sourceTree = "<group>"; };
-              4DB2F13119DB987D0010D194 /* ChorusStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChorusStrategy.h; sourceTree = "<group>"; };
-              4DB2F13219DB987D0010D194 /* ChorusStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChorusStrategy.m; sourceTree = "<group>"; };
-              523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
-              523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsMusicStrategy.m; sourceTree = "<group>"; };
-              699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
-              699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvercastStrategy.m; sourceTree = "<group>"; };
-              81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VkStrategy.m; sourceTree = "<group>"; };
-              81DA43D51950BF55000E98AC /* VkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VkStrategy.h; sourceTree = "<group>"; };
-              83AAFD7618E0A79500640767 /* StitcherStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StitcherStrategy.h; sourceTree = "<group>"; };
-              83AAFD7718E0A79500640767 /* StitcherStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StitcherStrategy.m; sourceTree = "<group>"; };
-              8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XboxMusicStrategy.m; sourceTree = "<group>"; };
-              8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxMusicStrategy.h; sourceTree = "<group>"; };
-              8E38FAD41994CE57005C2465 /* VimeoStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VimeoStrategy.h; sourceTree = "<group>"; };
-              8E38FAD51994CE57005C2465 /* VimeoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VimeoStrategy.m; sourceTree = "<group>"; };
-              963E89B618BB010600FE0DBB /* MixCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCloudStrategy.h; sourceTree = "<group>"; };
-              963E89B718BB010600FE0DBB /* MixCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixCloudStrategy.m; sourceTree = "<group>"; };
-              963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicUnlimitedStrategy.h; sourceTree = "<group>"; };
-              963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicUnlimitedStrategy.m; sourceTree = "<group>"; };
-              9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-              9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-              967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-              967933331855173100A49AC7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-              967933341855173100A49AC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-              967933371855173100A49AC7 /* BeardedSpice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpice-Info.plist"; sourceTree = "<group>"; };
-              967933391855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-              9679333B1855173100A49AC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-              9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeardedSpice-Prefix.pch"; sourceTree = "<group>"; };
-              967933411855173100A49AC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-              967933421855173100A49AC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-              967933451855173100A49AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-              967933471855173100A49AC7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-              9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeardedSpiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-              9679334E1855173100A49AC7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-              967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
-              967933571855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-              967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-              9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
-              9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
-              969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
-              969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFmStrategy.m; sourceTree = "<group>"; };
-              9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-              9A699C48188B051000BB647E /* SongzaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongzaStrategy.h; sourceTree = "<group>"; };
-              9A699C49188B051000BB647E /* SongzaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongzaStrategy.m; sourceTree = "<group>"; };
-              9AF442D31886F71400CD7266 /* EightTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightTracksStrategy.h; sourceTree = "<group>"; };
-              9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EightTracksStrategy.m; sourceTree = "<group>"; };
-              B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
-              B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexMusicStrategy.m; sourceTree = "<group>"; };
-              CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
-              CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
-              D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
-              D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
-              D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
-              D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BopFm.m; sourceTree = "<group>"; };
+		030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
+		031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMusicStrategy.h; sourceTree = "<group>"; };
+		031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMusicStrategy.m; sourceTree = "<group>"; };
+		031D8147187F982A00A93E00 /* RdioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RdioStrategy.h; sourceTree = "<group>"; };
+		031D8148187F982A00A93E00 /* RdioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RdioStrategy.m; sourceTree = "<group>"; };
+		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
+		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
+		0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
+		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
+		0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
+		0369231E1862936600E04DDB /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
+		0370588C1863F47300C691B3 /* SpotifyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyStrategy.h; sourceTree = "<group>"; };
+		0370588D1863F47300C691B3 /* SpotifyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyStrategy.m; sourceTree = "<group>"; };
+		039D83401892173600DB426D /* SlackerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackerStrategy.h; sourceTree = "<group>"; };
+		039D83411892173600DB426D /* SlackerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackerStrategy.m; sourceTree = "<group>"; };
+		03A3491A185EA03300C4A62B /* MediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategy.h; sourceTree = "<group>"; };
+		03A3491B185EA03300C4A62B /* MediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategy.m; sourceTree = "<group>"; };
+		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStrategyRegistry.h; sourceTree = "<group>"; };
+		03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaStrategyRegistry.m; sourceTree = "<group>"; };
+		03A34923185EB20E00C4A62B /* YouTubeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeStrategy.h; sourceTree = "<group>"; };
+		03A34924185EB20E00C4A62B /* YouTubeStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeStrategy.m; sourceTree = "<group>"; };
+		03A34927185EE58600C4A62B /* PandoraStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PandoraStrategy.h; sourceTree = "<group>"; };
+		03A34928185EE58600C4A62B /* PandoraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PandoraStrategy.m; sourceTree = "<group>"; };
+		03A3492A185EE73700C4A62B /* BandCampStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandCampStrategy.h; sourceTree = "<group>"; };
+		03A3492B185EE73700C4A62B /* BandCampStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandCampStrategy.m; sourceTree = "<group>"; };
+		03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrooveSharkStrategy.h; sourceTree = "<group>"; };
+		03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrooveSharkStrategy.m; sourceTree = "<group>"; };
+		03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudStrategy.h; sourceTree = "<group>"; };
+		03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudStrategy.m; sourceTree = "<group>"; };
+		03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypeMachineStrategy.h; sourceTree = "<group>"; };
+		03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypeMachineStrategy.m; sourceTree = "<group>"; };
+		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		03F33EE41857E22700E8F77E /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Tab.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
+		03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ChromeTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
+		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
+		1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
+		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMackStrategy.m; sourceTree = "<group>"; };
+		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		377A179F1A5C858C005595E5 /* DeezerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerStrategy.h; sourceTree = "<group>"; };
+		377A17A01A5C858C005595E5 /* DeezerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerStrategy.m; sourceTree = "<group>"; };
+		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
+		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
+		48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicStrategy.h; sourceTree = "<group>"; };
+		48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonMusicStrategy.m; sourceTree = "<group>"; };
+		4DB2F13119DB987D0010D194 /* ChorusStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChorusStrategy.h; sourceTree = "<group>"; };
+		4DB2F13219DB987D0010D194 /* ChorusStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChorusStrategy.m; sourceTree = "<group>"; };
+		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
+		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsMusicStrategy.m; sourceTree = "<group>"; };
+		699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
+		699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvercastStrategy.m; sourceTree = "<group>"; };
+		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VkStrategy.m; sourceTree = "<group>"; };
+		81DA43D51950BF55000E98AC /* VkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VkStrategy.h; sourceTree = "<group>"; };
+		83AAFD7618E0A79500640767 /* StitcherStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StitcherStrategy.h; sourceTree = "<group>"; };
+		83AAFD7718E0A79500640767 /* StitcherStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StitcherStrategy.m; sourceTree = "<group>"; };
+		8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XboxMusicStrategy.m; sourceTree = "<group>"; };
+		8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxMusicStrategy.h; sourceTree = "<group>"; };
+		8E38FAD41994CE57005C2465 /* VimeoStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VimeoStrategy.h; sourceTree = "<group>"; };
+		8E38FAD51994CE57005C2465 /* VimeoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VimeoStrategy.m; sourceTree = "<group>"; };
+		963E89B618BB010600FE0DBB /* MixCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCloudStrategy.h; sourceTree = "<group>"; };
+		963E89B718BB010600FE0DBB /* MixCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixCloudStrategy.m; sourceTree = "<group>"; };
+		963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicUnlimitedStrategy.h; sourceTree = "<group>"; };
+		963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicUnlimitedStrategy.m; sourceTree = "<group>"; };
+		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		967933331855173100A49AC7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		967933341855173100A49AC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		967933371855173100A49AC7 /* BeardedSpice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpice-Info.plist"; sourceTree = "<group>"; };
+		967933391855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9679333B1855173100A49AC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeardedSpice-Prefix.pch"; sourceTree = "<group>"; };
+		967933411855173100A49AC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		967933421855173100A49AC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		967933451855173100A49AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		967933471855173100A49AC7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeardedSpiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9679334E1855173100A49AC7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
+		967933571855173100A49AC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
+		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
+		969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFmStrategy.m; sourceTree = "<group>"; };
+		9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9A699C48188B051000BB647E /* SongzaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongzaStrategy.h; sourceTree = "<group>"; };
+		9A699C49188B051000BB647E /* SongzaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongzaStrategy.m; sourceTree = "<group>"; };
+		9AF442D31886F71400CD7266 /* EightTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightTracksStrategy.h; sourceTree = "<group>"; };
+		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EightTracksStrategy.m; sourceTree = "<group>"; };
+		B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
+		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexMusicStrategy.m; sourceTree = "<group>"; };
+		BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusAtWillStrategy.m; sourceTree = "<group>"; };
+		BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FocusAtWillStrategy.h; sourceTree = "<group>"; };
+		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
+		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
+		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
+		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
+		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
+		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BopFm.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-              967933291855173100A49AC7 /* Frameworks */ = {
-                     isa = PBXFrameworksBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                            03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
-                            9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
-                            967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
-                            23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-              };
-              9679334A1855173100A49AC7 /* Frameworks */ = {
-                     isa = PBXFrameworksBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                            967933501855173100A49AC7 /* Cocoa.framework in Frameworks */,
-                            9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */,
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-              };
+		967933291855173100A49AC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
+				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
+				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
+				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9679334A1855173100A49AC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				967933501855173100A49AC7 /* Cocoa.framework in Frameworks */,
+				9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-              026BCA1451614966030FD4B5 /* Pods */ = {
-                     isa = PBXGroup;
-                     children = (
-                            21D5956B688103BAC9238102 /* Pods.debug.xcconfig */,
-                            9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */,
-                     );
-                     name = Pods;
-                     sourceTree = "<group>";
-              };
-              0369231B1862934000E04DDB /* Preferences */ = {
-                     isa = PBXGroup;
-                     children = (
-                            0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */,
-                            0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */,
-                            0369231E1862936600E04DDB /* GeneralPreferencesView.xib */,
-                     );
-                     name = Preferences;
-                     sourceTree = "<group>";
-              };
-              03A34919185E9FC700C4A62B /* MediaStrategies */ = {
-                     isa = PBXGroup;
-                     children = (
-                            1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
-                            1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
-                            4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
-                            4DB2F13219DB987D0010D194 /* ChorusStrategy.m */,
-                            48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
-                            48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
-                            81DA43D41950BF55000E98AC /* VkStrategy.m */,
-                            81DA43D51950BF55000E98AC /* VkStrategy.h */,
-                            523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
-                            523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */,
-                            CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
-                            CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
-                            45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
-                            45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
-                            03A3491A185EA03300C4A62B /* MediaStrategy.h */,
-                            03A3491B185EA03300C4A62B /* MediaStrategy.m */,
-                            699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
-                            699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
-                            03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
-                            03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
-                            03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
-                            03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
-                            039D83401892173600DB426D /* SlackerStrategy.h */,
-                            039D83411892173600DB426D /* SlackerStrategy.m */,
-                            03A34927185EE58600C4A62B /* PandoraStrategy.h */,
-                            03A34928185EE58600C4A62B /* PandoraStrategy.m */,
-                            03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
-                            83AAFD7618E0A79500640767 /* StitcherStrategy.h */,
-                            83AAFD7718E0A79500640767 /* StitcherStrategy.m */,
-                            03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
-                            03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */,
-                            03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
-                            03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
-                            03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
-                            03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
-                            03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
-                            969E45701863E5830037226B /* LastFmStrategy.h */,
-                            969E45711863E5830037226B /* LastFmStrategy.m */,
-                            0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
-                            0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
-                            031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */,
-                            031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
-                            031D8147187F982A00A93E00 /* RdioStrategy.h */,
-                            031D8148187F982A00A93E00 /* RdioStrategy.m */,
-                            9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
-                            9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
-                            9A699C48188B051000BB647E /* SongzaStrategy.h */,
-                            9A699C49188B051000BB647E /* SongzaStrategy.m */,
-                            D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */,
-                            D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */,
-                            963E89B618BB010600FE0DBB /* MixCloudStrategy.h */,
-                            963E89B718BB010600FE0DBB /* MixCloudStrategy.m */,
-                            963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */,
-                            963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
-                            B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */,
-                            B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
-                            8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
-                            8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */,
-                            D2D98CD7197F34BD00941CBD /* BopFm.h */,
-                            D2D98CD8197F34BD00941CBD /* BopFm.m */,
-                            8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
-                            8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
-        377A179F1A5C858C005595E5 /* DeezerStrategy.h */,
-        377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
-                     );
-                     name = MediaStrategies;
-                     sourceTree = "<group>";
-              };
-              03F33EE31857E21100E8F77E /* Tabs */ = {
-                     isa = PBXGroup;
-                     children = (
-                            9679336318551A8F00A49AC7 /* Chrome.h */,
-                            03F33EE71857E2EE00E8F77E /* Safari.h */,
-                            03F33EE41857E22700E8F77E /* Tab.h */,
-                            03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
-                            03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
-                            03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
-                            03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
-                     );
-                     name = Tabs;
-                     sourceTree = "<group>";
-              };
-              967933231855173100A49AC7 = {
-                     isa = PBXGroup;
-                     children = (
-                            967933351855173100A49AC7 /* BeardedSpice */,
-                            967933531855173100A49AC7 /* BeardedSpiceTests */,
-                            9679332E1855173100A49AC7 /* Frameworks */,
-                            9679332D1855173100A49AC7 /* Products */,
-                            026BCA1451614966030FD4B5 /* Pods */,
-                     );
-                     sourceTree = "<group>";
-              };
-              9679332D1855173100A49AC7 /* Products */ = {
-                     isa = PBXGroup;
-                     children = (
-                            9679332C1855173100A49AC7 /* BeardedSpice.app */,
-                            9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */,
-                     );
-                     name = Products;
-                     sourceTree = "<group>";
-              };
-              9679332E1855173100A49AC7 /* Frameworks */ = {
-                     isa = PBXGroup;
-                     children = (
-                            03F33ECB1855306A00E8F77E /* Carbon.framework */,
-                            9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
-                            9679332F1855173100A49AC7 /* Cocoa.framework */,
-                            9679334E1855173100A49AC7 /* XCTest.framework */,
-                            967933311855173100A49AC7 /* Other Frameworks */,
-                            2299BC537DEC481A9540F7CA /* libPods.a */,
-                     );
-                     name = Frameworks;
-                     sourceTree = "<group>";
-              };
-              967933311855173100A49AC7 /* Other Frameworks */ = {
-                     isa = PBXGroup;
-                     children = (
-                            967933321855173100A49AC7 /* AppKit.framework */,
-                            967933331855173100A49AC7 /* CoreData.framework */,
-                            967933341855173100A49AC7 /* Foundation.framework */,
-                     );
-                     name = "Other Frameworks";
-                     sourceTree = "<group>";
-              };
-              967933351855173100A49AC7 /* BeardedSpice */ = {
-                     isa = PBXGroup;
-                     children = (
-                            0369231B1862934000E04DDB /* Preferences */,
-                            03A34919185E9FC700C4A62B /* MediaStrategies */,
-                            03F33EE31857E21100E8F77E /* Tabs */,
-                            0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
-                            0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
-                            0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
-                            0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
-                            967933411855173100A49AC7 /* AppDelegate.h */,
-                            967933421855173100A49AC7 /* AppDelegate.m */,
-                            967933441855173100A49AC7 /* MainMenu.xib */,
-                            967933471855173100A49AC7 /* Images.xcassets */,
-                            967933361855173100A49AC7 /* Supporting Files */,
-                     );
-                     path = BeardedSpice;
-                     sourceTree = "<group>";
-              };
-              967933361855173100A49AC7 /* Supporting Files */ = {
-                     isa = PBXGroup;
-                     children = (
-                            0320C0531868C7A4009591CA /* beard-highlighted.png */,
-                            17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */,
-                            0320C0511868C6C2009591CA /* beard.png */,
-                            17C5B63918DB33C0006F38C1 /* beard@2x.png */,
-                            030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */,
-                            967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
-                            967933381855173100A49AC7 /* InfoPlist.strings */,
-                            9679333B1855173100A49AC7 /* main.m */,
-                            9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */,
-                     );
-                     name = "Supporting Files";
-                     sourceTree = "<group>";
-              };
-              967933531855173100A49AC7 /* BeardedSpiceTests */ = {
-                     isa = PBXGroup;
-                     children = (
-                            967933591855173100A49AC7 /* BeardedSpiceTests.m */,
-                            967933541855173100A49AC7 /* Supporting Files */,
-                     );
-                     path = BeardedSpiceTests;
-                     sourceTree = "<group>";
-              };
-              967933541855173100A49AC7 /* Supporting Files */ = {
-                     isa = PBXGroup;
-                     children = (
-                            967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */,
-                            967933561855173100A49AC7 /* InfoPlist.strings */,
-                     );
-                     name = "Supporting Files";
-                     sourceTree = "<group>";
-              };
+		026BCA1451614966030FD4B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21D5956B688103BAC9238102 /* Pods.debug.xcconfig */,
+				9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		0369231B1862934000E04DDB /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */,
+				0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */,
+				0369231E1862936600E04DDB /* GeneralPreferencesView.xib */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
+			isa = PBXGroup;
+			children = (
+				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
+				1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
+				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
+				4DB2F13219DB987D0010D194 /* ChorusStrategy.m */,
+				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
+				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
+				81DA43D41950BF55000E98AC /* VkStrategy.m */,
+				81DA43D51950BF55000E98AC /* VkStrategy.h */,
+				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
+				523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */,
+				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
+				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
+				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
+				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
+				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
+				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
+				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
+				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				039D83401892173600DB426D /* SlackerStrategy.h */,
+				039D83411892173600DB426D /* SlackerStrategy.m */,
+				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
+				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
+				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
+				83AAFD7618E0A79500640767 /* StitcherStrategy.h */,
+				83AAFD7718E0A79500640767 /* StitcherStrategy.m */,
+				03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
+				03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */,
+				03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
+				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
+				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
+				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
+				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
+				969E45701863E5830037226B /* LastFmStrategy.h */,
+				969E45711863E5830037226B /* LastFmStrategy.m */,
+				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
+				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
+				031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */,
+				031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
+				031D8147187F982A00A93E00 /* RdioStrategy.h */,
+				031D8148187F982A00A93E00 /* RdioStrategy.m */,
+				9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
+				9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
+				9A699C48188B051000BB647E /* SongzaStrategy.h */,
+				9A699C49188B051000BB647E /* SongzaStrategy.m */,
+				D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */,
+				D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */,
+				963E89B618BB010600FE0DBB /* MixCloudStrategy.h */,
+				963E89B718BB010600FE0DBB /* MixCloudStrategy.m */,
+				963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */,
+				963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
+				B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */,
+				B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
+				8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
+				8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */,
+				D2D98CD7197F34BD00941CBD /* BopFm.h */,
+				D2D98CD8197F34BD00941CBD /* BopFm.m */,
+				8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
+				8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
+				377A179F1A5C858C005595E5 /* DeezerStrategy.h */,
+				377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
+				BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */,
+				BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */,
+			);
+			name = MediaStrategies;
+			sourceTree = "<group>";
+		};
+		03F33EE31857E21100E8F77E /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				9679336318551A8F00A49AC7 /* Chrome.h */,
+				03F33EE71857E2EE00E8F77E /* Safari.h */,
+				03F33EE41857E22700E8F77E /* Tab.h */,
+				03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
+				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
+				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
+				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
+		967933231855173100A49AC7 = {
+			isa = PBXGroup;
+			children = (
+				967933351855173100A49AC7 /* BeardedSpice */,
+				967933531855173100A49AC7 /* BeardedSpiceTests */,
+				9679332E1855173100A49AC7 /* Frameworks */,
+				9679332D1855173100A49AC7 /* Products */,
+				026BCA1451614966030FD4B5 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		9679332D1855173100A49AC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9679332C1855173100A49AC7 /* BeardedSpice.app */,
+				9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9679332E1855173100A49AC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03F33ECB1855306A00E8F77E /* Carbon.framework */,
+				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
+				9679332F1855173100A49AC7 /* Cocoa.framework */,
+				9679334E1855173100A49AC7 /* XCTest.framework */,
+				967933311855173100A49AC7 /* Other Frameworks */,
+				2299BC537DEC481A9540F7CA /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		967933311855173100A49AC7 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				967933321855173100A49AC7 /* AppKit.framework */,
+				967933331855173100A49AC7 /* CoreData.framework */,
+				967933341855173100A49AC7 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		967933351855173100A49AC7 /* BeardedSpice */ = {
+			isa = PBXGroup;
+			children = (
+				0369231B1862934000E04DDB /* Preferences */,
+				03A34919185E9FC700C4A62B /* MediaStrategies */,
+				03F33EE31857E21100E8F77E /* Tabs */,
+				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
+				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
+				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
+				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
+				967933411855173100A49AC7 /* AppDelegate.h */,
+				967933421855173100A49AC7 /* AppDelegate.m */,
+				967933441855173100A49AC7 /* MainMenu.xib */,
+				967933471855173100A49AC7 /* Images.xcassets */,
+				967933361855173100A49AC7 /* Supporting Files */,
+			);
+			path = BeardedSpice;
+			sourceTree = "<group>";
+		};
+		967933361855173100A49AC7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0320C0531868C7A4009591CA /* beard-highlighted.png */,
+				17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */,
+				0320C0511868C6C2009591CA /* beard.png */,
+				17C5B63918DB33C0006F38C1 /* beard@2x.png */,
+				030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */,
+				967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
+				967933381855173100A49AC7 /* InfoPlist.strings */,
+				9679333B1855173100A49AC7 /* main.m */,
+				9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		967933531855173100A49AC7 /* BeardedSpiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				967933591855173100A49AC7 /* BeardedSpiceTests.m */,
+				967933541855173100A49AC7 /* Supporting Files */,
+			);
+			path = BeardedSpiceTests;
+			sourceTree = "<group>";
+		};
+		967933541855173100A49AC7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */,
+				967933561855173100A49AC7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-              9679332B1855173100A49AC7 /* BeardedSpice */ = {
-                     isa = PBXNativeTarget;
-                     buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */;
-                     buildPhases = (
-                            1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */,
-                            967933281855173100A49AC7 /* Sources */,
-                            967933291855173100A49AC7 /* Frameworks */,
-                            9679332A1855173100A49AC7 /* Resources */,
-                            B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
-                     );
-                     buildRules = (
-                     );
-                     dependencies = (
-                     );
-                     name = BeardedSpice;
-                     productName = BeardedSpice;
-                     productReference = 9679332C1855173100A49AC7 /* BeardedSpice.app */;
-                     productType = "com.apple.product-type.application";
-              };
-              9679334C1855173100A49AC7 /* BeardedSpiceTests */ = {
-                     isa = PBXNativeTarget;
-                     buildConfigurationList = 967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */;
-                     buildPhases = (
-                            967933491855173100A49AC7 /* Sources */,
-                            9679334A1855173100A49AC7 /* Frameworks */,
-                            9679334B1855173100A49AC7 /* Resources */,
-                     );
-                     buildRules = (
-                     );
-                     dependencies = (
-                            967933521855173100A49AC7 /* PBXTargetDependency */,
-                     );
-                     name = BeardedSpiceTests;
-                     productName = BeardedSpiceTests;
-                     productReference = 9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */;
-                     productType = "com.apple.product-type.bundle.unit-test";
-              };
+		9679332B1855173100A49AC7 /* BeardedSpice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */;
+			buildPhases = (
+				1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */,
+				967933281855173100A49AC7 /* Sources */,
+				967933291855173100A49AC7 /* Frameworks */,
+				9679332A1855173100A49AC7 /* Resources */,
+				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeardedSpice;
+			productName = BeardedSpice;
+			productReference = 9679332C1855173100A49AC7 /* BeardedSpice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9679334C1855173100A49AC7 /* BeardedSpiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */;
+			buildPhases = (
+				967933491855173100A49AC7 /* Sources */,
+				9679334A1855173100A49AC7 /* Frameworks */,
+				9679334B1855173100A49AC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				967933521855173100A49AC7 /* PBXTargetDependency */,
+			);
+			name = BeardedSpiceTests;
+			productName = BeardedSpiceTests;
+			productReference = 9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-              967933241855173100A49AC7 /* Project object */ = {
-                     isa = PBXProject;
-                     attributes = {
-                            LastUpgradeCheck = 0500;
-                            ORGANIZATIONNAME = "Tyler Rhodes / Jose Falcon";
-                            TargetAttributes = {
-                                   9679334C1855173100A49AC7 = {
-                                          TestTargetID = 9679332B1855173100A49AC7;
-                                   };
-                            };
-                     };
-                     buildConfigurationList = 967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */;
-                     compatibilityVersion = "Xcode 3.2";
-                     developmentRegion = English;
-                     hasScannedForEncodings = 0;
-                     knownRegions = (
-                            en,
-                            Base,
-                     );
-                     mainGroup = 967933231855173100A49AC7;
-                     productRefGroup = 9679332D1855173100A49AC7 /* Products */;
-                     projectDirPath = "";
-                     projectRoot = "";
-                     targets = (
-                            9679332B1855173100A49AC7 /* BeardedSpice */,
-                            9679334C1855173100A49AC7 /* BeardedSpiceTests */,
-                     );
-              };
+		967933241855173100A49AC7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Tyler Rhodes / Jose Falcon";
+				TargetAttributes = {
+					9679334C1855173100A49AC7 = {
+						TestTargetID = 9679332B1855173100A49AC7;
+					};
+				};
+			};
+			buildConfigurationList = 967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 967933231855173100A49AC7;
+			productRefGroup = 9679332D1855173100A49AC7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9679332B1855173100A49AC7 /* BeardedSpice */,
+				9679334C1855173100A49AC7 /* BeardedSpiceTests */,
+			);
+		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-              9679332A1855173100A49AC7 /* Resources */ = {
-                     isa = PBXResourcesBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                            9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */,
-                            967933481855173100A49AC7 /* Images.xcassets in Resources */,
-                            0320C0521868C6C2009591CA /* beard.png in Resources */,
-                            0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
-                            036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */,
-                            0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
-                            967933461855173100A49AC7 /* MainMenu.xib in Resources */,
-                            17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */,
-                            17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */,
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-              };
-              9679334B1855173100A49AC7 /* Resources */ = {
-                     isa = PBXResourcesBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                            967933581855173100A49AC7 /* InfoPlist.strings in Resources */,
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-              };
+		9679332A1855173100A49AC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9679333A1855173100A49AC7 /* InfoPlist.strings in Resources */,
+				967933481855173100A49AC7 /* Images.xcassets in Resources */,
+				0320C0521868C6C2009591CA /* beard.png in Resources */,
+				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
+				036923201862936600E04DDB /* GeneralPreferencesView.xib in Resources */,
+				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
+				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
+				17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */,
+				17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9679334B1855173100A49AC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				967933581855173100A49AC7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-              1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */ = {
-                     isa = PBXShellScriptBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                     );
-                     inputPaths = (
-                     );
-                     name = "Check Pods Manifest.lock";
-                     outputPaths = (
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-                     shellPath = /bin/sh;
-                     shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-                     showEnvVarsInLog = 0;
-              };
-              B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
-                     isa = PBXShellScriptBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                     );
-                     inputPaths = (
-                     );
-                     name = "Copy Pods Resources";
-                     outputPaths = (
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-                     shellPath = /bin/sh;
-                     shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-                     showEnvVarsInLog = 0;
-              };
+		1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-              967933281855173100A49AC7 /* Sources */ = {
-                     isa = PBXSourcesBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                            0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
-                            0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
-                            967933431855173100A49AC7 /* AppDelegate.m in Sources */,
-                            031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
-                            0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
-                            699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
-                            B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
-                            1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
-                            963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
-                            81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
-                            8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
-                            4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
-                            039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
-                            9679333C1855173100A49AC7 /* main.m in Sources */,
-                            03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
-                            031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
-                            0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
-                            83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
-                            8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
-                            03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
-                            03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
-                            523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,
-                            03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
-                            03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
-                            03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
-                            CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
-                            D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
-                            963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
-                            03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
-                            03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
-        377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
-                            969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
-                            03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
-                            D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
-                            9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
-                            48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
-                            9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
-                            03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
-                            45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-              };
-              967933491855173100A49AC7 /* Sources */ = {
-                     isa = PBXSourcesBuildPhase;
-                     buildActionMask = 2147483647;
-                     files = (
-                            9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */,
-                     );
-                     runOnlyForDeploymentPostprocessing = 0;
-              };
+		967933281855173100A49AC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */,
+				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
+				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
+				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
+				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
+				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
+				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
+				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
+				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
+				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
+				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
+				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
+				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
+				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
+				9679333C1855173100A49AC7 /* main.m in Sources */,
+				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
+				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
+				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
+				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
+				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
+				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
+				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
+				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,
+				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
+				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
+				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
+				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
+				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
+				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
+				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
+				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
+				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
+				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
+				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
+				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
+				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
+				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
+				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
+				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
+				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967933491855173100A49AC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-              967933521855173100A49AC7 /* PBXTargetDependency */ = {
-                     isa = PBXTargetDependency;
-                     target = 9679332B1855173100A49AC7 /* BeardedSpice */;
-                     targetProxy = 967933511855173100A49AC7 /* PBXContainerItemProxy */;
-              };
+		967933521855173100A49AC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9679332B1855173100A49AC7 /* BeardedSpice */;
+			targetProxy = 967933511855173100A49AC7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-              967933381855173100A49AC7 /* InfoPlist.strings */ = {
-                     isa = PBXVariantGroup;
-                     children = (
-                            967933391855173100A49AC7 /* en */,
-                     );
-                     name = InfoPlist.strings;
-                     sourceTree = "<group>";
-              };
-              967933441855173100A49AC7 /* MainMenu.xib */ = {
-                     isa = PBXVariantGroup;
-                     children = (
-                            967933451855173100A49AC7 /* Base */,
-                     );
-                     name = MainMenu.xib;
-                     sourceTree = "<group>";
-              };
-              967933561855173100A49AC7 /* InfoPlist.strings */ = {
-                     isa = PBXVariantGroup;
-                     children = (
-                            967933571855173100A49AC7 /* en */,
-                     );
-                     name = InfoPlist.strings;
-                     sourceTree = "<group>";
-              };
+		967933381855173100A49AC7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				967933391855173100A49AC7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		967933441855173100A49AC7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				967933451855173100A49AC7 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		967933561855173100A49AC7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				967933571855173100A49AC7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-              9679335B1855173100A49AC7 /* Debug */ = {
-                     isa = XCBuildConfiguration;
-                     buildSettings = {
-                            ALWAYS_SEARCH_USER_PATHS = NO;
-                            CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-                            CLANG_CXX_LIBRARY = "libc++";
-                            CLANG_ENABLE_OBJC_ARC = YES;
-                            CLANG_WARN_BOOL_CONVERSION = YES;
-                            CLANG_WARN_CONSTANT_CONVERSION = YES;
-                            CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                            CLANG_WARN_EMPTY_BODY = YES;
-                            CLANG_WARN_ENUM_CONVERSION = YES;
-                            CLANG_WARN_INT_CONVERSION = YES;
-                            CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                            CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                            COPY_PHASE_STRIP = NO;
-                            GCC_C_LANGUAGE_STANDARD = gnu99;
-                            GCC_DYNAMIC_NO_PIC = NO;
-                            GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-                            GCC_OPTIMIZATION_LEVEL = 0;
-                            GCC_PREPROCESSOR_DEFINITIONS = (
-                                   "DEBUG=1",
-                                   "$(inherited)",
-                            );
-                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-                            GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                            GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                            GCC_WARN_UNDECLARED_SELECTOR = YES;
-                            GCC_WARN_UNINITIALIZED_AUTOS = YES;
-                            GCC_WARN_UNUSED_FUNCTION = YES;
-                            GCC_WARN_UNUSED_VARIABLE = YES;
-                            MACOSX_DEPLOYMENT_TARGET = 10.8;
-                            ONLY_ACTIVE_ARCH = YES;
-                            SDKROOT = macosx;
-                     };
-                     name = Debug;
-              };
-              9679335C1855173100A49AC7 /* Release */ = {
-                     isa = XCBuildConfiguration;
-                     buildSettings = {
-                            ALWAYS_SEARCH_USER_PATHS = NO;
-                            CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-                            CLANG_CXX_LIBRARY = "libc++";
-                            CLANG_ENABLE_OBJC_ARC = YES;
-                            CLANG_WARN_BOOL_CONVERSION = YES;
-                            CLANG_WARN_CONSTANT_CONVERSION = YES;
-                            CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                            CLANG_WARN_EMPTY_BODY = YES;
-                            CLANG_WARN_ENUM_CONVERSION = YES;
-                            CLANG_WARN_INT_CONVERSION = YES;
-                            CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                            CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                            COPY_PHASE_STRIP = YES;
-                            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-                            ENABLE_NS_ASSERTIONS = NO;
-                            GCC_C_LANGUAGE_STANDARD = gnu99;
-                            GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-                            GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                            GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                            GCC_WARN_UNDECLARED_SELECTOR = YES;
-                            GCC_WARN_UNINITIALIZED_AUTOS = YES;
-                            GCC_WARN_UNUSED_FUNCTION = YES;
-                            GCC_WARN_UNUSED_VARIABLE = YES;
-                            MACOSX_DEPLOYMENT_TARGET = 10.8;
-                            SDKROOT = macosx;
-                     };
-                     name = Release;
-              };
-              9679335E1855173100A49AC7 /* Debug */ = {
-                     isa = XCBuildConfiguration;
-                     baseConfigurationReference = 21D5956B688103BAC9238102 /* Pods.debug.xcconfig */;
-                     buildSettings = {
-                            ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                            CLANG_ENABLE_OBJC_ARC = YES;
-                            COMBINE_HIDPI_IMAGES = YES;
-                            GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                            GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-                            INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
-                            MACOSX_DEPLOYMENT_TARGET = 10.7;
-                            PRODUCT_NAME = BeardedSpice;
-                            WRAPPER_EXTENSION = app;
-                     };
-                     name = Debug;
-              };
-              9679335F1855173100A49AC7 /* Release */ = {
-                     isa = XCBuildConfiguration;
-                     baseConfigurationReference = 9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */;
-                     buildSettings = {
-                            ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                            CLANG_ENABLE_OBJC_ARC = YES;
-                            COMBINE_HIDPI_IMAGES = YES;
-                            GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                            GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-                            INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
-                            MACOSX_DEPLOYMENT_TARGET = 10.7;
-                            PRODUCT_NAME = BeardedSpice;
-                            WRAPPER_EXTENSION = app;
-                     };
-                     name = Release;
-              };
-              967933611855173100A49AC7 /* Debug */ = {
-                     isa = XCBuildConfiguration;
-                     buildSettings = {
-                            BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
-                            COMBINE_HIDPI_IMAGES = YES;
-                            FRAMEWORK_SEARCH_PATHS = (
-                                   "$(DEVELOPER_FRAMEWORKS_DIR)",
-                                   "$(inherited)",
-                            );
-                            GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                            GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-                            GCC_PREPROCESSOR_DEFINITIONS = (
-                                   "DEBUG=1",
-                                   "$(inherited)",
-                            );
-                            INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
-                            PRODUCT_NAME = BeardedSpiceTests;
-                            TEST_HOST = "$(BUNDLE_LOADER)";
-                            WRAPPER_EXTENSION = xctest;
-                     };
-                     name = Debug;
-              };
-              967933621855173100A49AC7 /* Release */ = {
-                     isa = XCBuildConfiguration;
-                     buildSettings = {
-                            BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
-                            COMBINE_HIDPI_IMAGES = YES;
-                            FRAMEWORK_SEARCH_PATHS = (
-                                   "$(DEVELOPER_FRAMEWORKS_DIR)",
-                                   "$(inherited)",
-                            );
-                            GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                            GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-                            INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
-                            PRODUCT_NAME = BeardedSpiceTests;
-                            TEST_HOST = "$(BUNDLE_LOADER)";
-                            WRAPPER_EXTENSION = xctest;
-                     };
-                     name = Release;
-              };
+		9679335B1855173100A49AC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9679335C1855173100A49AC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9679335E1855173100A49AC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21D5956B688103BAC9238102 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
+				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = BeardedSpice;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9679335F1855173100A49AC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
+				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = BeardedSpice;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		967933611855173100A49AC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
+				PRODUCT_NAME = BeardedSpiceTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		967933621855173100A49AC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
+				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
+				PRODUCT_NAME = BeardedSpiceTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-              967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */ = {
-                     isa = XCConfigurationList;
-                     buildConfigurations = (
-                            9679335B1855173100A49AC7 /* Debug */,
-                            9679335C1855173100A49AC7 /* Release */,
-                     );
-                     defaultConfigurationIsVisible = 0;
-                     defaultConfigurationName = Release;
-              };
-              9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */ = {
-                     isa = XCConfigurationList;
-                     buildConfigurations = (
-                            9679335E1855173100A49AC7 /* Debug */,
-                            9679335F1855173100A49AC7 /* Release */,
-                     );
-                     defaultConfigurationIsVisible = 0;
-                     defaultConfigurationName = Release;
-              };
-              967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */ = {
-                     isa = XCConfigurationList;
-                     buildConfigurations = (
-                            967933611855173100A49AC7 /* Debug */,
-                            967933621855173100A49AC7 /* Release */,
-                     );
-                     defaultConfigurationIsVisible = 0;
-                     defaultConfigurationName = Release;
-              };
+		967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9679335B1855173100A49AC7 /* Debug */,
+				9679335C1855173100A49AC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9679335E1855173100A49AC7 /* Debug */,
+				9679335F1855173100A49AC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				967933611855173100A49AC7 /* Debug */,
+				967933621855173100A49AC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-       };
-       rootObject = 967933241855173100A49AC7 /* Project object */;
+	};
+	rootObject = 967933241855173100A49AC7 /* Project object */;
 }

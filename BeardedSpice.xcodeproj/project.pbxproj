@@ -33,6 +33,7 @@
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
 		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
+		32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F131451A71B6090029E9EF /* PocketCastsStrategy.m */; };
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
@@ -124,6 +125,8 @@
 		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMackStrategy.m; sourceTree = "<group>"; };
 		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		32F131441A71B6090029E9EF /* PocketCastsStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCastsStrategy.h; sourceTree = "<group>"; };
+		32F131451A71B6090029E9EF /* PocketCastsStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketCastsStrategy.m; sourceTree = "<group>"; };
 		377A179F1A5C858C005595E5 /* DeezerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerStrategy.h; sourceTree = "<group>"; };
 		377A17A01A5C858C005595E5 /* DeezerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerStrategy.m; sourceTree = "<group>"; };
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShufflerFmStrategy.m; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
+				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
 				1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
 				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
@@ -589,6 +594,7 @@
 				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
 				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
 				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
+				32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
 			);

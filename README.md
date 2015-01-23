@@ -1,6 +1,8 @@
+# BeardedSpice with Kollekt.FM support
+
 # Download
 
-Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.2.3.tar.gz), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
+Download the Kollekt.FM version (https://github.com/WiertOmta/beardedspice/raw/master/BeardedSpice.zip), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 
 Mac OS X 10.7 or greater required.
 

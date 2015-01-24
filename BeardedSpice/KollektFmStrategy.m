@@ -44,6 +44,11 @@
     return @"($( \".fa-pause\" ).click())";
 }
 
+-(NSString *) favorite
+{
+    return @"($( \"i[ng-click='favoriteTrack(activeTrack())']\" ).click())";
+}
+
 -(NSString *) displayName
 {
     return @"Kollekt.FM";

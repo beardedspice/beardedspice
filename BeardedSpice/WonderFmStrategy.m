@@ -27,7 +27,7 @@
 
 -(NSString *) toggle
 {
-    return @"(function() {var playButton = document.querySelector('a.jp-play');var pauseButton = document.querySelector('a.jp-pause');if (playButton.style.cssText === 'display: none;') {pauseButton.click();} else {playButton.click();}})()";
+    return @"!function(){var e=document.querySelector('.jp-type-single'),l=document.querySelector('a.jp-play'),t=document.querySelector('a.jp-pause'),c=document.querySelector('.track_play'),u='none'===getComputedStyle(e,null).display,n='none'===getComputedStyle(l,null).display;u?c.click():n?t.click():l.click()}();";
 }
 
 -(NSString *) previous

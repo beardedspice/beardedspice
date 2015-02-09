@@ -213,11 +213,11 @@
                             debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy toggle]];
                 break;
-                     case NX_KEYTYPE_FAST:
+                     case NX_KEYTYPE_FAST: case NX_KEYTYPE_NEXT:
                             debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy next]];
                             break;
-                     case NX_KEYTYPE_REWIND:
+                     case NX_KEYTYPE_REWIND: case NX_KEYTYPE_PREVIOUS:
                             debugString = [@"Rewind pressed" stringByAppendingString:debugString];
                 [activeTab executeJavascript:[strategy previous]];
                             break;

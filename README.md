@@ -33,6 +33,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Spotify (Web)](https://play.spotify.com)
 - [Synology](http://synology.com)
 - [XboxMusic](http://music.xbox.com)
+- [Yandex Music](http://music.yandex.ru)
 - [YouTube](http://youtube.com)
 - [VK ("My Music" from vk.com)](http://vk.com)
 - [Vimeo](http://vimeo.com)

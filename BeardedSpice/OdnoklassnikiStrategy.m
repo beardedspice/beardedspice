@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"if (odklMusic.playingTrack() == \"\") {odklMusic.openAndLaunchMusicPlaying();} else {__getMusicFlash().lcPause();}";
+    return @"if (odklMusic.playingTrack() == \"\") {if (window['__getMusicFlash']) {__getMusicFlash().lcResume()} else {odklMusic.openAndLaunchMusicPlaying();}} else {__getMusicFlash().lcPause();}";
 }
 
 -(NSString *) previous

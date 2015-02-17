@@ -62,6 +62,7 @@
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
+		C7096CBBDAD3F7D13AA2AE10 /* OdnoklassnikiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C7096DF3823E9A8E1B8D9893 /* OdnoklassnikiStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
@@ -182,6 +183,8 @@
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexMusicStrategy.m; sourceTree = "<group>"; };
 		BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusAtWillStrategy.m; sourceTree = "<group>"; };
 		BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FocusAtWillStrategy.h; sourceTree = "<group>"; };
+		C70962AC71BFCEE669FA127B /* OdnoklassnikiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdnoklassnikiStrategy.h; sourceTree = "<group>"; };
+		C7096DF3823E9A8E1B8D9893 /* OdnoklassnikiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdnoklassnikiStrategy.m; sourceTree = "<group>"; };
 		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
 		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
 		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
 				BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */,
 				BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */,
+				C70962AC71BFCEE669FA127B /* OdnoklassnikiStrategy.h */,
+				C7096DF3823E9A8E1B8D9893 /* OdnoklassnikiStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -597,6 +602,7 @@
 				32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
+				C7096CBBDAD3F7D13AA2AE10 /* OdnoklassnikiStrategy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

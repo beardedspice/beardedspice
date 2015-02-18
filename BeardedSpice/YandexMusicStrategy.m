@@ -57,4 +57,13 @@
     return @"YandexMusic";
 }
 
+-(Track *) trackInfo:(id<Tab>)tab
+{
+    Track *track = [[Track alloc] init];
+
+    [track setTrack:[tab executeJavascript:@"document.querySelector('.player-controls__track .track__name-wrap a.track__title').firstChild.nodeValue"]];
+    [track setArtist:[tab executeJavascript:@"document.querySelector('.player-controls__track .track__artists a.link_mute').firstChild.nodeValue"]];
+    return track;
+}
+
 @end

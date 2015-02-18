@@ -50,6 +50,7 @@
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     [self setupSleepCallback];
+    [self setupProcessWatcher];
 
     // set whether to always show notifications
     alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
@@ -341,6 +342,32 @@
         [activeTab executeJavascript:[strategy pause]];
     }
 }
+
+- (void)setupProcessWatcher
+{
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(resetMediaKeys)
+                                                               name: NSWorkspaceDidLaunchApplicationNotification
+                                                             object: NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(resetMediaKeys)
+                                                               name: NSWorkspaceDidTerminateApplicationNotification
+                                                             object: NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(resetMediaKeys)
+                                                               name: NSWorkspaceDidWakeNotification
+                                                             object: NULL];
+
+}
+
+- (void)resetMediaKeys
+{
+    if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+        [keyTap stopWatchingMediaKeys];
+        [keyTap startWatchingMediaKeys];
+    }
+}
+
 
 - (NSWindowController *)preferencesWindowController
 {

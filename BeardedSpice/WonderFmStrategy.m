@@ -50,4 +50,18 @@
     return @"WonderFM";
 }
 
+-(Track *) trackInfo:(id<Tab>)tab
+{
+  Track *track = [[Track alloc] init];
+  [track setTrack:[tab executeJavascript:@"document.querySelector('.current_url').text"]];
+  [track setArtist:[tab executeJavascript:@"document.querySelector('#current_track > a').text"]];
+
+  return track;
+}
+
+-(NSString *) favorite
+{
+  return @"document.querySelector('.track_active .track_fav').click()";
+}
+
 @end

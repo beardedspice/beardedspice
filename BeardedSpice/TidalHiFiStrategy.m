@@ -1,5 +1,5 @@
 //
-//  TidalStrategy.m
+//  TidalHiFiStrategy.m
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 04.03.15.

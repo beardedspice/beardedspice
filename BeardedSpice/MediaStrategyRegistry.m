@@ -39,6 +39,7 @@
 #import "DeezerStrategy.h"
 #import "FocusAtWillStrategy.h"
 #import "PocketCastsStrategy.h"
+#import "TidalHiFiStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -181,7 +182,8 @@
                         [AudioMackStrategy new],
                         [DeezerStrategy new],
                         [FocusAtWillStrategy new],
-                        [PocketCastsStrategy new]
+                        [PocketCastsStrategy new],
+                        [TidalHiFiStrategy new]
                     ];
     });
     return strategies;

@@ -39,6 +39,7 @@
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
 		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
+		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
@@ -137,6 +138,8 @@
 		4DB2F13219DB987D0010D194 /* ChorusStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChorusStrategy.m; sourceTree = "<group>"; };
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsMusicStrategy.m; sourceTree = "<group>"; };
+		658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalHiFiStrategy.h; sourceTree = "<group>"; };
+		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidalHiFiStrategy.m; sourceTree = "<group>"; };
 		699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
 		699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvercastStrategy.m; sourceTree = "<group>"; };
 		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VkStrategy.m; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
 				BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */,
 				BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */,
+				658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */,
+				658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
+				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,
 				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
@@ -677,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -709,7 +715,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;

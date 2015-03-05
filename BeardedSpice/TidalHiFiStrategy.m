@@ -58,12 +58,32 @@
 
 -(Track *) trackInfo:(id<Tab>)tab
 {
-    NSDictionary *songData = [tab executeJavascript:@"(function(){ return {'track':$('div.player__text>a[data-bind=title]').text(), 'artist':$('div.player__text>div[data-bind=artist]>a').text()}; })()"];
-    Track *track = [[Track alloc] init];
-    
-    [track setValuesForKeysWithDictionary:songData];
-    
-    return track;
+    @autoreleasepool {
+        
+        NSDictionary *songData = [tab executeJavascript:@"(function(){ return {'track':$('div.player__text>a[data-bind=title]').text(), 'artist':$('div.player__text>div[data-bind=artist]>a').text(), 'imageUrl':$('div.player div.image--player img[data-bind-src=\"imageUrl\"]').attr('src') }; })()"];
+        Track *track = [[Track alloc] init];
+        
+        track.track = songData[@"track"];
+        track.artist = songData[@"artist"];
+        
+        NSString *urlString = songData[@"imageUrl"];
+        if (urlString) {
+            
+            if ([urlString isEqualToString:_lastImageUrlString]) {
+                
+                track.image = _lastImage;
+            }
+            else{
+                
+                _lastImageUrlString = urlString;
+                NSURL *url = [NSURL URLWithString:urlString];
+                if (url) {
+                    track.image = _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+                }
+            }
+        }
+        return track;
+    }
 }
 
 @end

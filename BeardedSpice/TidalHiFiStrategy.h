@@ -11,6 +11,10 @@
 @interface TidalHiFiStrategy : MediaStrategy{
     
     NSPredicate *predicate;
+    
+    // Caches last image for optimization :)
+    NSString *_lastImageUrlString;
+    NSImage *_lastImage;
 }
 
 @end

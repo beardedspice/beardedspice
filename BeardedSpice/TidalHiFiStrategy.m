@@ -28,7 +28,7 @@
 -(NSString *) toggle
 {
     // check play/pause
-    return @"(function(){var play=$('button.js-play'); if (play.css('display') == 'none') {$('button.js-pause').click();} else {play.click();} })();";
+    return @"(function(){var play=$('button.js-play'); if (play.css('display') === 'none') {$('button.js-pause').click();} else {play.click();} })();";
 }
 
 -(NSString *) previous
@@ -48,7 +48,7 @@
 
 - (NSString *)favorite
 {
-    return @"(function(){$('a.js-add-favorite').click();})();";
+    return @"(function(){var fav=$('a.js-add-favorite'); if (fav.length){ fav.click();} else {$('a.js-remove-favorite').click();}})()";
 }
 
 -(NSString *) displayName
@@ -58,9 +58,11 @@
 
 -(Track *) trackInfo:(id<Tab>)tab
 {
+    NSDictionary *songData = [tab executeJavascript:@"(function(){ return {'track':$('div.player__text>a[data-bind=title]').text(), 'artist':$('div.player__text>div[data-bind=artist]>a').text()}; })()"];
     Track *track = [[Track alloc] init];
-    [track setTrack:[tab executeJavascript:@"document.querySelector('div.player__text>a[data-bind=title]').nodeValue"]];
-    [track setArtist:[tab executeJavascript:@"document.querySelector('div.player__text>div[data-bind=artist]>a').nodeValue"]];
+    
+    [track setValuesForKeysWithDictionary:songData];
+    
     return track;
 }
 

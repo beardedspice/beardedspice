@@ -16,6 +16,8 @@
 @property NSString *album;
 @property NSString *artist;
 
+@property NSImage *image;
+
 @end
 
 @interface MediaStrategy : NSObject

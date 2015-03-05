@@ -378,4 +378,9 @@
     [self.preferencesWindowController showWindow:nil];
 }
 
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+
+    return YES;
+}
+
 @end

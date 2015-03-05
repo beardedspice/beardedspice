@@ -20,6 +20,14 @@
     notification.title = self.track;
     notification.subtitle = self.album;
     notification.informativeText = self.artist;
+    
+    if (self.image) {
+        // workaround for 10.8 support
+        if ([notification respondsToSelector:@selector(setContentImage:)]) {
+        //
+            notification.contentImage = self.image;
+        }
+    }
     return notification;
 }
 

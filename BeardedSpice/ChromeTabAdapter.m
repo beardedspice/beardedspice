@@ -10,11 +10,12 @@
 
 @implementation ChromeTabAdapter
 
-+ (id)initWithTab:(ChromeTab *)tab andWindow:(ChromeWindow *) window
++(id) initWithApplication:(ChromeApplication *)application andWindow:(ChromeWindow *)window andTab:(ChromeTab *)tab
 {
     ChromeTabAdapter *out = [[ChromeTabAdapter alloc] init];
     [out setTab:[tab get]];
     [out setWindow:[window get]];
+    out.application = application;
     return out;
 }
 
@@ -44,6 +45,24 @@
 -(NSString *) key
 {
     return [NSString stringWithFormat:@"C:%ld:%ld", [self.window index], [self.tab id]];
+}
+
+- (void)activateTab{
+
+    if (!self.application.frontmost) {
+        [self.application activate];
+    }
+    self.window.index = 1;
+    NSUInteger count = self.window.tabs.count;
+    NSUInteger tabId = [self.tab id];
+    // find tab by id
+    for (NSUInteger index = 0; index < count; index++) {
+        if ([(ChromeTab *)self.window.tabs[index] id] == tabId) {
+            
+            self.window.activeTabIndex = index + 1;
+            break;
+        }
+    }
 }
 
 @end

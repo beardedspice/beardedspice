@@ -17,6 +17,8 @@ extern NSString *const BeardedSpiceNotificationShortcut;
 extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceActiveControllers;
 
+extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
+
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 {
     // array of strategies used to drive the view
@@ -31,6 +33,7 @@ extern NSString *const BeardedSpiceActiveControllers;
     MediaStrategyRegistry *registry;
 }
 
+@property (weak) IBOutlet MASShortcutView *activatePlayingTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *setActiveTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *favoriteShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *notificationShortcut;

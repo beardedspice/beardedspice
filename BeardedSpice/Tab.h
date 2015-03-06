@@ -13,6 +13,8 @@
 -(NSString *) URL;
 -(NSString *) key;
 
+- (void)activateTab;
+
 -(BOOL) isEqual:(__autoreleasing id)otherTab;
 
 @end

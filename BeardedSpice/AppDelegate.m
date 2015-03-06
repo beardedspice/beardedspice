@@ -49,6 +49,9 @@
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
+    
+    [self setupActivatePlayingTabShortcutCallback];
+    
     [self setupSleepCallback];
 
     // set whether to always show notifications
@@ -94,7 +97,7 @@
     if (chrome) {
         for (ChromeWindow *chromeWindow in chrome.windows) {
             for (ChromeTab *chromeTab in chromeWindow.tabs) {
-                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow];
+                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:chrome];
             }
         }
     }
@@ -136,11 +139,11 @@
     }
 }
 
--(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow
+-(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(ChromeApplication *)application
 {
     NSMenuItem *menuItem = [self addStatusMenuItemFor:chromeTab withTitle:[chromeTab title] andURL:[chromeTab URL]];
     if (menuItem) {
-        id<Tab> tab = [ChromeTabAdapter initWithTab:chromeTab andWindow:chromeWindow];
+        id<Tab> tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
         [menuItem setRepresentedObject:tab];
         [self setStatusMenuItemStatus:menuItem forTab:tab];
     }
@@ -268,7 +271,7 @@
     ChromeWindow *chromeWindow = chrome.windows[0];
 
     // use 'get' to force a hard reference.
-    [self updateActiveTab:[ChromeTabAdapter initWithTab:[chromeWindow activeTab] andWindow:chromeWindow]];
+    [self updateActiveTab:[ChromeTabAdapter initWithApplication:chrome andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
 }
 
 - (void)setActiveTabShortcutForSafari:(SafariApplication *)safari {
@@ -311,6 +314,14 @@
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
         [self showNotification];
+    }];
+}
+
+- (void)setupActivatePlayingTabShortcutCallback
+{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
+        
+        [activeTab activateTab];
     }];
 }
 

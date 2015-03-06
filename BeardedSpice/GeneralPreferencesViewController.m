@@ -14,6 +14,8 @@ NSString *const BeardedSpiceNotificationShortcut = @"BeardedSpiceNotificationSho
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 
+NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivatePlayingTabShortcut";
+
 @implementation GeneralPreferencesViewController
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry
@@ -33,6 +35,9 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
     [self.setActiveTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
     [self.favoriteShortcut setAssociatedUserDefaultsKey:BeardedSpiceFavoriteShortcut];
     [self.notificationShortcut setAssociatedUserDefaultsKey:BeardedSpiceNotificationShortcut];
+
+    [self.activatePlayingTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut];
+    
     // check the user defaults
     NSNumber *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification];
     if ([enabled intValue] == 1) {

@@ -15,6 +15,7 @@
 #import "Tab.h"
 #import "MediaStrategyRegistry.h"
 
+
 @interface BeardedSpiceApp : NSApplication
 @end
 

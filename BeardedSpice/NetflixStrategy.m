@@ -46,7 +46,7 @@
      var v = document.getElementsByTagName('video')[0];
      v.paused ? playNetflix(v, ppb) : pauseNetflix(v, ppb);
      **/
-    return @"function pauseNetflix(a,e){a.pause(),e.className=e.className.replace(/(?:^|\\s)icon-player-pause(?!\S)/g,' icon-player-play '),e.className=e.className.replace(/(?:^|\\s)pause(?!\\S)/g,' play ')}function playNetflix(a,e){a.play(),e.className=e.className.replace(/(?:^|\\s)icon-player-play(?!\\S)/g,' icon-player-pause '),e.className=e.className.replace(/(?:^|\\s)play(?!\\S)/g,' pause ')}var ppb=document.getElementsByClassName('player-play-pause')[0],v=document.getElementsByTagName('video')[0];v.paused?playNetflix(v,ppb):pauseNetflix(v,ppb);";
+    return @"function pauseNetflix(a,e){a.pause(),e.className=e.className.replace(/(?:^|\\s)icon-player-pause(?!\\S)/g,' icon-player-play '),e.className=e.className.replace(/(?:^|\\s)pause(?!\\S)/g,' play ')}function playNetflix(a,e){a.play(),e.className=e.className.replace(/(?:^|\\s)icon-player-play(?!\\S)/g,' icon-player-pause '),e.className=e.className.replace(/(?:^|\\s)play(?!\\S)/g,' pause ')}var ppb=document.getElementsByClassName('player-play-pause')[0],v=document.getElementsByTagName('video')[0];v.paused?playNetflix(v,ppb):pauseNetflix(v,ppb);";
 }
 
 -(NSString *) previous

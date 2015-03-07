@@ -9,11 +9,13 @@
 #import "Tab.h"
 #import "Chrome.h"
 
+@class runningSBApplication;
+
 @interface ChromeTabAdapter : NSObject <Tab>
 
-+(id) initWithApplication:(ChromeApplication *)application andWindow:(ChromeWindow *)window andTab:(ChromeTab *)tab;
++(id) initWithApplication:(runningSBApplication *)application andWindow:(ChromeWindow *)window andTab:(ChromeTab *)tab;
 
-@property ChromeApplication *application;
+@property runningSBApplication *application;
 @property ChromeTab *tab;
 @property ChromeWindow *window;
 

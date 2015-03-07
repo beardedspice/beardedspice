@@ -15,6 +15,8 @@
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 
+#import "runningSBApplication.h"
+
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
 {
@@ -93,17 +95,19 @@
     [NSApp terminate: nil];
 }
 
-- (void)refreshTabsForChrome:(ChromeApplication *) chrome {
+- (void)refreshTabsForChrome:(runningSBApplication *)app {
+    ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
     if (chrome) {
         for (ChromeWindow *chromeWindow in chrome.windows) {
             for (ChromeTab *chromeTab in chromeWindow.tabs) {
-                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:chrome];
+                [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
             }
         }
     }
 }
 
-- (void)refreshTabsForSafari:(SafariApplication *) safari {
+- (void)refreshTabsForSafari:(runningSBApplication *)app {
+    SafariApplication *safari = (SafariApplication *)app.sbApplication;
     if (safari) {
         for (SafariWindow *safariWindow in safari.windows) {
             for (SafariTab *safariTab in safariWindow.tabs) {
@@ -139,7 +143,7 @@
     }
 }
 
--(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(ChromeApplication *)application
+-(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
     NSMenuItem *menuItem = [self addStatusMenuItemFor:chromeTab withTitle:[chromeTab title] andURL:[chromeTab URL]];
     if (menuItem) {
@@ -239,13 +243,13 @@
        }
 }
 
--(SBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
+-(runningSBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
 {
     NSArray *apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleIdentifier];
     if ([apps count] > 0) {
-        NSRunningApplication *app = [apps objectAtIndex:0];
+        NSRunningApplication *app = [apps firstObject];
         NSLog(@"App %@ is running %@", bundleIdentifier, app);
-        return [SBApplication applicationWithProcessIdentifier:[app processIdentifier]];
+        return [[runningSBApplication alloc] initWithApplication:[SBApplication applicationWithProcessIdentifier:[app processIdentifier]] bundleIdentifier:bundleIdentifier];
     }
     return NULL;
 }
@@ -260,26 +264,30 @@
 
 - (void)refreshApplications
 {
-    chromeApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
-    canaryApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
-    yandexBrowserApp = (ChromeApplication *)[self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
-    safariApp = (SafariApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+    chromeApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
+    canaryApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
+    yandexBrowserApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
+    safariApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
 }
 
-- (void)setActiveTabShortcutForChrome:(ChromeApplication *)chrome {
+- (void)setActiveTabShortcutForChrome:(runningSBApplication *)app {
+    
+    ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
     // chromeApp.windows[0] is the front most window.
     ChromeWindow *chromeWindow = chrome.windows[0];
 
     // use 'get' to force a hard reference.
-    [self updateActiveTab:[ChromeTabAdapter initWithApplication:chrome andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
+    [self updateActiveTab:[ChromeTabAdapter initWithApplication:app andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
 }
 
-- (void)setActiveTabShortcutForSafari:(SafariApplication *)safari {
+- (void)setActiveTabShortcutForSafari:(runningSBApplication *)app {
+    
+    SafariApplication *safari = (SafariApplication *)app.sbApplication;
     // is safari.windows[0] the frontmost?
     SafariWindow *safariWindow = safari.windows[0];
 
     // use 'get' to force a hard reference.
-    [self updateActiveTab:[SafariTabAdapter initWithApplication:safari
+    [self updateActiveTab:[SafariTabAdapter initWithApplication:app
                                                       andWindow:safariWindow
                                                          andTab:[safariWindow currentTab]]];
 }

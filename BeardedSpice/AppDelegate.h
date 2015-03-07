@@ -15,6 +15,7 @@
 #import "Tab.h"
 #import "MediaStrategyRegistry.h"
 
+@class runningSBApplication;
 
 @interface BeardedSpiceApp : NSApplication
 @end
@@ -25,11 +26,11 @@
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
 
-    ChromeApplication *chromeApp;
-    ChromeApplication *canaryApp;
-    ChromeApplication *yandexBrowserApp;
+    runningSBApplication *chromeApp;
+    runningSBApplication *canaryApp;
+    runningSBApplication *yandexBrowserApp;
 
-    SafariApplication *safariApp;
+    runningSBApplication *safariApp;
 
     SPMediaKeyTap *keyTap;
 

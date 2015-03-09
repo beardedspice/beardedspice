@@ -70,30 +70,20 @@
         
         if (![(SafariApplication *)self.application.sbApplication frontmost]) {
             
-            NSArray *appArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.application.bundleIdentifier];
-            
-            NSRunningApplication *app = [appArray firstObject];
-            if (!app) {
-                return;
-            }
-            [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+            [self.application activate];
         }
         
-        self.window.index = 1;
-        self.window.currentTab = self.tab;
-        
-//        NSUInteger count = self.window.tabs.count;
-//        NSUInteger tabId = [self.tab id];
-//        // find tab by id
-//        for (NSUInteger index = 0; index < count; index++) {
-//            if ([(ChromeTab *)self.window.tabs[index] id] == tabId) {
-//                
-//                self.window.activeTabIndex = index + 1;
-//                break;
-//            }
-//        }
+        // Грёбаная хурма
+        // We must wait while application will become frontmost
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            self.window.index = 1;
+            self.window.currentTab = self.tab;
+            
+            [self.application makeKeyFrontmostWindow];
+        });
     }
-
+    
 }
 
 @end

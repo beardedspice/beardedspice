@@ -9,12 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <ScriptingBridge/ScriptingBridge.h>
 
-@interface runningSBApplication : NSObject
+@interface runningSBApplication : NSObject{
+    
+    pid_t _processIdentifier;
+}
 
 @property SBApplication *sbApplication;
 @property NSString  *bundleIdentifier;
+@property (readonly) pid_t processIdentifier;
 @property (readonly) BOOL frontmost;
 
 - (instancetype)initWithApplication:(SBApplication *)application bundleIdentifier:(NSString *)bundleIdentifier;
+
+- (void)activate;
+- (void)makeKeyFrontmostWindow;
+
 
 @end

@@ -17,6 +17,8 @@
 
 @class runningSBApplication;
 
+extern BOOL accessibilityApiEnabled;
+
 @interface BeardedSpiceApp : NSApplication
 @end
 

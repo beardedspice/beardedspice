@@ -53,14 +53,8 @@
     @autoreleasepool {
         
         if (![(ChromeApplication *)self.application.sbApplication frontmost]) {
-            
-            NSArray *appArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.application.bundleIdentifier];
-            
-            NSRunningApplication *app = [appArray firstObject];
-            if (!app) {
-                return;
-            }
-            [app activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+
+            [self.application activate];
         }
      
         // Грёбаная хурма
@@ -68,6 +62,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             self.window.index = 1;
+            
             NSUInteger count = self.window.tabs.count;
             NSUInteger tabId = [self.tab id];
             // find tab by id
@@ -78,6 +73,8 @@
                     break;
                 }
             }
+            
+            [self.application makeKeyFrontmostWindow];
         });
     }
 }

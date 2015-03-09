@@ -33,7 +33,7 @@ extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
     MediaStrategyRegistry *registry;
 }
 
-@property (weak) IBOutlet MASShortcutView *activatePlayingTabShortcut;
+@property (nonatomic, weak) IBOutlet MASShortcutView *activatePlayingTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *setActiveTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *favoriteShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *notificationShortcut;

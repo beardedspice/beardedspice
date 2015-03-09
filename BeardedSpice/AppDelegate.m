@@ -17,6 +17,8 @@
 
 #import "runningSBApplication.h"
 
+BOOL accessibilityApiEnabled = NO;
+
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
 {
@@ -61,6 +63,9 @@
 
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
+    
+    // check accessibility enabled
+    [self checkAccessibilityTrusted];
 }
 
 - (void)awakeFromNib
@@ -266,7 +271,9 @@
 {
     chromeApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
     canaryApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
+    
     yandexBrowserApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
+    
     safariApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
 }
 
@@ -402,4 +409,21 @@
     return YES;
 }
 
+- (void)checkAccessibilityTrusted{
+    
+    BOOL apiEnabled = AXAPIEnabled();
+    if (apiEnabled) {
+
+        accessibilityApiEnabled = AXIsProcessTrusted();
+        
+        if (!accessibilityApiEnabled) {
+            
+            //TODO: notify user
+        }
+    }
+    else{
+        
+        //TODO: Notify user
+    }
+}
 @end

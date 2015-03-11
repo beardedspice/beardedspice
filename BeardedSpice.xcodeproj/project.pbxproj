@@ -33,6 +33,7 @@
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
 		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
+		24B570A61AB02D5300B366E9 /* TelmoreMusikStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B570A51AB02D5300B366E9 /* TelmoreMusikStrategy.m */; };
 		32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F131451A71B6090029E9EF /* PocketCastsStrategy.m */; };
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
@@ -125,6 +126,8 @@
 		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMackStrategy.m; sourceTree = "<group>"; };
 		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		24B570A41AB02D4800B366E9 /* TelmoreMusikStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TelmoreMusikStrategy.h; sourceTree = "<group>"; };
+		24B570A51AB02D5300B366E9 /* TelmoreMusikStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TelmoreMusikStrategy.m; sourceTree = "<group>"; };
 		32F131441A71B6090029E9EF /* PocketCastsStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCastsStrategy.h; sourceTree = "<group>"; };
 		32F131451A71B6090029E9EF /* PocketCastsStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketCastsStrategy.m; sourceTree = "<group>"; };
 		377A179F1A5C858C005595E5 /* DeezerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerStrategy.h; sourceTree = "<group>"; };
@@ -237,7 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
+				24B570A41AB02D4800B366E9 /* TelmoreMusikStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
+				24B570A51AB02D5300B366E9 /* TelmoreMusikStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
 				1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
 				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
@@ -565,6 +570,7 @@
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
 				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
+				24B570A61AB02D5300B366E9 /* TelmoreMusikStrategy.m in Sources */,
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,

@@ -28,27 +28,27 @@
 -(NSString *) toggle
 {
     // check play/pause
-    return @"(function(){var play=$('button.js-play'); if (play.css('display') === 'none') {$('button.js-pause').click();} else {play.click();} })();";
+    return @"(function(){var player=require('media/playbackController'); if (player.isPlaying()) {player.pause();} else {player.resume();} })();";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){$('button.js-previous').click();})();";
+    return @"(function(){require('media/playbackController').playPrevious();})();";
 }
 
 -(NSString *) next
 {
-    return @"(function(){$('button.js-next').click();})();";
+    return @"(function(){require('media/playbackController').playNext();})();";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){$('button.js-pause').click();})();";
+    return @"(function(){require('media/playbackController').pause();})();";
 }
 
 - (NSString *)favorite
 {
-    return @"(function(){var fav=$('a.js-add-favorite'); if (fav.length){ fav.click();} else {$('a.js-remove-favorite').click();}})()";
+    return @"(function(){$('button.player__context-menu').click(); setTimeout(function(){var fav=$('a.js-add-favorite'); if (fav.length){ fav.click();} else {$('a.js-remove-favorite').click();}}, 100);})()";
 }
 
 -(NSString *) displayName
@@ -60,11 +60,12 @@
 {
     @autoreleasepool {
         
-        NSDictionary *songData = [tab executeJavascript:@"(function(){ return {'track':$('div.player__text>a[data-bind=title]').text(), 'artist':$('div.player__text>div[data-bind=artist]>a').text(), 'imageUrl':$('div.player div.image--player img[data-bind-src=\"imageUrl\"]').attr('src') }; })()"];
+        NSDictionary *songData = [tab executeJavascript:@"(function(){ return {'track':$('div.player__text>a[data-bind=title]').text(), 'artist':$('div.player__text>div[data-bind=artist]>a').text(), 'imageUrl':$('div.player div.image--player img[data-bind-src=\"imageUrl\"]').attr('src'), 'favorited':(require('media/playbackController').getCurrentTrack().get('favoriteDate') !== undefined)}; })()"];
         Track *track = [[Track alloc] init];
         
         track.track = songData[@"track"];
         track.artist = songData[@"artist"];
+        track.favorited = songData[@"favorited"];
         
         NSString *urlString = songData[@"imageUrl"];
         if (urlString) {

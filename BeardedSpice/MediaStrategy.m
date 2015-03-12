@@ -8,6 +8,8 @@
 
 #import "MediaStrategy.h"
 
+#define NBSP_STRING                         @"\u00a0"
+
 @implementation Track
 
 @synthesize track;
@@ -17,7 +19,14 @@
 -(NSUserNotification *) asNotification
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = self.track;
+    
+    if (self.favorited && [self.favorited boolValue]) {
+        
+        notification.title = self.track ? [NSString stringWithFormat:@"★ %@ ★", self.track] : nil;
+    }
+    else
+        notification.title = self.track;
+    
     notification.subtitle = self.album;
     notification.informativeText = self.artist;
     

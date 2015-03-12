@@ -17,6 +17,7 @@
 @property NSString *artist;
 
 @property NSImage *image;
+@property NSNumber *favorited;
 
 @end
 

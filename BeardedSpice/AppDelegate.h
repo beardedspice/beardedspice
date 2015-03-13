@@ -39,8 +39,6 @@ extern BOOL accessibilityApiEnabled;
     id <Tab> activeTab;
     MediaStrategyRegistry *mediaStrategyRegistry;
 
-    BOOL alwaysShowNotification;
-
     NSWindowController *_preferencesWindowController;
 }
 

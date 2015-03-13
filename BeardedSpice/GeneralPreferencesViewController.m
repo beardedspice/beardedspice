@@ -101,7 +101,6 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
     }
 
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:BeardedSpiceAlwaysShowNotification];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BeardedSpiceUpdatePreferences" object:self];
 }
 
 -(void)updateMediaStrategyRegistry:(id)sender

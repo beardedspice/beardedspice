@@ -18,6 +18,9 @@
 
 #import "runningSBApplication.h"
 
+/// Because user defaults have good caching mechanism, we can use this macro.
+#define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
+
 BOOL accessibilityApiEnabled = NO;
 
 @implementation BeardedSpiceApp
@@ -62,9 +65,6 @@ BOOL accessibilityApiEnabled = NO;
     [self setupActivatePlayingTabShortcutCallback];
     
     [self setupSleepCallback];
-
-    // set whether to always show notifications
-    alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
 
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
@@ -116,33 +116,25 @@ BOOL accessibilityApiEnabled = NO;
     int keyRepeat = (keyFlags & 0x1);
     
     if (keyIsPressed) {
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (!strategy) {
-            return;
-        }
+
         NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
         switch (keyCode) {
             case NX_KEYTYPE_PLAY:
                 debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
-                [activeTab executeJavascript:[strategy toggle]];
+                [self playerToggle];
                 break;
             case NX_KEYTYPE_FAST:
                 debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
-                [activeTab executeJavascript:[strategy next]];
+                [self playerNext];
                 break;
             case NX_KEYTYPE_REWIND:
                 debugString = [@"Rewind pressed" stringByAppendingString:debugString];
-                [activeTab executeJavascript:[strategy previous]];
+                [self playerPrevious];
                 break;
             default:
                 debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
                 break;
                 // More cases defined in hidsystem/ev_keymap.h
-        }
-        
-        if (alwaysShowNotification == YES)
-        {
-            [self showNotification];
         }
         
         NSLog(@"%@", debugString);
@@ -218,40 +210,61 @@ BOOL accessibilityApiEnabled = NO;
 {
     //Play/Pause
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayPauseShortcut handler:^{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy toggle]];
-            if (alwaysShowNotification){
-                [self showNotification];
-            }
 
-        }
+        [self playerToggle];
     }];
 
     //Next
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNextTrackShortcut handler:^{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy next]];
-            if (alwaysShowNotification){
-                [self showNotification];
-            }
-        }
+
+        [self playerNext];
     }];
 
     //Previous
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePreviousTrackShortcut handler:^{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy previous]];
-            if (alwaysShowNotification){
-                [self showNotification];
-            }
-        }
+
+        [self playerPrevious];
     }];
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Player Control methods
+/////////////////////////////////////////////////////////////////////////
+
+- (void)playerToggle{
+    
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    if (strategy) {
+        [activeTab executeJavascript:[strategy toggle]];
+        if (ALWAYSSHOWNOTIFICATION){
+            [self showNotification];
+        }
+        
+    }
+}
+
+- (void)playerNext{
+    
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    if (strategy) {
+        [activeTab executeJavascript:[strategy next]];
+        if (ALWAYSSHOWNOTIFICATION){
+            [self showNotification];
+        }
+    }
+    
+}
+
+- (void)playerPrevious{
+    
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    if (strategy) {
+        [activeTab executeJavascript:[strategy previous]];
+        if (ALWAYSSHOWNOTIFICATION){
+            [self showNotification];
+        }
+    }
+
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -451,14 +464,7 @@ BOOL accessibilityApiEnabled = NO;
 
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
-
-        //TODO: remove this aprouch.
-        // this is not my favorite. I'd welcome a better way to update alwaysShowNotification
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesClosed:) name:NSWindowWillCloseNotification object:nil];
-        NSLog(@"THis!");
     }
-    //TODO: remove this aprouch.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAlwaysShowNotification:) name:@"BeardedSpiceUpdatePreferences" object:nil];
     return _preferencesWindowController;
 }
 
@@ -474,18 +480,6 @@ BOOL accessibilityApiEnabled = NO;
         NSLog(@"Received sleep note, pausing");
         [activeTab executeJavascript:[strategy pause]];
     }
-}
-
--(void)preferencesClosed:(NSNotification *)notification
-{
-    //TODO: remove this aprouch.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"BeardedSpiceUpdatePreferences" object:nil];
-}
-
--(void)updateAlwaysShowNotification:(NSNotification *)notification
-{
-    // update whether to always show notifications
-    alwaysShowNotification = [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue];
 }
 
 @end

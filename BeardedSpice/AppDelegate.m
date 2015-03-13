@@ -433,7 +433,7 @@ BOOL accessibilityApiEnabled = NO;
 -(void)preferencesClosed:(NSNotification *)notification
 {
     //TODO: remove this aprouch.
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"BeardedSpiceUpdatePreferences"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"BeardedSpiceUpdatePreferences" object:nil];
 }
 
 -(void)updateAlwaysShowNotification:(NSNotification *)notification

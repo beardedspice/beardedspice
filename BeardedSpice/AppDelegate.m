@@ -21,6 +21,9 @@
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
+/// Delay displaying notification after changing favorited status of the current track.
+#define FAVORITED_DELAY         0.15
+
 BOOL accessibilityApiEnabled = NO;
 
 @implementation BeardedSpiceApp
@@ -187,6 +190,11 @@ BOOL accessibilityApiEnabled = NO;
         MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy favorite]];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                if([[strategy trackInfo:activeTab] favorited])
+                    [self showNotification];
+            });
         }
     }];
 }

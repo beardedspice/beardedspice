@@ -8,13 +8,8 @@
 
 #import "GeneralPreferencesViewController.h"
 
-NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
-NSString *const BeardedSpiceFavoriteShortcut = @"BeardedSpiceFavoriteShortcut";
-NSString *const BeardedSpiceNotificationShortcut = @"BeardedSpiceNotificationShortcut";
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
-
-NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivatePlayingTabShortcut";
 
 @implementation GeneralPreferencesViewController
 
@@ -31,13 +26,6 @@ NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivateP
 
 - (void)awakeFromNib
 {
-    // associate view with userdefaults
-    [self.setActiveTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActiveTabShortcut];
-    [self.favoriteShortcut setAssociatedUserDefaultsKey:BeardedSpiceFavoriteShortcut];
-    [self.notificationShortcut setAssociatedUserDefaultsKey:BeardedSpiceNotificationShortcut];
-
-    [self.activatePlayingTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut];
-    
     // check the user defaults
     NSNumber *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification];
     if ([enabled intValue] == 1) {

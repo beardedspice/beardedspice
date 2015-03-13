@@ -14,6 +14,7 @@
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
+#import "ShortcutsPreferencesViewController.h"
 
 #import "runningSBApplication.h"
 
@@ -50,10 +51,10 @@ BOOL accessibilityApiEnabled = NO;
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
 
+    [self setupPlayControlsShortcutCallbacks];
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
-    
     [self setupActivatePlayingTabShortcutCallback];
     
     [self setupSleepCallback];
@@ -340,6 +341,46 @@ BOOL accessibilityApiEnabled = NO;
     }];
 }
 
+- (void)setupPlayControlsShortcutCallbacks
+{
+    //Play/Pause
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayPauseShortcut handler:^{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy toggle]];
+            if (alwaysShowNotification){
+                [self showNotification];
+            }
+
+        }
+    }];
+
+    //Next
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNextTrackShortcut handler:^{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy next]];
+            if (alwaysShowNotification){
+                [self showNotification];
+            }
+        }
+    }];
+
+    //Previous
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePreviousTrackShortcut handler:^{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy previous]];
+            if (alwaysShowNotification){
+                [self showNotification];
+            }
+        }
+    }];
+}
+
 - (void)showNotification
 {
     MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
@@ -373,22 +414,26 @@ BOOL accessibilityApiEnabled = NO;
     if (_preferencesWindowController == nil)
     {
         NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry];
-        NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
+        NSViewController *shortcutsViewController = [ShortcutsPreferencesViewController new];
+        NSArray *controllers = @[generalViewController, shortcutsViewController];
 
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
 
+        //TODO: remove this aprouch.
         // this is not my favorite. I'd welcome a better way to update alwaysShowNotification
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAlwaysShowNotification:) name:@"BeardedSpiceUpdatePreferences" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesClosed:) name:NSWindowWillCloseNotification object:nil];
         NSLog(@"THis!");
     }
+    //TODO: remove this aprouch.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAlwaysShowNotification:) name:@"BeardedSpiceUpdatePreferences" object:nil];
     return _preferencesWindowController;
 }
 
 -(void)preferencesClosed:(NSNotification *)notification
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //TODO: remove this aprouch.
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"BeardedSpiceUpdatePreferences"];
 }
 
 -(void)updateAlwaysShowNotification:(NSNotification *)notification

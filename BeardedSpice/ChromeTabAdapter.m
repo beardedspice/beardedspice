@@ -45,7 +45,8 @@
 
 -(NSString *) key
 {
-    return [NSString stringWithFormat:@"C:%ld:%ld", [self.window index], [self.tab id]];
+    //we get name of application because we have several applications of the chrome type.
+    return [NSString stringWithFormat:@"%@:%ld:%ld", [(ChromeApplication *)self.application.sbApplication name],[self.window index], [self.tab id]];
 }
 
 - (void)activateTab{
@@ -77,6 +78,18 @@
             [self.application makeKeyFrontmostWindow];
         });
     }
+}
+
+- (BOOL)frontmost{
+
+    if (self.application.frontmost) {
+        if ([[self.window activeTab] id] == self.tab.id) {
+            
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

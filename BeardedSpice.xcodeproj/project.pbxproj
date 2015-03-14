@@ -39,6 +39,8 @@
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
 		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
+		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
+		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		653BCAD31AB25DAC0034D27F /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653BCAD11AB25DAC0034D27F /* ShortcutsPreferencesView.xib */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
@@ -143,6 +145,10 @@
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsMusicStrategy.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
+		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTabAdapter.h; sourceTree = "<group>"; };
+		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
+		651967C41AB3A67B00B48D3A /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		651967C51AB3A67B00B48D3A /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653BCAD11AB25DAC0034D27F /* ShortcutsPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
@@ -269,8 +275,6 @@
 				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
 				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
 				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
-				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
-				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
 				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
 				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
@@ -338,6 +342,8 @@
 				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
 				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
 				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
+				651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */,
+				651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -390,19 +396,23 @@
 			isa = PBXGroup;
 			children = (
 				0369231B1862934000E04DDB /* Preferences */,
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
 				03A34919185E9FC700C4A62B /* MediaStrategies */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
 				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
-				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
-				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933441855173100A49AC7 /* MainMenu.xib */,
-				967933471855173100A49AC7 /* Images.xcassets */,
-				967933361855173100A49AC7 /* Supporting Files */,
 				657EAEA71AAAEB9300D00456 /* runningSBApplication.h */,
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
+				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
+				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
+				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
+				651967C51AB3A67B00B48D3A /* NSString+Utils.m */,
+				967933471855173100A49AC7 /* Images.xcassets */,
+				967933361855173100A49AC7 /* Supporting Files */,
 			);
 			path = BeardedSpice;
 			sourceTree = "<group>";
@@ -593,6 +603,7 @@
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
+				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
@@ -617,6 +628,7 @@
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
+				651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
 				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,

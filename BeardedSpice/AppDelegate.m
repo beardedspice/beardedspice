@@ -11,6 +11,7 @@
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
+#import "iTunesTabAdapter.h"
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
@@ -22,7 +23,7 @@
 #define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
 /// Delay displaying notification after changing favorited status of the current track.
-#define FAVORITED_DELAY         0.15
+#define FAVORITED_DELAY         0.1
 
 BOOL accessibilityApiEnabled = NO;
 
@@ -180,6 +181,9 @@ BOOL accessibilityApiEnabled = NO;
             [self setActiveTabShortcutForChrome:yandexBrowserApp];
         } else if (safariApp.frontmost) {
             [self setActiveTabShortcutForSafari:safariApp];
+        } else if (iTunesApp.frontmost){
+            
+            [self updateActiveTab:[iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp]];
         }
     }];
 }
@@ -187,14 +191,23 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupFavoriteShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy favorite]];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                if([[strategy trackInfo:activeTab] favorited])
-                    [self showNotification];
-            });
+        
+        if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+            
+            [(iTunesTabAdapter *)activeTab favorite];
+            [self showNotification];
+        }
+        else{
+
+            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+            if (strategy) {
+                [activeTab executeJavascript:[strategy favorite]];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    if([[strategy trackInfo:activeTab] favorited])
+                        [self showNotification];
+                });
+            }
         }
     }];
 }
@@ -241,38 +254,57 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerToggle{
     
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy) {
-        [activeTab executeJavascript:[strategy toggle]];
-        if (ALWAYSSHOWNOTIFICATION){
-            [self showNotification];
-        }
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
+        [(iTunesTabAdapter *)activeTab toggle];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy toggle]];
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+                [self showNotification];
+            }
+            
+        }
     }
 }
 
 - (void)playerNext{
     
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy) {
-        [activeTab executeJavascript:[strategy next]];
-        if (ALWAYSSHOWNOTIFICATION){
-            [self showNotification];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        
+        [(iTunesTabAdapter *)activeTab next];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy next]];
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+                [self showNotification];
+            }
         }
     }
-    
 }
 
 - (void)playerPrevious{
     
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy) {
-        [activeTab executeJavascript:[strategy previous]];
-        if (ALWAYSSHOWNOTIFICATION){
-            [self showNotification];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        
+        [(iTunesTabAdapter *)activeTab previous];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy previous]];
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+                [self showNotification];
+            }
         }
     }
-
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -300,12 +332,17 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)refreshApplications
 {
-    chromeApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
-    canaryApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
+    chromeApp = [self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
+    canaryApp = [self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
     
-    yandexBrowserApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
+    yandexBrowserApp = [self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
     
-    safariApp = (runningSBApplication *)[self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+    safariApp = [self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceITunesIntegration])
+        iTunesApp = [self getRunningSBApplicationWithIdentifier:@"com.apple.iTunes"];
+    else
+        iTunesApp = nil;
 }
 
 - (void)setActiveTabShortcutForChrome:(runningSBApplication *)app {
@@ -360,6 +397,27 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+- (void)refreshTabsForiTunes{
+    
+    iTunesApplication *iTunes = (iTunesApplication *)iTunesApp.sbApplication;
+    
+    if (iTunes) {
+        
+        id<Tab> tab = [iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp];
+        
+        if (tab) {
+            
+            NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
+            
+            if (menuItem) {
+                [menuItem setRepresentedObject:tab];
+                [self setStatusMenuItemStatus:menuItem forTab:tab];
+            }
+        }
+    }
+
+}
+
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Refreshing tabs...");
@@ -372,6 +430,8 @@ BOOL accessibilityApiEnabled = NO;
     [self refreshTabsForChrome:canaryApp];
     [self refreshTabsForChrome:yandexBrowserApp];
     [self refreshTabsForSafari:safariApp];
+    
+    [self refreshTabsForiTunes];
     
     [mediaStrategyRegistry endStrategyQueries];
     
@@ -425,9 +485,26 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)updateActiveTab:(id<Tab>) tab
 {
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy && ![tab isEqual:activeTab]) {
-        [activeTab executeJavascript:[strategy pause]];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        
+        [(iTunesTabAdapter *)activeTab pause];
+    }
+    else{
+        
+        MediaStrategy *strategy;
+        // Prevent switch to tab, which not have strategy.
+        if (![tab isKindOfClass:[iTunesTabAdapter class]]) {
+            
+            strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+            if (!strategy) {
+                return;
+            }
+        }
+        
+        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy && ![tab isEqual:activeTab]) {
+            [activeTab executeJavascript:[strategy pause]];
+        }
     }
     
     activeTab = tab;
@@ -445,13 +522,19 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)showNotification
 {
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy) {
-        Track *track = [strategy trackInfo:activeTab];
-        if (track) {
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
-        }
+    Track *track;
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]])
+        track = [(iTunesTabAdapter *)activeTab trackInfo];
+
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy)
+            track = [strategy trackInfo:activeTab];
     }
+    
+    if (track)
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
 }
 
 - (void)setupSleepCallback

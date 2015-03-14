@@ -12,6 +12,7 @@
 
 #import "Chrome.h"
 #import "Safari.h"
+#import "iTunes.h"
 #import "Tab.h"
 #import "MediaStrategyRegistry.h"
 
@@ -33,6 +34,8 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *yandexBrowserApp;
 
     runningSBApplication *safariApp;
+    
+    runningSBApplication *iTunesApp;
 
     SPMediaKeyTap *keyTap;
 

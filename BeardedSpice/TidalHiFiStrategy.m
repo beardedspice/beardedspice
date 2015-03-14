@@ -48,7 +48,7 @@
 
 - (NSString *)favorite
 {
-    return @"(function(){$('button.player__context-menu').click(); setTimeout(function(){var fav=$('a.js-add-favorite'); if (fav.length){ fav.click();} else {$('a.js-remove-favorite').click();}}, 100);})()";
+    return @"(function(){$('a.js-favorite').click();})()";
 }
 
 -(NSString *) displayName

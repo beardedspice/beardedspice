@@ -10,6 +10,7 @@
 
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
+NSString *const BeardedSpiceITunesIntegration = @"BeardedSpiceITunesIntegration";
 
 @implementation GeneralPreferencesViewController
 
@@ -22,19 +23,6 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
         registry = mediaStrategyRegistry;
     }
     return self;
-}
-
-- (void)awakeFromNib
-{
-    // check the user defaults
-    NSNumber *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification];
-    if ([enabled intValue] == 1) {
-        [self.alwaysShowNotification setState:NSOnState];
-    } else {
-        [self.alwaysShowNotification setState:NSOffState];
-    }
-    [self.alwaysShowNotification setAction:@selector(updateNotificationPreferences:)];
-
 }
 
 - (NSString *)identifier
@@ -89,18 +77,6 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
     [result setTarget:self];
     [result setAction:@selector(updateMediaStrategyRegistry:)];
     return result;
-}
-
--(void)updateNotificationPreferences:(id)sender
-{
-    BOOL enabled;
-    if ([self.alwaysShowNotification state] == NSOnState) {
-        enabled = YES;
-    } else {
-        enabled = NO;
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:BeardedSpiceAlwaysShowNotification];
 }
 
 -(void)updateMediaStrategyRegistry:(id)sender

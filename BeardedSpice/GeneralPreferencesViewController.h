@@ -13,6 +13,7 @@
 
 extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceActiveControllers;
+extern NSString *const BeardedSpiceITunesIntegration;
 
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -28,7 +29,6 @@ extern NSString *const BeardedSpiceActiveControllers;
     MediaStrategyRegistry *registry;
 }
 
-@property (nonatomic, weak) IBOutlet NSButtonCell *alwaysShowNotification;
 @property (assign) IBOutlet NSTableView *strategiesView;
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry;

@@ -86,4 +86,16 @@
     
 }
 
+- (BOOL)frontmost{
+    
+    if (self.application.frontmost) {
+        if ([[self.window.currentTab get] isEqual:self.tab]) {
+            
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 @end

@@ -79,4 +79,23 @@
     return @"";
 }
 
+- (NSImage *)imageByUrlString:(NSString *)urlString{
+    
+    if (!urlString)
+        return nil;
+    
+    if (![urlString isEqualToString:_lastImageUrlString]) {
+        
+        _lastImageUrlString = urlString;
+        NSURL *url = [NSURL URLWithString:urlString];
+        if (url) {
+            _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+        }
+        else
+            _lastImage = nil;
+    }
+    
+    return _lastImage;
+}
+
 @end

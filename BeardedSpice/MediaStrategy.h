@@ -21,7 +21,13 @@
 
 @end
 
-@interface MediaStrategy : NSObject
+@interface MediaStrategy : NSObject{
+    
+    // Caches last image for optimization :)
+    NSString *_lastImageUrlString;
+    NSImage *_lastImage;
+
+}
 
 -(BOOL) accepts:(id <Tab>) tab;
 -(NSString *) toggle;
@@ -35,5 +41,10 @@
 
 // should noop
 -(NSString *) favorite;
+
+/**
+    Helper method for obtaining album artwork
+ */
+- (NSImage *)imageByUrlString:(NSString *)urlString;
 
 @end

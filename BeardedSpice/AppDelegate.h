@@ -44,6 +44,9 @@ extern BOOL accessibilityApiEnabled;
     MediaStrategyRegistry *mediaStrategyRegistry;
 
     NSWindowController *_preferencesWindowController;
+    
+    NSMutableSet    *openedWindows;
+
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

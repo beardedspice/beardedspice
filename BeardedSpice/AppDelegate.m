@@ -62,6 +62,8 @@ BOOL accessibilityApiEnabled = NO;
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
 
+    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
+
     iTunesNeedDisplayNotification = YES;
     
     [self setupPlayControlsShortcutCallbacks];
@@ -153,8 +155,9 @@ BOOL accessibilityApiEnabled = NO;
 
 - (IBAction)openPreferences:(id)sender
 {
-    [NSApp activateIgnoringOtherApps:YES];
-    [self.preferencesWindowController showWindow:nil];
+    [self windowWillBeVisible:self.preferencesWindowController.window];
+    [self.preferencesWindowController showWindow:self];
+    
 }
 
 
@@ -166,6 +169,60 @@ BOOL accessibilityApiEnabled = NO;
 {
     [self updateActiveTab:[sender representedObject]];
 }
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Windows control methods
+/////////////////////////////////////////////////////////////////////
+
+-(void)windowWillBeVisible:(id)window{
+    
+    if (window == nil)
+        return;
+    
+    @synchronized(openedWindows){
+        
+        if (!openedWindows)
+            openedWindows = [NSMutableSet set];
+        
+        if (!openedWindows.count) {
+            
+            [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyRegular];
+            //            [[NSApplication sharedApplication] setPresentationOptions:NSApplicationPresentationDefault];
+        }
+        [self activateApp];
+        [openedWindows addObject:window];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [[NSApplication sharedApplication] arrangeInFront:self];
+        });
+    }
+}
+
+-(void)activateApp{
+    
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+    //    [[NSRunningApplication currentApplication] activateWithOptions: (NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+    
+}
+
+-(void)removeWindow:(id)obj{
+    
+    if (obj == nil)
+        return;
+    
+    @synchronized(openedWindows){
+        
+        [openedWindows removeObject:obj];
+        
+        if (![openedWindows count]){
+            
+                [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyAccessory];
+//                [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyProhibited];
+            
+        }
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Shortcuts callback setup methods
@@ -571,6 +628,10 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////
 
+- (void)receivedWillCloseWindow:(NSNotification *)theNotification{
+    NSWindow *window = theNotification.object;
+    [self removeWindow:window];
+}
 
 - (void)receiveSleepNote:(NSNotification *)note
 {

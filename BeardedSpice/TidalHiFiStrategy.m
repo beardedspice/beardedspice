@@ -68,22 +68,7 @@
         track.album = songData[@"album"];
         track.favorited = songData[@"favorited"];
         
-        NSString *urlString = songData[@"imageUrl"];
-        if (urlString) {
-            
-            if ([urlString isEqualToString:_lastImageUrlString]) {
-                
-                track.image = _lastImage;
-            }
-            else{
-                
-                _lastImageUrlString = urlString;
-                NSURL *url = [NSURL URLWithString:urlString];
-                if (url) {
-                    track.image = _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
-                }
-            }
-        }
+        track.image = [self imageByUrlString:songData[@"imageUrl"]];
         return track;
     }
 }

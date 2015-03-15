@@ -46,7 +46,7 @@ NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivateP
 
 - (NSImage *)toolbarItemImage
 {
-    return [NSImage imageNamed:NSImageNamePreferencesGeneral];
+    return [NSImage imageNamed:@"toolbarShortcuts"];
 }
 
 - (NSString *)toolbarItemLabel

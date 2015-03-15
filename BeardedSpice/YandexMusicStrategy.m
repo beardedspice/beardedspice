@@ -57,4 +57,23 @@
     return @"YandexMusic";
 }
 
+- (NSString *)favorite{
+    
+    return @"(function(){$('.player-controls .like.player-controls__btn').click();})()";
+}
+
+- (Track *)trackInfo:(id<Tab>)tab{
+
+    NSDictionary *info = [tab executeJavascript:@"(function(){return $.extend(JSON.parse($('body').attr('data-unity-state')), ({'favorited': ($('.player-controls .like.like_on.player-controls__btn').length)}))})()"];
+    
+    Track *track = [Track new];
+    
+    track.track = info[@"title"];
+    track.artist = info[@"artist"];
+    track.image = [self imageByUrlString:info[@"albumArt"]];
+    track.favorited = info[@"favorited"];
+    
+    return track;
+}
+
 @end

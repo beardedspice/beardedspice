@@ -60,11 +60,12 @@
 {
     @autoreleasepool {
         
-        NSDictionary *songData = [tab executeJavascript:@"(function(){ return {'track':$('div.player__text>a[data-bind=title]').text(), 'artist':$('div.player__text>div[data-bind=artist]>a').text(), 'imageUrl':$('div.player div.image--player img[data-bind-src=\"imageUrl\"]').attr('src'), 'favorited':(require('media/playbackController').getCurrentTrack().get('favoriteDate') !== undefined)}; })()"];
+        NSDictionary *songData = [tab executeJavascript:@"(function(){ var obj = require('media/playbackController').getCurrentTrack().attributes; return {'track':obj.title, 'artist':obj.artist.name, 'album':obj.album.title, 'imageUrl':$('div.player div.image--player img[data-bind-src=\"imageUrl\"]').attr('src'), 'favorited':(obj.favoriteDate !== undefined)}; })()"];
         Track *track = [[Track alloc] init];
         
         track.track = songData[@"track"];
         track.artist = songData[@"artist"];
+        track.album = songData[@"album"];
         track.favorited = songData[@"favorited"];
         
         NSString *urlString = songData[@"imageUrl"];

@@ -36,6 +36,7 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *safariApp;
     
     runningSBApplication *iTunesApp;
+    BOOL iTunesNeedDisplayNotification;
 
     SPMediaKeyTap *keyTap;
 

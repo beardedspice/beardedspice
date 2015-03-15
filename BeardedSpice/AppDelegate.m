@@ -62,6 +62,8 @@ BOOL accessibilityApiEnabled = NO;
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
 
+    iTunesNeedDisplayNotification = YES;
+    
     [self setupPlayControlsShortcutCallbacks];
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
@@ -257,6 +259,10 @@ BOOL accessibilityApiEnabled = NO;
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
         [(iTunesTabAdapter *)activeTab toggle];
+        if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![activeTab frontmost])
+            [self showNotification];
+        
+        iTunesNeedDisplayNotification = YES;
     }
     else{
         
@@ -276,6 +282,7 @@ BOOL accessibilityApiEnabled = NO;
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
         [(iTunesTabAdapter *)activeTab next];
+        iTunesNeedDisplayNotification = NO;
     }
     else{
         
@@ -294,6 +301,7 @@ BOOL accessibilityApiEnabled = NO;
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
         [(iTunesTabAdapter *)activeTab previous];
+        iTunesNeedDisplayNotification = NO;
     }
     else{
         

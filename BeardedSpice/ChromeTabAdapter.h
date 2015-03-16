@@ -11,7 +11,11 @@
 
 @class runningSBApplication;
 
-@interface ChromeTabAdapter : NSObject <Tab>
+@interface ChromeTabAdapter : NSObject <Tab> {
+    
+    BOOL _wasActivated;
+    NSInteger _previousTabId;
+}
 
 +(id) initWithApplication:(runningSBApplication *)application andWindow:(ChromeWindow *)window andTab:(ChromeTab *)tab;
 

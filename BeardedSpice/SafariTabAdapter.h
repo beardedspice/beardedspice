@@ -11,7 +11,11 @@
 
 @class runningSBApplication;
 
-@interface SafariTabAdapter : NSObject <Tab>
+@interface SafariTabAdapter : NSObject <Tab>{
+    
+    BOOL _wasActivated;
+    SafariTab *_previousTab;
+}
 
 +(id) initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab;
 

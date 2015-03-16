@@ -22,6 +22,7 @@
 - (instancetype)initWithApplication:(SBApplication *)application bundleIdentifier:(NSString *)bundleIdentifier;
 
 - (void)activate;
+- (void)hide;
 - (void)makeKeyFrontmostWindow;
 
 

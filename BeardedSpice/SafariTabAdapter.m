@@ -71,19 +71,43 @@
         if (![(SafariApplication *)self.application.sbApplication frontmost]) {
             
             [self.application activate];
+            _wasActivated = YES;
         }
+        else
+            _wasActivated = NO;
         
         // Грёбаная хурма
         // We must wait while application will become frontmost
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             self.window.index = 1;
+            _previousTab = [self.window.currentTab get];
             self.window.currentTab = self.tab;
             
             [self.application makeKeyFrontmostWindow];
         });
     }
     
+}
+
+- (void)toggleTab{
+    
+    if ([(SafariApplication *)self.application.sbApplication frontmost] && self.tab.index == self.window.currentTab.index){
+        
+        if (self.tab.index != _previousTab.index) {
+            
+            self.window.currentTab = _previousTab;
+            _previousTab = nil;
+        }
+        
+        if (_wasActivated) {
+            
+            [self.application hide];
+            _wasActivated = NO;
+        }
+    }
+    else
+        [self activateTab];
 }
 
 - (BOOL)frontmost{

@@ -44,6 +44,11 @@
     [[self runningAppication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
 }
 
+- (void)hide{
+    
+    [[self runningAppication] hide];
+}
+
 - (void)makeKeyFrontmostWindow{
     
         AXUIElementRef ref = AXUIElementCreateApplication(self.processIdentifier);

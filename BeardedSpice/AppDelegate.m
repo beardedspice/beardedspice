@@ -282,7 +282,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
         
-        [activeTab activateTab];
+        [activeTab toggleTab];
     }];
 }
 

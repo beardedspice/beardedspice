@@ -14,6 +14,7 @@
 -(NSString *) key;
 
 - (void)activateTab;
+- (void)toggleTab;
 - (BOOL)frontmost;
 
 -(BOOL) isEqual:(__autoreleasing id)otherTab;

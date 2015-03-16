@@ -56,7 +56,10 @@
         if (![(ChromeApplication *)self.application.sbApplication frontmost]) {
 
             [self.application activate];
+            _wasActivated = YES;
         }
+        else
+            _wasActivated = NO;
      
         // Грёбаная хурма
         // We must wait while application will become frontmost
@@ -64,20 +67,40 @@
             
             self.window.index = 1;
             
-            NSUInteger count = self.window.tabs.count;
-            NSUInteger tabId = [self.tab id];
             // find tab by id
-            for (NSUInteger index = 0; index < count; index++) {
-                if ([(ChromeTab *)self.window.tabs[index] id] == tabId) {
-                    
-                    self.window.activeTabIndex = index + 1;
-                    break;
-                }
+            NSUInteger tabIndex = [self findTabIndexById:[self.tab id]];
+            if (tabIndex != -1) {
+                _previousTabId = [self.window.activeTab id];
+                self.window.activeTabIndex = tabIndex;
             }
             
             [self.application makeKeyFrontmostWindow];
         });
     }
+}
+
+- (void)toggleTab{
+    
+    if ([(ChromeApplication *)self.application.sbApplication frontmost] && [self.tab id] == [self.window.activeTab id]){
+        
+        if ([self.tab id] != _previousTabId) {
+            
+            NSInteger tabIndex = [self findTabIndexById:_previousTabId];
+            if (tabIndex != -1) {
+                
+                _previousTabId = -1;
+                self.window.activeTabIndex = tabIndex;
+            }
+        }
+        
+        if (_wasActivated) {
+            
+            [self.application hide];
+            _wasActivated = NO;
+        }
+    }
+    else
+        [self activateTab];
 }
 
 - (BOOL)frontmost{
@@ -90,6 +113,23 @@
     }
     
     return NO;
+}
+
+//////////////////////////////////////////////////////////////
+#pragma mark Private methods
+//////////////////////////////////////////////////////////////
+
+- (NSInteger)findTabIndexById:(NSUInteger)tabId{
+    
+    NSUInteger count = self.window.tabs.count;
+    for (NSUInteger index = 0; index < count; index++) {
+        if ([(ChromeTab *)self.window.tabs[index] id] == tabId) {
+            
+            return (index + 1);
+        }
+    }
+
+    return -1;
 }
 
 @end

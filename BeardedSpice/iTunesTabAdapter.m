@@ -67,9 +67,26 @@
         if (![(iTunesApplication *)self.application.sbApplication frontmost]) {
             
             [self.application activate];
+            _wasActivated = YES;
         }
+        else
+            _wasActivated = NO;
     }
 }
+
+- (void)toggleTab{
+    
+    if ([(iTunesApplication *)self.application.sbApplication frontmost]){
+        if (_wasActivated) {
+            
+            [self.application hide];
+            _wasActivated = NO;
+        }
+    }
+    else
+        [self activateTab];
+}
+
 
 - (BOOL)frontmost{
     

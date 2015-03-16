@@ -12,7 +12,10 @@
 
 @class runningSBApplication, Track;
 
-@interface iTunesTabAdapter : NSObject <Tab>
+@interface iTunesTabAdapter : NSObject <Tab>{
+    
+    BOOL _wasActivated;
+}
 
 +(instancetype)iTunesTabAdapterWithApplication:(runningSBApplication *)application;
 

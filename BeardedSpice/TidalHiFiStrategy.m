@@ -48,7 +48,9 @@
 
 - (NSString *)favorite
 {
-    return @"(function(){$('a.js-favorite').click();})()";
+    return @"(function(){var obj = require('media/playbackController').getCurrentTrack();\
+    var event = {'isFavorited':(obj.get('favoriteDate') === undefined), 'data': obj, 'type':'track'};\
+    require('controllers/favorites').favoriteEventHandler(event);})()";
 }
 
 -(NSString *) displayName

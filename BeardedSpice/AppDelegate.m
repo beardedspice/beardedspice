@@ -72,7 +72,7 @@ BOOL accessibilityApiEnabled = NO;
     [self setupNotificationShortcutCallback];
     [self setupActivatePlayingTabShortcutCallback];
     
-    [self setupSleepCallback];
+    [self setupSystemEventsCallback];
 
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
@@ -602,12 +602,18 @@ BOOL accessibilityApiEnabled = NO;
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
 }
 
-- (void)setupSleepCallback
+- (void)setupSystemEventsCallback
 {
     [[[NSWorkspace sharedWorkspace] notificationCenter]
      addObserver: self
      selector: @selector(receiveSleepNote:)
      name: NSWorkspaceWillSleepNotification object: NULL];
+
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver:self
+     selector:@selector(switchUserHandler:)
+     name:NSWorkspaceSessionDidResignActiveNotification
+     object:nil];
 }
 
 - (NSWindowController *)preferencesWindowController
@@ -635,11 +641,33 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)receiveSleepNote:(NSNotification *)note
 {
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-    if (strategy) {
-        NSLog(@"Received sleep note, pausing");
-        [activeTab executeJavascript:[strategy pause]];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        
+        [(iTunesTabAdapter *)activeTab pause];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            NSLog(@"Received sleep note, pausing");
+            [activeTab executeJavascript:[strategy pause]];
+        }
     }
 }
 
+- (void) switchUserHandler:(NSNotification*) notification
+{
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        
+        [(iTunesTabAdapter *)activeTab pause];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            NSLog(@"Received sleep note, pausing");
+            [activeTab executeJavascript:[strategy pause]];
+        }
+    }
+}
 @end

@@ -616,6 +616,32 @@ BOOL accessibilityApiEnabled = NO;
      object:nil];
 }
 
+- (void)setupProcessWatcher
+{
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(resetMediaKeys)
+                                                               name: NSWorkspaceDidLaunchApplicationNotification
+                                                             object: NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(resetMediaKeys)
+                                                               name: NSWorkspaceDidTerminateApplicationNotification
+                                                             object: NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(resetMediaKeys)
+                                                               name: NSWorkspaceDidWakeNotification
+                                                             object: NULL];
+
+}
+
+- (void)resetMediaKeys
+{
+    if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+        [keyTap stopWatchingMediaKeys];
+        [keyTap startWatchingMediaKeys];
+    }
+}
+
+
 - (NSWindowController *)preferencesWindowController
 {
     if (_preferencesWindowController == nil)

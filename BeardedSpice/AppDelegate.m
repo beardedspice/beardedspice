@@ -42,6 +42,12 @@ BOOL accessibilityApiEnabled = NO;
 
 @implementation AppDelegate
 
+
+- (void)dealloc{
+    
+    [self removeSystemEventsCallback];
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Application Delegates
 /////////////////////////////////////////////////////////////////////////
@@ -614,33 +620,30 @@ BOOL accessibilityApiEnabled = NO;
      selector:@selector(switchUserHandler:)
      name:NSWorkspaceSessionDidResignActiveNotification
      object:nil];
+
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(resetMediaKeys)
+     name: NSWorkspaceDidLaunchApplicationNotification
+     object: NULL];
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(resetMediaKeys)
+     name: NSWorkspaceDidTerminateApplicationNotification
+     object: NULL];
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(resetMediaKeys)
+     name: NSWorkspaceDidWakeNotification
+     object: NULL];
 }
 
-- (void)setupProcessWatcher
-{
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
-                                                           selector: @selector(resetMediaKeys)
-                                                               name: NSWorkspaceDidLaunchApplicationNotification
-                                                             object: NULL];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
-                                                           selector: @selector(resetMediaKeys)
-                                                               name: NSWorkspaceDidTerminateApplicationNotification
-                                                             object: NULL];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
-                                                           selector: @selector(resetMediaKeys)
-                                                               name: NSWorkspaceDidWakeNotification
-                                                             object: NULL];
-
+- (void)removeSystemEventsCallback{
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
 }
-
-- (void)resetMediaKeys
-{
-    if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap stopWatchingMediaKeys];
-        [keyTap startWatchingMediaKeys];
-    }
-}
-
 
 - (NSWindowController *)preferencesWindowController
 {
@@ -696,4 +699,15 @@ BOOL accessibilityApiEnabled = NO;
         }
     }
 }
+
+- (void)resetMediaKeys
+{
+    if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+        [keyTap stopWatchingMediaKeys];
+        [keyTap startWatchingMediaKeys];
+    }
+}
+
+
+
 @end

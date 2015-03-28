@@ -138,10 +138,12 @@ BOOL accessibilityApiEnabled = NO;
                 [self playerToggle];
                 break;
             case NX_KEYTYPE_FAST:
+            case NX_KEYTYPE_NEXT:
                 debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
                 [self playerNext];
                 break;
             case NX_KEYTYPE_REWIND:
+            case NX_KEYTYPE_PREVIOUS:
                 debugString = [@"Rewind pressed" stringByAppendingString:debugString];
                 [self playerPrevious];
                 break;

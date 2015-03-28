@@ -57,6 +57,8 @@
 // We have only one window.
 -(BOOL) isEqual:(__autoreleasing id)otherTab{
 
+    if (otherTab == nil || ![otherTab isKindOfClass:[iTunesTabAdapter class]]) return NO;
+
     return YES;
 }
 

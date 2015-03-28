@@ -85,6 +85,9 @@ BOOL accessibilityApiEnabled = NO;
     
     // check accessibility enabled
     [self checkAccessibilityTrusted];
+
+    //Gets list of tabs on startup
+    [self refreshTabs: self];
 }
 
 - (void)awakeFromNib
@@ -633,6 +636,12 @@ BOOL accessibilityApiEnabled = NO;
      name: NSWorkspaceDidTerminateApplicationNotification
      object: NULL];
     
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(resetMediaKeys)
+     name: NSWorkspaceDidActivateApplicationNotification
+     object: NULL];
+
     [[[NSWorkspace sharedWorkspace] notificationCenter]
      addObserver: self
      selector: @selector(resetMediaKeys)

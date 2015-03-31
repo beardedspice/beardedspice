@@ -1,3 +1,5 @@
+## Looking for new maintainers. Add a message to [#138](https://github.com/beardedspice/beardedspice/issues/138) if you would like to help.
+
 # Download
 
 Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice-0.2.3.tar.gz), or find all released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).

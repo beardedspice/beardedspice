@@ -12,32 +12,41 @@
 
 #import "Chrome.h"
 #import "Safari.h"
+#import "iTunes.h"
 #import "Tab.h"
 #import "MediaStrategyRegistry.h"
+
+@class runningSBApplication;
+
+extern BOOL accessibilityApiEnabled;
 
 @interface BeardedSpiceApp : NSApplication
 @end
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
 
-    ChromeApplication *chromeApp;
-    ChromeApplication *canaryApp;
-    ChromeApplication *yandexBrowserApp;
+    runningSBApplication *chromeApp;
+    runningSBApplication *canaryApp;
+    runningSBApplication *yandexBrowserApp;
 
-    SafariApplication *safariApp;
+    runningSBApplication *safariApp;
+    
+    runningSBApplication *iTunesApp;
+    BOOL iTunesNeedDisplayNotification;
 
     SPMediaKeyTap *keyTap;
 
     id <Tab> activeTab;
     MediaStrategyRegistry *mediaStrategyRegistry;
 
-    BOOL alwaysShowNotification;
-
     NSWindowController *_preferencesWindowController;
+    
+    NSMutableSet    *openedWindows;
+
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

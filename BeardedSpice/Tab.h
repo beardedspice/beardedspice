@@ -6,12 +6,16 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-@protocol Tab
+@protocol Tab <NSObject>
 
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;
 -(NSString *) URL;
 -(NSString *) key;
+
+- (void)activateTab;
+- (void)toggleTab;
+- (BOOL)frontmost;
 
 -(BOOL) isEqual:(__autoreleasing id)otherTab;
 

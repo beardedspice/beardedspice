@@ -8,6 +8,8 @@
 
 #import "MediaStrategy.h"
 
+#define NBSP_STRING                         @"\u00a0"
+
 @implementation Track
 
 @synthesize track;
@@ -17,9 +19,24 @@
 -(NSUserNotification *) asNotification
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = self.track;
+    
+    if (self.favorited && [self.favorited boolValue]) {
+        
+        notification.title = self.track ? [NSString stringWithFormat:@"★ %@ ★", self.track] : nil;
+    }
+    else
+        notification.title = self.track;
+    
     notification.subtitle = self.album;
     notification.informativeText = self.artist;
+    
+    if (self.image) {
+        // workaround for 10.8 support
+        if ([notification respondsToSelector:@selector(setContentImage:)]) {
+        //
+            notification.contentImage = self.image;
+        }
+    }
     return notification;
 }
 
@@ -60,6 +77,25 @@
 {
     NSLog(@"Favoriting not yet implemented for %s", [[self displayName] UTF8String]);
     return @"";
+}
+
+- (NSImage *)imageByUrlString:(NSString *)urlString{
+    
+    if (!urlString)
+        return nil;
+    
+    if (![urlString isEqualToString:_lastImageUrlString]) {
+        
+        _lastImageUrlString = urlString;
+        NSURL *url = [NSURL URLWithString:urlString];
+        if (url) {
+            _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+        }
+        else
+            _lastImage = nil;
+    }
+    
+    return _lastImage;
 }
 
 @end

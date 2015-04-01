@@ -9,11 +9,17 @@
 #import "Tab.h"
 #import "Safari.h"
 
-@interface SafariTabAdapter : NSObject <Tab>
+@class runningSBApplication;
 
-+(id) initWithApplication:(SafariApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab;
+@interface SafariTabAdapter : NSObject <Tab>{
+    
+    BOOL _wasActivated;
+    SafariTab *_previousTab;
+}
 
-@property SafariApplication *application; // we need this for executing js.
++(id) initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab;
+
+@property runningSBApplication *application;
 @property SafariWindow *window; // we need this for the equality check
 @property SafariTab *tab;
 

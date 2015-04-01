@@ -8,9 +8,11 @@
 
 #import "SafariTabAdapter.h"
 
+#import "runningSBApplication.h"
+
 @implementation SafariTabAdapter
 
-+ (id)initWithApplication:(SafariApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
++ (id)initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
 {
     SafariTabAdapter *out = [[SafariTabAdapter alloc] init];
 
@@ -35,7 +37,7 @@
 
 -(id) executeJavascript:(NSString *) javascript
 {
-    return [self.application doJavaScript:javascript in:self.tab];
+    return [(SafariApplication *)self.application.sbApplication doJavaScript:javascript in:self.tab];
 }
 
 -(NSString *) title
@@ -60,6 +62,64 @@
 -(NSString *) key
 {
     return [NSString stringWithFormat:@"S:%ld:%ld", [self.window index], [self.tab index]];
+}
+
+- (void)activateTab{
+    
+    @autoreleasepool {
+        
+        if (![(SafariApplication *)self.application.sbApplication frontmost]) {
+            
+            [self.application activate];
+            _wasActivated = YES;
+        }
+        else
+            _wasActivated = NO;
+        
+        // Грёбаная хурма
+        // We must wait while application will become frontmost
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            self.window.index = 1;
+            _previousTab = [self.window.currentTab get];
+            self.window.currentTab = self.tab;
+            
+            [self.application makeKeyFrontmostWindow];
+        });
+    }
+    
+}
+
+- (void)toggleTab{
+    
+    if ([(SafariApplication *)self.application.sbApplication frontmost] && self.tab.index == self.window.currentTab.index){
+        
+        if (self.tab.index != _previousTab.index) {
+            
+            self.window.currentTab = _previousTab;
+            _previousTab = nil;
+        }
+        
+        if (_wasActivated) {
+            
+            [self.application hide];
+            _wasActivated = NO;
+        }
+    }
+    else
+        [self activateTab];
+}
+
+- (BOOL)frontmost{
+    
+    if (self.application.frontmost) {
+        if ([[self.window.currentTab get] isEqual:self.tab]) {
+            
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

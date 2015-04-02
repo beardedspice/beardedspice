@@ -1,13 +1,5 @@
 ## Looking for new maintainers. Add a message to [#138](https://github.com/beardedspice/beardedspice/issues/138) if you would like to help.
 
-# Download
-
-Download the [latest release](http://www.calm-apps.com/s/BeardedSpice.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
-
-Mac OS X 10.7 or greater required.
-
-[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
-
 # About
 
 [![BeardedSpice](images/bs.png)](images/bs.png)
@@ -32,19 +24,21 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)
 - [Overcast.fm](https://overcast.fm)
 - [Pandora](http://pandora.com)
+- [Pocket Casts](https://play.pocketcasts.com/)
 - [Rdio](http://rdio.com)
 - [Shuffler.fm](http://shuffler.fm/tracks)
 - [Slacker](http://slacker.com)
 - [Songza](http://songza.com)
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)
+- [STITCHER](http://www.stitcher.com)
 - [Synology](http://synology.com)
+- [TIDAL](http://listen.tidalhifi.com/)
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](http://music.yandex.ru)
 - [YouTube](http://youtube.com)
 - [VK ("My Music" from vk.com)](http://vk.com)
 - [Vimeo](http://vimeo.com)
-- [TIDAL](http://listen.tidalhifi.com/)
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 
@@ -155,7 +149,16 @@ Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspic
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 
-## Contact
+# Download
+
+Download the [latest release](http://www.calm-apps.com/s/BeardedSpice.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
+
+Mac OS X 10.7 or greater required.
+
+[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
+
+
+# Contact
 
 - [@chedkid](https://twitter.com/chedkid)
 - [@trhodeos](https://twitter.com/trhodeos)

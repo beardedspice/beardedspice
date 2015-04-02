@@ -2,7 +2,7 @@
 
 # About
 
-[![BeardedSpice](images/bs.png)](images/bs.png)
+[![BeardedSpice](images/bs.jpg)](images/bs.jpg)
 
 BeardedSpice is a menubar application for Mac OSX that allows you to control web based media players with the media keys found on Mac keyboards. It is an extensible application that works with Chrome and Safari, and can control any tab with an applicable media player. BeardedSpice currently supports:
 

@@ -151,7 +151,7 @@ Finally, update the [default preferences plist](https://github.com/beardedspice/
 
 # Download
 
-Download the [latest release](http://www.calm-apps.com/s/BeardedSpice.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
+Download the [latest release](https://github.com/beardedspice/beardedspice/raw/releases/BeardedSpice.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/releases).
 
 Mac OS X 10.7 or greater required.
 

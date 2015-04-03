@@ -68,6 +68,7 @@
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
+		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 /* End PBXBuildFile section */
@@ -200,6 +201,8 @@
 		BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FocusAtWillStrategy.h; sourceTree = "<group>"; };
 		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
 		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
+		D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomaFmStrategy.m; sourceTree = "<group>"; };
+		D055A36B1A7A035200CE2BBD /* SomaFmStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomaFmStrategy.h; sourceTree = "<group>"; };
 		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 				BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */,
 				658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */,
 				658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */,
+				D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */,
+				D055A36B1A7A035200CE2BBD /* SomaFmStrategy.h */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
+				D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
 				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,

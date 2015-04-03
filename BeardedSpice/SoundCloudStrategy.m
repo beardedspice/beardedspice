@@ -39,6 +39,11 @@
     return @"(function(){return document.querySelectorAll('.skipControl__next')[0].click()})()";
 }
 
+-(NSString *) favorite
+{
+    return @"(function (){return document.querySelectorAll('div.playing button.sc-button-like')[0].click()})()";
+}
+
 -(NSString *) pause
 {
     return @"(function(){var play = document.querySelectorAll('.playControl')[0];if(play.classList.contains('sc-button-pause')){play.click();}})()";

@@ -28,6 +28,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Rdio](http://rdio.com)
 - [Shuffler.fm](http://shuffler.fm/tracks)
 - [Slacker](http://slacker.com)
+- [SomaFM](http://somafm.com)
 - [Songza](http://songza.com)
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)

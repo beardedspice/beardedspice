@@ -13,5 +13,13 @@
 + (BOOL)isNullOrEmpty:(NSString *)str;
 + (BOOL)isNullOrWhiteSpace:(NSString *)str;
 + (NSString *)stringByTrim:(NSString *)str;
+/**
+ @return index of string into receiver, or -1 if not found
+ */
+- (NSInteger)indexOf:(NSString *)string fromIndex:(NSUInteger)index;
+/**
+ @return index of string into receiver, or -1 if not found
+ */
+- (NSInteger)indexOf:(NSString *)string;
 
 @end

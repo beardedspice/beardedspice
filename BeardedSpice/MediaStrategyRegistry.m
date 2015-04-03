@@ -81,16 +81,13 @@
 -(void) addMediaStrategy:(MediaStrategy *) strategy
 {
     [availableStrategies addObject:strategy];
-}
-
--(void) addMediaStrategies:(NSArray *)strategies
-{
-    [availableStrategies addObjectsFromArray:strategies];
+    [self clearCache];
 }
 
 -(void) removeMediaStrategy:(MediaStrategy *) strategy
 {
     [availableStrategies removeObject:strategy];
+    [self clearCache];
 }
 
 -(void) containsMediaStrategy:(MediaStrategy *) strategy
@@ -192,13 +189,5 @@
     });
     return strategies;
 }
-
-+(id) getDefaultRegistry
-{
-    MediaStrategyRegistry *registry = [[MediaStrategyRegistry alloc] init];
-    [registry addMediaStrategies:[MediaStrategyRegistry getDefaultMediaStrategies]];
-    return registry;
-}
-
 
 @end

@@ -9,6 +9,9 @@
 #import "SafariTabAdapter.h"
 
 #import "runningSBApplication.h"
+#import "NSString+Utils.h"
+
+#define MULTI       1
 
 @implementation SafariTabAdapter
 
@@ -80,7 +83,23 @@
         // We must wait while application will become frontmost
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            self.window.index = 1;
+            _wasWindowActivated = NO;
+            if (self.window.index != MULTI) {
+                
+                SafariApplication *app = (SafariApplication *)[self.application sbApplication];
+                for (SafariWindow *window in app.windows) {
+                    
+                    NSInteger index = window.index;
+                    if (index == MULTI) {
+                        _previousTopWindow = [window get];
+                        _wasWindowActivated = YES;
+                        break;
+                    }
+                }
+                
+                self.window.index = MULTI;
+            }
+            
             _previousTab = [self.window.currentTab get];
             self.window.currentTab = self.tab;
             
@@ -92,14 +111,25 @@
 
 - (void)toggleTab{
     
-    if ([(SafariApplication *)self.application.sbApplication frontmost] && self.tab.index == self.window.currentTab.index){
+    if ([(SafariApplication *)self.application.sbApplication frontmost]
+        && self.window.index == MULTI
+        && self.tab.index == self.window.currentTab.index){
         
         if (self.tab.index != _previousTab.index) {
             
             self.window.currentTab = _previousTab;
             _previousTab = nil;
         }
-        
+
+        if (_wasWindowActivated) {
+            
+            _previousTopWindow.index = MULTI;
+            _wasWindowActivated = NO;
+            [self.application makeKeyFrontmostWindow];
+            
+            _previousTopWindow = nil;
+        }
+
         if (_wasActivated) {
             
             [self.application hide];

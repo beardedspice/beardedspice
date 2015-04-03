@@ -56,9 +56,16 @@ BOOL accessibilityApiEnabled = NO;
 {
     // Insert code here to initialize your application
     // Register defaults for the whitelist of apps that want to use media keys
-       [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                             [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
-                                                             nil]];
+    NSMutableDictionary *registeredDefaults = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                        [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
+                        nil];
+    
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]];
+    if (appDefaults)
+        [registeredDefaults addEntriesFromDictionary:appDefaults];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:registeredDefaults];
+    
     keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
        if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
               [keyTap startWatchingMediaKeys];
@@ -66,7 +73,6 @@ BOOL accessibilityApiEnabled = NO;
               NSLog(@"Media key monitoring disabled");
     }
 
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]]];
 
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
@@ -521,24 +527,18 @@ BOOL accessibilityApiEnabled = NO;
 
 -(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
-    NSMenuItem *menuItem = [self addStatusMenuItemFor:chromeTab withTitle:[chromeTab title] andURL:[chromeTab URL]];
-    if (menuItem) {
-        id<Tab> tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
-        [menuItem setRepresentedObject:tab];
-        [self setStatusMenuItemStatus:menuItem forTab:tab];
-    }
+    id<Tab> tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
+    if (tab)
+        [self addStatusMenuItemFor:tab];
 }
 
 -(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
-    NSMenuItem *menuItem = [self addStatusMenuItemFor:safariTab withTitle:[safariTab name] andURL:[safariTab URL]];
-    if (menuItem) {
-        id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
-                                                  andWindow:safariWindow
-                                                     andTab:safariTab];
-        [menuItem setRepresentedObject:tab];
-        [self setStatusMenuItemStatus:menuItem forTab:tab];
-    }
+    id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
+                                              andWindow:safariWindow
+                                                 andTab:safariTab];
+    if (tab)
+        [self addStatusMenuItemFor:tab];
 }
 
 -(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
@@ -548,12 +548,20 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
--(NSMenuItem *)addStatusMenuItemFor:(id)tab withTitle:(NSString *)title andURL:(NSString *)URL
-{
+-(BOOL)addStatusMenuItemFor:(id<Tab>)tab {
+    
     if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
-        return [statusMenu insertItemWithTitle:[self trim:title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
+        
+        NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
+        if (menuItem){
+
+            [menuItem setRepresentedObject:tab];
+            [self setStatusMenuItemStatus:menuItem forTab:tab];
+        }
+        return YES;
     }
-    return NULL;
+    
+    return NO;
 }
 
 - (void)updateActiveTab:(id<Tab>) tab

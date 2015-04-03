@@ -28,4 +28,16 @@
     return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (NSInteger)indexOf:(NSString *)string fromIndex:(NSUInteger)index
+{
+    NSRange range = [self rangeOfString:string options:NSLiteralSearch range:NSMakeRange(index, self.length - index)];
+    
+    if (range.location == NSNotFound) return  -1;
+    return range.location;
+}
+- (NSInteger)indexOf:(NSString *)string
+{
+    return [self indexOf:string fromIndex:0];
+}
+
 @end

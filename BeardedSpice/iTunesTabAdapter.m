@@ -28,18 +28,23 @@
         iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
         iTunesTrack *currentTrack = [[iTunes currentTrack] get];
         
-        NSMutableString *title = [NSMutableString string];
+        NSString *title;
         if (currentTrack) {
             
-            if (![NSString isNullOrEmpty:currentTrack.name]) {
-                [title appendString:currentTrack.name];
-            }
+            if (![NSString isNullOrEmpty:currentTrack.name])
+                title = currentTrack.name;
+            
             if (![NSString isNullOrEmpty:currentTrack.artist]) {
-                [title appendFormat:@" - %@ ", currentTrack.artist];
+
+                if (title) title = [title stringByAppendingFormat:@" - %@", currentTrack.artist];
+                else
+                    title = currentTrack.artist;
             }
         }
+        else
+            title = NSLocalizedString(@"No Track", @"iTunesTabAdapter");
         
-        return [NSString stringWithFormat:@"%@(%@)", title, iTunes.name];
+        return [NSString stringWithFormat:@"%@ (%@)", title, iTunes.name];
     }
 }
 

@@ -8,6 +8,9 @@
 
 #import "ChromeTabAdapter.h"
 #import "runningSBApplication.h"
+#import "NSString+Utils.h"
+
+#define MULTI       2 //Chrome feature for window indexing
 
 @implementation ChromeTabAdapter
 
@@ -27,7 +30,19 @@
 
 -(NSString *) title
 {
-    return [self.tab title];
+    @autoreleasepool {
+        
+        NSString *title = [self.tab title];
+        if ([NSString isNullOrWhiteSpace:title]){
+            
+            title = [self URL];
+            NSInteger index = [title indexOf:@"://"];
+            if (index > 0 )
+                title = [title substringFromIndex:(index + 3)];
+        }
+        
+        return title;
+    }
 }
 
 -(NSString *) URL
@@ -64,8 +79,23 @@
         // Грёбаная хурма
         // We must wait while application will become frontmost
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            self.window.index = 1;
+
+            _wasWindowActivated = NO;
+            if (self.window.index != MULTI) {
+                
+                ChromeApplication *app = (ChromeApplication *)[self.application sbApplication];
+                for (ChromeWindow *window in app.windows) {
+                    
+                    NSInteger index = window.index;
+                    if (index == MULTI) {
+                        _previousTopWindow = [window get];
+                        _wasWindowActivated = YES;
+                        break;
+                    }
+                }
+                
+                self.window.index = MULTI;
+            }
             
             // find tab by id
             NSUInteger tabIndex = [self findTabIndexById:[self.tab id]];
@@ -81,7 +111,9 @@
 
 - (void)toggleTab{
     
-    if ([(ChromeApplication *)self.application.sbApplication frontmost] && [self.tab id] == [self.window.activeTab id]){
+    if ([(ChromeApplication *)self.application.sbApplication frontmost]
+        && self.window.index == MULTI
+        && [self.tab id] == [self.window.activeTab id]){
         
         if ([self.tab id] != _previousTabId) {
             
@@ -91,6 +123,15 @@
                 _previousTabId = -1;
                 self.window.activeTabIndex = tabIndex;
             }
+        }
+        
+        if (_wasWindowActivated) {
+            
+            _previousTopWindow.index = MULTI;
+            _wasWindowActivated = NO;
+            [self.application makeKeyFrontmostWindow];
+
+            _previousTopWindow = nil;
         }
         
         if (_wasActivated) {

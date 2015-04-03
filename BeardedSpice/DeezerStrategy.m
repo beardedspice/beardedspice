@@ -39,6 +39,11 @@
     return @"(function(){dzPlayer.control.nextSong()})()";
 }
 
+-(NSString *) favorite
+{
+    return @"(function (){return document.querySelectorAll('a.icon-love-circle')[0].click()})()";
+}
+
 -(NSString *) pause
 {
     return @"(function(){dzPlayer.control.pause()})()";

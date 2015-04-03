@@ -1,5 +1,3 @@
-## Looking for new maintainers. Add a message to [#138](https://github.com/beardedspice/beardedspice/issues/138) if you would like to help.
-
 # About
 
 [![BeardedSpice](images/bs.jpg)](images/bs.jpg)

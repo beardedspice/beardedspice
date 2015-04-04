@@ -1,5 +1,2 @@
-Added license activation process indication.
-Now LAN traffic is not filtered by Adguard.
-List of requests is now cleared upon closing Filtering Log.
-Fixed the problem with Adguard certificate import in Firefox for OS X 10.7.
-Fixed the error leading to built-in firewall message pop-up.
+First Release.
+Бaги пофиксены, фичи импрувлены.

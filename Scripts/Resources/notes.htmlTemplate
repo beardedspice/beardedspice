@@ -18,7 +18,7 @@
                 </td>
             </tr>
             <tr>
-                <td valign="top" width="150"><img src="resources/icon.png" alt="Adguard"  width="150" border="0"></td>
+                <td valign="top" width="150"><img src="resources/orgLogo150@2x.png" alt="BeardedSpice"  width="150" border="0"></td>
                 <td valign="top">
                     <ul>
                         ${HTML_NOTES_ITEM_AS_LI}

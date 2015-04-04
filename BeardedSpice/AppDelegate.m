@@ -27,6 +27,9 @@
 
 BOOL accessibilityApiEnabled = NO;
 
+// Don't understand why likner do not found this const in Sparkle.framework
+NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
+
 @implementation BeardedSpiceApp
 - (void)sendEvent:(NSEvent *)theEvent
 {
@@ -65,6 +68,13 @@ BOOL accessibilityApiEnabled = NO;
         [registeredDefaults addEntriesFromDictionary:appDefaults];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:registeredDefaults];
+    
+    // INIT SPARKLE UPDATER
+    appUpdater = [SUUpdater new];
+    appUpdater.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedFinishedUpdateDriver:) name: SUUpdateDriverFinishedNotification object:nil];
+    appUpdater.updateCheckInterval = 10; // for checking
+    // --------------------
     
     keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
        if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
@@ -163,6 +173,30 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+/////////////////////////////////////////////////////////////////////
+#pragma mark Sparkle Updater delegates and notifications
+/////////////////////////////////////////////////////////////////////
+
+- (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update{
+    
+    [self windowWillBeVisible:appUpdater];
+}
+
+- (void)receivedFinishedUpdateDriver:(NSNotification *)theNotification{
+    
+    [self removeWindow:appUpdater];
+}
+
+- (void)updaterWillShowModalAlert:(SUUpdater *)updater{
+    
+    [self windowWillBeVisible:updater];
+}
+
+- (void)updaterDidShowModalAlert:(SUUpdater *)updater{
+    
+    [self removeWindow:updater];
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
@@ -172,6 +206,12 @@ BOOL accessibilityApiEnabled = NO;
     [self windowWillBeVisible:self.preferencesWindowController.window];
     [self.preferencesWindowController showWindow:self];
     
+}
+
+- (IBAction)checkForUpdates:(id)sender {
+    
+    [self windowWillBeVisible:appUpdater];
+    [appUpdater checkForUpdates:sender];
 }
 
 

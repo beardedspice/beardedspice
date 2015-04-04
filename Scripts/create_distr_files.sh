@@ -1,15 +1,9 @@
 #!/bin/bash
 
-#  create_rnotes.sh
-#  Adguard
-#
-#  Created by Roman Sokolov on 19.11.14.
-#  Copyright (c) 2014 Performix. All rights reserved.
-
 # Script may run only in Xcode environment.
 # Usage: create_distr_files.sh
 
-#You must define in Build Settings EVARs
+#You must define EVARs in Project Build Settings
 #  FOR_PUBLISH_PATH="/path/to/folder/where/output/files/will/be/inserted"
 #  DISTRIBUTE_BASE_URL="https://github.com/user/project/raw/branch"
 #  APPCAST_NAME="name_of_appcast.xml"
@@ -74,8 +68,6 @@ if [ $? != 0 ]; then
 echo "Can't create ZIP file"
 exit 2
 fi
-
-DISTRIB_DMG="${ADGUARD_FOR_PUBLISH_PATH}/${DISTRIB_DMG_NAME}.dmg"
 
 # Release Notes
 HTML_VERSION="${version}"

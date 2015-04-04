@@ -46,8 +46,6 @@
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
-		65F741F11ACF50C0003543FB /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F741F01ACF50C0003543FB /* Sparkle.framework */; };
-		65F741F41ACF547E003543FB /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F741F01ACF50C0003543FB /* Sparkle.framework */; };
 		65F741F51ACF547E003543FB /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F741F01ACF50C0003543FB /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
@@ -237,8 +235,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65F741F11ACF50C0003543FB /* Sparkle.framework in Frameworks */,
-				65F741F41ACF547E003543FB /* Sparkle.framework in Frameworks */,
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
@@ -526,8 +522,8 @@
 				967933291855173100A49AC7 /* Frameworks */,
 				9679332A1855173100A49AC7 /* Resources */,
 				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
-				65A64B001ACF47FC00A4782E /* Sign Sparke Framework */,
 				65F741F61ACF547E003543FB /* Embed Frameworks */,
+				65A64B001ACF47FC00A4782E /* Sign Sparke Framework */,
 			);
 			buildRules = (
 			);
@@ -647,6 +643,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nIDENTITY=\"$CODE_SIGN_IDENTITY\"\n\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"";
+			showEnvVarsInLog = 0;
 		};
 		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -822,7 +819,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr";
+				DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
 				FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -841,6 +838,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				RELEASE_NOTES_NAME = "beardedspice-rnotes";
 				SDKROOT = macosx;
 			};
@@ -864,7 +862,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr";
+				DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
 				ENABLE_NS_ASSERTIONS = NO;
 				FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -876,6 +874,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "";
 				RELEASE_NOTES_NAME = "beardedspice-rnotes";
 				SDKROOT = macosx;
 			};
@@ -973,6 +972,7 @@
 				65F742001ACF694E003543FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */ = {
 			isa = XCConfigurationList;

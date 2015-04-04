@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Sparkle/Sparkle.h>
 
 #import "SPMediaKeyTap.h"
 
@@ -20,14 +21,20 @@
 
 extern BOOL accessibilityApiEnabled;
 
+extern NSString *const SUUpdateDriverFinishedNotification;
+
 @interface BeardedSpiceApp : NSApplication
 @end
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, SUUpdaterDelegate> {
     IBOutlet NSMenu *statusMenu;
     NSStatusItem *statusItem;
+    
+    // Updater
+    SUUpdater *appUpdater;
+
 
     runningSBApplication *chromeApp;
     runningSBApplication *canaryApp;
@@ -52,6 +59,8 @@ extern BOOL accessibilityApiEnabled;
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 
 - (IBAction)openPreferences:(id)sender;
+- (IBAction)checkForUpdates:(id)sender;
+
 - (void)showNotification;
 
 @end

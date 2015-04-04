@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Adguard's Changelog</title>
+        <link>https://github.com/beardedspice/beardedspice/raw/distr/beardedspice-appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.0</title>
+            <sparkle:releaseNotesLink>
+                https://github.com/beardedspice/beardedspice/raw/distr/beardedspice-rnotes-en.html
+            </sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="en">
+                https://github.com/beardedspice/beardedspice/raw/distr/beardedspice-rnotes-en.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Sat, 04 Apr 2015 08:49:00 +0000</pubDate>
+            <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/beardedspice/beardedspice/raw/distr/BeardedSpice-1.0.zip" length="2528597" type="application/octet-stream" sparkle:version="1" sparkle:shortVersionString="1.0"/>
+        </item>
+    </channel>
+</rss>

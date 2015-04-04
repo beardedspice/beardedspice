@@ -1,0 +1,31 @@
+<html>
+    
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+            <title>${HTML_TITLE}</title>
+            <meta name="robots" content="anchors">
+                <base href="${HTML_BASEURL}">
+                    
+                    <link href="resources/beardedspice-rnotes.css" type="text/css" rel="stylesheet" media="all">
+                        </head>
+    
+    <body>
+        <br />
+        <table class="dots" width="100%" border="0" cellspacing="0" cellpadding="0" summary="Two column table with heading">
+            <tr>
+                <td class="gray" colspan="2">
+                    <h3>${HTML_VERSION}</h3>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" width="150"><img src="resources/icon.png" alt="Adguard"  width="150" border="0"></td>
+                <td valign="top">
+                    <ul>
+                        ${HTML_NOTES_ITEM_AS_LI}
+                    <ul>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </body>
+</html>

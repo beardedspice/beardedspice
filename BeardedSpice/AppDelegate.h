@@ -30,6 +30,7 @@ extern NSString *const SUUpdateDriverFinishedNotification;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, SUUpdaterDelegate> {
     IBOutlet NSMenu *statusMenu;
+    NSUInteger  statusMenuCount;
     NSStatusItem *statusItem;
     
     // Updater
@@ -53,7 +54,6 @@ extern NSString *const SUUpdateDriverFinishedNotification;
     NSWindowController *_preferencesWindowController;
     
     NSMutableSet    *openedWindows;
-
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

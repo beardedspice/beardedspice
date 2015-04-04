@@ -15,7 +15,7 @@
             </sparkle:releaseNotesLink>
             <pubDate>${XML_RELEASE_TIME}</pubDate>
             <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
-            <enclosure url="${XML_DISTRIBUTE_URL}" length="${XML_DISTRIB_LENGTH}" type="application/octet-stream" sparkle:version="${XML_DISTRIB_BUILD}" sparkle:shortVersionString="${XML_DISTRIB_VERSION}"/>
+            <enclosure url="${XML_DISTRIBUTE_URL}" sparkle:dsaSignature="${XML_SIGNATURE}" length="${XML_DISTRIB_LENGTH}" type="application/octet-stream" sparkle:version="${XML_DISTRIB_BUILD}" sparkle:shortVersionString="${XML_DISTRIB_VERSION}"/>
         </item>
     </channel>
 </rss>

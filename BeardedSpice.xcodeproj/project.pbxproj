@@ -44,6 +44,7 @@
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
+		65AFE6431AD01FF10071E4D7 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 65AFE6421AD01FF10071E4D7 /* dsa_pub.pem */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65F741F51ACF547E003543FB /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F741F01ACF50C0003543FB /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -170,6 +171,8 @@
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalHiFiStrategy.h; sourceTree = "<group>"; };
 		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidalHiFiStrategy.m; sourceTree = "<group>"; };
+		65AFE6421AD01FF10071E4D7 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		65AFE6441AD0220A0071E4D7 /* sign_update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sign_update.sh; sourceTree = "<group>"; };
 		65EE289D1AB5FFE200EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65EE289F1AB6003800EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		65EE28A21AB6003B00EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
@@ -385,6 +388,7 @@
 		65F741FA1ACF5BAE003543FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65AFE6441AD0220A0071E4D7 /* sign_update.sh */,
 				65F741FB1ACF5BAE003543FB /* appcast.xmlTemplate */,
 				65F741FC1ACF5BAE003543FB /* notes.htmlTemplate */,
 			);
@@ -464,6 +468,7 @@
 		967933361855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				65AFE6421AD01FF10071E4D7 /* dsa_pub.pem */,
 				0320C0531868C7A4009591CA /* beard-highlighted.png */,
 				17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */,
 				0320C0511868C6C2009591CA /* beard.png */,
@@ -598,6 +603,7 @@
 				0320C0521868C6C2009591CA /* beard.png in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
+				65AFE6431AD01FF10071E4D7 /* dsa_pub.pem in Resources */,
 				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
 				17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */,
@@ -806,7 +812,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPCAST_NAME = "beardedspice-appcast.xml";
+				BS_APPCAST_NAME = "beardedspice-appcast.xml";
+				BS_DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
+				BS_FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
+				BS_RELEASE_NOTES_NAME = "beardedspice-rnotes";
+				BS_UPDATER_PRIVATE_KEY_FILE = "$(HOME)/Library/Keychains/beardedspice-distr-private-key.pem";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -819,8 +829,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
-				FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -839,7 +847,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				RELEASE_NOTES_NAME = "beardedspice-rnotes";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -848,7 +855,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPCAST_NAME = "beardedspice-appcast.xml";
+				BS_APPCAST_NAME = "beardedspice-appcast.xml";
+				BS_DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
+				BS_FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
+				BS_RELEASE_NOTES_NAME = "beardedspice-rnotes";
+				BS_UPDATER_PRIVATE_KEY_FILE = "$(HOME)/Library/Keychains/beardedspice-distr-private-key.pem";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -862,9 +873,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
 				ENABLE_NS_ASSERTIONS = NO;
-				FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -875,7 +884,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";
-				RELEASE_NOTES_NAME = "beardedspice-rnotes";
 				SDKROOT = macosx;
 			};
 			name = Release;

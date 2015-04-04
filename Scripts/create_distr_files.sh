@@ -4,10 +4,11 @@
 # Usage: create_distr_files.sh
 
 #You must define EVARs in Project Build Settings
-#  FOR_PUBLISH_PATH="/path/to/folder/where/output/files/will/be/inserted"
-#  DISTRIBUTE_BASE_URL="https://github.com/user/project/raw/branch"
-#  APPCAST_NAME="name_of_appcast.xml"
-#  RELEASE_NOTES_NAME="release_notes_file_name_without_extension"
+#  BS_FOR_PUBLISH_PATH="/path/to/folder/where/output/files/will/be/inserted"
+#  BS_DISTRIBUTE_BASE_URL="https://github.com/user/project/raw/branch"
+#  BS_APPCAST_NAME="name_of_appcast.xml"
+#  BS_RELEASE_NOTES_NAME="release_notes_file_name_without_extension"
+#  BS_UPDATER_PRIVATE_KEY_FILE="path/to/file/with/private/key/for/signing/update"
 
 ARCHIVE_PRODUCTS=$( /usr/bin/find "${HOME}/Library/Developer/Xcode/Archives/" -name "${PROJECT_NAME}*.xcarchive" | sort -nr | /usr/bin/sed -n 1p )
 if [ ! "${ARCHIVE_PRODUCTS}" ]; then
@@ -16,7 +17,7 @@ if [ ! "${ARCHIVE_PRODUCTS}" ]; then
 fi
 
 ARCHIVE_PRODUCTS="${ARCHIVE_PRODUCTS}/Products"
-TMP_DIR="${FOR_PUBLISH_PATH}/tmp"
+TMP_DIR="${BS_FOR_PUBLISH_PATH}/tmp"
 
 ### Prepare temp directory
 
@@ -71,7 +72,7 @@ fi
 
 # Release Notes
 HTML_VERSION="${version}"
-HTML_BASEURL="${DISTRIBUTE_BASE_URL}"
+HTML_BASEURL="${BS_DISTRIBUTE_BASE_URL}"
 
 Template=$( cat ${SCRIPT_RESOURCES}/notes.htmlTemplate | sed "s/\"/\\\\\"/g" )
 
@@ -79,27 +80,34 @@ Template=$( cat ${SCRIPT_RESOURCES}/notes.htmlTemplate | sed "s/\"/\\\\\"/g" )
 HTML_NOTES_ITEM_AS_LI=$( cat "${SCRIPT_PATH}/Release-Notes-EN.txt" | sed "s/^/<li>/
 s/$/<\/li>/" )
 HTML_TITLE="BeardedSpice updated!"
-eval "echo \"$Template\"" > "${TMP_DIR}/${RELEASE_NOTES_NAME}-en.html"
+eval "echo \"$Template\"" > "${TMP_DIR}/${BS_RELEASE_NOTES_NAME}-en.html"
 
 # Create Appcast
-XML_BASEURL="${DISTRIBUTE_BASE_URL}"
+XML_BASEURL="${BS_DISTRIBUTE_BASE_URL}"
 XML_APP_VERSION_TITLE="Version ${version}"
 XML_RELEASE_TIME=$( LANG=C;/bin/date -u +"%a, %d %b %Y %H:%M:00 +0000" )
-XML_DISTRIBUTE_URL="${DISTRIBUTE_BASE_URL}/${DISTRIB_ZIP_NAME}"
+XML_DISTRIBUTE_URL="${BS_DISTRIBUTE_BASE_URL}/${DISTRIB_ZIP_NAME}"
 XML_DISTRIB_LENGTH=$( stat -f "%z" "${TMP_DIR}/${DISTRIB_ZIP_NAME}" )
 XML_DISTRIB_BUILD="${buildnum}"
 XML_DISTRIB_VERSION="${version}"
-XML_RELEASE_NOTES="${RELEASE_NOTES_NAME}"
-XML_APPCAST_NAME="${APPCAST_NAME}"
+XML_RELEASE_NOTES="${BS_RELEASE_NOTES_NAME}"
+XML_APPCAST_NAME="${BS_APPCAST_NAME}"
+## getting signature
+XML_SIGNATURE=$( "${SCRIPT_RESOURCES}/sign_update.sh" "${TMP_DIR}/${DISTRIB_ZIP_NAME}" "${BS_UPDATER_PRIVATE_KEY_FILE}" )
+if [ $? != 0 ]; then
+echo "Can't create signuture for ${TMP_DIR}/${DISTRIB_ZIP_NAME}"
+exit 2
+fi
+
 
 Template=$( cat ${SCRIPT_RESOURCES}/appcast.xmlTemplate | sed "s/\"/\\\\\"/g" )
 
-eval "echo \"$Template\"" > "${TMP_DIR}/${APPCAST_NAME}"
+eval "echo \"$Template\"" > "${TMP_DIR}/${BS_APPCAST_NAME}"
 
 ########## Clear ###########
 rm -fR "${APP}"
 
 ########## Move To BASE #########
 
-mv -f "${TMP_DIR}/"* "${FOR_PUBLISH_PATH}"
+mv -f "${TMP_DIR}/"* "${BS_FOR_PUBLISH_PATH}"
 rm -fR "${TMP_DIR}"

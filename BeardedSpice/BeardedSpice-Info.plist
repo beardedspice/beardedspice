@@ -33,6 +33,8 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>${DISTRIBUTE_BASE_URL}/${APPCAST_NAME}</string>
+	<string>${BS_DISTRIBUTE_BASE_URL}/${BS_APPCAST_NAME}</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

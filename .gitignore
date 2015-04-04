@@ -26,4 +26,6 @@ Pods
 *.dmg
 
 #distr branch features
+mediaResources
 mediaResources/
+mediaResources/*

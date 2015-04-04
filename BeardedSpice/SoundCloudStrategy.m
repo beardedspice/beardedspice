@@ -41,7 +41,7 @@
 
 -(NSString *) favorite
 {
-    return @"(function (){return document.querySelectorAll('div.playing button.sc-button-like')[0].click()})()";
+    return @"(function (){return document.querySelectorAll('div.playControls button.playbackSoundBadge__like')[0].click()})()";
 }
 
 -(NSString *) pause

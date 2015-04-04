@@ -1,2 +1,1 @@
-Test Update System Release.
 Бaги пофиксены, фичи импрувлены.

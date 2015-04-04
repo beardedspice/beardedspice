@@ -27,6 +27,11 @@ if [ $? != 0 ]; then
 echo "Can't create temp directory!"
 exit 1
 fi
+mkdir "${TMP_DIR}/releases"
+if [ $? != 0 ]; then
+echo "Can't create temp directory!"
+exit 1
+fi
 ###
 
 
@@ -64,7 +69,7 @@ fi
 DISTRIB_ZIP_NAME="${PROJECT_NAME}-${version}.zip"
 
 cd "${TMP_DIR}"
-zip -r --symlinks "${DISTRIB_ZIP_NAME}" "${PROJECT_NAME}.app"
+zip -r --symlinks "releases/${DISTRIB_ZIP_NAME}" "${PROJECT_NAME}.app"
 if [ $? != 0 ]; then
 echo "Can't create ZIP file"
 exit 2
@@ -86,16 +91,16 @@ eval "echo \"$Template\"" > "${TMP_DIR}/${BS_RELEASE_NOTES_NAME}-en.html"
 XML_BASEURL="${BS_DISTRIBUTE_BASE_URL}"
 XML_APP_VERSION_TITLE="Version ${version}"
 XML_RELEASE_TIME=$( LANG=C;/bin/date -u +"%a, %d %b %Y %H:%M:00 +0000" )
-XML_DISTRIBUTE_URL="${BS_DISTRIBUTE_BASE_URL}/${DISTRIB_ZIP_NAME}"
-XML_DISTRIB_LENGTH=$( stat -f "%z" "${TMP_DIR}/${DISTRIB_ZIP_NAME}" )
+XML_DISTRIBUTE_URL="${BS_DISTRIBUTE_BASE_URL}/releases/${DISTRIB_ZIP_NAME}"
+XML_DISTRIB_LENGTH=$( stat -f "%z" "${TMP_DIR}/releases/${DISTRIB_ZIP_NAME}" )
 XML_DISTRIB_BUILD="${buildnum}"
 XML_DISTRIB_VERSION="${version}"
 XML_RELEASE_NOTES="${BS_RELEASE_NOTES_NAME}"
 XML_APPCAST_NAME="${BS_APPCAST_NAME}"
 ## getting signature
-XML_SIGNATURE=$( "${SCRIPT_RESOURCES}/sign_update.sh" "${TMP_DIR}/${DISTRIB_ZIP_NAME}" "${BS_UPDATER_PRIVATE_KEY_FILE}" )
+XML_SIGNATURE=$( "${SCRIPT_RESOURCES}/sign_update.sh" "${TMP_DIR}/releases/${DISTRIB_ZIP_NAME}" "${BS_UPDATER_PRIVATE_KEY_FILE}" )
 if [ $? != 0 ]; then
-echo "Can't create signuture for ${TMP_DIR}/${DISTRIB_ZIP_NAME}"
+echo "Can't create signuture for ${TMP_DIR}/releses/${DISTRIB_ZIP_NAME}"
 exit 2
 fi
 
@@ -109,5 +114,7 @@ rm -fR "${APP}"
 
 ########## Move To BASE #########
 
+mv -f "${TMP_DIR}/releases/"* "${BS_FOR_PUBLISH_PATH}/releases"
+rm -fR "${TMP_DIR}/releases"
 mv -f "${TMP_DIR}/"* "${BS_FOR_PUBLISH_PATH}"
 rm -fR "${TMP_DIR}"

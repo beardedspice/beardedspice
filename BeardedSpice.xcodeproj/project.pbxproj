@@ -813,7 +813,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BS_APPCAST_NAME = "beardedspice-appcast.xml";
-				BS_DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
+				BS_DISTRIBUTE_BASE_URL = "https://raw.github.com/beardedspice/beardedspice/distr/publish";
 				BS_FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				BS_RELEASE_NOTES_NAME = "beardedspice-rnotes";
 				BS_UPDATER_PRIVATE_KEY_FILE = "$(HOME)/Library/Keychains/beardedspice-distr-private-key.pem";
@@ -856,7 +856,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BS_APPCAST_NAME = "beardedspice-appcast.xml";
-				BS_DISTRIBUTE_BASE_URL = "https://github.com/beardedspice/beardedspice/raw/distr/publish";
+				BS_DISTRIBUTE_BASE_URL = "https://raw.github.com/beardedspice/beardedspice/distr/publish";
 				BS_FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				BS_RELEASE_NOTES_NAME = "beardedspice-rnotes";
 				BS_UPDATER_PRIVATE_KEY_FILE = "$(HOME)/Library/Keychains/beardedspice-distr-private-key.pem";

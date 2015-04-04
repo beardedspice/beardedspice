@@ -27,6 +27,7 @@ extern BOOL accessibilityApiEnabled;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
     IBOutlet NSMenu *statusMenu;
+    NSUInteger  statusMenuCount;
     NSStatusItem *statusItem;
 
     runningSBApplication *chromeApp;
@@ -46,7 +47,6 @@ extern BOOL accessibilityApiEnabled;
     NSWindowController *_preferencesWindowController;
     
     NSMutableSet    *openedWindows;
-
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

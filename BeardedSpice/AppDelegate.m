@@ -106,6 +106,9 @@ BOOL accessibilityApiEnabled = NO;
 
     [statusItem setAction:@selector(refreshTabs:)];
     [statusItem setTarget:self];
+    
+    // Get initial count of menu items
+    statusMenuCount = statusMenu.itemArray.count;
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -449,7 +452,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)removeAllItems
 {
     NSInteger count = statusMenu.itemArray.count;
-    for (int i = 0; i < count - 3; i++) {
+    for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
 }
@@ -515,7 +518,7 @@ BOOL accessibilityApiEnabled = NO;
     [mediaStrategyRegistry endStrategyQueries];
     
     
-    if ([statusMenu numberOfItems] == 3) {
+    if ([statusMenu numberOfItems] == statusMenuCount) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
     } else if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {

@@ -4,7 +4,9 @@ All procedures described below use scripts and resources from the folder "Script
 
 ## Requirements.
 You need to have a developer certificate from Apple, that would be correct to sign the application. Select that certificate in the settings of BeardedSpice target. In Project navigator select BeardedSpice project, then in the Editor window (central view) select TARGET-\>BeardedSpice, then select Build Settings tab on top, then select value for "Code Signing Identity".
+
 Also for signature updates, you will need a private key, which should be placed in a hidden place, such as ~/Library/Keychains/beardedspice-distr-private-key.pem. You should ensure that access rights to that file 0400 (readonly for owner). 
+
 Check the setting evar BS_UPDATER_PRIVATE_KEY_FILE, it should point to the private key file.
 
 ## Preparing sources.
@@ -20,6 +22,7 @@ This procedure creates the archive (release configuration), which will be used f
 
 ## Preparing for publishing.
 Note: This step uses last archive of the BeardedSpice application.
+
 1. in Project navigator (left side of main window, usually) select and edit file Release-Notes-EN.txt, which is located in the "Scripts" group;
 2. in Xcode main menu select Product-\>Scheme-\>Create Release, then select Product-\>Build;
 3. inspect folder "publish", which is located in the source root directory. Check ZIP file and release notes files.

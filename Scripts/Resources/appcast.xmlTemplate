@@ -8,10 +8,10 @@
         <item>
             <title>${XML_APP_VERSION_TITLE}</title>
             <sparkle:releaseNotesLink>
-                ${XML_BASEURL}/${XML_RELEASE_NOTES}-en.html
+                http://htmlpreview.github.com/?${XML_BASEURL}/${XML_RELEASE_NOTES}-en.html
             </sparkle:releaseNotesLink>
             <sparkle:releaseNotesLink xml:lang="en">
-                ${XML_BASEURL}/${XML_RELEASE_NOTES}-en.html
+                http://htmlpreview.github.com/?${XML_BASEURL}/${XML_RELEASE_NOTES}-en.html
             </sparkle:releaseNotesLink>
             <pubDate>${XML_RELEASE_TIME}</pubDate>
             <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>

@@ -8,14 +8,14 @@
         <item>
             <title>Version 1.0</title>
             <sparkle:releaseNotesLink>
-                https://github.com/beardedspice/beardedspice/raw/distr/publish/beardedspice-rnotes-en.html
+                http://htmlpreview.github.com/?https://github.com/beardedspice/beardedspice/raw/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
             <sparkle:releaseNotesLink xml:lang="en">
-                https://github.com/beardedspice/beardedspice/raw/distr/publish/beardedspice-rnotes-en.html
+                http://htmlpreview.github.com/?https://github.com/beardedspice/beardedspice/raw/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
-            <pubDate>Sat, 04 Apr 2015 21:15:00 +0000</pubDate>
+            <pubDate>Sat, 04 Apr 2015 21:31:00 +0000</pubDate>
             <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/beardedspice/beardedspice/raw/distr/publish/BeardedSpice-1.0.zip" sparkle:dsaSignature="MC4CFQCI5FhvujgbTnKfxOyEJ00aX0D5tgIVAI2YhGy28Scsr3zLy1NhEffLCb8q" length="2532289" type="application/octet-stream" sparkle:version="3" sparkle:shortVersionString="1.0"/>
+            <enclosure url="https://github.com/beardedspice/beardedspice/raw/distr/publish/BeardedSpice-1.0.zip" sparkle:dsaSignature="MCwCFBQylrSgjRwucA6iUZ1DsTw2W5F9AhRaTV2pvge1GvEyEIll/kegcBq2RA==" length="2532289" type="application/octet-stream" sparkle:version="3" sparkle:shortVersionString="1.0"/>
         </item>
     </channel>
 </rss>

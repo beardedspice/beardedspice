@@ -115,6 +115,7 @@ rm -fR "${APP}"
 ########## Move To BASE #########
 
 mv -f "${TMP_DIR}/releases/"* "${BS_FOR_PUBLISH_PATH}/releases"
+cp -f "${BS_FOR_PUBLISH_PATH}/releases/${DISTRIB_ZIP_NAME}" "${BS_FOR_PUBLISH_PATH}/releases/${PROJECT_NAME}-latest.zip"
 rm -fR "${TMP_DIR}/releases"
 mv -f "${TMP_DIR}/"* "${BS_FOR_PUBLISH_PATH}"
 rm -fR "${TMP_DIR}"

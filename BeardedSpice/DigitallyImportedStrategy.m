@@ -51,4 +51,27 @@
     return @"Digitally Imported";
 }
 
+- (NSString *)favorite{
+    
+    return @"(function(){$('.vote-btn.up').click();})()";
+}
+
+- (Track *)trackInfo:(id<Tab>)tab{
+    NSString *rawArtistName = [tab executeJavascript:@"(function(){return $('.artist-name').text()})()"]; // like "nExow & JacM - "
+    NSString *fullTrackName = [tab executeJavascript:@"(function(){return $('.track-name').text()})()"]; // like "nExow & JacM - Serenity"
+    NSNumber *favorited = [tab executeJavascript:@"(function(){return $('.icon-thumbs-up-filled').get(0) ? true : false})()"];
+    
+    NSString *artistName = [rawArtistName substringToIndex:rawArtistName.length - 3]; // strip off trailing " - "
+    NSString *trackName = [[fullTrackName stringByReplacingOccurrencesOfString:rawArtistName withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]; // only grab the actual song title
+    
+    Track *track = [Track new];
+    
+    track.track = trackName;
+    track.artist = artistName;
+    
+    track.favorited = favorited;
+    
+    return track;
+}
+
 @end

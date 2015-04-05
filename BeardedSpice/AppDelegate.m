@@ -91,6 +91,8 @@ BOOL accessibilityApiEnabled = NO;
     
     // check accessibility enabled
     [self checkAccessibilityTrusted];
+    
+    self.autoselectTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(refreshTabs:) userInfo:nil repeats:YES];
 }
 
 - (void)awakeFromNib
@@ -522,10 +524,24 @@ BOOL accessibilityApiEnabled = NO;
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
     } else if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+        NSLog(@"refreshTabs: has extra menu items");
         [keyTap startWatchingMediaKeys];
+        
+        if (!activeTab || ![self isActiveTabStillAvailable]) {
+            NSLog(@"refreshTabs: active tab is unset or expired. need to choose a new one");
+            [self updateActiveTab:(id<Tab>)[[statusMenu itemAtIndex:0] representedObject]];
+        }
     } else {
         NSLog(@"Media key monitoring disabled");
     }
+}
+
+-(BOOL)isActiveTabStillAvailable
+{
+    for (NSMenuItem *item in [statusMenu itemArray]) {
+        if ([item representedObject] == activeTab) return YES;
+    }
+    return NO;
 }
 
 -(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application

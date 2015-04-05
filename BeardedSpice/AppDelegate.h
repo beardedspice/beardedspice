@@ -50,6 +50,7 @@ extern BOOL accessibilityApiEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
+@property (nonatomic, strong) NSTimer *autoselectTimer;
 
 - (IBAction)openPreferences:(id)sender;
 - (void)showNotification;

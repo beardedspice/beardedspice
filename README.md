@@ -151,7 +151,7 @@ Finally, update the [default preferences plist](https://github.com/beardedspice/
 
 # Download
 
-Download the [latest release](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-1.0.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/distr/publish/releases).
+Download the [latest release](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/distr/publish/releases).
 
 Also you can find older releases [here](https://github.com/beardedspice/beardedspice/tree/releases).
 

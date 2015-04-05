@@ -42,6 +42,7 @@
 #import "TidalHiFiStrategy.h"
 #import "NoAdRadioStrategy.h"
 #import "SomaFmStrategy.h"
+#import "DigitallyImportedStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -184,7 +185,8 @@
                         [PocketCastsStrategy new],
                         [TidalHiFiStrategy new],
                         [NoAdRadioStrategy new],
-                        [SomaFmStrategy new]
+                        [SomaFmStrategy new],
+                        [DigitallyImportedStrategy new]
                     ];
     });
     return strategies;

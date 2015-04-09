@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] 'Subsonic'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*Subsonic*'"];
     }
     return self;
 }
@@ -44,9 +44,26 @@
     return @"window.frames['playQueue'].jwplayer().pause(true)";
 }
 
+-(NSString *) favorite
+{
+    return @"window.frames['playQueue'].onStar(window.frames['playQueue'].getCurrentSongIndex())";
+}
+
 -(NSString *) displayName
 {
     return @"Subsonic";
+}
+
+-(Track *) trackInfo:(id<Tab>)tab
+{
+    NSDictionary *metadata = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()]"];
+    NSString *albumarturl = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()].albumUrl.replace('main','coverArt').concat('&size=44')"];
+    Track *track = [[Track alloc] init];
+    track.track = [metadata objectForKey:@"title"];
+    track.album = [metadata objectForKey:@"album"];
+    track.artist = [metadata objectForKey:@"artist"];
+    track.image = [self imageByUrlString:albumarturl];
+    return track;
 }
 
 @end

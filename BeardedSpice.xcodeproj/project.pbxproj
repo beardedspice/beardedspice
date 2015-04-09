@@ -406,24 +406,24 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
-				0369231B1862934000E04DDB /* Preferences */,
-				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
-				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
-				03A34919185E9FC700C4A62B /* MediaStrategies */,
-				03F33EE31857E21100E8F77E /* Tabs */,
-				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
-				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
+				967933471855173100A49AC7 /* Images.xcassets */,
 				967933441855173100A49AC7 /* MainMenu.xib */,
-				657EAEA71AAAEB9300D00456 /* runningSBApplication.h */,
-				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
+				03A34919185E9FC700C4A62B /* MediaStrategies */,
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
 				651967C51AB3A67B00B48D3A /* NSString+Utils.m */,
-				967933471855173100A49AC7 /* Images.xcassets */,
+				0369231B1862934000E04DDB /* Preferences */,
+				657EAEA71AAAEB9300D00456 /* runningSBApplication.h */,
+				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
+				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
+				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				967933361855173100A49AC7 /* Supporting Files */,
+				03F33EE31857E21100E8F77E /* Tabs */,
 			);
 			path = BeardedSpice;
 			sourceTree = "<group>";

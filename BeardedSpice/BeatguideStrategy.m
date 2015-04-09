@@ -53,4 +53,19 @@
     return @"Beatguide";
 }
 
+-(Track *) trackInfo:(id<Tab>)tab
+{
+    NSDictionary *info = [tab executeJavascript:@"(function(){return {'track': document.querySelectorAll('.track-title')[0].innerText, 'artist': document.querySelectorAll('.artist-name')[0].innerText, imageUrl: document.querySelectorAll('.track-artwork')[0].src}})()"];
+
+    Track *track = [[Track alloc] init];
+
+    track.track = info[@"track"];
+    track.artist = info[@"artist"];
+    track.image = [self imageByUrlString:info[@"imageUrl"]];
+
+//    NSLog(@"\nNotification: %@ - %@, %@\n", track.artist, track.track, info[@"imageUrl"]);
+
+    return track;
+}
+
 @end

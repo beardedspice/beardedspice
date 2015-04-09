@@ -336,8 +336,8 @@
 				658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */,
 				D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */,
 				D055A36B1A7A035200CE2BBD /* SomaFmStrategy.h */,
-				3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */,
 				3B0F61281AD5CC6900DADAC2 /* BeatguideStrategy.h */,
+				3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */,
 			);
 			name = MediaStrategies;
 			sourceTree = "<group>";

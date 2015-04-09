@@ -57,7 +57,7 @@
 -(Track *) trackInfo:(id<Tab>)tab
 {
     NSDictionary *metadata = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()]"];
-    NSString *albumarturl = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()].albumUrl.replace('main','coverArt').concat('&size=44')"];
+    NSString *albumarturl = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()].albumUrl.replace('main','coverArt').concat('&size=128')"];
     Track *track = [[Track alloc] init];
     track.track = [metadata objectForKey:@"title"];
     track.album = [metadata objectForKey:@"album"];

@@ -1,1 +1,1 @@
-First release.
+Added other TLDs for Yandex Music.

@@ -57,6 +57,8 @@
 {
     if (object == nil || ![object isKindOfClass:[SafariTabAdapter class]]) return NO;
 
+    if (self == object) return YES;
+    
     SafariTabAdapter *other = (SafariTabAdapter *)object;
 
     return (self.window.id == other.window.id) && (self.tab.index == other.tab.index);

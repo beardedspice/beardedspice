@@ -349,7 +349,7 @@
 				651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */,
 				651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */,
 			);
-			name = Tabs;
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		967933231855173100A49AC7 = {

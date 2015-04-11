@@ -48,34 +48,65 @@ NSString *const BeardedSpiceITunesIntegration = @"BeardedSpiceITunesIntegration"
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row {
 
+    if ([[tableColumn identifier] isEqualToString:@"strategy"]) {
+        
+        return [self tableView:tableView strategyViewForTableRow:row];
+    }
+    else{
+        
+        return [self tableView:tableView indicatorViewForTableRow:row];
+    }
+}
+
+- (NSView *)tableView:(NSTableView *)tableView strategyViewForTableRow:(NSInteger)row{
+    
     MediaStrategy *strategy = [availableStrategies objectAtIndex:row];
     NSButton *result = [tableView makeViewWithIdentifier:@"AvailbleStrategiesView" owner:self];
-
+    
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
         result = [[NSButton alloc] init];
-
+        
         // this allows the cell to be reused.
         result.identifier = @"AvailbleStrategiesView";
-
+        
         // make it a checkbox
         [result setButtonType:NSSwitchButton];
-
-        // just so we know the index of this cell
-        [result setTag:row];
-
-        // check the user defaults
-        NSNumber *enabled = [userStrategies objectForKey:[strategy displayName]];
-        if ([enabled intValue] == 1) {
-            [result setState:NSOnState];
-        } else {
-            [result setState:NSOffState];
-        }
     }
-
+    
+    // just so we know the index of this cell
+    [result setTag:row];
+    
+    // check the user defaults
+    NSNumber *enabled = [userStrategies objectForKey:[strategy displayName]];
+    if ([enabled intValue] == 1) {
+        [result setState:NSOnState];
+    } else {
+        [result setState:NSOffState];
+    }
+    
     [result setTitle:[strategy displayName]];
     [result setTarget:self];
     [result setAction:@selector(updateMediaStrategyRegistry:)];
+    return result;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView indicatorViewForTableRow:(NSInteger)row{
+    
+    MediaStrategy *strategy = [availableStrategies objectAtIndex:row];
+    NSImageView *result = [tableView makeViewWithIdentifier:@"StrategyView" owner:self];
+    
+    // there is no existing cell to reuse so create a new one
+    if (result == nil) {
+        result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 21, 21)];
+        
+        result.imageScaling = NSImageScaleNone;
+        result.identifier = @"StrategyView";
+        
+    }
+    if ([strategy respondsToSelector:@selector(isPlaying:)])
+        result.image = [NSImage imageNamed:@"auto"];
+    
     return result;
 }
 

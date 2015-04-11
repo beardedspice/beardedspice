@@ -29,21 +29,60 @@
 
 }
 
--(BOOL) accepts:(id <Tab>) tab;
--(NSString *) toggle;
--(NSString *) previous;
--(NSString *) next;
+/**
+    Returns name of that media stratery.
+ */
 -(NSString *) displayName;
--(Track *) trackInfo:(id <Tab>) tab;
-
-// mainly for pausing before switching active tabs
--(NSString *) pause;
-
-// should noop
--(NSString *) favorite;
 
 /**
-    Helper method for obtaining album artwork
+    Checks tab that it is accepted this strategy.
+ */
+-(BOOL) accepts:(id <Tab>)tab;
+
+/**
+    Checks tab that it is in the playback status
+ */
+- (BOOL)isPlaying:(id<Tab>)tab;
+
+/**
+    Returns track information object from tab.
+ */
+-(Track *) trackInfo:(id <Tab>)tab;
+
+
+// Methods, which return javascript code for apropriated actions.
+//---------------------------------------------------------------
+
+/**
+    Returns javascript code of the play/pause toggle.
+ */
+-(NSString *) toggle;
+
+/**
+    Returns javascript code of the previous track action.
+ */
+-(NSString *) previous;
+
+/**
+    Returns javascript code of the next track action.
+ */
+-(NSString *) next;
+
+/**
+    Returns javascript code of the pausing action.
+    Used mainly for pausing before switching active tabs.
+ */
+-(NSString *) pause;
+
+/**
+    Returns javascript code of the "favorite" toggle.
+ */
+-(NSString *) favorite;
+
+//---------------------------------------------------------------
+
+/**
+    Helper method for obtaining album artwork from url string
  */
 - (NSImage *)imageByUrlString:(NSString *)urlString;
 

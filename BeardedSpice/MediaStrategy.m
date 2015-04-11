@@ -48,6 +48,13 @@
 {
     return YES;
 }
+
+-(Track *) trackInfo:(id<Tab>)tab
+{
+    return NULL;
+}
+
+
 -(NSString *) toggle
 {
     return @"";
@@ -67,10 +74,6 @@
 -(NSString *) displayName
 {
     return @"";
-}
--(Track *) trackInfo:(id<Tab>)tab
-{
-    return NULL;
 }
 
 -(NSString *) favorite

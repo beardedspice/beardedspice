@@ -25,6 +25,13 @@
     
 }
 
+- (BOOL)isPlaying:(id<Tab>)tab{
+    
+    NSNumber *value = [tab executeJavascript:@"(function(){ var player=require('media/playbackController'); return player.isPlaying();})()"];
+    
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     // check play/pause

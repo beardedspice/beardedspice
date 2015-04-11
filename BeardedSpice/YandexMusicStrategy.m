@@ -24,6 +24,13 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(id<Tab>)tab{
+    
+    NSNumber *value = [tab executeJavascript:@"(function(){return JSON.parse($('body').attr('data-unity-state')).playing;})()"];
+    
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()})()";

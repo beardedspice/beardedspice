@@ -332,7 +332,7 @@
 				D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */,
 				D055A36B1A7A035200CE2BBD /* SomaFmStrategy.h */,
 			);
-			name = MediaStrategies;
+			path = MediaStrategies;
 			sourceTree = "<group>";
 		};
 		03F33EE31857E21100E8F77E /* Tabs */ = {

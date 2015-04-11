@@ -255,7 +255,7 @@
 				653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */,
 				65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */,
 			);
-			name = Preferences;
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {

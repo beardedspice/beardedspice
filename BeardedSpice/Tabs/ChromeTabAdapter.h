@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import "Tab.h"
+#import "TabAdapter.h"
 #import "Chrome.h"
 
 @class runningSBApplication;
 
-@interface ChromeTabAdapter : NSObject <Tab> {
+@interface ChromeTabAdapter : TabAdapter {
     
     BOOL _wasActivated;
     NSInteger _previousTabId;

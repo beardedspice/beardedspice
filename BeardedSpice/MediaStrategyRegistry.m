@@ -115,7 +115,7 @@
     self.keyCache = nil;
 }
 
--(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
+-(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
     MediaStrategy *strat = _registeredCache[cacheKey];

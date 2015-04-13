@@ -20,7 +20,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }

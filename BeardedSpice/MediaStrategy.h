@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import "Tab.h"
+#import "TabAdapter.h"
 
 @interface Track : NSObject
 
@@ -37,17 +37,17 @@
 /**
     Checks tab that it is accepted this strategy.
  */
--(BOOL) accepts:(id <Tab>)tab;
+-(BOOL) accepts:(TabAdapter *)tab;
 
 /**
     Checks tab that it is in the playback status
  */
-- (BOOL)isPlaying:(id<Tab>)tab;
+- (BOOL)isPlaying:(TabAdapter *)tab;
 
 /**
     Returns track information object from tab.
  */
--(Track *) trackInfo:(id <Tab>)tab;
+-(Track *) trackInfo:(TabAdapter *)tab;
 
 
 // Methods, which return javascript code for apropriated actions.

@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -54,7 +54,7 @@
     return @"SomaFM";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *info = [tab executeJavascript:@"(function(){var card=document.querySelector('.row.card').querySelectorAll('div'); return {'track': card[1].firstChild.innerText, 'artist': card[2].firstChild.innerText, 'fav': card[3].firstChild.className.indexOf('btn-fav') > -1}})()"];
 

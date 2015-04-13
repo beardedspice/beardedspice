@@ -20,7 +20,7 @@
 -(void) addMediaStrategy:(MediaStrategy *) strategy;
 -(void) removeMediaStrategy:(MediaStrategy *) strategy;
 -(void) containsMediaStrategy:(MediaStrategy *) strategy;
--(MediaStrategy *) getMediaStrategyForTab:(id <Tab>) tab;
+-(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *) tab;
 -(NSArray *) getMediaStrategies;
 
 - (void)clearCache;

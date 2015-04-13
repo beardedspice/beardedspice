@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import "Tab.h"
+#import "TabAdapter.h"
 #import "Safari.h"
 
 @class runningSBApplication;
 
-@interface SafariTabAdapter : NSObject <Tab>{
+@interface SafariTabAdapter : TabAdapter{
     
     BOOL _wasActivated;
     SafariTab *_previousTab;

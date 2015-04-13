@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -54,7 +54,7 @@
     return @"Grooveshark";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *status = [tab executeJavascript:@"window.Grooveshark.getCurrentSongStatus()"];
     NSDictionary *song = [status objectForKey:@"song"];

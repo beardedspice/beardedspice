@@ -19,12 +19,12 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
 
-- (BOOL)isPlaying:(id<Tab>)tab{
+- (BOOL)isPlaying:(TabAdapter *)tab{
     
     NSNumber *value = [tab executeJavascript:@"(function(){return JSON.parse($('body').attr('data-unity-state')).playing;})()"];
     
@@ -69,7 +69,7 @@
     return @"(function(){$('.player-controls .like.player-controls__btn').click();})()";
 }
 
-- (Track *)trackInfo:(id<Tab>)tab{
+- (Track *)trackInfo:(TabAdapter *)tab{
 
     NSDictionary *info = [tab executeJavascript:@"(function(){return $.extend(JSON.parse($('body').attr('data-unity-state')), ({'favorited': ($('.player-controls .like.like_on.player-controls__btn').length)}))})()"];
     

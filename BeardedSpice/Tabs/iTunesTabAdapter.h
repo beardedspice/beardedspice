@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Tab.h"
+#import "TabAdapter.h"
 #import "iTunes.h"
 
 @class runningSBApplication, Track;
 
-@interface iTunesTabAdapter : NSObject <Tab>{
+@interface iTunesTabAdapter : TabAdapter{
     
     BOOL _wasActivated;
 }

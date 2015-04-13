@@ -17,7 +17,7 @@
     }
     return self;
 }
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -42,7 +42,7 @@
 {
     return @"MixCloud";
 }
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     Track *track = [[Track alloc] init];
     [track setTrack:[tab executeJavascript:@"document.querySelector('.player-cloudcast-title').text"]];

@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -54,7 +54,7 @@
     return @"HypeMachine";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:now_playing[0].text, track:now_playing[2].text}})()"];
 

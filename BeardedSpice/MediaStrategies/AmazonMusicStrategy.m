@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -44,7 +44,7 @@
     return @"Amazon Music";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *status = [tab executeJavascript:@"window.amznMusic.widgets.player.getCurrent()"];
     NSDictionary *metadata = [status objectForKey:@"metadata"];

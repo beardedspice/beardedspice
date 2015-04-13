@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -55,7 +55,7 @@
     return @"8tracks";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:mixPlayer.track.get('performer'),album:mixPlayer.track.get('release_name'),track:mixPlayer.track.get('name')}})()"];
 

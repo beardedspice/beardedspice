@@ -485,7 +485,7 @@ BOOL accessibilityApiEnabled = NO;
     
     if (iTunes) {
         
-        id<Tab> tab = [iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp];
+        TabAdapter *tab = [iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp];
         
         if (tab) {
             
@@ -530,28 +530,28 @@ BOOL accessibilityApiEnabled = NO;
 
 -(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
-    id<Tab> tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
+    TabAdapter *tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
 }
 
 -(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
-    id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
+    TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
 }
 
--(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
+-(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(TabAdapter *)tab
 {
     if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
         [item setState:NSOnState];
     }
 }
 
--(BOOL)addStatusMenuItemFor:(id<Tab>)tab {
+-(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
     
     if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
         
@@ -567,7 +567,7 @@ BOOL accessibilityApiEnabled = NO;
     return NO;
 }
 
-- (void)updateActiveTab:(id<Tab>) tab
+- (void)updateActiveTab:(TabAdapter *) tab
 {
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         

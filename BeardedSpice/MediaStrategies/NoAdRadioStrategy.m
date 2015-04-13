@@ -17,7 +17,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -50,7 +50,7 @@
     return @"(function(){document.getElementsByName('content')[0].contentWindow.document.getElementById('player_fav_icon').click();window.setTimeout(function(){document.getElementsByName('content')[0].contentWindow.document.getElementsByName('commit')[0].click();}, 500)})()";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *metadata;
     NSLog(@"Called trackInfo");

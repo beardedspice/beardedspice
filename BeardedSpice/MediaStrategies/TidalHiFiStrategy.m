@@ -19,13 +19,13 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
     
 }
 
-- (BOOL)isPlaying:(id<Tab>)tab{
+- (BOOL)isPlaying:(TabAdapter *)tab{
     
     NSNumber *value = [tab executeJavascript:@"(function(){ var player=require('media/playbackController'); return player.isPlaying();})()"];
     
@@ -65,7 +65,7 @@
     return @"TIDAL";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     @autoreleasepool {
         

@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -49,7 +49,7 @@
     return @"GoogleMusic";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
    NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:document.getElementById('player-artist').innerHTML, album:document.getElementsByClassName('player-album')[0].innerHTML, track:document.getElementById('playerSongTitle').innerHTML}})()"];
 

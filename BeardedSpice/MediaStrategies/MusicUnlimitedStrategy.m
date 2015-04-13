@@ -17,7 +17,7 @@
     }
     return self;
 }
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -42,7 +42,7 @@
 {
     return @"MusicUnlimited";
 }
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     // this site is pretty gnarly. Not implementing this for now.
     return NULL;

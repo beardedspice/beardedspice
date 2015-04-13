@@ -19,7 +19,7 @@
     return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
 }
@@ -49,7 +49,7 @@
     return @"BandCamp";
 }
 
--(Track *) trackInfo:(id<Tab>)tab
+-(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:EmbedData.artist, album:EmbedData.album_title, track:gplaylist.get_track_info().title}})()"];
 

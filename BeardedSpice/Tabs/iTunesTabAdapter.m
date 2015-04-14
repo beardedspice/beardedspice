@@ -56,7 +56,7 @@
 // We have only one window.
 - (NSString *)key{
     
-    return [(iTunesApplication *)self.application.sbApplication name];
+    return @"A:ITUNES";
 }
 
 // We have only one window.

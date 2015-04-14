@@ -42,6 +42,7 @@ extern BOOL accessibilityApiEnabled;
     SPMediaKeyTap *keyTap;
 
     TabAdapter *activeTab;
+    NSString *activeTabKey;
     MediaStrategyRegistry *mediaStrategyRegistry;
 
     NSWindowController *_preferencesWindowController;

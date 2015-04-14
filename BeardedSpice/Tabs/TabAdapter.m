@@ -7,26 +7,13 @@
 //
 
 #import "TabAdapter.h"
+#import "NSString+Utils.h"
 
 #define KEY_NAME            @"X_BeardedSpice_UUID"
-#define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})()"
-#define SET_KEY_FORMAT      @"(function(){ window." KEY_NAME @" = '%@';})()"
-
-#define ACTIVE_NAME         @"X_BeardedSpice_Active"
-#define GET_ACTIVE_FORMAT   @"(function(){return (window." ACTIVE_NAME @" == undefined ? fale: window." VE_NAME @");})()"
-#define SET_ACTIVE_FORMAT   @"(function(){ window." ACTIVE_NAME @" = true;})()"
+#define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})();"
+#define SET_KEY_FORMAT      @"(function(){ window." KEY_NAME @" = '%@';})();"
 
 @implementation TabAdapter
-
-- (BOOL)currentTab{
-    
-    return NO;
-}
-
-- (void)setCurrentTab:(BOOL)currentTab{
-
-    
-}
 
 - (id)executeJavascript:(NSString *)javascript{
     
@@ -44,7 +31,7 @@
 
 -(NSString *) key{
     
-    return nil;
+    return [self assignKey];
 }
 
 - (void)activateTab{
@@ -60,8 +47,32 @@
 }
 
 -(BOOL) isEqual:(__autoreleasing id)otherTab{
-    
-    return NO;
+
+    @autoreleasepool {
+        
+        if (otherTab == nil || ![otherTab isKindOfClass:[self class]]) return NO;
+        
+        return [[self key] isEqualToString:[otherTab key]];
+    }
+}
+
+//////////////////////////////////////////////////////////////
+#pragma mark Private methods
+//////////////////////////////////////////////////////////////
+
+- (NSString *)assignKey{
+    @autoreleasepool {
+        
+        NSString *_key = [self executeJavascript:GET_KEY_FORMAT];
+        
+        if ([NSString isNullOrEmpty:_key]){
+            
+            _key = [NSString stringWithFormat:@"K:%@", [[NSUUID UUID] UUIDString]];
+            _key = [NSString stringWithFormat:SET_KEY_FORMAT GET_KEY_FORMAT, _key];
+            _key = [self executeJavascript:_key];
+        }
+        return _key;
+    }
 }
 
 @end

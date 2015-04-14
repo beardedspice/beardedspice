@@ -8,12 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TabAdapter : NSObject{
-    
-    NSString *_key;
-}
-
-@property BOOL currentTab;
+@interface TabAdapter : NSObject
 
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;

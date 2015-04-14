@@ -275,6 +275,7 @@ BOOL accessibilityApiEnabled = NO;
         }
         else{
 
+            [self repairActiveTab];
             MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy) {
                 [activeTab executeJavascript:[strategy favorite]];
@@ -291,6 +292,8 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupNotificationShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
+        
+        [self repairActiveTab];
         [self showNotification];
     }];
 }
@@ -299,6 +302,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
         
+        [self repairActiveTab];
         [activeTab toggleTab];
     }];
 }
@@ -330,6 +334,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerToggle{
     
+    [self repairActiveTab];
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
         [(iTunesTabAdapter *)activeTab toggle];
@@ -353,6 +358,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerNext{
     
+    [self repairActiveTab];
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
         [(iTunesTabAdapter *)activeTab next];
@@ -372,6 +378,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerPrevious{
     
+    [self repairActiveTab];
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
         [(iTunesTabAdapter *)activeTab previous];
@@ -544,11 +551,14 @@ BOOL accessibilityApiEnabled = NO;
         [self addStatusMenuItemFor:tab];
 }
 
--(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(TabAdapter *)tab
+-(BOOL)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(TabAdapter *)tab
 {
-    if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
+    if (activeTab && [activeTabKey isEqualToString:[tab key]]) {
+        
         [item setState:NSOnState];
+        return YES;
     }
+    return NO;
 }
 
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
@@ -559,7 +569,12 @@ BOOL accessibilityApiEnabled = NO;
         if (menuItem){
 
             [menuItem setRepresentedObject:tab];
-            [self setStatusMenuItemStatus:menuItem forTab:tab];
+            
+            if ([self setStatusMenuItemStatus:menuItem forTab:tab]) {
+                
+                //repair activeTab
+                activeTab = tab;
+            }
         }
         return YES;
     }
@@ -567,23 +582,24 @@ BOOL accessibilityApiEnabled = NO;
     return NO;
 }
 
-- (void)updateActiveTab:(TabAdapter *) tab
+- (void)updateActiveTab:(TabAdapter *)tab
 {
+    // Prevent switch to tab, which not have strategy.
+    MediaStrategy *strategy;
+    if (![tab isKindOfClass:[iTunesTabAdapter class]]) {
+        
+        strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+        if (!strategy) {
+            return;
+        }
+    }
+    
     if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
-        [(iTunesTabAdapter *)activeTab pause];
+        if (![tab isEqual:activeTab])
+            [(iTunesTabAdapter *)activeTab pause];
     }
     else{
-        
-        MediaStrategy *strategy;
-        // Prevent switch to tab, which not have strategy.
-        if (![tab isKindOfClass:[iTunesTabAdapter class]]) {
-            
-            strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-            if (!strategy) {
-                return;
-            }
-        }
         
         strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy && ![tab isEqual:activeTab]) {
@@ -592,7 +608,14 @@ BOOL accessibilityApiEnabled = NO;
     }
     
     activeTab = tab;
+    activeTabKey = [tab key];
     NSLog(@"Active tab set to %@", activeTab);
+}
+
+- (void)repairActiveTab{
+    
+    if (![activeTabKey isEqualToString:[activeTab key]])
+        [self refreshTabs:self];
 }
 
 - (void)checkAccessibilityTrusted{

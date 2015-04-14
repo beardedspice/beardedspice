@@ -53,16 +53,10 @@
 -(BOOL) isEqual:(__autoreleasing id)object
 {
     if (object == nil || ![object isKindOfClass:[ChromeTabAdapter class]]) return NO;
-
-    ChromeTabAdapter *other = (ChromeTabAdapter *)object;
-    return self.tab.id == other.tab.id;
+    
+    return [super isEqual:object];
 }
 
--(NSString *) key
-{
-    //we get name of application because we have several applications of the chrome type.
-    return [NSString stringWithFormat:@"%@:%ld:%ld", [(ChromeApplication *)self.application.sbApplication name],[self.window index], [self.tab id]];
-}
 
 - (void)activateTab{
 

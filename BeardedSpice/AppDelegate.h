@@ -43,6 +43,9 @@ extern BOOL accessibilityApiEnabled;
 
     TabAdapter *activeTab;
     NSString *activeTabKey;
+    
+    NSMutableArray *playingTabs;
+    
     MediaStrategyRegistry *mediaStrategyRegistry;
 
     NSWindowController *_preferencesWindowController;

@@ -32,5 +32,6 @@
 - (void)favorite;
 
 - (Track *)trackInfo;
+- (BOOL)isPlaying;
 
 @end

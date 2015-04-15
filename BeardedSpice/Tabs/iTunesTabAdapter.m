@@ -178,4 +178,25 @@
     return nil;
 }
 
+- (BOOL)isPlaying{
+
+    iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
+    if (iTunes) {
+     
+        switch (iTunes.playerState) {
+                
+            case iTunesEPlSPaused:
+            case iTunesEPlSStopped:
+                
+                return NO;
+                
+            default:
+                
+                return YES;
+        }
+    }
+    
+    return NO;
+}
+
 @end

@@ -248,25 +248,22 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupActiveTabShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
-        [self refreshApplications];
-        if (chromeApp.frontmost) {
-            [self setActiveTabShortcutForChrome:chromeApp];
-        } else if (canaryApp.frontmost) {
-            [self setActiveTabShortcutForChrome:canaryApp];
-        } else if (yandexBrowserApp.frontmost) {
-            [self setActiveTabShortcutForChrome:yandexBrowserApp];
-        } else if (safariApp.frontmost) {
-            [self setActiveTabShortcutForSafari:safariApp];
-        } else if (iTunesApp.frontmost){
-            
-            [self updateActiveTab:[iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp]];
-        }
-    }];
+        
+        [self setActiveTabShortcut];
+     }];
 }
 
 - (void)setupFavoriteShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
+        
+        if ([[self autoSelectedTabs] count] > 1){
+            
+            NSUserNotification *notification = [NSUserNotification new];
+            notification.title = NSLocalizedString(@"Can't set to favorited!", @"AppDelegate - Favorite Notification");
+            
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        }
         
         if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
             
@@ -275,7 +272,6 @@ BOOL accessibilityApiEnabled = NO;
         }
         else{
 
-            [self repairActiveTab];
             MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy) {
                 [activeTab executeJavascript:[strategy favorite]];
@@ -456,12 +452,36 @@ BOOL accessibilityApiEnabled = NO;
                                                          andTab:[safariWindow currentTab]]];
 }
 
+- (void)setActiveTabShortcut{
+    
+    [self refreshApplications];
+    if (chromeApp.frontmost) {
+        [self setActiveTabShortcutForChrome:chromeApp];
+    } else if (canaryApp.frontmost) {
+        [self setActiveTabShortcutForChrome:canaryApp];
+    } else if (yandexBrowserApp.frontmost) {
+        [self setActiveTabShortcutForChrome:yandexBrowserApp];
+    } else if (safariApp.frontmost) {
+        [self setActiveTabShortcutForSafari:safariApp];
+    } else if (iTunesApp.frontmost){
+        
+        [self updateActiveTab:[iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp]];
+    }
+
+}
+
 - (void)removeAllItems
 {
     NSInteger count = statusMenu.itemArray.count;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
+    
+    // reset playingTabs
+    playingTabs = [NSMutableArray array];
+    
+    //clear activeTab object
+    activeTab = nil;
 }
 
 - (void)refreshTabsForChrome:(runningSBApplication *)app {
@@ -501,6 +521,10 @@ BOOL accessibilityApiEnabled = NO;
             if (menuItem) {
                 [menuItem setRepresentedObject:tab];
                 [self setStatusMenuItemStatus:menuItem forTab:tab];
+                
+                // check playing status
+                if ([(iTunesTabAdapter *)tab isPlaying])
+                    [playingTabs addObject:tab];
             }
         }
     }
@@ -563,12 +587,17 @@ BOOL accessibilityApiEnabled = NO;
 
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
     
-    if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+    if (strategy) {
         
         NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
         if (menuItem){
 
             [menuItem setRepresentedObject:tab];
+            
+            // check playing status
+            if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
+                [playingTabs addObject:tab];
             
             if ([self setStatusMenuItemStatus:menuItem forTab:tab]) {
                 
@@ -616,6 +645,57 @@ BOOL accessibilityApiEnabled = NO;
     
     if (![activeTabKey isEqualToString:[activeTab key]])
         [self refreshTabs:self];
+}
+
+- (NSArray *)autoSelectedTabs{
+    
+    [self refreshTabs:self];
+    switch (playingTabs.count) {
+        case 0:
+            
+            // not have active tab
+            if (!activeTab){
+                
+                // try to set active tab to focus
+                [self setActiveTabShortcut];
+                
+                if (!activeTab) {
+                    
+                    //try to set active tab to first item of menu
+                    TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+                    if (tab)
+                        [self updateActiveTab:tab];
+                    else
+                        return @[];
+                }
+                
+            }
+            
+            return @[activeTab];
+            break;
+            
+        case 1:
+
+            [self updateActiveTab:playingTabs[0]];
+            break;
+            
+        default: // many
+            
+            // try to set active tab to focus
+            [self setActiveTabShortcut];
+            
+            if (!activeTab) {
+                
+                //try to set active tab to first item of menu
+                TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+                if (tab)
+                    [self updateActiveTab:tab];
+            }
+
+            break;
+    }
+    
+    return playingTabs;
 }
 
 - (void)checkAccessibilityTrusted{

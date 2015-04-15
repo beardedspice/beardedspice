@@ -260,9 +260,12 @@ BOOL accessibilityApiEnabled = NO;
         if ([[self autoSelectedTabs] count] > 1){
             
             NSUserNotification *notification = [NSUserNotification new];
-            notification.title = NSLocalizedString(@"Can't set to favorited!", @"AppDelegate - Favorite Notification");
+            notification.title = NSLocalizedString(@"Can't change favorited status!", @"AppDelegate - Favorite Notification");
+            notification.informativeText = NSLocalizedString(@"You have several active players. Can't select one of them.", @"AppDelegate - Favorite Notification");
             
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            
+            return;
         }
         
         if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
@@ -289,7 +292,17 @@ BOOL accessibilityApiEnabled = NO;
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
         
-        [self repairActiveTab];
+        if ([[self autoSelectedTabs] count] > 1){
+            
+            NSUserNotification *notification = [NSUserNotification new];
+            notification.title = NSLocalizedString(@"Can't display track information!", @"AppDelegate - Notification");
+            notification.informativeText = NSLocalizedString(@"You have several active players. Can't select one of them.", @"AppDelegate - Notification");
+            
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            
+            return;
+        }
+        
         [self showNotification];
     }];
 }
@@ -298,7 +311,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
         
-        [self repairActiveTab];
+        [self autoSelectedTabs];
         [activeTab toggleTab];
     }];
 }
@@ -330,43 +343,47 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerToggle{
     
-    [self repairActiveTab];
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    for (TabAdapter *tab in [self autoSelectedTabs]) {
         
-        [(iTunesTabAdapter *)activeTab toggle];
-        if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![activeTab frontmost])
-            [self showNotification];
-        
-        iTunesNeedDisplayNotification = YES;
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy toggle]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
-            }
+        if ([tab isKindOfClass:[iTunesTabAdapter class]]) {
             
+            [(iTunesTabAdapter *)tab toggle];
+            if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![tab frontmost])
+                [self showNotification];
+            
+            iTunesNeedDisplayNotification = YES;
+        }
+        else{
+            
+            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+            if (strategy) {
+                [tab executeJavascript:[strategy toggle]];
+                if (ALWAYSSHOWNOTIFICATION && ![tab frontmost]){
+                    [self showNotification];
+                }
+                
+            }
         }
     }
 }
 
 - (void)playerNext{
     
-    [self repairActiveTab];
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    for (TabAdapter *tab in [self autoSelectedTabs]) {
         
-        [(iTunesTabAdapter *)activeTab next];
-        iTunesNeedDisplayNotification = NO;
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy next]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
+        if ([tab isKindOfClass:[iTunesTabAdapter class]]) {
+            
+            [(iTunesTabAdapter *)tab next];
+            iTunesNeedDisplayNotification = NO;
+        }
+        else{
+            
+            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+            if (strategy) {
+                [tab executeJavascript:[strategy next]];
+                if (ALWAYSSHOWNOTIFICATION && ![tab frontmost]){
+                    [self showNotification];
+                }
             }
         }
     }
@@ -374,19 +391,21 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerPrevious{
     
-    [self repairActiveTab];
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    for (TabAdapter *tab in [self autoSelectedTabs]) {
         
-        [(iTunesTabAdapter *)activeTab previous];
-        iTunesNeedDisplayNotification = NO;
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            [activeTab executeJavascript:[strategy previous]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
+        if ([tab isKindOfClass:[iTunesTabAdapter class]]) {
+            
+            [(iTunesTabAdapter *)tab previous];
+            iTunesNeedDisplayNotification = NO;
+        }
+        else{
+            
+            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+            if (strategy) {
+                [tab executeJavascript:[strategy previous]];
+                if (ALWAYSSHOWNOTIFICATION && ![tab frontmost]){
+                    [self showNotification];
+                }
             }
         }
     }
@@ -577,7 +596,7 @@ BOOL accessibilityApiEnabled = NO;
 
 -(BOOL)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(TabAdapter *)tab
 {
-    if (activeTab && [activeTabKey isEqualToString:[tab key]]) {
+    if ([activeTabKey isEqualToString:[tab key]]) {
         
         [item setState:NSOnState];
         return YES;

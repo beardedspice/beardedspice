@@ -117,7 +117,8 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    [self refreshTabs: menu];
+    [self autoSelectedTabs];
+    [self setStatusMenuItemsStatus];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
@@ -476,6 +477,26 @@ BOOL accessibilityApiEnabled = NO;
     
 }
 
+-(BOOL)setStatusMenuItemsStatus{
+    
+    @autoreleasepool {
+        NSInteger count = statusMenu.itemArray.count;
+        for (int i = 0; i < (count - statusMenuCount); i++) {
+            
+            NSMenuItem *item = [statusMenu itemAtIndex:i];
+            TabAdapter *tab = [item representedObject];
+            if ([activeTab isEqual:tab]) {
+                
+                [item setState:NSOnState];
+                return YES;
+            }
+        }
+        
+        return NO;
+    }
+}
+
+
 - (void)refreshTabsForChrome:(runningSBApplication *)app {
     ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
     if (chrome) {
@@ -517,7 +538,7 @@ BOOL accessibilityApiEnabled = NO;
                 if ([(iTunesTabAdapter *)tab isPlaying])
                     [playingTabs addObject:tab];
                 
-                [self setStatusMenuItemStatus:menuItem forTab:tab];
+                [self repairActiveTabFrom:tab];
             }
         }
     }
@@ -576,18 +597,6 @@ BOOL accessibilityApiEnabled = NO;
         [self addStatusMenuItemFor:tab];
 }
 
--(BOOL)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(TabAdapter *)tab
-{
-    if ([activeTabKey isEqualToString:[tab key]]) {
-        
-        [item setState:NSOnState];
-        //repair activeTab
-        activeTab = [tab copyStateFrom:activeTab];
-        return YES;
-    }
-    return NO;
-}
-
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
     
     MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
@@ -602,7 +611,7 @@ BOOL accessibilityApiEnabled = NO;
             if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
                 [playingTabs addObject:tab];
             
-            [self setStatusMenuItemStatus:menuItem forTab:tab];
+            [self repairActiveTabFrom:tab];
         }
         return YES;
     }
@@ -638,6 +647,15 @@ BOOL accessibilityApiEnabled = NO;
     activeTab = tab;
     activeTabKey = [tab key];
     NSLog(@"Active tab set to %@", activeTab);
+}
+
+- (void)repairActiveTabFrom:(TabAdapter *)tab{
+    
+    if ([activeTabKey isEqualToString:[tab key]]) {
+        
+        //repair activeTab
+        activeTab = [tab copyStateFrom:activeTab];
+    }
 }
 
 - (void)autoSelectedTabs{

@@ -53,6 +53,20 @@
     return [self.tab URL];
 }
 
+- (instancetype)copyStateFrom:(TabAdapter *)tab{
+    
+    if ([tab isKindOfClass:[self class]]) {
+        SafariTabAdapter *theTab = (SafariTabAdapter *)tab;
+        
+        _wasActivated = theTab->_wasActivated;
+        _previousTab = theTab->_previousTab;
+        _previousTopWindow = theTab->_previousTopWindow;
+        _wasWindowActivated = theTab->_wasWindowActivated;
+    }
+    
+    return self;
+}
+
 -(BOOL) isEqual:(__autoreleasing id)object
 {
     if (object == nil || ![object isKindOfClass:[SafariTabAdapter class]]) return NO;

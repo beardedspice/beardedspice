@@ -256,17 +256,8 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupFavoriteShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
-        
-        if ([[self autoSelectedTabs] count] > 1){
-            
-            NSUserNotification *notification = [NSUserNotification new];
-            notification.title = NSLocalizedString(@"Can't change favorited status!", @"AppDelegate - Favorite Notification");
-            notification.informativeText = NSLocalizedString(@"You have several active players. Can't select one of them.", @"AppDelegate - Favorite Notification");
-            
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            
-            return;
-        }
+
+        [self autoSelectedTabs];
         
         if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
             
@@ -292,17 +283,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
         
-        if ([[self autoSelectedTabs] count] > 1){
-            
-            NSUserNotification *notification = [NSUserNotification new];
-            notification.title = NSLocalizedString(@"Can't display track information!", @"AppDelegate - Notification");
-            notification.informativeText = NSLocalizedString(@"You have several active players. Can't select one of them.", @"AppDelegate - Notification");
-            
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            
-            return;
-        }
-        
+        [self autoSelectedTabs];
         [self showNotification];
     }];
 }
@@ -343,47 +324,43 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerToggle{
     
-    for (TabAdapter *tab in [self autoSelectedTabs]) {
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
-        if ([tab isKindOfClass:[iTunesTabAdapter class]]) {
-            
-            [(iTunesTabAdapter *)tab toggle];
-            if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![tab frontmost])
+        [(iTunesTabAdapter *)activeTab toggle];
+        if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![activeTab frontmost])
+            [self showNotification];
+        
+        iTunesNeedDisplayNotification = YES;
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy toggle]];
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
                 [self showNotification];
-            
-            iTunesNeedDisplayNotification = YES;
-        }
-        else{
-            
-            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-            if (strategy) {
-                [tab executeJavascript:[strategy toggle]];
-                if (ALWAYSSHOWNOTIFICATION && ![tab frontmost]){
-                    [self showNotification];
-                }
-                
             }
+            
         }
     }
 }
 
 - (void)playerNext{
     
-    for (TabAdapter *tab in [self autoSelectedTabs]) {
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
-        if ([tab isKindOfClass:[iTunesTabAdapter class]]) {
-            
-            [(iTunesTabAdapter *)tab next];
-            iTunesNeedDisplayNotification = NO;
-        }
-        else{
-            
-            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-            if (strategy) {
-                [tab executeJavascript:[strategy next]];
-                if (ALWAYSSHOWNOTIFICATION && ![tab frontmost]){
-                    [self showNotification];
-                }
+        [(iTunesTabAdapter *)activeTab next];
+        iTunesNeedDisplayNotification = NO;
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy next]];
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+                [self showNotification];
             }
         }
     }
@@ -391,21 +368,19 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerPrevious{
     
-    for (TabAdapter *tab in [self autoSelectedTabs]) {
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
         
-        if ([tab isKindOfClass:[iTunesTabAdapter class]]) {
-            
-            [(iTunesTabAdapter *)tab previous];
-            iTunesNeedDisplayNotification = NO;
-        }
-        else{
-            
-            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-            if (strategy) {
-                [tab executeJavascript:[strategy previous]];
-                if (ALWAYSSHOWNOTIFICATION && ![tab frontmost]){
-                    [self showNotification];
-                }
+        [(iTunesTabAdapter *)activeTab previous];
+        iTunesNeedDisplayNotification = NO;
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy previous]];
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+                [self showNotification];
             }
         }
     }
@@ -499,8 +474,6 @@ BOOL accessibilityApiEnabled = NO;
     // reset playingTabs
     playingTabs = [NSMutableArray array];
     
-    //clear activeTab object
-    activeTab = nil;
 }
 
 - (void)refreshTabsForChrome:(runningSBApplication *)app {
@@ -539,11 +512,12 @@ BOOL accessibilityApiEnabled = NO;
             
             if (menuItem) {
                 [menuItem setRepresentedObject:tab];
-                [self setStatusMenuItemStatus:menuItem forTab:tab];
                 
                 // check playing status
                 if ([(iTunesTabAdapter *)tab isPlaying])
                     [playingTabs addObject:tab];
+                
+                [self setStatusMenuItemStatus:menuItem forTab:tab];
             }
         }
     }
@@ -556,6 +530,9 @@ BOOL accessibilityApiEnabled = NO;
     [self removeAllItems];
     [self refreshApplications];
     
+    //hold activeTab object
+    __unsafe_unretained TabAdapter *_activeTab = activeTab;
+
     [mediaStrategyRegistry beginStrategyQueries];
     
     [self refreshTabsForChrome:chromeApp];
@@ -575,6 +552,11 @@ BOOL accessibilityApiEnabled = NO;
         [keyTap startWatchingMediaKeys];
     } else {
         NSLog(@"Media key monitoring disabled");
+    }
+    
+    //check activeTab
+    if (_activeTab == activeTab) {
+        activeTab = nil;
     }
 }
 
@@ -599,6 +581,8 @@ BOOL accessibilityApiEnabled = NO;
     if ([activeTabKey isEqualToString:[tab key]]) {
         
         [item setState:NSOnState];
+        //repair activeTab
+        activeTab = [tab copyStateFrom:activeTab];
         return YES;
     }
     return NO;
@@ -618,11 +602,7 @@ BOOL accessibilityApiEnabled = NO;
             if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
                 [playingTabs addObject:tab];
             
-            if ([self setStatusMenuItemStatus:menuItem forTab:tab]) {
-                
-                //repair activeTab
-                activeTab = tab;
-            }
+            [self setStatusMenuItemStatus:menuItem forTab:tab];
         }
         return YES;
     }
@@ -660,13 +640,7 @@ BOOL accessibilityApiEnabled = NO;
     NSLog(@"Active tab set to %@", activeTab);
 }
 
-- (void)repairActiveTab{
-    
-    if (![activeTabKey isEqualToString:[activeTab key]])
-        [self refreshTabs:self];
-}
-
-- (NSArray *)autoSelectedTabs{
+- (void)autoSelectedTabs{
     
     [self refreshTabs:self];
     switch (playingTabs.count) {
@@ -684,13 +658,9 @@ BOOL accessibilityApiEnabled = NO;
                     TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
                     if (tab)
                         [self updateActiveTab:tab];
-                    else
-                        return @[];
                 }
                 
             }
-            
-            return @[activeTab];
             break;
             
         case 1:
@@ -710,11 +680,8 @@ BOOL accessibilityApiEnabled = NO;
                 if (tab)
                     [self updateActiveTab:tab];
             }
-
             break;
     }
-    
-    return playingTabs;
 }
 
 - (void)checkAccessibilityTrusted{

@@ -46,6 +46,10 @@
     return NO;
 }
 
+- (instancetype)copyStateFrom:(TabAdapter *)tab{
+    return self;
+}
+
 -(BOOL) isEqual:(__autoreleasing id)otherTab{
 
     @autoreleasepool {

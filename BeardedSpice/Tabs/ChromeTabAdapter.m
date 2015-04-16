@@ -50,6 +50,20 @@
     return [self.tab URL];
 }
 
+- (instancetype)copyStateFrom:(TabAdapter *)tab{
+    
+    if ([tab isKindOfClass:[self class]]) {
+        ChromeTabAdapter *theTab = (ChromeTabAdapter *)tab;
+        
+        _wasActivated = theTab->_wasActivated;
+        _previousTabId = theTab->_previousTabId;
+        _previousTopWindow = theTab->_previousTopWindow;
+        _wasWindowActivated = theTab->_wasWindowActivated;
+    }
+    
+    return self;
+}
+
 -(BOOL) isEqual:(__autoreleasing id)object
 {
     if (object == nil || ![object isKindOfClass:[ChromeTabAdapter class]]) return NO;

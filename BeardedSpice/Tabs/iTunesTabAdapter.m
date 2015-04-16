@@ -59,6 +59,17 @@
     return @"A:ITUNES";
 }
 
+- (instancetype)copyStateFrom:(TabAdapter *)tab{
+    
+    if ([tab isKindOfClass:[self class]]) {
+        iTunesTabAdapter *theTab = (iTunesTabAdapter *)tab;
+        
+        _wasActivated = theTab->_wasActivated;
+    }
+    
+    return self;
+}
+
 // We have only one window.
 -(BOOL) isEqual:(__autoreleasing id)otherTab{
 

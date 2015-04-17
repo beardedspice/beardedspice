@@ -40,7 +40,7 @@
 -(BOOL) accepts:(TabAdapter *)tab;
 
 /**
-    Checks tab that it is in the playback status
+    Checks tab that it is in the playback state.
  */
 - (BOOL)isPlaying:(TabAdapter *)tab;
 

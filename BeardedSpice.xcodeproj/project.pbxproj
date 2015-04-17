@@ -37,6 +37,7 @@
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
 		4CC091501AD5BE8B008AAD54 /* SubsonicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0914F1AD5BE8B008AAD54 /* SubsonicStrategy.m */; };
+		4CD92E9A1AE1837200820844 /* TuneInStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD92E991AE1837200820844 /* TuneInStrategy.m */; };
 		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
 		503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
@@ -142,6 +143,8 @@
 		48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonMusicStrategy.m; sourceTree = "<group>"; };
 		4CC0914E1AD5BE4D008AAD54 /* SubsonicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubsonicStrategy.h; sourceTree = "<group>"; };
 		4CC0914F1AD5BE8B008AAD54 /* SubsonicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubsonicStrategy.m; sourceTree = "<group>"; };
+		4CD92E981AE1831500820844 /* TuneInStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuneInStrategy.h; sourceTree = "<group>"; };
+		4CD92E991AE1837200820844 /* TuneInStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuneInStrategy.m; sourceTree = "<group>"; };
 		4DB2F13119DB987D0010D194 /* ChorusStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChorusStrategy.h; sourceTree = "<group>"; };
 		4DB2F13219DB987D0010D194 /* ChorusStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChorusStrategy.m; sourceTree = "<group>"; };
 		503E32DA1ACE773000210195 /* NoAdRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoAdRadioStrategy.h; sourceTree = "<group>"; };
@@ -264,30 +267,10 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
-				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
-				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
 				1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
-				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
-				4DB2F13219DB987D0010D194 /* ChorusStrategy.m */,
 				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
 				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
-				81DA43D41950BF55000E98AC /* VkStrategy.m */,
-				81DA43D51950BF55000E98AC /* VkStrategy.h */,
-				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
-				523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */,
-				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
-				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
-				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
-				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
-				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
-				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
-				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
-				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
-				039D83401892173600DB426D /* SlackerStrategy.h */,
-				039D83411892173600DB426D /* SlackerStrategy.m */,
-				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
-				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
 				03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
 				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
@@ -310,8 +293,6 @@
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
 				969E45701863E5830037226B /* LastFmStrategy.h */,
 				969E45711863E5830037226B /* LastFmStrategy.m */,
-				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
-				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
 				963E89B618BB010600FE0DBB /* MixCloudStrategy.h */,
 				963E89B718BB010600FE0DBB /* MixCloudStrategy.m */,
 				963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */,
@@ -342,6 +323,8 @@
 				83AAFD7718E0A79500640767 /* StitcherStrategy.m */,
 				4CC0914E1AD5BE4D008AAD54 /* SubsonicStrategy.h */,
 				4CC0914F1AD5BE8B008AAD54 /* SubsonicStrategy.m */,
+				4CD92E981AE1831500820844 /* TuneInStrategy.h */,
+				4CD92E991AE1837200820844 /* TuneInStrategy.m */,
 				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
 				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
 				658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */,
@@ -426,15 +409,8 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
-				0369231B1862934000E04DDB /* Preferences */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
-				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
-				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
-				03A34919185E9FC700C4A62B /* MediaStrategies */,
-				03F33EE31857E21100E8F77E /* Tabs */,
-				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
-				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933471855173100A49AC7 /* Images.xcassets */,
@@ -659,6 +635,7 @@
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
+				4CD92E9A1AE1837200820844 /* TuneInStrategy.m in Sources */,
 				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,

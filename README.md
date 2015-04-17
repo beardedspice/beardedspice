@@ -40,6 +40,8 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](http://music.yandex.ru)
 - [YouTube](http://youtube.com)
+- [Subsonic](http://subsonic.org/)
+- [TuneIn](http://tunein.com/)
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 

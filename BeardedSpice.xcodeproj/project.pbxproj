@@ -268,6 +268,26 @@
 				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
 				1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */,
+				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
+				4DB2F13219DB987D0010D194 /* ChorusStrategy.m */,
+				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
+				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
+				81DA43D41950BF55000E98AC /* VkStrategy.m */,
+				81DA43D51950BF55000E98AC /* VkStrategy.h */,
+				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
+				523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */,
+				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
+				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
+				45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */,
+				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
+				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
+				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				039D83401892173600DB426D /* SlackerStrategy.h */,
+				039D83411892173600DB426D /* SlackerStrategy.m */,
+				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
+				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				03A3492A185EE73700C4A62B /* BandCampStrategy.h */,
 				03A3492B185EE73700C4A62B /* BandCampStrategy.m */,
 				523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */,
@@ -406,6 +426,15 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
+				0369231B1862934000E04DDB /* Preferences */,
+				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
+				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				03A3491A185EA03300C4A62B /* MediaStrategy.h */,
+				03A3491B185EA03300C4A62B /* MediaStrategy.m */,
+				03A34919185E9FC700C4A62B /* MediaStrategies */,
+				03F33EE31857E21100E8F77E /* Tabs */,
+				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
+				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933471855173100A49AC7 /* Images.xcassets */,
@@ -726,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -758,7 +787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;

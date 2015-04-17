@@ -5,8 +5,8 @@
 
 BeardedSpice is a menubar application for Mac OSX that allows you to control web based media players with the media keys found on Mac keyboards. It is an extensible application that works with Chrome and Safari, and can control any tab with an applicable media player. BeardedSpice currently supports:
 
-- [22Tracks](http://22tracks.com)
 - [8Tracks](http://8tracks.com)
+- [22Tracks](http://22tracks.com)
 - [Amazon Music](https://amazon.com/gp/dmusic/cloudplayer/player)
 - [AudioMack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
@@ -21,6 +21,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Last.fm](http://last.fm)
 - [Mixcloud](http://mixcloud.com)
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)
+- [NoAdRadio.com](http://noadradio.com)
 - [Overcast.fm](https://overcast.fm)
 - [Pandora](http://pandora.com)
 - [Pocket Casts](https://play.pocketcasts.com/)
@@ -34,15 +35,23 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [STITCHER](http://www.stitcher.com)
 - [Synology](http://synology.com)
 - [TIDAL](http://listen.tidalhifi.com/)
+- [Vimeo](http://vimeo.com)
+- [VK ("My Music" from vk.com)](http://vk.com)
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](http://music.yandex.ru)
 - [YouTube](http://youtube.com)
-- [VK ("My Music" from vk.com)](http://vk.com)
-- [Vimeo](http://vimeo.com)
 
 If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
 
 BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
+
+# Download
+
+Download the [latest release (1.0)](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/distr/publish/releases).
+
+Also you can find older releases [here](https://github.com/beardedspice/beardedspice/tree/releases).
+
+Mac OS X 10.8 or greater required.
 
 ## Dependencies
 
@@ -149,16 +158,7 @@ Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspic
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 
-# Download
-
-Download the [latest release](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/distr/publish/releases).
-
-Also you can find older releases [here](https://github.com/beardedspice/beardedspice/tree/releases).
-
-Mac OS X 10.7 or greater required.
-
 [![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
-
 
 # Contact
 

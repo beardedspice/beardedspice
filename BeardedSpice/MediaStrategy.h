@@ -31,15 +31,13 @@
 
 /**
     Returns name of that media stratery. 
-    Required override.
  */
--(NSString *) displayName;
+-(NSString *) displayName; // Required override in subclass.
 
 /**
     Checks tab that it is accepted this strategy.
-    Required override.
  */
--(BOOL) accepts:(TabAdapter *)tab;
+-(BOOL) accepts:(TabAdapter *)tab; // Required override in subclass.
 
 /**
     Checks tab that it is in the playback state.
@@ -57,9 +55,8 @@
 
 /**
     Returns javascript code of the play/pause toggle.
-    Required override.
  */
--(NSString *) toggle;
+-(NSString *) toggle; // Required override in subclass.
 
 /**
     Returns javascript code of the previous track action.
@@ -74,9 +71,8 @@
 /**
     Returns javascript code of the pausing action.
     Used mainly for pausing before switching active tabs.
-    Required override.
  */
--(NSString *) pause;
+-(NSString *) pause; // Required override in subclass.
 
 /**
     Returns javascript code of the "favorite" toggle.

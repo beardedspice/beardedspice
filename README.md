@@ -14,6 +14,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Bop.fm](http://bop.fm)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
 - [Deezer](http://deezer.com)
+- [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
@@ -80,62 +81,147 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 
 ```Objective-C
 @interface MediaStrategy : NSObject
+/**
+Returns name of that media stratery. 
+*/
+-(NSString *) displayName; // Required override in subclass.
 
--(BOOL) accepts:(id <Tab>) tab;
--(NSString *) displayName;
+/**
+Checks tab that it is accepted this strategy.
+*/
+-(BOOL) accepts:(TabAdapter *)tab; // Required override in subclass.
 
--(NSString *) toggle;
+/**
+Checks tab that it is in the playback state.
+*/
+- (BOOL)isPlaying:(TabAdapter *)tab;
+
+/**
+Returns track information object from tab.
+*/
+- (Track *)trackInfo:(TabAdapter *)tab;
+
+/**
+Returns javascript code of the play/pause toggle.
+*/
+-(NSString *) toggle; // Required override in subclass.
+
+/**
+Returns javascript code of the previous track action.
+*/
 -(NSString *) previous;
+
+/**
+Returns javascript code of the next track action.
+*/
 -(NSString *) next;
--(NSString *) pause;
+
+/**
+Returns javascript code of the pausing action.
+Used mainly for pausing before switching active tabs.
+*/
+-(NSString *) pause; // Required override in subclass.
+
+/**
+Returns javascript code of the "favorite" toggle.
+*/
+-(NSString *) favorite;
+
+/**
+Helper method for obtaining album artwork from url string
+*/
+- (NSImage *)imageByUrlString:(NSString *)urlString;
 
 @end
 ```
 
-The `accepts` method takes a `Tab` object and returns `YES` if the strategy can control the given tab. `displayName` must return a unique string describing the controller and will be used as the name shown in the Preferences panel. All other functions return a Javascript function for the particular action. `pause` is a special case and is used when changing the active tab.
+The `accepts` method takes a `Tab` object and returns `YES` if the strategy can control the given tab. `displayName` must return a unique string describing the controller and will be used as the name shown in the Preferences panel. Some other functions return a Javascript function for the particular action. `pause` is a special case and is used when changing the active tab. Optional but useful methods `isPlaying` and `trackInfo`. If you will define `isPlaying` method, media strategy will be used in autoselect mechanism, description of it you may see in issue #67. `trackInfo` method returns `Track` object, which used in notifications for user.
 
-A sample strategy for GrooveShark:
+Define these properties of the Track object:
+```Objective-C
+@property NSString *track;
+@property NSString *album;
+@property NSString *artist;
+@property NSImage *image;
+@property NSNumber *favorited;
+```
+
+A sample strategy for YandexMusic:
 
 ```Objective-C
-@implementation GrooveSharkStrategy
+@implementation YandexMusicStrategy
 
 -(id) init
 {
-    self = [super init];
-    if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*grooveshark.com*'"];
-    }
-    return self;
+self = [super init];
+if (self) {
+predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*music.yandex.*'"];
+}
+return self;
 }
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
-    return [predicate evaluateWithObject:[tab URL]];
+return [predicate evaluateWithObject:[tab URL]];
+}
+
+- (BOOL)isPlaying:(TabAdapter *)tab{
+
+NSNumber *value = [tab executeJavascript:@"(function(){return JSON.parse($('body').attr('data-unity-state')).playing;})()"];
+
+return [value boolValue];
 }
 
 -(NSString *) toggle
 {
-    return @"(function(){return window.Grooveshark.togglePlayPause()})()";
+return @"(function(){document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()})()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){return window.Grooveshark.previous()})()";
+return @"(function(){document.querySelector('div.b-jambox__prev, .player-controls__btn_prev').click()})()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){return window.Grooveshark.next()})()";
+return @"(function(){document.querySelector('div.b-jambox__next, .player-controls__btn_next').click()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){return window.Grooveshark.pause()})()";
+return @"(function(){\
+var e=document.querySelector('.player-controls__btn_play');\
+if(e!=null){\
+if(e.classList.contains('player-controls__btn_pause')){e.click()}\
+}else{\
+var e=document.querySelector('div.b-jambox__play');\
+if(e.classList.contains('b-jambox__playing')){e.click()}\
+}\
+})()";
 }
 
 -(NSString *) displayName
 {
-    return @"Grooveshark";
+return @"YandexMusic";
+}
+
+- (NSString *)favorite{
+
+return @"(function(){$('.player-controls .like.player-controls__btn').click();})()";
+}
+
+- (Track *)trackInfo:(TabAdapter *)tab{
+
+NSDictionary *info = [tab executeJavascript:@"(function(){return $.extend(JSON.parse($('body').attr('data-unity-state')), ({'favorited': ($('.player-controls .like.like_on.player-controls__btn').length)}))})()"];
+
+Track *track = [Track new];
+
+track.track = info[@"title"];
+track.artist = info[@"artist"];
+track.image = [self imageByUrlString:info[@"albumArt"]];
+track.favorited = info[@"favorited"];
+
+return track;
 }
 
 @end
@@ -148,10 +234,10 @@ Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspic
 {
         DefaultMediaStrategies = [NSArray arrayWithObjects:
                                   // ...
-                                  [[GoogleMusicStrategy alloc] init],
-                                  [[RdioStrategy alloc] init],
+                                  [GoogleMusicStrategy new],
+                                  [RdioStrategy new],
                                   // add your new strategy!
-                                  [[GrooveSharkStrategy alloc] init],
+                                  [YandexMusicStrategy new],
                                   nil];
 }
 ```

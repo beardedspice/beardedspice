@@ -10,44 +10,45 @@
 
 @implementation YandexMusicStrategy
 
--(id) init
-{
+- (id)init {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*music.yandex.*'"];
+        predicate =
+            [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*music.yandex.*'"];
     }
     return self;
 }
 
--(BOOL) accepts:(TabAdapter *)tab
-{
+- (BOOL)accepts:(TabAdapter *)tab {
     return [predicate evaluateWithObject:[tab URL]];
 }
 
-- (BOOL)isPlaying:(TabAdapter *)tab{
-    
-    NSNumber *value = [tab executeJavascript:@"(function(){return JSON.parse($('body').attr('data-unity-state')).playing;})()"];
-    
+- (BOOL)isPlaying:(TabAdapter *)tab {
+
+    NSNumber *value =
+        [tab executeJavascript:@"(function(){return "
+                               @"JSON.parse($('body').attr('data-unity-state')"
+                               @").playing;})()"];
+
     return [value boolValue];
 }
 
--(NSString *) toggle
-{
-    return @"(function(){document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()})()";
+- (NSString *)toggle {
+    return @"(function(){document.querySelector('div.b-jambox__play, "
+           @".player-controls__btn_play').click()})()";
 }
 
--(NSString *) previous
-{
-    return @"(function(){document.querySelector('div.b-jambox__prev, .player-controls__btn_prev').click()})()";
+- (NSString *)previous {
+    return @"(function(){document.querySelector('div.b-jambox__prev, "
+           @".player-controls__btn_prev').click()})()";
 }
 
--(NSString *) next
-{
-    return @"(function(){document.querySelector('div.b-jambox__next, .player-controls__btn_next').click()})()";
+- (NSString *)next {
+    return @"(function(){document.querySelector('div.b-jambox__next, "
+           @".player-controls__btn_next').click()})()";
 }
 
--(NSString *) pause
-{
+- (NSString *)pause {
     return @"(function(){\
         var e=document.querySelector('.player-controls__btn_play');\
         if(e!=null){\
@@ -59,27 +60,32 @@
     })()";
 }
 
--(NSString *) displayName
-{
+- (NSString *)displayName {
     return @"YandexMusic";
 }
 
-- (NSString *)favorite{
-    
-    return @"(function(){$('.player-controls .like.player-controls__btn').click();})()";
+- (NSString *)favorite {
+
+    return @"(function(){$('.player-controls "
+           @".like.player-controls__btn').click();})()";
 }
 
-- (Track *)trackInfo:(TabAdapter *)tab{
+- (Track *)trackInfo:(TabAdapter *)tab {
 
-    NSDictionary *info = [tab executeJavascript:@"(function(){return $.extend(JSON.parse($('body').attr('data-unity-state')), ({'favorited': ($('.player-controls .like.like_on.player-controls__btn').length)}))})()"];
-    
+    NSDictionary *info = [tab
+        executeJavascript:@"(function(){return "
+                          @"$.extend(JSON.parse($('body').attr('data-unity-"
+                          @"state')), ({'favorited': ($('.player-controls "
+                          @".like.like_on.player-controls__btn').length)}))})("
+                          @")"];
+
     Track *track = [Track new];
-    
+
     track.track = info[@"title"];
     track.artist = info[@"artist"];
     track.image = [self imageByUrlString:info[@"albumArt"]];
     track.favorited = info[@"favorited"];
-    
+
     return track;
 }
 

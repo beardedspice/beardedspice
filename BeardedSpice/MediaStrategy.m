@@ -44,10 +44,17 @@
 
 @implementation MediaStrategy
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return YES;
 }
+
+-(Track *) trackInfo:(TabAdapter *)tab
+{
+    return NULL;
+}
+
+
 -(NSString *) toggle
 {
     return @"";
@@ -68,10 +75,6 @@
 {
     return @"";
 }
--(Track *) trackInfo:(id<Tab>)tab
-{
-    return NULL;
-}
 
 -(NSString *) favorite
 {
@@ -89,6 +92,9 @@
         _lastImageUrlString = urlString;
         NSURL *url = [NSURL URLWithString:urlString];
         if (url) {
+            if (!url.scheme) {
+                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+            }
             _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
         }
         else

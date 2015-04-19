@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.h
 //  BeardedSpice
 //
@@ -13,7 +13,7 @@
 #import "Chrome.h"
 #import "Safari.h"
 #import "iTunes.h"
-#import "Tab.h"
+#import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
 
 @class runningSBApplication;
@@ -41,7 +41,11 @@ extern BOOL accessibilityApiEnabled;
 
     SPMediaKeyTap *keyTap;
 
-    id <Tab> activeTab;
+    TabAdapter *activeTab;
+    NSString *activeTabKey;
+    
+    NSMutableArray *playingTabs;
+    
     MediaStrategyRegistry *mediaStrategyRegistry;
 
     NSWindowController *_preferencesWindowController;

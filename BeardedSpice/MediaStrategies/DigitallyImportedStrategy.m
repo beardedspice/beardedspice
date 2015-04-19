@@ -23,9 +23,14 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
-- (BOOL)isPlaying:(TabAdapter *)tab{
-    NSNumber *value = [tab executeJavascript:@"(function(){ return ($('#webplayer-region .controls .ico.icon-pause').get(0) ? true : false);})()"];
-    
+- (BOOL)isPlaying:(TabAdapter *)tab {
+    NSNumber *value =
+        [tab executeJavascript:@"(function(){ return ($('#webplayer-region "
+             @".controls .ico.icon-pause').get(0) ? true : "
+             @"(($('#webplayer-region .controls .ico.icon-spinner3').get(0) && "
+             @"$('#webplayer-region .metadata-container .track-title "
+             @".sponsor').get(0)) ? true : false));})()"];
+
     return [value boolValue];
 }
 

@@ -23,7 +23,7 @@
 #define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
 /// Delay displaying notification after changing favorited status of the current track.
-#define FAVORITED_DELAY         0.1
+#define FAVORITED_DELAY         0.3
 
 BOOL accessibilityApiEnabled = NO;
 
@@ -724,8 +724,10 @@ BOOL accessibilityApiEnabled = NO;
             track = [strategy trackInfo:activeTab];
     }
     
-    if (track)
+    if (track){
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
+        NSLog(@"Show Notofication: %@", track);
+    }
 }
 
 - (void)setupSystemEventsCallback

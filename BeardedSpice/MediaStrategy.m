@@ -92,6 +92,9 @@
         _lastImageUrlString = urlString;
         NSURL *url = [NSURL URLWithString:urlString];
         if (url) {
+            if (!url.scheme) {
+                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+            }
             _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
         }
         else

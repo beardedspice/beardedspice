@@ -47,7 +47,7 @@
 /**
     Returns track information object from tab.
  */
--(Track *) trackInfo:(TabAdapter *)tab;
+- (Track *)trackInfo:(TabAdapter *)tab;
 
 
 // Methods, which return javascript code for apropriated actions.

@@ -30,12 +30,14 @@
 }
 
 /**
-    Returns name of that media stratery.
+    Returns name of that media stratery. 
+    Required override.
  */
 -(NSString *) displayName;
 
 /**
     Checks tab that it is accepted this strategy.
+    Required override.
  */
 -(BOOL) accepts:(TabAdapter *)tab;
 
@@ -55,6 +57,7 @@
 
 /**
     Returns javascript code of the play/pause toggle.
+    Required override.
  */
 -(NSString *) toggle;
 
@@ -71,6 +74,7 @@
 /**
     Returns javascript code of the pausing action.
     Used mainly for pausing before switching active tabs.
+    Required override.
  */
 -(NSString *) pause;
 

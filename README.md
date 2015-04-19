@@ -137,7 +137,7 @@ Helper method for obtaining album artwork from url string
 
 The `accepts` method takes a `Tab` object and returns `YES` if the strategy can control the given tab. `displayName` must return a unique string describing the controller and will be used as the name shown in the Preferences panel. Some other functions return a Javascript function for the particular action. `pause` is a special case and is used when changing the active tab. Optional but useful methods `isPlaying` and `trackInfo`. If you will define `isPlaying` method, media strategy will be used in autoselect mechanism, description of it you may see in issue #67. `trackInfo` method returns `Track` object, which used in notifications for user.
 
-Define these properties of the Track object:
+Define these properties of the `Track` object:
 ```Objective-C
 @property NSString *track;
 @property NSString *album;

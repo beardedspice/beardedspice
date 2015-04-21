@@ -7,6 +7,7 @@
 //
 
 #import "MediaStrategyRegistry.h"
+#import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
 #import "BandCampStrategy.h"
@@ -153,6 +154,7 @@
         NSLog(@"Initializing default media strategies...");
         strategies = @[
                         [YouTubeStrategy new],
+			[LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
                         [GrooveSharkStrategy new],

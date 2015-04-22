@@ -7,7 +7,7 @@ DEPENDENCIES:
   - MASShortcut (~> 1.2.3)
 
 SPEC CHECKSUMS:
-  MASPreferences: 32d8a2c5ef1d60b63240f5676b011ff72e194cb1
-  MASShortcut: 34ccbe90d78ceb216c410ace39a57a2b10ea7141
+  MASPreferences: 971d03da4b3818f8ea0d0ef10b86b02b2c052d17
+  MASShortcut: e5e47bf0367e77f2c4089b4edc4c8143f3106eed
 
 COCOAPODS: 0.35.0

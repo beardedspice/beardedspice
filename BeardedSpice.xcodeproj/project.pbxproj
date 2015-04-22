@@ -40,6 +40,7 @@
 		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
 		500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 500B11051AE65A0100C4F0EC /* LogitechMediaServerStrategy.m */; };
 		503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */; };
+		50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50445D181AE7C9CB00A57315 /* SaavnStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
@@ -150,6 +151,8 @@
 		500B11051AE65A0100C4F0EC /* LogitechMediaServerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogitechMediaServerStrategy.m; sourceTree = "<group>"; };
 		503E32DA1ACE773000210195 /* NoAdRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoAdRadioStrategy.h; sourceTree = "<group>"; };
 		503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NoAdRadioStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		50445D171AE7C9CB00A57315 /* SaavnStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaavnStrategy.h; sourceTree = "<group>"; };
+		50445D181AE7C9CB00A57315 /* SaavnStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaavnStrategy.m; sourceTree = "<group>"; };
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeatsMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				50445D171AE7C9CB00A57315 /* SaavnStrategy.h */,
+				50445D181AE7C9CB00A57315 /* SaavnStrategy.m */,
 				500B11041AE65A0100C4F0EC /* LogitechMediaServerStrategy.h */,
 				500B11051AE65A0100C4F0EC /* LogitechMediaServerStrategy.m */,
 				95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */,
@@ -628,6 +633,7 @@
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
+				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,
 				3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,

@@ -29,6 +29,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Pandora](http://pandora.com)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [Rdio](http://rdio.com)
+- [Saavn](http://saavn.com)
 - [Shuffler.fm](http://shuffler.fm/tracks)
 - [Slacker](http://slacker.com)
 - [SomaFM](http://somafm.com)

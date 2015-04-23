@@ -20,6 +20,7 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HypeMachine](http://hypem.com)
+- [Kollekt.FM](https://kollekt.fm/)
 - [Last.fm](http://last.fm)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
 - [Mixcloud](http://mixcloud.com)

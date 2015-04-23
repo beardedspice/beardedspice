@@ -46,6 +46,7 @@
 #import "DigitallyImportedStrategy.h"
 #import "BeatguideStrategy.h"
 #import "SaavnStrategy.h"
+#import "KollektFmStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -192,7 +193,8 @@
                         [SomaFmStrategy new],
                         [DigitallyImportedStrategy new],
                         [BeatguideStrategy new],
-			[SaavnStrategy new]
+			[SaavnStrategy new],
+                        [KollektFmStrategy new]
                     ];
     });
     return strategies;

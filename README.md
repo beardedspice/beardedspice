@@ -1,10 +1,50 @@
 
-# About
+# Users Guide
 
 [![BeardedSpice](images/bs.jpg)](images/bs.jpg)
 
-BeardedSpice is a menubar application for Mac OSX that allows you to control web based media players with the media keys found on Mac keyboards. It is an extensible application that works with Chrome and Safari, and can control any tab with an applicable media player. BeardedSpice currently supports:
+## What?
+BeardedSpice allows you to control web based media players (Like *SoundCloud*, and *YouTube* ... [List of supported sites to date](#supported-sites)) with the media keys found on Mac keyboards.
 
+## How?
+All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon ![BeardedSpice](BeardedSpice/beard.png) and select the website you want to control using your media keys.
+
+#### Interested in doing it with a keyboard-shortcut? 
+We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look below!
+
+## Download
+
+Ready to give BeardedSpice a spin? You can download the [latest release (1.0) here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
+
+*Mac OS X 10.8 or greater required.
+
+## Features
+
+### *Smart* Mode 
+> This feature is a **work-in-progress**, we are currently working on bringing it to all our supported sites!
+
+BeardedSpice tries to automatically guess which tab it should control for you. When you press any media key or BeardedSpice shortcut with BeardedSpice open, it will automatically control the site currently playing media, if you have no playing sites, it will try to control the currently focused tab (if it is one of our supported sites) if BeardedSpice failed to do either, it will automatically control the first.
+
+### Automatic Updates
+No more checking for new releases on our website, BeardedSpice will automatically notify you when a new release is available.
+
+### Keyboard Shortcuts
+BeardedSpice comes with a handy list of Keyboard Shortcuts that can be configured under the `Shortcuts` tab of BeardedSpice Prefrences (available through the menubar icon). Here is a table of Default Keyboard Shortcuts:
+
+Default Shortcut | Action
+:---------------:|:------:
+`⌘` + `F8` |  Set Focused Browser tab as *Active Player* (effectively directing your commands to that tab)
+`⌘` + `F6` | Focus *Active Player* (Shows the tab currently controled by BeardedSpice)
+`⌘` + `F10` | Toggle Favorite (Add currently playing track to your favorites on it's site)
+`⌘` + `F11` | Show Track information (shows a notification with info about the currently playing tab) 
+
+### Multimedia keys of non-Apple keyboards
+Using a 3rd-party keyboard? or even a keyboard with no multimedia keys? No problems, BeardedSpice allows you to set your multimedia keys under shortcuts tab, so you can use any key (or key combination) of your liking. 
+
+### Disabling certain handlers
+From the preferences tab, uncheck any types of webpages that you don't want BeardedSpice to have control over. By default, all implemented handlers are enabled.
+
+### Supported Sites
 - [8Tracks](http://8tracks.com)
 - [22Tracks](http://22tracks.com)
 - [Amazon Music](https://amazon.com/gp/dmusic/cloudplayer/player)
@@ -46,17 +86,13 @@ BeardedSpice is a menubar application for Mac OSX that allows you to control web
 - [Yandex Music](http://music.yandex.ru)
 - [YouTube](http://youtube.com)
 
-If you want another supported app supported, simply open an issue with the tag 'app support'. Or, if you are feeling extra feisty, implement the handler yourself!
+#### Don't see your favorite site in the list ? 
+No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.
 
-BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
 
-# Download
+---
 
-Download the [latest release (1.0)](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip), or find previous released binaries [here](https://github.com/beardedspice/beardedspice/tree/distr/publish/releases).
-
-Also you can find older releases [here](https://github.com/beardedspice/beardedspice/tree/releases).
-
-Mac OS X 10.8 or greater required.
+#Developers' Guide
 
 ## Dependencies
 
@@ -67,19 +103,12 @@ pod setup
 pod install
 ```
 
-*Always* use BeardedSpice.xcworkspace for development, *not* BeardedSpice.xcodeproject
+*Always* use `BeardedSpice.xcworkspace` for development, *NOT* `BeardedSpice.xcodeproject`
 
-## Features
+BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
 
-### Setting an active tab
-Tell BeardedSpice to control a tab by either clicking the menubar icon and selecting a tab from the dropdown, or by pressing the 'Set Active Tab' shortcut when a browser window is active. The shortcut defaults to ⌘+F8, and is configurable in the preferences panel. Switching active tabs will pause the currently active tab (if there is one).
 
-In Chrome you must reset your active tab if you move your tab to a new window. With Safari, reset your active tab when changing the order of your active tab or moving it to a new window.
-
-### Disabling certain handlers
-From the preferences menu, uncheck any types of webpages that you don't want BeardedSpice to have control over. By default, all implemented handlers are enabled.
-
-## Writing a Handler
+## Writing a *MediaStrategy*
 
 Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategy.h). Each strategy defines a collection of Javascript functions to be excecuted on particular webpages.
 

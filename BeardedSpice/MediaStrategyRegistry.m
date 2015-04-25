@@ -47,6 +47,7 @@
 #import "BeatguideStrategy.h"
 #import "SaavnStrategy.h"
 #import "KollektFmStrategy.h"
+#import "WonderFmStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -156,7 +157,7 @@
         NSLog(@"Initializing default media strategies...");
         strategies = @[
                         [YouTubeStrategy new],
-			[LogitechMediaServerStrategy new],
+                        [LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
                         [GrooveSharkStrategy new],
@@ -193,8 +194,9 @@
                         [SomaFmStrategy new],
                         [DigitallyImportedStrategy new],
                         [BeatguideStrategy new],
-			[SaavnStrategy new],
-                        [KollektFmStrategy new]
+                        [SaavnStrategy new],
+                        [KollektFmStrategy new],
+                        [WonderFmStrategy new]
                     ];
     });
     return strategies;

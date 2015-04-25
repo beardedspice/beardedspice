@@ -82,6 +82,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [TIDAL](http://listen.tidalhifi.com/)
 - [Vimeo](http://vimeo.com)
 - [VK ("My Music" from vk.com)](http://vk.com)
+- [WONDER.FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](http://music.yandex.ru)
 - [YouTube](http://youtube.com)

@@ -13,11 +13,13 @@
 
 @implementation iTunesTabAdapter
 
-+(instancetype)iTunesTabAdapterWithApplication:(runningSBApplication *)application{
-    
-    iTunesTabAdapter *tab = [iTunesTabAdapter new];
-    
-    tab.application = application;
++ (id)tabAdapterWithApplication:(runningSBApplication *)application {
+
+    iTunesTabAdapter *tab = [super tabAdapterWithApplication:application];
+    if (tab) {
+        tab->iTunesNeedDisplayNotification = YES;
+    }
+
     return tab;
 }
 
@@ -59,56 +61,12 @@
     return @"A:ITUNES";
 }
 
-- (instancetype)copyStateFrom:(TabAdapter *)tab{
-    
-    if ([tab isKindOfClass:[self class]]) {
-        iTunesTabAdapter *theTab = (iTunesTabAdapter *)tab;
-        
-        _wasActivated = theTab->_wasActivated;
-    }
-    
-    return self;
-}
-
 // We have only one window.
 -(BOOL) isEqual:(__autoreleasing id)otherTab{
 
     if (otherTab == nil || ![otherTab isKindOfClass:[iTunesTabAdapter class]]) return NO;
 
     return YES;
-}
-
-- (void)activateTab{
-    
-    @autoreleasepool {
-        
-        if (![(iTunesApplication *)self.application.sbApplication frontmost]) {
-            
-            [self.application activate];
-            _wasActivated = YES;
-        }
-        else
-            _wasActivated = NO;
-    }
-}
-
-- (void)toggleTab{
-    
-    if ([(iTunesApplication *)self.application.sbApplication frontmost]){
-        if (_wasActivated) {
-            
-            [self.application hide];
-            _wasActivated = NO;
-        }
-    }
-    else
-        [self activateTab];
-}
-
-
-- (BOOL)frontmost{
-    
-    return self.application.frontmost;
 }
 
 - (id)executeJavascript:(NSString *)javascript{
@@ -126,6 +84,7 @@
     if (iTunes) {
         [iTunes playpause];
     }
+    iTunesNeedDisplayNotification = YES;
 }
 - (void)pause{
     
@@ -133,7 +92,7 @@
     if (iTunes) {
         [iTunes pause];
     }
-
+    iTunesNeedDisplayNotification = YES;
 }
 - (void)next{
     
@@ -141,7 +100,7 @@
     if (iTunes) {
         [iTunes nextTrack];
     }
-
+    iTunesNeedDisplayNotification = NO;
 }
 - (void)previous{
     
@@ -149,7 +108,7 @@
     if (iTunes) {
         [iTunes previousTrack];
     }
-
+    iTunesNeedDisplayNotification = NO;
 }
 
 - (void)favorite{
@@ -208,6 +167,10 @@
     }
     
     return NO;
+}
+
+- (BOOL)showNotifications{
+    return iTunesNeedDisplayNotification;
 }
 
 @end

@@ -55,10 +55,11 @@
 
 - (instancetype)copyStateFrom:(TabAdapter *)tab{
     
+    [super copyStateFrom:tab];
+    
     if ([tab isKindOfClass:[self class]]) {
         SafariTabAdapter *theTab = (SafariTabAdapter *)tab;
         
-        _wasActivated = theTab->_wasActivated;
         _previousTab = theTab->_previousTab;
         _previousTopWindow = theTab->_previousTopWindow;
         _wasWindowActivated = theTab->_wasWindowActivated;
@@ -78,13 +79,7 @@
     
     @autoreleasepool {
         
-        if (![(SafariApplication *)self.application.sbApplication frontmost]) {
-            
-            [self.application activate];
-            _wasActivated = YES;
-        }
-        else
-            _wasActivated = NO;
+        [super activateTab];
         
         // Грёбаная хурма
         // We must wait while application will become frontmost

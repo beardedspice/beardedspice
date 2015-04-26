@@ -8,6 +8,7 @@
 
 #import "TabAdapter.h"
 #import "NSString+Utils.h"
+#import "runningSBApplication.h"
 
 #define KEY_NAME            @"X_BeardedSpice_UUID"
 #define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})();"
@@ -36,17 +37,44 @@
 
 - (void)activateTab{
     
+    @autoreleasepool {
+        
+        if (![self.application frontmost]) {
+            
+            [self.application activate];
+            _wasActivated = YES;
+        }
+        else
+            _wasActivated = NO;
+    }
 }
 
 - (void)toggleTab{
-
+    
+    if ([self.application frontmost]){
+        if (_wasActivated) {
+            
+            [self.application hide];
+            _wasActivated = NO;
+        }
+    }
+    else
+        [self activateTab];
 }
+
 - (BOOL)frontmost{
     
-    return NO;
+    return self.application.frontmost;
 }
 
+
 - (instancetype)copyStateFrom:(TabAdapter *)tab{
+    
+    if ([tab isKindOfClass:[self class]]) {
+        
+        _wasActivated = tab->_wasActivated;
+    }
+    
     return self;
 }
 

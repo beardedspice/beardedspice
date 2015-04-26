@@ -13,7 +13,6 @@
 
 @interface ChromeTabAdapter : TabAdapter {
     
-    BOOL _wasActivated;
     NSInteger _previousTabId;
     ChromeWindow *_previousTopWindow;
     BOOL _wasWindowActivated;
@@ -21,7 +20,6 @@
 
 +(id) initWithApplication:(runningSBApplication *)application andWindow:(ChromeWindow *)window andTab:(ChromeTab *)tab;
 
-@property runningSBApplication *application;
 @property ChromeTab *tab;
 @property ChromeWindow *window;
 

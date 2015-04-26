@@ -52,10 +52,11 @@
 
 - (instancetype)copyStateFrom:(TabAdapter *)tab{
     
+    [super copyStateFrom:tab];
+    
     if ([tab isKindOfClass:[self class]]) {
         ChromeTabAdapter *theTab = (ChromeTabAdapter *)tab;
         
-        _wasActivated = theTab->_wasActivated;
         _previousTabId = theTab->_previousTabId;
         _previousTopWindow = theTab->_previousTopWindow;
         _wasWindowActivated = theTab->_wasWindowActivated;
@@ -76,14 +77,8 @@
 
     @autoreleasepool {
         
-        if (![(ChromeApplication *)self.application.sbApplication frontmost]) {
-
-            [self.application activate];
-            _wasActivated = YES;
-        }
-        else
-            _wasActivated = NO;
-     
+        [super activateTab];
+        
         // Грёбаная хурма
         // We must wait while application will become frontmost
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

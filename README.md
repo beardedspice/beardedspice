@@ -79,7 +79,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Spotify (Web)](https://play.spotify.com)
 - [STITCHER](http://www.stitcher.com)
 - [Synology](http://synology.com)
-- [TIDAL](http://listen.tidalhifi.com/)
+- [TIDAL (Web)](http://listen.tidalhifi.com/)
 - [Vimeo](http://vimeo.com)
 - [VK ("My Music" from vk.com)](http://vk.com)
 - [WONDER.FM](http://wonder.fm/)

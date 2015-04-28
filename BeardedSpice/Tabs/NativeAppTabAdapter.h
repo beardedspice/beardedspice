@@ -1,21 +1,18 @@
 //
-//  iTunesTabAdapter.h
+//  NativeAppTabAdapter.h
 //  BeardedSpice
 //
-//  Created by Roman Sokolov on 14.03.15.
+//  Created by Roman Sokolov on 26.04.15.
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "NativeAppTabAdapter.h"
-#import "iTunes.h"
+#import "TabAdapter.h"
 
-@class runningSBApplication, Track;
+@class Track;
 
-@interface iTunesTabAdapter : NativeAppTabAdapter{
-    
-    BOOL iTunesNeedDisplayNotification;
-}
+@interface NativeAppTabAdapter : TabAdapter
+
++(id)tabAdapterWithApplication:(runningSBApplication *)application;
 
 //////////////////////////////////////////////////////////////
 #pragma mark Player control methods
@@ -29,5 +26,10 @@
 
 - (Track *)trackInfo;
 - (BOOL)isPlaying;
+
+/**
+    Indicates when app may display notifications.
+ */
+- (BOOL)showNotifications;
 
 @end

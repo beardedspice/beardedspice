@@ -7,15 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeAppTabAdapter.h"
-#import "iTunes.h"
+#import "TabAdapter.h"
+#import "Spotify.h"
 
 @class runningSBApplication, Track;
 
-@interface iTunesTabAdapter : NativeAppTabAdapter{
+@interface SpotifyTabAdapter : TabAdapter{
     
-    BOOL iTunesNeedDisplayNotification;
+    BOOL _wasActivated;
 }
+
++(instancetype)SpotifyTabAdapterWithApplication:(runningSBApplication *)application;
+
+@property runningSBApplication *application;
 
 //////////////////////////////////////////////////////////////
 #pragma mark Player control methods

@@ -13,7 +13,6 @@
 
 @interface SafariTabAdapter : TabAdapter{
     
-    BOOL _wasActivated;
     SafariTab *_previousTab;
     SafariWindow *_previousTopWindow;
     BOOL _wasWindowActivated;
@@ -22,7 +21,6 @@
 
 +(id) initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab;
 
-@property runningSBApplication *application;
 @property SafariWindow *window; // we need this for the equality check
 @property SafariTab *tab;
 

@@ -52,6 +52,7 @@
 		65837A531AAE5DE2004CD62F /* mediaResources in Resources */ = {isa = PBXBuildFile; fileRef = 65837A521AAE5DE2004CD62F /* mediaResources */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
+		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
@@ -178,6 +179,11 @@
 		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TidalHiFiStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65B32B8C1AD99D1600F696B9 /* TabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAdapter.h; sourceTree = "<group>"; };
 		65B32B8D1AD99D1600F696B9 /* TabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabAdapter.m; sourceTree = "<group>"; };
+		65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTabAdapter.m; sourceTree = "<group>"; };
+		65C5116B1AED66B700EBA6A5 /* SpotifyTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTabAdapter.h; sourceTree = "<group>"; };
+		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
+		65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabAdapter.h; sourceTree = "<group>"; };
+		65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabAdapter.m; sourceTree = "<group>"; };
 		65EE289D1AB5FFE200EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65EE289F1AB6003800EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		65EE28A21AB6003B00EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
@@ -375,17 +381,22 @@
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				65C5116C1AED688800EBA6A5 /* Spotify.h */,
 				651967BF1AB3858800B48D3A /* iTunes.h */,
 				9679336318551A8F00A49AC7 /* Chrome.h */,
 				03F33EE71857E2EE00E8F77E /* Safari.h */,
 				65B32B8C1AD99D1600F696B9 /* TabAdapter.h */,
 				65B32B8D1AD99D1600F696B9 /* TabAdapter.m */,
+				65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */,
+				65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */,
 				03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
 				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
 				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
 				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
 				651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */,
 				651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */,
+				65C5116B1AED66B700EBA6A5 /* SpotifyTabAdapter.h */,
+				65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -643,6 +654,7 @@
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
+				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
 				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,

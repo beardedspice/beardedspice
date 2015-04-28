@@ -79,7 +79,7 @@ NSString *const BeardedSpiceITunesIntegration = @"BeardedSpiceITunesIntegration"
     
     // check the user defaults
     NSNumber *enabled = [userStrategies objectForKey:[strategy displayName]];
-    if ([enabled intValue] == 1) {
+    if (!enabled || [enabled intValue] == 1) {
         [result setState:NSOnState];
     } else {
         [result setState:NSOffState];

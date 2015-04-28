@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TabAdapter : NSObject
+@class runningSBApplication;
+
+@interface TabAdapter : NSObject{
+    
+    BOOL _wasActivated;
+}
 
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;
@@ -18,6 +23,8 @@
 - (void)activateTab;
 - (void)toggleTab;
 - (BOOL)frontmost;
+
+@property runningSBApplication *application;
 
 /**
     Copying of the variables, which reflect state of the object.

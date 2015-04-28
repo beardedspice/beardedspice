@@ -41,6 +41,7 @@
 		500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 500B11051AE65A0100C4F0EC /* LogitechMediaServerStrategy.m */; };
 		503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */; };
 		50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50445D181AE7C9CB00A57315 /* SaavnStrategy.m */; };
+		504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */; };
 		508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 508196B11AE8F58B007B5493 /* KollektFmStrategy.m */; };
 		50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
@@ -155,6 +156,8 @@
 		503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NoAdRadioStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		50445D171AE7C9CB00A57315 /* SaavnStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaavnStrategy.h; sourceTree = "<group>"; };
 		50445D181AE7C9CB00A57315 /* SaavnStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaavnStrategy.m; sourceTree = "<group>"; };
+		504B426B1AF00C2E00654297 /* OdnoklassnikiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdnoklassnikiStrategy.h; sourceTree = "<group>"; };
+		504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OdnoklassnikiStrategy.m; sourceTree = "<group>"; };
 		508196B01AE8F58B007B5493 /* KollektFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KollektFmStrategy.h; sourceTree = "<group>"; };
 		508196B11AE8F58B007B5493 /* KollektFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KollektFmStrategy.m; sourceTree = "<group>"; };
 		50931CA41AEB97B400A38B8E /* WonderFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderFmStrategy.h; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 				963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
 				503E32DA1ACE773000210195 /* NoAdRadioStrategy.h */,
 				503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */,
+				504B426B1AF00C2E00654297 /* OdnoklassnikiStrategy.h */,
+				504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */,
 				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
 				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
 				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
@@ -639,6 +644,7 @@
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
+				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,

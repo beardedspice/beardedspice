@@ -19,8 +19,17 @@
     return tab;
 }
 
++ (NSString *)displayName{
+    return nil;
+}
+
++ (NSString *)bundleId{
+    return nil;
+}
+
 - (BOOL)showNotifications{
     return YES;
 }
+
 
 @end

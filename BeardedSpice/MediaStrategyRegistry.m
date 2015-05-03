@@ -76,7 +76,7 @@
 
         for (MediaStrategy *strategy in defaultStrategies) {
             NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if ([enabled intValue] == 1) {
+            if (!enabled || [enabled boolValue]) {
                 [self addMediaStrategy:strategy];
             }
         }

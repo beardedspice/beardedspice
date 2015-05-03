@@ -18,6 +18,16 @@
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
+/**
+ Returns name of that native app.
+ */
++ (NSString *)displayName; // Required override in subclass.
+
+/**
+ Returns bundle identifier of that native app.
+ */
++ (NSString *)bundleId; // Required override in subclass.
+
 - (void)toggle;
 - (void)pause;
 - (void)next;
@@ -28,7 +38,7 @@
 - (BOOL)isPlaying;
 
 /**
-    Indicates when app may display notifications.
+    Indicates when BeardedSpice may display notifications.
  */
 - (BOOL)showNotifications;
 

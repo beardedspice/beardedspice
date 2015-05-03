@@ -15,13 +15,11 @@
 #import "iTunes.h"
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
+#import "NativeAppTabRegistry.h"
 
 @class runningSBApplication;
 
 extern BOOL accessibilityApiEnabled;
-
-@interface BeardedSpiceApp : NSApplication
-@end
 
 #import "MediaStrategy.h"
 
@@ -35,7 +33,8 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *yandexBrowserApp;
 
     runningSBApplication *safariApp;
-    
+
+    NSMutableArray *nativeApps;
     runningSBApplication *iTunesApp;
     BOOL iTunesNeedDisplayNotification;
 
@@ -47,6 +46,7 @@ extern BOOL accessibilityApiEnabled;
     NSMutableArray *playingTabs;
     
     MediaStrategyRegistry *mediaStrategyRegistry;
+    NativeAppTabRegistry *nativeAppRegistry;
 
     NSWindowController *_preferencesWindowController;
     

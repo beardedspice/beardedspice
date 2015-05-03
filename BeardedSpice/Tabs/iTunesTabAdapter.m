@@ -11,6 +11,9 @@
 #import "NSString+Utils.h"
 #import "MediaStrategy.h"
 
+#define APPID_ITUNES            @"com.apple.iTunes"
+#define APPNAME_ITUNES          @"iTunes"
+
 @implementation iTunesTabAdapter
 
 + (id)tabAdapterWithApplication:(runningSBApplication *)application {
@@ -21,6 +24,16 @@
     }
 
     return tab;
+}
+
++ (NSString *)displayName{
+    
+    return APPNAME_ITUNES;
+}
+
++ (NSString *)bundleId{
+    
+    return APPID_ITUNES;
 }
 
 - (NSString *)title{

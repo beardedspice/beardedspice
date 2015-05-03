@@ -480,6 +480,7 @@ BOOL accessibilityApiEnabled = NO;
         }
     }
 
+    [self resetMediaKeys];
 }
 
 - (void)removeAllItems

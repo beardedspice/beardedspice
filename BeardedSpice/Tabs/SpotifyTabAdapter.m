@@ -64,7 +64,7 @@ static NSImage *_lastTrackImage;
         else
             title = NSLocalizedString(@"No Track", @"SpotifyTabAdapter");
         
-        return [NSString stringWithFormat:@"%@ (%@)", title, Spotify.name];
+        return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_SPOTIFY];
     }
 }
 

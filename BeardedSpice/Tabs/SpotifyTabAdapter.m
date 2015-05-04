@@ -128,10 +128,6 @@ static NSImage *_lastTrackImage;
 
 }
 
-- (void)favorite{
-    
-}
-
 - (Track *)trackInfo{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];

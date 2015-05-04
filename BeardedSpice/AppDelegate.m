@@ -256,7 +256,9 @@ BOOL accessibilityApiEnabled = NO;
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(favorite)]) {
                 [tab favorite];
-                [self showNotification];
+                if ([[tab trackInfo] favorited]) {
+                    [self showNotification];
+                }
             }
         }
         else{

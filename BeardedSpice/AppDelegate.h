@@ -36,7 +36,6 @@ extern BOOL accessibilityApiEnabled;
 
     NSMutableArray *nativeApps;
     runningSBApplication *iTunesApp;
-    BOOL iTunesNeedDisplayNotification;
 
     SPMediaKeyTap *keyTap;
 

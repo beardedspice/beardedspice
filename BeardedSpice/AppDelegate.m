@@ -58,16 +58,11 @@ BOOL accessibilityApiEnabled = NO;
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:registeredDefaults];
     
-    keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-    [keyTap startWatchingMediaKeys];
-    [self refreshKeyTapBlackList];
-
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
-    iTunesNeedDisplayNotification = YES;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     [self setupPlayControlsShortcutCallbacks];
     [self setupActiveTabShortcutCallback];
@@ -89,7 +84,11 @@ BOOL accessibilityApiEnabled = NO;
     // check accessibility enabled
     [self checkAccessibilityTrusted];
     
-    [self refreshApplications];
+    keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    [keyTap startWatchingMediaKeys];
+    [self refreshKeyTapBlackList];
+    
+//    [self refreshApplications];
 }
 
 - (void)awakeFromNib

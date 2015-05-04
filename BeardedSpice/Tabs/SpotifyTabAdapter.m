@@ -10,8 +10,18 @@
 #import "runningSBApplication.h"
 #import "NSString+Utils.h"
 #import "MediaStrategy.h"
+#import "NSURL+Utils.h"
+
+#define APPID_SPOTIFY           @"com.spotify.client"
+#define APPNAME_SPOTIFY         @"Spotify"
+#define URL_INFO_FORMAT         @"https://api.spotify.com/v1/tracks/%@"
+#define GET_INFO_TIMEOUT        1.0
+#define IMAGE_OPTIMAL_WIDTH     128
 
 @implementation SpotifyTabAdapter
+
+static NSString *_lastTrackId;
+static NSImage *_lastTrackImage;
 
 +(instancetype)SpotifyTabAdapterWithApplication:(runningSBApplication *)application{
     
@@ -21,12 +31,22 @@
     return tab;
 }
 
++ (NSString *)displayName{
+    
+    return APPNAME_SPOTIFY;
+}
+
++ (NSString *)bundleId{
+    
+    return APPID_SPOTIFY;
+}
+
 - (NSString *)title{
 
     @autoreleasepool {
         
         SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
-        SpotifyTrack *currentTrack = [[Spotify currentTrack] get];
+        SpotifyTrack *currentTrack = [Spotify currentTrack];
         
         NSString *title;
         if (currentTrack) {
@@ -59,56 +79,12 @@
     return @"A:SPOTIFY";
 }
 
-- (instancetype)copyStateFrom:(TabAdapter *)tab{
-    
-    if ([tab isKindOfClass:[self class]]) {
-        SpotifyTabAdapter *theTab = (SpotifyTabAdapter *)tab;
-        
-        _wasActivated = theTab->_wasActivated;
-    }
-    
-    return self;
-}
-
 // We have only one window.
 -(BOOL) isEqual:(__autoreleasing id)otherTab{
 
     if (otherTab == nil || ![otherTab isKindOfClass:[SpotifyTabAdapter class]]) return NO;
 
     return YES;
-}
-
-- (void)activateTab{
-    
-    @autoreleasepool {
-        
-        if (![(SpotifyApplication *)self.application.sbApplication frontmost]) {
-            
-            [self.application activate];
-            _wasActivated = YES;
-        }
-        else
-            _wasActivated = NO;
-    }
-}
-
-- (void)toggleTab{
-    
-    if ([(SpotifyApplication *)self.application.sbApplication frontmost]){
-        if (_wasActivated) {
-            
-            [self.application hide];
-            _wasActivated = NO;
-        }
-    }
-    else
-        [self activateTab];
-}
-
-
-- (BOOL)frontmost{
-    
-    return self.application.frontmost;
 }
 
 - (id)executeJavascript:(NSString *)javascript{
@@ -161,18 +137,13 @@
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         
-        SpotifyTrack *iTrack = [[Spotify currentTrack] get];
+        SpotifyTrack *iTrack = [Spotify currentTrack];
         Track *track = [Track new];
         
         track.track = iTrack.name;
         track.album = iTrack.album;
         track.artist = iTrack.artist;
-        
-        NSArray *artworks = [[iTrack artworks] get];
-        SpotifyArtwork *art = [[artworks firstObject] get];
-        track.image = art.data;
-        
-        track.favorited = @(iTrack.rating);
+        track.image = [self imageForId:iTrack.id];
         
         return track;
     }
@@ -199,6 +170,69 @@
     }
     
     return NO;
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Helper methods
+/////////////////////////////////////////////////////////////////////////
+- (NSImage *)imageForId:(NSString *)trackId {
+
+    if ([_lastTrackId isEqualToString:trackId]) {
+        return _lastTrackImage;
+    }
+
+    _lastTrackId = trackId;
+    _lastTrackImage = nil;
+
+    NSString *realId = [[trackId componentsSeparatedByString:@":"] lastObject];
+    if (realId) {
+        NSURL *infoUrl = [NSURL
+            URLWithString:[NSString stringWithFormat:URL_INFO_FORMAT, realId]];
+        if (infoUrl) {
+            NSData *infoData = [infoUrl getDataWithTimeout:GET_INFO_TIMEOUT];
+            if (infoData) {
+                id dict = [NSJSONSerialization JSONObjectWithData:infoData
+                                                          options:0
+                                                            error:NULL];
+                if (dict) {
+                    if ([dict isKindOfClass:[NSDictionary class]]) {
+                        NSUInteger width = 0, delta = NSUIntegerMax,
+                                   newDelta = NSUIntegerMax;
+
+                        NSString *imageUrl;
+                        for (NSDictionary *imageInfo in
+                                 dict[@"album"][@"images"]) {
+                            // using NSUinteger for width gives us strange method to approximate
+                            width = [imageInfo[@"width"] unsignedIntegerValue];
+                            newDelta = (width - IMAGE_OPTIMAL_WIDTH);
+                            if (width && newDelta < delta) {
+                                delta = newDelta;
+                                imageUrl = imageInfo[@"url"];
+                            }
+                        }
+
+                        if (imageUrl) {
+
+                            NSURL *url = [NSURL URLWithString:imageUrl];
+                            if (url) {
+                                if (!url.scheme) {
+                                    url = [NSURL
+                                        URLWithString:
+                                            [NSString
+                                                stringWithFormat:@"http:%@",
+                                                                 imageUrl]];
+                                }
+                                _lastTrackImage =
+                                    [[NSImage alloc] initWithContentsOfURL:url];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return _lastTrackImage;
 }
 
 @end

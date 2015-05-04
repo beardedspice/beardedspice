@@ -17,17 +17,4 @@
     BOOL iTunesNeedDisplayNotification;
 }
 
-//////////////////////////////////////////////////////////////
-#pragma mark Player control methods
-//////////////////////////////////////////////////////////////
-
-- (void)toggle;
-- (void)pause;
-- (void)next;
-- (void)previous;
-- (void)favorite;
-
-- (Track *)trackInfo;
-- (BOOL)isPlaying;
-
 @end

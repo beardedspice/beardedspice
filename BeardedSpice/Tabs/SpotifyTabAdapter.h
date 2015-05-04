@@ -7,31 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TabAdapter.h"
+#import "NativeAppTabAdapter.h"
 #import "Spotify.h"
 
 @class runningSBApplication, Track;
 
-@interface SpotifyTabAdapter : TabAdapter{
+@interface SpotifyTabAdapter : NativeAppTabAdapter{
     
-    BOOL _wasActivated;
 }
-
-+(instancetype)SpotifyTabAdapterWithApplication:(runningSBApplication *)application;
-
-@property runningSBApplication *application;
-
-//////////////////////////////////////////////////////////////
-#pragma mark Player control methods
-//////////////////////////////////////////////////////////////
-
-- (void)toggle;
-- (void)pause;
-- (void)next;
-- (void)previous;
-- (void)favorite;
-
-- (Track *)trackInfo;
-- (BOOL)isPlaying;
 
 @end

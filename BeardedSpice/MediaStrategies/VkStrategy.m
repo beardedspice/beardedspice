@@ -26,27 +26,27 @@
 
 -(NSString *) toggle
 {
-    return @"document.querySelector('#ac_play, #head_play_btn').click()";
+    return @"(function(p){p.show('mus', null); document.querySelector('#ac_play, #pd_play').click(); p.hide('mus', null)})(Pads)";
 }
 
 -(NSString *) previous
 {
-    return @"document.querySelector('#ac_prev').click()";
+    return @"(function(p){p.show('mus', null); document.querySelector('#ac_prev, #pd_prev').click(); p.hide('mus', null)})(Pads)";
 }
 
 -(NSString *) next
 {
-    return @"document.querySelector('#ac_next').click()";
+    return @"(function(p){p.show('mus', null); document.querySelector('#ac_next, #pd_next').click(); p.hide('mus', null)})(Pads)";
 }
 
 -(NSString *) pause
 {
-    return @"document.querySelector('#ac_play, #head_play_btn').click()";
+    return @"(function(p){p.show('mus', null); document.querySelector('#ac_play.playing, #pd_play.playing').click(); p.hide('mus', null)})(Pads)";
 }
 
 - (NSString *)favorite
 {
-    return @"document.querySelector('#ac_add').click()";
+    return @"(function(p){p.show('mus', null); document.querySelector('#ac_add, #pd_add').click(); p.hide('mus', null)})(Pads)";
 }
 
 -(NSString *) displayName
@@ -57,8 +57,8 @@
 -(Track *) trackInfo:(TabAdapter *)tab
 {
     Track *track = [[Track alloc] init];
-    [track setTrack:[tab executeJavascript:@"document.querySelector('span#ac_title').firstChild.nodeValue"]];
-    [track setArtist:[tab executeJavascript:@"document.querySelector('span#ac_performer').firstChild.nodeValue"]];
+    [track setTrack:[tab executeJavascript:@"(function(p){p.show('mus', null); var s = document.querySelector('span#ac_title, #gp_title').firstChild.nodeValue; p.hide('mus', null); return s})(Pads)"]];
+    [track setArtist:[tab executeJavascript:@"(function(p){p.show('mus', null); var s = document.querySelector('span#ac_performer, #gp_performer').firstChild.nodeValue; p.hide('mus', null); return s})(Pads)"]];
     return track;
 }
 

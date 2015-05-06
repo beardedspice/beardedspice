@@ -26,7 +26,7 @@
 
 -(NSString *) toggle
 {
-    return @"document.querySelector('#ac_play').click()";
+    return @"document.querySelector('#ac_play, #head_play_btn').click()";
 }
 
 -(NSString *) previous
@@ -41,7 +41,7 @@
 
 -(NSString *) pause
 {
-    return @"document.querySelector('#ac_play').click()";
+    return @"document.querySelector('#ac_play, #head_play_btn').click()";
 }
 
 - (NSString *)favorite

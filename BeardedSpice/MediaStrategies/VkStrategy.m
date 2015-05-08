@@ -96,9 +96,22 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    Track *track = [[Track alloc] init];
-    [track setTrack:[tab executeJavascript:@"(function(p){p.show('mus', null); var s = document.querySelector('span#ac_title, #gp_title').firstChild.nodeValue; p.hide('mus', null); return s})(Pads)"]];
-    [track setArtist:[tab executeJavascript:@"(function(p){p.show('mus', null); var s = document.querySelector('span#ac_performer, #gp_performer').firstChild.nodeValue; p.hide('mus', null); return s})(Pads)"]];
+    NSDictionary *info = [tab
+        executeJavascript:@"(function(p){\
+                                var titleEl = document.querySelector('span#ac_title, #gp_title'),\
+                                    artistEl = document.querySelector('span#ac_performer, #gp_performer');\
+                                if (! titleEl || ! artistEl) {\
+                                    p.show('mus', null);\
+                                    titleEl = document.querySelector('span#pd_title'),\
+                                    artistEl = document.querySelector('span#pd_performer');\
+                                    p.hide('mus', null);\
+                                }\
+                                return {'title': titleEl.firstChild.nodeValue, 'artist': artistEl.firstChild.nodeValue};\
+                            })(Pads)"];
+    Track *track = [Track new];
+    [track setTrack:info[@"title"]];
+    [track setArtist:info[@"artist"]];
+
     return track;
 }
 

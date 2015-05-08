@@ -26,27 +26,67 @@
 
 -(NSString *) toggle
 {
-    return @"(function(p){p.show('mus', null); document.querySelector('#ac_play, #pd_play').click(); p.hide('mus', null)})(Pads)";
+    return @"(function(p){\
+        var el = document.querySelector('#ac_play');\
+        if (!el) {\
+            p.show('mus', null);\
+            el = document.querySelector('#pd_play');\
+        }\
+        el.click();\
+        p.hide('mus', null);\
+    })(Pads)";
 }
 
 -(NSString *) previous
 {
-    return @"(function(p){p.show('mus', null); document.querySelector('#ac_prev, #pd_prev').click(); p.hide('mus', null)})(Pads)";
+    return @"(function(p){\
+        var el = document.querySelector('#ac_prev');\
+        if (!el) {\
+            p.show('mus', null);\
+            el = document.querySelector('#pd_prev');\
+        }\
+        el.click();\
+        p.hide('mus', null);\
+    })(Pads)";
 }
 
 -(NSString *) next
 {
-    return @"(function(p){p.show('mus', null); document.querySelector('#ac_next, #pd_next').click(); p.hide('mus', null)})(Pads)";
+    return @"(function(p){\
+        var el = document.querySelector('#ac_next');\
+        if (!el) {\
+            p.show('mus', null);\
+            el = document.querySelector('#pd_next');\
+        }\
+        el.click();\
+        p.hide('mus', null);\
+    })(Pads)";
 }
 
 -(NSString *) pause
 {
-    return @"(function(p){p.show('mus', null); document.querySelector('#ac_play.playing, #pd_play.playing').click(); p.hide('mus', null)})(Pads)";
+    return @"(function(p){\
+        var el = document.querySelector('#ac_play.playing');\
+        if (!el) {\
+            p.show('mus', null);\
+            el = document.querySelector('#pd_play.playing');\
+        }\
+        el && el.click();\
+        p.hide('mus', null)\
+    })(Pads)";
 }
 
 - (NSString *)favorite
 {
-    return @"(function(p){p.show('mus', null); document.querySelector('#ac_add, #pd_add').click(); p.hide('mus', null)})(Pads)";
+    return @"(function(p){\
+        var el = document.querySelector('#ac_add');\
+        if (el) {\
+            p.show('mus', null);\
+            document.querySelector('#pd_add');\
+        }\
+        el.click();\
+        p.hide('mus', null);\
+    })(Pads)";
 }
 
 -(NSString *) displayName

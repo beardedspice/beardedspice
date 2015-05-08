@@ -27,7 +27,7 @@
 -(NSString *) toggle
 {
     return @"(function(w){\
-        var el = document.querySelector('#ac_play');\
+        var el = document.querySelector('#ac_play, #gp_play');\
         if (el) { el.click(); return; }\
         w.Pads.show('mus', null);\
         var pollPlayerInterval = setInterval(\
@@ -84,7 +84,7 @@
 -(NSString *) pause
 {
     return @"(function(w){\
-        var el = document.querySelector('#ac_play.playing');\
+        var el = document.querySelector('#ac_play.playing, #gp_play.playing');\
         if (el) { el.click(); return; }\
         w.Pads.show('mus', null);\
         var pollPlayerInterval = setInterval(\

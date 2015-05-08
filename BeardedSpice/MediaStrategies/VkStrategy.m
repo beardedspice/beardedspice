@@ -26,67 +26,98 @@
 
 -(NSString *) toggle
 {
-    return @"(function(p){\
+    return @"(function(w){\
         var el = document.querySelector('#ac_play');\
-        if (!el) {\
-            p.show('mus', null);\
-            el = document.querySelector('#pd_play');\
-        }\
-        el.click();\
-        p.hide('mus', null);\
-    })(Pads)";
+        if (el) { el.click(); return; }\
+        w.Pads.show('mus', null);\
+        var pollPlayerInterval = setInterval(\
+        (function(w){\
+            return function(){\
+                var el = document.querySelector('#pd_play');\
+                if (!el) { return; }\
+                clearInterval(pollPlayerInterval);\
+                el.click();\
+                w.Pads.hide('mus', null);\
+            }\
+        })(w), 10);\
+    })(window)";
 }
 
 -(NSString *) previous
 {
-    return @"(function(p){\
+    return @"(function(w){\
         var el = document.querySelector('#ac_prev');\
-        if (!el) {\
-            p.show('mus', null);\
-            el = document.querySelector('#pd_prev');\
-        }\
-        el.click();\
-        p.hide('mus', null);\
-    })(Pads)";
+        if (el) { el.click(); return; }\
+        w.Pads.show('mus', null);\
+        var pollPlayerInterval = setInterval(\
+        (function(w){\
+            return function(){\
+                var el = document.querySelector('#pd_prev');\
+                if (!el) { return; }\
+                clearInterval(pollPlayerInterval);\
+                el.click();\
+                w.Pads.hide('mus', null);\
+            }\
+        })(w), 10);\
+    })(window)";
 }
 
 -(NSString *) next
 {
-    return @"(function(p){\
+    return @"(function(w){\
         var el = document.querySelector('#ac_next');\
-        if (!el) {\
-            p.show('mus', null);\
-            el = document.querySelector('#pd_next');\
-        }\
-        el.click();\
-        p.hide('mus', null);\
-    })(Pads)";
+        if (el) { el.click(); return; }\
+        w.Pads.show('mus', null);\
+        var pollPlayerInterval = setInterval(\
+        (function(w){\
+            return function(){\
+                var el = document.querySelector('#pd_next');\
+                if (!el) { return; }\
+                clearInterval(pollPlayerInterval);\
+                el.click();\
+                w.Pads.hide('mus', null);\
+            }\
+        })(w), 10);\
+    })(window)";
 }
 
 -(NSString *) pause
 {
-    return @"(function(p){\
+    return @"(function(w){\
         var el = document.querySelector('#ac_play.playing');\
-        if (!el) {\
-            p.show('mus', null);\
-            el = document.querySelector('#pd_play.playing');\
-        }\
-        el && el.click();\
-        p.hide('mus', null)\
-    })(Pads)";
+        if (el) { el.click(); return; }\
+        w.Pads.show('mus', null);\
+        var pollPlayerInterval = setInterval(\
+        (function(w){\
+            return function(){\
+                var el = document.querySelector('#pd_play.playing');\
+                if (!el) { return; }\
+                clearInterval(pollPlayerInterval);\
+                el.click();\
+                w.Pads.hide('mus', null);\
+            }\
+        })(w), 10);\
+        setTimeout(function(){clearInterval(pollPlayerInterval);}, 1000);\
+    })(window)";
 }
 
 - (NSString *)favorite
 {
-    return @"(function(p){\
+    return @"(function(w){\
         var el = document.querySelector('#ac_add');\
-        if (el) {\
-            p.show('mus', null);\
-            document.querySelector('#pd_add');\
-        }\
-        el.click();\
-        p.hide('mus', null);\
-    })(Pads)";
+        if (el) { el.click(); return; }\
+        w.Pads.show('mus', null);\
+        var pollPlayerInterval = setInterval(\
+        (function(w){\
+            return function(){\
+                var el = document.querySelector('#pd_add');\
+                if (!el) { return; }\
+                clearInterval(pollPlayerInterval);\
+                el.click();\
+                w.Pads.hide('mus', null);\
+            }\
+        })(w), 10);\
+    })(window)";
 }
 
 -(NSString *) displayName
@@ -97,17 +128,18 @@
 -(Track *) trackInfo:(TabAdapter *)tab
 {
     NSDictionary *info = [tab
-        executeJavascript:@"(function(p){\
+        executeJavascript:@"(function(w){\
                                 var titleEl = document.querySelector('span#ac_title, #gp_title'),\
                                     artistEl = document.querySelector('span#ac_performer, #gp_performer');\
                                 if (! titleEl || ! artistEl) {\
-                                    p.show('mus', null);\
+                                    w.Pads.show('mus', null);\
                                     titleEl = document.querySelector('span#pd_title'),\
                                     artistEl = document.querySelector('span#pd_performer');\
-                                    p.hide('mus', null);\
+                                    w.Pads.hide('mus', null);\
                                 }\
+                                if (!(titleEl && artistEl)) { return {}; }\
                                 return {'title': titleEl.firstChild.nodeValue, 'artist': artistEl.firstChild.nodeValue};\
-                            })(Pads)"];
+                            })(window)"];
     Track *track = [Track new];
     [track setTrack:info[@"title"]];
     [track setArtist:info[@"artist"]];

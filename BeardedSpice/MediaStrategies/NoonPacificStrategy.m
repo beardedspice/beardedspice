@@ -24,6 +24,16 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab {
+
+    NSNumber *value =
+        [tab executeJavascript:@"(function()"
+                               @"{return document.querySelector('.fa-pause')"
+                               @"?true:false;})()"];
+
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){return document.querySelectorAll('.fa-fw')[1].click()})()";

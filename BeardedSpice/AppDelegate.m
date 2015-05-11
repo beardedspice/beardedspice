@@ -12,6 +12,7 @@
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
 #import "NativeAppTabAdapter.h"
+#import "FluidTabAdapter.h"
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
@@ -23,6 +24,8 @@
 #define APPID_CHROME            @"com.google.Chrome"
 #define APPID_CANARY            @"com.google.Chrome.canary"
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
+
+#define APPID_FLUID_PREFIX      @"com.fluidapp.FluidApp."
 
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
@@ -80,6 +83,8 @@ BOOL accessibilityApiEnabled = NO;
         initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
 
     nativeApps = [NSMutableArray array];
+    
+    fluidApps = [NSMutableArray array];
     
     // check accessibility enabled
     [self checkAccessibilityTrusted];
@@ -408,6 +413,36 @@ BOOL accessibilityApiEnabled = NO;
     return NULL;
 }
 
+- (void)refreshNativeApps {
+
+    [nativeApps removeAllObjects];
+    for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
+        runningSBApplication *app =
+            [self getRunningSBApplicationWithIdentifier:[nativeApp bundleId]];
+        if (app) {
+            [nativeApps addObject:app];
+        }
+    }
+}
+- (void)refreshFluidApps {
+
+    [fluidApps removeAllObjects];
+    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+    runningSBApplication *fluidApp;
+    for (NSRunningApplication *app in apps) {
+        if ([app.bundleIdentifier hasPrefix:APPID_FLUID_PREFIX]) {
+            fluidApp = [[runningSBApplication alloc]
+                initWithApplication:[SBApplication
+                                        applicationWithProcessIdentifier:
+                                            [app processIdentifier]]
+                   bundleIdentifier:app.bundleIdentifier];
+            if (fluidApp) {
+                [fluidApps addObject:fluidApp];
+            }
+        }
+    }
+}
+
 -(NSString *)trim:(NSString *)string toLength:(NSInteger)max
 {
     if ([string length] > max) {
@@ -425,14 +460,9 @@ BOOL accessibilityApiEnabled = NO;
 
     safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
 
-    [nativeApps removeAllObjects];
-    for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
-        runningSBApplication *app =
-            [self getRunningSBApplicationWithIdentifier:[nativeApp bundleId]];
-        if (app) {
-            [nativeApps addObject:app];
-        }
-    }
+    [self refreshNativeApps];
+
+    [self refreshFluidApps];
 }
 
 - (void)setActiveTabShortcutForChrome:(runningSBApplication *)app {
@@ -457,8 +487,20 @@ BOOL accessibilityApiEnabled = NO;
                                                          andTab:[safariWindow currentTab]]];
 }
 
-- (void)setActiveTabShortcut{
+- (void)setActiveTabShortcutForFluid:(runningSBApplication *)app {
     
+    FluidApplication *fluid = (FluidApplication *)app.sbApplication;
+    FluidWindow *window = fluid.windows[0];
+    FluidTab *tab = [(FluidBrowserWindow *)window.document selectedTab];
+    
+    // use 'get' to force a hard reference.
+//    [self updateActiveTab:[FluidTabAdapter initWithApplication:app
+//                                                      andWindow:window
+//                                                         andTab:tab]];
+}
+
+- (void)setActiveTabShortcut {
+
     [self refreshApplications];
     if (chromeApp.frontmost) {
         [self setActiveTabShortcutForChrome:chromeApp];
@@ -470,13 +512,26 @@ BOOL accessibilityApiEnabled = NO;
         [self setActiveTabShortcutForSafari:safariApp];
     } else {
 
-        for (runningSBApplication *app in nativeApps) {
+        BOOL defined = NO;
+        for (runningSBApplication *app in fluidApps) {
             if (app.frontmost) {
-                NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
-                if (tab) {
-                    [self updateActiveTab:tab];
-                }
+                [self setActiveTabShortcutForFluid:app];
+                defined = YES;
                 break;
+            }
+        }
+
+        if (!defined) {
+            for (runningSBApplication *app in nativeApps) {
+                if (app.frontmost) {
+                    NativeAppTabAdapter *tab = [[nativeAppRegistry
+                        classForBundleId:app.bundleIdentifier]
+                        tabAdapterWithApplication:app];
+                    if (tab) {
+                        [self updateActiveTab:tab];
+                    }
+                    break;
+                }
             }
         }
     }
@@ -538,6 +593,28 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+- (void)refreshFluidTabs:(runningSBApplication *)app {
+    FluidApplication *fluid = (FluidApplication *)app.sbApplication;
+    FluidBrowserWindow *browserWindow;
+    if (fluid) {
+        for (FluidWindow *fluidWindow in fluid.windows) {
+            if ([fluidWindow id] < 0) {
+                continue;
+            }
+            browserWindow = [[fluidWindow document] get];
+            if (browserWindow) {
+                NSArray *tabs = [[browserWindow tabs] get];
+                for (FluidTab *fluidTab in tabs) {
+                    [self addFluidStatusMenuItemFor:fluidTab
+                                             window:fluidWindow
+                                      browserWindow:browserWindow
+                                                app:app];
+                }
+            }
+        }
+    }
+}
+
 - (void)refreshTabsForNativeApp:(runningSBApplication *)app
                           class:(Class)theClass {
 
@@ -583,6 +660,10 @@ BOOL accessibilityApiEnabled = NO;
     [self refreshTabsForChrome:yandexBrowserApp];
     [self refreshTabsForSafari:safariApp];
     
+    for (runningSBApplication *app in fluidApps) {
+        [self refreshFluidTabs:app];
+    }
+    
     for (runningSBApplication *app in nativeApps) {
         [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
     }
@@ -618,6 +699,18 @@ BOOL accessibilityApiEnabled = NO;
                                                  andTab:safariTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
+}
+
+- (void)addFluidStatusMenuItemFor:(FluidTab *)tab
+                           window:(FluidWindow *)window
+                    browserWindow:(FluidBrowserWindow *)browserWindow
+                              app:(runningSBApplication *)app {
+    TabAdapter *theTab = [FluidTabAdapter initWithApplication:app
+                                                       window:window
+                                                browserWindow:browserWindow
+                                                          tab:tab];
+    if (theTab)
+        [self addStatusMenuItemFor:theTab];
 }
 
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {

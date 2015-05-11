@@ -35,8 +35,9 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *safariApp;
 
     NSMutableArray *nativeApps;
-    runningSBApplication *iTunesApp;
 
+    NSMutableArray *fluidApps;
+    
     SPMediaKeyTap *keyTap;
 
     TabAdapter *activeTab;

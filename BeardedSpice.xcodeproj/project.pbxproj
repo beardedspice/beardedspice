@@ -47,6 +47,7 @@
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
+		651E2CB71AFFAEF5001B3FA8 /* FluidTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E2CB61AFFAEF5001B3FA8 /* FluidTabAdapter.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
@@ -174,6 +175,9 @@
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
 		651967C41AB3A67B00B48D3A /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		651967C51AB3A67B00B48D3A /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		651E2CB41AFFAD2D001B3FA8 /* Fluid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fluid.h; sourceTree = "<group>"; };
+		651E2CB51AFFAEF5001B3FA8 /* FluidTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FluidTabAdapter.h; sourceTree = "<group>"; };
+		651E2CB61AFFAEF5001B3FA8 /* FluidTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FluidTabAdapter.m; sourceTree = "<group>"; };
 		6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabRegistry.h; sourceTree = "<group>"; };
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };
@@ -397,6 +401,7 @@
 				651967BF1AB3858800B48D3A /* iTunes.h */,
 				9679336318551A8F00A49AC7 /* Chrome.h */,
 				03F33EE71857E2EE00E8F77E /* Safari.h */,
+				651E2CB41AFFAD2D001B3FA8 /* Fluid.h */,
 				65B32B8C1AD99D1600F696B9 /* TabAdapter.h */,
 				65B32B8D1AD99D1600F696B9 /* TabAdapter.m */,
 				65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */,
@@ -405,6 +410,8 @@
 				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
 				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
 				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
+				651E2CB51AFFAEF5001B3FA8 /* FluidTabAdapter.h */,
+				651E2CB61AFFAEF5001B3FA8 /* FluidTabAdapter.m */,
 				651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */,
 				651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */,
 				65C5116B1AED66B700EBA6A5 /* SpotifyTabAdapter.h */,
@@ -701,6 +708,7 @@
 				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
+				651E2CB71AFFAEF5001B3FA8 /* FluidTabAdapter.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,

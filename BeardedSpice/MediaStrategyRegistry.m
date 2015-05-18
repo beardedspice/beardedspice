@@ -51,11 +51,15 @@
 #import "KollektFmStrategy.h"
 #import "WonderFmStrategy.h"
 #import "OdnoklassnikiStrategy.h"
+<<<<<<< HEAD
 #import "SubsonicStrategy.h"
 #import "TuneInStrategy.h"
 #import "NoonPacificStrategy.h"
 #import "BlitzrStrategy.h"
 #import "IndieShuffleStrategy.h"
+=======
+#import "LeTournedisqueStrategy.h"
+>>>>>>> Add LeTournedisque support
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -212,7 +216,8 @@
                         [TuneInStrategy new],
                         [NoonPacificStrategy new],
                         [BlitzrStrategy new],
-                        [IndieShuffleStrategy new]
+                        [IndieShuffleStrategy new],
+                        [LeTournedisqueStrategy new]
                     ];
     });
     return strategies;

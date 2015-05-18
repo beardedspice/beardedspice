@@ -24,6 +24,14 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab
+{
+    NSNumber *value = [tab
+                       executeJavascript:@"(function(){return (document.querySelectorAll('.playing')[0]) ? true : false})();"];
+    
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){return document.querySelectorAll('div.play')[0].click()})();";

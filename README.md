@@ -14,7 +14,7 @@ We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look 
 
 ## Download
 
-Ready to give BeardedSpice a spin? You can download the [latest release (1.0) here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
+Ready to give BeardedSpice a spin? You can download the [latest release here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
 
 *Mac OS X 10.8 or greater required.
 

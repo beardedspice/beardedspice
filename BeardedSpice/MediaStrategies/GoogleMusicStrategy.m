@@ -51,12 +51,13 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-   NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:document.getElementById('player-artist').innerHTML, album:document.getElementsByClassName('player-album')[0].innerHTML, track:document.getElementById('playerSongTitle').innerHTML}})()"];
+   NSDictionary *song = [tab executeJavascript:@"(function(){return {'artist':document.getElementById('player-artist').innerHTML, 'album':document.getElementsByClassName('player-album')[0].innerHTML, 'track':document.getElementById('player-song-title').innerHTML,'image':document.getElementById('playingAlbumArt').getAttribute('src')}})()"];
 
     Track *track = [[Track alloc] init];
     track.track = [song objectForKey:@"track"];
     track.album = [song objectForKey:@"album"];
     track.artist = [song objectForKey:@"artist"];
+    track.image = [self imageByUrlString:song[@"image"]];
 
     return track;
 }

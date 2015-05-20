@@ -1,1 +1,2 @@
 Updated Google Play Strategy.
+Mac OS X 10.8 it is minimum system requirements now.

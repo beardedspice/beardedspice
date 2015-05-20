@@ -26,22 +26,22 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){document.querySelector('button[data-id=play-pause]').click()})()";
+    return @"(function(){document.querySelector('[data-id=play-pause]').click()})()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){document.querySelector('button[data-id=rewind]').click()})()";
+    return @"(function(){document.querySelector('[data-id=rewind]').click()})()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){document.querySelector('button[data-id=forward]').click()})()";
+    return @"(function(){document.querySelector('[data-id=forward]').click()})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var e=document.querySelector('button[data-id=play-pause]');if(e.classList.contains('playing')){e.click()}})()";
+    return @"(function(){var e=document.querySelector('[data-id=play-pause]');if(e.classList.contains('playing')){e.click()}})()";
 }
 
 -(NSString *) displayName
@@ -51,13 +51,14 @@
 
 -(Track *) trackInfo:(id<Tab>)tab
 {
-   NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:document.getElementById('player-artist').innerHTML, album:document.getElementsByClassName('player-album')[0].innerHTML, track:document.getElementById('playerSongTitle').innerHTML}})()"];
-
+    NSDictionary *song = [tab executeJavascript:@"(function(){return {'artist':document.getElementById('player-artist').innerHTML, 'album':document.getElementsByClassName('player-album')[0].innerHTML, 'track':document.getElementById('player-song-title').innerHTML,'image':document.getElementById('playingAlbumArt').getAttribute('src')}})()"];
+    
     Track *track = [[Track alloc] init];
     track.track = [song objectForKey:@"track"];
     track.album = [song objectForKey:@"album"];
     track.artist = [song objectForKey:@"artist"];
-
+    track.image = [self imageByUrlString:song[@"image"]];
+    
     return track;
 }
 

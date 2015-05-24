@@ -762,7 +762,6 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 - (void)resetMediaKeys
 {
     if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap stopWatchingMediaKeys];
         [keyTap startWatchingMediaKeys];
     }
 }

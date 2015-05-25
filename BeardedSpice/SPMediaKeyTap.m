@@ -66,6 +66,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
        [self setShouldInterceptMediaKeyEvents:YES];
 
+    @synchronized(self){
        // Add an event tap to intercept the system defined media key events
        _eventPort = CGEventTapCreate(kCGSessionEventTap,
                                                           kCGHeadInsertEventTap,
@@ -80,25 +81,28 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
        // Let's do this in a separate thread so that a slow app doesn't lag the event tap
        [NSThread detachNewThreadSelector:@selector(eventTapThread) toTarget:self withObject:nil];
+    }
 }
 -(void)stopWatchingMediaKeys;
 {
        // TODO<nevyn>: Shut down thread, remove event tap port and source
 
-    if(_tapThreadRL){
-        CFRunLoopStop(_tapThreadRL);
-        _tapThreadRL=nil;
-    }
+    @synchronized(self) {
+        if (_tapThreadRL) {
+            CFRunLoopStop(_tapThreadRL);
+            _tapThreadRL = nil;
+        }
 
-    if(_eventPort){
-        CFMachPortInvalidate(_eventPort);
-        CFRelease(_eventPort);
-        _eventPort=nil;
-    }
+        if (_eventPort) {
+            CFMachPortInvalidate(_eventPort);
+            CFRelease(_eventPort);
+            _eventPort = nil;
+        }
 
-    if(_eventPortSource){
-        CFRelease(_eventPortSource);
-        _eventPortSource=nil;
+        if (_eventPortSource) {
+            CFRelease(_eventPortSource);
+            _eventPortSource = nil;
+        }
     }
 }
 
@@ -167,7 +171,11 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
 -(void)pauseTapOnTapThread:(BOOL)yeahno;
 {
-       CGEventTapEnable(self->_eventPort, yeahno);
+    @synchronized(self){
+        if (self->_eventPort) {
+            CGEventTapEnable(self->_eventPort, yeahno);
+        }
+    }
 }
 -(void)setShouldInterceptMediaKeyEvents:(BOOL)newSetting;
 {
@@ -196,7 +204,11 @@ static CGEventRef tapEventCallback2(CGEventTapProxy proxy, CGEventType type, CGE
 
     if(type == kCGEventTapDisabledByTimeout) {
               NSLog(@"Media key event tap was disabled by timeout");
-              CGEventTapEnable(self->_eventPort, TRUE);
+        @synchronized(self){
+            if (self->_eventPort) {
+                CGEventTapEnable(self->_eventPort, TRUE);
+            }
+        }
               return event;
        } else if(type == kCGEventTapDisabledByUserInput) {
               // Was disabled manually by -[pauseTapOnTapThread]
@@ -238,12 +250,14 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
        [_delegate mediaKeyTap:self receivedMediaKeyEvent:event];
 }
 
-
--(void)eventTapThread;
+- (void)eventTapThread;
 {
-       _tapThreadRL = CFRunLoopGetCurrent();
-       CFRunLoopAddSource(_tapThreadRL, _eventPortSource, kCFRunLoopCommonModes);
-       CFRunLoopRun();
+    @synchronized(self) {
+        _tapThreadRL = CFRunLoopGetCurrent();
+        CFRunLoopAddSource(_tapThreadRL, _eventPortSource,
+                           kCFRunLoopCommonModes);
+    }
+        CFRunLoopRun();
 }
 
 #pragma mark Task switching callbacks

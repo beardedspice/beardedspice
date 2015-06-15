@@ -39,6 +39,7 @@
 #import "DeezerStrategy.h"
 #import "FocusAtWillStrategy.h"
 #import "PocketCastsStrategy.h"
+#import "YandexRadioStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -169,6 +170,7 @@
                         [MixCloudStrategy new],
                         [MusicUnlimitedStrategy new],
                         [YandexMusicStrategy new],
+                        [YandexRadioStrategy new],
                         [StitcherStrategy new],
                         [XboxMusicStrategy new],
                         [VkStrategy new],

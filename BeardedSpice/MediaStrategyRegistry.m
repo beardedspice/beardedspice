@@ -43,6 +43,8 @@
 #import "TidalHiFiStrategy.h"
 #import "NoAdRadioStrategy.h"
 #import "SomaFmStrategy.h"
+#import "SubsonicStrategy.h"
+#import "TuneInStrategy.h"
 #import "DigitallyImportedStrategy.h"
 #import "BeatguideStrategy.h"
 #import "SaavnStrategy.h"
@@ -193,6 +195,8 @@
                         [TidalHiFiStrategy new],
                         [NoAdRadioStrategy new],
                         [SomaFmStrategy new],
+                        [SubsonicStrategy new],
+                        [TuneInStrategy new],
                         [DigitallyImportedStrategy new],
                         [BeatguideStrategy new],
                         [SaavnStrategy new],

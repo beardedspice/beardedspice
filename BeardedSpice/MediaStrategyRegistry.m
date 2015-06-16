@@ -7,6 +7,7 @@
 //
 
 #import "MediaStrategyRegistry.h"
+#import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
 #import "BandCampStrategy.h"
@@ -44,6 +45,12 @@
 #import "SomaFmStrategy.h"
 #import "SubsonicStrategy.h"
 #import "TuneInStrategy.h"
+#import "DigitallyImportedStrategy.h"
+#import "BeatguideStrategy.h"
+#import "SaavnStrategy.h"
+#import "KollektFmStrategy.h"
+#import "WonderFmStrategy.h"
+#import "OdnoklassnikiStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -72,7 +79,7 @@
 
         for (MediaStrategy *strategy in defaultStrategies) {
             NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if ([enabled intValue] == 1) {
+            if (!enabled || [enabled boolValue]) {
                 [self addMediaStrategy:strategy];
             }
         }
@@ -117,7 +124,7 @@
     self.keyCache = nil;
 }
 
--(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
+-(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
     MediaStrategy *strat = _registeredCache[cacheKey];
@@ -153,6 +160,7 @@
         NSLog(@"Initializing default media strategies...");
         strategies = @[
                         [YouTubeStrategy new],
+                        [LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
                         [GrooveSharkStrategy new],
@@ -189,6 +197,12 @@
                         [SomaFmStrategy new],
                         [SubsonicStrategy new],
                         [TuneInStrategy new]
+                        [DigitallyImportedStrategy new],
+                        [BeatguideStrategy new],
+                        [SaavnStrategy new],
+                        [KollektFmStrategy new],
+                        [WonderFmStrategy new],
+                        [OdnoklassnikiStrategy new]
                     ];
     });
     return strategies;

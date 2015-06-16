@@ -11,7 +11,7 @@
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
-#import "iTunesTabAdapter.h"
+#import "NativeAppTabAdapter.h"
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
@@ -19,26 +19,18 @@
 
 #import "runningSBApplication.h"
 
+#define APPID_SAFARI            @"com.apple.Safari"
+#define APPID_CHROME            @"com.google.Chrome"
+#define APPID_CANARY            @"com.google.Chrome.canary"
+#define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
+
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
 /// Delay displaying notification after changing favorited status of the current track.
-#define FAVORITED_DELAY         0.1
+#define FAVORITED_DELAY         0.3
 
 BOOL accessibilityApiEnabled = NO;
-
-@implementation BeardedSpiceApp
-- (void)sendEvent:(NSEvent *)theEvent
-{
-       // If event tap is not installed, handle events that reach the app instead
-       BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
-
-       if(shouldHandleMediaKeyEventLocally && [theEvent type] == NSSystemDefined && [theEvent subtype] == SPSystemDefinedEventMediaKeys) {
-              [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:theEvent];
-       }
-       [super sendEvent:theEvent];
-}
-@end
 
 @implementation AppDelegate
 
@@ -59,24 +51,18 @@ BOOL accessibilityApiEnabled = NO;
     NSMutableDictionary *registeredDefaults = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                         [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
                         nil];
-    
+
     NSDictionary *appDefaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]];
     if (appDefaults)
         [registeredDefaults addEntriesFromDictionary:appDefaults];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:registeredDefaults];
     
-    keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
-       if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-              [keyTap startWatchingMediaKeys];
-       } else {
-              NSLog(@"Media key monitoring disabled");
-    }
-
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
-    iTunesNeedDisplayNotification = YES;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     [self setupPlayControlsShortcutCallbacks];
     [self setupActiveTabShortcutCallback];
@@ -89,8 +75,20 @@ BOOL accessibilityApiEnabled = NO;
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
     
+    // setup native apps
+    nativeAppRegistry = [[NativeAppTabRegistry alloc]
+        initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
+
+    nativeApps = [NSMutableArray array];
+    
     // check accessibility enabled
     [self checkAccessibilityTrusted];
+    
+    keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    [keyTap startWatchingMediaKeys];
+    [self refreshKeyTapBlackList];
+    
+//    [self refreshApplications];
 }
 
 - (void)awakeFromNib
@@ -104,9 +102,6 @@ BOOL accessibilityApiEnabled = NO;
     [statusItem setHighlightMode:YES];
     [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted"]];
 
-    [statusItem setAction:@selector(refreshTabs:)];
-    [statusItem setTarget:self];
-    
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
 }
@@ -117,7 +112,8 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    [self refreshTabs: menu];
+    [self autoSelectedTabs];
+    [self setStatusMenuItemsStatus];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
@@ -127,10 +123,6 @@ BOOL accessibilityApiEnabled = NO;
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
 {
-    if (!activeTab) {
-        return;
-    }
-    
     NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
     // here be dragons...
     int keyCode = (([event data1] & 0xFFFF0000) >> 16);
@@ -248,30 +240,26 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupActiveTabShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
-        [self refreshApplications];
-        if (chromeApp.frontmost) {
-            [self setActiveTabShortcutForChrome:chromeApp];
-        } else if (canaryApp.frontmost) {
-            [self setActiveTabShortcutForChrome:canaryApp];
-        } else if (yandexBrowserApp.frontmost) {
-            [self setActiveTabShortcutForChrome:yandexBrowserApp];
-        } else if (safariApp.frontmost) {
-            [self setActiveTabShortcutForSafari:safariApp];
-        } else if (iTunesApp.frontmost){
-            
-            [self updateActiveTab:[iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp]];
-        }
-    }];
+        
+        [self setActiveTabShortcut];
+     }];
 }
 
 - (void)setupFavoriteShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
+
+        [self autoSelectedTabs];
         
-        if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             
-            [(iTunesTabAdapter *)activeTab favorite];
-            [self showNotification];
+            NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+            if ([tab respondsToSelector:@selector(favorite)]) {
+                [tab favorite];
+                if ([[tab trackInfo] favorited]) {
+                    [self showNotification];
+                }
+            }
         }
         else{
 
@@ -291,6 +279,8 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupNotificationShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
+        
+        [self autoSelectedTabs];
         [self showNotification];
     }];
 }
@@ -299,6 +289,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
         
+        [self autoSelectedTabs];
         [activeTab toggleTab];
     }];
 }
@@ -329,37 +320,44 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)playerToggle{
-    
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab toggle];
-        if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![activeTab frontmost])
-            [self showNotification];
-        
-        iTunesNeedDisplayNotification = YES;
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+
+        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+        if ([tab respondsToSelector:@selector(toggle)]) {
+            [tab toggle];
+            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                ![tab frontmost])
+                [self showNotification];
+        }
+    } else {
+
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy toggle]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                 [self showNotification];
             }
-            
         }
     }
 }
 
 - (void)playerNext{
-    
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab next];
-        iTunesNeedDisplayNotification = NO;
-    }
-    else{
-        
+
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+
+        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+        if ([tab respondsToSelector:@selector(next)]) {
+            [tab next];
+            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                ![tab frontmost])
+                [self showNotification];
+        }
+    } else {
+
         MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy next]];
@@ -372,10 +370,16 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playerPrevious{
     
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
         
-        [(iTunesTabAdapter *)activeTab previous];
-        iTunesNeedDisplayNotification = NO;
+        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+        if ([tab respondsToSelector:@selector(previous)]) {
+            [tab previous];
+            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                ![tab frontmost])
+                [self showNotification];
+        }
     }
     else{
         
@@ -412,19 +416,23 @@ BOOL accessibilityApiEnabled = NO;
     return [string substringToIndex: [string length]];
 }
 
-- (void)refreshApplications
-{
-    chromeApp = [self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
-    canaryApp = [self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
-    
-    yandexBrowserApp = [self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
-    
-    safariApp = [self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceITunesIntegration])
-        iTunesApp = [self getRunningSBApplicationWithIdentifier:@"com.apple.iTunes"];
-    else
-        iTunesApp = nil;
+- (void)refreshApplications {
+
+    chromeApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROME];
+    canaryApp = [self getRunningSBApplicationWithIdentifier:APPID_CANARY];
+    yandexBrowserApp =
+        [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
+
+    safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
+
+    [nativeApps removeAllObjects];
+    for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
+        runningSBApplication *app =
+            [self getRunningSBApplicationWithIdentifier:[nativeApp bundleId]];
+        if (app) {
+            [nativeApps addObject:app];
+        }
+    }
 }
 
 - (void)setActiveTabShortcutForChrome:(runningSBApplication *)app {
@@ -449,13 +457,64 @@ BOOL accessibilityApiEnabled = NO;
                                                          andTab:[safariWindow currentTab]]];
 }
 
+- (void)setActiveTabShortcut{
+    
+    [self refreshApplications];
+    if (chromeApp.frontmost) {
+        [self setActiveTabShortcutForChrome:chromeApp];
+    } else if (canaryApp.frontmost) {
+        [self setActiveTabShortcutForChrome:canaryApp];
+    } else if (yandexBrowserApp.frontmost) {
+        [self setActiveTabShortcutForChrome:yandexBrowserApp];
+    } else if (safariApp.frontmost) {
+        [self setActiveTabShortcutForSafari:safariApp];
+    } else {
+
+        for (runningSBApplication *app in nativeApps) {
+            if (app.frontmost) {
+                NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
+                if (tab) {
+                    [self updateActiveTab:tab];
+                }
+                break;
+            }
+        }
+    }
+
+    [self resetMediaKeys];
+}
+
 - (void)removeAllItems
 {
     NSInteger count = statusMenu.itemArray.count;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
+    
+    // reset playingTabs
+    playingTabs = [NSMutableArray array];
+    
 }
+
+-(BOOL)setStatusMenuItemsStatus{
+    
+    @autoreleasepool {
+        NSInteger count = statusMenu.itemArray.count;
+        for (int i = 0; i < (count - statusMenuCount); i++) {
+            
+            NSMenuItem *item = [statusMenu itemAtIndex:i];
+            TabAdapter *tab = [item representedObject];
+            if ([activeTab isEqual:tab]) {
+                
+                [item setState:NSOnState];
+                return YES;
+            }
+        }
+        
+        return NO;
+    }
+}
+
 
 - (void)refreshTabsForChrome:(runningSBApplication *)app {
     ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
@@ -479,25 +538,33 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (void)refreshTabsForiTunes{
-    
-    iTunesApplication *iTunes = (iTunesApplication *)iTunesApp.sbApplication;
-    
-    if (iTunes) {
-        
-        id<Tab> tab = [iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp];
-        
+- (void)refreshTabsForNativeApp:(runningSBApplication *)app
+                          class:(Class)theClass {
+
+    if (app) {
+
+        TabAdapter *tab = [theClass tabAdapterWithApplication:app];
+
         if (tab) {
-            
-            NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
-            
+
+            NSMenuItem *menuItem = [statusMenu
+                insertItemWithTitle:[self trim:tab.title toLength:40]
+                             action:@selector(updateActiveTabFromMenuItem:)
+                      keyEquivalent:@""
+                            atIndex:0];
+
             if (menuItem) {
                 [menuItem setRepresentedObject:tab];
-                [self setStatusMenuItemStatus:menuItem forTab:tab];
+
+                // check playing status
+                if ([tab respondsToSelector:@selector(isPlaying)] &&
+                    [(NativeAppTabAdapter *)tab isPlaying])
+                    [playingTabs addObject:tab];
+
+                [self repairActiveTabFrom:tab];
             }
         }
     }
-
 }
 
 - (void)refreshTabs:(id) sender
@@ -506,6 +573,9 @@ BOOL accessibilityApiEnabled = NO;
     [self removeAllItems];
     [self refreshApplications];
     
+    //hold activeTab object
+    __unsafe_unretained TabAdapter *_activeTab = activeTab;
+
     [mediaStrategyRegistry beginStrategyQueries];
     
     [self refreshTabsForChrome:chromeApp];
@@ -513,7 +583,9 @@ BOOL accessibilityApiEnabled = NO;
     [self refreshTabsForChrome:yandexBrowserApp];
     [self refreshTabsForSafari:safariApp];
     
-    [self refreshTabsForiTunes];
+    for (runningSBApplication *app in nativeApps) {
+        [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
+    }
     
     [mediaStrategyRegistry endStrategyQueries];
     
@@ -521,45 +593,48 @@ BOOL accessibilityApiEnabled = NO;
     if ([statusMenu numberOfItems] == statusMenuCount) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
-    } else if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap startWatchingMediaKeys];
+//        [keyTap stopWatchingMediaKeys];
     } else {
-        NSLog(@"Media key monitoring disabled");
+//        [keyTap startWatchingMediaKeys];
+    }
+    
+    //check activeTab
+    if (_activeTab == activeTab) {
+        activeTab = nil;
     }
 }
 
 -(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
-    id<Tab> tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
+    TabAdapter *tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
 }
 
 -(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
-    id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
+    TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
 }
 
--(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
-{
-    if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
-        [item setState:NSOnState];
-    }
-}
-
--(BOOL)addStatusMenuItemFor:(id<Tab>)tab {
+-(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
     
-    if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+    if (strategy) {
         
         NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
         if (menuItem){
 
             [menuItem setRepresentedObject:tab];
-            [self setStatusMenuItemStatus:menuItem forTab:tab];
+            
+            // check playing status
+            if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
+                [playingTabs addObject:tab];
+            
+            [self repairActiveTabFrom:tab];
         }
         return YES;
     }
@@ -567,23 +642,25 @@ BOOL accessibilityApiEnabled = NO;
     return NO;
 }
 
-- (void)updateActiveTab:(id<Tab>) tab
+- (void)updateActiveTab:(TabAdapter *)tab
 {
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    // Prevent switch to tab, which not have strategy.
+    MediaStrategy *strategy;
+    if (![tab isKindOfClass:[NativeAppTabAdapter class]]) {
         
-        [(iTunesTabAdapter *)activeTab pause];
+        strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+        if (!strategy) {
+            return;
+        }
+    }
+    
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+
+        if (![tab isEqual:activeTab] &&
+            [activeTab respondsToSelector:@selector(pause)])
+            [(NativeAppTabAdapter *)activeTab pause];
     }
     else{
-        
-        MediaStrategy *strategy;
-        // Prevent switch to tab, which not have strategy.
-        if (![tab isKindOfClass:[iTunesTabAdapter class]]) {
-            
-            strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-            if (!strategy) {
-                return;
-            }
-        }
         
         strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy && ![tab isEqual:activeTab]) {
@@ -592,7 +669,63 @@ BOOL accessibilityApiEnabled = NO;
     }
     
     activeTab = tab;
+    activeTabKey = [tab key];
     NSLog(@"Active tab set to %@", activeTab);
+}
+
+- (void)repairActiveTabFrom:(TabAdapter *)tab{
+    
+    if ([activeTabKey isEqualToString:[tab key]]) {
+        
+        //repair activeTab
+        activeTab = [tab copyStateFrom:activeTab];
+    }
+}
+
+- (void)autoSelectedTabs{
+    
+    [self refreshTabs:self];
+    switch (playingTabs.count) {
+        case 0:
+            
+            // not have active tab
+            if (!activeTab){
+                
+                // try to set active tab to focus
+                [self setActiveTabShortcut];
+                
+                if (!activeTab) {
+                    
+                    //try to set active tab to first item of menu
+                    TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+                    if (tab)
+                        [self updateActiveTab:tab];
+                }
+                
+            }
+            break;
+            
+        case 1:
+
+            [self updateActiveTab:playingTabs[0]];
+            break;
+            
+        default: // many
+            
+            // try to set active tab to focus
+            [self setActiveTabShortcut];
+            
+            if (!activeTab) {
+                
+                //try to set active tab to first item of menu
+                TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+                if (tab)
+                    [self updateActiveTab:tab];
+            }
+            break;
+    }
+    
+    [self resetMediaKeys];
 }
 
 - (void)checkAccessibilityTrusted{
@@ -604,21 +737,25 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (void)showNotification
-{
+- (void)showNotification {
     Track *track;
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]])
-        track = [(iTunesTabAdapter *)activeTab trackInfo];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        if ([activeTab respondsToSelector:@selector(trackInfo)]) {
+            track = [(NativeAppTabAdapter *)activeTab trackInfo];
+        }
+    } else {
 
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy)
             track = [strategy trackInfo:activeTab];
     }
-    
-    if (track)
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
+
+    if (track) {
+        [[NSUserNotificationCenter defaultUserNotificationCenter]
+            deliverNotification:[track asNotification]];
+        NSLog(@"Show Notofication: %@", track);
+    }
 }
 
 - (void)setupSystemEventsCallback
@@ -634,29 +771,29 @@ BOOL accessibilityApiEnabled = NO;
      name:NSWorkspaceSessionDidResignActiveNotification
      object:nil];
 
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidLaunchApplicationNotification
-     object: NULL];
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidTerminateApplicationNotification
-     object: NULL];
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidActivateApplicationNotification
-     object: NULL];
-
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidWakeNotification
-     object: NULL];
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidLaunchApplicationNotification
+//     object: NULL];
+//    
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidTerminateApplicationNotification
+//     object: NULL];
+//    
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidActivateApplicationNotification
+//     object: NULL];
+//
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidWakeNotification
+//     object: NULL];
 }
 
 - (void)removeSystemEventsCallback{
@@ -668,7 +805,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     if (_preferencesWindowController == nil)
     {
-        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry];
+        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry nativeAppTabRegistry:nativeAppRegistry];
         NSViewController *shortcutsViewController = [ShortcutsPreferencesViewController new];
         NSArray *controllers = @[generalViewController, shortcutsViewController];
 
@@ -676,6 +813,36 @@ BOOL accessibilityApiEnabled = NO;
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
     }
     return _preferencesWindowController;
+}
+
+- (void)refreshKeyTapBlackList{
+
+    NSMutableArray *keyTapBlackList = [NSMutableArray arrayWithCapacity:5];
+    
+//    if (chromeApp) {
+//        [keyTapBlackList addObject:chromeApp.bundleIdentifier];
+//    }
+//    if (canaryApp) {
+//        [keyTapBlackList addObject:canaryApp.bundleIdentifier];
+//    }
+//    if (yandexBrowserApp) {
+//        [keyTapBlackList addObject:yandexBrowserApp.bundleIdentifier];
+//    }
+//    if (safariApp) {
+//        [keyTapBlackList addObject:safariApp.bundleIdentifier];
+//    }
+    for (Class theClass in [nativeAppRegistry enabledNativeAppClasses]) {
+        [keyTapBlackList addObject:[theClass bundleId]];
+    }
+    
+    keyTap.blackListBundleIdentifiers = [keyTapBlackList copy];
+    NSLog(@"Refresh Key Tab Black List.");
+}
+
+- (void)resetMediaKeys
+{
+    NSLog(@"Reset Media Keys.");
+    [keyTap startWatchingMediaKeys];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -689,9 +856,10 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)receiveSleepNote:(NSNotification *)note
 {
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab pause];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        if ([activeTab respondsToSelector:@selector(pause)]) {
+            [(NativeAppTabAdapter *)activeTab pause];
+        }
     }
     else{
         
@@ -705,9 +873,10 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void) switchUserHandler:(NSNotification*) notification
 {
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab pause];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        if ([activeTab respondsToSelector:@selector(pause)]) {
+            [(NativeAppTabAdapter *)activeTab pause];
+        }
     }
     else{
         
@@ -719,14 +888,10 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (void)resetMediaKeys
-{
-    if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap stopWatchingMediaKeys];
-        [keyTap startWatchingMediaKeys];
-    }
+- (void) generalPrefChanged:(NSNotification*) notification{
+    
+    [self refreshKeyTapBlackList];
 }
-
 
 
 @end

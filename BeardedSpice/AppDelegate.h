@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.h
 //  BeardedSpice
 //
@@ -12,32 +12,44 @@
 
 #import "Chrome.h"
 #import "Safari.h"
-#import "Tab.h"
+#import "iTunes.h"
+#import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
+#import "NativeAppTabRegistry.h"
 
-@interface BeardedSpiceApp : NSApplication
-@end
+@class runningSBApplication;
+
+extern BOOL accessibilityApiEnabled;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
     IBOutlet NSMenu *statusMenu;
+    NSUInteger  statusMenuCount;
     NSStatusItem *statusItem;
 
-    ChromeApplication *chromeApp;
-    ChromeApplication *canaryApp;
-    ChromeApplication *yandexBrowserApp;
+    runningSBApplication *chromeApp;
+    runningSBApplication *canaryApp;
+    runningSBApplication *yandexBrowserApp;
 
-    SafariApplication *safariApp;
+    runningSBApplication *safariApp;
+
+    NSMutableArray *nativeApps;
+    runningSBApplication *iTunesApp;
 
     SPMediaKeyTap *keyTap;
 
-    id <Tab> activeTab;
+    TabAdapter *activeTab;
+    NSString *activeTabKey;
+    
+    NSMutableArray *playingTabs;
+    
     MediaStrategyRegistry *mediaStrategyRegistry;
-
-    BOOL alwaysShowNotification;
+    NativeAppTabRegistry *nativeAppRegistry;
 
     NSWindowController *_preferencesWindowController;
+    
+    NSMutableSet    *openedWindows;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

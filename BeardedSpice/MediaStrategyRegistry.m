@@ -7,6 +7,7 @@
 //
 
 #import "MediaStrategyRegistry.h"
+#import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
 #import "BandCampStrategy.h"
@@ -40,6 +41,15 @@
 #import "FocusAtWillStrategy.h"
 #import "PocketCastsStrategy.h"
 #import "YandexRadioStrategy.h"
+#import "TidalHiFiStrategy.h"
+#import "NoAdRadioStrategy.h"
+#import "SomaFmStrategy.h"
+#import "DigitallyImportedStrategy.h"
+#import "BeatguideStrategy.h"
+#import "SaavnStrategy.h"
+#import "KollektFmStrategy.h"
+#import "WonderFmStrategy.h"
+#import "OdnoklassnikiStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -68,7 +78,7 @@
 
         for (MediaStrategy *strategy in defaultStrategies) {
             NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if ([enabled intValue] == 1) {
+            if (!enabled || [enabled boolValue]) {
                 [self addMediaStrategy:strategy];
             }
         }
@@ -79,16 +89,13 @@
 -(void) addMediaStrategy:(MediaStrategy *) strategy
 {
     [availableStrategies addObject:strategy];
-}
-
--(void) addMediaStrategies:(NSArray *)strategies
-{
-    [availableStrategies addObjectsFromArray:strategies];
+    [self clearCache];
 }
 
 -(void) removeMediaStrategy:(MediaStrategy *) strategy
 {
     [availableStrategies removeObject:strategy];
+    [self clearCache];
 }
 
 -(void) containsMediaStrategy:(MediaStrategy *) strategy
@@ -116,7 +123,7 @@
     self.keyCache = nil;
 }
 
--(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
+-(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
     MediaStrategy *strat = _registeredCache[cacheKey];
@@ -152,6 +159,7 @@
         NSLog(@"Initializing default media strategies...");
         strategies = @[
                         [YouTubeStrategy new],
+                        [LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
                         [GrooveSharkStrategy new],
@@ -183,18 +191,19 @@
                         [AudioMackStrategy new],
                         [DeezerStrategy new],
                         [FocusAtWillStrategy new],
-                        [PocketCastsStrategy new]
+                        [PocketCastsStrategy new],
+                        [TidalHiFiStrategy new],
+                        [NoAdRadioStrategy new],
+                        [SomaFmStrategy new],
+                        [DigitallyImportedStrategy new],
+                        [BeatguideStrategy new],
+                        [SaavnStrategy new],
+                        [KollektFmStrategy new],
+                        [WonderFmStrategy new],
+                        [OdnoklassnikiStrategy new]
                     ];
     });
     return strategies;
 }
-
-+(id) getDefaultRegistry
-{
-    MediaStrategyRegistry *registry = [[MediaStrategyRegistry alloc] init];
-    [registry addMediaStrategies:[MediaStrategyRegistry getDefaultMediaStrategies]];
-    return registry;
-}
-
 
 @end

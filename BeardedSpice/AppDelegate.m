@@ -761,7 +761,6 @@ BOOL accessibilityApiEnabled = NO;
         NSLog(@"Show Notofication: %@", track);
     } else if (useFallback) {
         [self showDefaultNotification];
-        NSLog(@"Show Default Notification");
     }
 }
 
@@ -770,17 +769,19 @@ BOOL accessibilityApiEnabled = NO;
     
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
         notification.title = [[activeTab class] displayName];
-        notification.informativeText = @"Nothing Playing";
     } else {
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         
         notification.title = strategy.displayName;
-        notification.informativeText = @"No track info available";
     }
+    
+    notification.informativeText = @"No track info available";
+
     
     [[NSUserNotificationCenter defaultUserNotificationCenter]
      deliverNotification:notification];
+    NSLog(@"Show Default Notification");
 }
 
 - (void)setupSystemEventsCallback

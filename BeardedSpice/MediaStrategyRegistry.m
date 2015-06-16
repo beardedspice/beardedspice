@@ -49,6 +49,8 @@
 #import "KollektFmStrategy.h"
 #import "WonderFmStrategy.h"
 #import "OdnoklassnikiStrategy.h"
+#import "SubsonicStrategy.h"
+#import "TuneInStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -198,7 +200,9 @@
                         [SaavnStrategy new],
                         [KollektFmStrategy new],
                         [WonderFmStrategy new],
-                        [OdnoklassnikiStrategy new]
+                        [OdnoklassnikiStrategy new],
+                        [SubsonicStrategy new],
+                        [TuneInStrategy new]
                     ];
     });
     return strategies;

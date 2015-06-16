@@ -37,6 +37,8 @@
 		3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
+		4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4217281B306A5800B22853 /* SubsonicStrategy.m */; };
+		4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C42172B1B307C2D00B22853 /* TuneInStrategy.m */; };
 		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
 		500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 500B11051AE65A0100C4F0EC /* LogitechMediaServerStrategy.m */; };
 		503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */; };
@@ -153,6 +155,10 @@
 		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
 		48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicStrategy.h; sourceTree = "<group>"; };
 		48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AmazonMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C4217271B3069EF00B22853 /* SubsonicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubsonicStrategy.h; sourceTree = "<group>"; };
+		4C4217281B306A5800B22853 /* SubsonicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubsonicStrategy.m; sourceTree = "<group>"; };
+		4C42172A1B307C1B00B22853 /* TuneInStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuneInStrategy.h; sourceTree = "<group>"; };
+		4C42172B1B307C2D00B22853 /* TuneInStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuneInStrategy.m; sourceTree = "<group>"; };
 		4DB2F13119DB987D0010D194 /* ChorusStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChorusStrategy.h; sourceTree = "<group>"; };
 		4DB2F13219DB987D0010D194 /* ChorusStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChorusStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		500B11041AE65A0100C4F0EC /* LogitechMediaServerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogitechMediaServerStrategy.h; sourceTree = "<group>"; };
@@ -368,10 +374,14 @@
 				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
 				83AAFD7618E0A79500640767 /* StitcherStrategy.h */,
 				83AAFD7718E0A79500640767 /* StitcherStrategy.m */,
+				4C4217271B3069EF00B22853 /* SubsonicStrategy.h */,
+				4C4217281B306A5800B22853 /* SubsonicStrategy.m */,
 				CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */,
 				CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */,
 				658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */,
 				658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */,
+				4C42172A1B307C1B00B22853 /* TuneInStrategy.h */,
+				4C42172B1B307C2D00B22853 /* TuneInStrategy.m */,
 				D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */,
 				D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */,
 				8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
@@ -663,6 +673,7 @@
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
+				4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */,
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
@@ -684,6 +695,7 @@
 				3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
+				4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */,
 				500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */,
 				D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,

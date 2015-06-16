@@ -196,7 +196,7 @@
                         [NoAdRadioStrategy new],
                         [SomaFmStrategy new],
                         [SubsonicStrategy new],
-                        [TuneInStrategy new]
+                        [TuneInStrategy new],
                         [DigitallyImportedStrategy new],
                         [BeatguideStrategy new],
                         [SaavnStrategy new],

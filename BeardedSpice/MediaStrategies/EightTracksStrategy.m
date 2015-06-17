@@ -24,9 +24,31 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+-(BOOL) isPlaying:(TabAdapter *)tab
+{
+    NSString *script = @"(function(){"
+    "    var pause = document.querySelector('#player_pause_button');"
+    "    return pause !== null && pause.style.display !== 'none';"
+    "})()";
+    
+    return [[tab executeJavascript:script] boolValue];
+}
+
 -(NSString *) toggle
 {
-    return @"(function(){window.mixPlayer?window.mixPlayer.toggle():document.querySelector('#play_overlay').click()})()";
+    return @"(function(){"
+    "    var play = document.querySelector('#player_play_button');"
+    "    var pause = document.querySelector('#player_pause_button');"
+    "    var overlay = document.querySelector('#play_overlay');"
+    
+    "    if (play !== null && play.style.display !== 'none') {"
+    "        play.click();"
+    "    } else if (pause !== null && pause.style.display !== 'none') {"
+    "        pause.click();"
+    "    } else if (overlay !== null) {"
+    "        overlay.click();"
+    "    }"
+    "})();";
 }
 
 -(NSString *) previous
@@ -36,18 +58,27 @@
 
 -(NSString *) next
 {
-    return @"(function(){window.mixPlayer.next()})()";
+    return @"(function(){"
+    "    var skip = document.querySelector('#player_skip_button');"
+    "    if (skip !== null) skip.click();"
+    "})()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){window.mixPlayer.pause()})()";
+    return @"(function(){"
+    "    var pause = document.querySelector('#player_pause_button');"
+    "    if (pause !== null) pause.click()"
+    "})()";
 }
 
 - (NSString *)favorite
 {
     // NOTE: This favorites the current track, not the current mix
-    return @"(function(){document.querySelector('#now_playing a.fav').click()})()";
+    return @"(function(){"
+    "    var fav = document.querySelector('#now_playing a.fav');"
+    "    if (fav !== null) fav.click()"
+    "})()";
 }
 
 -(NSString *) displayName
@@ -57,13 +88,41 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:mixPlayer.track.get('performer'),album:mixPlayer.track.get('release_name'),track:mixPlayer.track.get('name')}})()"];
+    NSString *script = @"(function(){"
+    "    var nowPlaying  = document.querySelector('#now_playing');"
+    "    var titleArtist = nowPlaying.querySelector('.title_artist');"
+    
+    "    var title  = titleArtist.querySelector('.t').textContent;"
+    "    var artist = titleArtist.querySelector('.a').textContent;"
+    
+    "    var album = nowPlaying.querySelector('.track_details .track_metadata .album .detail').textContent;"
+    
+    "    var fav = nowPlaying.querySelector('a.fav').classList.contains('active');"
 
-    Track *track = [[Track alloc] init];
-    track.track = [song objectForKey:@"track"];
-    track.album = [song objectForKey:@"album"];
-    track.artist = [song objectForKey:@"artist"];
+    "    var img = document.querySelector('#mix_player_details a.thumb img').src;"
+    
+    "    return {"
+    "        artist: artist,"
+    "        album:  album,"
+    "        title:  title,"
+    "        fav:    fav,"
+    "        img:    img"
+    "    };"
+    "})()";
+    
+    NSDictionary *song = [tab executeJavascript:script];
 
+    Track *track    = [[Track alloc] init];
+    track.track     = song[@"title"];
+    track.album     = song[@"album"];
+    track.artist    = song[@"artist"];
+    track.favorited = song[@"fav"];
+    
+    NSString *imageURLString = song[@"img"];
+    if (imageURLString) {
+        track.image = [self imageByUrlString:imageURLString];
+    }
+    
     return track;
 }
 

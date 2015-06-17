@@ -281,7 +281,7 @@ BOOL accessibilityApiEnabled = NO;
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
         
         [self autoSelectedTabs];
-        [self showNotification];
+        [self showNotificationUsingFallback:YES];
     }];
 }
 
@@ -738,6 +738,10 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)showNotification {
+    [self showNotificationUsingFallback:NO];
+}
+
+- (void)showNotificationUsingFallback:(BOOL)useFallback {
     Track *track;
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
         if ([activeTab respondsToSelector:@selector(trackInfo)]) {
@@ -755,7 +759,29 @@ BOOL accessibilityApiEnabled = NO;
         [[NSUserNotificationCenter defaultUserNotificationCenter]
             deliverNotification:[track asNotification]];
         NSLog(@"Show Notofication: %@", track);
+    } else if (useFallback) {
+        [self showDefaultNotification];
     }
+}
+
+- (void)showDefaultNotification {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        notification.title = [[activeTab class] displayName];
+    } else {
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        
+        notification.title = strategy.displayName;
+    }
+    
+    notification.informativeText = @"No track info available";
+
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter]
+     deliverNotification:notification];
+    NSLog(@"Show Default Notification");
 }
 
 - (void)setupSystemEventsCallback

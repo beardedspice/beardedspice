@@ -7,6 +7,7 @@
 //
 
 #import "DigitallyImportedStrategy.h"
+#import "NSString+Utils.h"
 
 @implementation DigitallyImportedStrategy
 
@@ -73,6 +74,13 @@
 
     NSString *trackName = [dict[@"fullTrackName"] stringByReplacingOccurrencesOfString:dict[@"rawArtistName"] withString:@""];
 
+    if ([NSString isNullOrEmpty:artistName]
+        && ( [trackName isEqualToString:@"stopped"]
+        || [trackName hasPrefix:@"connecting"])) {
+        
+            return nil;
+    }
+    
     Track *track = [Track new];
 
     track.track = [trackName

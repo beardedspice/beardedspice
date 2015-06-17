@@ -140,10 +140,8 @@ static NSImage *_lastTrackImage;
         track.album = iTrack.album;
         track.artist = iTrack.artist;
         track.image = [self imageForId:iTrack.id];
-        
-        if (track.track || track.album || track.artist) {
-            return track;
-        }
+
+        return track;
     }
     
     return nil;

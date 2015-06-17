@@ -16,6 +16,7 @@
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "ShortcutsPreferencesViewController.h"
+#import "NSString+Utils.h"
 
 #import "runningSBApplication.h"
 
@@ -755,7 +756,9 @@ BOOL accessibilityApiEnabled = NO;
             track = [strategy trackInfo:activeTab];
     }
 
-    if (track) {
+    if (!([NSString isNullOrEmpty:track.track] &&
+          [NSString isNullOrEmpty:track.artist] &&
+          [NSString isNullOrEmpty:track.album])) {
         [[NSUserNotificationCenter defaultUserNotificationCenter]
             deliverNotification:[track asNotification]];
         NSLog(@"Show Notofication: %@", track);

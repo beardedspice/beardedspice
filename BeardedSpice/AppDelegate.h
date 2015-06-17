@@ -50,6 +50,8 @@ extern BOOL accessibilityApiEnabled;
     NSWindowController *_preferencesWindowController;
     
     NSMutableSet    *openedWindows;
+    
+    dispatch_queue_t notificationQueue;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

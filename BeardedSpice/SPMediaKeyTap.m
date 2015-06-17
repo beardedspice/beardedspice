@@ -253,11 +253,16 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 - (void)eventTapThread;
 {
     @synchronized(self) {
-        _tapThreadRL = CFRunLoopGetCurrent();
-        CFRunLoopAddSource(_tapThreadRL, _eventPortSource,
-                           kCFRunLoopCommonModes);
+        if (_eventPortSource) {
+            _tapThreadRL = CFRunLoopGetCurrent();
+
+            if (_tapThreadRL) {
+                CFRunLoopAddSource(_tapThreadRL, _eventPortSource,
+                                   kCFRunLoopCommonModes);
+            }
+        }
     }
-        CFRunLoopRun();
+    CFRunLoopRun();
 }
 
 #pragma mark Task switching callbacks

@@ -58,6 +58,12 @@ BOOL accessibilityApiEnabled = NO;
         [registeredDefaults addEntriesFromDictionary:appDefaults];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:registeredDefaults];
+
+    // Create serial queue for notification
+    // We need queue because track info may contain image,
+    // which retrieved from URL, this may cause blocking of the main thread.
+    notificationQueue = dispatch_queue_create("NotificationQueue", DISPATCH_QUEUE_SERIAL);
+    //
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
     
@@ -743,28 +749,33 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)showNotificationUsingFallback:(BOOL)useFallback {
-    Track *track;
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        if ([activeTab respondsToSelector:@selector(trackInfo)]) {
-            track = [(NativeAppTabAdapter *)activeTab trackInfo];
+    
+    dispatch_async(notificationQueue, ^{
+        @autoreleasepool {
+            Track *track;
+            if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+                if ([activeTab respondsToSelector:@selector(trackInfo)]) {
+                    track = [(NativeAppTabAdapter *)activeTab trackInfo];
+                }
+            } else {
+                
+                MediaStrategy *strategy =
+                [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+                if (strategy)
+                    track = [strategy trackInfo:activeTab];
+            }
+            
+            if (!([NSString isNullOrEmpty:track.track] &&
+                  [NSString isNullOrEmpty:track.artist] &&
+                  [NSString isNullOrEmpty:track.album])) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter]
+                 deliverNotification:[track asNotification]];
+                NSLog(@"Show Notofication: %@", track);
+            } else if (useFallback) {
+                [self showDefaultNotification];
+            }
         }
-    } else {
-
-        MediaStrategy *strategy =
-            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy)
-            track = [strategy trackInfo:activeTab];
-    }
-
-    if (!([NSString isNullOrEmpty:track.track] &&
-          [NSString isNullOrEmpty:track.artist] &&
-          [NSString isNullOrEmpty:track.album])) {
-        [[NSUserNotificationCenter defaultUserNotificationCenter]
-            deliverNotification:[track asNotification]];
-        NSLog(@"Show Notofication: %@", track);
-    } else if (useFallback) {
-        [self showDefaultNotification];
-    }
+    });
 }
 
 - (void)showDefaultNotification {

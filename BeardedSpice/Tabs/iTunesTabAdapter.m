@@ -143,19 +143,21 @@
     if (iTunes) {
         
         iTunesTrack *iTrack = [[iTunes currentTrack] get];
-        Track *track = [Track new];
-        
-        track.track = iTrack.name;
-        track.album = iTrack.album;
-        track.artist = iTrack.artist;
-        
-        NSArray *artworks = [[iTrack artworks] get];
-        iTunesArtwork *art = [[artworks firstObject] get];
-        track.image = art.data;
-        
-        track.favorited = @(iTrack.rating);
-        
-        return track;
+        if (iTrack) {
+            Track *track = [Track new];
+            
+            track.track = iTrack.name;
+            track.album = iTrack.album;
+            track.artist = iTrack.artist;
+            
+            NSArray *artworks = [[iTrack artworks] get];
+            iTunesArtwork *art = [[artworks firstObject] get];
+            track.image = art.data;
+            
+            track.favorited = @(iTrack.rating);
+            
+            return track;
+        }
     }
     
     return nil;

@@ -20,15 +20,24 @@
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     
-    if (self.favorited && [self.favorited boolValue]) {
-        
-        notification.title = self.track ? [NSString stringWithFormat:@"★ %@ ★", self.track] : nil;
-    }
-    else
-        notification.title = self.track;
-    
+    notification.title = self.track;
     notification.subtitle = self.album;
     notification.informativeText = self.artist;
+
+    if (self.favorited && [self.favorited boolValue]) {
+        
+        if (notification.title) {
+            notification.title = [NSString stringWithFormat:@"★ %@ ★", notification.title];
+        }
+        else if (notification.subtitle){
+            
+            notification.subtitle = [NSString stringWithFormat:@"★ %@ ★", notification.subtitle];
+        }
+        else if (notification.informativeText){
+            
+            notification.informativeText = [NSString stringWithFormat:@"★ %@ ★", notification.informativeText];
+        }
+    }
     
     if (self.image) {
         // workaround for 10.8 support

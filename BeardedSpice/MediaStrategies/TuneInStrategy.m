@@ -62,13 +62,13 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    NSDictionary *metadata = [tab executeJavascript:@"(function(){ var ret = TuneIn.app.nowPlaying.broadcast; ret['favorited'] = $('#tuner div.icon.follow').hasClass('in'); return ret;})()"];
-    NSString *albumart_url = [tab executeJavascript:@"$('.artwork.col._navigateNowPlaying').children('.image').children('.logo.loaded').attr('src');"];
+    NSDictionary *metadata = [tab executeJavascript:@"(function(){ var ret = TuneIn.app.nowPlaying.broadcast; ret['favorited'] = $('#tuner div.icon.follow').hasClass('in'); ret['albumArt'] = $('.artwork.col._navigateNowPlaying').children('.image').children('.logo.loaded').attr('src'); return ret;})()"];
+    
     Track *track = [[Track alloc] init];
     track.track = [metadata valueForKey:@"DisplaySubtitle"];
     track.album = [metadata valueForKeyPath:@"EchoData.title"];
     track.artist = [metadata valueForKey:@"Location"];
-    track.image = [self imageByUrlString:albumart_url];
+    track.image = [self imageByUrlString:metadata[@"albumArt"]];
     track.favorited = metadata[@"favorited"];
     
     return track;

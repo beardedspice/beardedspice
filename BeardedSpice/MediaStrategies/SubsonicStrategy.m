@@ -62,13 +62,12 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    NSDictionary *metadata = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()]"];
-    NSString *albumarturl = [tab executeJavascript:@"window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()].albumUrl.replace('main','coverArt').concat('&size=128')"];
+    NSDictionary *metadata = [tab executeJavascript:@"(function(){ var ret = window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()]; ret['albumArtUrl'] = window.frames['playQueue'].songs[window.frames['playQueue'].getCurrentSongIndex()].albumUrl.replace('main','coverArt').concat('&size=128'); return ret;})()"];
     Track *track = [[Track alloc] init];
     track.track = [metadata objectForKey:@"title"];
     track.album = [metadata objectForKey:@"album"];
     track.artist = [metadata objectForKey:@"artist"];
-    track.image = [self imageByUrlString:albumarturl];
+    track.image = [self imageByUrlString:metadata[@"albumArtUrl"]];
     track.favorited = [metadata objectForKey:@"starred"];
     
     return track;

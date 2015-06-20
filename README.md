@@ -4,7 +4,7 @@
 [![BeardedSpice](images/bs.jpg)](images/bs.jpg)
 
 ## What?
-BeardedSpice allows you to control web based media players (Like *SoundCloud*, and *YouTube* ... [List of supported sites to date](#supported-sites)) with the media keys found on Mac keyboards.
+BeardedSpice allows you to control web based media players (Like *SoundCloud*, and *YouTube* ... [List of supported sites to date](#supported-sites)) and some native apps with the media keys found on Mac keyboards.
 
 ## How?
 All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon ![BeardedSpice](BeardedSpice/beard.png) and select the website you want to control using your media keys.
@@ -44,6 +44,11 @@ Using a 3rd-party keyboard? or even a keyboard with no multimedia keys? No probl
 ### Disabling certain handlers
 From the preferences tab, uncheck any types of webpages that you don't want BeardedSpice to have control over. By default, all implemented handlers are enabled.
 
+### Supported Mac OS X applications
+- [iTunes](http://www.apple.com/itunes/)
+- [Spotify](http://www.spotify.com/) (BeardedSpace version from 1.1)
+- [VOX](http://coppertino.com/) (BeardedSpace version from 1.1)
+
 ### Supported Sites
 - [8Tracks](http://8tracks.com)
 - [22Tracks](http://22tracks.com)
@@ -79,8 +84,10 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)
 - [STITCHER](http://www.stitcher.com)
+- [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
 - [TIDAL (Web)](http://listen.tidalhifi.com/)
+- [TuneIn](http://tunein.com/)
 - [Vimeo](http://vimeo.com)
 - [VK ("My Music" from vk.com)](http://vk.com)
 - [WONDER.FM](http://wonder.fm/)

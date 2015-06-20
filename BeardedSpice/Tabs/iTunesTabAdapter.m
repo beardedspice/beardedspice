@@ -56,8 +56,10 @@
                     title = currentTrack.artist;
             }
         }
-        else
+        
+        if ([NSString isNullOrEmpty:title]) {
             title = NSLocalizedString(@"No Track", @"iTunesTabAdapter");
+        }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, iTunes.name];
     }
@@ -80,11 +82,6 @@
     if (otherTab == nil || ![otherTab isKindOfClass:[iTunesTabAdapter class]]) return NO;
 
     return YES;
-}
-
-- (id)executeJavascript:(NSString *)javascript{
-
-    return nil;
 }
 
 //////////////////////////////////////////////////////////////

@@ -23,14 +23,6 @@
 static NSString *_lastTrackId;
 static NSImage *_lastTrackImage;
 
-+(instancetype)SpotifyTabAdapterWithApplication:(runningSBApplication *)application{
-    
-    SpotifyTabAdapter *tab = [SpotifyTabAdapter new];
-    
-    tab.application = application;
-    return tab;
-}
-
 + (NSString *)displayName{
     
     return APPNAME_SPOTIFY;
@@ -61,8 +53,10 @@ static NSImage *_lastTrackImage;
                     title = currentTrack.artist;
             }
         }
-        else
+        
+        if ([NSString isNullOrEmpty:title]) {
             title = NSLocalizedString(@"No Track", @"SpotifyTabAdapter");
+        }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_SPOTIFY];
     }
@@ -85,11 +79,6 @@ static NSImage *_lastTrackImage;
     if (otherTab == nil || ![otherTab isKindOfClass:[SpotifyTabAdapter class]]) return NO;
 
     return YES;
-}
-
-- (id)executeJavascript:(NSString *)javascript{
-
-    return nil;
 }
 
 //////////////////////////////////////////////////////////////

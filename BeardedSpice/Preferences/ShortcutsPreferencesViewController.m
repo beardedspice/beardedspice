@@ -15,6 +15,8 @@ NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut"
 NSString *const BeardedSpiceFavoriteShortcut = @"BeardedSpiceFavoriteShortcut";
 NSString *const BeardedSpiceNotificationShortcut = @"BeardedSpiceNotificationShortcut";
 NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivatePlayingTabShortcut";
+NSString *const BeardedSpicePlayerNextShortcut = @"BeardedSpicePlayerNextShortcut";
+NSString *const BeardedSpicePlayerPreviousShortcut = @"BeardedSpicePlayerPreviousShortcut";
 
 @implementation ShortcutsPreferencesViewController
 
@@ -36,7 +38,8 @@ NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivateP
     [self.favoriteShortcut setAssociatedUserDefaultsKey:BeardedSpiceFavoriteShortcut];
     [self.notificationShortcut setAssociatedUserDefaultsKey:BeardedSpiceNotificationShortcut];
     [self.activatePlayingTabShortcut setAssociatedUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut];
-    
+    [self.playerNextShortcut setAssociatedUserDefaultsKey:BeardedSpicePlayerNextShortcut];
+    [self.playerPreviousShortcut setAssociatedUserDefaultsKey:BeardedSpicePlayerPreviousShortcut];
 }
 
 - (NSString *)identifier

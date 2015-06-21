@@ -31,6 +31,13 @@
 /// Delay displaying notification after changing favorited status of the current track.
 #define FAVORITED_DELAY         0.3
 
+typedef enum{
+    
+    SwithPlayerNext = 1,
+    SwithPlayerPrevious
+    
+} SwithPlayerDirectionType;
+
 BOOL accessibilityApiEnabled = NO;
 
 @implementation AppDelegate
@@ -76,6 +83,7 @@ BOOL accessibilityApiEnabled = NO;
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     [self setupActivatePlayingTabShortcutCallback];
+    [self setupSwitchPlayersShortcutCallback];
     
     [self setupSystemEventsCallback];
 
@@ -298,6 +306,18 @@ BOOL accessibilityApiEnabled = NO;
         
         [self autoSelectedTabs];
         [activeTab toggleTab];
+    }];
+}
+
+- (void)setupSwitchPlayersShortcutCallback
+{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerPreviousShortcut handler:^{
+
+        [self switchPlayerWithDirection:SwithPlayerPrevious];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerNextShortcut handler:^{
+        
+        [self switchPlayerWithDirection:SwithPlayerNext];
     }];
 }
 
@@ -883,6 +903,60 @@ BOOL accessibilityApiEnabled = NO;
 {
     NSLog(@"Reset Media Keys.");
     [keyTap startWatchingMediaKeys];
+}
+
+- (BOOL)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
+
+    @autoreleasepool {
+
+        [self autoSelectedTabs];
+
+        NSUInteger size = statusMenu.itemArray.count - statusMenuCount;
+        if (size < 2) {
+            return NO;
+        }
+
+        TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+        TabAdapter *prevTab =
+            [[statusMenu itemAtIndex:(size - 1)] representedObject];
+        TabAdapter *nextTab = [[statusMenu itemAtIndex:1] representedObject];
+        for (int i = 0; i < size; i++) {
+
+            if ([activeTab isEqual:tab]) {
+                if (direction == SwithPlayerNext) {
+                    [self updateActiveTab:nextTab];
+                } else {
+                    [self updateActiveTab:prevTab];
+                }
+
+                NSUserNotification *notification = [NSUserNotification new];
+                if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+                    notification.title = [[activeTab class] displayName];
+                } else {
+
+                    MediaStrategy *strategy = [mediaStrategyRegistry
+                        getMediaStrategyForTab:activeTab];
+                    if (!strategy) {
+                        return NO;
+                    }
+                    notification.title = strategy.displayName;
+                }
+
+                notification.informativeText = [activeTab title];
+                [[NSUserNotificationCenter defaultUserNotificationCenter]
+                 deliverNotification:notification];
+
+                return YES;
+            }
+            prevTab = tab;
+            tab = nextTab;
+            nextTab = i < (size - 2)
+                          ? [[statusMenu itemAtIndex:(i + 2)] representedObject]
+                          : [[statusMenu itemAtIndex:0] representedObject];
+        }
+
+        return NO;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////

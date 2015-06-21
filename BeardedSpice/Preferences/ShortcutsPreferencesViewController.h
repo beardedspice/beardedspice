@@ -17,6 +17,8 @@ extern NSString *const BeardedSpiceActiveTabShortcut;
 extern NSString *const BeardedSpiceFavoriteShortcut;
 extern NSString *const BeardedSpiceNotificationShortcut;
 extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
+extern NSString *const BeardedSpicePlayerNextShortcut;
+extern NSString *const BeardedSpicePlayerPreviousShortcut;
 
 @interface ShortcutsPreferencesViewController : NSViewController <MASPreferencesViewController>
 
@@ -27,5 +29,7 @@ extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *setActiveTabShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *favoriteShortcut;
 @property (nonatomic, weak) IBOutlet MASShortcutView *notificationShortcut;
+@property (nonatomic, weak) IBOutlet MASShortcutView *playerNextShortcut;
+@property (nonatomic, weak) IBOutlet MASShortcutView *playerPreviousShortcut;
 
 @end

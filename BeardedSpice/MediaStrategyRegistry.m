@@ -40,6 +40,7 @@
 #import "DeezerStrategy.h"
 #import "FocusAtWillStrategy.h"
 #import "PocketCastsStrategy.h"
+#import "YandexRadioStrategy.h"
 #import "TidalHiFiStrategy.h"
 #import "NoAdRadioStrategy.h"
 #import "SomaFmStrategy.h"
@@ -180,6 +181,7 @@
                         [MixCloudStrategy new],
                         [MusicUnlimitedStrategy new],
                         [YandexMusicStrategy new],
+                        [YandexRadioStrategy new],
                         [StitcherStrategy new],
                         [XboxMusicStrategy new],
                         [VkStrategy new],

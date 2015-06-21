@@ -58,18 +58,24 @@
     return @"NoonPacific";
 }
 
--(Track *) trackInfo:(TabAdapter *)tab
-{
-    NSDictionary *info = [tab
-        executeJavascript:@"(function(){"
-                          @"var track=document.querySelectorAll('.track-info div p');"
-                          @"return {'title':track[0].firstChild.nodeValue,"
-                          @"'artist':track[1].firstChild.nodeValue};})()"];
+- (Track *)trackInfo:(TabAdapter *)tab {
+    NSDictionary *info =
+        [tab executeJavascript:@"(function(){"
+             @"var track=document.querySelectorAll('.track-info div p');"
+             @"var imgSrc=document.querySelector('.mixtape-container "
+             @"img.mixtape').getAttribute('src');"
+             @"var album=document.querySelector('.mixtape-container "
+             @"div.mixtape-label h3').innerText;"
+             @"return {'title':track[0].firstChild.nodeValue,"
+             @"'artist':track[1].firstChild.nodeValue, 'album':album, "
+             @"'art':imgSrc};})()"];
 
     Track *track = [[Track alloc] init];
 
     track.track = info[@"title"];
     track.artist = info[@"artist"];
+    track.album = info[@"album"];
+    track.image = [self imageByUrlString:info[@"art"]];
 
     return track;
 }

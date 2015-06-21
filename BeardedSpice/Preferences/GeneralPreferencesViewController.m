@@ -8,6 +8,7 @@
 
 #import "GeneralPreferencesViewController.h"
 #import "MediaControllerObject.h"
+#import "BSLaunchAtLogin.h"
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
 
@@ -15,6 +16,7 @@ NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers"
 NSString *const BeardedSpiceActiveNativeAppControllers = @"BeardedSpiceActiveNativeAppControllers";
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 NSString *const BeardedSpiceITunesIntegration = @"BeardedSpiceITunesIntegration";
+NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 
 @implementation GeneralPreferencesViewController
 
@@ -70,6 +72,33 @@ NSString *const BeardedSpiceITunesIntegration = @"BeardedSpiceITunesIntegration"
 - (NSString *)toolbarItemLabel
 {
     return NSLocalizedString(@"General", @"Toolbar item name for the General preference pane");
+}
+
+- (void)viewWillAppear{
+    
+    [self repairLaunchAtLogin];
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Actions
+/////////////////////////////////////////////////////////////////////////
+
+- (IBAction)toggleLaunchAtStartup:(id)sender{
+
+    BOOL shouldBeLaunchAtLogin = [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceLaunchAtLogin];
+    [BSLaunchAtLogin launchAtStartup:shouldBeLaunchAtLogin];
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Private Methods
+/////////////////////////////////////////////////////////////////////////
+
+// Repairs user defaults from login items.
+- (void)repairLaunchAtLogin{
+    
+    [[NSUserDefaults standardUserDefaults] setBool:[BSLaunchAtLogin isLaunchAtStartup] forKey:BeardedSpiceLaunchAtLogin];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {

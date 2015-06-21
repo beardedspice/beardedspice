@@ -62,6 +62,7 @@
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
+		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
@@ -208,6 +209,8 @@
 		65EE289D1AB5FFE200EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65EE289F1AB6003800EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		65EE28A21AB6003B00EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
+		65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLaunchAtLogin.h; sourceTree = "<group>"; };
+		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
 		699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OvercastStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VkStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -493,6 +496,8 @@
 				6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */,
 				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
 				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
+				65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */,
+				65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
 				967933421855173100A49AC7 /* AppDelegate.m */,
 				967933441855173100A49AC7 /* MainMenu.xib */,
@@ -589,7 +594,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Tyler Rhodes / Jose Falcon";
+				ORGANIZATIONNAME = BeardedSpice;
 				TargetAttributes = {
 					9679334C1855173100A49AC7 = {
 						TestTargetID = 9679332B1855173100A49AC7;
@@ -729,6 +734,7 @@
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
+				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,

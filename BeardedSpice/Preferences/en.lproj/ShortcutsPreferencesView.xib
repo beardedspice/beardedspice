@@ -27,13 +27,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-CB-eLU" userLabel="Set Active Tab Shortcut" customClass="MASShortcutView">
-                    <rect key="frame" x="352" y="134" width="120" height="19"/>
+                    <rect key="frame" x="369" y="134" width="120" height="19"/>
                     <connections>
                         <outlet property="nextKeyView" destination="6DV-Fl-7vz" id="gtm-Gp-FKx"/>
                     </connections>
                 </customView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQ3-n9-YBd">
-                    <rect key="frame" x="55" y="135" width="163" height="17"/>
+                    <rect key="frame" x="38" y="135" width="163" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Set Active Player Window" id="UwG-2K-f1Y">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -41,13 +41,13 @@
                     </textFieldCell>
                 </textField>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9E3-kb-9eg" userLabel="Favorite Shortcut" customClass="MASShortcutView">
-                    <rect key="frame" x="352" y="72" width="120" height="19"/>
+                    <rect key="frame" x="369" y="72" width="120" height="19"/>
                     <connections>
                         <outlet property="nextKeyView" destination="M3P-EW-xim" id="4nA-wu-8nY"/>
                     </connections>
                 </customView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PtR-lb-EBv">
-                    <rect key="frame" x="55" y="73" width="176" height="17"/>
+                    <rect key="frame" x="38" y="73" width="176" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Toggle Favorite" id="kMY-K4-O37">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -87,13 +87,13 @@
                     </textFieldCell>
                 </textField>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6DV-Fl-7vz" userLabel="Activate Shortcut" customClass="MASShortcutView">
-                    <rect key="frame" x="352" y="103" width="120" height="19"/>
+                    <rect key="frame" x="369" y="103" width="120" height="19"/>
                     <connections>
                         <outlet property="nextKeyView" destination="9E3-kb-9eg" id="h5Q-If-TDf"/>
                     </connections>
                 </customView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-kE-MVO">
-                    <rect key="frame" x="55" y="104" width="176" height="17"/>
+                    <rect key="frame" x="38" y="104" width="176" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Raise Active Player Window" id="w3k-hq-W72">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -101,10 +101,10 @@
                     </textFieldCell>
                 </textField>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3P-EW-xim" userLabel="Favorite Shortcut" customClass="MASShortcutView">
-                    <rect key="frame" x="352" y="41" width="120" height="19"/>
+                    <rect key="frame" x="369" y="41" width="120" height="19"/>
                 </customView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhP-F6-87t">
-                    <rect key="frame" x="55" y="42" width="103" height="17"/>
+                    <rect key="frame" x="38" y="42" width="103" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show Track Info" id="OUB-Jr-Utn">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

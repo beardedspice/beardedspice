@@ -26,6 +26,7 @@ extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceActiveControllers;
 extern NSString *const BeardedSpiceActiveNativeAppControllers;
 extern NSString *const BeardedSpiceITunesIntegration;
+extern NSString *const BeardedSpiceLaunchAtLogin;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController
@@ -54,5 +55,7 @@ extern NSString *const BeardedSpiceITunesIntegration;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
+
+- (IBAction)toggleLaunchAtStartup:(id)sender;
 
 @end

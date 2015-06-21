@@ -46,8 +46,8 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 
 ### Supported Mac OS X applications
 - [iTunes](http://www.apple.com/itunes/)
-- [Spotify](http://www.spotify.com/) (BeardedSpace version from 1.1)
-- [VOX](http://coppertino.com/) (BeardedSpace version from 1.1)
+- [Spotify](http://www.spotify.com/) (BeardedSpice version from 1.1)
+- [VOX](http://coppertino.com/) (BeardedSpice version from 1.1)
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)

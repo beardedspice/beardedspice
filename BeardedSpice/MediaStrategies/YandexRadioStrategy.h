@@ -11,6 +11,7 @@
 @interface YandexRadioStrategy : MediaStrategy
 {
     NSPredicate *predicate;
+    NSDictionary *_nextTrackInfo;
 }
 
 @end

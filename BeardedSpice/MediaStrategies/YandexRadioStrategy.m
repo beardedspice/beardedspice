@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*radio.yandex.ru*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*radio.yandex.*'"];
     }
     return self;
 }
@@ -27,18 +27,18 @@
 - (BOOL)isPlaying:(TabAdapter *)tab {
 
     NSNumber *value =
-            [tab executeJavascript:@"(function(){return JSON.parse($('body').attr('class').length!=0)})()"];
+            [tab executeJavascript:@"(function(){return Mu.Flow.flow.player.isPlaying();})()"];
     return [value boolValue];
 }
 
 -(NSString *) toggle
 {
-    return @"(function(){document.querySelector('.player-controls__play').click()})()";
+    return @"(function(){Mu.Flow.togglePause();})()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){document.querySelector('.skip').click()})()";
+    return @"(function(){var nextTreckInfo = Mu.Flow.flow.getNextTrack(); Mu.Flow.flow.next(\"nextpressed\"); return nextTreckInfo})()";
 }
 
 - (NSString *)pause {
@@ -58,17 +58,43 @@
     return @"YandexRadio";
 }
 
--(Track *) trackInfo:(TabAdapter *)tab
-{
+- (Track *)trackInfo:(TabAdapter *)tab {
     Track *track = [[Track alloc] init];
 
-    [track setTrack:[tab executeJavascript:@"document.querySelector('.slider__items div:nth-child(3) .track .track__info .track__title a').title"]];
-    [track setArtist:[tab executeJavascript:@"document.querySelector('.slider__items div:nth-child(3) .track .track__info .track__artists').title"]];
-    track.image = [self imageByUrlString:[tab executeJavascript:@"document.querySelector('.slider__items div:nth-child(3) .track img.track__cover').src"]];
+    // This "!(Mu.Flow.player.isPaused() || Mu.Flow.player.isPaused())"
+    // determine that flow is changed in current time.
+    NSDictionary *info =
+        [tab executeJavascript:@"(function(){ var result; if "
+             @"(!(Mu.Flow.player.isPaused() || "
+             @"Mu.Flow.player.isPlaying())) result = "
+             @"Mu.Flow.flow.getNextTrack(); else{ result = "
+             @"Mu.Flow.flow.getTrack(); result['liked'] = "
+             @"$('.like_action_like').hasClass('button_checked');} return "
+             @"result; })()"];
 
-    NSNumber *value =
-            [tab executeJavascript:@"(function(){return JSON.parse($('.like_action_like').attr('class').includes('button_checked'))})()"];
-    track.favorited = value;
+    NSString *version = info[@"version"];
+
+    track.track =
+        (version ? [NSString stringWithFormat:@"%@ %@", info[@"title"], version]
+                 : info[@"title"]);
+
+    NSArray *list = info[@"artists"];
+    if (list) {
+        track.artist =
+            [[list valueForKey:@"name"] componentsJoinedByString:@" "];
+    }
+    list = info[@"albums"];
+    if (list) {
+        track.album = list[0][@"title"];
+        NSString *urlString = list[0][@"coverUri"];
+        urlString = [NSString
+            stringWithFormat:@"http://%@",
+                             [urlString stringByReplacingOccurrencesOfString:
+                                            @"\%\%" withString:@"600x600"]];
+        track.image = [self imageByUrlString:urlString];
+    }
+    track.favorited = info[@"liked"];
+
     return track;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "MediaStrategyRegistry.h"
+#import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
 #import "BandCampStrategy.h"
@@ -39,9 +40,19 @@
 #import "DeezerStrategy.h"
 #import "FocusAtWillStrategy.h"
 #import "PocketCastsStrategy.h"
+#import "YandexRadioStrategy.h"
 #import "TidalHiFiStrategy.h"
 #import "NoAdRadioStrategy.h"
 #import "SomaFmStrategy.h"
+#import "DigitallyImportedStrategy.h"
+#import "BeatguideStrategy.h"
+#import "SaavnStrategy.h"
+#import "KollektFmStrategy.h"
+#import "WonderFmStrategy.h"
+#import "OdnoklassnikiStrategy.h"
+#import "SubsonicStrategy.h"
+#import "TuneInStrategy.h"
+#import "NoonPacificStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -70,7 +81,7 @@
 
         for (MediaStrategy *strategy in defaultStrategies) {
             NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if ([enabled intValue] == 1) {
+            if (!enabled || [enabled boolValue]) {
                 [self addMediaStrategy:strategy];
             }
         }
@@ -115,7 +126,7 @@
     self.keyCache = nil;
 }
 
--(MediaStrategy *) getMediaStrategyForTab:(id<Tab>)tab
+-(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
     MediaStrategy *strat = _registeredCache[cacheKey];
@@ -151,6 +162,7 @@
         NSLog(@"Initializing default media strategies...");
         strategies = @[
                         [YouTubeStrategy new],
+                        [LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
                         [GrooveSharkStrategy new],
@@ -169,6 +181,7 @@
                         [MixCloudStrategy new],
                         [MusicUnlimitedStrategy new],
                         [YandexMusicStrategy new],
+                        [YandexRadioStrategy new],
                         [StitcherStrategy new],
                         [XboxMusicStrategy new],
                         [VkStrategy new],
@@ -184,7 +197,16 @@
                         [PocketCastsStrategy new],
                         [TidalHiFiStrategy new],
                         [NoAdRadioStrategy new],
-                        [SomaFmStrategy new]
+                        [SomaFmStrategy new],
+                        [DigitallyImportedStrategy new],
+                        [BeatguideStrategy new],
+                        [SaavnStrategy new],
+                        [KollektFmStrategy new],
+                        [WonderFmStrategy new],
+                        [OdnoklassnikiStrategy new],
+                        [SubsonicStrategy new],
+                        [TuneInStrategy new],
+                        [NoonPacificStrategy new]
                     ];
     });
     return strategies;

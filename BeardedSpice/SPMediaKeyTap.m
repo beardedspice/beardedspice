@@ -28,6 +28,8 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
        [self startWatchingAppSwitching];
        singleton = self;
        _mediaKeyAppList = [NSMutableArray new];
+    _blackListBundleIdentifiers = [[NSUserDefaults standardUserDefaults]
+                                   arrayForKey:kMediaKeyUsingBlackListBundleIdentifiersDefaultsKey];
     _tapThreadRL=nil;
     _eventPort=nil;
     _eventPortSource=nil;
@@ -122,38 +124,42 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
 + (NSArray*)defaultMediaKeyUserBundleIdentifiers;
 {
-       return [NSArray arrayWithObjects:
-              [[NSBundle mainBundle] bundleIdentifier], // your app
-              @"com.spotify.client",
-              @"com.apple.iTunes",
-              @"com.apple.QuickTimePlayerX",
-              @"com.apple.quicktimeplayer",
-              @"com.apple.iWork.Keynote",
-              @"com.apple.iPhoto",
-              @"org.videolan.vlc",
-              @"com.apple.Aperture",
-              @"com.plexsquared.Plex",
-              @"com.soundcloud.desktop",
-              @"org.niltsh.MPlayerX",
-              @"com.ilabs.PandorasHelper",
-              @"com.mahasoftware.pandabar",
-              @"com.bitcartel.pandorajam",
-              @"org.clementine-player.clementine",
-              @"fm.last.Last.fm",
-              @"fm.last.Scrobbler",
-              @"com.beatport.BeatportPro",
-              @"com.Timenut.SongKey",
-              @"com.macromedia.fireworks", // the tap messes up their mouse input
-              @"at.justp.Theremin",
-              @"ru.ya.themblsha.YandexMusic",
-              @"com.jriver.MediaCenter18",
-              @"com.jriver.MediaCenter19",
-              @"com.jriver.MediaCenter20",
-              @"co.rackit.mate",
-              nil
-       ];
+    return [NSArray arrayWithObjects:
+           @"com.spotify.client",
+           @"com.apple.iTunes",
+           @"com.apple.QuickTimePlayerX",
+           @"com.apple.quicktimeplayer",
+           @"com.apple.iWork.Keynote",
+           @"com.apple.iPhoto",
+           @"org.videolan.vlc",
+           @"com.apple.Aperture",
+           @"com.plexsquared.Plex",
+           @"com.soundcloud.desktop",
+           @"org.niltsh.MPlayerX",
+           @"com.ilabs.PandorasHelper",
+           @"com.mahasoftware.pandabar",
+           @"com.bitcartel.pandorajam",
+           @"org.clementine-player.clementine",
+           @"fm.last.Last.fm",
+           @"fm.last.Scrobbler",
+           @"com.beatport.BeatportPro",
+           @"com.Timenut.SongKey",
+           @"com.macromedia.fireworks", // the tap messes up their mouse input
+           @"at.justp.Theremin",
+           @"ru.ya.themblsha.YandexMusic",
+           @"com.jriver.MediaCenter18",
+           @"com.jriver.MediaCenter19",
+           @"com.jriver.MediaCenter20",
+           @"co.rackit.mate",
+           @"com.ttitt.b-music",
+           @"com.beardedspice.BeardedSpice", //BeardedSpice
+           @"com.plug.Plug",
+           @"com.plug.Plug2",
+           @"com.netease.163music",
+           @"com.coppertino.Vox",
+           nil
+           ];
 }
-
 
 -(BOOL)shouldInterceptMediaKeyEvents;
 {
@@ -248,16 +254,22 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 - (void)eventTapThread;
 {
     @synchronized(self) {
-        _tapThreadRL = CFRunLoopGetCurrent();
-        CFRunLoopAddSource(_tapThreadRL, _eventPortSource,
-                           kCFRunLoopCommonModes);
+        if (_eventPortSource) {
+            _tapThreadRL = CFRunLoopGetCurrent();
+
+            if (_tapThreadRL) {
+                CFRunLoopAddSource(_tapThreadRL, _eventPortSource,
+                                   kCFRunLoopCommonModes);
+            }
+        }
     }
-        CFRunLoopRun();
+    CFRunLoopRun();
 }
 
 #pragma mark Task switching callbacks
 
 NSString *kMediaKeyUsingBundleIdentifiersDefaultsKey = @"SPApplicationsNeedingMediaKeys";
+NSString *kMediaKeyUsingBlackListBundleIdentifiersDefaultsKey = @"SPApplicationsNotNeedingMediaKeys";
 NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 
 
@@ -287,22 +299,29 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
        [self setShouldInterceptMediaKeyEvents:(err == noErr && same)];
 
 }
--(void)appIsNowFrontmost:(ProcessSerialNumber)psn;
+- (void)appIsNowFrontmost:(ProcessSerialNumber)psn;
 {
-       NSValue *psnv = [NSValue valueWithBytes:&psn objCType:@encode(ProcessSerialNumber)];
+    NSValue *psnv =
+        [NSValue valueWithBytes:&psn objCType:@encode(ProcessSerialNumber)];
 
-       NSDictionary *processInfo = (__bridge id)ProcessInformationCopyDictionary(
-              &psn,
-              kProcessDictionaryIncludeAllInformationMask
-       );
-       NSString *bundleIdentifier = [processInfo objectForKey:(id)kCFBundleIdentifierKey];
+    NSDictionary *processInfo = (__bridge id)ProcessInformationCopyDictionary(
+        &psn, kProcessDictionaryIncludeAllInformationMask);
+    NSString *bundleIdentifier =
+        [processInfo objectForKey:(id)kCFBundleIdentifierKey];
 
-       NSArray *whitelistIdentifiers = [[NSUserDefaults standardUserDefaults] arrayForKey:kMediaKeyUsingBundleIdentifiersDefaultsKey];
-       if(![whitelistIdentifiers containsObject:bundleIdentifier]) return;
+    if ([self.blackListBundleIdentifiers containsObject:bundleIdentifier]) {
+        NSLog(@"Media key event tap was activated by blacklist");
+        [self setShouldInterceptMediaKeyEvents:YES];
+        return;
+    }
+    NSArray *whitelistIdentifiers = [[NSUserDefaults standardUserDefaults]
+        arrayForKey:kMediaKeyUsingBundleIdentifiersDefaultsKey];
+    if (![whitelistIdentifiers containsObject:bundleIdentifier])
+        return;
 
-       [_mediaKeyAppList removeObject:psnv];
-       [_mediaKeyAppList insertObject:psnv atIndex:0];
-       [self mediaKeyAppListChanged];
+    [_mediaKeyAppList removeObject:psnv];
+    [_mediaKeyAppList insertObject:psnv atIndex:0];
+    [self mediaKeyAppListChanged];
 }
 -(void)appTerminated:(ProcessSerialNumber)psn;
 {

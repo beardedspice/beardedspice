@@ -25,6 +25,9 @@
 -(void)startWatchingMediaKeys;
 -(void)stopWatchingMediaKeys;
 -(void)handleAndReleaseMediaKeyEvent:(NSEvent *)event;
+
+@property NSArray *blackListBundleIdentifiers;
+
 @end
 
 @interface NSObject (SPMediaKeyTapDelegate)
@@ -36,6 +39,7 @@ extern "C" {
 #endif
 
 extern NSString *kMediaKeyUsingBundleIdentifiersDefaultsKey;
+extern NSString *kMediaKeyUsingBlackListBundleIdentifiersDefaultsKey;
 extern NSString *kIgnoreMediaKeysDefaultsKey;
 
 #ifdef __cplusplus

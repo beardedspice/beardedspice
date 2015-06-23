@@ -11,37 +11,37 @@
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
-#import "iTunesTabAdapter.h"
+#import "NativeAppTabAdapter.h"
 
 #import "MASPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "ShortcutsPreferencesViewController.h"
+#import "NSString+Utils.h"
 
 #import "runningSBApplication.h"
+
+#define APPID_SAFARI            @"com.apple.Safari"
+#define APPID_CHROME            @"com.google.Chrome"
+#define APPID_CANARY            @"com.google.Chrome.canary"
+#define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
 
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
 /// Delay displaying notification after changing favorited status of the current track.
-#define FAVORITED_DELAY         0.1
-
-BOOL accessibilityApiEnabled = NO;
+#define FAVORITED_DELAY         0.3
 
 // Don't understand why likner do not found this const in Sparkle.framework
 NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
-@implementation BeardedSpiceApp
-- (void)sendEvent:(NSEvent *)theEvent
-{
-       // If event tap is not installed, handle events that reach the app instead
-       BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
+typedef enum{
+    
+    SwithPlayerNext = 1,
+    SwithPlayerPrevious
+    
+} SwithPlayerDirectionType;
 
-       if(shouldHandleMediaKeyEventLocally && [theEvent type] == NSSystemDefined && [theEvent subtype] == SPSystemDefinedEventMediaKeys) {
-              [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:theEvent];
-       }
-       [super sendEvent:theEvent];
-}
-@end
+BOOL accessibilityApiEnabled = NO;
 
 @implementation AppDelegate
 
@@ -62,7 +62,7 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     NSMutableDictionary *registeredDefaults = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                         [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
                         nil];
-    
+
     NSDictionary *appDefaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]];
     if (appDefaults)
         [registeredDefaults addEntriesFromDictionary:appDefaults];
@@ -83,24 +83,44 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
               NSLog(@"Media key monitoring disabled");
     }
 
-
+    // Create serial queue for notification
+    // We need queue because track info may contain image,
+    // which retrieved from URL, this may cause blocking of the main thread.
+    notificationQueue = dispatch_queue_create("NotificationQueue", DISPATCH_QUEUE_SERIAL);
+    //
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
-    iTunesNeedDisplayNotification = YES;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     [self setupPlayControlsShortcutCallbacks];
     [self setupActiveTabShortcutCallback];
     [self setupFavoriteShortcutCallback];
     [self setupNotificationShortcutCallback];
     [self setupActivatePlayingTabShortcutCallback];
+    [self setupSwitchPlayersShortcutCallback];
     
     [self setupSystemEventsCallback];
 
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
     
+    // setup native apps
+    nativeAppRegistry = [[NativeAppTabRegistry alloc]
+        initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
+
+    nativeApps = [NSMutableArray array];
+    
     // check accessibility enabled
     [self checkAccessibilityTrusted];
+    
+    keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    [keyTap startWatchingMediaKeys];
+    [self refreshKeyTapBlackList];
+    
+//    [self refreshApplications];
 }
 
 - (void)awakeFromNib
@@ -114,9 +134,6 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     [statusItem setHighlightMode:YES];
     [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted"]];
 
-    [statusItem setAction:@selector(refreshTabs:)];
-    [statusItem setTarget:self];
-    
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
 }
@@ -127,7 +144,8 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    [self refreshTabs: menu];
+    [self autoSelectedTabs];
+    [self setStatusMenuItemsStatus];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
@@ -137,10 +155,6 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
 {
-    if (!activeTab) {
-        return;
-    }
-    
     NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
     // here be dragons...
     int keyCode = (([event data1] & 0xFFFF0000) >> 16);
@@ -288,30 +302,26 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 - (void)setupActiveTabShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
-        [self refreshApplications];
-        if (chromeApp.frontmost) {
-            [self setActiveTabShortcutForChrome:chromeApp];
-        } else if (canaryApp.frontmost) {
-            [self setActiveTabShortcutForChrome:canaryApp];
-        } else if (yandexBrowserApp.frontmost) {
-            [self setActiveTabShortcutForChrome:yandexBrowserApp];
-        } else if (safariApp.frontmost) {
-            [self setActiveTabShortcutForSafari:safariApp];
-        } else if (iTunesApp.frontmost){
-            
-            [self updateActiveTab:[iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp]];
-        }
-    }];
+        
+        [self setActiveTabShortcut];
+     }];
 }
 
 - (void)setupFavoriteShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
+
+        [self autoSelectedTabs];
         
-        if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             
-            [(iTunesTabAdapter *)activeTab favorite];
-            [self showNotification];
+            NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+            if ([tab respondsToSelector:@selector(favorite)]) {
+                [tab favorite];
+                if ([[tab trackInfo] favorited]) {
+                    [self showNotification];
+                }
+            }
         }
         else{
 
@@ -331,7 +341,9 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 - (void)setupNotificationShortcutCallback
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
-        [self showNotification];
+        
+        [self autoSelectedTabs];
+        [self showNotificationUsingFallback:YES];
     }];
 }
 
@@ -339,7 +351,20 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 {
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
         
+        [self autoSelectedTabs];
         [activeTab toggleTab];
+    }];
+}
+
+- (void)setupSwitchPlayersShortcutCallback
+{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerPreviousShortcut handler:^{
+
+        [self switchPlayerWithDirection:SwithPlayerPrevious];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerNextShortcut handler:^{
+        
+        [self switchPlayerWithDirection:SwithPlayerNext];
     }];
 }
 
@@ -369,37 +394,44 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 /////////////////////////////////////////////////////////////////////////
 
 - (void)playerToggle{
-    
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab toggle];
-        if (iTunesNeedDisplayNotification && ALWAYSSHOWNOTIFICATION && ![activeTab frontmost])
-            [self showNotification];
-        
-        iTunesNeedDisplayNotification = YES;
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+
+        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+        if ([tab respondsToSelector:@selector(toggle)]) {
+            [tab toggle];
+            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                ![tab frontmost])
+                [self showNotification];
+        }
+    } else {
+
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy toggle]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
+            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                 [self showNotification];
             }
-            
         }
     }
 }
 
 - (void)playerNext{
-    
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab next];
-        iTunesNeedDisplayNotification = NO;
-    }
-    else{
-        
+
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+
+        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+        if ([tab respondsToSelector:@selector(next)]) {
+            [tab next];
+            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                ![tab frontmost])
+                [self showNotification];
+        }
+    } else {
+
         MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy next]];
@@ -412,10 +444,16 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 - (void)playerPrevious{
     
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    [self autoSelectedTabs];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
         
-        [(iTunesTabAdapter *)activeTab previous];
-        iTunesNeedDisplayNotification = NO;
+        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
+        if ([tab respondsToSelector:@selector(previous)]) {
+            [tab previous];
+            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                ![tab frontmost])
+                [self showNotification];
+        }
     }
     else{
         
@@ -452,19 +490,23 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     return [string substringToIndex: [string length]];
 }
 
-- (void)refreshApplications
-{
-    chromeApp = [self getRunningSBApplicationWithIdentifier:@"com.google.Chrome"];
-    canaryApp = [self getRunningSBApplicationWithIdentifier:@"com.google.Chrome.canary"];
-    
-    yandexBrowserApp = [self getRunningSBApplicationWithIdentifier:@"ru.yandex.desktop.yandex-browser"];
-    
-    safariApp = [self getRunningSBApplicationWithIdentifier:@"com.apple.Safari"];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceITunesIntegration])
-        iTunesApp = [self getRunningSBApplicationWithIdentifier:@"com.apple.iTunes"];
-    else
-        iTunesApp = nil;
+- (void)refreshApplications {
+
+    chromeApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROME];
+    canaryApp = [self getRunningSBApplicationWithIdentifier:APPID_CANARY];
+    yandexBrowserApp =
+        [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
+
+    safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
+
+    [nativeApps removeAllObjects];
+    for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
+        runningSBApplication *app =
+            [self getRunningSBApplicationWithIdentifier:[nativeApp bundleId]];
+        if (app) {
+            [nativeApps addObject:app];
+        }
+    }
 }
 
 - (void)setActiveTabShortcutForChrome:(runningSBApplication *)app {
@@ -489,13 +531,64 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
                                                          andTab:[safariWindow currentTab]]];
 }
 
+- (void)setActiveTabShortcut{
+    
+    [self refreshApplications];
+    if (chromeApp.frontmost) {
+        [self setActiveTabShortcutForChrome:chromeApp];
+    } else if (canaryApp.frontmost) {
+        [self setActiveTabShortcutForChrome:canaryApp];
+    } else if (yandexBrowserApp.frontmost) {
+        [self setActiveTabShortcutForChrome:yandexBrowserApp];
+    } else if (safariApp.frontmost) {
+        [self setActiveTabShortcutForSafari:safariApp];
+    } else {
+
+        for (runningSBApplication *app in nativeApps) {
+            if (app.frontmost) {
+                NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
+                if (tab) {
+                    [self updateActiveTab:tab];
+                }
+                break;
+            }
+        }
+    }
+
+    [self resetMediaKeys];
+}
+
 - (void)removeAllItems
 {
     NSInteger count = statusMenu.itemArray.count;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
+    
+    // reset playingTabs
+    playingTabs = [NSMutableArray array];
+    
 }
+
+-(BOOL)setStatusMenuItemsStatus{
+    
+    @autoreleasepool {
+        NSInteger count = statusMenu.itemArray.count;
+        for (int i = 0; i < (count - statusMenuCount); i++) {
+            
+            NSMenuItem *item = [statusMenu itemAtIndex:i];
+            TabAdapter *tab = [item representedObject];
+            if ([activeTab isEqual:tab]) {
+                
+                [item setState:NSOnState];
+                return YES;
+            }
+        }
+        
+        return NO;
+    }
+}
+
 
 - (void)refreshTabsForChrome:(runningSBApplication *)app {
     ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
@@ -519,25 +612,33 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     }
 }
 
-- (void)refreshTabsForiTunes{
-    
-    iTunesApplication *iTunes = (iTunesApplication *)iTunesApp.sbApplication;
-    
-    if (iTunes) {
-        
-        id<Tab> tab = [iTunesTabAdapter iTunesTabAdapterWithApplication:iTunesApp];
-        
+- (void)refreshTabsForNativeApp:(runningSBApplication *)app
+                          class:(Class)theClass {
+
+    if (app) {
+
+        TabAdapter *tab = [theClass tabAdapterWithApplication:app];
+
         if (tab) {
-            
-            NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
-            
+
+            NSMenuItem *menuItem = [statusMenu
+                insertItemWithTitle:[self trim:tab.title toLength:40]
+                             action:@selector(updateActiveTabFromMenuItem:)
+                      keyEquivalent:@""
+                            atIndex:0];
+
             if (menuItem) {
                 [menuItem setRepresentedObject:tab];
-                [self setStatusMenuItemStatus:menuItem forTab:tab];
+
+                // check playing status
+                if ([tab respondsToSelector:@selector(isPlaying)] &&
+                    [(NativeAppTabAdapter *)tab isPlaying])
+                    [playingTabs addObject:tab];
+
+                [self repairActiveTabFrom:tab];
             }
         }
     }
-
 }
 
 - (void)refreshTabs:(id) sender
@@ -546,6 +647,9 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     [self removeAllItems];
     [self refreshApplications];
     
+    //hold activeTab object
+    __unsafe_unretained TabAdapter *_activeTab = activeTab;
+
     [mediaStrategyRegistry beginStrategyQueries];
     
     [self refreshTabsForChrome:chromeApp];
@@ -553,7 +657,9 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     [self refreshTabsForChrome:yandexBrowserApp];
     [self refreshTabsForSafari:safariApp];
     
-    [self refreshTabsForiTunes];
+    for (runningSBApplication *app in nativeApps) {
+        [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
+    }
     
     [mediaStrategyRegistry endStrategyQueries];
     
@@ -561,45 +667,48 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     if ([statusMenu numberOfItems] == statusMenuCount) {
         NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
         [item setEnabled:NO];
-    } else if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap startWatchingMediaKeys];
+//        [keyTap stopWatchingMediaKeys];
     } else {
-        NSLog(@"Media key monitoring disabled");
+//        [keyTap startWatchingMediaKeys];
+    }
+    
+    //check activeTab
+    if (_activeTab == activeTab) {
+        activeTab = nil;
     }
 }
 
 -(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
-    id<Tab> tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
+    TabAdapter *tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
 }
 
 -(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
-    id<Tab> tab = [SafariTabAdapter initWithApplication:safariApp
+    TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab)
         [self addStatusMenuItemFor:tab];
 }
 
--(void)setStatusMenuItemStatus:(NSMenuItem *)item forTab:(id <Tab>)tab
-{
-    if (activeTab && [[activeTab key] isEqualToString:[tab key]]) {
-        [item setState:NSOnState];
-    }
-}
-
--(BOOL)addStatusMenuItemFor:(id<Tab>)tab {
+-(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
     
-    if ([mediaStrategyRegistry getMediaStrategyForTab:tab]) {
+    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+    if (strategy) {
         
         NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
         if (menuItem){
 
             [menuItem setRepresentedObject:tab];
-            [self setStatusMenuItemStatus:menuItem forTab:tab];
+            
+            // check playing status
+            if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
+                [playingTabs addObject:tab];
+            
+            [self repairActiveTabFrom:tab];
         }
         return YES;
     }
@@ -607,23 +716,25 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     return NO;
 }
 
-- (void)updateActiveTab:(id<Tab>) tab
+- (void)updateActiveTab:(TabAdapter *)tab
 {
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
+    // Prevent switch to tab, which not have strategy.
+    MediaStrategy *strategy;
+    if (![tab isKindOfClass:[NativeAppTabAdapter class]]) {
         
-        [(iTunesTabAdapter *)activeTab pause];
+        strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+        if (!strategy) {
+            return;
+        }
+    }
+    
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+
+        if (![tab isEqual:activeTab] &&
+            [activeTab respondsToSelector:@selector(pause)])
+            [(NativeAppTabAdapter *)activeTab pause];
     }
     else{
-        
-        MediaStrategy *strategy;
-        // Prevent switch to tab, which not have strategy.
-        if (![tab isKindOfClass:[iTunesTabAdapter class]]) {
-            
-            strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-            if (!strategy) {
-                return;
-            }
-        }
         
         strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy && ![tab isEqual:activeTab]) {
@@ -632,7 +743,63 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     }
     
     activeTab = tab;
+    activeTabKey = [tab key];
     NSLog(@"Active tab set to %@", activeTab);
+}
+
+- (void)repairActiveTabFrom:(TabAdapter *)tab{
+    
+    if ([activeTabKey isEqualToString:[tab key]]) {
+        
+        //repair activeTab
+        activeTab = [tab copyStateFrom:activeTab];
+    }
+}
+
+- (void)autoSelectedTabs{
+    
+    [self refreshTabs:self];
+    switch (playingTabs.count) {
+        case 0:
+            
+            // not have active tab
+            if (!activeTab){
+                
+                // try to set active tab to focus
+                [self setActiveTabShortcut];
+                
+                if (!activeTab) {
+                    
+                    //try to set active tab to first item of menu
+                    TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+                    if (tab)
+                        [self updateActiveTab:tab];
+                }
+                
+            }
+            break;
+            
+        case 1:
+
+            [self updateActiveTab:playingTabs[0]];
+            break;
+            
+        default: // many
+            
+            // try to set active tab to focus
+            [self setActiveTabShortcut];
+            
+            if (!activeTab) {
+                
+                //try to set active tab to first item of menu
+                TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+                if (tab)
+                    [self updateActiveTab:tab];
+            }
+            break;
+    }
+    
+    [self resetMediaKeys];
 }
 
 - (void)checkAccessibilityTrusted{
@@ -644,21 +811,58 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     }
 }
 
-- (void)showNotification
-{
-    Track *track;
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]])
-        track = [(iTunesTabAdapter *)activeTab trackInfo];
+- (void)showNotification {
+    [self showNotificationUsingFallback:NO];
+}
 
-    else{
+- (void)showNotificationUsingFallback:(BOOL)useFallback {
+    
+    dispatch_async(notificationQueue, ^{
+        @autoreleasepool {
+            Track *track;
+            if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+                if ([activeTab respondsToSelector:@selector(trackInfo)]) {
+                    track = [(NativeAppTabAdapter *)activeTab trackInfo];
+                }
+            } else {
+                
+                MediaStrategy *strategy =
+                [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+                if (strategy)
+                    track = [strategy trackInfo:activeTab];
+            }
+            
+            if (!([NSString isNullOrEmpty:track.track] &&
+                  [NSString isNullOrEmpty:track.artist] &&
+                  [NSString isNullOrEmpty:track.album])) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter]
+                 deliverNotification:[track asNotification]];
+                NSLog(@"Show Notofication: %@", track);
+            } else if (useFallback) {
+                [self showDefaultNotification];
+            }
+        }
+    });
+}
+
+- (void)showDefaultNotification {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        notification.title = [[activeTab class] displayName];
+    } else {
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy)
-            track = [strategy trackInfo:activeTab];
+        notification.title = strategy.displayName;
     }
     
-    if (track)
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
+    notification.informativeText = @"No track info available";
+
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter]
+     deliverNotification:notification];
+    NSLog(@"Show Default Notification");
 }
 
 - (void)setupSystemEventsCallback
@@ -674,29 +878,29 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
      name:NSWorkspaceSessionDidResignActiveNotification
      object:nil];
 
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidLaunchApplicationNotification
-     object: NULL];
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidTerminateApplicationNotification
-     object: NULL];
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidActivateApplicationNotification
-     object: NULL];
-
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(resetMediaKeys)
-     name: NSWorkspaceDidWakeNotification
-     object: NULL];
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidLaunchApplicationNotification
+//     object: NULL];
+//    
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidTerminateApplicationNotification
+//     object: NULL];
+//    
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidActivateApplicationNotification
+//     object: NULL];
+//
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(resetMediaKeys)
+//     name: NSWorkspaceDidWakeNotification
+//     object: NULL];
 }
 
 - (void)removeSystemEventsCallback{
@@ -708,7 +912,7 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 {
     if (_preferencesWindowController == nil)
     {
-        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry];
+        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry nativeAppTabRegistry:nativeAppRegistry];
         NSViewController *shortcutsViewController = [ShortcutsPreferencesViewController new];
         NSArray *controllers = @[generalViewController, shortcutsViewController];
 
@@ -716,6 +920,90 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
         _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
     }
     return _preferencesWindowController;
+}
+
+- (void)refreshKeyTapBlackList{
+
+    NSMutableArray *keyTapBlackList = [NSMutableArray arrayWithCapacity:5];
+    
+//    if (chromeApp) {
+//        [keyTapBlackList addObject:chromeApp.bundleIdentifier];
+//    }
+//    if (canaryApp) {
+//        [keyTapBlackList addObject:canaryApp.bundleIdentifier];
+//    }
+//    if (yandexBrowserApp) {
+//        [keyTapBlackList addObject:yandexBrowserApp.bundleIdentifier];
+//    }
+//    if (safariApp) {
+//        [keyTapBlackList addObject:safariApp.bundleIdentifier];
+//    }
+    for (Class theClass in [nativeAppRegistry enabledNativeAppClasses]) {
+        [keyTapBlackList addObject:[theClass bundleId]];
+    }
+    
+    keyTap.blackListBundleIdentifiers = [keyTapBlackList copy];
+    NSLog(@"Refresh Key Tab Black List.");
+}
+
+- (void)resetMediaKeys
+{
+    NSLog(@"Reset Media Keys.");
+    [keyTap startWatchingMediaKeys];
+}
+
+- (BOOL)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
+
+    @autoreleasepool {
+
+        [self autoSelectedTabs];
+
+        NSUInteger size = statusMenu.itemArray.count - statusMenuCount;
+        if (size < 2) {
+            return NO;
+        }
+
+        TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
+        TabAdapter *prevTab =
+            [[statusMenu itemAtIndex:(size - 1)] representedObject];
+        TabAdapter *nextTab = [[statusMenu itemAtIndex:1] representedObject];
+        for (int i = 0; i < size; i++) {
+
+            if ([activeTab isEqual:tab]) {
+                if (direction == SwithPlayerNext) {
+                    [self updateActiveTab:nextTab];
+                } else {
+                    [self updateActiveTab:prevTab];
+                }
+
+                NSUserNotification *notification = [NSUserNotification new];
+                if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+                    notification.title = [[activeTab class] displayName];
+                } else {
+
+                    MediaStrategy *strategy = [mediaStrategyRegistry
+                        getMediaStrategyForTab:activeTab];
+                    if (!strategy) {
+                        return NO;
+                    }
+                    notification.title = strategy.displayName;
+                }
+
+                notification.informativeText = [activeTab title];
+                [[NSUserNotificationCenter defaultUserNotificationCenter]
+                 deliverNotification:notification];
+
+                return YES;
+            }
+            prevTab = tab;
+            tab = nextTab;
+            nextTab = i < (size - 2)
+                          ? [[statusMenu itemAtIndex:(i + 2)] representedObject]
+                          : [[statusMenu itemAtIndex:0] representedObject];
+        }
+
+        return NO;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -729,9 +1017,10 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 - (void)receiveSleepNote:(NSNotification *)note
 {
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab pause];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        if ([activeTab respondsToSelector:@selector(pause)]) {
+            [(NativeAppTabAdapter *)activeTab pause];
+        }
     }
     else{
         
@@ -745,9 +1034,10 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 - (void) switchUserHandler:(NSNotification*) notification
 {
-    if ([activeTab isKindOfClass:[iTunesTabAdapter class]]) {
-        
-        [(iTunesTabAdapter *)activeTab pause];
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        if ([activeTab respondsToSelector:@selector(pause)]) {
+            [(NativeAppTabAdapter *)activeTab pause];
+        }
     }
     else{
         
@@ -759,13 +1049,10 @@ NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
     }
 }
 
-- (void)resetMediaKeys
-{
-    if ([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap startWatchingMediaKeys];
-    }
+- (void) generalPrefChanged:(NSNotification*) notification{
+    
+    [self refreshKeyTapBlackList];
 }
-
 
 
 @end

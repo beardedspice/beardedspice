@@ -20,15 +20,24 @@
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     
-    if (self.favorited && [self.favorited boolValue]) {
-        
-        notification.title = self.track ? [NSString stringWithFormat:@"★ %@ ★", self.track] : nil;
-    }
-    else
-        notification.title = self.track;
-    
+    notification.title = self.track;
     notification.subtitle = self.album;
     notification.informativeText = self.artist;
+
+    if (self.favorited && [self.favorited boolValue]) {
+        
+        if (notification.title) {
+            notification.title = [NSString stringWithFormat:@"★ %@ ★", notification.title];
+        }
+        else if (notification.subtitle){
+            
+            notification.subtitle = [NSString stringWithFormat:@"★ %@ ★", notification.subtitle];
+        }
+        else if (notification.informativeText){
+            
+            notification.informativeText = [NSString stringWithFormat:@"★ %@ ★", notification.informativeText];
+        }
+    }
     
     if (self.image) {
         // workaround for 10.8 support
@@ -44,10 +53,17 @@
 
 @implementation MediaStrategy
 
--(BOOL) accepts:(id <Tab>)tab
+-(BOOL) accepts:(TabAdapter *)tab
 {
     return YES;
 }
+
+-(Track *) trackInfo:(TabAdapter *)tab
+{
+    return NULL;
+}
+
+
 -(NSString *) toggle
 {
     return @"";
@@ -68,10 +84,6 @@
 {
     return @"";
 }
--(Track *) trackInfo:(id<Tab>)tab
-{
-    return NULL;
-}
 
 -(NSString *) favorite
 {
@@ -89,6 +101,9 @@
         _lastImageUrlString = urlString;
         NSURL *url = [NSURL URLWithString:urlString];
         if (url) {
+            if (!url.scheme) {
+                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+            }
             _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
         }
         else

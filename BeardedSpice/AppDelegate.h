@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.h
 //  BeardedSpice
 //
@@ -14,17 +14,15 @@
 #import "Chrome.h"
 #import "Safari.h"
 #import "iTunes.h"
-#import "Tab.h"
+#import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
+#import "NativeAppTabRegistry.h"
 
 @class runningSBApplication;
 
 extern BOOL accessibilityApiEnabled;
 
 extern NSString *const SUUpdateDriverFinishedNotification;
-
-@interface BeardedSpiceApp : NSApplication
-@end
 
 #import "MediaStrategy.h"
 
@@ -42,18 +40,25 @@ extern NSString *const SUUpdateDriverFinishedNotification;
     runningSBApplication *yandexBrowserApp;
 
     runningSBApplication *safariApp;
-    
+
+    NSMutableArray *nativeApps;
     runningSBApplication *iTunesApp;
-    BOOL iTunesNeedDisplayNotification;
 
     SPMediaKeyTap *keyTap;
 
-    id <Tab> activeTab;
+    TabAdapter *activeTab;
+    NSString *activeTabKey;
+    
+    NSMutableArray *playingTabs;
+    
     MediaStrategyRegistry *mediaStrategyRegistry;
+    NativeAppTabRegistry *nativeAppRegistry;
 
     NSWindowController *_preferencesWindowController;
     
     NSMutableSet    *openedWindows;
+    
+    dispatch_queue_t notificationQueue;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

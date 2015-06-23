@@ -94,6 +94,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [WONDER.FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](http://music.yandex.ru)
+- [Yandex Radio](http://radio.yandex.ru)
 - [YouTube](http://youtube.com)
 
 #### Don't see your favorite site in the list ? 

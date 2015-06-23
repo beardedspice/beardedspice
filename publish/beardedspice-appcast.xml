@@ -6,16 +6,16 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 1.0.8</title>
+            <title>Version 1.1</title>
             <sparkle:releaseNotesLink>
                 http://htmlpreview.github.com/?https://raw.github.com/beardedspice/beardedspice/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
             <sparkle:releaseNotesLink xml:lang="en">
                 http://htmlpreview.github.com/?https://raw.github.com/beardedspice/beardedspice/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
-            <pubDate>Wed, 20 May 2015 09:08:00 +0000</pubDate>
+            <pubDate>Tue, 23 Jun 2015 23:09:00 +0000</pubDate>
             <sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
-            <enclosure url="https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-1.0.8.zip" sparkle:dsaSignature="MC0CFBN2cWSN9Cp2cjU4UX0ZBe5vP5K/AhUAnm24CS08Cqg0b4e9qwe0ZHCdspE=" length="2523678" type="application/octet-stream" sparkle:version="8" sparkle:shortVersionString="1.0.8"/>
+            <enclosure url="https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-1.1.zip" sparkle:dsaSignature="MCwCFB0Ge12MWDMxDmBMTqwqmbtqUyJRAhQf10luxP6BHjJqA7N6Xka1m2510w==" length="2557545" type="application/octet-stream" sparkle:version="9" sparkle:shortVersionString="1.1"/>
         </item>
     </channel>
 </rss>

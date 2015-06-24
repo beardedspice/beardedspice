@@ -59,6 +59,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [BeatsMusic](http://listen.beatsmusic.com)
 - [Bop.fm](http://bop.fm)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
+- [Composed](https://www.composed.com/)
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)

@@ -54,4 +54,22 @@
     return @"SoundCloud";
 }
 
+-(Track *) trackInfo:(TabAdapter *)tab
+{
+    NSDictionary *song = [tab executeJavascript:@"(function(){return { \
+                          'track':  document.querySelector('a.playbackSoundBadge__title.sc-truncate').title, \
+                          'album':  document.querySelector('a.playbackSoundBadge__title.sc-truncate').href.split('/')[3], \
+                          'artist': '', \
+                          'image':  document.querySelector('span.sc-artwork.sc-artwork-placeholder-0.image__full').style['background-image'].slice(4, -1)} \
+                          })()"];
+    
+    Track *track = [[Track alloc] init];
+    track.track = [song objectForKey:@"track"];
+    track.album = [song objectForKey:@"album"];
+    track.artist = [song objectForKey:@"artist"];
+    track.image = [self imageByUrlString:song[@"image"]];
+    
+    return track;
+}
+
 @end

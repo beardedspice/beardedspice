@@ -57,14 +57,13 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    NSDictionary *currentItem = [tab executeJavascript:@"MediaPlayer.currentItem"];
-    NSString *imageUrl = [tab executeJavascript:@"document.querySelector('.nowPlayingImage > img:first-of-type').src"];
+    NSDictionary *metadata = [tab executeJavascript:@"(function(){ var ret = MediaPlayer.currentItem; ret['imageUrl'] = document.querySelector('.nowPlayingImage > img:first-of-type').src; return ret;})()"];
     
     Track *track = [[Track alloc] init];
-    track.track = [currentItem objectForKey:@"Name"];
-    track.album = [currentItem objectForKey:@"Album"];
-    track.artist = [currentItem objectForKey:@"AlbumArtist"];
-    track.image = [self imageByUrlString:imageUrl];
+    track.track = [metadata objectForKey:@"Name"];
+    track.album = [metadata objectForKey:@"Album"];
+    track.artist = [metadata objectForKey:@"AlbumArtist"];
+    track.image = [self imageByUrlString:[metadata objectForKey:@"imageUrl"]];
 
     return track;
 }

@@ -91,6 +91,7 @@
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		FDC6DF801B3C4FC800F81EDE /* EmbyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC6DF7F1B3C4FC800F81EDE /* EmbyStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +269,8 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		FDC6DF7E1B3C4FC800F81EDE /* EmbyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmbyStrategy.h; sourceTree = "<group>"; };
+		FDC6DF7F1B3C4FC800F81EDE /* EmbyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmbyStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +344,8 @@
 				95124C631AD0ECB5001B1F3D /* DigitallyImportedStrategy.m */,
 				9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
 				9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
+				FDC6DF7E1B3C4FC800F81EDE /* EmbyStrategy.h */,
+				FDC6DF7F1B3C4FC800F81EDE /* EmbyStrategy.m */,
 				BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */,
 				BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */,
 				031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */,
@@ -361,6 +366,8 @@
 				963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
 				503E32DA1ACE773000210195 /* NoAdRadioStrategy.h */,
 				503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */,
+				C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */,
+				C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */,
 				504B426B1AF00C2E00654297 /* OdnoklassnikiStrategy.h */,
 				504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */,
 				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
@@ -383,8 +390,6 @@
 				9A699C49188B051000BB647E /* SongzaStrategy.m */,
 				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
 				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
-				C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */,
-				C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */,
 				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
 				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
 				83AAFD7618E0A79500640767 /* StitcherStrategy.h */,
@@ -409,10 +414,10 @@
 				8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
 				B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */,
 				B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
-				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
-				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 				BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */,
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 			files = (
 				BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
+				FDC6DF801B3C4FC800F81EDE /* EmbyStrategy.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,

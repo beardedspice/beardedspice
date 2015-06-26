@@ -66,6 +66,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [GrooveShark](http://grooveshark.com)
 - [HypeMachine](http://hypem.com)
 - [Kollekt.FM](https://kollekt.fm/)
+- [Laracasts](http://laracasts.com)
 - [Last.fm](http://last.fm)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
 - [Mixcloud](http://mixcloud.com)

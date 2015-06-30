@@ -53,6 +53,7 @@
 #import "SubsonicStrategy.h"
 #import "TuneInStrategy.h"
 #import "NoonPacificStrategy.h"
+#import "IndieShuffleStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;

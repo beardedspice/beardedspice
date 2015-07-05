@@ -1,0 +1,12 @@
+<tr>
+<td class="gray">
+<h3>${HTML_VERSION}</h3>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<ul>
+${HTML_VERSION_NOTES}
+<ul>
+</td>
+</tr>

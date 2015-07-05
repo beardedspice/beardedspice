@@ -214,6 +214,9 @@
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
 		658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalHiFiStrategy.h; sourceTree = "<group>"; };
 		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TidalHiFiStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65969A2B1B489CEF00404AE9 /* notes.db.schema */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.db.schema; sourceTree = "<group>"; };
+		65969A2C1B489D1500404AE9 /* notes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = notes.db; sourceTree = "<group>"; };
+		65969A2D1B48A37500404AE9 /* notes.version.htmlTemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.version.htmlTemplate; sourceTree = "<group>"; };
 		65AFE6421AD01FF10071E4D7 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		65AFE6441AD0220A0071E4D7 /* sign_update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sign_update.sh; sourceTree = "<group>"; };
 		65AFE6451AD147A10071E4D7 /* publish */ = {isa = PBXFileReference; lastKnownFileType = folder; path = publish; sourceTree = "<group>"; };
@@ -478,9 +481,12 @@
 		65F741FA1ACF5BAE003543FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65969A2C1B489D1500404AE9 /* notes.db */,
 				65AFE6441AD0220A0071E4D7 /* sign_update.sh */,
 				65F741FB1ACF5BAE003543FB /* appcast.xmlTemplate */,
 				65F741FC1ACF5BAE003543FB /* notes.htmlTemplate */,
+				65969A2D1B48A37500404AE9 /* notes.version.htmlTemplate */,
+				65969A2B1B489CEF00404AE9 /* notes.db.schema */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -934,6 +940,7 @@
 				BS_DISTRIBUTE_BASE_URL = "https://raw.github.com/beardedspice/beardedspice/distr/publish";
 				BS_FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				BS_RELEASE_NOTES_NAME = "beardedspice-rnotes";
+				BS_RELEASE_NOTES_VERSIONS_LIMIT = 10;
 				BS_UPDATER_PRIVATE_KEY_FILE = "$(HOME)/Library/Keychains/beardedspice-distr-private-key.pem";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -977,6 +984,7 @@
 				BS_DISTRIBUTE_BASE_URL = "https://raw.github.com/beardedspice/beardedspice/distr/publish";
 				BS_FOR_PUBLISH_PATH = "$(SRCROOT)/publish";
 				BS_RELEASE_NOTES_NAME = "beardedspice-rnotes";
+				BS_RELEASE_NOTES_VERSIONS_LIMIT = 10;
 				BS_UPDATER_PRIVATE_KEY_FILE = "$(HOME)/Library/Keychains/beardedspice-distr-private-key.pem";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

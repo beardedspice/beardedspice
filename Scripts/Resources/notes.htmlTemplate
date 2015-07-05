@@ -12,18 +12,7 @@
     <body>
         <br />
         <table class="dots" width="100%" border="0" cellspacing="0" cellpadding="0" summary="Two column table with heading">
-            <tr>
-                <td class="gray">
-                    <h3>${HTML_VERSION}</h3>
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    <ul>
-                        ${HTML_NOTES_ITEM_AS_LI}
-                    <ul>
-                </td>
-            </tr>
+${HTML_VERSIONS_NOTES}
         </table>
         <br />
     </body>

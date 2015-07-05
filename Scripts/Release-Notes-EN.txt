@@ -1,2 +1,1 @@
-Many additions and improvements.
-Check list of the closed issues and requests <a href="https://github.com/beardedspice/beardedspice/issues?q=milestone%3A1.1+is%3Aclosed">here</a>.
+Fixed SoundCloud strategy.

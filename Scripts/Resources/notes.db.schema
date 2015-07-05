@@ -1,0 +1,2 @@
+CREATE TABLE version_notes ( version TEXT(10) PRIMARY KEY NOT NULL, release_date INTEGER, notes TEXT);
+CREATE INDEX dates on version_notes ( release_date );

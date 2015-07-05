@@ -13,9 +13,9 @@
             <sparkle:releaseNotesLink xml:lang="en">
                 http://htmlpreview.github.com/?https://raw.github.com/beardedspice/beardedspice/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
-            <pubDate>Wed, 24 Jun 2015 22:19:00 +0000</pubDate>
+            <pubDate>Sun, 05 Jul 2015 00:40:00 +0000</pubDate>
             <sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
-            <enclosure url="https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-1.1.1.zip" sparkle:dsaSignature="MCwCFGVB7ybpr76zQhU9bWhL7o7SZ4aVAhRsgp5ALpv7FdAbzCSJ8IyKLrPAUw==" length="2557379" type="application/octet-stream" sparkle:version="10" sparkle:shortVersionString="1.1.1"/>
+            <enclosure url="https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-1.1.1.zip" sparkle:dsaSignature="MCwCFExJsSaoZHMOSf3ki+ope1GNnu68AhQuQ18zz3qI/3NBdSdykylsZV2hEA==" length="2557774" type="application/octet-stream" sparkle:version="10" sparkle:shortVersionString="1.1.1"/>
         </item>
     </channel>
 </rss>

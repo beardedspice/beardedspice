@@ -69,21 +69,36 @@ fi
 DISTRIB_ZIP_NAME="${PROJECT_NAME}-${version}.zip"
 
 cd "${TMP_DIR}"
-zip -r --symlinks "releases/${DISTRIB_ZIP_NAME}" "${PROJECT_NAME}.app"
+zip -q -r --symlinks "releases/${DISTRIB_ZIP_NAME}" "${PROJECT_NAME}.app"
 if [ $? != 0 ]; then
 echo "Can't create ZIP file"
 exit 2
 fi
 
+# Save current release notes to notes.db
+Notes=$( cat "${SCRIPT_PATH}/Release-Notes-EN.txt" | sed "s/^/<li>/
+s/$/<\/li>/" )
+IFS=$'\n'
+for note in $Notes; do
+HTML_NOTES_ITEM_AS_LI="${HTML_NOTES_ITEM_AS_LI} ${note}"
+done
+sqlite3 "${SCRIPT_RESOURCES}/notes.db" "insert or replace into version_notes (version, release_date, notes) values ('${version}', datetime('now'), '${HTML_NOTES_ITEM_AS_LI}')"
+
 # Release Notes
-HTML_VERSION="${version}"
 HTML_BASEURL="${BS_DISTRIBUTE_BASE_URL}"
 
 Template=$( cat ${SCRIPT_RESOURCES}/notes.htmlTemplate | sed "s/\"/\\\\\"/g" )
+VersionTemplate=$( cat ${SCRIPT_RESOURCES}/notes.version.htmlTemplate | sed "s/\"/\\\\\"/g" )
 
 # Create English release notes
-HTML_NOTES_ITEM_AS_LI=$( cat "${SCRIPT_PATH}/Release-Notes-EN.txt" | sed "s/^/<li>/
-s/$/<\/li>/" )
+Notes=$( sqlite3 "${SCRIPT_RESOURCES}/notes.db" "select version, notes from version_notes order by release_date DESC limit ${BS_RELEASE_NOTES_VERSIONS_LIMIT}" )
+IFS=$'\n'
+for note in $Notes; do
+IFS='|' read -r HTML_VERSION HTML_VERSION_NOTES <<< "${note}"
+eval "HTML_VERSIONS_NOTES=\"${HTML_VERSIONS_NOTES}
+$VersionTemplate\""
+done
+
 HTML_TITLE="BeardedSpice updated!"
 eval "echo \"$Template\"" > "${TMP_DIR}/${BS_RELEASE_NOTES_NAME}-en.html"
 

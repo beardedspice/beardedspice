@@ -75,6 +75,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
 - [Pandora](http://pandora.com)
+- [Piratradio](https://piratrad.io/)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [Rdio](http://rdio.com)
 - [Saavn](http://saavn.com)

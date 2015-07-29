@@ -64,6 +64,7 @@
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
+		7577DA481B6978C70078B19D /* CourseraStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577DA471B6978C70078B19D /* CourseraStrategy.m */; };
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
 		8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
@@ -214,6 +215,8 @@
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
 		699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OvercastStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		7577DA461B696DF80078B19D /* CourseraStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseraStrategy.h; sourceTree = "<group>"; };
+		7577DA471B6978C70078B19D /* CourseraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseraStrategy.m; sourceTree = "<group>"; };
 		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VkStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		81DA43D51950BF55000E98AC /* VkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VkStrategy.h; sourceTree = "<group>"; };
 		83AAFD7618E0A79500640767 /* StitcherStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StitcherStrategy.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				D2D98CD8197F34BD00941CBD /* BopFm.m */,
 				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
 				4DB2F13219DB987D0010D194 /* ChorusStrategy.m */,
+				7577DA471B6978C70078B19D /* CourseraStrategy.m */,
+				7577DA461B696DF80078B19D /* CourseraStrategy.h */,
 				377A179F1A5C858C005595E5 /* DeezerStrategy.h */,
 				377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
 				95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */,
@@ -361,6 +366,8 @@
 				963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
 				503E32DA1ACE773000210195 /* NoAdRadioStrategy.h */,
 				503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */,
+				C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */,
+				C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */,
 				504B426B1AF00C2E00654297 /* OdnoklassnikiStrategy.h */,
 				504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */,
 				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
@@ -383,8 +390,6 @@
 				9A699C49188B051000BB647E /* SongzaStrategy.m */,
 				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
 				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
-				C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */,
-				C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */,
 				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
 				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
 				83AAFD7618E0A79500640767 /* StitcherStrategy.h */,
@@ -409,10 +414,10 @@
 				8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
 				B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */,
 				B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
-				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
-				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 				BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */,
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
+				7577DA481B6978C70078B19D /* CourseraStrategy.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,

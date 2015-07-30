@@ -46,6 +46,7 @@
 		504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */; };
 		508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 508196B11AE8F58B007B5493 /* KollektFmStrategy.m */; };
 		50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */; };
+		50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
@@ -177,6 +178,8 @@
 		508196B11AE8F58B007B5493 /* KollektFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KollektFmStrategy.m; sourceTree = "<group>"; };
 		50931CA41AEB97B400A38B8E /* WonderFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderFmStrategy.h; sourceTree = "<group>"; };
 		50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderFmStrategy.m; sourceTree = "<group>"; };
+		50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzrStrategy.h; sourceTree = "<group>"; };
+		50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzrStrategy.m; sourceTree = "<group>"; };
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeatsMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */,
+				50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */,
 				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
 				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
@@ -738,6 +743,7 @@
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
+				50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,

@@ -268,6 +268,7 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DD7255F91B6AB14000A1FA6C /* SpotifyBetaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyBetaStrategy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +414,7 @@
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 				BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */,
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
+				DD7255F91B6AB14000A1FA6C /* SpotifyBetaStrategy.h */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";

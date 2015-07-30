@@ -16,6 +16,7 @@
 #import "HypeMachineStrategy.h"
 #import "LastFmStrategy.h"
 #import "SpotifyStrategy.h"
+#import "SpotifyBetaStrategy.h"
 #import "GoogleMusicStrategy.h"
 #import "RdioStrategy.h"
 #import "EightTracksStrategy.h"
@@ -170,6 +171,7 @@
                         [SoundCloudStrategy new],
                         [LastFmStrategy new],
                         [SpotifyStrategy new],
+                        [SpotifyBetaStrategy new],
                         [GoogleMusicStrategy new],
                         [RdioStrategy new],
                         [EightTracksStrategy new],

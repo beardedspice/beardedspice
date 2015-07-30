@@ -77,6 +77,8 @@
 		<true/>
 		<key>Spotify</key>
 		<true/>
+		<key>Spotify Beta</key>
+                <true/>
 		<key>Stitcher</key>
 		<true/>
 		<key>Synology Audio Station</key>

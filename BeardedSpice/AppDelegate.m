@@ -21,7 +21,7 @@
 #import "runningSBApplication.h"
 
 #define APPID_SAFARI            @"com.apple.Safari"
-#define APPID_CHROME            @"com.apple.ScriptEditor.id.Google-Chrome--Perso"
+#define APPID_CHROME            @"com.google.Chrome"
 #define APPID_CANARY            @"com.google.Chrome.canary"
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
 

@@ -10,6 +10,7 @@
 #import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
+#import "CourseraStrategy.h"
 #import "BandCampStrategy.h"
 #import "GrooveSharkStrategy.h"
 #import "SoundCloudStrategy.h"
@@ -166,6 +167,7 @@
                         [LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
+                        [CourseraStrategy new],
                         [GrooveSharkStrategy new],
                         [HypeMachineStrategy new],
                         [SoundCloudStrategy new],

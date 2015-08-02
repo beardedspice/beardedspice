@@ -57,6 +57,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [BandCamp](http://bandcamp.com)
 - [Beatguide](http://beatguide.me/)
 - [BeatsMusic](http://listen.beatsmusic.com)
+- [Blitzr](http://blitzr.com)
 - [Bop.fm](http://bop.fm)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
 - [Deezer](http://deezer.com)

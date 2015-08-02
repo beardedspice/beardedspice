@@ -25,6 +25,11 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab{
+    NSNumber *result = [tab executeJavascript:@"(function(){return $('div.jp-audio').hasClass('jp-state-playing');})();"];
+    return [result boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"!function(){var e=document.querySelector('.jp-type-single'),l=document.querySelector('a.jp-play'),t=document.querySelector('a.jp-pause'),c=document.querySelector('.track_play'),u='none'===getComputedStyle(e,null).display,n='none'===getComputedStyle(l,null).display;u?c.click():n?t.click():l.click()}();";

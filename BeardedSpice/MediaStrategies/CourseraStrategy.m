@@ -27,11 +27,8 @@
 - (BOOL)isPlaying:(TabAdapter *)tab {
 
     NSNumber *val = [tab
-        executeJavascript:@"(function(){var play = "
-                          @"document.querySelector('.playControl'); return "
-                          @"play.classList.contains('playing');})()"];
-
-        executeJavascript:@"(function(){var v = vjs(document.querySelectorAll('.video-js')[0].querySelector('video').id); return ! v.paused();})()";
+        executeJavascript:@"(function(){var v = vjs(document.querySelectorAll('.video-js')[0].querySelector('video').id); return ! v.paused();})()"];
+    
     return [val boolValue];
 }
 

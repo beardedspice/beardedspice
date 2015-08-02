@@ -53,8 +53,8 @@
 -(Track *) trackInfo:(TabAdapter *)tab
 {
   Track *track = [[Track alloc] init];
-  [track setTrack:[tab executeJavascript:@"document.querySelector('.current_url').text"]];
-  [track setArtist:[tab executeJavascript:@"document.querySelector('#current_track > a').text"]];
+  [track setTrack:[tab executeJavascript:@"document.querySelector('.track_active .track_name > a').text"]];
+  [track setArtist:[tab executeJavascript:@"document.querySelector('.track_active .track_artist > a').text"]];
 
   return track;
 }

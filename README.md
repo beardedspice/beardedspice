@@ -70,7 +70,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [IndieShuffle](http://www.indieshuffle.com)
 - [Kollekt.FM](https://kollekt.fm/)
 - [Last.fm](http://last.fm)
-- [LE TOURNEDISQUE] (http://www.letournedisque.com/)
+- [Le Tournedisque] (http://www.letournedisque.com/)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
 - [Mixcloud](http://mixcloud.com)
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)

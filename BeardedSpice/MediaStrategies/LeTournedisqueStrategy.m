@@ -49,12 +49,12 @@
 
 -(NSString *) pause
 {
-    return @"(function(){return document.querySelectorAll('div.play')[0].click()})();";
+    return @"(function(){return document.querySelectorAll('div.playing')[0].click()})();";
 }
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:$('.info-text .artiste .inside_call').text(), track:$.trim($('.info-text .name').text())}})()"];
+    NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:$('.info-text .artiste strong, .info-text .artiste a').text(), track:$.trim($('.info-text .name').text())}})()"];
 
     Track *track = [[Track alloc] init];
     track.track = [song objectForKey:@"track"];

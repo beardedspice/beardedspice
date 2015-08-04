@@ -94,6 +94,7 @@
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -277,6 +278,8 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
+		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +369,8 @@
 				639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */,
 				508196B01AE8F58B007B5493 /* KollektFmStrategy.h */,
 				508196B11AE8F58B007B5493 /* KollektFmStrategy.m */,
+				EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */,
+				EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */,
 				969E45701863E5830037226B /* LastFmStrategy.h */,
 				969E45711863E5830037226B /* LastFmStrategy.m */,
 				500B11041AE65A0100C4F0EC /* LogitechMediaServerStrategy.h */,
@@ -748,6 +753,7 @@
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
+				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,

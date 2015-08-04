@@ -28,7 +28,7 @@
 {
     NSNumber *value = [tab
                        executeJavascript:@"(function(){return (document.querySelectorAll('.playing')[0]) ? true : false})();"];
-    
+
     return [value boolValue];
 }
 
@@ -50,6 +50,17 @@
 -(NSString *) pause
 {
     return @"(function(){return document.querySelectorAll('div.play')[0].click()})();";
+}
+
+-(Track *) trackInfo:(TabAdapter *)tab
+{
+    NSDictionary *song = [tab executeJavascript:@"(function(){return {artist:$('.info-text .artiste .inside_call').text(), track:$.trim($('.info-text .name').text())}})()"];
+
+    Track *track = [[Track alloc] init];
+    track.track = [song objectForKey:@"track"];
+    track.artist = [song objectForKey:@"artist"];
+
+    return track;
 }
 
 -(NSString *) displayName

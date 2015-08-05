@@ -78,6 +78,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [NoonPacific.com](http://noonpacific.com)
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
+- [Pakartot](http://www.pakartot.lt)
 - [Pandora](http://pandora.com)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [Rdio](http://rdio.com)

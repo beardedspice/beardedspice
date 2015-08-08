@@ -66,6 +66,7 @@
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
 		65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
+		65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
@@ -237,6 +238,8 @@
 		65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneUnplugListener.h; sourceTree = "<group>"; };
 		65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneUnplugListener.m; sourceTree = "<group>"; };
 		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		65E567091B768E9E00AD2D46 /* ComposedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposedStrategy.h; sourceTree = "<group>"; };
+		65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposedStrategy.m; sourceTree = "<group>"; };
 		65EE289D1AB5FFE200EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65EE289F1AB6003800EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		65EE28A21AB6003B00EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				65E567091B768E9E00AD2D46 /* ComposedStrategy.h */,
+				65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */,
 				50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */,
 				50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */,
 				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
@@ -777,6 +782,7 @@
 				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,
 				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
 				503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */,
+				65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,

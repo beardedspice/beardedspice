@@ -17,6 +17,7 @@
 /////////////////////////////////////////////////////////////////////////
 
 extern NSString *const GeneralPreferencesNativeAppChangedNoticiation;
+extern NSString *const GeneralPreferencesAutoPauseChangedNoticiation;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Defaults Keys
@@ -25,7 +26,7 @@ extern NSString *const GeneralPreferencesNativeAppChangedNoticiation;
 extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceActiveControllers;
 extern NSString *const BeardedSpiceActiveNativeAppControllers;
-extern NSString *const BeardedSpiceITunesIntegration;
+extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
 extern NSString *const BeardedSpiceLaunchAtLogin;
 
 /////////////////////////////////////////////////////////////////////////
@@ -57,5 +58,6 @@ extern NSString *const BeardedSpiceLaunchAtLogin;
 /////////////////////////////////////////////////////////////////////////
 
 - (IBAction)toggleLaunchAtStartup:(id)sender;
+- (IBAction)toggleAutoPause:(id)sender;
 
 @end

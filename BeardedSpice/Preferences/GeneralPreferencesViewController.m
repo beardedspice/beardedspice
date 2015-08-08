@@ -11,11 +11,12 @@
 #import "BSLaunchAtLogin.h"
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
+NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
 
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 NSString *const BeardedSpiceActiveNativeAppControllers = @"BeardedSpiceActiveNativeAppControllers";
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
-NSString *const BeardedSpiceITunesIntegration = @"BeardedSpiceITunesIntegration";
+NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHeadphonesAutopause";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 
 @implementation GeneralPreferencesViewController
@@ -87,6 +88,16 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 
     BOOL shouldBeLaunchAtLogin = [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceLaunchAtLogin];
     [BSLaunchAtLogin launchAtStartup:shouldBeLaunchAtLogin];
+
+}
+
+- (IBAction)toggleAutoPause:(id)sender {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:GeneralPreferencesAutoPauseChangedNoticiation
+         object:self];
+    });
 
 }
 

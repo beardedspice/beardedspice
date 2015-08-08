@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <DDHidLib/DDHidLib.h>
+
 #import "SPMediaKeyTap.h"
 
 #import "Chrome.h"
@@ -16,6 +18,7 @@
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
 #import "NativeAppTabRegistry.h"
+#import "BSHeadphoneUnplugListener.h"
 
 @class runningSBApplication;
 
@@ -23,7 +26,7 @@ extern BOOL accessibilityApiEnabled;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol> {
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
     NSStatusItem *statusItem;
@@ -52,6 +55,9 @@ extern BOOL accessibilityApiEnabled;
     NSMutableSet    *openedWindows;
     
     dispatch_queue_t notificationQueue;
+    
+    NSArray *mikeys;
+    BSHeadphoneUnplugListener *_hpuListener;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

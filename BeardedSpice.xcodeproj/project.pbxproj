@@ -56,12 +56,16 @@
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		6537DAB01AF75CA4002F2391 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
+		6564BDAD1B74B81E007030D8 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; };
+		6564BDAE1B74BF9C007030D8 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; };
+		6564BDAF1B74BF9C007030D8 /* DDHidLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
-		65837A531AAE5DE2004CD62F /* mediaResources in Resources */ = {isa = PBXBuildFile; fileRef = 65837A521AAE5DE2004CD62F /* mediaResources */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
+		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
+		65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
@@ -106,6 +110,20 @@
 			remoteInfo = BeardedSpice;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6564BDB01B74BF9C007030D8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6564BDAF1B74BF9C007030D8 /* DDHidLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
@@ -200,6 +218,7 @@
 		6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
+		6564BDAC1B74B81E007030D8 /* DDHidLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDHidLib.framework; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		65837A521AAE5DE2004CD62F /* mediaResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mediaResources; sourceTree = "<group>"; };
@@ -215,6 +234,9 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabAdapter.m; sourceTree = "<group>"; };
+		65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneUnplugListener.h; sourceTree = "<group>"; };
+		65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneUnplugListener.m; sourceTree = "<group>"; };
+		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		65EE289D1AB5FFE200EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65EE289F1AB6003800EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		65EE28A21AB6003B00EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
@@ -287,9 +309,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */,
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
+				6564BDAD1B74B81E007030D8 /* DDHidLib.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
+				6564BDAE1B74BF9C007030D8 /* DDHidLib.framework in Frameworks */,
 				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +512,8 @@
 		9679332E1855173100A49AC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65E567071B76104300AD2D46 /* CoreAudio.framework */,
+				6564BDAC1B74B81E007030D8 /* DDHidLib.framework */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
 				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
@@ -528,6 +555,8 @@
 				967933441855173100A49AC7 /* MainMenu.xib */,
 				657EAEA71AAAEB9300D00456 /* runningSBApplication.h */,
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
+				65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */,
+				65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
@@ -584,6 +613,7 @@
 				967933291855173100A49AC7 /* Frameworks */,
 				9679332A1855173100A49AC7 /* Resources */,
 				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
+				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -652,7 +682,6 @@
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
 				0320C0521868C6C2009591CA /* beard.png in Resources */,
-				65837A531AAE5DE2004CD62F /* mediaResources in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
 				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
@@ -717,6 +746,7 @@
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
 				4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */,
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
+				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
 				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
@@ -905,9 +935,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -921,9 +956,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};

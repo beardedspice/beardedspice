@@ -1,4 +1,4 @@
-//
+  //
 //  AppDelegate.m
 //  BeardedSpice
 //
@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#include <IOKit/hid/IOHIDUsageTables.h>
+
 #import "MASShortcut+UserDefaults.h"
 
 #import "ChromeTabAdapter.h"
@@ -75,6 +77,7 @@ BOOL accessibilityApiEnabled = NO;
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
@@ -89,6 +92,8 @@ BOOL accessibilityApiEnabled = NO;
     
     [self setupSystemEventsCallback];
 
+    [self refreshMikeys];
+    
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
     
@@ -105,7 +110,8 @@ BOOL accessibilityApiEnabled = NO;
     [keyTap startWatchingMediaKeys];
     [self refreshKeyTapBlackList];
     
-//    [self refreshApplications];
+    // Init headphone unplug listener
+    [self setHeadphonesListener];
 }
 
 - (void)awakeFromNib
@@ -118,6 +124,9 @@ BOOL accessibilityApiEnabled = NO;
 
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
+    
+    _hpuListener =
+    [[BSHeadphoneUnplugListener alloc] initWithDelegate:self];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -172,6 +181,67 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+// Performs Pause method
+- (void)headphoneUnplugAction{
+    
+    [self pauseActiveTab];
+}
+
+- (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned)usageId upOrDown:(BOOL)upOrDown
+{
+    if (upOrDown == TRUE) {
+        NSLog(@"Apple Mikey keypress detected: %d", usageId);
+        switch (usageId) {
+            case kHIDUsage_GD_SystemMenu:
+                [self playerToggle];
+                break;
+            case kHIDUsage_GD_SystemMenuRight:
+                [self playerNext];
+                break;
+            case kHIDUsage_GD_SystemMenuLeft:
+                [self playerPrevious];
+                break;
+            case kHIDUsage_GD_SystemMenuUp:
+                [self pressKey:NX_KEYTYPE_SOUND_UP];
+                break;
+            case kHIDUsage_GD_SystemMenuDown:
+                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                break;
+            default:
+                NSLog(@"Unknown key press seen %d", usageId);
+        }
+    }
+}
+
+/*
+- (void) ddhidAppleRemoteButton: (DDHidAppleRemoteEventIdentifier) buttonIdentifier
+                    pressedDown: (BOOL) pressedDown{
+
+    if (pressedDown == TRUE) {
+        NSLog(@"Apple Remote keypress detected: %d", buttonIdentifier);
+        switch (buttonIdentifier) {
+            case kDDHidRemoteButtonPlay:
+                [self playerToggle];
+                break;
+            case kDDHidRemoteButtonRight:
+                [self playerNext];
+                break;
+            case kDDHidRemoteButtonLeft:
+                [self playerPrevious];
+                break;
+            case kDDHidRemoteButtonVolume_Plus:
+                [self pressKey:NX_KEYTYPE_SOUND_UP];
+                break;
+            case kDDHidRemoteButtonVolume_Minus:
+                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                break;
+            default:
+                NSLog(@"Unknown key press seen %d", buttonIdentifier);
+        }
+    }
+}
+
+ */
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
@@ -420,8 +490,45 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 /////////////////////////////////////////////////////////////////////////
+#pragma mark System Key Press Methods
+/////////////////////////////////////////////////////////////////////////
+
+- (void)pressKey:(NSUInteger)keytype {
+    [self keyEvent:keytype state:0xA];  // key down
+    [self keyEvent:keytype state:0xB];  // key up
+}
+
+- (void)keyEvent:(NSUInteger)keytype state:(NSUInteger)state {
+    NSEvent *event = [NSEvent otherEventWithType:NSSystemDefined
+                                        location:NSZeroPoint
+                                   modifierFlags:(state << 2)
+                                       timestamp:0
+                                    windowNumber:0
+                                         context:nil
+                                         subtype:0x8
+                                           data1:(keytype << 16) | (state << 8)
+                                           data2:-1];
+    
+    CGEventPost(0, [event CGEvent]);
+}
+
+/////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods
 /////////////////////////////////////////////////////////////////////////
+
+- (void)refreshMikeys
+{
+    if (mikeys != nil) {
+        [mikeys makeObjectsPerformSelector:@selector(stopListening) withObject:nil];
+    }
+    mikeys = [DDHidAppleMikey allMikeys];
+    // we want to be the delegate of the mikeys
+    [mikeys makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
+    // start listening to all mikey events
+    [mikeys makeObjectsPerformSelector:@selector(setListenInExclusiveMode:) withObject:(id)kCFBooleanTrue];
+    [mikeys makeObjectsPerformSelector:@selector(startListening) withObject:nil];
+}
+
 
 -(runningSBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
 {
@@ -680,19 +787,23 @@ BOOL accessibilityApiEnabled = NO;
         }
     }
     
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-
-        if (![tab isEqual:activeTab] &&
-            [activeTab respondsToSelector:@selector(pause)])
-            [(NativeAppTabAdapter *)activeTab pause];
+    if (![tab isEqual:activeTab]) {
+        [self pauseActiveTab];
     }
-    else{
-        
-        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy && ![tab isEqual:activeTab]) {
-            [activeTab executeJavascript:[strategy pause]];
-        }
-    }
+    
+//    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+//
+//        if (![tab isEqual:activeTab] &&
+//            [activeTab respondsToSelector:@selector(pause)])
+//            [(NativeAppTabAdapter *)activeTab pause];
+//    }
+//    else{
+//        
+//        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+//        if (strategy && ![tab isEqual:activeTab]) {
+//            [activeTab executeJavascript:[strategy pause]];
+//        }
+//    }
     
     activeTab = tab;
     activeTabKey = [tab key];
@@ -904,6 +1015,23 @@ BOOL accessibilityApiEnabled = NO;
     [keyTap startWatchingMediaKeys];
 }
 
+- (void)pauseActiveTab{
+    
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        
+        if ([activeTab respondsToSelector:@selector(pause)])
+            [(NativeAppTabAdapter *)activeTab pause];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy pause]];
+        }
+    }
+
+}
+
 - (BOOL)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
 
     @autoreleasepool {
@@ -958,6 +1086,13 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+// Sets listener for detecting of headphones removing. If need it.
+- (void)setHeadphonesListener {
+    
+    _hpuListener.enabled = [[NSUserDefaults standardUserDefaults]
+                            boolForKey:BeardedSpiceRemoveHeadphonesAutopause];
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////
@@ -1003,7 +1138,14 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void) generalPrefChanged:(NSNotification*) notification{
     
-    [self refreshKeyTapBlackList];
+    NSString *name = notification.name;
+    
+    if ([name isEqualToString:GeneralPreferencesAutoPauseChangedNoticiation]) {
+        
+        [self setHeadphonesListener];
+    }
+    else if ([name isEqualToString:GeneralPreferencesNativeAppChangedNoticiation])
+        [self refreshKeyTapBlackList];
 }
 
 -(void)interfaceThemeChanged:(NSNotification *)notif

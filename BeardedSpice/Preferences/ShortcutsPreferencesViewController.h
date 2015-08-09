@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
-#import "MASShortcutView+UserDefaults.h"
+#import "Shortcut.h"
 
 extern NSString *const BeardedSpicePlayPauseShortcut;
 extern NSString *const BeardedSpiceNextTrackShortcut;

@@ -57,4 +57,10 @@ NSString *const BeardedSpicePlayerPreviousShortcut = @"BeardedSpicePlayerPreviou
     return NSLocalizedString(@"Shortcuts", @"Toolbar item name for the Shortcuts preference pane");
 }
 
+- (NSView *)initialKeyView{
+    
+    return self.playPauseShortcut;
+}
+
+
 @end

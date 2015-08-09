@@ -9,13 +9,14 @@
 #import "AppDelegate.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
-#import "MASShortcut+UserDefaults.h"
+#import "Shortcut.h"
+#import "BSShortcutBinder.h"
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
 #import "NativeAppTabAdapter.h"
 
-#import "MASPreferencesWindowController.h"
+#import "BSPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "ShortcutsPreferencesViewController.h"
 #import "NSString+Utils.h"
@@ -321,91 +322,117 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Shortcuts callback setup methods
 /////////////////////////////////////////////////////////////////////////
 
-- (void)setupActiveTabShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
-        
-        [self setActiveTabShortcut];
-     }];
+- (void)setupActiveTabShortcutCallback {
+    [[BSShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceActiveTabShortcut
+                           toAction:^{
+
+                             [self setActiveTabShortcut];
+                           }];
 }
 
-- (void)setupFavoriteShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
+- (void)setupFavoriteShortcutCallback {
+    [[BSShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceFavoriteShortcut
+                           toAction:^{
 
-        [self autoSelectedTabs];
-        
-        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-            
-            NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
-            if ([tab respondsToSelector:@selector(favorite)]) {
-                [tab favorite];
-                if ([[tab trackInfo] favorited]) {
-                    [self showNotification];
-                }
-            }
-        }
-        else{
+                             [self autoSelectedTabs];
 
-            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-            if (strategy) {
-                [activeTab executeJavascript:[strategy favorite]];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                    if([[strategy trackInfo:activeTab] favorited])
-                        [self showNotification];
-                });
-            }
-        }
-    }];
+                             if ([activeTab isKindOfClass:
+                                                [NativeAppTabAdapter class]]) {
+
+                                 NativeAppTabAdapter *tab =
+                                     (NativeAppTabAdapter *)activeTab;
+                                 if ([tab respondsToSelector:@selector(
+                                                                 favorite)]) {
+                                     [tab favorite];
+                                     if ([[tab trackInfo] favorited]) {
+                                         [self showNotification];
+                                     }
+                                 }
+                             } else {
+
+                                 MediaStrategy *strategy =
+                                     [mediaStrategyRegistry
+                                         getMediaStrategyForTab:activeTab];
+                                 if (strategy) {
+                                     [activeTab
+                                         executeJavascript:[strategy favorite]];
+                                     dispatch_after(
+                                         dispatch_time(
+                                             DISPATCH_TIME_NOW,
+                                             (int64_t)(FAVORITED_DELAY *
+                                                       NSEC_PER_SEC)),
+                                         dispatch_get_main_queue(), ^{
+
+                                           if ([[strategy
+                                                   trackInfo:
+                                                       activeTab] favorited])
+                                               [self showNotification];
+                                         });
+                                 }
+                             }
+                           }];
 }
 
-- (void)setupNotificationShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
-        
-        [self autoSelectedTabs];
-        [self showNotificationUsingFallback:YES];
-    }];
+- (void)setupNotificationShortcutCallback {
+    [[BSShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceNotificationShortcut
+                           toAction:^{
+
+                             [self autoSelectedTabs];
+                             [self showNotificationUsingFallback:YES];
+                           }];
 }
 
-- (void)setupActivatePlayingTabShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
-        
-        [self autoSelectedTabs];
-        [activeTab toggleTab];
-    }];
+- (void)setupActivatePlayingTabShortcutCallback {
+    [[BSShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceActivatePlayingTabShortcut
+                           toAction:^{
+
+                             [self autoSelectedTabs];
+                             [activeTab toggleTab];
+                           }];
 }
 
-- (void)setupSwitchPlayersShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerPreviousShortcut handler:^{
+- (void)setupSwitchPlayersShortcutCallback {
+    [[BSShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpicePlayerPreviousShortcut
+                           toAction:^{
 
-        [self switchPlayerWithDirection:SwithPlayerPrevious];
-    }];
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerNextShortcut handler:^{
-        
-        [self switchPlayerWithDirection:SwithPlayerNext];
-    }];
+                             [self
+                                 switchPlayerWithDirection:SwithPlayerPrevious];
+                           }];
+    [[BSShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpicePlayerNextShortcut
+                           toAction:^{
+
+                             [self switchPlayerWithDirection:SwithPlayerNext];
+                           }];
 }
 
 - (void)setupPlayControlsShortcutCallbacks
 {
     //Play/Pause
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayPauseShortcut handler:^{
+    [[BSShortcutBinder sharedBinder]
+     bindShortcutWithDefaultsKey:BeardedSpicePlayPauseShortcut
+     toAction:^{
 
         [self playerToggle];
     }];
 
     //Next
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNextTrackShortcut handler:^{
+    [[BSShortcutBinder sharedBinder]
+     bindShortcutWithDefaultsKey:BeardedSpiceNextTrackShortcut
+     toAction:^{
 
         [self playerNext];
     }];
 
     //Previous
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePreviousTrackShortcut handler:^{
+         [[BSShortcutBinder sharedBinder]
+          bindShortcutWithDefaultsKey:BeardedSpicePreviousTrackShortcut
+          toAction:^{
 
         [self playerPrevious];
     }];
@@ -980,7 +1007,7 @@ BOOL accessibilityApiEnabled = NO;
         NSArray *controllers = @[generalViewController, shortcutsViewController];
 
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
-        _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+        _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
     }
     return _preferencesWindowController;
 }

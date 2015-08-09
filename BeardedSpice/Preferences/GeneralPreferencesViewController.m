@@ -9,6 +9,7 @@
 #import "GeneralPreferencesViewController.h"
 #import "MediaControllerObject.h"
 #import "BSLaunchAtLogin.h"
+#import "BSMediaStrategyEnableButton.h"
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
@@ -80,6 +81,11 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
     [self repairLaunchAtLogin];
 }
 
+- (NSView *)initialKeyView{
+
+    return self.firstResponderView;
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
@@ -119,6 +125,12 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 - (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row{
 
     return [mediaControllerObjects[row] isGroup];
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)row{
+
+    return ![mediaControllerObjects[row] isGroup];
+    
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row{
@@ -175,13 +187,15 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
     
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
-        result = [[NSButton alloc] init];
+        result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
         
         // this allows the cell to be reused.
         result.identifier = @"AvailbleStrategiesView";
         
         // make it a checkbox
         [result setButtonType:NSSwitchButton];
+//        result.refusesFirstResponder = YES;
+        
     }
     
     

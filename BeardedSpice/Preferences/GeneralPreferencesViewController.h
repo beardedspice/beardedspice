@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
-#import "MASShortcutView+UserDefaults.h"
+#import "Shortcut.h"
 #import "MediaStrategyRegistry.h"
 #import "NativeAppTabRegistry.h"
 
@@ -50,6 +50,7 @@ extern NSString *const BeardedSpiceLaunchAtLogin;
 }
 
 @property (assign) IBOutlet NSTableView *strategiesView;
+@property (weak) IBOutlet NSButton *firstResponderView;
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry nativeAppTabRegistry:(NativeAppTabRegistry *)nativeAppTabRegistry;
 

@@ -3,5 +3,5 @@ xcodeproj 'BeardedSpice'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'MASShortcut', '~> 1.2.3'
-pod 'MASPreferences', '~> 1.1'
+pod 'MASShortcut', '~> 2.1.2'
+pod 'MASPreferences', '~> 1.1.2'

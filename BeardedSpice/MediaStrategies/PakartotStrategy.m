@@ -66,4 +66,28 @@
     return @"Pakartot";
 }
 
+- (Track *)trackInfo:(TabAdapter *)tab {
+    NSDictionary *song =
+    [tab executeJavascript:
+     @"(function(){"
+     @"var album = $('.main-title div').map(function(key, value){ return $(value).text().trim(); });"
+     @"return {"
+     @"track: $('.jp-player-title').text().trim(),"
+     @"album: album[0],"
+     @"artist: album[1],"
+     @"favorited: $('.jp-love').hasClass('on'),"
+     @"image: $('.item-cover img').get(0).src"
+     @"}; })()"
+     ];
+    
+    Track *track = [[Track alloc] init];
+    track.track = [song objectForKey:@"track"];
+    track.album = [song objectForKey:@"album"];
+    track.artist = [song objectForKey:@"artist"];
+    track.favorited = song[@"favorited"];
+    track.image = [self imageByUrlString:song[@"image"]];
+    
+    return track;
+}
+
 @end

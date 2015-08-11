@@ -51,6 +51,11 @@
     return @"(function(){$('.jp-next').click();})()";
 }
 
+-(NSString *) favorite
+{
+    return @"(function(){$('.jp-love').click();})()";
+}
+
 -(NSString *) pause
 {
     return @"(function(){$('#playernode').jPlayer('pause');})()";

@@ -36,8 +36,8 @@
 {
     return
     @"(function(){"
-    @"var s=$('#playernode').data().jPlayer.status.paused?'play':'pause';"
-    @"$('#playernode').jPlayer(s);"
+    @"var action = $('#playernode').data().jPlayer.status.paused ? 'play' : 'pause';"
+    @"$('#playernode').jPlayer(action);"
     @"})()";
 }
 

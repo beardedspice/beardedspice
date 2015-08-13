@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*listen.tidalhifi.com*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*listen.tidal.com*'"];
     }
     return self;
 }

@@ -26,6 +26,16 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (Track *)trackInfo:(TabAdapter *)tab
+{
+    Track *track = [[Track alloc] init];
+    
+    track.artist = [tab executeJavascript:@"$('#player .playing-info').find('a')[0].innerHTML"];
+    track.track = [tab executeJavascript:@"$('#player .playable-title')[0].innerHTML"];
+    
+    return track;
+}
+
 - (NSString *)toggle
 {
     return @"(function(){$('.main-ctrls .btn-ctrl-pause').click()})()";

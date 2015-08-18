@@ -54,6 +54,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [22Tracks](http://22tracks.com)
 - [Amazon Music](https://amazon.com/gp/dmusic/cloudplayer/player)
 - [AudioMack](http://www.audiomack.com/)
+- [BABOOM](https://baboom.com/)
 - [BandCamp](http://bandcamp.com)
 - [Beatguide](http://beatguide.me/)
 - [BeatsMusic](http://listen.beatsmusic.com)

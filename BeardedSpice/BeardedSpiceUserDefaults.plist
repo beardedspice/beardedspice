@@ -28,6 +28,8 @@
 		<true/>
 		<key>Deezer</key>
 		<true/>
+    <key>disco.io</key>
+    <true/>
 		<key>Digitally Imported</key>
 		<true/>
 		<key>GoogleMusic</key>

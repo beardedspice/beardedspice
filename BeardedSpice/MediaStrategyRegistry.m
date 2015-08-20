@@ -58,6 +58,7 @@
 #import "IndieShuffleStrategy.h"
 #import "LeTournedisqueStrategy.h"
 #import "ComposedStrategy.h"
+#import "PlexWebStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -216,6 +217,7 @@
                         [BlitzrStrategy new],
                         [IndieShuffleStrategy new],
                         [LeTournedisqueStrategy new],
+                        [PlexWebStrategy new],
                         [ComposedStrategy new]
                     ];
     });

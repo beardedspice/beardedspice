@@ -26,16 +26,6 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
-//- (Track *)trackInfo:(TabAdapter *)tab
-//{
-//    Track *track = [[Track alloc] init];
-//    
-//    track.artist = [tab executeJavascript:@"$('#current-track-artist').text()"];
-//    track.track = [tab executeJavascript:@"$('#current-track-title').text()"];
-//    
-//    return track;
-//}
-
 - (NSString *)toggle
 {
     return @"(function(){var playing = document.querySelector('#player-controls .controls-play').classList.contains('ng-hide'); document.querySelector('#player-controls .controls-' + (playing ? 'pause' : 'play')).click()})()";

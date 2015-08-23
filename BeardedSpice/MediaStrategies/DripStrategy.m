@@ -26,6 +26,19 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (Track *)trackInfo:(TabAdapter *)tab
+{
+    Track *track = [[Track alloc] init];
+    
+    NSString *info = [tab executeJavascript:@"document.querySelector('.player-trackname a').text"];
+    NSArray *components = [info componentsSeparatedByString:@"—"];
+    
+    track.artist = [[components firstObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    track.track = [[components lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    return track;
+}
+
 - (NSString *)toggle
 {
     return @"(function(){var playing = document.querySelector('#player-controls .controls-play').classList.contains('ng-hide'); document.querySelector('#player-controls .controls-' + (playing ? 'pause' : 'play')).click()})()";

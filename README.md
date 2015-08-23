@@ -64,6 +64,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Composed](https://www.composed.com/)
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
+- [Drip](http://drip.com)
 - [focus@will](https://www.focusatwill.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)

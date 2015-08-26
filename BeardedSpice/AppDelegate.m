@@ -10,7 +10,6 @@
 #include <IOKit/hid/IOHIDUsageTables.h>
 
 #import "Shortcut.h"
-#import "BSShortcutBinder.h"
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
@@ -29,10 +28,13 @@
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
 
 /// Because user defaults have good caching mechanism, we can use this macro.
-#define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
+#define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
 /// Delay displaying notification after changing favorited status of the current track.
 #define FAVORITED_DELAY         0.3
+
+/// Delay displaying notification after pressing next/previous track.
+#define CHANGE_TRACK_DELAY      0.5
 
 typedef enum{
     
@@ -323,7 +325,7 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)setupActiveTabShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceActiveTabShortcut
                            toAction:^{
 
@@ -332,7 +334,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupFavoriteShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceFavoriteShortcut
                            toAction:^{
 
@@ -376,7 +378,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupNotificationShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceNotificationShortcut
                            toAction:^{
 
@@ -386,7 +388,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupActivatePlayingTabShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceActivatePlayingTabShortcut
                            toAction:^{
 
@@ -396,14 +398,14 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupSwitchPlayersShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpicePlayerPreviousShortcut
                            toAction:^{
 
                              [self
                                  switchPlayerWithDirection:SwithPlayerPrevious];
                            }];
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpicePlayerNextShortcut
                            toAction:^{
 
@@ -414,7 +416,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupPlayControlsShortcutCallbacks
 {
     //Play/Pause
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
      bindShortcutWithDefaultsKey:BeardedSpicePlayPauseShortcut
      toAction:^{
 
@@ -422,7 +424,7 @@ BOOL accessibilityApiEnabled = NO;
     }];
 
     //Next
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
      bindShortcutWithDefaultsKey:BeardedSpiceNextTrackShortcut
      toAction:^{
 
@@ -430,7 +432,7 @@ BOOL accessibilityApiEnabled = NO;
     }];
 
     //Previous
-         [[BSShortcutBinder sharedBinder]
+         [[MASShortcutBinder sharedBinder]
           bindShortcutWithDefaultsKey:BeardedSpicePreviousTrackShortcut
           toAction:^{
 
@@ -467,7 +469,7 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (void)playerNext{
+- (void)playerNext {
 
     [self autoSelectedTabs];
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
@@ -475,43 +477,68 @@ BOOL accessibilityApiEnabled = NO;
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
         if ([tab respondsToSelector:@selector(next)]) {
             [tab next];
-            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
-                ![tab frontmost])
-                [self showNotification];
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                      ![tab frontmost])
+                      [self showNotification];
+                });
         }
     } else {
 
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy next]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
-            }
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
+                      [self showNotification];
+                  }
+                });
         }
     }
 }
 
-- (void)playerPrevious{
-    
+- (void)playerPrevious {
+
     [self autoSelectedTabs];
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        
+
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
         if ([tab respondsToSelector:@selector(previous)]) {
             [tab previous];
-            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
-                ![tab frontmost])
-                [self showNotification];
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                      ![tab frontmost])
+                      [self showNotification];
+                });
         }
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    } else {
+
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy previous]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
-            }
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
+                      [self showNotification];
+                  }
+                });
         }
     }
 }

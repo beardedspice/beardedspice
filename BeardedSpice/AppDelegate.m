@@ -10,7 +10,6 @@
 #include <IOKit/hid/IOHIDUsageTables.h>
 
 #import "Shortcut.h"
-#import "BSShortcutBinder.h"
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
@@ -326,7 +325,7 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)setupActiveTabShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceActiveTabShortcut
                            toAction:^{
 
@@ -335,7 +334,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupFavoriteShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceFavoriteShortcut
                            toAction:^{
 
@@ -379,7 +378,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupNotificationShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceNotificationShortcut
                            toAction:^{
 
@@ -389,7 +388,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupActivatePlayingTabShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpiceActivatePlayingTabShortcut
                            toAction:^{
 
@@ -399,14 +398,14 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setupSwitchPlayersShortcutCallback {
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpicePlayerPreviousShortcut
                            toAction:^{
 
                              [self
                                  switchPlayerWithDirection:SwithPlayerPrevious];
                            }];
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
         bindShortcutWithDefaultsKey:BeardedSpicePlayerNextShortcut
                            toAction:^{
 
@@ -417,7 +416,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupPlayControlsShortcutCallbacks
 {
     //Play/Pause
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
      bindShortcutWithDefaultsKey:BeardedSpicePlayPauseShortcut
      toAction:^{
 
@@ -425,7 +424,7 @@ BOOL accessibilityApiEnabled = NO;
     }];
 
     //Next
-    [[BSShortcutBinder sharedBinder]
+    [[MASShortcutBinder sharedBinder]
      bindShortcutWithDefaultsKey:BeardedSpiceNextTrackShortcut
      toAction:^{
 
@@ -433,7 +432,7 @@ BOOL accessibilityApiEnabled = NO;
     }];
 
     //Previous
-         [[BSShortcutBinder sharedBinder]
+         [[MASShortcutBinder sharedBinder]
           bindShortcutWithDefaultsKey:BeardedSpicePreviousTrackShortcut
           toAction:^{
 

@@ -147,15 +147,14 @@
         [self activateTab];
 }
 
-- (BOOL)frontmost{
+- (BOOL)frontmost {
 
-    if (self.application.frontmost) {
-        if ([[self.window activeTab] id] == self.tab.id) {
-            
-            return YES;
-        }
+    if (self.application.frontmost && self.window.index == MULTI &&
+        [self.tab id] == [self.window.activeTab id]) {
+
+        return YES;
     }
-    
+
     return NO;
 }
 

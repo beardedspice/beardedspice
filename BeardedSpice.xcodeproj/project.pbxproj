@@ -79,6 +79,7 @@
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
 		8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
 		8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38FAD51994CE57005C2465 /* VimeoStrategy.m */; };
+		8E6F628D1B928F8F0097020D /* RBMAStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F628C1B928F8F0097020D /* RBMAStrategy.m */; };
 		95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95124C631AD0ECB5001B1F3D /* DigitallyImportedStrategy.m */; };
 		963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89B718BB010600FE0DBB /* MixCloudStrategy.m */; };
 		963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */; };
@@ -266,6 +267,8 @@
 		8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxMusicStrategy.h; sourceTree = "<group>"; };
 		8E38FAD41994CE57005C2465 /* VimeoStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VimeoStrategy.h; sourceTree = "<group>"; };
 		8E38FAD51994CE57005C2465 /* VimeoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VimeoStrategy.m; sourceTree = "<group>"; };
+		8E6F628B1B928F5B0097020D /* RBMAStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBMAStrategy.h; sourceTree = "<group>"; };
+		8E6F628C1B928F8F0097020D /* RBMAStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBMAStrategy.m; sourceTree = "<group>"; };
 		95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitallyImportedStrategy.h; sourceTree = "<group>"; };
 		95124C631AD0ECB5001B1F3D /* DigitallyImportedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigitallyImportedStrategy.m; sourceTree = "<group>"; };
 		963E89B618BB010600FE0DBB /* MixCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCloudStrategy.h; sourceTree = "<group>"; };
@@ -436,6 +439,8 @@
 				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
+				8E6F628B1B928F5B0097020D /* RBMAStrategy.h */,
+				8E6F628C1B928F8F0097020D /* RBMAStrategy.m */,
 				031D8147187F982A00A93E00 /* RdioStrategy.h */,
 				031D8148187F982A00A93E00 /* RdioStrategy.m */,
 				50445D171AE7C9CB00A57315 /* SaavnStrategy.h */,
@@ -760,6 +765,7 @@
 			files = (
 				BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
+				8E6F628D1B928F8F0097020D /* RBMAStrategy.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,

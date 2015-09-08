@@ -49,4 +49,22 @@
     return @"Pandora";
 }
 
+-(Track *) trackInfo:(TabAdapter *)tab
+{
+    NSDictionary *info = [tab executeJavascript:@"( function(){ return { \
+                          'track': document.querySelector('.playerBarSong').innerText, \
+                          'artist': document.querySelector('.playerBarArtist').innerText, \
+                          'album': document.querySelector('.playerBarAlbum').innerText, \
+                          'image': document.querySelector('.playerBarArt').src }; \
+                           })()"];
+
+    Track *track = [[Track alloc] init];
+    track.track = info[@"track"];
+    track.artist = info[@"artist"];
+    track.album = info[@"album"];
+    track.image = [self imageByUrlString:info[@"image"]];
+
+    return track;
+}
+
 @end

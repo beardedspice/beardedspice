@@ -954,7 +954,7 @@ BOOL accessibilityApiEnabled = NO;
                   [NSString isNullOrEmpty:track.album])) {
                 [[NSUserNotificationCenter defaultUserNotificationCenter]
                  deliverNotification:[track asNotification]];
-                NSLog(@"Show Notofication: %@", track);
+                NSLog(@"Show Notification: %@", track);
             } else if (useFallback) {
                 [self showDefaultNotification];
             }

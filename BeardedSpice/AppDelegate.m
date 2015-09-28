@@ -36,7 +36,7 @@
 #define FAVORITED_DELAY         0.3
 
 /// Delay displaying notification after pressing next/previous track.
-#define CHANGE_TRACK_DELAY      0.5
+#define CHANGE_TRACK_DELAY      2.0
 
 typedef enum{
     

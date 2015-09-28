@@ -24,6 +24,13 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab {
+    NSNumber *value =
+    [tab executeJavascript:@"(function(){ var t=document.querySelector('.pauseButton'); return (t.style.display==='block');})()"];
+    
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){var e=document.querySelector('.playButton');var t=document.querySelector('.pauseButton');if(t.style.display==='block'){t.click()}else{e.click()}})()";

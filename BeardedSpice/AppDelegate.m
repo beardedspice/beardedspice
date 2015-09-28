@@ -238,6 +238,7 @@ BOOL accessibilityApiEnabled = NO;
                 NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Minus");
                 break;
             case kDDHidRemoteButtonMenu:
+                [self switchPlayerWithDirection:SwithPlayerNext];
                 NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu");
                 break;
             case kDDHidRemoteButtonPlay:

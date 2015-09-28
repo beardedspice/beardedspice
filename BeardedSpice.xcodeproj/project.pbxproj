@@ -96,6 +96,7 @@
 		9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
+		BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB81E6301B8B3AA000F764EB /* NRKStrategy.m */; };
 		BE0EC59E41539EF7C9368E11 /* YandexRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */; };
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
 		C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */; };
@@ -301,6 +302,8 @@
 		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EightTracksStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YandexMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		BB81E6301B8B3AA000F764EB /* NRKStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRKStrategy.m; sourceTree = "<group>"; };
+		BB81E6311B8B3AA000F764EB /* NRKStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRKStrategy.h; sourceTree = "<group>"; };
 		BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexRadioStrategy.m; sourceTree = "<group>"; };
 		BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexRadioStrategy.h; sourceTree = "<group>"; };
 		BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FocusAtWillStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -379,6 +382,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				BB81E6301B8B3AA000F764EB /* NRKStrategy.m */,
+				BB81E6311B8B3AA000F764EB /* NRKStrategy.h */,
 				65E567091B768E9E00AD2D46 /* ComposedStrategy.h */,
 				65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */,
 				50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */,
@@ -774,6 +779,7 @@
 				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
+				BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,

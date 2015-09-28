@@ -62,6 +62,7 @@
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
+		65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
@@ -232,6 +233,8 @@
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
 		658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalHiFiStrategy.h; sourceTree = "<group>"; };
 		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TidalHiFiStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHidAppleRemote.h; sourceTree = "<group>"; };
+		65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHidAppleRemote.m; sourceTree = "<group>"; };
 		65B32B8C1AD99D1600F696B9 /* TabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAdapter.h; sourceTree = "<group>"; };
 		65B32B8D1AD99D1600F696B9 /* TabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabAdapter.m; sourceTree = "<group>"; };
 		65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTabAdapter.m; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
 				65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */,
 				65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */,
+				65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */,
+				65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
@@ -790,6 +795,7 @@
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
+				65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */,
 				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,

@@ -142,15 +142,13 @@
         [self activateTab];
 }
 
-- (BOOL)frontmost{
-    
-    if (self.application.frontmost) {
-        if ([[self.window.currentTab get] isEqual:self.tab]) {
-            
-            return YES;
-        }
+- (BOOL)frontmost {
+    if (self.application.frontmost && self.window.index == MULTI &&
+        self.tab.index == self.window.currentTab.index) {
+
+        return YES;
     }
-    
+
     return NO;
 }
 

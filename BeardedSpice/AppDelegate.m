@@ -22,6 +22,8 @@
 
 #import "runningSBApplication.h"
 
+#import "BSHidAppleRemote.h"
+
 #define APPID_SAFARI            @"com.apple.Safari"
 #define APPID_CHROME            @"com.google.Chrome"
 #define APPID_CANARY            @"com.google.Chrome.canary"
@@ -34,7 +36,7 @@
 #define FAVORITED_DELAY         0.3
 
 /// Delay displaying notification after pressing next/previous track.
-#define CHANGE_TRACK_DELAY      0.5
+#define CHANGE_TRACK_DELAY      2.0
 
 typedef enum{
     
@@ -81,6 +83,7 @@ BOOL accessibilityApiEnabled = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
@@ -93,6 +96,7 @@ BOOL accessibilityApiEnabled = NO;
     [self setupActivatePlayingTabShortcutCallback];
     [self setupSwitchPlayersShortcutCallback];
     
+    // Application notivications
     [self setupSystemEventsCallback];
 
     [self refreshMikeys];
@@ -115,6 +119,9 @@ BOOL accessibilityApiEnabled = NO;
     
     // Init headphone unplug listener
     [self setHeadphonesListener];
+    
+    //Init Apple remote listener
+    [self setupAppleRemotes];
 }
 
 - (void)awakeFromNib
@@ -216,35 +223,58 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-/*
 - (void) ddhidAppleRemoteButton: (DDHidAppleRemoteEventIdentifier) buttonIdentifier
                     pressedDown: (BOOL) pressedDown{
-
-    if (pressedDown == TRUE) {
-        NSLog(@"Apple Remote keypress detected: %d", buttonIdentifier);
+    
+    if (pressedDown) {
+        
         switch (buttonIdentifier) {
-            case kDDHidRemoteButtonPlay:
-                [self playerToggle];
-                break;
-            case kDDHidRemoteButtonRight:
-                [self playerNext];
-                break;
-            case kDDHidRemoteButtonLeft:
-                [self playerPrevious];
-                break;
             case kDDHidRemoteButtonVolume_Plus:
                 [self pressKey:NX_KEYTYPE_SOUND_UP];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Plus");
                 break;
             case kDDHidRemoteButtonVolume_Minus:
                 [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Minus");
+                break;
+            case kDDHidRemoteButtonMenu:
+                [self switchPlayerWithDirection:SwithPlayerNext];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu");
+                break;
+            case kDDHidRemoteButtonPlay:
+            case kDDHidRemoteButtonPlayPause:
+                [self playerToggle];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay");
+                break;
+            case kDDHidRemoteButtonRight:
+                [self playerNext];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonRight");
+                break;
+            case kDDHidRemoteButtonLeft:
+                [self playerPrevious];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft");
+                break;
+            case kDDHidRemoteButtonRight_Hold:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonRight_Hold");
+                break;
+            case kDDHidRemoteButtonMenu_Hold:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu_Hold");
+                break;
+            case kDDHidRemoteButtonLeft_Hold:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft_Hold");
+                break;
+            case kDDHidRemoteButtonPlay_Sleep:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay_Sleep");
+                break;
+            case kDDHidRemoteControl_Switched:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteControl_Switched");
                 break;
             default:
-                NSLog(@"Unknown key press seen %d", buttonIdentifier);
+                NSLog(@"Apple Remote keypress detected: Unknown key press seen %d", buttonIdentifier);
         }
     }
 }
 
- */
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
@@ -572,6 +602,8 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)refreshMikeys
 {
+    NSLog(@"Reset Mikeys");
+    
     if (mikeys != nil) {
         [mikeys makeObjectsPerformSelector:@selector(stopListening) withObject:nil];
     }
@@ -954,7 +986,7 @@ BOOL accessibilityApiEnabled = NO;
                   [NSString isNullOrEmpty:track.album])) {
                 [[NSUserNotificationCenter defaultUserNotificationCenter]
                  deliverNotification:[track asNotification]];
-                NSLog(@"Show Notofication: %@", track);
+                NSLog(@"Show Notification: %@", track);
             } else if (useFallback) {
                 [self showDefaultNotification];
             }
@@ -1015,14 +1047,36 @@ BOOL accessibilityApiEnabled = NO;
 //
 //    [[[NSWorkspace sharedWorkspace] notificationCenter]
 //     addObserver: self
-//     selector: @selector(resetMediaKeys)
+//     selector: @selector(refreshAllControllers:)
 //     name: NSWorkspaceDidWakeNotification
 //     object: NULL];
+
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: NSWorkspaceScreensDidWakeNotification
+     object: NULL];
+
+    NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+    [center
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: @"com.apple.screenIsUnlocked"
+     object: NULL];
+
+    [center
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: @"com.apple.screensaver.didstop"
+     object: NULL];
+    
+    
 }
 
 - (void)removeSystemEventsCallback{
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSWindowController *)preferencesWindowController
@@ -1147,6 +1201,53 @@ BOOL accessibilityApiEnabled = NO;
                             boolForKey:BeardedSpiceRemoveHeadphonesAutopause];
 }
 
+- (void)setupAppleRemotes {
+
+    @synchronized(BeardedSpiceUsingAppleRemote) {
+        
+        NSLog(@"Reset Apple Remote");
+        
+        if ([[NSUserDefaults standardUserDefaults]
+                boolForKey:BeardedSpiceUsingAppleRemote]) {
+
+            [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+
+            _appleRemotes = [BSHidAppleRemote allRemotes];
+            for (BSHidAppleRemote *item in _appleRemotes) {
+
+                [item addMappingValue:kDDHidRemoteButtonVolume_Plus
+                               forKey:@"33_31_30_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonVolume_Minus
+                               forKey:@"33_32_30_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonRight
+                               forKey:@"33_24_21_20_2_33_24_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonLeft
+                               forKey:@"33_25_21_20_2_33_25_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonPlay
+                               forKey:@"33_21_20_3_2_33_21_20_3_2_"]; // center
+                                                                      // button
+                [item addMappingValue:kDDHidRemoteButtonMenu
+                               forKey:@"33_22_21_20_2_33_22_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonPlayPause
+                               forKey:@"33_21_20_8_2_33_21_20_8_2_"];
+            }
+            // we want to be the delegate of the mikeys
+            [_appleRemotes makeObjectsPerformSelector:@selector(setDelegate:)
+                                           withObject:self];
+            // start listening to all mikey events
+            [_appleRemotes
+                makeObjectsPerformSelector:@selector(setListenInExclusiveMode:)
+                                withObject:(id)kCFBooleanTrue];
+
+            [_appleRemotes
+                makeObjectsPerformSelector:@selector(startListening)];
+        } else {
+
+            [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////
@@ -1156,38 +1257,27 @@ BOOL accessibilityApiEnabled = NO;
     [self removeWindow:window];
 }
 
+/**
+ Method reloads: media keys, apple remote, headphones remote.
+ */
+- (void)refreshAllControllers:(NSNotification *)note
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self resetMediaKeys];
+        [self refreshMikeys];
+        [self setupAppleRemotes];
+    });
+}
+
 - (void)receiveSleepNote:(NSNotification *)note
 {
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        if ([activeTab respondsToSelector:@selector(pause)]) {
-            [(NativeAppTabAdapter *)activeTab pause];
-        }
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            NSLog(@"Received sleep note, pausing");
-            [activeTab executeJavascript:[strategy pause]];
-        }
-    }
+    [self pauseActiveTab];
 }
 
 - (void) switchUserHandler:(NSNotification*) notification
 {
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        if ([activeTab respondsToSelector:@selector(pause)]) {
-            [(NativeAppTabAdapter *)activeTab pause];
-        }
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            NSLog(@"Received sleep note, pausing");
-            [activeTab executeJavascript:[strategy pause]];
-        }
-    }
+    [self pauseActiveTab];
 }
 
 - (void) generalPrefChanged:(NSNotification*) notification{
@@ -1197,6 +1287,10 @@ BOOL accessibilityApiEnabled = NO;
     if ([name isEqualToString:GeneralPreferencesAutoPauseChangedNoticiation]) {
         
         [self setHeadphonesListener];
+    }
+    else if ([name isEqualToString:GeneralPreferencesUsingAppleRemoteChangedNoticiation]) {
+        
+        [self setupAppleRemotes];
     }
     else if ([name isEqualToString:GeneralPreferencesNativeAppChangedNoticiation])
         [self refreshKeyTapBlackList];

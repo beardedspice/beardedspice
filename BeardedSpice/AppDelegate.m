@@ -601,6 +601,8 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)refreshMikeys
 {
+    NSLog(@"Reset Mikeys");
+    
     if (mikeys != nil) {
         [mikeys makeObjectsPerformSelector:@selector(stopListening) withObject:nil];
     }
@@ -1042,22 +1044,38 @@ BOOL accessibilityApiEnabled = NO;
 //     name: NSWorkspaceDidActivateApplicationNotification
 //     object: NULL];
 //
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver: self
-     selector: @selector(refreshAllControllers:)
-     name: NSWorkspaceDidWakeNotification
-     object: NULL];
+//    [[[NSWorkspace sharedWorkspace] notificationCenter]
+//     addObserver: self
+//     selector: @selector(refreshAllControllers:)
+//     name: NSWorkspaceDidWakeNotification
+//     object: NULL];
 
     [[[NSWorkspace sharedWorkspace] notificationCenter]
      addObserver: self
      selector: @selector(refreshAllControllers:)
      name: NSWorkspaceScreensDidWakeNotification
      object: NULL];
+
+    NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+    [center
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: @"com.apple.screenIsUnlocked"
+     object: NULL];
+
+    [center
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: @"com.apple.screensaver.didstop"
+     object: NULL];
+    
+    
 }
 
 - (void)removeSystemEventsCallback{
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSWindowController *)preferencesWindowController
@@ -1185,6 +1203,9 @@ BOOL accessibilityApiEnabled = NO;
 - (void)setupAppleRemotes {
 
     @synchronized(BeardedSpiceUsingAppleRemote) {
+        
+        NSLog(@"Reset Apple Remote");
+        
         if ([[NSUserDefaults standardUserDefaults]
                 boolForKey:BeardedSpiceUsingAppleRemote]) {
 

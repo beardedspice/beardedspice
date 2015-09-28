@@ -104,6 +104,7 @@
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
+		F3F1C3151B84F1E7009B91D2 /* DiscoStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F1C3141B84F1E7009B91D2 /* DiscoStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -317,6 +318,8 @@
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
+		F3F1C3131B84F1E7009B91D2 /* DiscoStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoStrategy.h; sourceTree = "<group>"; };
+		F3F1C3141B84F1E7009B91D2 /* DiscoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +406,8 @@
 				377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
 				95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */,
 				95124C631AD0ECB5001B1F3D /* DigitallyImportedStrategy.m */,
+				F3F1C3131B84F1E7009B91D2 /* DiscoStrategy.h */,
+				F3F1C3141B84F1E7009B91D2 /* DiscoStrategy.m */,
 				9AF442D31886F71400CD7266 /* EightTracksStrategy.h */,
 				9AF442D41886F71400CD7266 /* EightTracksStrategy.m */,
 				BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */,
@@ -822,6 +827,7 @@
 				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */,
+				F3F1C3151B84F1E7009B91D2 /* DiscoStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,

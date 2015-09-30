@@ -10,39 +10,32 @@
 
 @implementation PlexWebStrategy
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        predicate =
-        [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*:32400/web*' OR SELF LIKE[c] '*app.plex.tv/web/app*'"];
-    }
-    return self;
-}
-
 
 - (BOOL)accepts:(TabAdapter *)tab {
-    return [predicate evaluateWithObject:[tab URL]];
+    
+    NSNumber *result = [tab executeJavascript:@"(function(){return (window.PLEXWEB != undefined);})()"];
+    return [result boolValue];
 }
 
 - (BOOL)isPlaying:(TabAdapter *)tab {
-    NSNumber *value = [tab executeJavascript:@"document.querySelector('.player .pause-btn').classList.contains('hidden')"];
+    NSNumber *value = [tab executeJavascript:@"(function(){var theButton = document.querySelector('.player.music .pause-btn'); if (theButton) return !(theButton.classList.contains('hidden')); else return (document.querySelector('.video-player.playing') != undefined);})()"];
     return [value boolValue];
 }
 
 - (NSString *)toggle {
-    return @"document.querySelector('.player .'+(document.querySelector('.player .pause-btn').classList.contains('hidden') ? 'play' : 'pause')+'-btn').click()";
+    return @"(function (){ var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player'; document.querySelector(thePlayer+(document.querySelector(thePlayer+' .pause-btn').classList.contains('hidden') ? ' .play' : ' .pause')+'-btn').click();})()";
 }
 
 - (NSString *)previous {
-    return @"document.querySelector('.player .previous-btn').click()";
+    return @"(function (){ var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player'; document.querySelector(thePlayer+' .previous-btn').click()})()";
 }
 
 - (NSString *)next {
-    return @"document.querySelector('.player .next-btn').click()";
+    return @"(function (){ var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player'; document.querySelector(thePlayer+' .next-btn').click()})()";
 }
 
 - (NSString *)pause {
-    return @"document.querySelector('.player .pause-btn').click()";
+    return @"(function (){ var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player'; document.querySelector('.player .pause-btn').click()})()";
 }
 
 - (NSString *)displayName {

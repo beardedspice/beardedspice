@@ -35,7 +35,7 @@
 }
 
 - (NSString *)pause {
-    return @"(function (){ var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player'; document.querySelector('.player .pause-btn').click()})()";
+    return @"(function (){ var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player'; document.querySelector(thePlayer+' .pause-btn').click()})()";
 }
 
 - (NSString *)displayName {

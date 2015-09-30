@@ -58,6 +58,7 @@
 #import "IndieShuffleStrategy.h"
 #import "LeTournedisqueStrategy.h"
 #import "ComposedStrategy.h"
+#import "PlexWebStrategy.h"
 #import "NRKStrategy.h"
 
 @interface MediaStrategyRegistry ()
@@ -217,8 +218,9 @@
                         [BlitzrStrategy new],
                         [IndieShuffleStrategy new],
                         [LeTournedisqueStrategy new],
+                        [PlexWebStrategy new],
                         [ComposedStrategy new],
-                        [NRKStrategy new],
+                        [NRKStrategy new]
                     ];
     });
     return strategies;

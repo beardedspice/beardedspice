@@ -13,11 +13,13 @@
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
+NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation = @"GeneralPreferencesUsingAppleRemoteChangedNoticiation";
 
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 NSString *const BeardedSpiceActiveNativeAppControllers = @"BeardedSpiceActiveNativeAppControllers";
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHeadphonesAutopause";
+NSString *const BeardedSpiceUsingAppleRemote = @"BeardedSpiceUsingAppleRemote";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 
 @implementation GeneralPreferencesViewController
@@ -105,6 +107,15 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
          object:self];
     });
 
+}
+
+- (IBAction)toggleUseRemote:(id)sender {
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:GeneralPreferencesUsingAppleRemoteChangedNoticiation
+         object:self];
+    });
 }
 
 

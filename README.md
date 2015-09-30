@@ -77,6 +77,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)
 - [NoAdRadio.com](http://noadradio.com)
 - [NoonPacific.com](http://noonpacific.com)
+- [NRK Radio](http://radio.nrk.no/)
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
 - [Pandora](http://pandora.com)

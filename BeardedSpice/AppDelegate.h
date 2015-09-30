@@ -57,6 +57,7 @@ extern BOOL accessibilityApiEnabled;
     dispatch_queue_t notificationQueue;
     
     NSArray *mikeys;
+    NSArray *_appleRemotes;
     BSHeadphoneUnplugListener *_hpuListener;
 }
 

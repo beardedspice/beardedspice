@@ -103,6 +103,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Yandex Music](http://music.yandex.ru)
 - [Yandex Radio](http://radio.yandex.ru)
 - [YouTube](http://youtube.com)
+- [Superplayer](http://superplayer.fm)
 
 #### Don't see your favorite site in the list ? 
 No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.

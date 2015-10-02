@@ -49,6 +49,7 @@
 		50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */; };
 		50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
+		5E4B6EAE1BBF198A00B46FBC /* SuperplayerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B6EAD1BBF198A00B46FBC /* SuperplayerStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
@@ -212,6 +213,8 @@
 		50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzrStrategy.m; sourceTree = "<group>"; };
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeatsMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		5E4B6EAC1BBF198A00B46FBC /* SuperplayerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperplayerStrategy.h; sourceTree = "<group>"; };
+		5E4B6EAD1BBF198A00B46FBC /* SuperplayerStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperplayerStrategy.m; sourceTree = "<group>"; };
 		639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndieShuffleStrategy.h; sourceTree = "<group>"; };
 		639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndieShuffleStrategy.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
@@ -491,6 +494,8 @@
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				5E4B6EAC1BBF198A00B46FBC /* SuperplayerStrategy.h */,
+				5E4B6EAD1BBF198A00B46FBC /* SuperplayerStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -852,6 +857,7 @@
 				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
 				6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */,
 				BE0EC59E41539EF7C9368E11 /* YandexRadioStrategy.m in Sources */,
+				5E4B6EAE1BBF198A00B46FBC /* SuperplayerStrategy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

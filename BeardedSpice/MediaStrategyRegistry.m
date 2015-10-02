@@ -59,6 +59,7 @@
 #import "LeTournedisqueStrategy.h"
 #import "ComposedStrategy.h"
 #import "PlexWebStrategy.h"
+#import "SuperplayerStrategy.h"
 #import "NRKStrategy.h"
 
 @interface MediaStrategyRegistry ()
@@ -220,7 +221,8 @@
                         [LeTournedisqueStrategy new],
                         [PlexWebStrategy new],
                         [ComposedStrategy new],
-                        [NRKStrategy new]
+                        [NRKStrategy new],
+                        [SuperplayerStrategy new]
                     ];
     });
     return strategies;

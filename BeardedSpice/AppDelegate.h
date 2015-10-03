@@ -27,6 +27,7 @@ extern BOOL accessibilityApiEnabled;
 #import "MediaStrategy.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol> {
+
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
     NSStatusItem *statusItem;
@@ -36,9 +37,9 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *yandexBrowserApp;
 
     runningSBApplication *safariApp;
+    NSMutableSet *SafariTabKeys;
 
     NSMutableArray *nativeApps;
-    runningSBApplication *iTunesApp;
 
     SPMediaKeyTap *keyTap;
 

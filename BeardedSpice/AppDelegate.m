@@ -1,4 +1,4 @@
-  //
+//
 //  AppDelegate.m
 //  BeardedSpice
 //
@@ -709,6 +709,7 @@ BOOL accessibilityApiEnabled = NO;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
+    [SafariTabKeys removeAllObjects];
     
     // reset playingTabs
     playingTabs = [NSMutableArray array];
@@ -835,8 +836,31 @@ BOOL accessibilityApiEnabled = NO;
     TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
                                                  andTab:safariTab];
-    if (tab)
+    if (tab){
+        
+        //checking, that tab wasn't included in status menu.
+        //We need it because Safari "pinned" tabs duplicated on each window. (Safari 9)
+        
+        NSString *key = tab.key;
+        if (![key isEqualToString:tab.key]) {
+            //key was not assigned, we think this is fake pinned tab.
+            return;
+        }
+        
+        if (!SafariTabKeys) {
+            SafariTabKeys = [NSMutableSet set];
+        }
+        if (key) {
+            if ([SafariTabKeys containsObject:key]) {
+                
+                return;
+            }
+            [SafariTabKeys addObject:key];
+        }
+        //-------------------------------------------
+        
         [self addStatusMenuItemFor:tab];
+    }
 }
 
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {

@@ -89,7 +89,7 @@
             if (self.window.index != MULTI) {
                 
                 SafariApplication *app = (SafariApplication *)[self.application sbApplication];
-                for (SafariWindow *window in app.windows) {
+                for (SafariWindow *window in [[app windows] get]) {
                     
                     NSInteger index = window.index;
                     if (index == MULTI) {

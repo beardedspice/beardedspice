@@ -28,6 +28,7 @@
 #define APPID_CHROME            @"com.google.Chrome"
 #define APPID_CANARY            @"com.google.Chrome.canary"
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
+#define APPID_CHROMIUM          @"org.chromium.Chromium"
 
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
@@ -641,7 +642,8 @@ BOOL accessibilityApiEnabled = NO;
     canaryApp = [self getRunningSBApplicationWithIdentifier:APPID_CANARY];
     yandexBrowserApp =
         [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
-
+    chromiumApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROMIUM];
+    
     safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
 
     [nativeApps removeAllObjects];
@@ -685,6 +687,8 @@ BOOL accessibilityApiEnabled = NO;
         [self setActiveTabShortcutForChrome:canaryApp];
     } else if (yandexBrowserApp.frontmost) {
         [self setActiveTabShortcutForChrome:yandexBrowserApp];
+    } else if (chromiumApp.frontmost) {
+        [self setActiveTabShortcutForChrome:chromiumApp];
     } else if (safariApp.frontmost) {
         [self setActiveTabShortcutForSafari:safariApp];
     } else {
@@ -801,6 +805,7 @@ BOOL accessibilityApiEnabled = NO;
     [self refreshTabsForChrome:chromeApp];
     [self refreshTabsForChrome:canaryApp];
     [self refreshTabsForChrome:yandexBrowserApp];
+    [self refreshTabsForChrome:chromiumApp];
     [self refreshTabsForSafari:safariApp];
     
     for (runningSBApplication *app in nativeApps) {

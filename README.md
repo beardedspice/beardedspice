@@ -9,7 +9,7 @@ BeardedSpice allows you to control web based media players (Like *SoundCloud*, a
 ## How?
 All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon ![BeardedSpice](BeardedSpice/beard.png) and select the website you want to control using your media keys.
 
-#### Interested in doing it with a keyboard-shortcut? 
+#### Interested in doing it with a keyboard-shortcut?
 We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look below!
 
 ## Download
@@ -20,7 +20,7 @@ Ready to give BeardedSpice a spin? You can download the [latest release here](ht
 
 ## Features
 
-### *Smart* Mode 
+### *Smart* Mode
 > This feature is a **work-in-progress**, we are currently working on bringing it to all our supported sites!
 
 BeardedSpice tries to automatically guess which tab it should control for you. When you press any media key or BeardedSpice shortcut with BeardedSpice open, it will automatically control the site currently playing media, if you have no playing sites, it will try to control the currently focused tab (if it is one of our supported sites) if BeardedSpice failed to do either, it will automatically control the first.
@@ -36,10 +36,9 @@ Default Shortcut | Action
 `⌘` + `F8` |  Set Focused Browser tab as *Active Player* (effectively directing your commands to that tab)
 `⌘` + `F6` | Focus *Active Player* (Shows the tab currently controled by BeardedSpice)
 `⌘` + `F10` | Toggle Favorite (Add currently playing track to your favorites on it's site)
-`⌘` + `F11` | Show Track information (shows a notification with info about the currently playing tab) 
+`⌘` + `F11` | Show Track information (shows a notification with info about the currently playing tab)
 
 ### Multimedia keys of non-Apple keyboards
-Using a 3rd-party keyboard? or even a keyboard with no multimedia keys? No problems, BeardedSpice allows you to set your multimedia keys under shortcuts tab, so you can use any key (or key combination) of your liking. 
 
 ### Disabling certain handlers
 From the preferences tab, uncheck any types of webpages that you don't want BeardedSpice to have control over. By default, all implemented handlers are enabled.
@@ -96,6 +95,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Synology](http://synology.com)
 - [TIDAL (Web)](http://listen.tidalhifi.com/)
 - [TuneIn](http://tunein.com/)
+- [Udemy](https://www.udemy.com/)
 - [Vimeo](http://vimeo.com)
 - [VK ("My Music" from vk.com)](http://vk.com)
 - [WONDER.FM](http://wonder.fm/)
@@ -104,7 +104,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Yandex Radio](http://radio.yandex.ru)
 - [YouTube](http://youtube.com)
 
-#### Don't see your favorite site in the list ? 
+#### Don't see your favorite site in the list ?
 No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.
 
 
@@ -133,7 +133,6 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 ```Objective-C
 @interface MediaStrategy : NSObject
 /**
-Returns name of that media stratery. 
 */
 -(NSString *) displayName; // Required override in subclass.
 

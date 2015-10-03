@@ -126,10 +126,10 @@
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         iTunesTrack *track = [[iTunes currentTrack] get];
-        if (track.rating)
-            track.rating = 0;
+        if ([track loved])
+            track.loved = NO;
         else
-            track.rating = 100;
+            track.loved = YES;
     }
     
 }
@@ -151,7 +151,7 @@
             iTunesArtwork *art = [[artworks firstObject] get];
             track.image = art.data;
             
-            track.favorited = @(iTrack.rating);
+            track.favorited = @(iTrack.loved);
             
             return track;
         }

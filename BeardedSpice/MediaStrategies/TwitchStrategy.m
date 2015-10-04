@@ -29,7 +29,7 @@
 
 -(BOOL)isPlaying:(TabAdapter *)tab {
     NSNumber *value =
-        [tab executeJavascript: @"return !$('.player').data('paused')"];
+        [tab executeJavascript: @"return $('.player[data-paused=\"false\"]').length"];
     return [value boolValue];
 }
 

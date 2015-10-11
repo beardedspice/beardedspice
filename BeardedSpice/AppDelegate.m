@@ -7,32 +7,39 @@
 //
 
 #import "AppDelegate.h"
-#import "MASShortcut+UserDefaults.h"
+#include <IOKit/hid/IOHIDUsageTables.h>
+
+#import "Shortcut.h"
 
 #import "ChromeTabAdapter.h"
 #import "SafariTabAdapter.h"
 #import "NativeAppTabAdapter.h"
 
-#import "MASPreferencesWindowController.h"
+#import "BSPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "ShortcutsPreferencesViewController.h"
 #import "NSString+Utils.h"
 
 #import "runningSBApplication.h"
 
+#import "BSHidAppleRemote.h"
+
 #define APPID_SAFARI            @"com.apple.Safari"
 #define APPID_CHROME            @"com.google.Chrome"
 #define APPID_CANARY            @"com.google.Chrome.canary"
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
+#define APPID_CHROMIUM          @"org.chromium.Chromium"
 
 /// Because user defaults have good caching mechanism, we can use this macro.
-#define ALWAYSSHOWNOTIFICATION      [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
+#define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
 /// Delay displaying notification after changing favorited status of the current track.
 #define FAVORITED_DELAY         0.3
 
 // Don't understand why likner do not found this const in Sparkle.framework
 NSString *const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
+/// Delay displaying notification after pressing next/previous track.
+#define CHANGE_TRACK_DELAY      2.0
 
 typedef enum{
     
@@ -89,7 +96,11 @@ BOOL accessibilityApiEnabled = NO;
     notificationQueue = dispatch_queue_create("NotificationQueue", DISPATCH_QUEUE_SERIAL);
     //
     
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
@@ -102,8 +113,11 @@ BOOL accessibilityApiEnabled = NO;
     [self setupActivatePlayingTabShortcutCallback];
     [self setupSwitchPlayersShortcutCallback];
     
+    // Application notivications
     [self setupSystemEventsCallback];
 
+    [self refreshMikeys];
+    
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
     
@@ -120,22 +134,26 @@ BOOL accessibilityApiEnabled = NO;
     [keyTap startWatchingMediaKeys];
     [self refreshKeyTapBlackList];
     
-//    [self refreshApplications];
+    // Init headphone unplug listener
+    [self setHeadphonesListener];
+    
+    //Init Apple remote listener
+    [self setupAppleRemotes];
 }
 
 - (void)awakeFromNib
 {
-    NSImage *icon = [NSImage imageNamed:@"beard"];
-    [icon setTemplate:YES]; // Support for Yosemite's dark UI
-
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:24.0];
     [statusItem setMenu:statusMenu];
-    [statusItem setImage:icon];
+    
+    [self interfaceThemeChanged:nil];
     [statusItem setHighlightMode:YES];
-    [statusItem setAlternateImage:[NSImage imageNamed:@"beard-highlighted"]];
 
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
+    
+    _hpuListener =
+    [[BSHeadphoneUnplugListener alloc] initWithDelegate:self];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -212,6 +230,90 @@ BOOL accessibilityApiEnabled = NO;
 - (void)updaterDidShowModalAlert:(SUUpdater *)updater{
     
     [self removeWindow:updater];
+}
+
+// Performs Pause method
+- (void)headphoneUnplugAction{
+    
+    [self pauseActiveTab];
+}
+
+- (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned)usageId upOrDown:(BOOL)upOrDown
+{
+    if (upOrDown == TRUE) {
+        NSLog(@"Apple Mikey keypress detected: %d", usageId);
+        switch (usageId) {
+            case kHIDUsage_GD_SystemMenu:
+                [self playerToggle];
+                break;
+            case kHIDUsage_GD_SystemMenuRight:
+                [self playerNext];
+                break;
+            case kHIDUsage_GD_SystemMenuLeft:
+                [self playerPrevious];
+                break;
+            case kHIDUsage_GD_SystemMenuUp:
+                [self pressKey:NX_KEYTYPE_SOUND_UP];
+                break;
+            case kHIDUsage_GD_SystemMenuDown:
+                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                break;
+            default:
+                NSLog(@"Unknown key press seen %d", usageId);
+        }
+    }
+}
+
+- (void) ddhidAppleRemoteButton: (DDHidAppleRemoteEventIdentifier) buttonIdentifier
+                    pressedDown: (BOOL) pressedDown{
+    
+    if (pressedDown) {
+        
+        switch (buttonIdentifier) {
+            case kDDHidRemoteButtonVolume_Plus:
+                [self pressKey:NX_KEYTYPE_SOUND_UP];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Plus");
+                break;
+            case kDDHidRemoteButtonVolume_Minus:
+                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Minus");
+                break;
+            case kDDHidRemoteButtonMenu:
+                [self switchPlayerWithDirection:SwithPlayerNext];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu");
+                break;
+            case kDDHidRemoteButtonPlay:
+            case kDDHidRemoteButtonPlayPause:
+                [self playerToggle];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay");
+                break;
+            case kDDHidRemoteButtonRight:
+                [self playerNext];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonRight");
+                break;
+            case kDDHidRemoteButtonLeft:
+                [self playerPrevious];
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft");
+                break;
+            case kDDHidRemoteButtonRight_Hold:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonRight_Hold");
+                break;
+            case kDDHidRemoteButtonMenu_Hold:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu_Hold");
+                break;
+            case kDDHidRemoteButtonLeft_Hold:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft_Hold");
+                break;
+            case kDDHidRemoteButtonPlay_Sleep:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay_Sleep");
+                break;
+            case kDDHidRemoteControl_Switched:
+                NSLog(@"Apple Remote keypress detected: kDDHidRemoteControl_Switched");
+                break;
+            default:
+                NSLog(@"Apple Remote keypress detected: Unknown key press seen %d", buttonIdentifier);
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -299,91 +401,117 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Shortcuts callback setup methods
 /////////////////////////////////////////////////////////////////////////
 
-- (void)setupActiveTabShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActiveTabShortcut handler:^{
-        
-        [self setActiveTabShortcut];
-     }];
+- (void)setupActiveTabShortcutCallback {
+    [[MASShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceActiveTabShortcut
+                           toAction:^{
+
+                             [self setActiveTabShortcut];
+                           }];
 }
 
-- (void)setupFavoriteShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceFavoriteShortcut handler:^{
+- (void)setupFavoriteShortcutCallback {
+    [[MASShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceFavoriteShortcut
+                           toAction:^{
 
-        [self autoSelectedTabs];
-        
-        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-            
-            NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
-            if ([tab respondsToSelector:@selector(favorite)]) {
-                [tab favorite];
-                if ([[tab trackInfo] favorited]) {
-                    [self showNotification];
-                }
-            }
-        }
-        else{
+                             [self autoSelectedTabs];
 
-            MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-            if (strategy) {
-                [activeTab executeJavascript:[strategy favorite]];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                    if([[strategy trackInfo:activeTab] favorited])
-                        [self showNotification];
-                });
-            }
-        }
-    }];
+                             if ([activeTab isKindOfClass:
+                                                [NativeAppTabAdapter class]]) {
+
+                                 NativeAppTabAdapter *tab =
+                                     (NativeAppTabAdapter *)activeTab;
+                                 if ([tab respondsToSelector:@selector(
+                                                                 favorite)]) {
+                                     [tab favorite];
+                                     if ([[tab trackInfo] favorited]) {
+                                         [self showNotification];
+                                     }
+                                 }
+                             } else {
+
+                                 MediaStrategy *strategy =
+                                     [mediaStrategyRegistry
+                                         getMediaStrategyForTab:activeTab];
+                                 if (strategy) {
+                                     [activeTab
+                                         executeJavascript:[strategy favorite]];
+                                     dispatch_after(
+                                         dispatch_time(
+                                             DISPATCH_TIME_NOW,
+                                             (int64_t)(FAVORITED_DELAY *
+                                                       NSEC_PER_SEC)),
+                                         dispatch_get_main_queue(), ^{
+
+                                           if ([[strategy
+                                                   trackInfo:
+                                                       activeTab] favorited])
+                                               [self showNotification];
+                                         });
+                                 }
+                             }
+                           }];
 }
 
-- (void)setupNotificationShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNotificationShortcut handler:^{
-        
-        [self autoSelectedTabs];
-        [self showNotificationUsingFallback:YES];
-    }];
+- (void)setupNotificationShortcutCallback {
+    [[MASShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceNotificationShortcut
+                           toAction:^{
+
+                             [self autoSelectedTabs];
+                             [self showNotificationUsingFallback:YES];
+                           }];
 }
 
-- (void)setupActivatePlayingTabShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceActivatePlayingTabShortcut handler:^{
-        
-        [self autoSelectedTabs];
-        [activeTab toggleTab];
-    }];
+- (void)setupActivatePlayingTabShortcutCallback {
+    [[MASShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpiceActivatePlayingTabShortcut
+                           toAction:^{
+
+                             [self autoSelectedTabs];
+                             [activeTab toggleTab];
+                           }];
 }
 
-- (void)setupSwitchPlayersShortcutCallback
-{
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerPreviousShortcut handler:^{
+- (void)setupSwitchPlayersShortcutCallback {
+    [[MASShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpicePlayerPreviousShortcut
+                           toAction:^{
 
-        [self switchPlayerWithDirection:SwithPlayerPrevious];
-    }];
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayerNextShortcut handler:^{
-        
-        [self switchPlayerWithDirection:SwithPlayerNext];
-    }];
+                             [self
+                                 switchPlayerWithDirection:SwithPlayerPrevious];
+                           }];
+    [[MASShortcutBinder sharedBinder]
+        bindShortcutWithDefaultsKey:BeardedSpicePlayerNextShortcut
+                           toAction:^{
+
+                             [self switchPlayerWithDirection:SwithPlayerNext];
+                           }];
 }
 
 - (void)setupPlayControlsShortcutCallbacks
 {
     //Play/Pause
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePlayPauseShortcut handler:^{
+    [[MASShortcutBinder sharedBinder]
+     bindShortcutWithDefaultsKey:BeardedSpicePlayPauseShortcut
+     toAction:^{
 
         [self playerToggle];
     }];
 
     //Next
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpiceNextTrackShortcut handler:^{
+    [[MASShortcutBinder sharedBinder]
+     bindShortcutWithDefaultsKey:BeardedSpiceNextTrackShortcut
+     toAction:^{
 
         [self playerNext];
     }];
 
     //Previous
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:BeardedSpicePreviousTrackShortcut handler:^{
+         [[MASShortcutBinder sharedBinder]
+          bindShortcutWithDefaultsKey:BeardedSpicePreviousTrackShortcut
+          toAction:^{
 
         [self playerPrevious];
     }];
@@ -418,7 +546,7 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (void)playerNext{
+- (void)playerNext {
 
     [self autoSelectedTabs];
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
@@ -426,50 +554,114 @@ BOOL accessibilityApiEnabled = NO;
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
         if ([tab respondsToSelector:@selector(next)]) {
             [tab next];
-            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
-                ![tab frontmost])
-                [self showNotification];
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                      ![tab frontmost])
+                      [self showNotification];
+                });
         }
     } else {
 
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy next]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
-            }
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
+                      [self showNotification];
+                  }
+                });
         }
     }
 }
 
-- (void)playerPrevious{
-    
+- (void)playerPrevious {
+
     [self autoSelectedTabs];
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        
+
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
         if ([tab respondsToSelector:@selector(previous)]) {
             [tab previous];
-            if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
-                ![tab frontmost])
-                [self showNotification];
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
+                      ![tab frontmost])
+                      [self showNotification];
+                });
         }
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+    } else {
+
+        MediaStrategy *strategy =
+            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy previous]];
-            if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]){
-                [self showNotification];
-            }
+            dispatch_after(
+                dispatch_time(DISPATCH_TIME_NOW,
+                              (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_get_main_queue(), ^{
+
+                  if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
+                      [self showNotification];
+                  }
+                });
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark System Key Press Methods
+/////////////////////////////////////////////////////////////////////////
+
+- (void)pressKey:(NSUInteger)keytype {
+    [self keyEvent:keytype state:0xA];  // key down
+    [self keyEvent:keytype state:0xB];  // key up
+}
+
+- (void)keyEvent:(NSUInteger)keytype state:(NSUInteger)state {
+    NSEvent *event = [NSEvent otherEventWithType:NSSystemDefined
+                                        location:NSZeroPoint
+                                   modifierFlags:(state << 2)
+                                       timestamp:0
+                                    windowNumber:0
+                                         context:nil
+                                         subtype:0x8
+                                           data1:(keytype << 16) | (state << 8)
+                                           data2:-1];
+    
+    CGEventPost(0, [event CGEvent]);
 }
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods
 /////////////////////////////////////////////////////////////////////////
+
+- (void)refreshMikeys
+{
+    NSLog(@"Reset Mikeys");
+    
+    if (mikeys != nil) {
+        [mikeys makeObjectsPerformSelector:@selector(stopListening) withObject:nil];
+    }
+    mikeys = [DDHidAppleMikey allMikeys];
+    // we want to be the delegate of the mikeys
+    [mikeys makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
+    // start listening to all mikey events
+    [mikeys makeObjectsPerformSelector:@selector(setListenInExclusiveMode:) withObject:(id)kCFBooleanTrue];
+    [mikeys makeObjectsPerformSelector:@selector(startListening) withObject:nil];
+}
+
 
 -(runningSBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
 {
@@ -496,7 +688,8 @@ BOOL accessibilityApiEnabled = NO;
     canaryApp = [self getRunningSBApplicationWithIdentifier:APPID_CANARY];
     yandexBrowserApp =
         [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
-
+    chromiumApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROMIUM];
+    
     safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
 
     [nativeApps removeAllObjects];
@@ -540,6 +733,8 @@ BOOL accessibilityApiEnabled = NO;
         [self setActiveTabShortcutForChrome:canaryApp];
     } else if (yandexBrowserApp.frontmost) {
         [self setActiveTabShortcutForChrome:yandexBrowserApp];
+    } else if (chromiumApp.frontmost) {
+        [self setActiveTabShortcutForChrome:chromiumApp];
     } else if (safariApp.frontmost) {
         [self setActiveTabShortcutForSafari:safariApp];
     } else {
@@ -564,6 +759,7 @@ BOOL accessibilityApiEnabled = NO;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
+    [SafariTabKeys removeAllObjects];
     
     // reset playingTabs
     playingTabs = [NSMutableArray array];
@@ -655,6 +851,7 @@ BOOL accessibilityApiEnabled = NO;
     [self refreshTabsForChrome:chromeApp];
     [self refreshTabsForChrome:canaryApp];
     [self refreshTabsForChrome:yandexBrowserApp];
+    [self refreshTabsForChrome:chromiumApp];
     [self refreshTabsForSafari:safariApp];
     
     for (runningSBApplication *app in nativeApps) {
@@ -690,8 +887,31 @@ BOOL accessibilityApiEnabled = NO;
     TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
                                                  andTab:safariTab];
-    if (tab)
+    if (tab){
+        
+        //checking, that tab wasn't included in status menu.
+        //We need it because Safari "pinned" tabs duplicated on each window. (Safari 9)
+        
+        NSString *key = tab.key;
+        if (![key isEqualToString:tab.key]) {
+            //key was not assigned, we think this is fake pinned tab.
+            return;
+        }
+        
+        if (!SafariTabKeys) {
+            SafariTabKeys = [NSMutableSet set];
+        }
+        if (key) {
+            if ([SafariTabKeys containsObject:key]) {
+                
+                return;
+            }
+            [SafariTabKeys addObject:key];
+        }
+        //-------------------------------------------
+        
         [self addStatusMenuItemFor:tab];
+    }
 }
 
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
@@ -728,19 +948,23 @@ BOOL accessibilityApiEnabled = NO;
         }
     }
     
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-
-        if (![tab isEqual:activeTab] &&
-            [activeTab respondsToSelector:@selector(pause)])
-            [(NativeAppTabAdapter *)activeTab pause];
+    if (![tab isEqual:activeTab]) {
+        [self pauseActiveTab];
     }
-    else{
-        
-        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy && ![tab isEqual:activeTab]) {
-            [activeTab executeJavascript:[strategy pause]];
-        }
-    }
+    
+//    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+//
+//        if (![tab isEqual:activeTab] &&
+//            [activeTab respondsToSelector:@selector(pause)])
+//            [(NativeAppTabAdapter *)activeTab pause];
+//    }
+//    else{
+//        
+//        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+//        if (strategy && ![tab isEqual:activeTab]) {
+//            [activeTab executeJavascript:[strategy pause]];
+//        }
+//    }
     
     activeTab = tab;
     activeTabKey = [tab key];
@@ -837,7 +1061,7 @@ BOOL accessibilityApiEnabled = NO;
                   [NSString isNullOrEmpty:track.album])) {
                 [[NSUserNotificationCenter defaultUserNotificationCenter]
                  deliverNotification:[track asNotification]];
-                NSLog(@"Show Notofication: %@", track);
+                NSLog(@"Show Notification: %@", track);
             } else if (useFallback) {
                 [self showDefaultNotification];
             }
@@ -898,14 +1122,36 @@ BOOL accessibilityApiEnabled = NO;
 //
 //    [[[NSWorkspace sharedWorkspace] notificationCenter]
 //     addObserver: self
-//     selector: @selector(resetMediaKeys)
+//     selector: @selector(refreshAllControllers:)
 //     name: NSWorkspaceDidWakeNotification
 //     object: NULL];
+
+    [[[NSWorkspace sharedWorkspace] notificationCenter]
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: NSWorkspaceScreensDidWakeNotification
+     object: NULL];
+
+    NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+    [center
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: @"com.apple.screenIsUnlocked"
+     object: NULL];
+
+    [center
+     addObserver: self
+     selector: @selector(refreshAllControllers:)
+     name: @"com.apple.screensaver.didstop"
+     object: NULL];
+    
+    
 }
 
 - (void)removeSystemEventsCallback{
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSWindowController *)preferencesWindowController
@@ -917,7 +1163,7 @@ BOOL accessibilityApiEnabled = NO;
         NSArray *controllers = @[generalViewController, shortcutsViewController];
 
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
-        _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+        _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
     }
     return _preferencesWindowController;
 }
@@ -950,6 +1196,23 @@ BOOL accessibilityApiEnabled = NO;
 {
     NSLog(@"Reset Media Keys.");
     [keyTap startWatchingMediaKeys];
+}
+
+- (void)pauseActiveTab{
+    
+    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+        
+        if ([activeTab respondsToSelector:@selector(pause)])
+            [(NativeAppTabAdapter *)activeTab pause];
+    }
+    else{
+        
+        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+        if (strategy) {
+            [activeTab executeJavascript:[strategy pause]];
+        }
+    }
+
 }
 
 - (BOOL)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
@@ -1006,6 +1269,60 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+// Sets listener for detecting of headphones removing. If need it.
+- (void)setHeadphonesListener {
+    
+    _hpuListener.enabled = [[NSUserDefaults standardUserDefaults]
+                            boolForKey:BeardedSpiceRemoveHeadphonesAutopause];
+}
+
+- (void)setupAppleRemotes {
+
+    @synchronized(BeardedSpiceUsingAppleRemote) {
+        
+        NSLog(@"Reset Apple Remote");
+        
+        if ([[NSUserDefaults standardUserDefaults]
+                boolForKey:BeardedSpiceUsingAppleRemote]) {
+
+            [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+
+            _appleRemotes = [BSHidAppleRemote allRemotes];
+            for (BSHidAppleRemote *item in _appleRemotes) {
+
+                [item addMappingValue:kDDHidRemoteButtonVolume_Plus
+                               forKey:@"33_31_30_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonVolume_Minus
+                               forKey:@"33_32_30_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonRight
+                               forKey:@"33_24_21_20_2_33_24_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonLeft
+                               forKey:@"33_25_21_20_2_33_25_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonPlay
+                               forKey:@"33_21_20_3_2_33_21_20_3_2_"]; // center
+                                                                      // button
+                [item addMappingValue:kDDHidRemoteButtonMenu
+                               forKey:@"33_22_21_20_2_33_22_21_20_2_"];
+                [item addMappingValue:kDDHidRemoteButtonPlayPause
+                               forKey:@"33_21_20_8_2_33_21_20_8_2_"];
+            }
+            // we want to be the delegate of the mikeys
+            [_appleRemotes makeObjectsPerformSelector:@selector(setDelegate:)
+                                           withObject:self];
+            // start listening to all mikey events
+            [_appleRemotes
+                makeObjectsPerformSelector:@selector(setListenInExclusiveMode:)
+                                withObject:(id)kCFBooleanTrue];
+
+            [_appleRemotes
+                makeObjectsPerformSelector:@selector(startListening)];
+        } else {
+
+            [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////
@@ -1015,44 +1332,64 @@ BOOL accessibilityApiEnabled = NO;
     [self removeWindow:window];
 }
 
+/**
+ Method reloads: media keys, apple remote, headphones remote.
+ */
+- (void)refreshAllControllers:(NSNotification *)note
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self resetMediaKeys];
+        [self refreshMikeys];
+        [self setupAppleRemotes];
+    });
+}
+
 - (void)receiveSleepNote:(NSNotification *)note
 {
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        if ([activeTab respondsToSelector:@selector(pause)]) {
-            [(NativeAppTabAdapter *)activeTab pause];
-        }
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            NSLog(@"Received sleep note, pausing");
-            [activeTab executeJavascript:[strategy pause]];
-        }
-    }
+    [self pauseActiveTab];
 }
 
 - (void) switchUserHandler:(NSNotification*) notification
 {
-    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        if ([activeTab respondsToSelector:@selector(pause)]) {
-            [(NativeAppTabAdapter *)activeTab pause];
-        }
-    }
-    else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
-            NSLog(@"Received sleep note, pausing");
-            [activeTab executeJavascript:[strategy pause]];
-        }
-    }
+    [self pauseActiveTab];
 }
 
 - (void) generalPrefChanged:(NSNotification*) notification{
     
-    [self refreshKeyTapBlackList];
+    NSString *name = notification.name;
+    
+    if ([name isEqualToString:GeneralPreferencesAutoPauseChangedNoticiation]) {
+        
+        [self setHeadphonesListener];
+    }
+    else if ([name isEqualToString:GeneralPreferencesUsingAppleRemoteChangedNoticiation]) {
+        
+        [self setupAppleRemotes];
+    }
+    else if ([name isEqualToString:GeneralPreferencesNativeAppChangedNoticiation])
+        [self refreshKeyTapBlackList];
 }
 
+-(void)interfaceThemeChanged:(NSNotification *)notif
+{
+    @autoreleasepool {
+        
+        NSDictionary *dict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
+        id style = [dict objectForKey:@"AppleInterfaceStyle"];
+        BOOL isDarkMode = ( style && [style isKindOfClass:[NSString class]] && NSOrderedSame == [style caseInsensitiveCompare:@"dark"] );
+    
+        if (statusItem) {
+            if (isDarkMode) {
+                [statusItem setImage:[NSImage imageNamed:@"icon20x19-alt"]];
+                [statusItem setAlternateImage:[NSImage imageNamed:@"icon20x19-alt"]];
+            }
+            else{
+                [statusItem setImage:[NSImage imageNamed:@"icon20x19"]];
+                [statusItem setAlternateImage:[NSImage imageNamed:@"icon20x19-alt"]];
+            }
+        }
+    }
+}
 
 @end

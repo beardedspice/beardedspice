@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
-#import "MASShortcutView+UserDefaults.h"
+#import "Shortcut.h"
 #import "MediaStrategyRegistry.h"
 #import "NativeAppTabRegistry.h"
 
@@ -17,6 +17,8 @@
 /////////////////////////////////////////////////////////////////////////
 
 extern NSString *const GeneralPreferencesNativeAppChangedNoticiation;
+extern NSString *const GeneralPreferencesAutoPauseChangedNoticiation;
+extern NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Defaults Keys
@@ -25,7 +27,8 @@ extern NSString *const GeneralPreferencesNativeAppChangedNoticiation;
 extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceActiveControllers;
 extern NSString *const BeardedSpiceActiveNativeAppControllers;
-extern NSString *const BeardedSpiceITunesIntegration;
+extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
+extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
 
 /////////////////////////////////////////////////////////////////////////
@@ -49,6 +52,7 @@ extern NSString *const BeardedSpiceLaunchAtLogin;
 }
 
 @property (assign) IBOutlet NSTableView *strategiesView;
+@property (weak) IBOutlet NSButton *firstResponderView;
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry nativeAppTabRegistry:(NativeAppTabRegistry *)nativeAppTabRegistry;
 
@@ -57,5 +61,7 @@ extern NSString *const BeardedSpiceLaunchAtLogin;
 /////////////////////////////////////////////////////////////////////////
 
 - (IBAction)toggleLaunchAtStartup:(id)sender;
+- (IBAction)toggleAutoPause:(id)sender;
+- (IBAction)toggleUseRemote:(id)sender;
 
 @end

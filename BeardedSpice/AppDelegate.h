@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <Sparkle/Sparkle.h>
 
+#import <DDHidLib/DDHidLib.h>
+
 #import "SPMediaKeyTap.h"
 
 #import "Chrome.h"
@@ -17,6 +19,7 @@
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
 #import "NativeAppTabRegistry.h"
+#import "BSHeadphoneUnplugListener.h"
 
 @class runningSBApplication;
 
@@ -26,7 +29,8 @@ extern NSString *const SUUpdateDriverFinishedNotification;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, SUUpdaterDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, SUUpdaterDelegate, BSHeadphoneUnplugListenerProtocol> {
+
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
     NSStatusItem *statusItem;
@@ -38,11 +42,12 @@ extern NSString *const SUUpdateDriverFinishedNotification;
     runningSBApplication *chromeApp;
     runningSBApplication *canaryApp;
     runningSBApplication *yandexBrowserApp;
+    runningSBApplication *chromiumApp;
 
     runningSBApplication *safariApp;
+    NSMutableSet *SafariTabKeys;
 
     NSMutableArray *nativeApps;
-    runningSBApplication *iTunesApp;
 
     SPMediaKeyTap *keyTap;
 
@@ -59,6 +64,10 @@ extern NSString *const SUUpdateDriverFinishedNotification;
     NSMutableSet    *openedWindows;
     
     dispatch_queue_t notificationQueue;
+    
+    NSArray *mikeys;
+    NSArray *_appleRemotes;
+    BSHeadphoneUnplugListener *_hpuListener;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

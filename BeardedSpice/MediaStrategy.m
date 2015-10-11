@@ -49,6 +49,11 @@
     return notification;
 }
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+    // Do nothing. 
+}
+
 @end
 
 @implementation MediaStrategy

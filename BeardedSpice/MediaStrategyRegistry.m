@@ -10,6 +10,7 @@
 #import "LogitechMediaServerStrategy.h"
 #import "YouTubeStrategy.h"
 #import "PandoraStrategy.h"
+#import "CourseraStrategy.h"
 #import "BandCampStrategy.h"
 #import "GrooveSharkStrategy.h"
 #import "SoundCloudStrategy.h"
@@ -53,6 +54,12 @@
 #import "SubsonicStrategy.h"
 #import "TuneInStrategy.h"
 #import "NoonPacificStrategy.h"
+#import "BlitzrStrategy.h"
+#import "IndieShuffleStrategy.h"
+#import "LeTournedisqueStrategy.h"
+#import "ComposedStrategy.h"
+#import "PlexWebStrategy.h"
+#import "NRKStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -165,6 +172,7 @@
                         [LogitechMediaServerStrategy new],
                         [PandoraStrategy new],
                         [BandCampStrategy new],
+                        [CourseraStrategy new],
                         [GrooveSharkStrategy new],
                         [HypeMachineStrategy new],
                         [SoundCloudStrategy new],
@@ -206,7 +214,13 @@
                         [OdnoklassnikiStrategy new],
                         [SubsonicStrategy new],
                         [TuneInStrategy new],
-                        [NoonPacificStrategy new]
+                        [NoonPacificStrategy new],
+                        [BlitzrStrategy new],
+                        [IndieShuffleStrategy new],
+                        [LeTournedisqueStrategy new],
+                        [PlexWebStrategy new],
+                        [ComposedStrategy new],
+                        [NRKStrategy new]
                     ];
     });
     return strategies;

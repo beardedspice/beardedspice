@@ -104,25 +104,7 @@ enum iTunesEAPD {
 };
 typedef enum iTunesEAPD iTunesEAPD;
 
-
-
-/*
- * Standard Suite
- */
-
-@interface iTunesPrintSettings : SBObject
-
-@property (readonly) NSInteger copies;  // the number of copies of a document to be printed
-@property (readonly) BOOL collating;  // Should printed copies be collated?
-@property (readonly) NSInteger startingPage;  // the first page of the document to be printed
-@property (readonly) NSInteger endingPage;  // the last page of the document to be printed
-@property (readonly) NSInteger pagesAcross;  // number of logical pages laid across a physical page
-@property (readonly) NSInteger pagesDown;  // number of logical pages laid out down a physical page
-@property (readonly) iTunesEnum errorHandling;  // how errors are handled
-@property (copy, readonly) NSDate *requestedPrintTime;  // the time at which the desktop printer should print the document
-@property (copy, readonly) NSArray *printerFeatures;  // printer specific options
-@property (copy, readonly) NSString *faxNumber;  // for fax number
-@property (copy, readonly) NSString *targetPrinter;  // for target printer
+@protocol iTunesGenericMethods
 
 - (void) printPrintDialog:(BOOL)printDialog withProperties:(iTunesPrintSettings *)withProperties kind:(iTunesEKnd)kind theme:(NSString *)theme;  // Print the specified object(s)
 - (void) close;  // Close an object
@@ -137,25 +119,48 @@ typedef enum iTunesEAPD iTunesEAPD;
 
 
 /*
+ * Standard Suite
+ */
+
+@interface iTunesPrintSettings : SBObject <iTunesGenericMethods>
+
+@property (readonly) NSInteger copies;  // the number of copies of a document to be printed
+@property (readonly) BOOL collating;  // Should printed copies be collated?
+@property (readonly) NSInteger startingPage;  // the first page of the document to be printed
+@property (readonly) NSInteger endingPage;  // the last page of the document to be printed
+@property (readonly) NSInteger pagesAcross;  // number of logical pages laid across a physical page
+@property (readonly) NSInteger pagesDown;  // number of logical pages laid out down a physical page
+@property (readonly) iTunesEnum errorHandling;  // how errors are handled
+@property (copy, readonly) NSDate *requestedPrintTime;  // the time at which the desktop printer should print the document
+@property (copy, readonly) NSArray *printerFeatures;  // printer specific options
+@property (copy, readonly) NSString *faxNumber;  // for fax number
+@property (copy, readonly) NSString *targetPrinter;  // for target printer
+
+
+@end
+
+
+
+/*
  * iTunes Suite
  */
 
 // The application program
 @interface iTunesApplication : SBApplication
 
-- (SBElementArray *) AirPlayDevices;
-- (SBElementArray *) browserWindows;
-- (SBElementArray *) encoders;
-- (SBElementArray *) EQPresets;
-- (SBElementArray *) EQWindows;
-- (SBElementArray *) playlistWindows;
-- (SBElementArray *) sources;
-- (SBElementArray *) visuals;
-- (SBElementArray *) windows;
+- (SBElementArray<iTunesAirPlayDevice *> *) AirPlayDevices;
+- (SBElementArray<iTunesBrowserWindow *> *) browserWindows;
+- (SBElementArray<iTunesEncoder *> *) encoders;
+- (SBElementArray<iTunesEQPreset *> *) EQPresets;
+- (SBElementArray<iTunesEQWindow *> *) EQWindows;
+- (SBElementArray<iTunesPlaylistWindow *> *) playlistWindows;
+- (SBElementArray<iTunesSource *> *) sources;
+- (SBElementArray<iTunesVisual *> *) visuals;
+- (SBElementArray<iTunesWindow *> *) windows;
 
 @property (readonly) BOOL AirPlayEnabled;  // is AirPlay currently enabled?
 @property (readonly) BOOL converting;  // is a track currently being converted?
-@property (copy) NSArray *currentAirPlayDevices;  // the currently selected AirPlay device(s)
+@property (copy) NSArray<iTunesAirPlayDevice *> *currentAirPlayDevices;  // the currently selected AirPlay device(s)
 @property (copy) iTunesEncoder *currentEncoder;  // the currently selected encoder (MP3, AIFF, WAV, etc.)
 @property (copy) iTunesEQPreset *currentEQPreset;  // the currently selected equalizer preset
 @property (copy, readonly) iTunesPlaylist *currentPlaylist;  // the playlist containing the currently targeted track
@@ -181,9 +186,9 @@ typedef enum iTunesEAPD iTunesEAPD;
 - (void) printPrintDialog:(BOOL)printDialog withProperties:(iTunesPrintSettings *)withProperties kind:(iTunesEKnd)kind theme:(NSString *)theme;  // Print the specified object(s)
 - (void) run;  // run iTunes
 - (void) quit;  // quit iTunes
-- (iTunesTrack *) add:(NSArray *)x to:(SBObject *)to;  // add one or more files to a playlist
+- (iTunesTrack *) add:(NSArray<NSURL *> *)x to:(SBObject *)to;  // add one or more files to a playlist
 - (void) backTrack;  // reposition to beginning of current track or go to previous track if already at start of current track
-- (iTunesTrack *) convert:(NSArray *)x;  // convert one or more files or tracks
+- (iTunesTrack *) convert:(NSArray<SBObject *> *)x;  // convert one or more files or tracks
 - (void) fastForward;  // skip forward in a playing track
 - (void) nextTrack;  // advance to the next track in the current playlist
 - (void) pause;  // pause playback
@@ -203,7 +208,7 @@ typedef enum iTunesEAPD iTunesEAPD;
 @end
 
 // an item
-@interface iTunesItem : SBObject
+@interface iTunesItem : SBObject <iTunesGenericMethods>
 
 @property (copy, readonly) SBObject *container;  // the container of the item
 - (NSInteger) id;  // the id of the item
@@ -212,13 +217,6 @@ typedef enum iTunesEAPD iTunesEAPD;
 @property (copy, readonly) NSString *persistentID;  // the id of the item as a hexadecimal string. This id does not change over time.
 @property (copy) NSDictionary *properties;  // every property of the item
 
-- (void) printPrintDialog:(BOOL)printDialog withProperties:(iTunesPrintSettings *)withProperties kind:(iTunesEKnd)kind theme:(NSString *)theme;  // Print the specified object(s)
-- (void) close;  // Close an object
-- (void) delete;  // Delete an element from an object
-- (SBObject *) duplicateTo:(SBObject *)to;  // Duplicate one or more object(s)
-- (BOOL) exists;  // Verify if an object exists
-- (void) open;  // open the specified object(s)
-- (void) playOnce:(BOOL)once;  // play the current track or the specified track or file.
 - (void) reveal;  // reveal and select a track or playlist
 
 @end
@@ -283,10 +281,11 @@ typedef enum iTunesEAPD iTunesEAPD;
 // a list of songs/streams
 @interface iTunesPlaylist : iTunesItem
 
-- (SBElementArray *) tracks;
+- (SBElementArray<iTunesTrack *> *) tracks;
 
 @property (readonly) NSInteger duration;  // the total length of all songs (in seconds)
 @property (copy) NSString *name;  // the name of the playlist
+@property BOOL loved;  // is this playlist loved?
 @property (copy, readonly) iTunesPlaylist *parent;  // folder which contains this playlist (if any)
 @property BOOL shuffle;  // play the songs in this playlist in random order?
 @property (readonly) NSInteger size;  // the total size of all songs (in bytes)
@@ -303,7 +302,7 @@ typedef enum iTunesEAPD iTunesEAPD;
 // a playlist representing an audio CD
 @interface iTunesAudioCDPlaylist : iTunesPlaylist
 
-- (SBElementArray *) audioCDTracks;
+- (SBElementArray<iTunesAudioCDTrack *> *) audioCDTracks;
 
 @property (copy) NSString *artist;  // the artist of the CD
 @property BOOL compilation;  // is this CD a compilation album?
@@ -319,9 +318,9 @@ typedef enum iTunesEAPD iTunesEAPD;
 // the master music library playlist
 @interface iTunesLibraryPlaylist : iTunesPlaylist
 
-- (SBElementArray *) fileTracks;
-- (SBElementArray *) URLTracks;
-- (SBElementArray *) sharedTracks;
+- (SBElementArray<iTunesFileTrack *> *) fileTracks;
+- (SBElementArray<iTunesURLTrack *> *) URLTracks;
+- (SBElementArray<iTunesSharedTrack *> *) sharedTracks;
 
 
 @end
@@ -329,7 +328,7 @@ typedef enum iTunesEAPD iTunesEAPD;
 // the radio tuner playlist
 @interface iTunesRadioTunerPlaylist : iTunesPlaylist
 
-- (SBElementArray *) URLTracks;
+- (SBElementArray<iTunesURLTrack *> *) URLTracks;
 
 
 @end
@@ -337,11 +336,11 @@ typedef enum iTunesEAPD iTunesEAPD;
 // a music source (music library, CD, device, etc.)
 @interface iTunesSource : iTunesItem
 
-- (SBElementArray *) audioCDPlaylists;
-- (SBElementArray *) libraryPlaylists;
-- (SBElementArray *) playlists;
-- (SBElementArray *) radioTunerPlaylists;
-- (SBElementArray *) userPlaylists;
+- (SBElementArray<iTunesAudioCDPlaylist *> *) audioCDPlaylists;
+- (SBElementArray<iTunesLibraryPlaylist *> *) libraryPlaylists;
+- (SBElementArray<iTunesPlaylist *> *) playlists;
+- (SBElementArray<iTunesRadioTunerPlaylist *> *) radioTunerPlaylists;
+- (SBElementArray<iTunesUserPlaylist *> *) userPlaylists;
 
 @property (readonly) long long capacity;  // the total size of the source if it has a fixed size
 @property (readonly) long long freeSpace;  // the free space on the source if it has a fixed size
@@ -355,10 +354,11 @@ typedef enum iTunesEAPD iTunesEAPD;
 // playable audio source
 @interface iTunesTrack : iTunesItem
 
-- (SBElementArray *) artworks;
+- (SBElementArray<iTunesArtwork *> *) artworks;
 
 @property (copy) NSString *album;  // the album name of the track
 @property (copy) NSString *albumArtist;  // the album artist of the track
+@property BOOL albumLoved;  // is the album for this track loved?
 @property NSInteger albumRating;  // the rating of the album for this track (0 to 100)
 @property (readonly) iTunesERtK albumRatingKind;  // the rating kind of the album rating for this track
 @property (copy) NSString *artist;  // the artist/source of the track
@@ -387,6 +387,7 @@ typedef enum iTunesEAPD iTunesEAPD;
 @property (readonly) BOOL iTunesU;  // is this track an iTunes U episode?
 @property (copy, readonly) NSString *kind;  // a text description of the track
 @property (copy) NSString *longDescription;
+@property BOOL loved;  // is this track loved?
 @property (copy) NSString *lyrics;  // the lyrics of the track
 @property (copy, readonly) NSDate *modificationDate;  // the modification date of the content of this track
 @property NSInteger playedCount;  // number of times this track has been played
@@ -455,9 +456,9 @@ typedef enum iTunesEAPD iTunesEAPD;
 // custom playlists created by the user
 @interface iTunesUserPlaylist : iTunesPlaylist
 
-- (SBElementArray *) fileTracks;
-- (SBElementArray *) URLTracks;
-- (SBElementArray *) sharedTracks;
+- (SBElementArray<iTunesFileTrack *> *) fileTracks;
+- (SBElementArray<iTunesURLTrack *> *) URLTracks;
+- (SBElementArray<iTunesSharedTrack *> *) sharedTracks;
 
 @property BOOL shared;  // is this playlist shared?
 @property (readonly) BOOL smart;  // is this a Smart Playlist?

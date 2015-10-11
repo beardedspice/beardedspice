@@ -32,6 +32,7 @@
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
 		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
+		2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */; };
 		32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F131451A71B6090029E9EF /* PocketCastsStrategy.m */; };
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
 		3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */; };
@@ -46,7 +47,9 @@
 		504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */; };
 		508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 508196B11AE8F58B007B5493 /* KollektFmStrategy.m */; };
 		50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */; };
+		50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
+		639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
@@ -54,17 +57,28 @@
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		6537DAB01AF75CA4002F2391 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
+		6564BDAD1B74B81E007030D8 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; };
+		6564BDAE1B74BF9C007030D8 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; };
+		6564BDAF1B74BF9C007030D8 /* DDHidLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
+		65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */; };
 		65AFE6431AD01FF10071E4D7 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 65AFE6421AD01FF10071E4D7 /* dsa_pub.pem */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
+		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
+		65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
+		65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */; };
+		65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */; };
+		65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */; };
+		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65F741F51ACF547E003543FB /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65F741F01ACF50C0003543FB /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
+		7577DA481B6978C70078B19D /* CourseraStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577DA471B6978C70078B19D /* CourseraStrategy.m */; };
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
 		8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
@@ -85,6 +99,7 @@
 		9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
+		BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB81E6301B8B3AA000F764EB /* NRKStrategy.m */; };
 		BE0EC59E41539EF7C9368E11 /* YandexRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */; };
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
 		C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */; };
@@ -92,6 +107,7 @@
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +128,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				65F741F51ACF547E003543FB /* Sparkle.framework in Embed Frameworks */,
+				6564BDAF1B74BF9C007030D8 /* DDHidLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +181,8 @@
 		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioMackStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B0FAF391B8612D900E80E4F /* PlexWebStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexWebStrategy.h; sourceTree = "<group>"; };
+		2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexWebStrategy.m; sourceTree = "<group>"; };
 		32F131441A71B6090029E9EF /* PocketCastsStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCastsStrategy.h; sourceTree = "<group>"; };
 		32F131451A71B6090029E9EF /* PocketCastsStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PocketCastsStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		377A179F1A5C858C005595E5 /* DeezerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerStrategy.h; sourceTree = "<group>"; };
@@ -192,8 +211,12 @@
 		508196B11AE8F58B007B5493 /* KollektFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KollektFmStrategy.m; sourceTree = "<group>"; };
 		50931CA41AEB97B400A38B8E /* WonderFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderFmStrategy.h; sourceTree = "<group>"; };
 		50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderFmStrategy.m; sourceTree = "<group>"; };
+		50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzrStrategy.h; sourceTree = "<group>"; };
+		50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzrStrategy.m; sourceTree = "<group>"; };
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeatsMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndieShuffleStrategy.h; sourceTree = "<group>"; };
+		639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndieShuffleStrategy.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -207,6 +230,7 @@
 		6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
+		6564BDAC1B74B81E007030D8 /* DDHidLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDHidLib.framework; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOXTabAdapter.h; sourceTree = "<group>"; };
@@ -217,6 +241,8 @@
 		65969A2B1B489CEF00404AE9 /* notes.db.schema */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.db.schema; sourceTree = "<group>"; };
 		65969A2C1B489D1500404AE9 /* notes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = notes.db; sourceTree = "<group>"; };
 		65969A2D1B48A37500404AE9 /* notes.version.htmlTemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.version.htmlTemplate; sourceTree = "<group>"; };
+		65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHidAppleRemote.h; sourceTree = "<group>"; };
+		65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHidAppleRemote.m; sourceTree = "<group>"; };
 		65AFE6421AD01FF10071E4D7 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		65AFE6441AD0220A0071E4D7 /* sign_update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sign_update.sh; sourceTree = "<group>"; };
 		65AFE6451AD147A10071E4D7 /* publish */ = {isa = PBXFileReference; lastKnownFileType = folder; path = publish; sourceTree = "<group>"; };
@@ -227,6 +253,17 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabAdapter.m; sourceTree = "<group>"; };
+		65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneUnplugListener.h; sourceTree = "<group>"; };
+		65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneUnplugListener.m; sourceTree = "<group>"; };
+		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		65E567091B768E9E00AD2D46 /* ComposedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposedStrategy.h; sourceTree = "<group>"; };
+		65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposedStrategy.m; sourceTree = "<group>"; };
+		65E5670C1B76A07700AD2D46 /* BSMediaStrategyEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategyEnableButton.h; sourceTree = "<group>"; };
+		65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyEnableButton.m; sourceTree = "<group>"; };
+		65E5670F1B76AE3A00AD2D46 /* BSPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPreferencesWindowController.h; sourceTree = "<group>"; };
+		65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPreferencesWindowController.m; sourceTree = "<group>"; };
+		65E567121B775C9300AD2D46 /* BSShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSShortcutView.h; sourceTree = "<group>"; };
+		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
 		65EE289D1AB5FFE200EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65EE289F1AB6003800EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		65EE28A21AB6003B00EFC886 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
@@ -239,6 +276,8 @@
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
 		699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OvercastStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		7577DA461B696DF80078B19D /* CourseraStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseraStrategy.h; sourceTree = "<group>"; };
+		7577DA471B6978C70078B19D /* CourseraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseraStrategy.m; sourceTree = "<group>"; };
 		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VkStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		81DA43D51950BF55000E98AC /* VkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VkStrategy.h; sourceTree = "<group>"; };
 		83AAFD7618E0A79500640767 /* StitcherStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StitcherStrategy.h; sourceTree = "<group>"; };
@@ -279,6 +318,8 @@
 		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EightTracksStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YandexMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		BB81E6301B8B3AA000F764EB /* NRKStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRKStrategy.m; sourceTree = "<group>"; };
+		BB81E6311B8B3AA000F764EB /* NRKStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRKStrategy.h; sourceTree = "<group>"; };
 		BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexRadioStrategy.m; sourceTree = "<group>"; };
 		BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexRadioStrategy.h; sourceTree = "<group>"; };
 		BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FocusAtWillStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -293,6 +334,8 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
+		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,9 +343,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */,
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
+				6564BDAD1B74B81E007030D8 /* DDHidLib.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
+				6564BDAE1B74BF9C007030D8 /* DDHidLib.framework in Frameworks */,
 				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +385,12 @@
 				65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */,
 				6537DAA91AF508DF002F2391 /* MediaControllerObject.h */,
 				6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */,
+				65E5670F1B76AE3A00AD2D46 /* BSPreferencesWindowController.h */,
+				65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */,
+				65E5670C1B76A07700AD2D46 /* BSMediaStrategyEnableButton.h */,
+				65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */,
+				65E567121B775C9300AD2D46 /* BSShortcutView.h */,
+				65E567131B775C9300AD2D46 /* BSShortcutView.m */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -346,6 +398,12 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				BB81E6301B8B3AA000F764EB /* NRKStrategy.m */,
+				BB81E6311B8B3AA000F764EB /* NRKStrategy.h */,
+				65E567091B768E9E00AD2D46 /* ComposedStrategy.h */,
+				65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */,
+				50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */,
+				50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */,
 				48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */,
 				48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */,
 				1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */,
@@ -360,6 +418,8 @@
 				D2D98CD8197F34BD00941CBD /* BopFm.m */,
 				4DB2F13119DB987D0010D194 /* ChorusStrategy.h */,
 				4DB2F13219DB987D0010D194 /* ChorusStrategy.m */,
+				7577DA471B6978C70078B19D /* CourseraStrategy.m */,
+				7577DA461B696DF80078B19D /* CourseraStrategy.h */,
 				377A179F1A5C858C005595E5 /* DeezerStrategy.h */,
 				377A17A01A5C858C005595E5 /* DeezerStrategy.m */,
 				95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */,
@@ -374,8 +434,12 @@
 				03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
 				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
+				639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */,
+				639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */,
 				508196B01AE8F58B007B5493 /* KollektFmStrategy.h */,
 				508196B11AE8F58B007B5493 /* KollektFmStrategy.m */,
+				EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */,
+				EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */,
 				969E45701863E5830037226B /* LastFmStrategy.h */,
 				969E45711863E5830037226B /* LastFmStrategy.m */,
 				500B11041AE65A0100C4F0EC /* LogitechMediaServerStrategy.h */,
@@ -386,12 +450,16 @@
 				963E89BA18BB05F400FE0DBB /* MusicUnlimitedStrategy.m */,
 				503E32DA1ACE773000210195 /* NoAdRadioStrategy.h */,
 				503E32DB1ACE773000210195 /* NoAdRadioStrategy.m */,
+				C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */,
+				C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */,
 				504B426B1AF00C2E00654297 /* OdnoklassnikiStrategy.h */,
 				504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */,
 				699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */,
 				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
 				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
 				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
+				2B0FAF391B8612D900E80E4F /* PlexWebStrategy.h */,
+				2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */,
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
 				031D8147187F982A00A93E00 /* RdioStrategy.h */,
@@ -408,8 +476,6 @@
 				9A699C49188B051000BB647E /* SongzaStrategy.m */,
 				03A34930185EE8EE00C4A62B /* SoundCloudStrategy.h */,
 				03A34931185EE8EE00C4A62B /* SoundCloudStrategy.m */,
-				C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */,
-				C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */,
 				0370588C1863F47300C691B3 /* SpotifyStrategy.h */,
 				0370588D1863F47300C691B3 /* SpotifyStrategy.m */,
 				83AAFD7618E0A79500640767 /* StitcherStrategy.h */,
@@ -434,10 +500,10 @@
 				8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
 				B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */,
 				B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
-				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
-				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 				BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */,
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
+				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
+				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -517,6 +583,8 @@
 			isa = PBXGroup;
 			children = (
 				65F741F01ACF50C0003543FB /* Sparkle.framework */,
+				65E567071B76104300AD2D46 /* CoreAudio.framework */,
+				6564BDAC1B74B81E007030D8 /* DDHidLib.framework */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
 				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
@@ -558,6 +626,10 @@
 				967933441855173100A49AC7 /* MainMenu.xib */,
 				657EAEA71AAAEB9300D00456 /* runningSBApplication.h */,
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
+				65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */,
+				65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */,
+				65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */,
+				65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
@@ -634,6 +706,7 @@
 				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
 				65F741F61ACF547E003543FB /* Embed Frameworks */,
 				65A64B001ACF47FC00A4782E /* Sign Sparke Framework */,
+				A7590BFCF9ADCE6B1345609D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -756,6 +829,21 @@
 			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nIDENTITY=\"$CODE_SIGN_IDENTITY\"\n\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"";
 			showEnvVarsInLog = 0;
 		};
+		A7590BFCF9ADCE6B1345609D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -786,8 +874,11 @@
 				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
 				4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */,
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
+				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
+				BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */,
+				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
 				C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */,
@@ -796,11 +887,13 @@
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
+				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
 				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
+				65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */,
 				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,
@@ -808,6 +901,7 @@
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
 				4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */,
+				639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */,
 				500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */,
 				D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
@@ -815,18 +909,24 @@
 				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,
 				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
 				503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */,
+				65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
+				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,
+				2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
+				7577DA481B6978C70078B19D /* CourseraStrategy.m in Sources */,
+				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
+				50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
@@ -1024,6 +1124,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/Sparkle",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
@@ -1045,6 +1146,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/Sparkle",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";

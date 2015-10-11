@@ -29,3 +29,17 @@ Pods
 mediaResources
 mediaResources/
 mediaResources/*
+
+.travis.yml
+
+mediaResources/beardedspiceIcon.sketch/Data
+
+mediaResources/beardedspiceIcon.sketch/metadata
+
+mediaResources/beardedspiceIcon.sketch/QuickLook/Preview.png
+
+mediaResources/beardedspiceIcon.sketch/QuickLook/Thumbnail.png
+
+mediaResources/icon20x19-alt.pdf
+
+mediaResources/icon20x19.pdf

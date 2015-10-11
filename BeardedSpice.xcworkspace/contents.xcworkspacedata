@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:BeardedSpice/MediaStrategies/CourseraStrategy.m">
-   </FileRef>
-   <FileRef
       location = "group:BeardedSpice.xcodeproj">
    </FileRef>
    <FileRef

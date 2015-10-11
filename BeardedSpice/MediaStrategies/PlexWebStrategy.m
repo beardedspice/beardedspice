@@ -42,19 +42,16 @@
     return @"Plex Web";
 }
 
-//- (NSString *)favorite {
-//}
+- (Track *)trackInfo:(TabAdapter *)tab {
 
-//- (Track *)trackInfo:(TabAdapter *)tab {
-//
-//    NSString *infoArtist = [tab executeJavascript:@"return document.querySelector('.player .media-title .grandparent-title-container').innerText"];
-//    NSString *infoTrack = [tab executeJavascript:@"return document.querySelector('.player .media-title .title-container').innerText"];
-//
-//    Track *track = [Track new];
-//    track.artist = infoArtist;
-//    track.track = infoTrack;
-//
-//    return track;
-//}
+    NSDictionary *dict = [tab executeJavascript:@"(function (){ if(document.querySelector('.player.music')){  var mediaPoster = document.querySelector('.player.music .media-poster'); return {'imageUrl': mediaPoster.getAttribute('data-image-url'), 'track': mediaPoster.getAttribute('data-title'), 'album': mediaPoster.getAttribute('data-image-title'), 'artist': document.querySelector('.player.music  .grandparent-title').innerText, 'favorited': (document.querySelector('.player.music .rating-container .user-rating') != undefined)} } return {} } )()"];
+
+    Track *track = [Track new];
+    [track setValuesForKeysWithDictionary:dict];
+    
+    track.image = [self imageByUrlString:dict[@"imageUrl"]];
+    
+    return track;
+}
 
 @end

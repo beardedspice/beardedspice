@@ -27,8 +27,8 @@
 
     NSNumber *value =
         [tab executeJavascript:@"(function(){return "
-                               @"JSON.parse($('body').attr('data-unity-state')"
-                               @").playing;})()"];
+                               @"(document.querySelector('.player-controls__btn_play.player-controls__btn_pause') != null);}())"
+         ];
 
     return [value boolValue];
 }
@@ -73,18 +73,12 @@
 - (Track *)trackInfo:(TabAdapter *)tab {
 
     NSDictionary *info = [tab
-        executeJavascript:@"(function(){return "
-                          @"$.extend(JSON.parse($('body').attr('data-unity-"
-                          @"state')), ({'favorited': ($('.player-controls "
-                          @".like.like_on.player-controls__btn').length)}))})("
-                          @")"];
+        executeJavascript:@"(function(){var track = $('.track.track_type_player').get(0); return {'track': $('.track__title', track)[0].innerText, 'artist': $('.track__artists', track)[0].innerText, 'favorited': $('.player-controls__track-controls .like.player-controls__btn').hasClass('like_on'), 'albumArt': $('.album-cover', track).attr('src')}})()"];
 
     Track *track = [Track new];
 
-    track.track = info[@"title"];
-    track.artist = info[@"artist"];
+    [track setValuesForKeysWithDictionary:info];
     track.image = [self imageByUrlString:info[@"albumArt"]];
-    track.favorited = info[@"favorited"];
 
     return track;
 }

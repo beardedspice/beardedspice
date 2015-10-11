@@ -1,0 +1,2 @@
+Many fixes and improvements.
+Check <a href="https://github.com/beardedspice/beardedspice/issues?q=milestone%3A1.2+is%3Aclosed">this list</a>

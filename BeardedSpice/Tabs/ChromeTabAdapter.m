@@ -10,7 +10,8 @@
 #import "runningSBApplication.h"
 #import "NSString+Utils.h"
 
-#define MULTI       2 //Chrome feature for window indexing
+#define MULTI                   2 //Chrome feature for window indexing
+#define WAIT_FRONTMOST_DELAY    0.2
 
 @implementation ChromeTabAdapter
 
@@ -81,7 +82,7 @@
         
         // Грёбаная хурма
         // We must wait while application will become frontmost
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(WAIT_FRONTMOST_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
             _wasWindowActivated = NO;
             if (self.window.index != MULTI) {
@@ -147,15 +148,14 @@
         [self activateTab];
 }
 
-- (BOOL)frontmost{
+- (BOOL)frontmost {
 
-    if (self.application.frontmost) {
-        if ([[self.window activeTab] id] == self.tab.id) {
-            
-            return YES;
-        }
+    if (self.application.frontmost && self.window.index == MULTI &&
+        [self.tab id] == [self.window.activeTab id]) {
+
+        return YES;
     }
-    
+
     return NO;
 }
 

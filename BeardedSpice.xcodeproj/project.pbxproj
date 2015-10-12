@@ -32,6 +32,7 @@
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
 		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
+		2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */; };
 		32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F131451A71B6090029E9EF /* PocketCastsStrategy.m */; };
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
 		3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */; };
@@ -62,6 +63,7 @@
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
+		65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
@@ -95,6 +97,7 @@
 		9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A699C49188B051000BB647E /* SongzaStrategy.m */; };
 		9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF442D41886F71400CD7266 /* EightTracksStrategy.m */; };
 		B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */; };
+		BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB81E6301B8B3AA000F764EB /* NRKStrategy.m */; };
 		BE0EC59E41539EF7C9368E11 /* YandexRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */; };
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
 		C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */; };
@@ -175,6 +178,8 @@
 		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioMackStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B0FAF391B8612D900E80E4F /* PlexWebStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexWebStrategy.h; sourceTree = "<group>"; };
+		2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexWebStrategy.m; sourceTree = "<group>"; };
 		32F131441A71B6090029E9EF /* PocketCastsStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCastsStrategy.h; sourceTree = "<group>"; };
 		32F131451A71B6090029E9EF /* PocketCastsStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PocketCastsStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		377A179F1A5C858C005595E5 /* DeezerStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerStrategy.h; sourceTree = "<group>"; };
@@ -231,6 +236,8 @@
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
 		658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalHiFiStrategy.h; sourceTree = "<group>"; };
 		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TidalHiFiStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHidAppleRemote.h; sourceTree = "<group>"; };
+		65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHidAppleRemote.m; sourceTree = "<group>"; };
 		65B32B8C1AD99D1600F696B9 /* TabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAdapter.h; sourceTree = "<group>"; };
 		65B32B8D1AD99D1600F696B9 /* TabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabAdapter.m; sourceTree = "<group>"; };
 		65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTabAdapter.m; sourceTree = "<group>"; };
@@ -298,6 +305,8 @@
 		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EightTracksStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YandexMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		BB81E6301B8B3AA000F764EB /* NRKStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRKStrategy.m; sourceTree = "<group>"; };
+		BB81E6311B8B3AA000F764EB /* NRKStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRKStrategy.h; sourceTree = "<group>"; };
 		BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexRadioStrategy.m; sourceTree = "<group>"; };
 		BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexRadioStrategy.h; sourceTree = "<group>"; };
 		BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FocusAtWillStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -376,6 +385,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				BB81E6301B8B3AA000F764EB /* NRKStrategy.m */,
+				BB81E6311B8B3AA000F764EB /* NRKStrategy.h */,
 				65E567091B768E9E00AD2D46 /* ComposedStrategy.h */,
 				65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */,
 				50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */,
@@ -434,6 +445,8 @@
 				699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */,
 				03A34927185EE58600C4A62B /* PandoraStrategy.h */,
 				03A34928185EE58600C4A62B /* PandoraStrategy.m */,
+				2B0FAF391B8612D900E80E4F /* PlexWebStrategy.h */,
+				2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */,
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
 				031D8147187F982A00A93E00 /* RdioStrategy.h */,
@@ -577,6 +590,8 @@
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
 				65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */,
 				65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */,
+				65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */,
+				65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
@@ -634,6 +649,7 @@
 				9679332A1855173100A49AC7 /* Resources */,
 				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
+				790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -736,6 +752,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -769,6 +800,7 @@
 				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
+				BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
@@ -784,6 +816,7 @@
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
+				65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */,
 				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,
@@ -807,6 +840,7 @@
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,
+				2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */,

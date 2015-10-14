@@ -60,6 +60,7 @@
 #import "ComposedStrategy.h"
 #import "PlexWebStrategy.h"
 #import "NRKStrategy.h"
+#import "GaanaStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -220,7 +221,8 @@
                         [LeTournedisqueStrategy new],
                         [PlexWebStrategy new],
                         [ComposedStrategy new],
-                        [NRKStrategy new]
+                        [NRKStrategy new],
+                        [GaanaStrategy new],
                     ];
     });
     return strategies;

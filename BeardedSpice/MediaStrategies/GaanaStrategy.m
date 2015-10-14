@@ -44,6 +44,11 @@
     return @"document.querySelector('.playerspritecall.playPause').click();";
 }
 
+-(NSString *) favorite
+{
+    return @"document.querySelector('.player_activity>.favorite').click()";
+}
+
 -(NSString *) displayName
 {
     return @"Gaana";

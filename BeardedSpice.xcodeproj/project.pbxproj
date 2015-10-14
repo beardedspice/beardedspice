@@ -105,6 +105,7 @@
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		EA14A3D11BCE93D6005F6906 /* GaanaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA14A3D01BCE93D6005F6906 /* GaanaStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
 /* End PBXBuildFile section */
 
@@ -321,6 +322,8 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		EA14A3CF1BCE93D6005F6906 /* GaanaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaanaStrategy.h; sourceTree = "<group>"; };
+		EA14A3D01BCE93D6005F6906 /* GaanaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GaanaStrategy.m; sourceTree = "<group>"; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -385,6 +388,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				EA14A3CF1BCE93D6005F6906 /* GaanaStrategy.h */,
+				EA14A3D01BCE93D6005F6906 /* GaanaStrategy.m */,
 				BB81E6301B8B3AA000F764EB /* NRKStrategy.m */,
 				BB81E6311B8B3AA000F764EB /* NRKStrategy.h */,
 				65E567091B768E9E00AD2D46 /* ComposedStrategy.h */,
@@ -810,6 +815,7 @@
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
+				EA14A3D11BCE93D6005F6906 /* GaanaStrategy.m in Sources */,
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
 				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,

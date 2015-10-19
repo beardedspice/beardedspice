@@ -64,8 +64,8 @@
 - (Track *)trackInfo:(TabAdapter *)tab {
     Track *track = [[Track alloc] init];
     
-    track.track = [tab executeJavascript:@"(function() {for (var i = 0;i<lectures.length;i++){if (lectures[i].getElementsByClassName(\"curriculum-item\").item().getAttribute(\"ng-href\") == window.location.href) {return lectures[i].getElementsByClassName(\"title\")[0].textContent;};};})()"];
-    
+    track.track = [tab executeJavascript:@"$('.curriculum-item.on .ci-title').get(0).innerText;"];
+    track.album = [self displayName];
     
     return track;
 }

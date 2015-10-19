@@ -39,7 +39,7 @@
         }
     }
     
-    if (self.image) {
+    if ([self.image isKindOfClass:[NSImage class]]) {
         // workaround for 10.8 support
         if ([notification respondsToSelector:@selector(setContentImage:)]) {
         //

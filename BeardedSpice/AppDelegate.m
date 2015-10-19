@@ -612,7 +612,7 @@ BOOL accessibilityApiEnabled = NO;
     // we want to be the delegate of the mikeys
     [mikeys makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
     // start listening to all mikey events
-    [mikeys makeObjectsPerformSelector:@selector(setListenInExclusiveMode:) withObject:(id)kCFBooleanTrue];
+    [mikeys makeObjectsPerformSelector:@selector(setListenInExclusiveMode:) withObject:(id)kCFBooleanFalse];
     [mikeys makeObjectsPerformSelector:@selector(startListening) withObject:nil];
 }
 

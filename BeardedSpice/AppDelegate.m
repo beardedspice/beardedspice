@@ -25,6 +25,7 @@
 #import "BSHidAppleRemote.h"
 
 #define APPID_SAFARI            @"com.apple.Safari"
+#define APPID_WEBKIT            @"org.webkit.nightly.WebKit"
 #define APPID_CHROME            @"com.google.Chrome"
 #define APPID_CANARY            @"com.google.Chrome.canary"
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
@@ -645,7 +646,8 @@ BOOL accessibilityApiEnabled = NO;
     chromiumApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROMIUM];
     
     safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
-
+	webkitApp = [self getRunningSBApplicationWithIdentifier:APPID_WEBKIT];
+	
     [nativeApps removeAllObjects];
     for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
         runningSBApplication *app =
@@ -691,7 +693,9 @@ BOOL accessibilityApiEnabled = NO;
         [self setActiveTabShortcutForChrome:chromiumApp];
     } else if (safariApp.frontmost) {
         [self setActiveTabShortcutForSafari:safariApp];
-    } else {
+	} else if (webkitApp.frontmost) {
+		[self setActiveTabShortcutForSafari:webkitApp];
+	}else {
 
         for (runningSBApplication *app in nativeApps) {
             if (app.frontmost) {
@@ -756,7 +760,7 @@ BOOL accessibilityApiEnabled = NO;
     if (safari) {
         for (SafariWindow *safariWindow in safari.windows) {
             for (SafariTab *safariTab in safariWindow.tabs) {
-                [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+                [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow runningApp:app];
             }
         }
     }
@@ -807,6 +811,7 @@ BOOL accessibilityApiEnabled = NO;
     [self refreshTabsForChrome:yandexBrowserApp];
     [self refreshTabsForChrome:chromiumApp];
     [self refreshTabsForSafari:safariApp];
+	[self refreshTabsForSafari:webkitApp];
     
     for (runningSBApplication *app in nativeApps) {
         [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
@@ -836,9 +841,9 @@ BOOL accessibilityApiEnabled = NO;
         [self addStatusMenuItemFor:tab];
 }
 
--(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
+-(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow runningApp:(runningSBApplication *)app
 {
-    TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
+    TabAdapter *tab = [SafariTabAdapter initWithApplication:app
                                               andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab){

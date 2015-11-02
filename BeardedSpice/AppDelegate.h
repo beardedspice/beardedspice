@@ -38,8 +38,10 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *chromiumApp;
 
     runningSBApplication *safariApp;
-    NSMutableSet *SafariTabKeys;
-
+	runningSBApplication *webkitApp;
+	
+	NSMutableSet *SafariTabKeys;
+	
     NSMutableArray *nativeApps;
 
     SPMediaKeyTap *keyTap;

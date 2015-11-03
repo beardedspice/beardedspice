@@ -23,39 +23,44 @@
  */
 
 #import <Cocoa/Cocoa.h>
+
 #import "DDHidDevice.h"
 
 @class DDHidElement;
-@class DDHidQueue;
 
-@interface DDHidMouse : DDHidDevice
+enum DDHidAppleRemoteEventIdentifier
 {
-    DDHidElement * mXElement;
-    DDHidElement * mYElement;
-    DDHidElement * mWheelElement;
-    NSMutableArray * mButtonElements;
-    
+	kDDHidRemoteButtonVolume_Plus=0,
+	kDDHidRemoteButtonVolume_Minus,
+	kDDHidRemoteButtonMenu,
+	kDDHidRemoteButtonPlay,
+	kDDHidRemoteButtonRight,	
+	kDDHidRemoteButtonLeft,	
+	kDDHidRemoteButtonRight_Hold,	
+	kDDHidRemoteButtonLeft_Hold,
+	kDDHidRemoteButtonMenu_Hold,
+	kDDHidRemoteButtonPlay_Sleep,
+	kDDHidRemoteControl_Switched,
+    kDDHidRemoteControl_Paired,
+    kDDHidRemoteButtonPlayPause
+};
+typedef enum DDHidAppleRemoteEventIdentifier DDHidAppleRemoteEventIdentifier;
+
+@interface DDHidAppleRemote : DDHidDevice
+{
+    NSMutableDictionary * mCookieToButtonMapping;
+    NSArray * mButtonElements;
+    DDHidElement * mIdElement;
+    int mRemoteId;
+
     id mDelegate;
 }
 
-+ (NSArray *) allMice;
++ (NSArray *) allRemotes;
+
++ (DDHidAppleRemote *) firstRemote;
 
 - (id) initWithDevice: (io_object_t) device error: (NSError **) error_;
-
-#pragma mark -
-#pragma mark Mouse Elements
-
-- (DDHidElement *) xElement;
-
-- (DDHidElement *) yElement;
-
-- (DDHidElement *) wheelElement;
-
-- (NSArray *) buttonElements;
-
-- (unsigned) numberOfButtons;
-
-- (void) addElementsToQueue: (DDHidQueue *) queue;
 
 #pragma mark -
 #pragma mark Asynchronous Notification
@@ -64,15 +69,17 @@
 
 - (void) addElementsToDefaultQueue;
 
-@end
+#pragma mark -
+#pragma mark Properties
 
-@interface NSObject (DDHidMouseDelegate)
-
-- (void) ddhidMouse: (DDHidMouse *) mouse xChanged: (SInt32) deltaX;
-- (void) ddhidMouse: (DDHidMouse *) mouse yChanged: (SInt32) deltaY;
-- (void) ddhidMouse: (DDHidMouse *) mouse wheelChanged: (SInt32) deltaWheel;
-- (void) ddhidMouse: (DDHidMouse *) mouse buttonDown: (unsigned) buttonNumber;
-- (void) ddhidMouse: (DDHidMouse *) mouse buttonUp: (unsigned) buttonNumber;
+- (int) remoteId;
+- (void) setRemoteId: (int) theRemoteId;
 
 @end
 
+@interface NSObject (DDHidAppleRemoteDelegate)
+
+- (void) ddhidAppleRemoteButton: (DDHidAppleRemoteEventIdentifier) buttonIdentifier
+                    pressedDown: (BOOL) pressedDown;
+
+@end

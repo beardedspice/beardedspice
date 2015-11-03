@@ -62,6 +62,10 @@
 		<true/>
 		<key>YouTube</key>
 		<true/>
+		<key>focus@will</key>
+		<true/>
+		<key>Udemy</key>
+		<true/>
 	</dict>
 	<key>BeardedSpiceAlwaysShowNotification</key>
 	<false/>

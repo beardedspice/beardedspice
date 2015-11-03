@@ -22,15 +22,25 @@
  * SOFTWARE.
  */
 
-#import "DDHidDevice.h"
-#import "DDHidElement.h"
-#import "DDHidUsage.h"
-#import "DDHidQueue.h"
-#import "DDHidEvent.h"
-#import "DDHidUsageTables.h"
-#import "DDHidMouse.h"
-#import "DDHidJoystick.h"
-#import "DDHidKeyboard.h"
-#import "DDHidAppleRemote.h"
-#import "DDHidAppleMikey.h"
-#import "DDHidKeyboardBarcodeScanner.h"
+#import <Cocoa/Cocoa.h>
+
+
+@interface NSDictionary (DDHidExtras)
+
+- (unsigned) ddhid_unsignedForKey: (NSString *) key;
+
+- (id) ddhid_objectForString: (const char *) key;
+
+- (NSString *) ddhid_stringForString: (const char *) key;
+- (long) ddhid_longForString: (const char *) key;
+- (unsigned int) ddhid_unsignedIntForString: (const char *) key;
+- (BOOL) ddhid_boolForString: (const char *) key;
+
+@end
+
+@interface NSMutableDictionary (DDHidExtras)
+
+- (void) ddhid_setObject: (id) object forString: (const char *) key;
+- (void) ddhid_setInt: (int) i forKey: (id) key;
+
+@end

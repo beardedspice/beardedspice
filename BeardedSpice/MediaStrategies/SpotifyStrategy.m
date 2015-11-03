@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*play.spotify.com*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*play*.spotify.com*'"];
     }
     return self;
 }
@@ -22,6 +22,13 @@
 -(BOOL) accepts:(TabAdapter *)tab
 {
     return [predicate evaluateWithObject:[tab URL]];
+}
+
+- (BOOL)isPlaying:(TabAdapter *)tab{
+    
+    NSNumber *result = [tab executeJavascript:@"document.querySelector('#app-player').contentWindow.document.querySelector('#play-pause').classList.contains('playing')"];
+    
+    return [result boolValue];
 }
 
 -(NSString *) toggle

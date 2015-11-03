@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <Sparkle/Sparkle.h>
 
-#import <DDHidLib/DDHidLib.h>
-
 #import "SPMediaKeyTap.h"
 
 #import "Chrome.h"
@@ -65,8 +63,8 @@ extern NSString *const SUUpdateDriverFinishedNotification;
     
     dispatch_queue_t notificationQueue;
     
-    NSArray *mikeys;
-    NSArray *_appleRemotes;
+    NSMutableArray *_mikeys;
+    NSMutableArray *_appleRemotes;
     BSHeadphoneUnplugListener *_hpuListener;
 }
 

@@ -22,7 +22,8 @@
 
 #import "runningSBApplication.h"
 
-#import "BSHidAppleRemote.h"
+#import "DDHidAppleRemote.h"
+#import "DDHidAppleMikey.h"
 
 #define APPID_SAFARI            @"com.apple.Safari"
 #define APPID_CHROME            @"com.google.Chrome"
@@ -201,7 +202,9 @@ BOOL accessibilityApiEnabled = NO;
 - (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned)usageId upOrDown:(BOOL)upOrDown
 {
     if (upOrDown == TRUE) {
+#if DEBUG
         NSLog(@"Apple Mikey keypress detected: %d", usageId);
+#endif
         switch (usageId) {
             case kHIDUsage_GD_SystemMenu:
                 [self playerToggle];
@@ -213,10 +216,10 @@ BOOL accessibilityApiEnabled = NO;
                 [self playerPrevious];
                 break;
             case kHIDUsage_GD_SystemMenuUp:
-                [self pressKey:NX_KEYTYPE_SOUND_UP];
+//                [self pressKey:NX_KEYTYPE_SOUND_UP];
                 break;
             case kHIDUsage_GD_SystemMenuDown:
-                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+//                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
                 break;
             default:
                 NSLog(@"Unknown key press seen %d", usageId);
@@ -605,15 +608,39 @@ BOOL accessibilityApiEnabled = NO;
 {
     NSLog(@"Reset Mikeys");
     
-    if (mikeys != nil) {
-        [mikeys makeObjectsPerformSelector:@selector(stopListening) withObject:nil];
+    if (_mikeys != nil) {
+        @try {
+            [_mikeys makeObjectsPerformSelector:@selector(stopListening)];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Error when stopListenong on Apple Mic: %@", exception);
+        }
     }
-    mikeys = [DDHidAppleMikey allMikeys];
-    // we want to be the delegate of the mikeys
-    [mikeys makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
-    // start listening to all mikey events
-    [mikeys makeObjectsPerformSelector:@selector(setListenInExclusiveMode:) withObject:(id)kCFBooleanFalse];
-    [mikeys makeObjectsPerformSelector:@selector(startListening) withObject:nil];
+    @try {
+        NSArray *mikeys = [DDHidAppleMikey allMikeys];
+        _mikeys = [NSMutableArray arrayWithCapacity:mikeys.count];
+        for (DDHidAppleMikey *item in mikeys) {
+            
+            @try {
+                
+                [item setDelegate:self];
+                [item setListenInExclusiveMode:NO];
+                [item startListening];
+                
+                [_mikeys addObject:item];
+#if DEBUG
+                NSLog(@"Apple Mic added - %@", item);
+#endif
+            }
+            @catch (NSException *exception) {
+                
+                NSLog(@"Error when startListening on Apple Mic: %@, exception: %@", item, exception);
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error of the obtaining Apple Mic divices: %@", [exception description]);
+    }
 }
 
 
@@ -1239,40 +1266,49 @@ BOOL accessibilityApiEnabled = NO;
         if ([[NSUserDefaults standardUserDefaults]
                 boolForKey:BeardedSpiceUsingAppleRemote]) {
 
-            [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
-
-            _appleRemotes = [BSHidAppleRemote allRemotes];
-            for (BSHidAppleRemote *item in _appleRemotes) {
-
-                [item addMappingValue:kDDHidRemoteButtonVolume_Plus
-                               forKey:@"33_31_30_21_20_2_"];
-                [item addMappingValue:kDDHidRemoteButtonVolume_Minus
-                               forKey:@"33_32_30_21_20_2_"];
-                [item addMappingValue:kDDHidRemoteButtonRight
-                               forKey:@"33_24_21_20_2_33_24_21_20_2_"];
-                [item addMappingValue:kDDHidRemoteButtonLeft
-                               forKey:@"33_25_21_20_2_33_25_21_20_2_"];
-                [item addMappingValue:kDDHidRemoteButtonPlay
-                               forKey:@"33_21_20_3_2_33_21_20_3_2_"]; // center
-                                                                      // button
-                [item addMappingValue:kDDHidRemoteButtonMenu
-                               forKey:@"33_22_21_20_2_33_22_21_20_2_"];
-                [item addMappingValue:kDDHidRemoteButtonPlayPause
-                               forKey:@"33_21_20_8_2_33_21_20_8_2_"];
+            @try {
+                [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
             }
-            // we want to be the delegate of the mikeys
-            [_appleRemotes makeObjectsPerformSelector:@selector(setDelegate:)
-                                           withObject:self];
-            // start listening to all mikey events
-            [_appleRemotes
-                makeObjectsPerformSelector:@selector(setListenInExclusiveMode:)
-                                withObject:(id)kCFBooleanTrue];
+            @catch (NSException *exception) {
+                NSLog(@"Error when stopListenong on Apple Remotes: %@", exception);
+            }
 
-            [_appleRemotes
-                makeObjectsPerformSelector:@selector(startListening)];
+
+            @try {
+                
+                NSArray *appleRemotes = [DDHidAppleRemote allRemotes];
+                _appleRemotes = [NSMutableArray arrayWithCapacity:appleRemotes.count];
+                for (DDHidAppleRemote *item in appleRemotes) {
+                    
+                    @try {
+                        
+                        [item setDelegate:self];
+                        [item setListenInExclusiveMode:YES];
+                        [item startListening];
+                        
+                        [_appleRemotes addObject:item];
+#if DEBUG
+                        NSLog(@"Apple Remote added - %@", item);
+#endif
+                    }
+                    @catch (NSException *exception) {
+                        
+                        NSLog(@"Error when startListening on Apple Remote: %@, exception: %@", item, exception);
+                    }
+                }
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Error of the obtaining Apple Remotes divices: %@", [exception description]);
+            }
         } else {
 
-            [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+            @try {
+                [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Error when stopListenong on Apple Remotes: %@", exception);
+            }
+            _appleRemotes = nil;
         }
     }
 }

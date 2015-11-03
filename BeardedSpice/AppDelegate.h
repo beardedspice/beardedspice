@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import <DDHidLib/DDHidLib.h>
-
 #import "SPMediaKeyTap.h"
 
 #import "Chrome.h"
@@ -58,8 +56,8 @@ extern BOOL accessibilityApiEnabled;
     
     dispatch_queue_t notificationQueue;
     
-    NSArray *mikeys;
-    NSArray *_appleRemotes;
+    NSMutableArray *_mikeys;
+    NSMutableArray *_appleRemotes;
     BSHeadphoneUnplugListener *_hpuListener;
 }
 

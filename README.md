@@ -302,6 +302,9 @@ Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspic
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 
+# About pull requests
+Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods from modern API of the strategies please. PR with strategy that are not fully implemented for no reason will be rejected.
+
 [![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
 
 # Contact

@@ -113,6 +113,7 @@
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
+		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
 		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
 /* End PBXBuildFile section */
 
@@ -349,6 +350,8 @@
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
+		F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotNewHipHopStrategy.h; sourceTree = "<group>"; };
+		F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotNewHipHopStrategy.m; sourceTree = "<group>"; };
 		F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JangoMediaStrategy.h; sourceTree = "<group>"; };
 		F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JangoMediaStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -447,6 +450,8 @@
 				031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
 				03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */,
 				03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
+				F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */,
+				F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */,
 				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
 				639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */,
@@ -863,6 +868,7 @@
 				C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */,
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
 				65163CA71BE60D5A000A3575 /* DDHidAppleRemote.m in Sources */,
+				F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,

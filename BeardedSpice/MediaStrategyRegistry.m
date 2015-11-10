@@ -62,6 +62,8 @@
 #import "NRKStrategy.h"
 #import "UdemyStrategy.h"
 #import "HotNewHipHopStrategy.h"
+#import "JangoMediaStrategy.h"
+
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -224,7 +226,8 @@
                         [ComposedStrategy new],
                         [NRKStrategy new],
                         [UdemyStrategy new],
-                        [HotNewHipHopStrategy new]
+                        [HotNewHipHopStrategy new],
+                        [JangoMediaStrategy new]
                     ];
     });
     return strategies;

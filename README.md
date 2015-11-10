@@ -67,7 +67,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [focus@will](https://www.focusatwill.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
-- [HotNewHipHop Mixtape] (http://www.hotnewhiphop.com/mixtapes/)
+- [HotNewHipHop Mixtapes] (http://www.hotnewhiphop.com/mixtapes/)
 - [HypeMachine](http://hypem.com)
 - [IndieShuffle](http://www.indieshuffle.com)
 - [Jango](http://jango.com)

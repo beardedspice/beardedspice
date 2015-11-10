@@ -56,6 +56,29 @@
     return @"(function(){$(\".jp-previous\").click();})()";
 }
 
+- (Track *)trackInfo:(TabAdapter *)tab {
+    
+    NSDictionary *info = [tab
+                          executeJavascript:@"(function(){\
+                          return {\
+                          'track': $('.jp-playlist-current .mixtape-trackTitle .display')[0].innerText,\
+                          'album': $('.mixtape-info-title')[0].innerText,\
+                          'artist': $('.mixtape-info-artist')[0].innerText,\
+                          'albumArt': $('.mixtape-cover-img img')[0].getAttribute('src')\
+                          };\
+                          })()"];
+    
+    Track *track = [Track new];
+    
+    track.track  = info[@"track"];
+    
+    track.artist = [info[@"artist"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    track.album  = [info[@"album"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    track.image  = [self imageByUrlString:info[@"albumArt"]];
+    
+    return track;
+}
+
 -(NSString *) displayName
 {
     return @"HotNewHipHop";

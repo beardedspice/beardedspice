@@ -24,19 +24,16 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab{
+    
+    NSNumber *result = [tab executeJavascript:@"(function(){return ( (document.querySelector('#stopBtn:not(.ng-hide)') ? true : false));})();"];
+    
+    return [result boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){(document.querySelector('#playBtn:not(.ng-hide)')||document.querySelector('#stopBtn:not(.ng-hide)')).click()})()";
-}
-
--(NSString *) previous
-{
-    return @"";
-}
-
--(NSString *) next
-{
-    return @"";
 }
 
 -(NSString *) pause

@@ -25,11 +25,6 @@
 #import "DDHidAppleRemote.h"
 #import "DDHidAppleMikey.h"
 
-#define APPID_SAFARI            @"com.apple.Safari"
-#define APPID_CHROME            @"com.google.Chrome"
-#define APPID_CANARY            @"com.google.Chrome.canary"
-#define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
-#define APPID_CHROMIUM          @"org.chromium.Chromium"
 
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]

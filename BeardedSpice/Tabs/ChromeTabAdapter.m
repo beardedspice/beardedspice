@@ -13,6 +13,8 @@
 #define MULTI                   2 //Chrome feature for window indexing
 #define WAIT_FRONTMOST_DELAY    0.2
 
+#define HACK_NAME            @"X_BeardedSpice_Chrome_ApplescriptHack"
+
 @implementation ChromeTabAdapter
 
 +(id) initWithApplication:(runningSBApplication *)application andWindow:(ChromeWindow *)window andTab:(ChromeTab *)tab
@@ -21,11 +23,39 @@
     [out setTab:[tab get]];
     [out setWindow:[window get]];
     out.application = application;
+    
+    // workaround for >= 46 version of the Google Chrome
+    // https://github.com/beardedspice/beardedspice/issues/257
+    out.applescriptIsolatedVersion = NO;
+    NSInteger version = [[(ChromeApplication *)application.sbApplication version] integerValue];
+    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM];
+    if (version > 45 && [googleBundleIds containsObject:application.bundleIdentifier]){
+        out.applescriptIsolatedVersion = YES;
+    }
+
+        
     return out;
 }
 
 -(id) executeJavascript:(NSString *) javascript
 {
+    if (_applescriptIsolatedVersion) {
+        // workaround for >= 46 version of the Google Chrome
+        // https://github.com/beardedspice/beardedspice/issues/257
+        
+        //Add the hack element
+        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){id='" HACK_NAME @"';if (document.getElementById(id) === null){node = document.createElement('pre');node.id = id;node.hidden = true; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", javascript];
+        //Get the result from the hack element
+        
+        [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];
+        
+        NSDictionary *result = [self.tab executeJavascript:@"JSON.parse(document.getElementById('" HACK_NAME @"').innerText)"];
+        
+        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"').remove()"];
+        
+        return result[@"hackResult"];
+    }
+    
     return [self.tab executeJavascript:javascript];
 }
 

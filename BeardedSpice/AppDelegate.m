@@ -489,7 +489,7 @@ BOOL accessibilityApiEnabled = NO;
 
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
+        if (strategy && ![NSString isNullOrEmpty:[strategy toggle]]) {
             [activeTab executeJavascript:[strategy toggle]];
             if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                 [self showNotification];
@@ -520,7 +520,7 @@ BOOL accessibilityApiEnabled = NO;
 
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
+        if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
             [activeTab executeJavascript:[strategy next]];
             dispatch_after(
                 dispatch_time(DISPATCH_TIME_NOW,
@@ -557,7 +557,7 @@ BOOL accessibilityApiEnabled = NO;
 
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
+        if (strategy && ![NSString isNullOrEmpty:[strategy previous]]) {
             [activeTab executeJavascript:[strategy previous]];
             dispatch_after(
                 dispatch_time(DISPATCH_TIME_NOW,

@@ -26,7 +26,7 @@
 
 -(BOOL)isPlaying:(TabAdapter *)tab
 {
-    NSNumber *val = [tab executeJavascript:@"(function(){ return !document.querySelector('#movie_player video'.paused); })()"];
+    NSNumber *val = [tab executeJavascript:@"(function(){ return !document.querySelector('#movie_player video').paused; })()"];
     return [val boolValue];
 }
 

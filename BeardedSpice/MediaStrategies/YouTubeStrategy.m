@@ -26,22 +26,22 @@
 
 -(NSString *) toggle
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){var n=t[e];if(n.getPlayerState()==1){n.pauseVideo()}else{n.playVideo()}}})()";
+    return @"(function(){ document.querySelector('#movie_player .ytp-play-button').click(); })()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].previousVideo()}})()";
+    return @"(function(){ document.querySelector('#movie_player .ytp-prev-button').click(); })()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].nextVideo()}})()";
+    return @"(function(){ document.querySelector('#movie_player .ytp-next-button').click(); })()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){var n=t[e];n.pauseVideo()}})()";
+    return @"(function(){ document.querySelector('#movie_player video').pause(); })()";
 }
 
 -(NSString *) displayName

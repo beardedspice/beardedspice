@@ -9,6 +9,8 @@
 #import "TabAdapter.h"
 #import "Safari.h"
 
+#define APPID_SAFARI            @"com.apple.Safari"
+
 @class runningSBApplication;
 
 @interface SafariTabAdapter : TabAdapter{

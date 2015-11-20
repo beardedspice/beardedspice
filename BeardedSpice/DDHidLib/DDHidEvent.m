@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007 Dave Dribin, Lucas Newman
+ * Copyright (c) 2007 Dave Dribin
  * 
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -22,53 +22,60 @@
  * SOFTWARE.
  */
 
-#import <Cocoa/Cocoa.h>
-#import "DDHidDevice.h"
+#import "DDHidEvent.h"
 
-@class DDHidElement;
-@class DDHidQueue;
 
-@interface DDHidKeyboardBarcodeScanner : DDHidDevice
+@implementation DDHidEvent
+
++ (DDHidEvent *) eventWithIOHIDEvent: (IOHIDEventStruct *) event;
 {
-    NSMutableArray * mKeyElements;
-    
-    NSMutableString * mAccumulatedDigits;
-    NSTimer *mBarcodeInputTimer;
-    BOOL mIsLikelyKeyboardBarcodeScanner;
-    
-    id mDelegate;
+    return [[[self alloc] initWithIOHIDEvent: event] autorelease];
 }
 
-+ (NSArray *) allPossibleKeyboardBarcodeScanners;
+- (id) initWithIOHIDEvent: (IOHIDEventStruct *) event;
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    
+    mEvent = *event;
+    
+    return self;
+}
 
-- (id) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (IOHIDElementType) type;
+{
+    return mEvent.type;
+}
 
-#pragma mark -
-#pragma mark Keyboard Elements
+- (IOHIDElementCookie) elementCookie;
+{
+    return mEvent.elementCookie;
+}
 
-- (NSArray *) keyElements;
+- (unsigned) elementCookieAsUnsigned;
+{
+    return (unsigned) mEvent.elementCookie;
+}
 
-- (NSUInteger) numberOfKeys;
+- (SInt32) value;
+{
+    return mEvent.value;
+}
 
-- (void) addElementsToQueue: (DDHidQueue *) queue;
+- (AbsoluteTime) timestamp;
+{
+    return mEvent.timestamp;
+}
 
-#pragma mark -
-#pragma mark Asynchronous Notification
+- (UInt32) longValueSize;
+{
+    return mEvent.longValueSize;
+}
 
-- (void) setDelegate: (id) delegate;
-
-- (void) addElementsToDefaultQueue;
-
-#pragma mark -
-#pragma mark Properties
-
-- (BOOL) isLikelyKeyboardBarcodeScanner;
-
-@end
-
-@interface NSObject (DDHidKeyboardBarcodeScannerDelegate)
-
-- (void) ddhidKeyboardBarcodeScanner: (DDHidKeyboardBarcodeScanner *) keyboardBarcodeScanner
-                          gotBarcode: (NSString *) barcode;
+- (void *) longValue;
+{
+    return mEvent.longValue;
+}
 
 @end

@@ -28,7 +28,7 @@
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
-		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; settings = {ASSET_TAGS = (); }; };
+		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
@@ -51,6 +51,16 @@
 		50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */; };
+		65163CA61BE60D5A000A3575 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163C9F1BE60D5A000A3575 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CA71BE60D5A000A3575 /* DDHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CA11BE60D5A000A3575 /* DDHidAppleRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CA81BE60D5A000A3575 /* DDHidDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CA31BE60D5A000A3575 /* DDHidDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CA91BE60D5A000A3575 /* DDHidElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CA51BE60D5A000A3575 /* DDHidElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CAE1BE60D9C000A3575 /* DDHidUsage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CAB1BE60D9C000A3575 /* DDHidUsage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CAF1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CAD1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CB21BE60DB8000A3575 /* DDHidQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CB11BE60DB8000A3575 /* DDHidQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CB51BE60DD9000A3575 /* DDHidEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CB41BE60DD9000A3575 /* DDHidEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CB91BE61704000A3575 /* NSXReturnThrowError.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CB81BE61704000A3575 /* NSXReturnThrowError.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65163CBC1BE61759000A3575 /* DDHidUsageTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CBB1BE61759000A3575 /* DDHidUsageTables.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
@@ -58,13 +68,9 @@
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		6537DAB01AF75CA4002F2391 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
-		6564BDAD1B74B81E007030D8 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; };
-		6564BDAE1B74BF9C007030D8 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; };
-		6564BDAF1B74BF9C007030D8 /* DDHidLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6564BDAC1B74B81E007030D8 /* DDHidLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
-		65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
@@ -107,6 +113,8 @@
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
+		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
+		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +134,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6564BDAF1B74BF9C007030D8 /* DDHidLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,8 +180,8 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UdemyStrategy.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
-		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UdemyStrategy.m; path = UdemyStrategy.m; sourceTree = "<group>"; };
+		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
+		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
 		1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
@@ -217,6 +224,26 @@
 		523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeatsMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndieShuffleStrategy.h; sourceTree = "<group>"; };
 		639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndieShuffleStrategy.m; sourceTree = "<group>"; };
+		65163C9E1BE60D5A000A3575 /* DDHidAppleMikey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleMikey.h; sourceTree = "<group>"; };
+		65163C9F1BE60D5A000A3575 /* DDHidAppleMikey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleMikey.m; sourceTree = "<group>"; };
+		65163CA01BE60D5A000A3575 /* DDHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleRemote.h; sourceTree = "<group>"; };
+		65163CA11BE60D5A000A3575 /* DDHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleRemote.m; sourceTree = "<group>"; };
+		65163CA21BE60D5A000A3575 /* DDHidDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidDevice.h; sourceTree = "<group>"; };
+		65163CA31BE60D5A000A3575 /* DDHidDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidDevice.m; sourceTree = "<group>"; };
+		65163CA41BE60D5A000A3575 /* DDHidElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidElement.h; sourceTree = "<group>"; };
+		65163CA51BE60D5A000A3575 /* DDHidElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidElement.m; sourceTree = "<group>"; };
+		65163CAA1BE60D9C000A3575 /* DDHidUsage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidUsage.h; sourceTree = "<group>"; };
+		65163CAB1BE60D9C000A3575 /* DDHidUsage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidUsage.m; sourceTree = "<group>"; };
+		65163CAC1BE60D9C000A3575 /* NSDictionary+DDHidExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DDHidExtras.h"; sourceTree = "<group>"; };
+		65163CAD1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DDHidExtras.m"; sourceTree = "<group>"; };
+		65163CB01BE60DB8000A3575 /* DDHidQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidQueue.h; sourceTree = "<group>"; };
+		65163CB11BE60DB8000A3575 /* DDHidQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidQueue.m; sourceTree = "<group>"; };
+		65163CB31BE60DD9000A3575 /* DDHidEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidEvent.h; sourceTree = "<group>"; };
+		65163CB41BE60DD9000A3575 /* DDHidEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidEvent.m; sourceTree = "<group>"; };
+		65163CB71BE61704000A3575 /* NSXReturnThrowError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXReturnThrowError.h; sourceTree = "<group>"; };
+		65163CB81BE61704000A3575 /* NSXReturnThrowError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXReturnThrowError.m; sourceTree = "<group>"; };
+		65163CBA1BE61759000A3575 /* DDHidUsageTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidUsageTables.h; sourceTree = "<group>"; };
+		65163CBB1BE61759000A3575 /* DDHidUsageTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidUsageTables.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -230,7 +257,6 @@
 		6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
-		6564BDAC1B74B81E007030D8 /* DDHidLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDHidLib.framework; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		65837A521AAE5DE2004CD62F /* mediaResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mediaResources; sourceTree = "<group>"; };
@@ -239,8 +265,6 @@
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
 		658B6A261AA66CCD00753DD9 /* TidalHiFiStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalHiFiStrategy.h; sourceTree = "<group>"; };
 		658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TidalHiFiStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHidAppleRemote.h; sourceTree = "<group>"; };
-		65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHidAppleRemote.m; sourceTree = "<group>"; };
 		65B32B8C1AD99D1600F696B9 /* TabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAdapter.h; sourceTree = "<group>"; };
 		65B32B8D1AD99D1600F696B9 /* TabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabAdapter.m; sourceTree = "<group>"; };
 		65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTabAdapter.m; sourceTree = "<group>"; };
@@ -326,6 +350,10 @@
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
+		F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotNewHipHopStrategy.h; sourceTree = "<group>"; };
+		F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotNewHipHopStrategy.m; sourceTree = "<group>"; };
+		F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JangoMediaStrategy.h; sourceTree = "<group>"; };
+		F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JangoMediaStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,10 +363,8 @@
 			files = (
 				65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */,
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
-				6564BDAD1B74B81E007030D8 /* DDHidLib.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
-				6564BDAE1B74BF9C007030D8 /* DDHidLib.framework in Frameworks */,
 				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +450,8 @@
 				031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */,
 				03A3492D185EE82700C4A62B /* GrooveSharkStrategy.h */,
 				03A3492E185EE82700C4A62B /* GrooveSharkStrategy.m */,
+				F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */,
+				F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */,
 				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
 				639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */,
@@ -492,6 +520,8 @@
 				8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */,
 				B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */,
 				B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */,
+				F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */,
+				F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */,
 				BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */,
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
@@ -526,6 +556,33 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		65163C9D1BE60C71000A3575 /* DDHidLib */ = {
+			isa = PBXGroup;
+			children = (
+				65163C9E1BE60D5A000A3575 /* DDHidAppleMikey.h */,
+				65163C9F1BE60D5A000A3575 /* DDHidAppleMikey.m */,
+				65163CA01BE60D5A000A3575 /* DDHidAppleRemote.h */,
+				65163CA11BE60D5A000A3575 /* DDHidAppleRemote.m */,
+				65163CB01BE60DB8000A3575 /* DDHidQueue.h */,
+				65163CB11BE60DB8000A3575 /* DDHidQueue.m */,
+				65163CAA1BE60D9C000A3575 /* DDHidUsage.h */,
+				65163CAB1BE60D9C000A3575 /* DDHidUsage.m */,
+				65163CBA1BE61759000A3575 /* DDHidUsageTables.h */,
+				65163CBB1BE61759000A3575 /* DDHidUsageTables.m */,
+				65163CAC1BE60D9C000A3575 /* NSDictionary+DDHidExtras.h */,
+				65163CAD1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m */,
+				65163CA21BE60D5A000A3575 /* DDHidDevice.h */,
+				65163CA31BE60D5A000A3575 /* DDHidDevice.m */,
+				65163CA41BE60D5A000A3575 /* DDHidElement.h */,
+				65163CA51BE60D5A000A3575 /* DDHidElement.m */,
+				65163CB31BE60DD9000A3575 /* DDHidEvent.h */,
+				65163CB41BE60DD9000A3575 /* DDHidEvent.m */,
+				65163CB71BE61704000A3575 /* NSXReturnThrowError.h */,
+				65163CB81BE61704000A3575 /* NSXReturnThrowError.m */,
+			);
+			path = DDHidLib;
+			sourceTree = "<group>";
+		};
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
@@ -551,7 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				65E567071B76104300AD2D46 /* CoreAudio.framework */,
-				6564BDAC1B74B81E007030D8 /* DDHidLib.framework */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
 				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
@@ -575,6 +631,7 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
+				65163C9D1BE60C71000A3575 /* DDHidLib */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				03A34919185E9FC700C4A62B /* MediaStrategies */,
@@ -595,8 +652,6 @@
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
 				65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */,
 				65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */,
-				65AE08201B8E6EA100F15BE0 /* BSHidAppleRemote.h */,
-				65AE08211B8E6EA100F15BE0 /* BSHidAppleRemote.m */,
 				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
 				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
 				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
@@ -689,7 +744,7 @@
 		967933241855173100A49AC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = BeardedSpice;
 				TargetAttributes = {
 					9679334C1855173100A49AC7 = {
@@ -812,6 +867,8 @@
 				963E89BB18BB05F400FE0DBB /* MusicUnlimitedStrategy.m in Sources */,
 				C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */,
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
+				65163CA71BE60D5A000A3575 /* DDHidAppleRemote.m in Sources */,
+				F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
@@ -822,22 +879,28 @@
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
-				65AE08221B8E6EA100F15BE0 /* BSHidAppleRemote.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
 				508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */,
+				F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */,
+				65163CB91BE61704000A3575 /* NSXReturnThrowError.m in Sources */,
 				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,
 				3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
+				65163CBC1BE61759000A3575 /* DDHidUsageTables.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
 				4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */,
 				639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */,
 				500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */,
 				D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */,
+				65163CB21BE60DB8000A3575 /* DDHidQueue.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
 				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,
 				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
+				65163CA91BE60D5A000A3575 /* DDHidElement.m in Sources */,
+				65163CA81BE60D5A000A3575 /* DDHidDevice.m in Sources */,
 				503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */,
+				65163CAF1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m in Sources */,
 				65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
@@ -853,15 +916,18 @@
 				963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */,
 				03A3492C185EE73700C4A62B /* BandCampStrategy.m in Sources */,
 				7577DA481B6978C70078B19D /* CourseraStrategy.m in Sources */,
+				65163CA61BE60D5A000A3575 /* DDHidAppleMikey.m in Sources */,
 				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
+				65163CB51BE60DD9000A3575 /* DDHidEvent.m in Sources */,
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */,
+				65163CAE1BE60D9C000A3575 /* DDHidUsage.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
 				9A699C4A188B051000BB647E /* SongzaStrategy.m in Sources */,
@@ -939,6 +1005,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1007,6 +1074,7 @@
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1028,6 +1096,7 @@
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1049,6 +1118,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1067,6 +1137,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -50,4 +50,23 @@
     return @"PocketCasts";
 }
 
+- (Track *)trackInfo:(TabAdapter *)tab {
+    NSDictionary *song = [tab executeJavascript:@"(function(){ return { \
+                          'track': document.querySelector('div.player_top div.player_episode').innerHTML, \
+                          'album': document.querySelector('div.player_top div.player_podcast_title').innerHTML, \
+                          'artist': '', \
+                          'image': document.querySelector('div.player_top div.player_artwork img').src, \
+                          'favorited': ''}; \
+                          })()"];
+    
+    Track *track = [[Track alloc] init];
+    track.track = [song objectForKey:@"track"];
+    track.album = [song objectForKey:@"album"];
+    track.artist = [song objectForKey:@"artist"];
+    track.favorited = song[@"favorited"];
+    track.image = [self imageByUrlString:song[@"image"]];
+    
+    return track;
+}
+
 @end

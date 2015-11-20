@@ -24,29 +24,50 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+-(BOOL)isPlaying:(TabAdapter *)tab
+{
+    NSNumber *val = [tab executeJavascript:@"(function(){ return !document.querySelector('#movie_player video').paused; })()"];
+    return [val boolValue];
+}
+
 -(NSString *) toggle
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){var n=t[e];if(n.getPlayerState()==1){n.pauseVideo()}else{n.playVideo()}}})()";
+    return @"(function(){ document.querySelector('#movie_player .ytp-play-button').click(); })()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].previousVideo()}})()";
+    return @"(function(){ document.querySelector('#movie_player .ytp-prev-button').click(); })()";
 }
 
 -(NSString *) next
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){t[e].nextVideo()}})()";
+    return @"(function(){ document.querySelector('#movie_player .ytp-next-button').click(); })()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){var e=0,t=document.querySelectorAll('#movie_player');for(e=0;e<t.length;e++){var n=t[e];n.pauseVideo()}})()";
+    return @"(function(){ document.querySelector('#movie_player video').pause(); })()";
 }
 
 -(NSString *) displayName
 {
     return @"YouTube";
+}
+
+-(Track *)trackInfo:(TabAdapter *)tab
+{
+    Track *track = [[Track alloc] init];
+
+    NSDictionary *metadata = [tab executeJavascript:@"(function(){ return {"
+                              @"  image:  document.querySelector('link[itemprop=thumbnailUrl]').getAttribute('href'),"
+                              @"  track:  document.querySelector('meta[itemprop=name]').getAttribute('content'),"
+                              @"  artist: document.querySelector('.yt-user-info').innerText,"
+                              @"}})()"];
+    track.track = [metadata valueForKey:@"track"];
+    track.image = [self imageByUrlString:[metadata valueForKey:@"image"]];
+    track.artist = [metadata valueForKey:@"artist"];
+    return track;
 }
 
 @end

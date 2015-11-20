@@ -55,4 +55,19 @@
     return @"YouTube";
 }
 
+-(Track *)trackInfo:(TabAdapter *)tab
+{
+    Track *track = [[Track alloc] init];
+
+    NSDictionary *metadata = [tab executeJavascript:@"(function(){ return {"
+                              @"  image:  document.querySelector('link[itemprop=thumbnailUrl]').getAttribute('href'),"
+                              @"  track:  document.querySelector('meta[itemprop=name]').getAttribute('content'),"
+                              @"  artist: document.querySelector('.yt-user-info').innerText,"
+                              @"}})()"];
+    track.track = [metadata valueForKey:@"track"];
+    track.image = [self imageByUrlString:[metadata valueForKey:@"image"]];
+    track.artist = [metadata valueForKey:@"artist"];
+    return track;
+}
+
 @end

@@ -48,7 +48,7 @@
 		504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */; };
 		508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 508196B11AE8F58B007B5493 /* KollektFmStrategy.m */; };
 		50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */; };
-		50A671161BFC4C8800200052 /* RhapsodyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A671151BFC4C8800200052 /* RhapsodyStrategy.m */; settings = {ASSET_TAGS = (); }; };
+		50A671161BFC4C8800200052 /* RhapsodyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A671151BFC4C8800200052 /* RhapsodyStrategy.m */; };
 		50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */; };

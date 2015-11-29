@@ -68,19 +68,7 @@
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
-    NSDictionary *info = [tab executeJavascript:@"(function(){return { \
-                          function titleize(slug) { \
-                            var words = slug.split('-'); \
-                            return words.map(function(word) { \
-                                return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase(); \
-                            }).join(' '); \
-                          }\
-                          return {\
-                            'track': $('.player-track a')[0].innerText,\
-                            'artist': $('.player-artist a')[0].innerText,\
-                            'album': titleize($('.player-wrapper a').attr('href').split('album/')[1]), \
-                            'image': $('.player-album-thumbnail img')[0].src};}\
-                          })()"];
+    NSDictionary *info = [tab executeJavascript:@"(function(){function titleize(slug) {var words = slug.split('-');return words.map(function(word) {return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();}).join(' ');} return {'track': $('.player-track a')[0].innerText,'artist': ($('.player-artist a')[0].innerHTML).split('- ').slice(1).join('- ').trim(),'album': titleize($('.player-wrapper a').attr('href').split('album/')[1]), 'image': $('.player-album-thumbnail img')[0].src};})()"];
     
     Track *track = [[Track alloc] init];
     track.track = info[@"track"];

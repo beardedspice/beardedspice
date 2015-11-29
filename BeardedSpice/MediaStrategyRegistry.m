@@ -63,7 +63,7 @@
 #import "UdemyStrategy.h"
 #import "HotNewHipHopStrategy.h"
 #import "JangoMediaStrategy.h"
-
+#import "RhapsodyStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -207,6 +207,7 @@
                        [PlexWebStrategy new],
                        [PocketCastsStrategy new],
                        [RdioStrategy new],
+                       [RhapsodyStrategy new],
                        [SaavnStrategy new],
                        [ShufflerFmStrategy new],
                        [SlackerStrategy new],

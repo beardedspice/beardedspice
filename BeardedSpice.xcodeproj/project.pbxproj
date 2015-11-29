@@ -48,6 +48,7 @@
 		504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B426C1AF00C2E00654297 /* OdnoklassnikiStrategy.m */; };
 		508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 508196B11AE8F58B007B5493 /* KollektFmStrategy.m */; };
 		50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */; };
+		50A671161BFC4C8800200052 /* RhapsodyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A671151BFC4C8800200052 /* RhapsodyStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		50BE2EF31B6A34F800E43251 /* BlitzrStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */; };
 		523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 523F839E189747DF007F2FFD /* BeatsMusicStrategy.m */; };
 		639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */; };
@@ -113,8 +114,8 @@
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
-		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
 		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
+		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +219,8 @@
 		508196B11AE8F58B007B5493 /* KollektFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KollektFmStrategy.m; sourceTree = "<group>"; };
 		50931CA41AEB97B400A38B8E /* WonderFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderFmStrategy.h; sourceTree = "<group>"; };
 		50931CA51AEB97B400A38B8E /* WonderFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderFmStrategy.m; sourceTree = "<group>"; };
+		50A671151BFC4C8800200052 /* RhapsodyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RhapsodyStrategy.m; sourceTree = "<group>"; };
+		50A671171BFC4CC600200052 /* RhapsodyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RhapsodyStrategy.h; sourceTree = "<group>"; };
 		50BE2EF11B6A34F800E43251 /* BlitzrStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzrStrategy.h; sourceTree = "<group>"; };
 		50BE2EF21B6A34F800E43251 /* BlitzrStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzrStrategy.m; sourceTree = "<group>"; };
 		523F839D189747DF007F2FFD /* BeatsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsMusicStrategy.h; sourceTree = "<group>"; };
@@ -350,10 +353,10 @@
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
-		F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotNewHipHopStrategy.h; sourceTree = "<group>"; };
-		F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotNewHipHopStrategy.m; sourceTree = "<group>"; };
 		F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JangoMediaStrategy.h; sourceTree = "<group>"; };
 		F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JangoMediaStrategy.m; sourceTree = "<group>"; };
+		F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotNewHipHopStrategy.h; sourceTree = "<group>"; };
+		F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotNewHipHopStrategy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,6 +417,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				50A671151BFC4C8800200052 /* RhapsodyStrategy.m */,
+				50A671171BFC4CC600200052 /* RhapsodyStrategy.h */,
 				163515521BC07513004D4A3E /* UdemyStrategy.h */,
 				163515531BC07513004D4A3E /* UdemyStrategy.m */,
 				BB81E6301B8B3AA000F764EB /* NRKStrategy.m */,
@@ -883,6 +888,7 @@
 				508196B21AE8F58B007B5493 /* KollektFmStrategy.m in Sources */,
 				F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */,
 				65163CB91BE61704000A3575 /* NSXReturnThrowError.m in Sources */,
+				50A671161BFC4C8800200052 /* RhapsodyStrategy.m in Sources */,
 				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,
 				3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,

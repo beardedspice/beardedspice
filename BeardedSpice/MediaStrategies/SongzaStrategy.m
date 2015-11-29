@@ -24,6 +24,13 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab {
+
+    NSNumber *value = [tab executeJavascript:@"(function(){return document.querySelector('.player-wrapper').classList.contains('player-state-play');}())"];
+
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){document.querySelector('.miniplayer-control-play-pause').click()})()";
@@ -46,6 +53,7 @@
 
 - (NSString *)favorite
 {
+    // favorites the playlist (not the track)
     return @"(function(){document.querySelector('.miniplayer-info-playlist-favorite-status').click()})()";
 }
 
@@ -54,4 +62,17 @@
     return @"Songza";
 }
 
+-(Track *) trackInfo:(TabAdapter *)tab
+{
+    NSDictionary *info = [tab executeJavascript:@"(function(){var track=document.querySelector('.miniplayer-info-track-title > a').getAttribute('title'), artist=document.querySelector('.miniplayer-info-artist-name > a').getAttribute('title'), albumArt=document.querySelector('.miniplayer-album-art').getAttribute('src'); return {'track': track, 'artist': artist, 'albumArt': albumArt}})()"];
+
+    Track *track = [[Track alloc] init];
+
+    track.track = info[@"track"];
+    track.artist = info[@"artist"];
+    track.image = [self imageByUrlString:info[@"albumArt"]];
+    // no persistent track favorite state available
+
+    return track;
+}
 @end

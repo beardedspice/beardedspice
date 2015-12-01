@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*amazon.com/gp/dmusic/cloudplayer/*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*amazon.*/gp/dmusic/cloudplayer/*'"];
     }
     return self;
 }
@@ -24,9 +24,21 @@
     return [predicate evaluateWithObject:[tab URL]];
 }
 
+- (BOOL)isPlaying:(TabAdapter *)tab {
+
+    NSNumber *value = [tab executeJavascript:@"(function(){return window.amznMusic.widgets.player.isPlaying();}())"];
+
+    return [value boolValue];
+}
+
 -(NSString *) toggle
 {
     return @"(function(){return window.amznMusic.widgets.player.playHash('togglePlay')})()";
+}
+
+-(NSString *) pause
+{
+    return @"(function(){window.amznMusic.widgets.player.pause();})()";
 }
 
 -(NSString *) previous
@@ -53,6 +65,7 @@
     track.track = [metadata objectForKey:@"title"];
     track.album = [metadata objectForKey:@"albumName"];
     track.artist = [metadata objectForKey:@"artistName"];
+    track.image = [self imageByUrlString:[metadata objectForKey:@"albumCoverImageSmall"]];
 
     return track;
 }

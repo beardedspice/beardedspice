@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  TidalHiFi.plist
+//  BeardedSpice
+//
+//  Created by Roman Sokolov on 04.03.15.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>TidalHiFi</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*listen.tidal.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){
+        var player = require('media/playbackController');
+        return player.isPlaying();
+    })()</string>
+
+    <key>toggle</key>
+    <string>(function(){
+        var player = require('media/playbackController');
+        if (player.isPlaying()) { player.pause(); }
+        else { player.resume(); }
+    })();</string>
+
+    <key>previous</key>
+    <string>(function(){require('media/playbackController').playPrevious();})();</string>
+
+    <key>next</key>
+    <string>(function(){require('media/playbackController').playNext();})();</string>
+
+    <key>pause</key>
+    <string>(function(){require('media/playbackController').pause();})();</string>
+
+    <key>favorite</key>
+    <string>(function(){
+        var obj = require('media/playbackController').getCurrentTrack();
+        var event = {'isFavorited':(obj.get('favoriteDate') === undefined), 'data': obj, 'type':'track'}; require('controllers/favorites').favoriteEventHandler(event);
+    })()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        var obj = require('media/playbackController').getCurrentTrack().attributes;
+        return {
+            'track':obj.title,
+            'artist':obj.artist.name,
+            'album':obj.album.title,
+            'image':$('div.player div.image--player img[data-bind-src="imageUrl"]').attr('src'),
+            'favorited':(obj.favoriteDate !== undefined)};
+        })()</string>
+</dict>
+</plist>

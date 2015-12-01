@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  KollektFm.plist
+//  BeardedSpice
+//
+//  Created by Wiert Omta on 23/1/2015.
+//  Copyright (c) 2015 Wiert Omta. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Kollekt.FM</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*kollekt.fm*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>($( "i[ng-click='playPause()']" ).click())</string>
+
+    <key>previous</key>
+    <string>($( "i[ng-click='previous()']" ).click())</string>
+
+    <key>next</key>
+    <string>($( "i[ng-click='next()']" ).click())</string>
+
+    <key>pause</key>
+    <string>($( ".fa-pause" ).click())</string>
+
+    <key>favorite</key>
+    <string>($( "i[ng-click='favoriteTrack(activeTrack())']" ).click())</string>
+</dict>
+</plist>

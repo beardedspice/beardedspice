@@ -7,6 +7,7 @@
 //
 
 #import "TabAdapter.h"
+#import "BSTrack.h"
 #import "NSString+Utils.h"
 #import "runningSBApplication.h"
 

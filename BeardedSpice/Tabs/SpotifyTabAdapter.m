@@ -8,8 +8,9 @@
 
 #import "SpotifyTabAdapter.h"
 #import "runningSBApplication.h"
+#import "BSTrack.h"
 #import "NSString+Utils.h"
-#import "MediaStrategy.h"
+#import "BSMediaStrategy.h"
 #import "NSURL+Utils.h"
 
 #define APPID_SPOTIFY           @"com.spotify.client"
@@ -117,13 +118,13 @@ static NSImage *_lastTrackImage;
 
 }
 
-- (Track *)trackInfo{
+- (BSTrack *)trackInfo{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         
         SpotifyTrack *iTrack = [Spotify currentTrack];
-        Track *track = [Track new];
+        BSTrack *track = [BSTrack new];
         
         track.track = iTrack.name;
         track.album = iTrack.album;

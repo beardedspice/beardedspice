@@ -8,8 +8,9 @@
 
 #import "iTunesTabAdapter.h"
 #import "runningSBApplication.h"
+#import "BSMediaStrategy.h"
+#import "BSTrack.h"
 #import "NSString+Utils.h"
-#import "MediaStrategy.h"
 
 #define ERROR_TRACE                         NSLog(@"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
 
@@ -143,14 +144,14 @@
     
 }
 
-- (Track *)trackInfo{
+- (BSTrack *)trackInfo{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         
         iTunesTrack *iTrack = [[iTunes currentTrack] get];
         if (iTrack) {
-            Track *track = [Track new];
+            BSTrack *track = [BSTrack new];
             
             track.track = iTrack.name;
             track.album = iTrack.album;

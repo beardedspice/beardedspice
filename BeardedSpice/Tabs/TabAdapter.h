@@ -6,12 +6,10 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @class runningSBApplication;
 
 @interface TabAdapter : NSObject{
-    
+
     BOOL _wasActivated;
 }
 

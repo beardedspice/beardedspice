@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Odnoklassniki.plist
+//  BeardedSpice
+//
+//  Created by Alexander Chuprin on 2/16/2015.
+//  Copyright (c) 2015 Alexander Chuprin. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Odnoklassniki</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*ok.ru*' OR SELF LIKE[c] '*odnoklassniki.ru*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>(function(){if (odklMusic.playingTrack() == \"\") {if (window['__getMusicFlash']) {__getMusicFlash().lcResume()} else {odklMusic.openAndLaunchMusicPlaying();}} else {__getMusicFlash().lcPause();}})()</string>
+
+    <key>previous</key>
+    <string>__getMusicFlash().lcPrev()</string>
+
+    <key>next</key>
+    <string>__getMusicFlash().lcNext()</string>
+
+    <key>pause</key>
+    <string>__getMusicFlash().lcPause();</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function() {
+        return {
+            'track': document.querySelector('#mmpcw .mus_player_song').firstChild.nodeValue,
+            'artist': document.querySelector('#mmpcw .mus_player_artist').firstChild.nodeValue
+        };
+    })()</string>
+</dict>
+</plist>

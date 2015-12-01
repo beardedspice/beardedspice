@@ -7,73 +7,8 @@
 //
 
 #import "MediaStrategyRegistry.h"
-#import "LogitechMediaServerStrategy.h"
-#import "YouTubeStrategy.h"
-#import "PandoraStrategy.h"
-#import "CourseraStrategy.h"
-#import "BandCampStrategy.h"
-#import "GrooveSharkStrategy.h"
-#import "SoundCloudStrategy.h"
-#import "HypeMachineStrategy.h"
-#import "LastFmStrategy.h"
-#import "SpotifyStrategy.h"
-#import "GoogleMusicStrategy.h"
-#import "EightTracksStrategy.h"
-#import "SynologyStrategy.h"
-#import "ShufflerFmStrategy.h"
-#import "SlackerStrategy.h"
-#import "BeatsMusicStrategy.h"
-#import "MixCloudStrategy.h"
-#import "MusicUnlimitedStrategy.h"
-#import "YandexMusicStrategy.h"
-#import "StitcherStrategy.h"
-#import "XboxMusicStrategy.h"
-#import "VkStrategy.h"
-#import "BopFm.h"
-#import "AmazonMusicStrategy.h"
-#import "OvercastStrategy.h"
-#import "VimeoStrategy.h"
-#import "ChorusStrategy.h"
-#import "TwentyTwoTracksStrategy.h"
-#import "AudioMackStrategy.h"
-#import "DeezerStrategy.h"
-#import "FocusAtWillStrategy.h"
-#import "PocketCastsStrategy.h"
-#import "YandexRadioStrategy.h"
-#import "TidalHiFiStrategy.h"
-#import "NoAdRadioStrategy.h"
-#import "SomaFmStrategy.h"
-#import "DigitallyImportedStrategy.h"
-#import "BeatguideStrategy.h"
-#import "SaavnStrategy.h"
-#import "KollektFmStrategy.h"
-#import "WonderFmStrategy.h"
-#import "OdnoklassnikiStrategy.h"
-#import "SubsonicStrategy.h"
-#import "TuneInStrategy.h"
-#import "NoonPacificStrategy.h"
-#import "BlitzrStrategy.h"
-#import "IndieShuffleStrategy.h"
-#import "LeTournedisqueStrategy.h"
-#import "ComposedStrategy.h"
-#import "PlexWebStrategy.h"
-#import "NRKStrategy.h"
-#import "UdemyStrategy.h"
-#import "HotNewHipHopStrategy.h"
-#import "JangoMediaStrategy.h"
-#import "RhapsodyStrategy.h"
-#import "MusicForProgrammingStrategy.h"
-#import "NetflixStrategy.h"
-#import "AudibleStrategy.h"
-#import "BBCRadioStrategy.h"
-#import "TwitchMediaStrategy.h"
-#import "iHeartRadioStrategy.h"
-#import "BugsMusicStrategy.h"
-#import "VesselStrategy.h"
-#import "RadioSwissJazzStrategy.h"
-#import "BrainFmStrategy.h"
-#import "WatchaPlayStrategy.h"
-#import "DailymotionStrategy.h"
+#import "BSMediaStrategy.h"
+#import "TabAdapter.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -87,8 +22,8 @@
     self = [super init];
     if (self)
     {
-        self.registeredCache = [NSMutableDictionary dictionary];
-        availableStrategies = [NSMutableArray array];
+        _registeredCache = [NSMutableDictionary new];
+        _availableStrategies = [NSMutableArray new];
     }
     return self;
 }
@@ -97,10 +32,12 @@
 {
     self = [self init];
     if (self) {
-        NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
+        NSArray<NSString *> *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategyNames];
         NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
 
-        for (MediaStrategy *strategy in defaultStrategies) {
+        // enable strategies that are marked enabled or have no entry
+        for (NSString *name in defaultStrategies) {
+            BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
             NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
             if (!enabled || [enabled boolValue]) {
                 [self addMediaStrategy:strategy];
@@ -110,21 +47,21 @@
     return self;
 }
 
--(void) addMediaStrategy:(MediaStrategy *) strategy
+-(void) addMediaStrategy:(BSMediaStrategy *) strategy
 {
-    [availableStrategies addObject:strategy];
+    [_availableStrategies addObject:strategy];
     [self clearCache];
 }
 
--(void) removeMediaStrategy:(MediaStrategy *) strategy
+-(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
-    [availableStrategies removeObject:strategy];
+    [_availableStrategies removeObject:strategy];
     [self clearCache];
 }
 
--(void) containsMediaStrategy:(MediaStrategy *) strategy
+-(void) containsMediaStrategy:(BSMediaStrategy *) strategy
 {
-    [availableStrategies containsObject:strategy];
+    [_availableStrategies containsObject:strategy];
 }
 
 - (void)clearCache
@@ -147,17 +84,21 @@
     self.keyCache = nil;
 }
 
--(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
+-(BSMediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     if (tab.check) {
 
         NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
-        MediaStrategy *strat = _registeredCache[cacheKey];
+        BSMediaStrategy *strat = _registeredCache[cacheKey];
         if (strat)
         /* Return the equivalent of a full scan except we dont repeat calculations */
         return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
 
+<<<<<<< 38581355b6628cde6b1d30b9bbd7a6609075ddf9
         for (MediaStrategy *strategy in availableStrategies)
+=======
+        for (BSMediaStrategy *strategy in _availableStrategies)
+>>>>>>> Replaced MediaStrategies implementations with content plists containing relevant data.
         {
             BOOL accepted = [strategy accepts:tab];
 
@@ -174,14 +115,22 @@
 
 -(NSArray *) getMediaStrategies
 {
-    return [availableStrategies copy];
+    return [_availableStrategies copy];
 }
 
-+(NSArray *) getDefaultMediaStrategies
+// FIXME make this cache somehow. we don't want to hit the disk every time.
++(NSArray<NSString *> *)getDefaultMediaStrategyNames
 {
-    static dispatch_once_t setupDefaultStrategies;
-    static NSArray *strategies = nil;
+    NSURL *versionPath = [NSURL versionsFileFromURL];
+    if (![versionPath fileExists]) // failover in case we dont have a mutable index file yet.
+        versionPath = [[NSBundle mainBundle] URLForResource:@"versions" withExtension:@"plist"];
 
+    NSMutableDictionary *versions = [[NSMutableDictionary alloc] initWithContentsOfURL:versionPath];
+    [versions removeObjectForKey:@"version"]; // remove the meta version of the index file.
+    if (versions)
+        return [versions allKeys];
+
+<<<<<<< 38581355b6628cde6b1d30b9bbd7a6609075ddf9
     dispatch_once(&setupDefaultStrategies, ^{
         NSLog(@"Initializing default media strategies...");
         strategies = @[
@@ -255,6 +204,9 @@
                     ];
     });
     return strategies;
+=======
+    return @[];
+>>>>>>> Replaced MediaStrategies implementations with content plists containing relevant data.
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "MediaControllerObject.h"
 #import "BSLaunchAtLogin.h"
 #import "BSMediaStrategyEnableButton.h"
+#import "BSMediaStrategy.h"
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
@@ -21,6 +22,7 @@ NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNot
 NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHeadphonesAutopause";
 NSString *const BeardedSpiceUsingAppleRemote = @"BeardedSpiceUsingAppleRemote";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
+NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
 @implementation GeneralPreferencesViewController
 
@@ -44,14 +46,15 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
             
             userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
         }
-        
-        theArray = [MediaStrategyRegistry getDefaultMediaStrategies];
+
+        theArray = [MediaStrategyRegistry getDefaultMediaStrategyNames];
         if (theArray.count) {
             MediaControllerObject *obj = [MediaControllerObject new];
             obj.isGroup = YES;
             obj.name = NSLocalizedString(@"Web", @"General preferences - controllers table");
             [mediaControllers addObject:obj];
-            for (MediaStrategy *strategy in theArray) {
+            for (NSString *name in theArray) {
+                BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
                 [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:strategy]];
             }
             userStrategies = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveControllers]];
@@ -225,7 +228,7 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
     // check the user defaults
     
     NSNumber *enabled;
-    if ([obj.representationObject isKindOfClass:[MediaStrategy class]]) {
+    if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
         enabled = userStrategies[obj.name];
     }
     else{
@@ -280,7 +283,7 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
         enabled = NO;
     }
 
-    if ([obj.representationObject isKindOfClass:[MediaStrategy class]]) {
+    if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
         // Strategy
         if (enabled) {
             [strategyRegistry addMediaStrategy:obj.representationObject];

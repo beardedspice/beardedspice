@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  EightTracks.plist
+//  BeardedSpice
+//
+//  Created by Jayson Rhynas on 1/15/2014.
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>8tracks</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*8tracks.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!--
+    relevant javascripts go here.
+    NOTE: &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){
+        var pause = document.querySelector('#player_pause_button');
+        return pause !== null &amp;&amp; pause !== undefined &amp;&amp;pause.style.display !== 'none';
+    })()</string>
+
+    <key>toggle</key>
+    <string>(function(){
+        var play = document.querySelector('#player_play_button');
+        var pause = document.querySelector('#player_pause_button');
+        var overlay = document.querySelector('#play_overlay');
+        if (play !== undefined &amp;&amp; play !== null &amp;&amp; play.style.display !== 'none') { play.click(); }
+        else if (pause !== undefined &amp;&amp; pause !== null &amp;&amp; pause.style.display !== 'none') { pause.click(); }
+        else if (overlay !== undefined) { overlay.click(); }
+    })();</string>
+
+    <key>next</key>
+    <string>(function(){
+        var skip = document.querySelector('#player_skip_button');
+        if (skip !== undefined &amp;&amp; skip !== null) skip.click();
+    })()</string>
+
+    <key>pause</key>
+    <string>(function(){
+        var pause = document.querySelector('#player_pause_button');
+        if (pause !== null &amp;&amp; pause !== undefined) pause.click()
+    })()</string>
+
+    <key>favorite</key>
+    <string>(function(){
+        var fav = document.querySelector('#now_playing a.fav');
+        if (fav !== null &amp;&amp; fav !== undefined) fav.click()
+    })()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function() {
+        var nowPlaying = document.querySelector('#now_playing');
+        var titleArtist = nowPlaying.querySelector('.title_artist');
+        return {
+            'title':  titleArtist.querySelector('.t').textContent,
+            'artist': titleArtist.querySelector('.a').textContent,
+            'album':  nowPlaying.querySelector('.track_details .track_metadata .album .detail').textContent,
+            'favorited': nowPlaying.querySelector('a.fav').classList.contains('active'),
+            'image': document.querySelector('#mix_player_details a.thumb img').src,
+        }})()</string>
+</dict>
+</plist>

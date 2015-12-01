@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  SomaFm.plist
+//  BeardedSpice
+//
+//  Created by Max Borghino on 1/28/15.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>SomaFM</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*somafm.com/player/*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){return ( (document.querySelector('#stopBtn:not(.ng-hide)') ? true : false));})();</string>
+
+    <key>toggle</key>
+    <string>(function(){(document.querySelector('#playBtn:not(.ng-hide)') || document.querySelector('#stopBtn:not(.ng-hide)')).click()})()</string>
+
+    <key>previous</key>
+    <string></string>
+
+    <key>next</key>
+    <string></string>
+
+    <key>pause</key>
+    <string>(function(){if(p=document.querySelector('#stopBtn:not(.ng-hide)')){p.click();}})()</string>
+
+    <key>favorite</key>
+    <string>(function(){document.querySelector('.row.card').querySelector('button').click()})()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        var art = document.querySelector('.img-responsive').getAttribute('src');
+        var card = document.querySelector('.row.card').querySelectorAll('div');
+        return {
+            'track': card[1].firstChild.innerText,
+            'artist': card[2].firstChild.innerText,
+            'favorited': card[3].firstChild.className.indexOf('btn-fav') > -1,
+            'image': art
+        }})()</string>
+</dict>
+</plist>

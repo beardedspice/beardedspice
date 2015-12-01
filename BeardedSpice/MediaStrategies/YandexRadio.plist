@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  YandexMusic.plist
+//  BeardedSpice
+//
+//  Created by Leonid Ponomarev 15.06.15
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>YandexRadio</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*radio.yandex.*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){return Mu.Flow.flow.player.isPlaying();})()</string>
+
+    <key>toggle</key>
+    <string>(function(){Mu.Flow.togglePause();})()</string>
+
+    <key>previous</key>
+    <string></string>
+
+    <key>next</key>
+    <string>(function(){var nextTreckInfo = Mu.Flow.flow.getNextTrack(); Mu.Flow.flow.next(\"nextpressed\"); return nextTreckInfo})()</string>
+
+    <key>pause</key>
+    <string>(function(){
+        if($('body').attr('class').length!=0){
+            document.querySelector('.player-controls__play').click()
+        }
+    })()</string>
+
+    <key>favorite</key>
+    <string></string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        var result;
+        if (!(Mu.Flow.player.isPaused() || Mu.Flow.player.isPlaying())) {
+            result = Mu.Flow.flow.getNextTrack();
+        }
+        else {
+            result = Mu.Flow.flow.getTrack();
+            result['favorited'] = $('.like_action_like').hasClass('button_checked');
+        }
+        var albums = result.albums
+        if (albums) {
+            result["album"] = albums[0]["title"]
+            result["image"] = albums[0]["coverUri"].replace('\%\%', '600x600') /* FIXME - UNTESTED */
+        }
+        return {
+            'favorited': result.favorited,
+            'track': result.version ? (result.title+' '+result.version) : result.title,
+            'image': result.image,
+            'album': result.album
+        };
+    })()</string>
+</dict>
+</plist>

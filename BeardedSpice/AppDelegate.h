@@ -20,7 +20,7 @@
 
 extern BOOL accessibilityApiEnabled;
 
-#import "MediaStrategy.h"
+#import "BSMediaStrategy.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
 
@@ -61,6 +61,7 @@ extern BOOL accessibilityApiEnabled;
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 
+- (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
 - (void)showNotification;
 

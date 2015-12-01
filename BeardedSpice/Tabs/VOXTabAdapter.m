@@ -10,7 +10,8 @@
 #import "VOX.h"
 #import "runningSBApplication.h"
 #import "NSString+Utils.h"
-#import "MediaStrategy.h"
+#import "BSMediaStrategy.h"
+#import "BSTrack.h"
 
 #define APPNAME_VOX         @"VOX"
 #define APPID_VOX           @"com.coppertino.Vox"
@@ -108,13 +109,13 @@
     
 }
 
-- (Track *)trackInfo{
-    
+- (BSTrack *)trackInfo{
+
     VOXApplication *vox = (VOXApplication *)[self.application sbApplication];
     if (vox) {
-        
-        Track *track = [Track new];
-        
+
+        BSTrack *track = [BSTrack new];
+
         track.track = vox.track;
         track.album = vox.album;
         track.artist = vox.artist;

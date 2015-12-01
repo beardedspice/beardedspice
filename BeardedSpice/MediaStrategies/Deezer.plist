@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Deezer.plist
+//  BeardedSpice
+//
+//  Created by Greg Woodcock on 06/01/2015.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Deezer</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*deezer.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!--
+    relevant javascripts go here.
+    NOTE: &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>(function(){dzPlayer.control.togglePause()})()</string>
+
+    <key>previous</key>
+    <string>(function(){dzPlayer.control.prevSong()})()</string>
+
+    <key>next</key>
+    <string>(function(){dzPlayer.control.nextSong()})()</string>
+
+    <key>favorite</key>
+    <string>(function (){return document.querySelectorAll('a.icon-love-circle')[0].click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){dzPlayer.control.pause()})()</string>
+</dict>
+</plist>

@@ -8,7 +8,7 @@
 
 #import "TabAdapter.h"
 
-@class Track;
+@class BSTrack;
 
 @interface NativeAppTabAdapter : TabAdapter
 
@@ -34,7 +34,7 @@
 - (void)previous;
 - (void)favorite;
 
-- (Track *)trackInfo;
+- (BSTrack *)trackInfo;
 - (BOOL)isPlaying;
 
 /**

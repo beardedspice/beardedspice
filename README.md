@@ -76,6 +76,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Le Tournedisque](http://www.letournedisque.com/)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
 - [Mixcloud](http://mixcloud.com)
+- [Music For Programming](http://musicforprogramming.net/)
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)
 - [NoAdRadio.com](http://noadradio.com)
 - [NoonPacific.com](http://noonpacific.com)

@@ -27,9 +27,9 @@
 
 /**
     Copying of the variables, which reflect state of the object.
- 
+
     @param tab Object from which performed copying.
- 
+
     @return Returns self.
  */
 - (instancetype)copyStateFrom:(TabAdapter *)tab;

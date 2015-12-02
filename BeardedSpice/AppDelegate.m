@@ -23,17 +23,12 @@
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
 
+#import "BSTrack.h"
 #import "BSStrategyVersionManager.h"
 
 #import "runningSBApplication.h"
 
-<<<<<<< dc1a298bcf2ade2fbd6d10aded5fb2f1a27cbb39
-=======
-#import "DDHidAppleRemote.h"
-#import "DDHidAppleMikey.h"
-#import "BSTrack.h"
 
->>>>>>> Replaced MediaStrategies implementations with content plists containing relevant data.
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
@@ -426,10 +421,10 @@ BOOL accessibilityApiEnabled = NO;
 {
     [self windowWillBeVisible:self.preferencesWindowController.window];
     [self.preferencesWindowController showWindow:self];
-
 }
 
-- (IBAction)exitApp:(id)sender {
+- (IBAction)exitApp:(id)sender
+{
     [NSApp terminate: nil];
 }
 
@@ -461,14 +456,11 @@ BOOL accessibilityApiEnabled = NO;
             openedWindows = [NSMutableSet set];
 
         if (!openedWindows.count) {
-
             [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyRegular];
-            //            [[NSApplication sharedApplication] setPresentationOptions:NSApplicationPresentationDefault];
         }
         [self activateApp];
         [openedWindows addObject:window];
         dispatch_async(dispatch_get_main_queue(), ^{
-
             [[NSApplication sharedApplication] arrangeInFront:self];
         });
     }

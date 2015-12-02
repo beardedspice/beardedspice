@@ -113,6 +113,13 @@ BOOL accessibilityApiEnabled = NO;
 
     [self shortcutsBind];
     [self newConnectionToControlService];
+
+    // Scan all available tabs
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        __strong typeof(wself) sself = wself;
+        [sself refreshTabs:nil];
+    });
 }
 
 - (void)awakeFromNib

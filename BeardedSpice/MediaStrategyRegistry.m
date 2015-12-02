@@ -76,6 +76,12 @@
 
 - (void)endStrategyQueries
 {
+    if (!_keyCache)
+    {
+        NSLog(@"WARNING - Strategy Queries not started.");
+        return;
+    }
+
     /* Clean the cache of tabs that dont exist anymore */
     NSSet *updatedKeys = [NSSet setWithArray:[_registeredCache allKeys]];
     [_keyCache minusSet:updatedKeys];
@@ -88,18 +94,21 @@
 {
     if (tab.check) {
 
-        NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
+        NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
         BSMediaStrategy *strat = _registeredCache[cacheKey];
+
+        /* Return the equivalent of a full scan except we dont repeat calculations */
+        if (strat == [NSNull null])
+            return nil;
         if (strat)
-            /* Return the equivalent of a full scan except we dont repeat calculations */
-            return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
+            return strat;
 
         for (BSMediaStrategy *strategy in _availableStrategies)
         {
             BOOL accepted = [strategy accepts:tab];
 
             /* Store the result of this calculation for future use */
-            _registeredCache[cacheKey] = accepted ? strategy : @NO;
+            _registeredCache[cacheKey] = accepted ? strategy : [NSNull null];
             if (accepted) {
                 NSLog(@"%@ is valid for %@", strategy, tab);
                 return strategy;

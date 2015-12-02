@@ -91,14 +91,10 @@
         NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
         BSMediaStrategy *strat = _registeredCache[cacheKey];
         if (strat)
-        /* Return the equivalent of a full scan except we dont repeat calculations */
-        return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
+            /* Return the equivalent of a full scan except we dont repeat calculations */
+            return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
 
-<<<<<<< 38581355b6628cde6b1d30b9bbd7a6609075ddf9
-        for (MediaStrategy *strategy in availableStrategies)
-=======
         for (BSMediaStrategy *strategy in _availableStrategies)
->>>>>>> Replaced MediaStrategies implementations with content plists containing relevant data.
         {
             BOOL accepted = [strategy accepts:tab];
 
@@ -130,83 +126,7 @@
     if (versions)
         return [versions allKeys];
 
-<<<<<<< 38581355b6628cde6b1d30b9bbd7a6609075ddf9
-    dispatch_once(&setupDefaultStrategies, ^{
-        NSLog(@"Initializing default media strategies...");
-        strategies = @[
-                       [AmazonMusicStrategy new],
-                       [AudibleStrategy new],
-                       [AudioMackStrategy new],
-                       [BandCampStrategy new],
-                       [BBCRadioStrategy new],
-                       [BeatguideStrategy new],
-                       [BeatsMusicStrategy new],
-                       [BlitzrStrategy new],
-                       [BopFm new],
-                       [BrainFmStrategy new],
-                       [BugsMusicStrategy new],
-                       [ChorusStrategy new],
-                       [ComposedStrategy new],
-                       [CourseraStrategy new],
-                       [DailymotionStrategy new],
-                       [DeezerStrategy new],
-                       [DigitallyImportedStrategy new],
-                       [EightTracksStrategy new],
-                       [FocusAtWillStrategy new],
-                       [GoogleMusicStrategy new],
-                       [GrooveSharkStrategy new],
-                       [HotNewHipHopStrategy new],
-                       [HypeMachineStrategy new],
-                       [iHeartRadioStrategy new],
-                       [IndieShuffleStrategy new],
-                       [JangoMediaStrategy new],
-                       [KollektFmStrategy new],
-                       [LastFmStrategy new],
-                       [LeTournedisqueStrategy new],
-                       [LogitechMediaServerStrategy new],
-                       [MixCloudStrategy new],
-                       [MusicForProgrammingStrategy new],
-                       [MusicUnlimitedStrategy new],
-                       [NetflixStrategy new],
-                       [NoAdRadioStrategy new],
-                       [NoonPacificStrategy new],
-                       [NRKStrategy new],
-                       [OdnoklassnikiStrategy new],
-                       [OvercastStrategy new],
-                       [PandoraStrategy new],
-                       [PlexWebStrategy new],
-                       [PocketCastsStrategy new],
-                       [RadioSwissJazzStrategy new],
-                       [RhapsodyStrategy new],
-                       [SaavnStrategy new],
-                       [ShufflerFmStrategy new],
-                       [SlackerStrategy new],
-                       [SomaFmStrategy new],
-                       [SoundCloudStrategy new],
-                       [SpotifyStrategy new],
-                       [StitcherStrategy new],
-                       [SubsonicStrategy new],
-                       [SynologyStrategy new],
-                       [TidalHiFiStrategy new],
-                       [TuneInStrategy new],
-                       [TwentyTwoTracksStrategy new],
-                       [TwitchMediaStrategy new],
-                       [UdemyStrategy new],
-                       [VesselStrategy new],
-                       [VimeoStrategy new],
-                       [VkStrategy new],
-                       [WatchaPlayStrategy new],
-                       [WonderFmStrategy new],
-                       [XboxMusicStrategy new],
-                       [YandexMusicStrategy new],
-                       [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
-                    ];
-    });
-    return strategies;
-=======
     return @[];
->>>>>>> Replaced MediaStrategies implementations with content plists containing relevant data.
 }
 
 @end

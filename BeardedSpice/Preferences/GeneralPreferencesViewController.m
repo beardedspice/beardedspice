@@ -30,12 +30,12 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 {
     self = [super initWithNibName:@"GeneralPreferencesView" bundle:nil];
     if (self) {
-        
+
         NSMutableArray *mediaControllers = [NSMutableArray array];
-        
+
         NSArray *theArray = [NativeAppTabRegistry defaultNativeAppClasses];
         if (theArray.count) {
-            
+
             MediaControllerObject *obj = [MediaControllerObject new];
             obj.isGroup = YES;
             obj.name = NSLocalizedString(@"Native", @"General preferences - controllers table");
@@ -43,7 +43,7 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
             for (Class theClass in theArray) {
                 [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:theClass]];
             }
-            
+
             userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
         }
 
@@ -82,7 +82,7 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 }
 
 - (void)viewWillAppear{
-    
+
     [self repairLaunchAtLogin];
 }
 
@@ -101,13 +101,13 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     // We launch Controller of the "Launch at Login" in concurrent queue,
     //because probability exists of hanging app on obtaining list of the login items.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        
+
         [BSLaunchAtLogin launchAtStartup:shouldBeLaunchAtLogin];
     });
 }
 
 - (IBAction)toggleAutoPause:(id)sender {
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]
          postNotificationName:GeneralPreferencesAutoPauseChangedNoticiation
@@ -132,14 +132,14 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
 // Repairs user defaults from login items.
 - (void)repairLaunchAtLogin{
-    
+
     // We launch Controller of the "Launch at Login" in concurrent queue,
     //because probability exists of hanging app on obtaining list of the login items.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         BOOL val = [BSLaunchAtLogin isLaunchAtStartup];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSUserDefaults standardUserDefaults] setBool:val forKey:BeardedSpiceLaunchAtLogin];
-            
+
         });
     });
 }
@@ -156,11 +156,11 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 - (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)row{
 
     return ![mediaControllerObjects[row] isGroup];
-    
+
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row{
-    
+
     return ([mediaControllerObjects[row] isGroup] ? 18.0 : 25.0);
 }
 
@@ -169,16 +169,16 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
                   row:(NSInteger)row {
 
     MediaControllerObject *obj = mediaControllerObjects[row];
-    
+
     // Create group
     if (obj.isGroup) {
-        
+
         NSTextField *result = [tableView makeViewWithIdentifier:@"GroupView" owner:self];
-        
+
         // there is no existing cell to reuse so create a new one
         if (result == nil) {
             result = [NSTextField new];
-            
+
             // this allows the cell to be reused.
             result.identifier = @"GroupView";
             result.alignment = NSCenterTextAlignment;
@@ -195,38 +195,38 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
         [result setStringValue:obj.name];
         return result;
     }
-    
+
     //
     if ([[tableColumn identifier] isEqualToString:@"strategy"]) {
-        
+
         return [self tableView:tableView strategyViewForObject:obj];
     }
     else{
-        
+
         return [self tableView:tableView indicatorViewForObject:obj];
     }
 }
 
 - (NSView *)tableView:(NSTableView *)tableView strategyViewForObject:(MediaControllerObject *)obj{
-    
+
     NSButton *result = [tableView makeViewWithIdentifier:@"AvailbleStrategiesView" owner:self];
-    
+
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
         result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
-        
+
         // this allows the cell to be reused.
         result.identifier = @"AvailbleStrategiesView";
-        
+
         // make it a checkbox
         [result setButtonType:NSSwitchButton];
 //        result.refusesFirstResponder = YES;
-        
+
     }
-    
-    
+
+
     // check the user defaults
-    
+
     NSNumber *enabled;
     if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
         enabled = userStrategies[obj.name];
@@ -239,7 +239,7 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     } else {
         [result setState:NSOffState];
     }
-    
+
     [result setTitle:obj.name];
     [result setTarget:self];
     [result setAction:@selector(updateMediaStrategyRegistry:)];
@@ -247,20 +247,20 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 }
 
 - (NSView *)tableView:(NSTableView *)tableView indicatorViewForObject:(MediaControllerObject *)obj{
-    
+
     NSImageView *result = [tableView makeViewWithIdentifier:@"StrategyView" owner:self];
-    
+
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
         result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 21, 21)];
-        
+
         result.imageScaling = NSImageScaleNone;
         result.identifier = @"StrategyView";
-        
+
     }
     if (obj.isAuto)
         result.image = [NSImage imageNamed:@"auto"];
-    
+
     return result;
 }
 

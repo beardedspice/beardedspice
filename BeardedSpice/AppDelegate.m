@@ -23,6 +23,7 @@
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
 
+#import "BSTrack.h"
 #import "BSStrategyVersionManager.h"
 
 #import "runningSBApplication.h"
@@ -435,10 +436,10 @@ static NSString *const kBSUpdateCheckingTitle = @"Checking...";
 {
     [self windowWillBeVisible:self.preferencesWindowController.window];
     [self.preferencesWindowController showWindow:self];
-
 }
 
-- (IBAction)exitApp:(id)sender {
+- (IBAction)exitApp:(id)sender
+{
     [NSApp terminate: nil];
 }
 
@@ -470,14 +471,11 @@ static NSString *const kBSUpdateCheckingTitle = @"Checking...";
             openedWindows = [NSMutableSet set];
 
         if (!openedWindows.count) {
-
             [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyRegular];
-            //            [[NSApplication sharedApplication] setPresentationOptions:NSApplicationPresentationDefault];
         }
         [self activateApp];
         [openedWindows addObject:window];
         dispatch_async(dispatch_get_main_queue(), ^{
-
             [[NSApplication sharedApplication] arrangeInFront:self];
         });
     }

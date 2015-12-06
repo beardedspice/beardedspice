@@ -65,6 +65,7 @@
 #import "JangoMediaStrategy.h"
 #import "RhapsodyStrategy.h"
 #import "MusicForProgrammingStrategy.h"
+#import "NetflixStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -200,9 +201,10 @@
                        [MixCloudStrategy new],
                        [MusicForProgrammingStrategy new],
                        [MusicUnlimitedStrategy new],
-                       [NRKStrategy new],
+                       [NetflixStrategy new],
                        [NoAdRadioStrategy new],
                        [NoonPacificStrategy new],
+                       [NRKStrategy new],
                        [OdnoklassnikiStrategy new],
                        [OvercastStrategy new],
                        [PandoraStrategy new],

@@ -111,6 +111,7 @@
 		C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
+		D07721661C1439FF004727EF /* NetflixStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721651C1439FF004727EF /* NetflixStrategy.m */; };
 		D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
@@ -348,6 +349,8 @@
 		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
 		D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SomaFmStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D055A36B1A7A035200CE2BBD /* SomaFmStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomaFmStrategy.h; sourceTree = "<group>"; };
+		D07721641C1439FF004727EF /* NetflixStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStrategy.h; sourceTree = "<group>"; };
+		D07721651C1439FF004727EF /* NetflixStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStrategy.m; sourceTree = "<group>"; };
 		D0E89A611C0EB54E0033077D /* MusicForProgrammingStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicForProgrammingStrategy.h; sourceTree = "<group>"; };
 		D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicForProgrammingStrategy.m; sourceTree = "<group>"; };
 		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				D07721641C1439FF004727EF /* NetflixStrategy.h */,
+				D07721651C1439FF004727EF /* NetflixStrategy.m */,
 				D0E89A611C0EB54E0033077D /* MusicForProgrammingStrategy.h */,
 				D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */,
 				50A671151BFC4C8800200052 /* RhapsodyStrategy.m */,
@@ -870,6 +875,7 @@
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
 				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
+				D07721661C1439FF004727EF /* NetflixStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
 				BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,

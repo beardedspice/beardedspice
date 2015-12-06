@@ -66,6 +66,7 @@
 #import "RhapsodyStrategy.h"
 #import "MusicForProgrammingStrategy.h"
 #import "NetflixStrategy.h"
+#import "AudibleStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -175,6 +176,7 @@
         NSLog(@"Initializing default media strategies...");
         strategies = @[
                        [AmazonMusicStrategy new],
+                       [AudibleStrategy new],
                        [AudioMackStrategy new],
                        [BandCampStrategy new],
                        [BeatguideStrategy new],

@@ -53,6 +53,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [8Tracks](http://8tracks.com)
 - [22Tracks](http://22tracks.com)
 - [Amazon Music](https://amazon.com/gp/dmusic/cloudplayer/player)
+- [Audible](http://www.audible.com/)
 - [AudioMack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
 - [Beatguide](http://beatguide.me/)

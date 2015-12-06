@@ -25,11 +25,6 @@
 #import "DDHidAppleRemote.h"
 #import "DDHidAppleMikey.h"
 
-#define APPID_SAFARI            @"com.apple.Safari"
-#define APPID_CHROME            @"com.google.Chrome"
-#define APPID_CANARY            @"com.google.Chrome.canary"
-#define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
-#define APPID_CHROMIUM          @"org.chromium.Chromium"
 
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
@@ -540,7 +535,7 @@ BOOL accessibilityApiEnabled = NO;
 
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
+        if (strategy && ![NSString isNullOrEmpty:[strategy toggle]]) {
             [activeTab executeJavascript:[strategy toggle]];
             if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                 [self showNotification];
@@ -571,7 +566,7 @@ BOOL accessibilityApiEnabled = NO;
 
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
+        if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
             [activeTab executeJavascript:[strategy next]];
             dispatch_after(
                 dispatch_time(DISPATCH_TIME_NOW,
@@ -608,7 +603,7 @@ BOOL accessibilityApiEnabled = NO;
 
         MediaStrategy *strategy =
             [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        if (strategy) {
+        if (strategy && ![NSString isNullOrEmpty:[strategy previous]]) {
             [activeTab executeJavascript:[strategy previous]];
             dispatch_after(
                 dispatch_time(DISPATCH_TIME_NOW,

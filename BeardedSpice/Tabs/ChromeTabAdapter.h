@@ -9,6 +9,11 @@
 #import "TabAdapter.h"
 #import "Chrome.h"
 
+#define APPID_CHROME            @"com.google.Chrome"
+#define APPID_CANARY            @"com.google.Chrome.canary"
+#define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
+#define APPID_CHROMIUM          @"org.chromium.Chromium"
+
 @class runningSBApplication;
 
 @interface ChromeTabAdapter : TabAdapter {
@@ -22,5 +27,6 @@
 
 @property ChromeTab *tab;
 @property ChromeWindow *window;
+@property BOOL applescriptIsolatedVersion;
 
 @end

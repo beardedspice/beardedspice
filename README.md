@@ -78,6 +78,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Mixcloud](http://mixcloud.com)
 - [Music For Programming](http://musicforprogramming.net/)
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)
+- [Netflix](http://www.netflix.com)
 - [NoAdRadio.com](http://noadradio.com)
 - [NoonPacific.com](http://noonpacific.com)
 - [NRK Radio](http://radio.nrk.no/)

@@ -1,13 +1,22 @@
 PODS:
-  - MASPreferences (1.1.2)
+  - Kiwi (2.4.0)
+  - MASPreferences (1.1.4)
   - MASShortcut (2.3.3)
+  - OCMock (3.3)
+  - VCRURLConnection (0.2.0)
 
 DEPENDENCIES:
+  - Kiwi
   - MASPreferences (~> 1.1.2)
   - MASShortcut (~> 2.3.3)
+  - OCMock
+  - VCRURLConnection
 
 SPEC CHECKSUMS:
-  MASPreferences: 32d8a2c5ef1d60b63240f5676b011ff72e194cb1
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+  MASPreferences: 7bdcfe891d7840453cf48f95fa866c3e152ace7a
   MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
+  OCMock: d68685bde31f69cb61d518dcb39269080c78b5ed
+  VCRURLConnection: accd771ebd4be11183a3e4d5a4403f180a9a235e
 
 COCOAPODS: 0.39.0

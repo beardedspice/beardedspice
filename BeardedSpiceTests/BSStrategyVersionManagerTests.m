@@ -1,18 +1,18 @@
 //
-//  BeardedSpiceTests.m
-//  BeardedSpiceTests
+//  BSStrategyMockObject.m
+//  BeardedSpice
 //
-//  Created by Tyler Rhodes on 12/8/13.
-//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Created by Alex Evers on 12/01/15.
+//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import <XCTest/XCTest.h>
 
-@interface BeardedSpiceTests : XCTestCase
+@interface BSStrategyVersionManagerTests : XCTestCase
 
 @end
 
-@implementation BeardedSpiceTests
+@implementation BSStrategyVersionManagerTests
 
 - (void)setUp
 {

@@ -37,14 +37,14 @@
     return out;
 }
 
--(id) executeJavascript:(NSString *) javascript
+-(id) executeJavascript:(NSString *)javascript
 {
     if (_applescriptIsolatedVersion) {
         // workaround for >= 46 version of the Google Chrome
         // https://github.com/beardedspice/beardedspice/issues/257
         
         //Add the hack element
-        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){id='" HACK_NAME @"';if (document.getElementById(id) === null){node = document.createElement('pre');node.id = id;node.hidden = true; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", javascript];
+        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){id='" HACK_NAME @"';if (document.getElementById(id) === null){node = document.createElement('pre');node.id = id;node.hidden = true; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", [javascript stringForSubstitutionInJavascriptPlaceholder]];
         //Get the result from the hack element
         
         [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];

@@ -43,4 +43,12 @@
     return [self indexOf:string fromIndex:0];
 }
 
+- (NSString *)stringForSubstitutionInJavascriptPlaceholder{
+    
+    NSString *sb = [self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    sb = [sb stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+    return [sb stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+}
+
+
 @end

@@ -22,4 +22,12 @@
  */
 - (NSInteger)indexOf:(NSString *)string;
 
+/**
+ Returns converted string where:
+ \ symbol replaced on \\,
+ ' symbol replaced on \',
+ " symbol replaced on \".
+ */
+- (NSString *)stringForSubstitutionInJavascriptPlaceholder;
+
 @end

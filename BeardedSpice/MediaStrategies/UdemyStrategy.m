@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*udemy.com*/lecture/*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*udemy.com/*/lecture/*'"];
     }
     return self;
 }

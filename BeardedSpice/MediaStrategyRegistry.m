@@ -67,6 +67,7 @@
 #import "MusicForProgrammingStrategy.h"
 #import "NetflixStrategy.h"
 #import "AudibleStrategy.h"
+#import "BBCRadioStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -179,6 +180,7 @@
                        [AudibleStrategy new],
                        [AudioMackStrategy new],
                        [BandCampStrategy new],
+                       [BBCRadioStrategy new],
                        [BeatguideStrategy new],
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],

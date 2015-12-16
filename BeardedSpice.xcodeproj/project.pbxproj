@@ -724,7 +724,11 @@
 				9679332D1855173100A49AC7 /* Products */,
 				026BCA1451614966030FD4B5 /* Pods */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 0;
 		};
 		9679332D1855173100A49AC7 /* Products */ = {
 			isa = PBXGroup;

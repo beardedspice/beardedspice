@@ -11,6 +11,8 @@
 #import "NSString+Utils.h"
 #import "MediaStrategy.h"
 
+#define ERROR_TRACE                         NSLog(@"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
+
 #define APPID_ITUNES            @"com.apple.iTunes"
 #define APPNAME_ITUNES          @"iTunes"
 
@@ -126,10 +128,17 @@
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         iTunesTrack *track = [[iTunes currentTrack] get];
-        if ([track loved])
-            track.loved = NO;
-        else
-            track.loved = YES;
+        @try {
+            if ([track loved])
+                track.loved = NO;
+            else
+                track.loved = YES;
+        }
+        @catch (NSException *exception) {
+            
+            NSLog(@"Error when calling [iTunes loved]: %@", exception);
+            ERROR_TRACE;
+        }
     }
     
 }
@@ -151,7 +160,13 @@
             iTunesArtwork *art = [[artworks firstObject] get];
             track.image = art.data;
             
-            track.favorited = @(iTrack.loved);
+            @try {
+                track.favorited = @(iTrack.loved);
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Error when calling [iTunes loved]: %@", exception);
+                ERROR_TRACE;
+            }
             
             return track;
         }

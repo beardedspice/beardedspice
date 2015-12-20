@@ -56,6 +56,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Audible](http://www.audible.com/)
 - [AudioMack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
+- [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](http://beatguide.me/)
 - [BeatsMusic](http://listen.beatsmusic.com)
 - [Blitzr](http://blitzr.com)

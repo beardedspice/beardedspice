@@ -10,16 +10,23 @@
 
 @implementation UdemyStrategy
 
-/*
+/* EDIT: NOT WORKING:
  Javascript to obtain video object:
  var theVideo = $("div.ud-lectureangular > iframe")[0].contentWindow.document.getElementsByTagName("video")[0];
+*/
+
+/*
+ JQuery seems to not be working, so here's my workaround:
+   var theVideo = document.querySelector('div.ud-lectureangular > iframe').contentWindow.document.querySelector('video');
+ And for simply getting the iframe:
+   var theFrame = document.querySelector('div.ud-lectureangular > iframe');
 */
 
 -(id) init
 {
     self = [super init];
     if (self) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*udemy.com*/lecture/*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*udemy.com/*/lecture/*'"];
     }
     return self;
 }
@@ -32,28 +39,27 @@
 - (BOOL)isPlaying:(TabAdapter *)tab {
     
     NSNumber *value =
-    [tab executeJavascript:@"(function(){return !($(\"div.ud-lectureangular > iframe\")[0].contentWindow.document.getElementsByTagName(\"video\")[0].paused);})()"];
+    [tab executeJavascript:@"(function(){return !(document.querySelector('div.ud-lectureangular > iframe').contentWindow.document.querySelector('video').paused);}())"];
     return [value boolValue];
 }
 
 -(NSString *) toggle
 {
-    return @"(function(){var theVideo = $(\"div.ud-lectureangular > iframe\")[0].contentWindow.document.getElementsByTagName(\"video\")[0]; \
-        if(theVideo.paused){theVideo.play();}else{theVideo.pause()}})()";
+    return @"((function(){var theVideo = document.querySelector('div.ud-lectureangular > iframe').contentWindow.document.querySelector('video');theVideo.paused?theVideo.play():theVideo.pause();})())";
 }
 
 -(NSString *) next
 {
-    return @"(function(){$(\"div.ud-lectureangular > iframe\").parent().parent().next().find(\".next-lecture\")[0].click();})()";
+    return @"(function(){document.querySelector('div.ud-lectureangular > iframe').parentElement.parentElement.nextElementSibling.querySelector('.next-lecture').click();})()";
 }
 
 -(NSString *) previous
 {
-    return @"(function(){$(\"div.ud-lectureangular > iframe\").parent().parent().parent().find(\".prev-lecture\")[0].click();})()";
+    return @"(function(){document.querySelector('div.ud-lectureangular > iframe').parentElement.parentElement.parentElement.querySelector('.prev-lecture').click();})()";
 }
 
 - (NSString *)pause {
-    return @"(function(){$(\"div.ud-lectureangular > iframe\")[0].contentWindow.document.getElementsByTagName(\"video\")[0].pause()})()";
+    return @"(function(){document.querySelector('div.ud-lectureangular > iframe').contentWindow.document.querySelector('video').pause()})()";
 }
 
 -(NSString *) displayName

@@ -16,9 +16,15 @@
 		<true/>
 		<key>Amazon Music</key>
 		<true/>
+		<key>Audible</key>
+		<true/>
 		<key>AudioMack</key>
 		<true/>
 		<key>BandCamp</key>
+		<true/>
+		<key>BBC Radio</key>
+		<true/>
+		<key>Beatguide</key>
 		<true/>
 		<key>Beats Music</key>
 		<true/>
@@ -45,6 +51,8 @@
 		<key>MusicForProgramming</key>
 		<true/>
 		<key>MusicUnlimited</key>
+		<true/>
+		<key>Netflix</key>
 		<true/>
 		<key>NoAdRadio</key>
 		<true/>

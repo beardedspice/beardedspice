@@ -38,6 +38,7 @@
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
 		3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
+		46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
 		4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4217281B306A5800B22853 /* SubsonicStrategy.m */; };
 		4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C42172B1B307C2D00B22853 /* TuneInStrategy.m */; };
@@ -203,6 +204,8 @@
 		3B0F61281AD5CC6900DADAC2 /* BeatguideStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatguideStrategy.h; sourceTree = "<group>"; };
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShufflerFmStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
+		46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitchMediaStrategy.h; sourceTree = "<group>"; };
+		46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitchMediaStrategy.m; sourceTree = "<group>"; };
 		48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicStrategy.h; sourceTree = "<group>"; };
 		48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AmazonMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C4217271B3069EF00B22853 /* SubsonicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubsonicStrategy.h; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */,
+				46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */,
 				D00408311C1E2E31006A89D0 /* BBCRadioStrategy.h */,
 				D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */,
 				D07721671C14DF96004727EF /* AudibleStrategy.h */,
@@ -875,6 +880,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */,
+				46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */,
 				163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,

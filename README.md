@@ -103,6 +103,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Synology](http://synology.com)
 - [TIDAL (Web)](http://listen.tidalhifi.com/)
 - [TuneIn](http://tunein.com/)
+- [Twitch TV](http://twitch.tv/)
 - [Udemy](https://www.udemy.com/)
 - [Vimeo](http://vimeo.com)
 - [VK ("My Music" from vk.com)](http://vk.com)

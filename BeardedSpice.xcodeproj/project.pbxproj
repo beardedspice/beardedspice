@@ -432,6 +432,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */,
+				46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */,
 				D00408311C1E2E31006A89D0 /* BBCRadioStrategy.h */,
 				D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */,
 				D07721671C14DF96004727EF /* AudibleStrategy.h */,
@@ -554,8 +556,6 @@
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
-				46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */,
-				46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";

@@ -1,5 +1,7 @@
 #import "TwitchMediaStrategy.h"
 
+#define GET_DOCUMENT_MACRO @"var doc = document; var frame = $('iframe[src^=\\'http://player.twitch.tv/?channel=\\']').get(0); if (frame) {doc = frame.contentDocument || frame.contentWindow.document; } "
+
 @implementation TwitchMediaStrategy
 
 -(id) init
@@ -18,18 +20,18 @@
 
 -(BOOL)isPlaying:(TabAdapter *)tab
 {
-    NSNumber *val = [tab executeJavascript:@"(function(){ return $('.player[data-paused=\"false\"]').length })()"];
+    NSNumber *val = [tab executeJavascript:@"(function(){" GET_DOCUMENT_MACRO @"return (doc.querySelector('.player[data-paused=\"false\"]') != null); })()"];
     return [val boolValue];
 }
 
 -(NSString *) toggle
 {
-    return @"(function(){ $('.js-control-playpause-button').click() })()";
+    return @"(function(){" GET_DOCUMENT_MACRO @"doc.querySelector('.js-control-playpause-button').click() })()";
 }
 
 -(NSString *) pause
 {
-    return @"(function(){ $('.player[data-paused=\"false\"] .js-control-playpause-button').click() })()";
+    return @"(function(){" GET_DOCUMENT_MACRO @"doc.querySelector('.player[data-paused=\"false\"] .js-control-playpause-button').click() })()";
 }
 
 -(NSString *) displayName

@@ -230,6 +230,7 @@
                        [TidalHiFiStrategy new],
                        [TuneInStrategy new],
                        [TwentyTwoTracksStrategy new],
+                       [TwitchMediaStrategy new],
                        [UdemyStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
@@ -237,8 +238,7 @@
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new],
-                       [TwitchMediaStrategy new]
+                       [YouTubeStrategy new]
                     ];
     });
     return strategies;

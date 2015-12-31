@@ -59,6 +59,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](http://beatguide.me/)
 - [BeatsMusic](http://listen.beatsmusic.com)
+- [Bugs](http://bugs.co.kr)
 - [Blitzr](http://blitzr.com)
 - [Bop.fm](http://bop.fm)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)

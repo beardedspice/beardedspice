@@ -108,6 +108,7 @@
 		BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB81E6301B8B3AA000F764EB /* NRKStrategy.m */; };
 		BE0EC59E41539EF7C9368E11 /* YandexRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */; };
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
+		C078774D1C350D9400CD0481 /* BugsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C078774C1C350D9400CD0481 /* BugsStrategy.m */; };
 		C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
 		D00408331C1E2E31006A89D0 /* BBCRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */; };
@@ -345,6 +346,8 @@
 		BE0EC8CE1C97A9D6264D11A4 /* YandexRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexRadioStrategy.h; sourceTree = "<group>"; };
 		BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FocusAtWillStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BE36E0671A6797DA00713BA7 /* FocusAtWillStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FocusAtWillStrategy.h; sourceTree = "<group>"; };
+		C078774B1C350D9400CD0481 /* BugsStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsStrategy.h; sourceTree = "<group>"; };
+		C078774C1C350D9400CD0481 /* BugsStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsStrategy.m; sourceTree = "<group>"; };
 		C31C94161AFB54B4003F89AC /* NoonPacificStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoonPacificStrategy.h; sourceTree = "<group>"; };
 		C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoonPacificStrategy.m; sourceTree = "<group>"; };
 		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				C078774B1C350D9400CD0481 /* BugsStrategy.h */,
+				C078774C1C350D9400CD0481 /* BugsStrategy.m */,
 				D00408311C1E2E31006A89D0 /* BBCRadioStrategy.h */,
 				D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */,
 				D07721671C14DF96004727EF /* AudibleStrategy.h */,
@@ -924,6 +929,7 @@
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
 				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,
+				C078774D1C350D9400CD0481 /* BugsStrategy.m in Sources */,
 				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
 				65163CA91BE60D5A000A3575 /* DDHidElement.m in Sources */,
 				65163CA81BE60D5A000A3575 /* DDHidDevice.m in Sources */,

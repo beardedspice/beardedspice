@@ -10,6 +10,9 @@
 
 @implementation MediaControllerObject
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 - (id)initWithObject:(id)object{
     
     self = [super init];
@@ -17,7 +20,7 @@
         if ([object respondsToSelector:@selector(displayName)]) {
             _name = [object displayName];
         }
-        if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying)]) {
+        if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
             _isAuto = YES;
         }
         
@@ -26,6 +29,8 @@
     
     return self;
 }
+
+#pragma clang diagnostic pop
 
 - (id)init{
     

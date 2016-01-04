@@ -68,6 +68,11 @@
     return NULL;
 }
 
+// Method stubs to satisfy the TapAdapter protocol
+-(BOOL) isPlaying:(TabAdapter *)tab {
+    return NO;
+}
+
 
 -(NSString *) toggle
 {

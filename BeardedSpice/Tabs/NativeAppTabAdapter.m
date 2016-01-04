@@ -27,6 +27,30 @@
     return nil;
 }
 
+// Method stubs to satisfy the TapAdapter protocol
+- (void) toggle {
+}
+
+- (void) pause {
+}
+
+- (void) next {
+}
+
+- (void) previous {
+}
+
+- (void) favorite {
+}
+
+- (Track *) trackInfo {
+    return nil;
+}
+
+- (BOOL)isPlaying {
+    return NO;
+}
+
 - (BOOL)showNotifications{
     return YES;
 }

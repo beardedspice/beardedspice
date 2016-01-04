@@ -17,7 +17,7 @@
         if ([object respondsToSelector:@selector(displayName)]) {
             _name = [object displayName];
         }
-        if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
+        if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying)]) {
             _isAuto = YES;
         }
         

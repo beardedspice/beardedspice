@@ -28,22 +28,22 @@
 }
 
 // Method stubs to satisfy the TapAdapter protocol
-- (void) toggle {
+- (void)toggle {
 }
 
-- (void) pause {
+- (void)pause {
 }
 
-- (void) next {
+- (void)next {
 }
 
-- (void) previous {
+- (void)previous {
 }
 
-- (void) favorite {
+- (void)favorite {
 }
 
-- (Track *) trackInfo {
+- (Track *)trackInfo {
     return nil;
 }
 

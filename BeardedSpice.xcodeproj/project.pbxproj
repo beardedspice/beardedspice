@@ -88,6 +88,7 @@
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */; };
+		6F15BFA61C3BEB9200C86D13 /* RadioSwissJazzStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */; };
 		7577DA481B6978C70078B19D /* CourseraStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577DA471B6978C70078B19D /* CourseraStrategy.m */; };
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
@@ -309,6 +310,8 @@
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		699AAD3D1992C0A70021BFF2 /* OvercastStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvercastStrategy.h; sourceTree = "<group>"; };
 		699AAD3E1992C0BD0021BFF2 /* OvercastStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OvercastStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		6F15BFA41C3BEB5100C86D13 /* RadioSwissJazzStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioSwissJazzStrategy.h; sourceTree = "<group>"; };
+		6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioSwissJazzStrategy.m; sourceTree = "<group>"; };
 		7577DA461B696DF80078B19D /* CourseraStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseraStrategy.h; sourceTree = "<group>"; };
 		7577DA471B6978C70078B19D /* CourseraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseraStrategy.m; sourceTree = "<group>"; };
 		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VkStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -569,6 +572,8 @@
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				6F15BFA41C3BEB5100C86D13 /* RadioSwissJazzStrategy.h */,
+				6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F15BFA61C3BEB9200C86D13 /* RadioSwissJazzStrategy.m in Sources */,
 				BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */,
 				46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */,
 				163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */,

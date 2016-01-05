@@ -90,6 +90,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Pandora](http://www.pandora.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
+- [Radio Swiss Jazz](http://www.radioswissjazz.ch/)
 - [Rdio](http://rdio.com)
 - [Rhapsody](http://www.rhapsody.com/)
 - [Saavn](http://www.saavn.com/)

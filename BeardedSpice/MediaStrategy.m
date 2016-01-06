@@ -56,6 +56,9 @@
 
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 @implementation MediaStrategy
 
 -(BOOL) accepts:(TabAdapter *)tab
@@ -66,11 +69,6 @@
 -(Track *) trackInfo:(TabAdapter *)tab
 {
     return NULL;
-}
-
-// Method stubs to satisfy the TapAdapter protocol
--(BOOL) isPlaying:(TabAdapter *)tab {
-    return NO;
 }
 
 
@@ -124,3 +122,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop

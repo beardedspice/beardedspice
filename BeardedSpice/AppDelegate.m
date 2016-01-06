@@ -151,6 +151,12 @@ BOOL accessibilityApiEnabled = NO;
     return YES;
 }
 
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center
+       didActivateNotification:(NSUserNotification *)notification {
+    // add notification Action Button code here
+}
+
+
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
 {
     NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
@@ -1035,8 +1041,12 @@ BOOL accessibilityApiEnabled = NO;
             if (!([NSString isNullOrEmpty:track.track] &&
                   [NSString isNullOrEmpty:track.artist] &&
                   [NSString isNullOrEmpty:track.album])) {
+                NSUserNotification *notification = [track asNotification];
+                
+                // add an Action Button ("Show", by default)
+                [notification setHasActionButton: YES];
                 [[NSUserNotificationCenter defaultUserNotificationCenter]
-                 deliverNotification:[track asNotification]];
+                 deliverNotification: notification];
                 NSLog(@"Show Notification: %@", track);
             } else if (useFallback) {
                 [self showDefaultNotification];
@@ -1047,6 +1057,9 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)showDefaultNotification {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
+    
+    // add an Action Button ("Show", by default)
+    [notification setHasActionButton: YES];
     
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
         notification.title = [[activeTab class] displayName];

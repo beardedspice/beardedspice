@@ -56,6 +56,9 @@
 
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 @implementation MediaStrategy
 
 -(BOOL) accepts:(TabAdapter *)tab
@@ -119,3 +122,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop

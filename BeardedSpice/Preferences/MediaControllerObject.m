@@ -10,6 +10,9 @@
 
 @implementation MediaControllerObject
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 - (id)initWithObject:(id)object{
     
     self = [super init];
@@ -26,6 +29,8 @@
     
     return self;
 }
+
+#pragma clang diagnostic pop
 
 - (id)init{
     

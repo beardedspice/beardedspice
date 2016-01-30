@@ -69,6 +69,7 @@
 #import "AudibleStrategy.h"
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
+#import "BugsMusicStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -238,7 +239,8 @@
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
+                       [YouTubeStrategy new],
+                       [BugsMusicStrategy new]
                     ];
     });
     return strategies;

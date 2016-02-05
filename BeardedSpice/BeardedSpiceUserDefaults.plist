@@ -22,6 +22,8 @@
 		<true/>
 		<key>BandCamp</key>
 		<true/>
+		<key>BBC Radio</key>
+		<true/>
 		<key>Beatguide</key>
 		<true/>
 		<key>Beats Music</key>
@@ -107,6 +109,8 @@
 		<key>focus@will</key>
 		<true/>
 		<key>Udemy</key>
+		<true/>
+		<key>twitch.tv</key>
 		<true/>
 	</dict>
 	<key>BeardedSpiceActiveTabShortcut</key>

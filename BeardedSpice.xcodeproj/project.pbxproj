@@ -38,6 +38,7 @@
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
 		3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
+		46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
 		4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4217281B306A5800B22853 /* SubsonicStrategy.m */; };
 		4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C42172B1B307C2D00B22853 /* TuneInStrategy.m */; };
@@ -110,6 +111,7 @@
 		BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36E0651A6797B300713BA7 /* FocusAtWillStrategy.m */; };
 		C31C94181AFB5500003F89AC /* NoonPacificStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */; };
 		CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */; };
+		D00408331C1E2E31006A89D0 /* BBCRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */; };
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D07721661C1439FF004727EF /* NetflixStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721651C1439FF004727EF /* NetflixStrategy.m */; };
 		D07721691C14DF96004727EF /* AudibleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721681C14DF96004727EF /* AudibleStrategy.m */; };
@@ -202,6 +204,8 @@
 		3B0F61281AD5CC6900DADAC2 /* BeatguideStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatguideStrategy.h; sourceTree = "<group>"; };
 		45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShufflerFmStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShufflerFmStrategy.h; sourceTree = "<group>"; };
+		46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitchMediaStrategy.h; sourceTree = "<group>"; };
+		46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitchMediaStrategy.m; sourceTree = "<group>"; };
 		48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicStrategy.h; sourceTree = "<group>"; };
 		48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AmazonMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C4217271B3069EF00B22853 /* SubsonicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubsonicStrategy.h; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 		C31C94171AFB5500003F89AC /* NoonPacificStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoonPacificStrategy.m; sourceTree = "<group>"; };
 		CA5CCF401887FC0700F7C1C3 /* SynologyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynologyStrategy.h; sourceTree = "<group>"; };
 		CA5CCF411887FC0700F7C1C3 /* SynologyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynologyStrategy.m; sourceTree = "<group>"; };
+		D00408311C1E2E31006A89D0 /* BBCRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCRadioStrategy.h; sourceTree = "<group>"; };
+		D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCRadioStrategy.m; sourceTree = "<group>"; };
 		D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SomaFmStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D055A36B1A7A035200CE2BBD /* SomaFmStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomaFmStrategy.h; sourceTree = "<group>"; };
 		D07721641C1439FF004727EF /* NetflixStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStrategy.h; sourceTree = "<group>"; };
@@ -426,6 +432,10 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */,
+				46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */,
+				D00408311C1E2E31006A89D0 /* BBCRadioStrategy.h */,
+				D00408321C1E2E31006A89D0 /* BBCRadioStrategy.m */,
 				D07721671C14DF96004727EF /* AudibleStrategy.h */,
 				D07721681C14DF96004727EF /* AudibleStrategy.m */,
 				D07721641C1439FF004727EF /* NetflixStrategy.h */,
@@ -870,6 +880,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE36E0661A6797B300713BA7 /* FocusAtWillStrategy.m in Sources */,
+				46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */,
 				163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
@@ -923,6 +934,7 @@
 				65163CA91BE60D5A000A3575 /* DDHidElement.m in Sources */,
 				65163CA81BE60D5A000A3575 /* DDHidDevice.m in Sources */,
 				503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */,
+				D00408331C1E2E31006A89D0 /* BBCRadioStrategy.m in Sources */,
 				65163CAF1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m in Sources */,
 				65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */,
 				03A3492F185EE82700C4A62B /* GrooveSharkStrategy.m in Sources */,

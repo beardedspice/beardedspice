@@ -8,6 +8,8 @@
 
 #import "runningSBApplication.h"
 
+#define COMMAND_TIMEOUT         1 // 0.1 second
+
 @implementation runningSBApplication
 
 - (instancetype)initWithApplication:(SBApplication *)application bundleIdentifier:(NSString *)bundleIdentifier{
@@ -18,6 +20,8 @@
         _sbApplication = application;
         _bundleIdentifier = bundleIdentifier;
         _processIdentifier = 0;
+        
+        _sbApplication.timeout = COMMAND_TIMEOUT;
     }
     
     return self;

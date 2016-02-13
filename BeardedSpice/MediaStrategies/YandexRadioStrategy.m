@@ -58,7 +58,7 @@
 }
 
 -(NSString *) pause {
-    return @"externalAPI.togglePause()";
+    return @"(function(){if(externalAPI.isPlaying())externalAPI.togglePause();})()";
 }
 
 -(NSString *) favorite {

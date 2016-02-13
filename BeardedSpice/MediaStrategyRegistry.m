@@ -69,7 +69,6 @@
 #import "AudibleStrategy.h"
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
-#import "iHeartRadioStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -198,7 +197,6 @@
                        [GrooveSharkStrategy new],
                        [HotNewHipHopStrategy new],
                        [HypeMachineStrategy new],
-                       [iHeartRadioStrategy new],
                        [IndieShuffleStrategy new],
                        [JangoMediaStrategy new],
                        [KollektFmStrategy new],

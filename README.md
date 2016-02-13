@@ -106,6 +106,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Twitch TV](http://twitch.tv/)
 - [Udemy](https://www.udemy.com/)
 - [Vimeo](http://vimeo.com)
+- [Vessel](https://www.vessel.com/)
 - [VK ("My Music" from vk.com)](http://vk.com)
 - [WONDER.FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)

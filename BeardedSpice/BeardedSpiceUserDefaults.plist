@@ -30,6 +30,8 @@
 		<true/>
 		<key>Bop.fm</key>
 		<true/>
+                <key>BugsMusic</key>
+		<true/>
 		<key>Chorus</key>
 		<true/>
 		<key>Deezer</key>
@@ -91,6 +93,8 @@
 		<key>Synology Audio Station</key>
 		<true/>
 		<key>TIDAL</key>
+		<true/>
+		<key>Vessel</key>
 		<true/>
 		<key>VK</key>
 		<true/>

@@ -12,8 +12,6 @@
 		031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
 		0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
 		0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
-		0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */; };
-		0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */; };
 		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
 		0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370588D1863F47300C691B3 /* SpotifyStrategy.m */; };
 		039D83421892173600DB426D /* SlackerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 039D83411892173600DB426D /* SlackerStrategy.m */; };
@@ -29,6 +27,7 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
+		16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D1371C6F5E8F0072916A /* VesselStrategy.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
@@ -65,17 +64,20 @@
 		65163CB91BE61704000A3575 /* NSXReturnThrowError.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CB81BE61704000A3575 /* NSXReturnThrowError.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		65163CBC1BE61759000A3575 /* DDHidUsageTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 65163CBB1BE61759000A3575 /* DDHidUsageTables.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
-		651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C51AB3A67B00B48D3A /* NSString+Utils.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
-		6537DAB01AF75CA4002F2391 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
+		65CB58C01C6E3DE900BE37A9 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CB58BD1C6E3DE900BE37A9 /* NSString+Utils.m */; };
+		65CB58C11C6E3DE900BE37A9 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CB58BF1C6E3DE900BE37A9 /* NSURL+Utils.m */; };
+		65CB58C71C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CB58C41C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.m */; };
+		65CB58C81C6E3E8700BE37A9 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CB58C61C6E3E8700BE37A9 /* SPMediaKeyTap.m */; };
+		65CB58CB1C6E3FAC00BE37A9 /* BSTimeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CB58CA1C6E3FAC00BE37A9 /* BSTimeout.m */; };
 		65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */; };
 		65E567081B76104300AD2D46 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65E5670B1B768E9E00AD2D46 /* ComposedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670A1B768E9E00AD2D46 /* ComposedStrategy.m */; };
@@ -155,10 +157,6 @@
 		031D8148187F982A00A93E00 /* RdioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RdioStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
 		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
-		0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
-		0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
-		0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
-		0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
 		0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
 		0370588C1863F47300C691B3 /* SpotifyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyStrategy.h; sourceTree = "<group>"; };
@@ -189,6 +187,8 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
+		16D5D1361C6F5E8F0072916A /* VesselStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VesselStrategy.h; sourceTree = "<group>"; };
+		16D5D1371C6F5E8F0072916A /* VesselStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VesselStrategy.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
 		1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
@@ -260,14 +260,10 @@
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
-		651967C41AB3A67B00B48D3A /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
-		651967C51AB3A67B00B48D3A /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabRegistry.h; sourceTree = "<group>"; };
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
-		6537DAAE1AF75CA4002F2391 /* NSURL+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Utils.h"; sourceTree = "<group>"; };
-		6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
@@ -285,6 +281,16 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabAdapter.m; sourceTree = "<group>"; };
+		65CB58BC1C6E3DE900BE37A9 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		65CB58BD1C6E3DE900BE37A9 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		65CB58BE1C6E3DE900BE37A9 /* NSURL+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Utils.h"; sourceTree = "<group>"; };
+		65CB58BF1C6E3DE900BE37A9 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
+		65CB58C31C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		65CB58C41C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		65CB58C51C6E3E8700BE37A9 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		65CB58C61C6E3E8700BE37A9 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
+		65CB58C91C6E3FAC00BE37A9 /* BSTimeout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTimeout.h; sourceTree = "<group>"; };
+		65CB58CA1C6E3FAC00BE37A9 /* BSTimeout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTimeout.m; sourceTree = "<group>"; };
 		65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneUnplugListener.h; sourceTree = "<group>"; };
 		65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneUnplugListener.m; sourceTree = "<group>"; };
 		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -545,6 +551,8 @@
 				4C42172B1B307C2D00B22853 /* TuneInStrategy.m */,
 				D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */,
 				D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */,
+				16D5D1361C6F5E8F0072916A /* VesselStrategy.h */,
+				16D5D1371C6F5E8F0072916A /* VesselStrategy.m */,
 				8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
 				8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
 				81DA43D51950BF55000E98AC /* VkStrategy.h */,
@@ -618,6 +626,30 @@
 			path = DDHidLib;
 			sourceTree = "<group>";
 		};
+		65CB58B51C6E3CC800BE37A9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				65CB58BC1C6E3DE900BE37A9 /* NSString+Utils.h */,
+				65CB58BD1C6E3DE900BE37A9 /* NSString+Utils.m */,
+				65CB58BE1C6E3DE900BE37A9 /* NSURL+Utils.h */,
+				65CB58BF1C6E3DE900BE37A9 /* NSURL+Utils.m */,
+				65CB58C91C6E3FAC00BE37A9 /* BSTimeout.h */,
+				65CB58CA1C6E3FAC00BE37A9 /* BSTimeout.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		65CB58C21C6E3E0100BE37A9 /* SPMediaKeyTap */ = {
+			isa = PBXGroup;
+			children = (
+				65CB58C31C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.h */,
+				65CB58C41C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.m */,
+				65CB58C51C6E3E8700BE37A9 /* SPMediaKeyTap.h */,
+				65CB58C61C6E3E8700BE37A9 /* SPMediaKeyTap.m */,
+			);
+			path = SPMediaKeyTap;
+			sourceTree = "<group>";
+		};
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
@@ -666,7 +698,9 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
+				65CB58C21C6E3E0100BE37A9 /* SPMediaKeyTap */,
 				65163C9D1BE60C71000A3575 /* DDHidLib */,
+				65CB58B51C6E3CC800BE37A9 /* Utils */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				03A34919185E9FC700C4A62B /* MediaStrategies */,
@@ -676,8 +710,6 @@
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
 				6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */,
 				6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */,
-				0362FF2218552FB300ADA4B4 /* SPMediaKeyTap.h */,
-				0362FF2318552FB300ADA4B4 /* SPMediaKeyTap.m */,
 				65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */,
 				65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */,
 				967933411855173100A49AC7 /* AppDelegate.h */,
@@ -687,12 +719,6 @@
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
 				65E567041B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.h */,
 				65E567051B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m */,
-				0362FF2418552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.h */,
-				0362FF2518552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m */,
-				651967C41AB3A67B00B48D3A /* NSString+Utils.h */,
-				651967C51AB3A67B00B48D3A /* NSString+Utils.m */,
-				6537DAAE1AF75CA4002F2391 /* NSURL+Utils.h */,
-				6537DAAF1AF75CA4002F2391 /* NSURL+Utils.m */,
 				967933471855173100A49AC7 /* Images.xcassets */,
 				967933361855173100A49AC7 /* Supporting Files */,
 			);
@@ -888,10 +914,8 @@
 				46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */,
 				163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
-				0362FF2718552FB300ADA4B4 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
-				0362FF2618552FB300ADA4B4 /* SPMediaKeyTap.m in Sources */,
 				4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */,
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
 				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,
@@ -915,6 +939,7 @@
 				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
+				65CB58C01C6E3DE900BE37A9 /* NSString+Utils.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */,
@@ -928,6 +953,7 @@
 				65163CBC1BE61759000A3575 /* DDHidUsageTables.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
 				4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */,
+				65CB58C81C6E3E8700BE37A9 /* SPMediaKeyTap.m in Sources */,
 				639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */,
 				500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */,
 				D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */,
@@ -937,7 +963,9 @@
 				658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */,
 				8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */,
 				65163CA91BE60D5A000A3575 /* DDHidElement.m in Sources */,
+				65CB58C11C6E3DE900BE37A9 /* NSURL+Utils.m in Sources */,
 				65163CA81BE60D5A000A3575 /* DDHidDevice.m in Sources */,
+				65CB58C71C6E3E8700BE37A9 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				503E32DC1ACE773000210195 /* NoAdRadioStrategy.m in Sources */,
 				D00408331C1E2E31006A89D0 /* BBCRadioStrategy.m in Sources */,
 				65163CAF1BE60D9C000A3575 /* NSDictionary+DDHidExtras.m in Sources */,
@@ -946,6 +974,7 @@
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
+				16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,
@@ -968,7 +997,6 @@
 				377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */,
 				969E45721863E5830037226B /* LastFmStrategy.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
-				651967C61AB3A67B00B48D3A /* NSString+Utils.m in Sources */,
 				65163CAE1BE60D9C000A3575 /* DDHidUsage.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
@@ -976,9 +1004,9 @@
 				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
 				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
 				32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */,
-				6537DAB01AF75CA4002F2391 /* NSURL+Utils.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
+				65CB58CB1C6E3FAC00BE37A9 /* BSTimeout.m in Sources */,
 				45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */,
 				6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */,
 				BE0EC59E41539EF7C9368E11 /* YandexRadioStrategy.m in Sources */,

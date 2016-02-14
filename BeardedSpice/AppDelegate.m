@@ -417,11 +417,15 @@ BOOL accessibilityApiEnabled = NO;
                                                                         (int64_t)(FAVORITED_DELAY *
                                                                                   NSEC_PER_SEC)),
                                                           dispatch_get_main_queue(), ^{
-                                                              
-                                                              if ([[strategy
-                                                                    trackInfo:
-                                                                    activeTab] favorited])
+                                                              @try {
+                                                                  if ([[strategy
+                                                                        trackInfo:
+                                                                        activeTab] favorited])
                                                                   [self showNotification];
+                                                              }
+                                                              @catch (NSException *exception) {
+                                                                  NSLog(@"(AppDelegate - setupFavoriteShortcutCallback) Error getting track info: %@.", [exception description]);
+                                                              }
                                                           });
                                        }
                                    }
@@ -1118,27 +1122,34 @@ BOOL accessibilityApiEnabled = NO;
     
     dispatch_async(notificationQueue, ^{
         @autoreleasepool {
-            Track *track;
-            if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-                if ([activeTab respondsToSelector:@selector(trackInfo)]) {
-                    track = [(NativeAppTabAdapter *)activeTab trackInfo];
-                }
-            } else {
-                
-                MediaStrategy *strategy =
-                [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-                if (strategy)
-                    track = [strategy trackInfo:activeTab];
-            }
             
-            if (!([NSString isNullOrEmpty:track.track] &&
-                  [NSString isNullOrEmpty:track.artist] &&
-                  [NSString isNullOrEmpty:track.album])) {
-                [[NSUserNotificationCenter defaultUserNotificationCenter]
-                 deliverNotification:[track asNotification]];
-                NSLog(@"Show Notification: %@", track);
-            } else if (useFallback) {
-                [self showDefaultNotification];
+            @try {
+                Track *track;
+                if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
+                    if ([activeTab respondsToSelector:@selector(trackInfo)]) {
+                        track = [(NativeAppTabAdapter *)activeTab trackInfo];
+                    }
+                } else {
+                    
+                    MediaStrategy *strategy =
+                    [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+                    if (strategy)
+                    track = [strategy trackInfo:activeTab];
+                }
+                
+                if (!([NSString isNullOrEmpty:track.track] &&
+                      [NSString isNullOrEmpty:track.artist] &&
+                      [NSString isNullOrEmpty:track.album])) {
+                    [[NSUserNotificationCenter defaultUserNotificationCenter]
+                     deliverNotification:[track asNotification]];
+                    NSLog(@"Show Notification: %@", track);
+                } else if (useFallback) {
+                    [self showDefaultNotification];
+                }
+
+            }
+            @catch (NSException *exception) {
+                NSLog(@"(AppDelegate - showNotificationUsingFallback) Error showing notification: %@.", [exception description]);
             }
         }
     });

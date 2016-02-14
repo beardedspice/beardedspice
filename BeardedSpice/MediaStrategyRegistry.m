@@ -69,6 +69,7 @@
 #import "AudibleStrategy.h"
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
+#import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
 
 @interface MediaStrategyRegistry ()
@@ -190,6 +191,7 @@
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],
                        [BopFm new],
+                       [BugsMusicStrategy new],
                        [ChorusStrategy new],
                        [ComposedStrategy new],
                        [CourseraStrategy new],

@@ -145,24 +145,27 @@
 
 -(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
-    NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
-    MediaStrategy *strat = _registeredCache[cacheKey];
-    if (strat)
+    if (tab.check) {
+        
+        NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
+        MediaStrategy *strat = _registeredCache[cacheKey];
+        if (strat)
         /* Return the equivalent of a full scan except we dont repeat calculations */
         return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
-
-    for (MediaStrategy *strategy in availableStrategies)
-    {
-        BOOL accepted = [strategy accepts:tab];
-
-        /* Store the result of this calculation for future use */
-        _registeredCache[cacheKey] = accepted ? strategy : @NO;
-        if (accepted) {
-            NSLog(@"%@ is valid for %@", strategy, tab);
-            return strategy;
+        
+        for (MediaStrategy *strategy in availableStrategies)
+        {
+            BOOL accepted = [strategy accepts:tab];
+            
+            /* Store the result of this calculation for future use */
+            _registeredCache[cacheKey] = accepted ? strategy : @NO;
+            if (accepted) {
+                NSLog(@"%@ is valid for %@", strategy, tab);
+                return strategy;
+            }
         }
     }
-    return NULL;
+    return nil;
 }
 
 -(NSArray *) getMediaStrategies

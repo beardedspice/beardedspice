@@ -54,6 +54,7 @@ extern BOOL accessibilityApiEnabled;
     
     NSMutableSet    *openedWindows;
     
+    dispatch_queue_t workingQueue;
     dispatch_queue_t notificationQueue;
     
     NSMutableArray *_mikeys;

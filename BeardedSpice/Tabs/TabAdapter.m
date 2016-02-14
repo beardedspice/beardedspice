@@ -13,6 +13,7 @@
 #define KEY_NAME            @"X_BeardedSpice_UUID"
 #define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})();"
 #define SET_KEY_FORMAT      @"(function(){ window." KEY_NAME @" = '%@';})();"
+#define CHECK_EXEC          @"(function(){ return true;})();"
 
 @implementation TabAdapter
 
@@ -86,6 +87,12 @@
         
         return [[self key] isEqualToString:[otherTab key]];
     }
+}
+
+- (BOOL)check{
+    
+    NSNumber *result = [self executeJavascript:CHECK_EXEC];
+    return [result boolValue];
 }
 
 //////////////////////////////////////////////////////////////

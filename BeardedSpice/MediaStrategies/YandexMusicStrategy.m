@@ -10,77 +10,63 @@
 
 @implementation YandexMusicStrategy
 
-- (id)init {
+-(id) init {
     self = [super init];
     if (self) {
-        predicate =
-            [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*music.yandex.*'"];
+        predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*music.yandex.*'"];
     }
     return self;
 }
 
-- (BOOL)accepts:(TabAdapter *)tab {
+-(NSString *) displayName {
+    return @"Yandex.Music";
+}
+
+-(BOOL) accepts:(TabAdapter *)tab {
     return [predicate evaluateWithObject:[tab URL]];
 }
 
-- (BOOL)isPlaying:(TabAdapter *)tab {
-
-    NSNumber *value =
-        [tab executeJavascript:@"(function(){return "
-                               @"(document.querySelector('.player-controls__btn_play.player-controls__btn_pause') != null);}())"
-         ];
-
-    return [value boolValue];
+-(BOOL) isPlaying:(TabAdapter *)tab {
+    NSNumber *result = [tab executeJavascript:@"externalAPI.isPlaying()"];
+    
+    return [result boolValue];
 }
 
-- (NSString *)toggle {
-    return @"(function(){document.querySelector('div.b-jambox__play, "
-           @".player-controls__btn_play').click()})()";
-}
-
-- (NSString *)previous {
-    return @"(function(){document.querySelector('div.b-jambox__prev, "
-           @".player-controls__btn_prev').click()})()";
-}
-
-- (NSString *)next {
-    return @"(function(){document.querySelector('div.b-jambox__next, "
-           @".player-controls__btn_next').click()})()";
-}
-
-- (NSString *)pause {
-    return @"(function(){\
-        var e=document.querySelector('.player-controls__btn_play');\
-        if(e!=null){\
-            if(e.classList.contains('player-controls__btn_pause')){e.click()}\
-        }else{\
-            var e=document.querySelector('div.b-jambox__play');\
-            if(e.classList.contains('b-jambox__playing')){e.click()}\
-        }\
-    })()";
-}
-
-- (NSString *)displayName {
-    return @"YandexMusic";
-}
-
-- (NSString *)favorite {
-
-    return @"(function(){$('.player-controls "
-           @".like.player-controls__btn').click();})()";
-}
-
-- (Track *)trackInfo:(TabAdapter *)tab {
-
-    NSDictionary *info = [tab
-        executeJavascript:@"(function(){var track = $('.track.track_type_player').get(0); return {'track': $('.track__title', track)[0].innerText, 'artist': $('.track__artists', track)[0].innerText, 'favorited': $('.player-controls__track-controls .like.player-controls__btn').hasClass('like_on'), 'albumArt': $('.album-cover', track).attr('src')}})()"];
-
-    Track *track = [Track new];
-
-    [track setValuesForKeysWithDictionary:info];
-    track.image = [self imageByUrlString:info[@"albumArt"]];
-
+-(Track *) trackInfo:(TabAdapter *)tab {
+    Track *track = [[Track alloc] init];
+    
+    NSDictionary *info = [tab executeJavascript:@"externalAPI.getCurrentTrack()"];
+    
+    track.track = info[@"title"];
+    track.artist = info[@"artists"][0][@"title"];
+    track.album = info[@"album"][@"title"];
+    track.favorited = info[@"liked"];
+    
+    NSString *urlCover = info[@"cover"];
+    urlCover = [urlCover stringByReplacingOccurrencesOfString:@"\%\%" withString:@"600x600"];
+    track.image = [self imageByUrlString:urlCover];
+    
     return track;
+}
+
+-(NSString *) toggle {
+    return @"externalAPI.togglePause()";
+}
+
+-(NSString *) previous {
+    return @"externalAPI.prev()";
+}
+
+-(NSString *) next {
+    return @"externalAPI.next()";
+}
+
+-(NSString *) pause {
+    return @"(function(){if(externalAPI.isPlaying())externalAPI.togglePause();})()";
+}
+
+-(NSString *) favorite {
+    return @"externalAPI.toggleLike()";
 }
 
 @end

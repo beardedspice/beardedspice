@@ -27,6 +27,7 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
+		16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D1371C6F5E8F0072916A /* VesselStrategy.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
@@ -185,6 +186,8 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
+		16D5D1361C6F5E8F0072916A /* VesselStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VesselStrategy.h; sourceTree = "<group>"; };
+		16D5D1371C6F5E8F0072916A /* VesselStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VesselStrategy.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
 		1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				4C42172B1B307C2D00B22853 /* TuneInStrategy.m */,
 				D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */,
 				D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */,
+				16D5D1361C6F5E8F0072916A /* VesselStrategy.h */,
+				16D5D1371C6F5E8F0072916A /* VesselStrategy.m */,
 				8E38FAD41994CE57005C2465 /* VimeoStrategy.h */,
 				8E38FAD51994CE57005C2465 /* VimeoStrategy.m */,
 				81DA43D51950BF55000E98AC /* VkStrategy.h */,
@@ -964,6 +969,7 @@
 				03A34932185EE8EE00C4A62B /* SoundCloudStrategy.m in Sources */,
 				523F839F189747DF007F2FFD /* BeatsMusicStrategy.m in Sources */,
 				03A3491C185EA03300C4A62B /* MediaStrategy.m in Sources */,
+				16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,

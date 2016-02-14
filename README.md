@@ -46,18 +46,18 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 
 ### Supported Mac OS X applications
 - [iTunes](http://www.apple.com/itunes/)
-- [Spotify](http://www.spotify.com/)
+- [Spotify](https://www.spotify.com/)
 - [VOX](http://coppertino.com/)
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)
 - [22Tracks](http://22tracks.com)
-- [Amazon Music](https://amazon.com/gp/dmusic/cloudplayer/player)
+- [Amazon Music](https://www.amazon.com/gp/dmusic/cloudplayer/player)
 - [Audible](http://www.audible.com/)
 - [AudioMack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
 - [BBC Radio](http://www.bbc.co.uk/radio)
-- [Beatguide](http://beatguide.me/)
+- [Beatguide](https://beatguide.me/)
 - [BeatsMusic](http://listen.beatsmusic.com)
 - [Blitzr](http://blitzr.com)
 - [Bop.fm](http://bop.fm)
@@ -73,28 +73,28 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [HotNewHipHop Mixtapes] (http://www.hotnewhiphop.com/mixtapes/)
 - [HypeMachine](http://hypem.com)
 - [IndieShuffle](http://www.indieshuffle.com)
-- [Jango](http://jango.com)
+- [Jango](http://www.jango.com/)
 - [Kollekt.FM](https://kollekt.fm/)
-- [Last.fm](http://last.fm)
+- [Last.fm](http://www.last.fm/)
 - [Le Tournedisque](http://www.letournedisque.com/)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
-- [Mixcloud](http://mixcloud.com)
+- [Mixcloud](https://www.mixcloud.com/)
 - [Music For Programming](http://musicforprogramming.net/)
 - [Music Unlimited](https://music.sonyentertainmentnetwork.com)
 - [Netflix](http://www.netflix.com)
-- [NoAdRadio.com](http://noadradio.com)
+- [NoAdRadio.com](http://www.noadradio.com/)
 - [NoonPacific.com](http://noonpacific.com)
-- [NRK Radio](http://radio.nrk.no/)
+- [NRK Radio](https://radio.nrk.no/)
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
-- [Pandora](http://pandora.com)
+- [Pandora](http://www.pandora.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [Rdio](http://rdio.com)
-- [Rhapsody](http://rhapsody.com)
-- [Saavn](http://saavn.com)
-- [Shuffler.fm](http://shuffler.fm/tracks)
-- [Slacker](http://slacker.com)
+- [Rhapsody](http://www.rhapsody.com/)
+- [Saavn](http://www.saavn.com/)
+- [Shuffler.fm](http://shuffler.fm/)
+- [Slacker](http://www.slacker.com/)
 - [SomaFM](http://somafm.com)
 - [Songza](http://songza.com)
 - [SoundCloud](https://soundcloud.com)
@@ -102,18 +102,18 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [STITCHER](http://www.stitcher.com)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
-- [TIDAL (Web)](http://listen.tidalhifi.com/)
+- [TIDAL (Web)](http://listen.tidal.com/)
 - [TuneIn](http://tunein.com/)
-- [Twitch TV](http://twitch.tv/)
+- [Twitch TV](http://www.twitch.tv/)
 - [Udemy](https://www.udemy.com/)
-- [Vimeo](http://vimeo.com)
+- [Vimeo](https://vimeo.com/)
 - [Vessel](https://www.vessel.com/)
-- [VK ("My Music" from vk.com)](http://vk.com)
+- [VK ("My Music" from vk.com)](http://vk.com/)
 - [WONDER.FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)
-- [Yandex Music](http://music.yandex.ru)
-- [Yandex Radio](http://radio.yandex.ru)
-- [YouTube](http://youtube.com)
+- [Yandex Music](https://music.yandex.ru/)
+- [Yandex Radio](https://radio.yandex.ru/)
+- [YouTube](https://www.youtube.com/)
 
 #### Don't see your favorite site in the list ?
 No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.
@@ -125,7 +125,7 @@ No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/
 
 ## Dependencies
 
-We use [CocoaPods](http://cocoapods.org/) to manage all obj-c/cocoa dependences. cd to the directory containing the workspace, then install them locally using:
+We use [CocoaPods](https://cocoapods.org/) to manage all obj-c/cocoa dependences. cd to the directory containing the workspace, then install them locally using:
 ```bash
 sudo gem install cocoapods
 pod setup

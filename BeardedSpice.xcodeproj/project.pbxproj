@@ -515,6 +515,8 @@
 				2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */,
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
+				6F15BFA41C3BEB5100C86D13 /* RadioSwissJazzStrategy.h */,
+				6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */,
 				031D8147187F982A00A93E00 /* RdioStrategy.h */,
 				031D8148187F982A00A93E00 /* RdioStrategy.m */,
 				50445D171AE7C9CB00A57315 /* SaavnStrategy.h */,
@@ -559,8 +561,6 @@
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
-				6F15BFA41C3BEB5100C86D13 /* RadioSwissJazzStrategy.h */,
-				6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";

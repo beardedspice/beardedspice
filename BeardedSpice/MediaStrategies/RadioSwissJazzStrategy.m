@@ -46,7 +46,7 @@
 
     NSString *baseImageUrl = @"http://www.radioswissjazz.ch";
     NSDictionary *metadata = [tab executeJavascript:@"(function(){ return { \
-                                image:  document.querySelector('#live img.cover').getAttribute('src'), \
+                                image:  try{document.querySelector('#live img.cover').getAttribute('src')}catch(e){''}, \
                                 album:  document.querySelector('#live img.cover').getAttribute('title'), \
                                 track:  document.querySelector('#live .title').textContent.replace(/\\s+/, '').replace(/\\t/g, '').replace(/\\n/, ''), \
                                 artist: document.querySelector('#live .artist').innerText, \

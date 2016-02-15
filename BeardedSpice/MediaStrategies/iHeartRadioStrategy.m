@@ -27,13 +27,13 @@
 
 -(BOOL)isPlaying:(TabAdapter *)tab
 {
-    NSNumber *value = [tab executeJavascript:@"(document.querySelectorAll('[aria-label=\"Stop\"], [aria-label=\"Pause\"]').length > 0)"];
+    NSNumber *value = [tab executeJavascript:@"(document.querySelectorAll('[aria-label=\"Stop\"]').length > 0)"];
     return [value boolValue];
 }
 
 -(NSString *) toggle
 {
-    return @"(function(){if (document.querySelectorAll('[aria-label=\"Stop\"], [aria-label=\"Pause\"]').length > 0) {try{document.querySelector('[aria-label=\"Stop\"]').click();}catch(e){document.querySelector('[aria-label=\"Pause\"]').click();}} else {var plays = document.querySelectorAll('[aria-label=\"Play Station\"]'); plays[plays.length-1].click();}})()";
+    return @"(function(){if (document.querySelectorAll('[aria-label=\"Stop\"]').length > 0) {document.querySelector('[aria-label=\"Stop\"]').click();} else {var plays = document.querySelectorAll('[aria-label=\"Play Station\"]'); plays[plays.length-1].click();}})()";
 }
 
 

@@ -96,7 +96,6 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Shuffler.fm](http://shuffler.fm/)
 - [Slacker](http://www.slacker.com/)
 - [SomaFM](http://somafm.com)
-- [Songza](http://songza.com)
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)
 - [STITCHER](http://www.stitcher.com)

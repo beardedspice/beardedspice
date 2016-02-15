@@ -22,7 +22,6 @@
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
 #import "ShufflerFmStrategy.h"
-#import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
 #import "BeatsMusicStrategy.h"
 #import "MixCloudStrategy.h"
@@ -227,7 +226,6 @@
                        [ShufflerFmStrategy new],
                        [SlackerStrategy new],
                        [SomaFmStrategy new],
-                       [SongzaStrategy new],
                        [SoundCloudStrategy new],
                        [SpotifyStrategy new],
                        [StitcherStrategy new],

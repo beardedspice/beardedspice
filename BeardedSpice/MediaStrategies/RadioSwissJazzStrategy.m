@@ -45,12 +45,12 @@
     Track *track = [[Track alloc] init];
 
     NSString *baseImageUrl = @"http://www.radioswissjazz.ch";
-    NSDictionary *metadata = [tab executeJavascript:@"(function(){ return {"
-                              @"  image:  document.querySelector('#live img.cover').getAttribute('src'),"
-                              @"  album:  document.querySelector('#live img.cover').getAttribute('title'),"
-                              @"  track:  document.querySelector('#live .title').innerText,"
-                              @"  artist: document.querySelector('#live .artist').innerText,"
-                              @"}})()"];
+    NSDictionary *metadata = [tab executeJavascript:@"(function(){ return { \
+                                image:  document.querySelector('#live img.cover').getAttribute('src'), \
+                                album:  document.querySelector('#live img.cover').getAttribute('title'), \
+                                track:  document.querySelector('#live .title').textContent.replace(/\\s+/, '').replace(/\\t/g, '').replace(/\\n/, ''), \
+                                artist: document.querySelector('#live .artist').innerText, \
+                              }})()"];
 
     track.track = [metadata valueForKey:@"track"];
     track.image = [self imageByUrlString:[baseImageUrl stringByAppendingString:[metadata valueForKey:@"image"]]];

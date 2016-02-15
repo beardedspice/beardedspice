@@ -152,7 +152,12 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    [self autoSelectedTabs];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self autoSelectedTabs];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self setStatusMenuItemsStatus];
+        });
+    });
     [self setStatusMenuItemsStatus];
 }
 

@@ -69,7 +69,6 @@
 #import "AudibleStrategy.h"
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
-#import "iHeartRadioStrategy.h"
 #import "RadioSwissJazzStrategy.h"
 
 @interface MediaStrategyRegistry ()
@@ -199,7 +198,6 @@
                        [GrooveSharkStrategy new],
                        [HotNewHipHopStrategy new],
                        [HypeMachineStrategy new],
-                       [iHeartRadioStrategy new],
                        [IndieShuffleStrategy new],
                        [JangoMediaStrategy new],
                        [KollektFmStrategy new],

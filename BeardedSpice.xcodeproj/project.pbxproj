@@ -29,7 +29,6 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
-		16D5D13B1C6F609B0072916A /* iHeartRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
@@ -190,8 +189,6 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
-		16D5D1391C6F609B0072916A /* iHeartRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iHeartRadioStrategy.h; sourceTree = "<group>"; };
-		16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iHeartRadioStrategy.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
 		1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
@@ -490,8 +487,6 @@
 				F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */,
 				03A34933185EE97B00C4A62B /* HypeMachineStrategy.h */,
 				03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */,
-				16D5D1391C6F609B0072916A /* iHeartRadioStrategy.h */,
-				16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */,
 				639AA84F1B42F922001A8398 /* IndieShuffleStrategy.h */,
 				639AA8501B42F922001A8398 /* IndieShuffleStrategy.m */,
 				508196B01AE8F58B007B5493 /* KollektFmStrategy.h */,
@@ -929,7 +924,6 @@
 				65163CB91BE61704000A3575 /* NSXReturnThrowError.m in Sources */,
 				50A671161BFC4C8800200052 /* RhapsodyStrategy.m in Sources */,
 				50445D191AE7C9CB00A57315 /* SaavnStrategy.m in Sources */,
-				16D5D13B1C6F609B0072916A /* iHeartRadioStrategy.m in Sources */,
 				3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */,
 				031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */,
 				65163CBC1BE61759000A3575 /* DDHidUsageTables.m in Sources */,

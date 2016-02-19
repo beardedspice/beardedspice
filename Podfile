@@ -1,5 +1,5 @@
 platform :osx, '10.8'
-xcodeproj 'BeardedSpice'
+project 'BeardedSpice'
 
 source 'https://github.com/CocoaPods/Specs.git'
 

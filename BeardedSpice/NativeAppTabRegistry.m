@@ -11,6 +11,7 @@
 #import "iTunesTabAdapter.h"
 #import "SpotifyTabAdapter.h"
 #import "VOXTabAdapter.h"
+#import "RadiumTabAdapter.h"
 
 @implementation NativeAppTabRegistry
 
@@ -45,7 +46,8 @@
 
         [iTunesTabAdapter class],
         [SpotifyTabAdapter class],
-        [VOXTabAdapter class]
+        [VOXTabAdapter class],
+        [RadiumTabAdapter class]
     ];
 }
 

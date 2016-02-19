@@ -27,12 +27,12 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
+		16A45C1B1C77BAC200C07308 /* RadiumTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A45C1A1C77BAC200C07308 /* RadiumTabAdapter.m */; };
 		16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D1371C6F5E8F0072916A /* VesselStrategy.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
 		1AB7F2531C5D09E4005AA3AC /* BugsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */; };
-		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */; };
 		32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F131451A71B6090029E9EF /* PocketCastsStrategy.m */; };
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
@@ -120,6 +120,7 @@
 		D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		E51D0C83A82A3126D8610C2D /* libPods-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 981E688C1484895058417B2C /* libPods-BeardedSpice.a */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
 		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
 		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
@@ -186,6 +187,9 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
+		16A45C191C77BA8100C07308 /* RadiumTabAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadiumTabAdapter.h; sourceTree = "<group>"; };
+		16A45C1A1C77BAC200C07308 /* RadiumTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RadiumTabAdapter.m; path = ../../../../../Jacob/GitHub/beardedspice/BeardedSpice/Tabs/RadiumTabAdapter.m; sourceTree = "<group>"; };
+		16A982591C77B6A600759E61 /* Radium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Radium.h; sourceTree = "<group>"; };
 		16D5D1361C6F5E8F0072916A /* VesselStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VesselStrategy.h; sourceTree = "<group>"; };
 		16D5D1371C6F5E8F0072916A /* VesselStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VesselStrategy.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
@@ -194,8 +198,6 @@
 		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioMackStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1AB7F2511C5D09DA005AA3AC /* BugsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsMusicStrategy.h; sourceTree = "<group>"; };
 		1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsMusicStrategy.m; sourceTree = "<group>"; };
-		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B0FAF391B8612D900E80E4F /* PlexWebStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexWebStrategy.h; sourceTree = "<group>"; };
 		2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexWebStrategy.m; sourceTree = "<group>"; };
 		32F131441A71B6090029E9EF /* PocketCastsStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCastsStrategy.h; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		8E38FAD51994CE57005C2465 /* VimeoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VimeoStrategy.m; sourceTree = "<group>"; };
 		95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitallyImportedStrategy.h; sourceTree = "<group>"; };
 		95124C631AD0ECB5001B1F3D /* DigitallyImportedStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigitallyImportedStrategy.m; sourceTree = "<group>"; };
+		96364768A4BEF827DD3B136A /* Pods-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpice/Pods-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
 		963E89B618BB010600FE0DBB /* MixCloudStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCloudStrategy.h; sourceTree = "<group>"; };
 		963E89B718BB010600FE0DBB /* MixCloudStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MixCloudStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		963E89B918BB05F400FE0DBB /* MusicUnlimitedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicUnlimitedStrategy.h; sourceTree = "<group>"; };
@@ -343,9 +346,10 @@
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
 		969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LastFmStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		981E688C1484895058417B2C /* libPods-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF442D31886F71400CD7266 /* EightTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightTracksStrategy.h; sourceTree = "<group>"; };
 		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EightTracksStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9BA1AA235C52F73D1A464574 /* Pods-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpice/Pods-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
 		B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YandexMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BB81E6301B8B3AA000F764EB /* NRKStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRKStrategy.m; sourceTree = "<group>"; };
@@ -389,7 +393,7 @@
 				03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
-				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
+				E51D0C83A82A3126D8610C2D /* libPods-BeardedSpice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,15 +409,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		026BCA1451614966030FD4B5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				21D5956B688103BAC9238102 /* Pods.debug.xcconfig */,
-				9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		0369231B1862934000E04DDB /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,27 +566,39 @@
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				65C5116C1AED688800EBA6A5 /* Spotify.h */,
-				651967BF1AB3858800B48D3A /* iTunes.h */,
-				6588CF471B358A8300A3CBAD /* VOX.h */,
 				9679336318551A8F00A49AC7 /* Chrome.h */,
+				651967BF1AB3858800B48D3A /* iTunes.h */,
+				16A982591C77B6A600759E61 /* Radium.h */,
 				03F33EE71857E2EE00E8F77E /* Safari.h */,
+				65C5116C1AED688800EBA6A5 /* Spotify.h */,
+				6588CF471B358A8300A3CBAD /* VOX.h */,
 				65B32B8C1AD99D1600F696B9 /* TabAdapter.h */,
 				65B32B8D1AD99D1600F696B9 /* TabAdapter.m */,
 				65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */,
 				65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */,
 				03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
 				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
-				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
-				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
 				651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */,
 				651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */,
+				16A45C191C77BA8100C07308 /* RadiumTabAdapter.h */,
+				16A45C1A1C77BAC200C07308 /* RadiumTabAdapter.m */,
+				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
+				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
 				65C5116B1AED66B700EBA6A5 /* SpotifyTabAdapter.h */,
 				65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */,
 				6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */,
 				6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */,
 			);
 			path = Tabs;
+			sourceTree = "<group>";
+		};
+		08B26C93F592FF48894E2CE5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9BA1AA235C52F73D1A464574 /* Pods-BeardedSpice.debug.xcconfig */,
+				96364768A4BEF827DD3B136A /* Pods-BeardedSpice.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		65163C9D1BE60C71000A3575 /* DDHidLib */ = {
@@ -653,7 +660,7 @@
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
-				026BCA1451614966030FD4B5 /* Pods */,
+				08B26C93F592FF48894E2CE5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -675,7 +682,7 @@
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
-				2299BC537DEC481A9540F7CA /* libPods.a */,
+				981E688C1484895058417B2C /* libPods-BeardedSpice.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -759,13 +766,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */;
 			buildPhases = (
-				1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */,
+				42F269B23A06CF754A9B6B5C /* Check Pods Manifest.lock */,
 				967933281855173100A49AC7 /* Sources */,
 				967933291855173100A49AC7 /* Frameworks */,
 				9679332A1855173100A49AC7 /* Resources */,
-				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
-				790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */,
+				7E7E8A5CD4B0DF75FB2D8EA6 /* Embed Pods Frameworks */,
+				FA9289F12445CD8A2566E27A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -853,7 +860,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */ = {
+		42F269B23A06CF754A9B6B5C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -868,7 +875,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */ = {
+		7E7E8A5CD4B0DF75FB2D8EA6 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -880,10 +887,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpice/Pods-BeardedSpice-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
+		FA9289F12445CD8A2566E27A /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -895,7 +902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpice/Pods-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -952,6 +959,7 @@
 				639AA8511B42F922001A8398 /* IndieShuffleStrategy.m in Sources */,
 				500B11061AE65A0100C4F0EC /* LogitechMediaServerStrategy.m in Sources */,
 				D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */,
+				16A45C1B1C77BAC200C07308 /* RadiumTabAdapter.m in Sources */,
 				65163CB21BE60DB8000A3575 /* DDHidQueue.m in Sources */,
 				0370588E1863F47300C691B3 /* SpotifyStrategy.m in Sources */,
 				83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */,
@@ -1124,7 +1132,7 @@
 		};
 		9679335E1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21D5956B688103BAC9238102 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 9BA1AA235C52F73D1A464574 /* Pods-BeardedSpice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1146,7 +1154,7 @@
 		};
 		9679335F1855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 96364768A4BEF827DD3B136A /* Pods-BeardedSpice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;

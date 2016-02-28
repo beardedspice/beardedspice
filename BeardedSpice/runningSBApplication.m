@@ -8,7 +8,7 @@
 
 #import "runningSBApplication.h"
 
-#define COMMAND_TIMEOUT         1 // 0.1 second
+#define COMMAND_TIMEOUT         3 // 0.3 second
 
 @implementation runningSBApplication
 

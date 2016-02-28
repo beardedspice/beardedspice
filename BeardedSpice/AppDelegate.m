@@ -33,7 +33,7 @@
 /**
  Timeout for command of the user iteraction.
  */
-#define COMMAND_EXEC_TIMEOUT    3.0
+#define COMMAND_EXEC_TIMEOUT    5.0
 
 /// Delay displaying notification after changing favorited status of the current track.
 #define FAVORITED_DELAY         0.3
@@ -386,14 +386,8 @@ BOOL accessibilityApiEnabled = NO;
 
                                dispatch_async(workingQueue, ^{
                                    
-                                   BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-                                   
-                                   [self refreshApplications:timeout];
-                                   
-                                   if (![timeout reached]) {
-                                       
-                                       [self setActiveTabShortcut];
-                                   }
+                                   [self refreshTabs:self];
+                                   [self setActiveTabShortcut];
                                });
                            }];
 }
@@ -815,7 +809,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)removeAllItems
 {
-    [SafariTabKeys removeAllObjects];
+    SafariTabKeys = [NSMutableSet set];
     
     menuItems = [NSMutableArray array];
     // reset playingTabs
@@ -996,24 +990,21 @@ BOOL accessibilityApiEnabled = NO;
         //We need it because Safari "pinned" tabs duplicated on each window. (Safari 9)
         
         NSString *key = tab.key;
-        if (![key isEqualToString:tab.key]) {
+        if ([NSString isNullOrEmpty:key]) {
             //key was not assigned, we think this is fake pinned tab.
             return;
         }
         
-        if (!SafariTabKeys) {
-            SafariTabKeys = [NSMutableSet set];
-        }
-        if (key) {
-            if ([SafariTabKeys containsObject:key]) {
-                
-                return;
-            }
-            [SafariTabKeys addObject:key];
+        if ([SafariTabKeys containsObject:key]) {
+            
+            return;
         }
         //-------------------------------------------
         
-        [self addStatusMenuItemFor:tab];
+        if ([self addStatusMenuItemFor:tab]) {
+            
+            [SafariTabKeys addObject:key];
+        }
     }
 }
 
@@ -1035,8 +1026,9 @@ BOOL accessibilityApiEnabled = NO;
                 [playingTabs addObject:tab];
             
             [self repairActiveTabFrom:tab];
+
+            return YES;
         }
-        return YES;
     }
     
     return NO;
@@ -1054,7 +1046,9 @@ BOOL accessibilityApiEnabled = NO;
 #ifdef DEBUG
         NSLog(@"(AppDelegate - updateActiveTab) tab %@ check strategy", tab);
 #endif
+        mediaStrategyRegistry.breakpoint = YES;
         strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+        mediaStrategyRegistry.breakpoint = NO;
         if (!strategy) {
             return;
         }

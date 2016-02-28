@@ -61,6 +61,7 @@ extern BOOL accessibilityApiEnabled;
     NSMutableArray *_mikeys;
     NSMutableArray *_appleRemotes;
     BSHeadphoneUnplugListener *_hpuListener;
+    
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

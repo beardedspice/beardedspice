@@ -142,6 +142,8 @@ BOOL accessibilityApiEnabled = NO;
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
     
+    [self resetStatusMenu];
+    
     _hpuListener =
     [[BSHeadphoneUnplugListener alloc] initWithDelegate:self];
 }
@@ -150,10 +152,16 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Delegate methods
 /////////////////////////////////////////////////////////////////////////
 
-- (void)menuWillOpen:(NSMenu *)menu
-{
-    [self autoSelectedTabs];
-    [self setStatusMenuItemsStatus];
+- (void)menuNeedsUpdate:(NSMenu *)menu{
+    
+    dispatch_async(workingQueue, ^{
+        
+        [self autoSelectedTabs];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            [self setStatusMenuItemsStatus];
+        });
+    });
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
@@ -302,7 +310,15 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)updateActiveTabFromMenuItem:(id) sender
 {
-    [self updateActiveTab:[sender representedObject]];
+    
+    dispatch_async(workingQueue, ^{
+        
+        [self updateActiveTab:[sender representedObject]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            [self setStatusMenuItemsStatus];
+        });
+    });
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -799,12 +815,9 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)removeAllItems
 {
-    NSInteger count = statusMenu.itemArray.count;
-    for (int i = 0; i < (count - statusMenuCount); i++) {
-        [statusMenu removeItemAtIndex:0];
-    }
     [SafariTabKeys removeAllObjects];
     
+    menuItems = [NSMutableArray array];
     // reset playingTabs
     playingTabs = [NSMutableArray array];
     
@@ -821,7 +834,10 @@ BOOL accessibilityApiEnabled = NO;
             if ([activeTab isEqual:tab]) {
                 
                 [item setState:NSOnState];
-                return YES;
+            }
+            else{
+                
+                [item setState:NSOffState];
             }
         }
         
@@ -840,8 +856,8 @@ BOOL accessibilityApiEnabled = NO;
 
         ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
         if (chrome) {
-            for (ChromeWindow *chromeWindow in chrome.windows) {
-                for (ChromeTab *chromeTab in chromeWindow.tabs) {
+            for (ChromeWindow *chromeWindow in [chrome.windows get]) {
+                for (ChromeTab *chromeTab in [chromeWindow.tabs get]) {
                     [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
                     if (timeout.reached) {
                         return;
@@ -865,8 +881,8 @@ BOOL accessibilityApiEnabled = NO;
         
         SafariApplication *safari = (SafariApplication *)app.sbApplication;
         if (safari) {
-            for (SafariWindow *safariWindow in safari.windows) {
-                for (SafariTab *safariTab in safariWindow.tabs) {
+            for (SafariWindow *safariWindow in [safari.windows get]) {
+                for (SafariTab *safariTab in [safariWindow.tabs get]) {
                     [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
                     if (timeout.reached) {
                         return;
@@ -876,7 +892,7 @@ BOOL accessibilityApiEnabled = NO;
         }
     }
     @catch (NSException *exception) {
-        NSLog(@"Error ferreshing tabs f]or \"%@\": %@", app.bundleIdentifier, exception.description);
+        NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
     }
 }
 
@@ -889,13 +905,12 @@ BOOL accessibilityApiEnabled = NO;
 
         if (tab) {
 
-            NSMenuItem *menuItem = [statusMenu
-                insertItemWithTitle:[self trim:tab.title toLength:40]
-                             action:@selector(updateActiveTabFromMenuItem:)
-                      keyEquivalent:@""
-                            atIndex:0];
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
 
             if (menuItem) {
+                
+                [menuItems addObject:menuItem];
+                
                 [menuItem setRepresentedObject:tab];
 
                 // check playing status
@@ -909,6 +924,7 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+// must be invoked not on main queue
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Refreshing tabs...");
@@ -938,15 +954,23 @@ BOOL accessibilityApiEnabled = NO;
     }
     
     [mediaStrategyRegistry endStrategyQueries];
-    
-    
-    if ([statusMenu numberOfItems] == statusMenuCount) {
-        NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open :(" action:nil keyEquivalent:@"" atIndex:0];
-        [item setEnabled:NO];
-//        [keyTap stopWatchingMediaKeys];
-    } else {
-//        [keyTap startWatchingMediaKeys];
-    }
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        
+        [self resetStatusMenu];
+        
+        if (menuItems.count) {
+            
+            for (NSMenuItem *item in menuItems) {
+                
+                [statusMenu insertItem:item atIndex:0];
+            }
+            //        [keyTap startWatchingMediaKeys];
+        }
+        else{
+            //        [keyTap stopWatchingMediaKeys];
+        }
+    });
     
     //check activeTab
     if (_activeTab == activeTab) {
@@ -998,9 +1022,12 @@ BOOL accessibilityApiEnabled = NO;
     MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
     if (strategy) {
         
-        NSMenuItem *menuItem = [statusMenu insertItemWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@"" atIndex:0];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
+        
         if (menuItem){
 
+            [menuItems addObject:menuItem];
+            
             [menuItem setRepresentedObject:tab];
             
             // check playing status
@@ -1017,17 +1044,30 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)updateActiveTab:(TabAdapter *)tab
 {
+#ifdef DEBUG
+    NSLog(@"(AppDelegate - updateActiveTab) with tab %@", tab);
+#endif
     // Prevent switch to tab, which not have strategy.
     MediaStrategy *strategy;
     if (![tab isKindOfClass:[NativeAppTabAdapter class]]) {
         
+#ifdef DEBUG
+        NSLog(@"(AppDelegate - updateActiveTab) tab %@ check strategy", tab);
+#endif
         strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
         if (!strategy) {
             return;
         }
     }
     
+#ifdef DEBUG
+    NSLog(@"(AppDelegate - updateActiveTab) tab %@ has strategy", tab);
+#endif
+    
     if (![tab isEqual:activeTab]) {
+#ifdef DEBUG
+        NSLog(@"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, activeTab);
+#endif
         [self pauseActiveTab];
     }
     
@@ -1059,6 +1099,7 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+// Must be invoked in workingQueue
 - (void)autoSelectedTabs{
     
     [self refreshTabs:self];
@@ -1421,6 +1462,22 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+
+- (void)resetStatusMenu{
+
+    NSInteger count = statusMenu.itemArray.count;
+    for (int i = 0; i < (count - statusMenuCount); i++) {
+        [statusMenu removeItemAtIndex:0];
+    }
+    
+    if (!menuItems.count) {
+        NSMenuItem *item = [statusMenu insertItemWithTitle:@"No applicable tabs open" action:nil keyEquivalent:@"" atIndex:0];
+        [item setEnabled:NO];
+        [item setEnabled:NO];
+    }
+
+
+}
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////

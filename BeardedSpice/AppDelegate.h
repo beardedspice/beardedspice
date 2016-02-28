@@ -24,7 +24,7 @@ extern BOOL accessibilityApiEnabled;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol, NSMenuDelegate> {
 
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
@@ -45,6 +45,7 @@ extern BOOL accessibilityApiEnabled;
     TabAdapter *activeTab;
     NSString *activeTabKey;
     
+    NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
     
     MediaStrategyRegistry *mediaStrategyRegistry;

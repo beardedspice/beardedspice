@@ -68,6 +68,8 @@
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
+		656493A41C85048100A10C9B /* EHSystemUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656493A31C85048100A10C9B /* EHSystemUtils.m */; };
+		656493A71C8504D200A10C9B /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656493A61C8504D200A10C9B /* NSException+Utils.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
@@ -265,6 +267,10 @@
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
+		656493A21C85048100A10C9B /* EHSystemUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSystemUtils.h; sourceTree = "<group>"; };
+		656493A31C85048100A10C9B /* EHSystemUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSystemUtils.m; sourceTree = "<group>"; };
+		656493A51C8504D200A10C9B /* NSException+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+Utils.h"; sourceTree = "<group>"; };
+		656493A61C8504D200A10C9B /* NSException+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+Utils.m"; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		65837A521AAE5DE2004CD62F /* mediaResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mediaResources; sourceTree = "<group>"; };
@@ -624,10 +630,14 @@
 		65CB58B51C6E3CC800BE37A9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				656493A21C85048100A10C9B /* EHSystemUtils.h */,
+				656493A31C85048100A10C9B /* EHSystemUtils.m */,
 				65CB58BC1C6E3DE900BE37A9 /* NSString+Utils.h */,
 				65CB58BD1C6E3DE900BE37A9 /* NSString+Utils.m */,
 				65CB58BE1C6E3DE900BE37A9 /* NSURL+Utils.h */,
 				65CB58BF1C6E3DE900BE37A9 /* NSURL+Utils.m */,
+				656493A51C8504D200A10C9B /* NSException+Utils.h */,
+				656493A61C8504D200A10C9B /* NSException+Utils.m */,
 				65CB58C91C6E3FAC00BE37A9 /* BSTimeout.h */,
 				65CB58CA1C6E3FAC00BE37A9 /* BSTimeout.m */,
 			);
@@ -918,6 +928,7 @@
 				95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */,
 				D07721661C1439FF004727EF /* NetflixStrategy.m in Sources */,
 				B500FC3818D33F2E00FEFD74 /* YandexMusicStrategy.m in Sources */,
+				656493A41C85048100A10C9B /* EHSystemUtils.m in Sources */,
 				BB81E6321B8B3AA000F764EB /* NRKStrategy.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */,
@@ -933,6 +944,7 @@
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
 				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
+				656493A71C8504D200A10C9B /* NSException+Utils.m in Sources */,
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				65CB58C01C6E3DE900BE37A9 /* NSString+Utils.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,

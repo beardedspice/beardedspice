@@ -20,6 +20,7 @@
 #import "ShortcutsPreferencesViewController.h"
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
+#import "EHSystemUtils.h"
 
 #import "runningSBApplication.h"
 
@@ -129,6 +130,17 @@ BOOL accessibilityApiEnabled = NO;
     
     //Init Apple remote listener
     [self setupAppleRemotes];
+    
+    //checking that rcd is enabled and disabling it
+    remoteControlDemonEnabled = NO;
+    NSString *cliOutput = NULL;
+    if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
+        remoteControlDemonEnabled = [cliOutput containsString:@"com.apple.rcd"];
+        if (remoteControlDemonEnabled) {
+            remoteControlDemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil] == 0);
+        }
+    }
+    
 }
 
 - (void)awakeFromNib
@@ -146,6 +158,14 @@ BOOL accessibilityApiEnabled = NO;
     
     _hpuListener =
     [[BSHeadphoneUnplugListener alloc] initWithDelegate:self];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification{
+
+    if (remoteControlDemonEnabled) {
+        
+        [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -229,10 +249,10 @@ BOOL accessibilityApiEnabled = NO;
                 [self playerPrevious];
                 break;
             case kHIDUsage_GD_SystemMenuUp:
-//                [self pressKey:NX_KEYTYPE_SOUND_UP];
+                [self pressKey:NX_KEYTYPE_SOUND_UP];
                 break;
             case kHIDUsage_GD_SystemMenuDown:
-//                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
+                [self pressKey:NX_KEYTYPE_SOUND_DOWN];
                 break;
             default:
                 NSLog(@"Unknown key press seen %d", usageId);

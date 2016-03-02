@@ -27,8 +27,4 @@
 - (void)beginStrategyQueries;
 - (void)endStrategyQueries;
 
-//TODO: delete this
-@property BOOL breakpoint;
-//
-
 @end

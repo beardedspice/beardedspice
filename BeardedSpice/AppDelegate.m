@@ -176,7 +176,7 @@ BOOL accessibilityApiEnabled = NO;
     
     dispatch_async(workingQueue, ^{
         
-        [self autoSelectedTabs];
+        [self autoSelectTabWithForceFocused:NO];
         dispatch_sync(dispatch_get_main_queue(), ^{
             
             [self setStatusMenuItemsStatus];
@@ -335,8 +335,8 @@ BOOL accessibilityApiEnabled = NO;
         
         [self updateActiveTab:[sender representedObject]];
         dispatch_sync(dispatch_get_main_queue(), ^{
-            
             [self setStatusMenuItemsStatus];
+            [activeTab activateTab];
         });
     });
 }
@@ -419,7 +419,7 @@ BOOL accessibilityApiEnabled = NO;
 
                                dispatch_async(workingQueue, ^{
                                    
-                                   [self autoSelectedTabs];
+                                   [self autoSelectTabWithForceFocused:NO];
                                    
                                    if ([activeTab isKindOfClass:
                                         [NativeAppTabAdapter class]]) {
@@ -470,7 +470,7 @@ BOOL accessibilityApiEnabled = NO;
 
                                dispatch_async(workingQueue, ^{
                                    
-                                   [self autoSelectedTabs];
+                                   [self autoSelectTabWithForceFocused:NO];
                                    [self showNotificationUsingFallback:YES];
                                });
                            }];
@@ -483,7 +483,7 @@ BOOL accessibilityApiEnabled = NO;
 
                                dispatch_async(workingQueue, ^{
                                    
-                                   [self autoSelectedTabs];
+                                   [self autoSelectTabWithForceFocused:NO];
                                    [activeTab toggleTab];
                                });
                            }];
@@ -542,7 +542,7 @@ BOOL accessibilityApiEnabled = NO;
 
     dispatch_async(workingQueue, ^{
         
-        [self autoSelectedTabs];
+        [self autoSelectTabWithForceFocused:YES];
         if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
@@ -570,7 +570,7 @@ BOOL accessibilityApiEnabled = NO;
 
     dispatch_async(workingQueue, ^{
         
-        [self autoSelectedTabs];
+        [self autoSelectTabWithForceFocused:NO];
         if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
@@ -610,7 +610,7 @@ BOOL accessibilityApiEnabled = NO;
 
     dispatch_async(workingQueue, ^{
         
-        [self autoSelectedTabs];
+        [self autoSelectTabWithForceFocused:NO];
         if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
@@ -777,47 +777,48 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (void)setActiveTabShortcutForChrome:(runningSBApplication *)app {
+- (BOOL)setActiveTabShortcutForChrome:(runningSBApplication *)app {
     
     ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
     // chromeApp.windows[0] is the front most window.
     ChromeWindow *chromeWindow = chrome.windows[0];
     
     // use 'get' to force a hard reference.
-    [self updateActiveTab:[ChromeTabAdapter initWithApplication:app andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
+    return [self updateActiveTab:[ChromeTabAdapter initWithApplication:app andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
 }
 
-- (void)setActiveTabShortcutForSafari:(runningSBApplication *)app {
+- (BOOL)setActiveTabShortcutForSafari:(runningSBApplication *)app {
     
     SafariApplication *safari = (SafariApplication *)app.sbApplication;
     // is safari.windows[0] the frontmost?
     SafariWindow *safariWindow = safari.windows[0];
     
     // use 'get' to force a hard reference.
-    [self updateActiveTab:[SafariTabAdapter initWithApplication:app
+    return [self updateActiveTab:[SafariTabAdapter initWithApplication:app
                                                       andWindow:safariWindow
                                                          andTab:[safariWindow currentTab]]];
 }
 
-- (void)setActiveTabShortcut{
+- (BOOL)setActiveTabShortcut{
     
+    BOOL result = NO;
     if (chromeApp.frontmost) {
-        [self setActiveTabShortcutForChrome:chromeApp];
+        result = [self setActiveTabShortcutForChrome:chromeApp];
     } else if (canaryApp.frontmost) {
-        [self setActiveTabShortcutForChrome:canaryApp];
+        result = [self setActiveTabShortcutForChrome:canaryApp];
     } else if (yandexBrowserApp.frontmost) {
-        [self setActiveTabShortcutForChrome:yandexBrowserApp];
+        result = [self setActiveTabShortcutForChrome:yandexBrowserApp];
     } else if (chromiumApp.frontmost) {
-        [self setActiveTabShortcutForChrome:chromiumApp];
+        result = [self setActiveTabShortcutForChrome:chromiumApp];
     } else if (safariApp.frontmost) {
-        [self setActiveTabShortcutForSafari:safariApp];
+        result = [self setActiveTabShortcutForSafari:safariApp];
     } else {
         
         for (runningSBApplication *app in nativeApps) {
             if (app.frontmost) {
                 NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
                 if (tab) {
-                    [self updateActiveTab:tab];
+                    result = [self updateActiveTab:tab];
                 }
                 break;
             }
@@ -825,6 +826,8 @@ BOOL accessibilityApiEnabled = NO;
     }
     
     [self resetMediaKeys];
+    
+    return result;
 }
 
 - (void)removeAllItems
@@ -1054,7 +1057,7 @@ BOOL accessibilityApiEnabled = NO;
     return NO;
 }
 
-- (void)updateActiveTab:(TabAdapter *)tab
+- (BOOL)updateActiveTab:(TabAdapter *)tab
 {
 #ifdef DEBUG
     NSLog(@"(AppDelegate - updateActiveTab) with tab %@", tab);
@@ -1066,11 +1069,9 @@ BOOL accessibilityApiEnabled = NO;
 #ifdef DEBUG
         NSLog(@"(AppDelegate - updateActiveTab) tab %@ check strategy", tab);
 #endif
-        mediaStrategyRegistry.breakpoint = YES;
         strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
-        mediaStrategyRegistry.breakpoint = NO;
         if (!strategy) {
-            return;
+            return NO;
         }
     }
     
@@ -1102,6 +1103,8 @@ BOOL accessibilityApiEnabled = NO;
     activeTab = tab;
     activeTabKey = [tab key];
     NSLog(@"Active tab set to %@", activeTab);
+    
+    return YES;
 }
 
 - (void)repairActiveTabFrom:(TabAdapter *)tab{
@@ -1114,38 +1117,24 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 // Must be invoked in workingQueue
-- (void)autoSelectedTabs{
+- (void)autoSelectTabWithForceFocused:(BOOL)forceFucused{
     
     [self refreshTabs:self];
+    
     switch (playingTabs.count) {
-        case 0:
-            
-            // not have active tab
-            if (!activeTab){
-                
-                // try to set active tab to focus
-                [self setActiveTabShortcut];
-                
-                if (!activeTab) {
-                    
-                    //try to set active tab to first item of menu
-                    TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
-                    if (tab)
-                        [self updateActiveTab:tab];
-                }
-                
-            }
-            break;
-            
+
         case 1:
 
             [self updateActiveTab:playingTabs[0]];
             break;
             
-        default: // many
+        default: // null or many
             
             // try to set active tab to focus
-            [self setActiveTabShortcut];
+            if ((forceFucused || !activeTab)
+                && [self setActiveTabShortcut]) {
+                return;
+            }
             
             if (!activeTab) {
                 
@@ -1157,7 +1146,9 @@ BOOL accessibilityApiEnabled = NO;
             break;
     }
     
-    [self resetMediaKeys];
+    if (!forceFucused) {
+        [self resetMediaKeys];
+    }
 }
 
 - (void)checkAccessibilityTrusted{
@@ -1362,7 +1353,7 @@ BOOL accessibilityApiEnabled = NO;
         
         @autoreleasepool {
             
-            [self autoSelectedTabs];
+            [self autoSelectTabWithForceFocused:NO];
             
             NSUInteger size = statusMenu.itemArray.count - statusMenuCount;
             if (size < 2) {
@@ -1381,6 +1372,8 @@ BOOL accessibilityApiEnabled = NO;
                     } else {
                         [self updateActiveTab:prevTab];
                     }
+                    
+                    [activeTab activateTab];
                     
                     NSUserNotification *notification = [NSUserNotification new];
                     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {

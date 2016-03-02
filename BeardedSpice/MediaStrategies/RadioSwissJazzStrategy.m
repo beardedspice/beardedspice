@@ -35,6 +35,11 @@
     return @"(function(){ document.querySelector('.play-ctr a.jp-pause').click(); })()";
 }
 
+-(NSString *) pause
+{
+    return @"(function() { if (document.querySelectorAll('div.jp-state-playing').length) { document.querySelector('.play-ctr a.jp-pause').click(); }})()";
+}
+
 -(NSString *) displayName
 {
     return @"Radio Swiss Jazz";

@@ -68,6 +68,7 @@
 #import "AudibleStrategy.h"
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
+#import "iHeartRadioStrategy.h"
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
 
@@ -202,6 +203,7 @@
                        [GrooveSharkStrategy new],
                        [HotNewHipHopStrategy new],
                        [HypeMachineStrategy new],
+                       [iHeartRadioStrategy new],
                        [IndieShuffleStrategy new],
                        [JangoMediaStrategy new],
                        [KollektFmStrategy new],

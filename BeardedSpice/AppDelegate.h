@@ -24,7 +24,7 @@ extern BOOL accessibilityApiEnabled;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol, NSMenuDelegate> {
 
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
@@ -45,6 +45,7 @@ extern BOOL accessibilityApiEnabled;
     TabAdapter *activeTab;
     NSString *activeTabKey;
     
+    NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
     
     MediaStrategyRegistry *mediaStrategyRegistry;
@@ -54,11 +55,14 @@ extern BOOL accessibilityApiEnabled;
     
     NSMutableSet    *openedWindows;
     
+    dispatch_queue_t workingQueue;
     dispatch_queue_t notificationQueue;
     
     NSMutableArray *_mikeys;
     NSMutableArray *_appleRemotes;
     BSHeadphoneUnplugListener *_hpuListener;
+    
+    BOOL remoteControlDemonEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

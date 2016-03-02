@@ -22,7 +22,6 @@
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
 #import "ShufflerFmStrategy.h"
-#import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
 #import "BeatsMusicStrategy.h"
 #import "MixCloudStrategy.h"
@@ -70,6 +69,8 @@
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
 #import "iHeartRadioStrategy.h"
+#import "BugsMusicStrategy.h"
+#import "VesselStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -145,24 +146,27 @@
 
 -(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
-    NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
-    MediaStrategy *strat = _registeredCache[cacheKey];
-    if (strat)
+    if (tab.check) {
+        
+        NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
+        MediaStrategy *strat = _registeredCache[cacheKey];
+        if (strat)
         /* Return the equivalent of a full scan except we dont repeat calculations */
         return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
-
-    for (MediaStrategy *strategy in availableStrategies)
-    {
-        BOOL accepted = [strategy accepts:tab];
-
-        /* Store the result of this calculation for future use */
-        _registeredCache[cacheKey] = accepted ? strategy : @NO;
-        if (accepted) {
-            NSLog(@"%@ is valid for %@", strategy, tab);
-            return strategy;
+        
+        for (MediaStrategy *strategy in availableStrategies)
+        {
+            BOOL accepted = [strategy accepts:tab];
+            
+            /* Store the result of this calculation for future use */
+            _registeredCache[cacheKey] = accepted ? strategy : @NO;
+            if (accepted) {
+                NSLog(@"%@ is valid for %@", strategy, tab);
+                return strategy;
+            }
         }
     }
-    return NULL;
+    return nil;
 }
 
 -(NSArray *) getMediaStrategies
@@ -187,6 +191,7 @@
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],
                        [BopFm new],
+                       [BugsMusicStrategy new],
                        [ChorusStrategy new],
                        [ComposedStrategy new],
                        [CourseraStrategy new],
@@ -223,7 +228,6 @@
                        [ShufflerFmStrategy new],
                        [SlackerStrategy new],
                        [SomaFmStrategy new],
-                       [SongzaStrategy new],
                        [SoundCloudStrategy new],
                        [SpotifyStrategy new],
                        [StitcherStrategy new],
@@ -234,6 +238,7 @@
                        [TwentyTwoTracksStrategy new],
                        [TwitchMediaStrategy new],
                        [UdemyStrategy new],
+                       [VesselStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
                        [WonderFmStrategy new],

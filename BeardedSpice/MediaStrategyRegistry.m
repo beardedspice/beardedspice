@@ -70,6 +70,7 @@
 #import "iHeartRadioStrategy.h"
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
+#import "BrainFmStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -243,7 +244,8 @@
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
+                       [YouTubeStrategy new],
+                       [BrainFmStrategy new]
                     ];
     });
     return strategies;

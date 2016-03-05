@@ -25,6 +25,7 @@
 		03F33ECC1855306A00E8F77E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		112D3CC01C8AA7C1009FE925 /* BrainFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
 		16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D1371C6F5E8F0072916A /* VesselStrategy.m */; };
 		16D5D13B1C6F609B0072916A /* iHeartRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */; };
@@ -184,6 +185,8 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		112D3CBE1C8AA7C1009FE925 /* BrainFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrainFmStrategy.h; sourceTree = "<group>"; };
+		112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrainFmStrategy.m; sourceTree = "<group>"; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
 		16D5D1361C6F5E8F0072916A /* VesselStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VesselStrategy.h; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				112D3CBE1C8AA7C1009FE925 /* BrainFmStrategy.h */,
+				112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */,
 				1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */,
 				1AB7F2511C5D09DA005AA3AC /* BugsMusicStrategy.h */,
 				46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */,
@@ -987,6 +992,7 @@
 				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,
 				2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
+				112D3CC01C8AA7C1009FE925 /* BrainFmStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */,
 				1AB7F2531C5D09E4005AA3AC /* BugsMusicStrategy.m in Sources */,

@@ -18,7 +18,6 @@
 #import "LastFmStrategy.h"
 #import "SpotifyStrategy.h"
 #import "GoogleMusicStrategy.h"
-#import "RdioStrategy.h"
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
 #import "ShufflerFmStrategy.h"
@@ -222,7 +221,6 @@
                        [PandoraStrategy new],
                        [PlexWebStrategy new],
                        [PocketCastsStrategy new],
-                       [RdioStrategy new],
                        [RhapsodyStrategy new],
                        [SaavnStrategy new],
                        [ShufflerFmStrategy new],

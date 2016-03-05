@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
 		031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */; };
-		031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
 		0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
 		0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
 		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
@@ -27,8 +26,8 @@
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
-		16D5D13B1C6F609B0072916A /* iHeartRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */; };
 		16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D1371C6F5E8F0072916A /* VesselStrategy.m */; };
+		16D5D13B1C6F609B0072916A /* iHeartRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
@@ -155,8 +154,6 @@
 		030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
 		031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMusicStrategy.h; sourceTree = "<group>"; };
 		031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GoogleMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		031D8147187F982A00A93E00 /* RdioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RdioStrategy.h; sourceTree = "<group>"; };
-		031D8148187F982A00A93E00 /* RdioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RdioStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
 		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
 		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
@@ -189,10 +186,10 @@
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
-		16D5D1391C6F609B0072916A /* iHeartRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iHeartRadioStrategy.h; sourceTree = "<group>"; };
-		16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iHeartRadioStrategy.m; sourceTree = "<group>"; };
 		16D5D1361C6F5E8F0072916A /* VesselStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VesselStrategy.h; sourceTree = "<group>"; };
 		16D5D1371C6F5E8F0072916A /* VesselStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VesselStrategy.m; sourceTree = "<group>"; };
+		16D5D1391C6F609B0072916A /* iHeartRadioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iHeartRadioStrategy.h; sourceTree = "<group>"; };
+		16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iHeartRadioStrategy.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
 		1AAB7F011A3AAC8100EC9E2D /* AudioMackStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMackStrategy.h; sourceTree = "<group>"; };
@@ -531,8 +528,6 @@
 				2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */,
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
-				031D8147187F982A00A93E00 /* RdioStrategy.h */,
-				031D8148187F982A00A93E00 /* RdioStrategy.m */,
 				50445D171AE7C9CB00A57315 /* SaavnStrategy.h */,
 				50445D181AE7C9CB00A57315 /* SaavnStrategy.m */,
 				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
@@ -925,7 +920,6 @@
 				163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
-				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
 				4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */,
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
 				65E567061B75FD6E00AD2D46 /* BSHeadphoneUnplugListener.m in Sources */,

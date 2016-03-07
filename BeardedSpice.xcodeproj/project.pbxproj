@@ -120,6 +120,7 @@
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D07721661C1439FF004727EF /* NetflixStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721651C1439FF004727EF /* NetflixStrategy.m */; };
 		D07721691C14DF96004727EF /* AudibleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721681C14DF96004727EF /* AudibleStrategy.m */; };
+		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
 		D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
@@ -375,6 +376,9 @@
 		D07721651C1439FF004727EF /* NetflixStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStrategy.m; sourceTree = "<group>"; };
 		D07721671C14DF96004727EF /* AudibleStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudibleStrategy.h; sourceTree = "<group>"; };
 		D07721681C14DF96004727EF /* AudibleStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudibleStrategy.m; sourceTree = "<group>"; };
+		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
+		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
+		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
 		D0E89A611C0EB54E0033077D /* MusicForProgrammingStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicForProgrammingStrategy.h; sourceTree = "<group>"; };
 		D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicForProgrammingStrategy.m; sourceTree = "<group>"; };
 		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
@@ -582,6 +586,9 @@
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */,
+				D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */,
+				D09EFF211C8CD49E00B24DA9 /* VLC.h */,
 				65C5116C1AED688800EBA6A5 /* Spotify.h */,
 				651967BF1AB3858800B48D3A /* iTunes.h */,
 				6588CF471B358A8300A3CBAD /* VOX.h */,
@@ -942,6 +949,7 @@
 				65163CA71BE60D5A000A3575 /* DDHidAppleRemote.m in Sources */,
 				F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
+				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,

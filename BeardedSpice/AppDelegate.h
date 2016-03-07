@@ -62,7 +62,7 @@ extern BOOL accessibilityApiEnabled;
     NSMutableArray *_appleRemotes;
     BSHeadphoneUnplugListener *_hpuListener;
     
-    BOOL remoteControlDemonEnabled;
+    BOOL remoteControlDaemonEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

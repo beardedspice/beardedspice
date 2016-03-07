@@ -73,7 +73,7 @@
 {
     NSDictionary *info = [tab executeJavascript:@"\
                           (function(){\
-                          var track=document.querySelector('.vjs-title-display .vjs-display');\
+                          var track=document.querySelector('.vjs-display');\
                           return {'track': track ? track.innerText : ''}\
                           })()"];
     

@@ -110,7 +110,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Vimeo](https://vimeo.com/)
 - [Vessel](https://www.vessel.com/)
 - [VK ("My Music" from vk.com)](http://vk.com/)
-- [WONDER.FM](http://wonder.fm/)
+- [Wonder FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](https://music.yandex.ru/)
 - [Yandex Radio](https://radio.yandex.ru/)

@@ -47,6 +47,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 ### Supported Mac OS X applications
 - [iTunes](http://www.apple.com/itunes/)
 - [Spotify](https://www.spotify.com/)
+- [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
 
 ### Supported Sites

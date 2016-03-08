@@ -74,6 +74,8 @@
 		<true/>
 		<key>Pandora</key>
 		<true/>
+		<key>Primary FM</key>
+		<true/>
 		<key>PocketCasts</key>
 		<true/>
 		<key>Saavn</key>
@@ -99,6 +101,8 @@
 		<key>VK</key>
 		<true/>
 		<key>Vimeo</key>
+		<true/>
+		<key>White Label FM</key>
 		<true/>
 		<key>WonderFM</key>
 		<true/>

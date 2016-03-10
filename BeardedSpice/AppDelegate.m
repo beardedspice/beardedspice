@@ -132,12 +132,12 @@ BOOL accessibilityApiEnabled = NO;
     [self setupAppleRemotes];
     
     //checking that rcd is enabled and disabling it
-    remoteControlDemonEnabled = NO;
+    remoteControlDaemonEnabled = NO;
     NSString *cliOutput = NULL;
     if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
-        remoteControlDemonEnabled = [cliOutput containsString:@"com.apple.rcd"];
-        if (remoteControlDemonEnabled) {
-            remoteControlDemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil] == 0);
+        remoteControlDaemonEnabled = [cliOutput containsString:@"com.apple.rcd"];
+        if (remoteControlDaemonEnabled) {
+            remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil] == 0);
         }
     }
     
@@ -162,7 +162,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)applicationWillTerminate:(NSNotification *)notification{
 
-    if (remoteControlDemonEnabled) {
+    if (remoteControlDaemonEnabled) {
         
         [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
     }

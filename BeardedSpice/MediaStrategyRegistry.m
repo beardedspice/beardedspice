@@ -71,7 +71,6 @@
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
 #import "BrainFmStrategy.h"
-#import "WatchaPlayStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -241,7 +240,6 @@
                        [VesselStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
-                       [WatchaPlayStrategy new],
                        [WonderFmStrategy new],
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],

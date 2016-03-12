@@ -8,15 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "SPMediaKeyTap.h"
-
 #import "Chrome.h"
 #import "Safari.h"
 #import "iTunes.h"
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
 #import "NativeAppTabRegistry.h"
-#import "BSHeadphoneUnplugListener.h"
+#import "BeardedSpiceHostAppProtocol.h"
 
 @class runningSBApplication;
 
@@ -24,7 +22,7 @@ extern BOOL accessibilityApiEnabled;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BSHeadphoneUnplugListenerProtocol, NSMenuDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
 
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
@@ -39,8 +37,6 @@ extern BOOL accessibilityApiEnabled;
     NSMutableSet *SafariTabKeys;
 
     NSMutableArray *nativeApps;
-
-    SPMediaKeyTap *keyTap;
 
     TabAdapter *activeTab;
     NSString *activeTabKey;
@@ -58,11 +54,9 @@ extern BOOL accessibilityApiEnabled;
     dispatch_queue_t workingQueue;
     dispatch_queue_t notificationQueue;
     
-    NSMutableArray *_mikeys;
-    NSMutableArray *_appleRemotes;
-    BSHeadphoneUnplugListener *_hpuListener;
+    NSXPCConnection *_connectionToService;
     
-    BOOL remoteControlDemonEnabled;
+    BOOL _AXAPIEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

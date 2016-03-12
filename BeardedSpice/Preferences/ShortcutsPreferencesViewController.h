@@ -10,16 +10,6 @@
 #import "MASPreferencesViewController.h"
 #import "Shortcut.h"
 
-extern NSString *const BeardedSpicePlayPauseShortcut;
-extern NSString *const BeardedSpiceNextTrackShortcut;
-extern NSString *const BeardedSpicePreviousTrackShortcut;
-extern NSString *const BeardedSpiceActiveTabShortcut;
-extern NSString *const BeardedSpiceFavoriteShortcut;
-extern NSString *const BeardedSpiceNotificationShortcut;
-extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
-extern NSString *const BeardedSpicePlayerNextShortcut;
-extern NSString *const BeardedSpicePlayerPreviousShortcut;
-
 @interface ShortcutsPreferencesViewController : NSViewController <MASPreferencesViewController>
 
 @property (nonatomic, weak) IBOutlet MASShortcutView *playPauseShortcut;

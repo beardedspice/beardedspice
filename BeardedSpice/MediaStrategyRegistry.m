@@ -70,6 +70,7 @@
 #import "iHeartRadioStrategy.h"
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
+#import "RadioSwissJazzStrategy.h"
 #import "BrainFmStrategy.h"
 #import "WatchaPlayStrategy.h"
 
@@ -192,6 +193,7 @@
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],
                        [BopFm new],
+                       [BrainFmStrategy new],
                        [BugsMusicStrategy new],
                        [ChorusStrategy new],
                        [ComposedStrategy new],
@@ -223,6 +225,7 @@
                        [PandoraStrategy new],
                        [PlexWebStrategy new],
                        [PocketCastsStrategy new],
+                       [RadioSwissJazzStrategy new],
                        [RhapsodyStrategy new],
                        [SaavnStrategy new],
                        [ShufflerFmStrategy new],
@@ -246,8 +249,7 @@
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new],
-                       [BrainFmStrategy new]
+                       [YouTubeStrategy new]
                     ];
     });
     return strategies;

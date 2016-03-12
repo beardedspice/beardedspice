@@ -47,6 +47,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 ### Supported Mac OS X applications
 - [iTunes](http://www.apple.com/itunes/)
 - [Spotify](https://www.spotify.com/)
+- [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
 
 ### Supported Sites
@@ -61,6 +62,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [BeatsMusic](http://listen.beatsmusic.com)
 - [Blitzr](http://blitzr.com)
 - [Bop.fm](http://bop.fm)
+- [Brain.fm](https://brain.fm/)
 - [BugsMusic](http://www.bugs.co.kr)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
 - [Coursera](https://www.coursera.org)
@@ -91,7 +93,6 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Pandora](http://www.pandora.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
-- [Rdio](http://rdio.com)
 - [Rhapsody](http://www.rhapsody.com/)
 - [Saavn](http://www.saavn.com/)
 - [Shuffler.fm](http://shuffler.fm/)
@@ -109,11 +110,13 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Vimeo](https://vimeo.com/)
 - [Vessel](https://www.vessel.com/)
 - [VK ("My Music" from vk.com)](http://vk.com/)
-- [WONDER.FM](http://wonder.fm/)
+- [Watcha Play](https://play.watcha.net/)
+- [Wonder FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)
 - [Yandex Music](https://music.yandex.ru/)
 - [Yandex Radio](https://radio.yandex.ru/)
 - [YouTube](https://www.youtube.com/)
+
 
 #### Don't see your favorite site in the list ?
 No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.
@@ -303,7 +306,6 @@ Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspic
         DefaultMediaStrategies = [NSArray arrayWithObjects:
                                   // ...
                                   [GoogleMusicStrategy new],
-                                  [RdioStrategy new],
                                   // add your new strategy!
                                   [YandexMusicStrategy new],
                                   nil];

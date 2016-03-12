@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
 		031D8146187F929D00A93E00 /* GoogleMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */; };
-		031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D8148187F982A00A93E00 /* RdioStrategy.m */; };
 		0320C0521868C6C2009591CA /* beard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0511868C6C2009591CA /* beard.png */; };
 		0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0320C0531868C7A4009591CA /* beard-highlighted.png */; };
 		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
@@ -25,6 +24,7 @@
 		03A34935185EE97B00C4A62B /* HypeMachineStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34934185EE97B00C4A62B /* HypeMachineStrategy.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		112D3CC01C8AA7C1009FE925 /* BrainFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */; };
 		163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 163515531BC07513004D4A3E /* UdemyStrategy.m */; };
 		16D5D1381C6F5E8F0072916A /* VesselStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D1371C6F5E8F0072916A /* VesselStrategy.m */; };
 		16D5D13B1C6F609B0072916A /* iHeartRadioStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D5D13A1C6F609B0072916A /* iHeartRadioStrategy.m */; };
@@ -108,6 +108,7 @@
 		81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DA43D41950BF55000E98AC /* VkStrategy.m */; };
 		83AAFD7818E0A79500640767 /* StitcherStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AAFD7718E0A79500640767 /* StitcherStrategy.m */; };
 		8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */; };
+		8D882E2A1C84C96300A1179F /* WatchaPlayStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D882E291C84C96300A1179F /* WatchaPlayStrategy.m */; };
 		8E38FAD61994CE57005C2465 /* VimeoStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38FAD51994CE57005C2465 /* VimeoStrategy.m */; };
 		95124C641AD0ECB5001B1F3D /* DigitallyImportedStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95124C631AD0ECB5001B1F3D /* DigitallyImportedStrategy.m */; };
 		963E89B818BB010600FE0DBB /* MixCloudStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 963E89B718BB010600FE0DBB /* MixCloudStrategy.m */; };
@@ -133,6 +134,7 @@
 		D055A36A1A7A033E00CE2BBD /* SomaFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D055A3691A7A033E00CE2BBD /* SomaFmStrategy.m */; };
 		D07721661C1439FF004727EF /* NetflixStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721651C1439FF004727EF /* NetflixStrategy.m */; };
 		D07721691C14DF96004727EF /* AudibleStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07721681C14DF96004727EF /* AudibleStrategy.m */; };
+		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
 		D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
@@ -186,8 +188,6 @@
 		030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BeardedSpiceUserDefaults.plist; sourceTree = "<group>"; };
 		031D8144187F929D00A93E00 /* GoogleMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMusicStrategy.h; sourceTree = "<group>"; };
 		031D8145187F929D00A93E00 /* GoogleMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GoogleMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		031D8147187F982A00A93E00 /* RdioStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RdioStrategy.h; sourceTree = "<group>"; };
-		031D8148187F982A00A93E00 /* RdioStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RdioStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
 		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
 		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
@@ -218,6 +218,8 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		112D3CBE1C8AA7C1009FE925 /* BrainFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrainFmStrategy.h; sourceTree = "<group>"; };
+		112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrainFmStrategy.m; sourceTree = "<group>"; };
 		163515521BC07513004D4A3E /* UdemyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdemyStrategy.h; sourceTree = "<group>"; };
 		163515531BC07513004D4A3E /* UdemyStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UdemyStrategy.m; sourceTree = "<group>"; };
 		16D5D1361C6F5E8F0072916A /* VesselStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VesselStrategy.h; sourceTree = "<group>"; };
@@ -369,6 +371,8 @@
 		83AAFD7718E0A79500640767 /* StitcherStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StitcherStrategy.m; sourceTree = "<group>"; };
 		8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XboxMusicStrategy.m; sourceTree = "<group>"; };
 		8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxMusicStrategy.h; sourceTree = "<group>"; };
+		8D882E291C84C96300A1179F /* WatchaPlayStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchaPlayStrategy.m; sourceTree = "<group>"; };
+		8D882E2D1C84CA9200A1179F /* WatchaPlayStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchaPlayStrategy.h; sourceTree = "<group>"; };
 		8E38FAD41994CE57005C2465 /* VimeoStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VimeoStrategy.h; sourceTree = "<group>"; };
 		8E38FAD51994CE57005C2465 /* VimeoStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VimeoStrategy.m; sourceTree = "<group>"; };
 		95124C621AD0ECB5001B1F3D /* DigitallyImportedStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitallyImportedStrategy.h; sourceTree = "<group>"; };
@@ -419,6 +423,9 @@
 		D07721651C1439FF004727EF /* NetflixStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStrategy.m; sourceTree = "<group>"; };
 		D07721671C14DF96004727EF /* AudibleStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudibleStrategy.h; sourceTree = "<group>"; };
 		D07721681C14DF96004727EF /* AudibleStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudibleStrategy.m; sourceTree = "<group>"; };
+		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
+		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
+		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
 		D0E89A611C0EB54E0033077D /* MusicForProgrammingStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicForProgrammingStrategy.h; sourceTree = "<group>"; };
 		D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicForProgrammingStrategy.m; sourceTree = "<group>"; };
 		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
@@ -499,6 +506,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				112D3CBE1C8AA7C1009FE925 /* BrainFmStrategy.h */,
+				112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */,
 				1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */,
 				1AB7F2511C5D09DA005AA3AC /* BugsMusicStrategy.h */,
 				46EFF9AE1C33E58B00ACE9AB /* TwitchMediaStrategy.h */,
@@ -583,8 +592,6 @@
 				2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */,
 				32F131441A71B6090029E9EF /* PocketCastsStrategy.h */,
 				32F131451A71B6090029E9EF /* PocketCastsStrategy.m */,
-				031D8147187F982A00A93E00 /* RdioStrategy.h */,
-				031D8148187F982A00A93E00 /* RdioStrategy.m */,
 				50445D171AE7C9CB00A57315 /* SaavnStrategy.h */,
 				50445D181AE7C9CB00A57315 /* SaavnStrategy.m */,
 				45F35ED51888357000AEB3E1 /* ShufflerFmStrategy.h */,
@@ -627,6 +634,8 @@
 				BE0EC7F56FEF36DE52081CE1 /* YandexRadioStrategy.m */,
 				03A34923185EB20E00C4A62B /* YouTubeStrategy.h */,
 				03A34924185EB20E00C4A62B /* YouTubeStrategy.m */,
+				8D882E291C84C96300A1179F /* WatchaPlayStrategy.m */,
+				8D882E2D1C84CA9200A1179F /* WatchaPlayStrategy.h */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -634,6 +643,9 @@
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */,
+				D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */,
+				D09EFF211C8CD49E00B24DA9 /* VLC.h */,
 				65C5116C1AED688800EBA6A5 /* Spotify.h */,
 				651967BF1AB3858800B48D3A /* iTunes.h */,
 				6588CF471B358A8300A3CBAD /* VOX.h */,
@@ -1074,7 +1086,6 @@
 				163515541BC07513004D4A3E /* UdemyStrategy.m in Sources */,
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
-				031D8149187F982A00A93E00 /* RdioStrategy.m in Sources */,
 				4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */,
 				699AAD3F1992C0BE0021BFF2 /* OvercastStrategy.m in Sources */,
 				D07721691C14DF96004727EF /* AudibleStrategy.m in Sources */,
@@ -1089,12 +1100,14 @@
 				81DA43D61950BF55000E98AC /* VkStrategy.m in Sources */,
 				F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
+				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
 				504B426D1AF00C2E00654297 /* OdnoklassnikiStrategy.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
+				8D882E2A1C84C96300A1179F /* WatchaPlayStrategy.m in Sources */,
 				4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */,
 				039D83421892173600DB426D /* SlackerStrategy.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
@@ -1131,6 +1144,7 @@
 				EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */,
 				2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */,
 				03A34929185EE58600C4A62B /* PandoraStrategy.m in Sources */,
+				112D3CC01C8AA7C1009FE925 /* BrainFmStrategy.m in Sources */,
 				CA5CCF421887FC0700F7C1C3 /* SynologyStrategy.m in Sources */,
 				D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */,
 				1AB7F2531C5D09E4005AA3AC /* BugsMusicStrategy.m in Sources */,

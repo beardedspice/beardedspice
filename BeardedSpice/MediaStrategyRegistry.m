@@ -18,7 +18,6 @@
 #import "LastFmStrategy.h"
 #import "SpotifyStrategy.h"
 #import "GoogleMusicStrategy.h"
-#import "RdioStrategy.h"
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
 #import "ShufflerFmStrategy.h"
@@ -71,6 +70,8 @@
 #import "iHeartRadioStrategy.h"
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
+#import "BrainFmStrategy.h"
+#import "WatchaPlayStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -222,7 +223,6 @@
                        [PandoraStrategy new],
                        [PlexWebStrategy new],
                        [PocketCastsStrategy new],
-                       [RdioStrategy new],
                        [RhapsodyStrategy new],
                        [SaavnStrategy new],
                        [ShufflerFmStrategy new],
@@ -241,11 +241,13 @@
                        [VesselStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
+                       [WatchaPlayStrategy new],
                        [WonderFmStrategy new],
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
+                       [YouTubeStrategy new],
+                       [BrainFmStrategy new]
                     ];
     });
     return strategies;

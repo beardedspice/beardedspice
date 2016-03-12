@@ -7,16 +7,7 @@
 //
 
 #import "ShortcutsPreferencesViewController.h"
-
-NSString *const BeardedSpicePlayPauseShortcut = @"BeardedSpicePlayPauseShortcut";
-NSString *const BeardedSpiceNextTrackShortcut = @"BeardedSpiceNextTrackShortcut";
-NSString *const BeardedSpicePreviousTrackShortcut = @"BeardedSpicePreviousTrackShortcut";
-NSString *const BeardedSpiceActiveTabShortcut = @"BeardedSpiceActiveTabShortcut";
-NSString *const BeardedSpiceFavoriteShortcut = @"BeardedSpiceFavoriteShortcut";
-NSString *const BeardedSpiceNotificationShortcut = @"BeardedSpiceNotificationShortcut";
-NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivatePlayingTabShortcut";
-NSString *const BeardedSpicePlayerNextShortcut = @"BeardedSpicePlayerNextShortcut";
-NSString *const BeardedSpicePlayerPreviousShortcut = @"BeardedSpicePlayerPreviousShortcut";
+#import "BSSharedDefaults.h"
 
 @implementation ShortcutsPreferencesViewController
 

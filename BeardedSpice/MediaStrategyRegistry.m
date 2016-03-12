@@ -18,11 +18,9 @@
 #import "LastFmStrategy.h"
 #import "SpotifyStrategy.h"
 #import "GoogleMusicStrategy.h"
-#import "RdioStrategy.h"
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
 #import "ShufflerFmStrategy.h"
-#import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
 #import "BeatsMusicStrategy.h"
 #import "MixCloudStrategy.h"
@@ -69,9 +67,12 @@
 #import "AudibleStrategy.h"
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
+#import "iHeartRadioStrategy.h"
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
 #import "RadioSwissJazzStrategy.h"
+#import "BrainFmStrategy.h"
+#import "WatchaPlayStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -192,6 +193,7 @@
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],
                        [BopFm new],
+                       [BrainFmStrategy new],
                        [BugsMusicStrategy new],
                        [ChorusStrategy new],
                        [ComposedStrategy new],
@@ -204,6 +206,7 @@
                        [GrooveSharkStrategy new],
                        [HotNewHipHopStrategy new],
                        [HypeMachineStrategy new],
+                       [iHeartRadioStrategy new],
                        [IndieShuffleStrategy new],
                        [JangoMediaStrategy new],
                        [KollektFmStrategy new],
@@ -223,13 +226,11 @@
                        [PlexWebStrategy new],
                        [PocketCastsStrategy new],
                        [RadioSwissJazzStrategy new],
-                       [RdioStrategy new],
                        [RhapsodyStrategy new],
                        [SaavnStrategy new],
                        [ShufflerFmStrategy new],
                        [SlackerStrategy new],
                        [SomaFmStrategy new],
-                       [SongzaStrategy new],
                        [SoundCloudStrategy new],
                        [SpotifyStrategy new],
                        [StitcherStrategy new],
@@ -243,6 +244,7 @@
                        [VesselStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
+                       [WatchaPlayStrategy new],
                        [WonderFmStrategy new],
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],

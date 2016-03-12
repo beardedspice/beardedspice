@@ -26,13 +26,13 @@
 }
 
 - (BOOL)isPlaying:(TabAdapter *)tab{
-    NSNumber *result = [tab executeJavascript:@"(function(){return $('div.jp-audio').hasClass('jp-state-playing');})();"];
+    NSNumber *result = [tab executeJavascript:@"(function(){return document.querySelector('.track--active:not(.track--paused)')})();"];
     return [result boolValue];
 }
 
 -(NSString *) toggle
 {
-    return @"!function(){var e=document.querySelector('.jp-type-single'),l=document.querySelector('a.jp-play'),t=document.querySelector('a.jp-pause'),c=document.querySelector('.track_play'),u='none'===getComputedStyle(e,null).display,n='none'===getComputedStyle(l,null).display;u?c.click():n?t.click():l.click()}();";
+    return @"!function(){document.querySelector('.show--activeTrack .player-play').click()}();";
 }
 
 -(NSString *) previous
@@ -42,31 +42,31 @@
 
 -(NSString *) next
 {
-     return @"(function(){document.querySelector('a.jp-next').click()})()";
+     return @"(function(){document.querySelector('.show--activeTrack .player-skip').click()})();";
 }
 
 -(NSString *) pause
 {
-     return @"(function(){document.querySelector('a.jp-pause').click()})()";
+     return @"(function(){document.querySelector('.show--activeTrack .player-pause').click()})();";
 }
 
 -(NSString *) displayName
 {
-    return @"WonderFM";
+    return @"Wonder FM";
 }
 
 -(Track *) trackInfo:(TabAdapter *)tab
 {
   Track *track = [[Track alloc] init];
-  [track setTrack:[tab executeJavascript:@"document.querySelector('.track_active .track_name > a').text"]];
-  [track setArtist:[tab executeJavascript:@"document.querySelector('.track_active .track_artist > a').text"]];
+  [track setTrack:[tab executeJavascript:@"document.querySelector('.currentTrack .song').text"]];
+  [track setArtist:[tab executeJavascript:@"document.querySelector('.currentTrack .artist').text"]];
 
   return track;
 }
 
 -(NSString *) favorite
 {
-  return @"document.querySelector('.track_active .track_fav').click()";
+  return @"document.querySelector('.track--active .track-fav').click();";
 }
 
 @end

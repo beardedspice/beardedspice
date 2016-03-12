@@ -18,7 +18,7 @@
 
 + (id)initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
 {
-    SafariTabAdapter *out = [[SafariTabAdapter alloc] init];
+    SafariTabAdapter *out = [SafariTabAdapter new];
 
     // TODO(trhodeos): I can't remember why we used [object get] instead of the object directly.
     //   Checking to make sure that the object returned by 'get' is not null before using it, as it

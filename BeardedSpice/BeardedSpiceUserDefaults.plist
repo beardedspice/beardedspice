@@ -32,7 +32,9 @@
 		<true/>
 		<key>Bop.fm</key>
 		<true/>
-                <key>BugsMusic</key>
+		<key>Brain.fm</key>
+		<true/>
+		<key>BugsMusic</key>
 		<true/>
 		<key>Chorus</key>
 		<true/>
@@ -47,6 +49,8 @@
 		<key>HotNewHipHop</key>
 		<true/>
 		<key>HypeMachine</key>
+		<true/>
+		<key>iHeart Radio</key>
 		<true/>
 		<key>IndieShuffle</key>
 		<true/>
@@ -74,8 +78,6 @@
 		<true/>
 		<key>PocketCasts</key>
 		<true/>
-		<key>Rdio</key>
-		<true/>
 		<key>Saavn</key>
 		<true/>
 		<key>Shuffler.fm</key>
@@ -83,8 +85,6 @@
 		<key>Slacker</key>
 		<true/>
 		<key>SomaFM</key>
-		<true/>
-		<key>Songza</key>
 		<true/>
 		<key>SoundCloud</key>
 		<true/>

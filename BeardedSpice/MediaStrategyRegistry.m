@@ -22,6 +22,7 @@
 #import "EightTracksStrategy.h"
 #import "SynologyStrategy.h"
 #import "ShufflerFmStrategy.h"
+#import "SongzaStrategy.h"
 #import "SlackerStrategy.h"
 #import "BeatsMusicStrategy.h"
 #import "MixCloudStrategy.h"
@@ -69,7 +70,13 @@
 #import "BBCRadioStrategy.h"
 #import "TwitchMediaStrategy.h"
 #import "BugsMusicStrategy.h"
-#import "VesselStrategy.h"
+#import "MelonStrategy.h"
+#import "MnetStrategy.h"
+#import "soribadaStrategy.h"
+#import "monkey3Strategy.h"
+#import "genieStrategy.h"
+#import "naverMusicStrategy.h"
+#import "ollehMusicStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -145,27 +152,24 @@
 
 -(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
-    if (tab.check) {
-        
-        NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
-        MediaStrategy *strat = _registeredCache[cacheKey];
-        if (strat)
+    NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
+    MediaStrategy *strat = _registeredCache[cacheKey];
+    if (strat)
         /* Return the equivalent of a full scan except we dont repeat calculations */
         return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
-        
-        for (MediaStrategy *strategy in availableStrategies)
-        {
-            BOOL accepted = [strategy accepts:tab];
-            
-            /* Store the result of this calculation for future use */
-            _registeredCache[cacheKey] = accepted ? strategy : @NO;
-            if (accepted) {
-                NSLog(@"%@ is valid for %@", strategy, tab);
-                return strategy;
-            }
+
+    for (MediaStrategy *strategy in availableStrategies)
+    {
+        BOOL accepted = [strategy accepts:tab];
+
+        /* Store the result of this calculation for future use */
+        _registeredCache[cacheKey] = accepted ? strategy : @NO;
+        if (accepted) {
+            NSLog(@"%@ is valid for %@", strategy, tab);
+            return strategy;
         }
     }
-    return nil;
+    return NULL;
 }
 
 -(NSArray *) getMediaStrategies
@@ -190,7 +194,6 @@
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],
                        [BopFm new],
-                       [BugsMusicStrategy new],
                        [ChorusStrategy new],
                        [ComposedStrategy new],
                        [CourseraStrategy new],
@@ -226,6 +229,7 @@
                        [ShufflerFmStrategy new],
                        [SlackerStrategy new],
                        [SomaFmStrategy new],
+                       [SongzaStrategy new],
                        [SoundCloudStrategy new],
                        [SpotifyStrategy new],
                        [StitcherStrategy new],
@@ -236,14 +240,21 @@
                        [TwentyTwoTracksStrategy new],
                        [TwitchMediaStrategy new],
                        [UdemyStrategy new],
-                       [VesselStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
                        [WonderFmStrategy new],
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
+                       [YouTubeStrategy new],
+                       [BugsMusicStrategy new],
+                       [MelonStrategy new],
+                       [MnetStrategy new],
+                       [soribadaStrategy new],
+                       [monkey3Strategy new],
+                       [genieStrategy new],
+                       [naverMusicStrategy new],
+                       [ollehMusicStrategy new]
                     ];
     });
     return strategies;

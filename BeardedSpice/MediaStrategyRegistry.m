@@ -133,7 +133,9 @@
     NSMutableDictionary *versions = [[NSMutableDictionary alloc] initWithContentsOfURL:versionPath];
     [versions removeObjectForKey:@"version"]; // remove the meta version of the index file.
     if (versions)
-        return [versions allKeys];
+        return [[versions allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            return [obj1 compare:obj2];
+        }];
 
     return @[];
 }

@@ -331,7 +331,6 @@
 		656AFFFF1C8AD3C800BD29F5 /* DDHidAppleMikey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleMikey.h; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
-		65837A521AAE5DE2004CD62F /* mediaResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mediaResources; sourceTree = "<group>"; };
 		6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOXTabAdapter.h; sourceTree = "<group>"; };
 		6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOXTabAdapter.m; sourceTree = "<group>"; };
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
@@ -771,7 +770,6 @@
 			isa = PBXGroup;
 			children = (
 				656A003A1C8AFFD400BD29F5 /* SharedComponents */,
-				65837A521AAE5DE2004CD62F /* mediaResources */,
 				656A00241C8AD41A00BD29F5 /* Utils */,
 				967933351855173100A49AC7 /* BeardedSpice */,
 				656AFFEB1C8ACDCF00BD29F5 /* BeardedSpiceControllers */,

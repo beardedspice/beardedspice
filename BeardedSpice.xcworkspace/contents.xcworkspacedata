@@ -5,6 +5,9 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
+      location = "container:mediaResources">
+   </FileRef>
+   <FileRef
       location = "group:BeardedSpice.xcodeproj">
    </FileRef>
    <FileRef

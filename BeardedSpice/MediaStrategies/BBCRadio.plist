@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  BBCRadio.plist
+//  BeardedSpice
+//
+//  Created by Max Borghino on 12/13/15.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+
+// strategy/site notes
+// - no previous and next available on site
+-->
+<dict>
+    <!-- NOTE: This file MUST be viewable in xcode or validated by the plutil utility. -->
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>BBC Radio</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*bbc.co.uk/radio/player/*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){
+        var s=document.querySelector('#controls');
+        return (s &amp;&amp; (s.classList.contains('stoppable') || s.classList.contains('pausable')));
+    })();</string>
+
+    <key>toggle</key>
+    <string>(function(){
+      var s=document.querySelector('#controls'),
+        play=document.querySelector('#btn-play'),
+        pause=document.querySelector('#btn-pause');
+      if (s) { (s.classList.contains('stoppable') || s.classList.contains('pausable')) ? pause.click() : play.click(); }
+    })();</string>
+
+    <key>previous</key>
+    <string></string>
+
+    <key>next</key>
+    <string></string>
+
+    <key>pause</key>
+    <string>(function(){document.querySelector('#btn-pause').click();})()</string>
+
+    <key>favorite</key>
+    <string>(function(){document.querySelector('#toggle-mystations').click();})()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+      var playlister=document.querySelector('.playlister'),
+        art, title, artist;
+      if (playlister) {
+        art=document.querySelector('.playlister img'),
+        title=playlister.querySelector('.track .title'),
+        artist=playlister.querySelector('.track .artist');
+      } else {
+        art=document.querySelector('#main-image-wrapper img'),
+        title=document.querySelector('#parent-title a'),
+        artist=document.querySelector('#title a');
+      }
+      return {'image': art ? art.getAttribute('src') : null,
+              'track': title ? title.innerText : document.title,
+              'artist': artist ? artist.innerText : null};
+    })()</string>
+</dict>
+</plist>

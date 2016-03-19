@@ -72,7 +72,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [focus@will](https://www.focusatwill.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
-- [HotNewHipHop Mixtapes] (http://www.hotnewhiphop.com/mixtapes/)
+- [HotNewHipHop Mixtapes](http://www.hotnewhiphop.com/mixtapes/)
 - [HypeMachine](http://hypem.com)
 - [iHeart Radio](http://www.iheart.com/)
 - [IndieShuffle](http://www.indieshuffle.com)
@@ -142,182 +142,145 @@ pod install
 BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
 
 
-## Writing a *MediaStrategy*
+## Writing a *Media Strategy*
 
-Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategy.h). Each strategy defines a collection of Javascript functions to be excecuted on particular webpages.
+Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/template-explained.plist). Each strategy defines a collection of Javascript functions to be executed on particular webpages.
 
-```Objective-C
-@interface MediaStrategy : NSObject
-/**
-Returns the name of that media strategy.
-*/
--(NSString *) displayName; // Required override in subclass.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  NewStrategyName.plist
+//  BeardedSpice
+//
+//  Created by You on Today's Date.
+//  Copyright (c) 2015 Bearded Spice. All rights reserved.
+// OR
+//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//
 
-/**
-Checks tab to see if it is accepted by this strategy.
-*/
--(BOOL) accepts:(TabAdapter *)tab; // Required override in subclass.
+// We put the copyright inside the plist to retain consistent syntax coloring.
+-->
+<dict>
+    <!-- NOTE: This file MUST be viewable in xcode or validated by the plutil utility. -->
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Amazon Music</string>
 
-/**
-Checks tab to see if it is currently playing audio.
-*/
-- (BOOL)isPlaying:(TabAdapter *)tab;
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*[YOUR-URL-DOMAIN-HERE]*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+        <!--
+        OR
+        <key>predicate</key>
+        <string>SELF LIKE[c] '[YOUR-TARGET-TITLE-HERE]'</string>
+        <key>tabValue</key>
+        <string>title</string>
+        OR
+        <key>script</key>
+        <string>some javascript here that returns a boolean value</string>
+        -->
+    </dict>
 
-/**
-Returns track information object from tab. More information below.
-*/
-- (Track *)trackInfo:(TabAdapter *)tab;
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string></string>
 
-/**
-Returns Javascript code for the play/pause toggle.
-*/
--(NSString *) toggle; // Required override in subclass.
+    <key>toggle</key>
+    <string></string>
 
-/**
-Returns javascript code for the previous track action.
-*/
--(NSString *) previous;
+    <key>previous</key>
+    <string></string>
 
-/**
-Returns javascript code for the next track action.
-*/
--(NSString *) next;
+    <key>next</key>
+    <string></string>
 
-/**
-Returns javascript code for the pausing action.
-Used mainly for pausing before switching active tabs.
-*/
--(NSString *) pause; // Required override in subclass.
+    <key>pause</key>
+    <string></string>
 
-/**
-Returns javascript code of the "favorite" toggle.
-*/
--(NSString *) favorite;
+    <key>favorite</key>
+    <string></string>
 
-/**
-Helper method for obtaining album artwork from url string
-*/
-- (NSImage *)imageByUrlString:(NSString *)urlString;
-
-@end
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function() {
+      return {
+        'track': 'the name of the track',
+        'album': 'the name of the current album',
+        'artist': 'the name of the current artist',
+        'image': 'the URL to the image associated with the track',
+        'favorited': 'true/false if the track has been favorited',
+      };
+    })();</string>
+</dict>
+</plist>
 ```
 
-The `accepts` method takes a `Tab` object and returns `YES` if the strategy can control the given tab. `displayName` must return a unique string describing the controller and will be used as the name shown in the Preferences panel. Some other functions return a Javascript function for the particular action. `pause` is a special case and is used when changing the active tab. Optional but useful methods are `isPlaying` and `trackInfo`. If you define the `isPlaying` method, the media strategy will be used in autoselect mechanism, a description of which you may find in issue #67. The `trackInfo` method returns a `Track` object, which used in notifications for the user.
+- `accepts` - takes a `Tab` object and returns `YES` if the strategy can control the given tab.
 
-Define these properties of the `Track` object:
-```Objective-C
-@property NSString *track;
-@property NSString *album;
-@property NSString *artist;
-@property NSImage *image;
-@property NSNumber *favorited;
-```
+- `displayName` - must return a unique string describing the controller and will be used as the name shown in the Preferences panel. Some other functions return a Javascript function for the particular action.
 
-A sample strategy for YandexMusic:
+- `pause` - a special case used when changing the active tab.
 
-```Objective-C
-@implementation YandexMusicStrategy
+- `isPlaying` - [Optional] If you define the `isPlaying` method, the media strategy will be used in autoselect mechanism, a description of which you may find in [issue #67](https://github.com/beardedspice/beardedspice/issues/67).
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        predicate =
-            [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*music.yandex.*'"];
-    }
-    return self;
-}
+- `trackInfo` - [Optional] returns a `BSTrack` object based on the currently accepted 5 keys (see trackInfo in the above xml), which used in notifications for the user.
 
-- (BOOL)accepts:(TabAdapter *)tab {
-    return [predicate evaluateWithObject:[tab URL]];
-}
 
-- (BOOL)isPlaying:(TabAdapter *)tab {
+Update the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) to include an instance of your new strategy:
 
-    NSNumber *value =
-        [tab executeJavascript:@"(function(){return "
-                               @"JSON.parse($('body').attr('data-unity-state')"
-                               @").playing;})()"];
-
-    return [value boolValue];
-}
-
-- (NSString *)toggle {
-    return @"(function(){document.querySelector('div.b-jambox__play, "
-           @".player-controls__btn_play').click()})()";
-}
-
-- (NSString *)previous {
-    return @"(function(){document.querySelector('div.b-jambox__prev, "
-           @".player-controls__btn_prev').click()})()";
-}
-
-- (NSString *)next {
-    return @"(function(){document.querySelector('div.b-jambox__next, "
-           @".player-controls__btn_next').click()})()";
-}
-
-- (NSString *)pause {
-    return @"(function(){\
-        var e=document.querySelector('.player-controls__btn_play');\
-        if(e!=null){\
-            if(e.classList.contains('player-controls__btn_pause')){e.click()}\
-        }else{\
-            var e=document.querySelector('div.b-jambox__play');\
-            if(e.classList.contains('b-jambox__playing')){e.click()}\
-        }\
-    })()";
-}
-
-- (NSString *)displayName {
-    return @"YandexMusic";
-}
-
-- (NSString *)favorite {
-
-    return @"(function(){$('.player-controls "
-           @".like.player-controls__btn').click();})()";
-}
-
-- (Track *)trackInfo:(TabAdapter *)tab {
-
-    NSDictionary *info = [tab
-        executeJavascript:@"(function(){return "
-                          @"$.extend(JSON.parse($('body').attr('data-unity-"
-                          @"state')), ({'favorited': ($('.player-controls "
-                          @".like.like_on.player-controls__btn').length)}))})("
-                          @")"];
-
-    Track *track = [Track new];
-
-    track.track = info[@"title"];
-    track.artist = info[@"artist"];
-    track.image = [self imageByUrlString:info[@"albumArt"]];
-    track.favorited = info[@"favorited"];
-
-    return track;
-}
-
-@end
-```
-
-Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategyRegistry.m) to include an instance of your new strategy:
-
-```Objective-C
-+(NSArray *) getDefaultMediaStrategies
-{
-        DefaultMediaStrategies = [NSArray arrayWithObjects:
-                                  // ...
-                                  [GoogleMusicStrategy new],
-                                  // add your new strategy!
-                                  [YandexMusicStrategy new],
-                                  nil];
-}
+```xml
+    <key>AmazonMusic</key>
+    <integer>1</integer>
 ```
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 
+## Updating a *Media Strategy*
+
+In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate plist file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.plist) has javascript for all five functions as well as partial trackInfo retrieval.
+
+After updating a strategy, update it's version in the ServiceName.plist you've created, as well as the ServiceName entry in the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) file. Updating a version means incrementing the number by 1. All references to the service should have the same version when creating a PR.
+
+```xml
+    <!-- versions.plist -->
+    <key>AmazonMusic</key>
+    <integer>1</integer>
+
+    <!-- AmazonMusic.plist -->
+    <key>version</key>
+    <integer>1</integer>
+```
+
+becomes
+
+```xml
+    <!-- versions.plist -->
+    <key>AmazonMusic</key>
+    <integer>2</integer>
+
+    <!-- AmazonMusic.plist -->
+    <key>version</key>
+    <integer>2</integer>
+```
+
+If you find that javascript alone cannot properly control a service, please [create an issue](https://github.com/beardedspice/beardedspice/issues/new?title=%5BDevelopment%20Support%5D) specifying your work branch (as a link), the service in question, and your difficulty as precisely as possible.
+
+
 # About pull requests
-Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods from modern API of the strategies please. PR with strategy that are not fully implemented for no reason will be rejected.
+Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods with the most modern API for the service, please. PR with a strategy that is not fully implemented for no reason will be rejected.
 
 [![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
 

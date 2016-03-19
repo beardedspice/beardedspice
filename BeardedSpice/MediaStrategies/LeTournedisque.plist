@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  LeTournedisque.plist
+//  BeardedSpice
+//
+//  Created by Jonas Friedmann on 18.05.15.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>LeTournedisque</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*letournedisque.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){return (document.querySelectorAll('.playing')[0]) ? true : false})();</string>
+
+    <key>toggle</key>
+    <string>(function(){return document.querySelectorAll('div.play')[0].click()})();</string>
+
+    <key>previous</key>
+    <string>(function(){return document.querySelectorAll('div.prev')[0].click()})();</string>
+
+    <key>next</key>
+    <string>(function(){return document.querySelectorAll('div.next')[0].click()})();</string>
+
+    <key>pause</key>
+    <string>(function(){return document.querySelectorAll('div.playing')[0].click()})();</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        return {
+            'artist': $('.info-text .artiste strong, .info-text .artiste a').text(),
+            'track': $.trim($('.info-text .name').text())
+        }})()</string>
+</dict>
+</plist>

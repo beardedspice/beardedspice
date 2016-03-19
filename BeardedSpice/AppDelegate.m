@@ -23,7 +23,11 @@
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
 
+#import "BSTrack.h"
+#import "BSStrategyVersionManager.h"
+
 #import "runningSBApplication.h"
+
 
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
@@ -40,10 +44,10 @@
 #define CHANGE_TRACK_DELAY      2.0
 
 typedef enum{
-    
+
     SwithPlayerNext = 1,
     SwithPlayerPrevious
-    
+
 } SwithPlayerDirectionType;
 
 BOOL accessibilityApiEnabled = NO;
@@ -52,7 +56,7 @@ BOOL accessibilityApiEnabled = NO;
 
 
 - (void)dealloc{
-    
+
     [self removeSystemEventsCallback];
 }
 
@@ -74,20 +78,24 @@ BOOL accessibilityApiEnabled = NO;
 
     // Create serial queue for user actions
     workingQueue = dispatch_queue_create("WorkingQueue", DISPATCH_QUEUE_SERIAL);
-    
-    //
+
+    /* Check for strategy updates from the master github repo */
+    BSStrategyVersionManager *versionManager = [BSStrategyVersionManager sharedVersionManager];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUpdateAtLaunch])
+        [versionManager performUpdateCheck];
+
     // Create serial queue for notification
     // We need queue because track info may contain image,
     // which retrieved from URL, this may cause blocking of the main thread.
     notificationQueue = dispatch_queue_create("NotificationQueue", DISPATCH_QUEUE_SERIAL);
     //
-    
+
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -97,45 +105,52 @@ BOOL accessibilityApiEnabled = NO;
 
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
-    
+
     // setup native apps
     nativeAppRegistry = [[NativeAppTabRegistry alloc]
         initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
 
     nativeApps = [NSMutableArray array];
-    
+
     [self shortcutsBind];
     [self newConnectionToControlService];
+
+    // Scan all available tabs
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        __strong typeof(wself) sself = wself;
+        [sself refreshTabs:nil];
+    });
 }
 
 - (void)awakeFromNib
 {
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:24.0];
     [statusItem setMenu:statusMenu];
-    
+
     [self interfaceThemeChanged:nil];
     [statusItem setHighlightMode:YES];
 
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
-    
+
     // check accessibility enabled
     [self checkAccessibilityTrusted];
-    
+
     [self resetStatusMenu];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] prepareForClosingConnectionWithCompletion:^{
 
             [_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         }];
-        
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
+
             [_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         });
@@ -149,19 +164,19 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)menuNeedsUpdate:(NSMenu *)menu{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:NO];
         dispatch_sync(dispatch_get_main_queue(), ^{
-            
+
             [self setStatusMenuItemsStatus];
         });
     });
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
-    
+
     return YES;
 }
 
@@ -171,12 +186,12 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)playPauseToggle{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:YES];
         if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-            
+
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(toggle)]) {
                 [tab toggle];
@@ -185,9 +200,8 @@ BOOL accessibilityApiEnabled = NO;
                     [self showNotification];
             }
         } else {
-            
-            MediaStrategy *strategy =
-            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+            BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy && ![NSString isNullOrEmpty:[strategy toggle]]) {
                 [activeTab executeJavascript:[strategy toggle]];
                 if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
@@ -198,36 +212,31 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 - (void)nextTrack{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:NO];
         if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-            
+
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(next)]) {
                 [tab next];
-                dispatch_after(
-                               dispatch_time(DISPATCH_TIME_NOW,
-                                             (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-                                   
+
                                    if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
                                        ![tab frontmost])
                                        [self showNotification];
                                });
             }
         } else {
-            
-            MediaStrategy *strategy =
-            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+            BSMediaStrategy *strategy =[mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
                 [activeTab executeJavascript:[strategy next]];
-                dispatch_after(
-                               dispatch_time(DISPATCH_TIME_NOW,
-                                             (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-                                   
+
                                    if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                                        [self showNotification];
                                    }
@@ -238,36 +247,31 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)previousTrack{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:NO];
         if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-            
+
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(previous)]) {
                 [tab previous];
-                dispatch_after(
-                               dispatch_time(DISPATCH_TIME_NOW,
-                                             (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-                                   
+
                                    if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
                                        ![tab frontmost])
                                        [self showNotification];
                                });
             }
         } else {
-            
-            MediaStrategy *strategy =
-            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+            BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy && ![NSString isNullOrEmpty:[strategy previous]]) {
                 [activeTab executeJavascript:[strategy previous]];
-                dispatch_after(
-                               dispatch_time(DISPATCH_TIME_NOW,
-                                             (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-                                   
+
                                    if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                                        [self showNotification];
                                    }
@@ -278,50 +282,41 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)activeTab{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self refreshTabs:self];
         [self setActiveTabShortcut];
     });
-  
+
 }
 
 - (void)favorite{
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:NO];
-        
+
         if ([activeTab isKindOfClass:
              [NativeAppTabAdapter class]]) {
-            
+
             NativeAppTabAdapter *tab =
             (NativeAppTabAdapter *)activeTab;
-            if ([tab respondsToSelector:@selector(
-                                                  favorite)]) {
+            if ([tab respondsToSelector:@selector(favorite)]) {
                 [tab favorite];
                 if ([[tab trackInfo] favorited]) {
                     [self showNotification];
                 }
             }
         } else {
-            
-            MediaStrategy *strategy =
-            [mediaStrategyRegistry
-             getMediaStrategyForTab:activeTab];
+
+            BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy) {
                 [activeTab
                  executeJavascript:[strategy favorite]];
-                dispatch_after(
-                               dispatch_time(
-                                             DISPATCH_TIME_NOW,
-                                             (int64_t)(FAVORITED_DELAY *
-                                                       NSEC_PER_SEC)),
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
                                    @try {
-                                       if ([[strategy
-                                             trackInfo:
-                                             activeTab] favorited])
+                                       if ([[strategy trackInfo:activeTab] favorited])
                                            [self showNotification];
                                    }
                                    @catch (NSException *exception) {
@@ -334,9 +329,9 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)notification{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:NO];
         [self showNotificationUsingFallback:YES];
     });
@@ -344,40 +339,40 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)activatePlayingTab{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self autoSelectTabWithForceFocused:NO];
         [activeTab toggleTab];
     });
 }
 
 - (void)playerNext{
-    
+
     [self switchPlayerWithDirection:SwithPlayerNext];
 }
 - (void)playerPrevious{
-    
+
     [self switchPlayerWithDirection:SwithPlayerPrevious];
 }
 
 - (void)volumeUp{
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+
         [self pressKey:NX_KEYTYPE_SOUND_UP];
     });
 }
 - (void)volumeDown{
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+
         [self pressKey:NX_KEYTYPE_SOUND_DOWN];
     });
 }
 
 - (void)headphoneUnplug{
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self pauseActiveTab];
     });
 }
@@ -388,23 +383,63 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
 
+- (IBAction)checkForUpdates:(id)sender
+{
+    NSMenuItem *item = [statusMenu itemAtIndex:0];
+    NSString *title = item.title;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        item.title = @"Checking...";
+        item.enabled = NO;
+    });
+
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
+        __strong typeof(wself) sself = wself;
+
+        BSStrategyVersionManager *manager = [BSStrategyVersionManager sharedVersionManager];
+        NSUInteger updateCount = [manager performSyncUpdateCheck];
+
+        NSArray *strategies = [MediaStrategyRegistry getDefaultMediaStrategyNames];
+        for (NSString *name in strategies)
+        {
+            BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
+            [strategy reloadData];
+        }
+
+        [sself refreshTabs:nil];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            item.title = title;
+            item.enabled = YES;
+        });
+
+        NSUserNotification *notification = [NSUserNotification new];
+        notification.title = @"Bearded Spice - Compatibility Updates";
+        if (updateCount > 0)
+            notification.subtitle = [NSString stringWithFormat:@"There were %u compatibility updates.", updateCount];
+        else
+            notification.subtitle = @"No new compatibilty updates.";
+
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    });
+}
+
 - (IBAction)openPreferences:(id)sender
 {
     [self windowWillBeVisible:self.preferencesWindowController.window];
     [self.preferencesWindowController showWindow:self];
-    
 }
 
-
-- (IBAction)exitApp:(id)sender {
+- (IBAction)exitApp:(id)sender
+{
     [NSApp terminate: nil];
 }
 
 - (void)updateActiveTabFromMenuItem:(id) sender
 {
-    
+
     dispatch_async(workingQueue, ^{
-        
+
         [self updateActiveTab:[sender representedObject]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self setStatusMenuItemsStatus];
@@ -418,50 +453,47 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////
 
 -(void)windowWillBeVisible:(id)window{
-    
+
     if (window == nil)
         return;
-    
+
     @synchronized(openedWindows){
-        
+
         if (!openedWindows)
             openedWindows = [NSMutableSet set];
-        
+
         if (!openedWindows.count) {
-            
             [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyRegular];
-            //            [[NSApplication sharedApplication] setPresentationOptions:NSApplicationPresentationDefault];
         }
         [self activateApp];
         [openedWindows addObject:window];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [[NSApplication sharedApplication] arrangeInFront:self];
         });
     }
 }
 
 -(void)activateApp{
-    
+
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     //    [[NSRunningApplication currentApplication] activateWithOptions: (NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
-    
+
 }
 
 -(void)removeWindow:(id)obj{
-    
+
     if (obj == nil)
         return;
-    
+
     @synchronized(openedWindows){
-        
+
         [openedWindows removeObject:obj];
-        
+
         if (![openedWindows count]){
-            
+
                 [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyAccessory];
 //                [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyProhibited];
-            
+
         }
     }
 }
@@ -485,13 +517,14 @@ BOOL accessibilityApiEnabled = NO;
                                          subtype:0x8
                                            data1:(keytype << 16) | (state << 8)
                                            data2:-1];
-    
+
     CGEventPost(0, [event CGEvent]);
 }
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods
 /////////////////////////////////////////////////////////////////////////
+
 
 -(runningSBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
 {
@@ -528,8 +561,7 @@ BOOL accessibilityApiEnabled = NO;
         return;
     }
 
-    yandexBrowserApp =
-        [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
+    yandexBrowserApp = [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
     if (timeout.reached) {
         return;
     }
@@ -558,21 +590,19 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (BOOL)setActiveTabShortcutForChrome:(runningSBApplication *)app {
-    
     ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
     // chromeApp.windows[0] is the front most window.
     ChromeWindow *chromeWindow = chrome.windows[0];
-    
+
     // use 'get' to force a hard reference.
     return [self updateActiveTab:[ChromeTabAdapter initWithApplication:app andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
 }
 
 - (BOOL)setActiveTabShortcutForSafari:(runningSBApplication *)app {
-    
     SafariApplication *safari = (SafariApplication *)app.sbApplication;
     // is safari.windows[0] the frontmost?
     SafariWindow *safariWindow = safari.windows[0];
-    
+
     // use 'get' to force a hard reference.
     return [self updateActiveTab:[SafariTabAdapter initWithApplication:app
                                                       andWindow:safariWindow
@@ -580,7 +610,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (BOOL)setActiveTabShortcut{
-    
+
     BOOL result = NO;
     if (chromeApp.frontmost) {
         result = [self setActiveTabShortcutForChrome:chromeApp];
@@ -593,7 +623,7 @@ BOOL accessibilityApiEnabled = NO;
     } else if (safariApp.frontmost) {
         result = [self setActiveTabShortcutForSafari:safariApp];
     } else {
-        
+
         for (runningSBApplication *app in nativeApps) {
             if (app.frontmost) {
                 NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
@@ -604,38 +634,38 @@ BOOL accessibilityApiEnabled = NO;
             }
         }
     }
-    
+
     return result;
 }
 
 - (void)removeAllItems
 {
     SafariTabKeys = [NSMutableSet set];
-    
+
     menuItems = [NSMutableArray array];
     // reset playingTabs
     playingTabs = [NSMutableArray array];
-    
+
 }
 
 -(BOOL)setStatusMenuItemsStatus{
-    
+
     @autoreleasepool {
         NSInteger count = statusMenu.itemArray.count;
         for (int i = 0; i < (count - statusMenuCount); i++) {
-            
+
             NSMenuItem *item = [statusMenu itemAtIndex:i];
             TabAdapter *tab = [item representedObject];
             if ([activeTab isEqual:tab]) {
-                
+
                 [item setState:NSOnState];
             }
             else{
-                
+
                 [item setState:NSOffState];
             }
         }
-        
+
         return NO;
     }
 }
@@ -673,7 +703,7 @@ BOOL accessibilityApiEnabled = NO;
     }
 
     @try {
-        
+
         SafariApplication *safari = (SafariApplication *)app.sbApplication;
         if (safari) {
             for (SafariWindow *safariWindow in [safari.windows get]) {
@@ -703,9 +733,9 @@ BOOL accessibilityApiEnabled = NO;
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
 
             if (menuItem) {
-                
+
                 [menuItems addObject:menuItem];
-                
+
                 [menuItem setRepresentedObject:tab];
 
                 // check playing status
@@ -724,44 +754,44 @@ BOOL accessibilityApiEnabled = NO;
 {
     NSLog(@"Refreshing tabs...");
     [self removeAllItems];
-    
+
     //hold activeTab object
     __unsafe_unretained TabAdapter *_activeTab = activeTab;
-    
+
     if (accessibilityApiEnabled) {
-        
+
         BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
         [self refreshApplications:timeout];
-        
+
         [mediaStrategyRegistry beginStrategyQueries];
-        
+
         [self refreshTabsForChrome:chromeApp timeout:timeout];
         [self refreshTabsForChrome:canaryApp timeout:timeout];
         [self refreshTabsForChrome:yandexBrowserApp timeout:timeout];
         [self refreshTabsForChrome:chromiumApp timeout:timeout];
         [self refreshTabsForSafari:safariApp timeout:timeout];
-        
+
         for (runningSBApplication *app in nativeApps) {
-            
+
             if (timeout.reached) {
                 break;
             }
-            
+
             [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
         }
-        
+
         [mediaStrategyRegistry endStrategyQueries];
-        
+
     }
-    
+
     dispatch_sync(dispatch_get_main_queue(), ^{
-        
+
         [self resetStatusMenu];
-        
+
         if (menuItems.count) {
-            
+
             for (NSMenuItem *item in menuItems) {
-                
+
                 [statusMenu insertItem:item atIndex:0];
             }
             //        [keyTap startWatchingMediaKeys];
@@ -770,7 +800,7 @@ BOOL accessibilityApiEnabled = NO;
             //        [keyTap stopWatchingMediaKeys];
         }
     });
-    
+
     //check activeTab
     if (_activeTab == activeTab) {
         activeTab = nil;
@@ -790,52 +820,51 @@ BOOL accessibilityApiEnabled = NO;
                                               andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab){
-        
+
         //checking, that tab wasn't included in status menu.
         //We need it because Safari "pinned" tabs duplicated on each window. (Safari 9)
-        
+
         NSString *key = tab.key;
         if ([NSString isNullOrEmpty:key]) {
             //key was not assigned, we think this is fake pinned tab.
             return;
         }
-        
+
         if ([SafariTabKeys containsObject:key]) {
-            
+
             return;
         }
         //-------------------------------------------
-        
+
         if ([self addStatusMenuItemFor:tab]) {
-            
+
             [SafariTabKeys addObject:key];
         }
     }
 }
 
 -(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
-    
-    MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
+
+    BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
     if (strategy) {
-        
+
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
-        
         if (menuItem){
 
             [menuItems addObject:menuItem];
-            
+
             [menuItem setRepresentedObject:tab];
-            
+
             // check playing status
             if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
                 [playingTabs addObject:tab];
-            
+
             [self repairActiveTabFrom:tab];
 
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -845,9 +874,9 @@ BOOL accessibilityApiEnabled = NO;
     NSLog(@"(AppDelegate - updateActiveTab) with tab %@", tab);
 #endif
     // Prevent switch to tab, which not have strategy.
-    MediaStrategy *strategy;
+    BSMediaStrategy *strategy;
     if (![tab isKindOfClass:[NativeAppTabAdapter class]]) {
-        
+
 #ifdef DEBUG
         NSLog(@"(AppDelegate - updateActiveTab) tab %@ check strategy", tab);
 #endif
@@ -856,18 +885,18 @@ BOOL accessibilityApiEnabled = NO;
             return NO;
         }
     }
-    
+
 #ifdef DEBUG
     NSLog(@"(AppDelegate - updateActiveTab) tab %@ has strategy", tab);
 #endif
-    
+
     if (![tab isEqual:activeTab]) {
 #ifdef DEBUG
         NSLog(@"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, activeTab);
 #endif
         [self pauseActiveTab];
     }
-    
+
 //    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
 //
 //        if (![tab isEqual:activeTab] &&
@@ -875,24 +904,24 @@ BOOL accessibilityApiEnabled = NO;
 //            [(NativeAppTabAdapter *)activeTab pause];
 //    }
 //    else{
-//        
+//
 //        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
 //        if (strategy && ![tab isEqual:activeTab]) {
 //            [activeTab executeJavascript:[strategy pause]];
 //        }
 //    }
-    
+
     activeTab = tab;
     activeTabKey = [tab key];
     NSLog(@"Active tab set to %@", activeTab);
-    
+
     return YES;
 }
 
 - (void)repairActiveTabFrom:(TabAdapter *)tab{
-    
+
     if ([activeTabKey isEqualToString:[tab key]]) {
-        
+
         //repair activeTab
         activeTab = [tab copyStateFrom:activeTab];
     }
@@ -900,26 +929,26 @@ BOOL accessibilityApiEnabled = NO;
 
 // Must be invoked in workingQueue
 - (void)autoSelectTabWithForceFocused:(BOOL)forceFucused{
-    
+
     [self refreshTabs:self];
-    
+
     switch (playingTabs.count) {
 
         case 1:
 
             [self updateActiveTab:playingTabs[0]];
             break;
-            
+
         default: // null or many
-            
+
             // try to set active tab to focus
             if ((forceFucused || !activeTab)
                 && [self setActiveTabShortcut]) {
                 return;
             }
-            
+
             if (!activeTab) {
-                
+
                 //try to set active tab to first item of menu
                 TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
                 if (tab)
@@ -930,18 +959,18 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)checkAccessibilityTrusted{
-    
+
     if (AXIsProcessTrustedWithOptions != NULL) {
-        
+
         NSDictionary *options = @{CFBridgingRelease(kAXTrustedCheckOptionPrompt): @(YES)};
         accessibilityApiEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef _Nullable)(options));
         NSLog(@"AccessibilityApiEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
     }else{
-        
+
         accessibilityApiEnabled = AXAPIEnabled();
         NSLog(@"AXAPIEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
     }
-    
+
     if (!accessibilityApiEnabled) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self checkAXAPIEnabled];
@@ -950,7 +979,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)checkAXAPIEnabled{
-    
+
     _AXAPIEnabled = AXAPIEnabled();
     NSLog(@"AXAPIEnabled %@", (_AXAPIEnabled ? @"YES":@"NO"));
     if (_AXAPIEnabled){
@@ -959,11 +988,11 @@ BOOL accessibilityApiEnabled = NO;
         alert.informativeText = NSLocalizedString(@"Once you enable access in System Preferences, you must restart BeardedSpice.", @"Explanation that we need to restart app");
         alert.messageText = NSLocalizedString(@"You must restart BeardedSpice.", @"Title that we need to restart app");
         [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Restart button")];
-        
+
         [self windowWillBeVisible:alert];
 
         [alert runModal];
-        
+
         [self removeWindow:alert];
     }
     else{
@@ -978,29 +1007,27 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)showNotificationUsingFallback:(BOOL)useFallback {
-    
+
     dispatch_async(notificationQueue, ^{
         @autoreleasepool {
-            
+
             @try {
-                Track *track;
+                BSTrack *track = nil;
                 if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
                     if ([activeTab respondsToSelector:@selector(trackInfo)]) {
                         track = [(NativeAppTabAdapter *)activeTab trackInfo];
                     }
                 } else {
-                    
-                    MediaStrategy *strategy =
-                    [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+                    BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
                     if (strategy)
-                    track = [strategy trackInfo:activeTab];
+                        track = [strategy trackInfo:activeTab];
                 }
-                
+
                 if (!([NSString isNullOrEmpty:track.track] &&
                       [NSString isNullOrEmpty:track.artist] &&
                       [NSString isNullOrEmpty:track.album])) {
-                    [[NSUserNotificationCenter defaultUserNotificationCenter]
-                     deliverNotification:[track asNotification]];
+                    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
                     NSLog(@"Show Notification: %@", track);
                 } else if (useFallback) {
                     [self showDefaultNotification];
@@ -1016,19 +1043,18 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)showDefaultNotification {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    
+
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
         notification.title = [[activeTab class] displayName];
     } else {
-        MediaStrategy *strategy =
-            [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-        
+        BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
         notification.title = strategy.displayName;
     }
-    
+
     notification.informativeText = @"No track info available";
 
-    
+
     [[NSUserNotificationCenter defaultUserNotificationCenter]
      deliverNotification:notification];
     NSLog(@"Show Default Notification");
@@ -1046,11 +1072,10 @@ BOOL accessibilityApiEnabled = NO;
      selector:@selector(switchUserHandler:)
      name:NSWorkspaceSessionDidResignActiveNotification
      object:nil];
-    
 }
 
 - (void)removeSystemEventsCallback{
-    
+
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
     [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -1070,15 +1095,15 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)pauseActiveTab{
-    
+
     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-        
+
         if ([activeTab respondsToSelector:@selector(pause)])
             [(NativeAppTabAdapter *)activeTab pause];
     }
     else{
-        
-        MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
+
+        BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
         if (strategy) {
             [activeTab executeJavascript:[strategy pause]];
         }
@@ -1089,48 +1114,47 @@ BOOL accessibilityApiEnabled = NO;
 - (void)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
 
     dispatch_async(workingQueue, ^{
-        
+
         @autoreleasepool {
-            
+
             [self autoSelectTabWithForceFocused:NO];
-            
+
             NSUInteger size = statusMenu.itemArray.count - statusMenuCount;
             if (size < 2) {
                 return;
             }
-            
+
             TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
             TabAdapter *prevTab =
             [[statusMenu itemAtIndex:(size - 1)] representedObject];
             TabAdapter *nextTab = [[statusMenu itemAtIndex:1] representedObject];
             for (int i = 0; i < size; i++) {
-                
+
                 if ([activeTab isEqual:tab]) {
                     if (direction == SwithPlayerNext) {
                         [self updateActiveTab:nextTab];
                     } else {
                         [self updateActiveTab:prevTab];
                     }
-                    
+
                     [activeTab activateTab];
-                    
+
                     NSUserNotification *notification = [NSUserNotification new];
                     if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
                         notification.title = [[activeTab class] displayName];
                     } else {
-                        
-                        MediaStrategy *strategy = [mediaStrategyRegistry
-                                                   getMediaStrategyForTab:activeTab];
+
+                        BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
                         if (!strategy) {
                             return;
                         }
                         notification.title = strategy.displayName;
                     }
-                    
+
                     notification.informativeText = [activeTab title];
                     [[NSUserNotificationCenter defaultUserNotificationCenter]
                      deliverNotification:notification];
-                    
+
                     return;
                 }
                 prevTab = tab;
@@ -1139,12 +1163,11 @@ BOOL accessibilityApiEnabled = NO;
                 ? [[statusMenu itemAtIndex:(i + 2)] representedObject]
                 : [[statusMenu itemAtIndex:0] representedObject];
             }
-            
+
             return;
         }
     });
 }
-
 
 - (void)resetStatusMenu{
 
@@ -1152,10 +1175,10 @@ BOOL accessibilityApiEnabled = NO;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
-    
+
     if (!menuItems.count) {
-        
-        NSMenuItem *item;
+
+        NSMenuItem *item = nil;
         if (accessibilityApiEnabled) {
              item = [statusMenu insertItemWithTitle:NSLocalizedString(@"No applicable tabs open", @"Title on empty menu")
                                                         action:nil
@@ -1163,14 +1186,14 @@ BOOL accessibilityApiEnabled = NO;
                                                        atIndex:0];
         }
         else if (_AXAPIEnabled){
-            
+
             item = [statusMenu insertItemWithTitle:NSLocalizedString(@"You must restart BeardedSpice", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
                                                        atIndex:0];
         }
         else{
-            
+
             item = [statusMenu insertItemWithTitle:NSLocalizedString(@"No access to control of the keyboard", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
@@ -1195,7 +1218,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)receiveSleepNote:(NSNotification *)note
 {
     dispatch_async(workingQueue, ^{
-        
+
         [self pauseActiveTab];
     });
 }
@@ -1203,21 +1226,21 @@ BOOL accessibilityApiEnabled = NO;
 - (void) switchUserHandler:(NSNotification*) notification
 {
     dispatch_async(workingQueue, ^{
-        
+
         [self pauseActiveTab];
     });
 }
 
 - (void) generalPrefChanged:(NSNotification*) notification{
-    
+
     NSString *name = notification.name;
-    
+
     if ([name isEqualToString:GeneralPreferencesAutoPauseChangedNoticiation]) {
-        
+
         [self setHeadphonesListener];
     }
     else if ([name isEqualToString:GeneralPreferencesUsingAppleRemoteChangedNoticiation]) {
-        
+
         [self setAppleRemotes];
     }
     else if ([name isEqualToString:GeneralPreferencesNativeAppChangedNoticiation])
@@ -1227,11 +1250,11 @@ BOOL accessibilityApiEnabled = NO;
 -(void)interfaceThemeChanged:(NSNotification *)notif
 {
     @autoreleasepool {
-        
+
         NSDictionary *dict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
         id style = [dict objectForKey:@"AppleInterfaceStyle"];
         BOOL isDarkMode = ( style && [style isKindOfClass:[NSString class]] && NSOrderedSame == [style caseInsensitiveCompare:@"dark"] );
-    
+
         if (statusItem) {
             if (isDarkMode) {
                 [statusItem setImage:[NSImage imageNamed:@"icon20x19-alt"]];
@@ -1249,55 +1272,55 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Shortcuts binding
 /////////////////////////////////////////////////////////////////////////
 - (void)shortcutsBind{
-    
+
 //    NSDictionary *options = @{NSValueTransformerNameBindingOption: NSKeyedUnarchiveFromDataTransformerName};
     NSDictionary *options = @{};
-    
+
     [self bind:BeardedSpicePlayPauseShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpicePlayPauseShortcut]
        options:options];
-    
+
     [self bind:BeardedSpiceNextTrackShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpiceNextTrackShortcut]
        options:options];
-    
+
     [self bind:BeardedSpicePreviousTrackShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpicePreviousTrackShortcut]
        options:options];
-    
+
     [self bind:BeardedSpiceActiveTabShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpiceActiveTabShortcut]
        options:options];
-    
+
     [self bind:BeardedSpiceFavoriteShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpiceFavoriteShortcut]
        options:options];
-    
+
     [self bind:BeardedSpiceNotificationShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpiceNotificationShortcut]
        options:options];
-    
+
     [self bind:BeardedSpiceActivatePlayingTabShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpiceActivatePlayingTabShortcut]
        options:options];
-    
+
     [self bind:BeardedSpiceActivatePlayingTabShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpiceActivatePlayingTabShortcut]
        options:options];
-    
+
     [self bind:BeardedSpicePlayerNextShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpicePlayerNextShortcut]
        options:options];
-    
+
     [self bind:BeardedSpicePlayerPreviousShortcut
       toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:[@"values." stringByAppendingString:BeardedSpicePlayerPreviousShortcut]
@@ -1310,55 +1333,55 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)setBeardedSpicePlayPauseShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayPauseShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpiceNextTrackShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceNextTrackShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpicePreviousTrackShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePreviousTrackShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpiceActiveTabShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceActiveTabShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpiceFavoriteShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceFavoriteShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpiceNotificationShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceNotificationShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpiceActivatePlayingTabShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceActivatePlayingTabShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpicePlayerNextShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayerNextShortcut: shortcut}];
     }
 }
 - (void)setBeardedSpicePlayerPreviousShortcut:(NSData *)shortcut{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayerPreviousShortcut: shortcut}];
     }
@@ -1369,30 +1392,30 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (BOOL)newConnectionToControlService{
-    
+
     if (_connectionToService) {
         [_connectionToService invalidate];
         _connectionToService = nil;
     }
      _connectionToService = [[NSXPCConnection alloc] initWithServiceName:@"com.beardedspice.BeardedSpiceControllers"];
      _connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(BeardedSpiceControllersProtocol)];
-    
+
     _connectionToService.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(BeardedSpiceHostAppProtocol)];
     _connectionToService.exportedObject = self;
-    
+
     id __weak wSelf = self;
     _connectionToService.interruptionHandler = ^{
         [wSelf resetConnectionToControlService];
     };
-    
+
     if (_connectionToService) {
-        
+
         [_connectionToService resume];
         [self resetConnectionToControlService];
-        
+
         return YES;
     }
-    
+
     return NO;
 }
 
@@ -1407,7 +1430,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)resetShortcutsToControlService{
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:9];
-    
+
     NSData *shortcut  = [[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpicePlayPauseShortcut];
     if (shortcut) {
         [dict setObject:shortcut forKey:BeardedSpicePlayPauseShortcut];
@@ -1452,36 +1475,36 @@ BOOL accessibilityApiEnabled = NO;
     if (shortcut) {
         [dict setObject:shortcut forKey:BeardedSpicePlayerPreviousShortcut];
     }
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setShortcuts:dict];
     }
 }
 
 - (void)refreshKeyTapBlackList{
-    
+
     NSMutableArray *keyTapBlackList = [NSMutableArray arrayWithCapacity:5];
-    
+
     for (Class theClass in [nativeAppRegistry enabledNativeAppClasses]) {
         [keyTapBlackList addObject:[theClass bundleId]];
     }
-    
+
     if (_connectionToService) {
-        
+
         [[_connectionToService remoteObjectProxy] setMediaKeysSupportedApps:keyTapBlackList];
     }
     NSLog(@"Refresh Key Tab Black List.");
 }
 
 - (void)setHeadphonesListener{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setPhoneUnplugActionEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceRemoveHeadphonesAutopause]];
     }
 }
 
 - (void)setAppleRemotes{
-    
+
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setUsingAppleRemoteEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUsingAppleRemote]];
     }

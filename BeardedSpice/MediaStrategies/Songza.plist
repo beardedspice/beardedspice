@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Songza.plist
+//  BeardedSpice
+//
+//  Created by Jayson Rhynas on 1/18/2014.
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Songza</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*songza.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){return document.querySelector('.player-wrapper').classList.contains('player-state-play');}())</string>
+
+    <key>toggle</key>
+    <string>(function(){document.querySelector('.miniplayer-control-play-pause').click()})()</string>
+
+    <key>previous</key>
+    <string></string>
+
+    <key>next</key>
+    <string>(function(){return document.querySelector('.miniplayer-control-skip').click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){if (document.querySelector('.player-wrapper').classList.contains('player-state-play')) document.querySelector('.miniplayer-control-play-pause').click()})()</string>
+
+    <key>favorite</key>
+    <string>(function(){document.querySelector('.miniplayer-info-playlist-favorite-status').click()})()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        var track = document.querySelector('.miniplayer-info-track-title > a').getAttribute('title');
+        var artist = document.querySelector('.miniplayer-info-artist-name > a').getAttribute('title');
+        var albumArt = document.querySelector('.miniplayer-album-art').getAttribute('src');
+        return {
+            'track': track,
+            'artist': artist,
+            'image': albumArt
+        }})()</string>
+</dict>
+</plist>

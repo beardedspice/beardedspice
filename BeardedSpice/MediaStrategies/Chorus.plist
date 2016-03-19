@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Chorus.plist
+//  BeardedSpice
+//
+//  Created by Mark Reid on 10/01/14.
+//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Chorus</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '▶ * | Chorus.'</string>
+        <key>tabValue</key>
+        <string>title</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!--
+    relevant javascripts go here.
+    NOTE: &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.togglePlay() : app.shellView.playerPlay() })()</string>
+
+    <key>previous</key>
+    <string>(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.prev() : app.shellView.playerPrev() })()</string>
+
+    <key>next</key>
+    <string>(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.next() : app.shellView.playerNext()})()</string>
+
+    <key>pause</key>
+    <string>(function(){return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.pause(): true })()</string>
+</dict>
+</plist>

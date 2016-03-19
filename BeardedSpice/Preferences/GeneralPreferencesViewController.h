@@ -30,6 +30,7 @@ extern NSString *const BeardedSpiceActiveNativeAppControllers;
 extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
 extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
+extern NSString *const BeardedSpiceUpdateAtLaunch;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController

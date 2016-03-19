@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Overcast.plist
+//  BeardedSpice
+//
+//  Created by Alan Clark 08/06/2014
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+
+// strategy/site notes
+// - favorite: not implemented by site
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Overcast.fm</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*overcast.fm*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){
+        var p=document.querySelector('#playpausebutton_playicon');
+        return (p &amp;&amp; p.style.display==='none');
+    })();</string>
+
+    <key>toggle</key>
+    <string>document.getElementById('playpausebutton').click();</string>
+
+    <key>previous</key>
+    <string>document.getElementById('seekbackbutton').click();</string>
+
+    <key>next</key>
+    <string>document.getElementById('seekforwardbutton').click();</string>
+
+    <key>pause</key>
+    <string>(function(){
+        var p=document.querySelector('#playpausebutton_playicon');
+        if(p &amp;&amp; p.style.display==='none'){
+            document.getElementById('playpausebutton').click();
+        }
+    })()</string>
+
+    <key>trackInfo</key>
+    <string>(function(){
+        var artist=document.querySelector('.caption2 a'),
+        track=document.querySelector('.title'),
+        art=document.querySelector('.art.fullart');
+        return {
+            'artist': artist ? artist.innerText : null,
+            'track': track ? track.innerText : null,
+            'image': art ? art.getAttribute('src') : null
+        };
+      })()</string>
+</dict>
+</plist>

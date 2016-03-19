@@ -5,5 +5,9 @@
 //
 
 #ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
+  @import Foundation;
+  @import Cocoa;
+
+  #import "NSURL+Utils.h" // FIXME update to reflect namespaced category BSUtils
+  #import "NSString+Utils.h"
 #endif

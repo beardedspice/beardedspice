@@ -10,7 +10,8 @@
 #import "VLC.h"
 #import "runningSBApplication.h"
 #import "NSString+Utils.h"
-#import "MediaStrategy.h"
+#import "BSMediaStrategy.h"
+#import "BSTrack.h"
 
 #define APPNAME         @"VLC"
 #define APPID           @"org.videolan.vlc"
@@ -114,15 +115,13 @@
     }
 }
 
-- (Track *)trackInfo{
+- (BSTrack *)trackInfo{
     VLCApplication *vlc = (VLCApplication *)[self.application sbApplication];
     if (vlc) {
-        Track *track = [Track new];
-
-        track.track = [vlc nameOfCurrentItem];
-        track.artist = APPNAME;
-
-        return track;
+        return [[BSTrack alloc] initWithInfo:@{
+           kBSTrackNameTrack: [vlc nameOfCurrentItem],
+           kBSTrackNameArtist: APPNAME
+        }];
     }
 
     return nil;

@@ -15,7 +15,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="411" height="410"/>
+            <rect key="frame" x="0.0" y="0.0" width="411" height="411"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="721">
@@ -38,7 +38,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="126">
-                    <rect key="frame" x="42" y="256" width="142" height="17"/>
+                    <rect key="frame" x="42" y="244" width="142" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="138" id="494"/>
                     </constraints>
@@ -71,6 +71,30 @@
                             </dictionary>
                         </binding>
                         <outlet property="nextKeyView" destination="152" id="822"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="D1C-WS-HOj" userLabel="Check for Updates at Launch">
+                    <rect key="frame" x="42" y="336" width="283" height="18"/>
+                    <animations/>
+                    <buttonCell key="cell" type="check" title="Check for Compatibility Updates at Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C81-eE-dH1">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <connections>
+                            <binding destination="436" name="value" keyPath="values.BeardedSpiceUpdateAtLaunch" id="nml-nn-La0">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                    <integer key="NSNullPlaceholder" value="0"/>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="436" name="value" keyPath="values.BeardedSpiceUpdateAtLaunch" id="xf9-Ca-F8c">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="765">
@@ -112,7 +136,7 @@
                     </connections>
                 </button>
                 <scrollView horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="151">
-                    <rect key="frame" x="44" y="37" width="330" height="211"/>
+                    <rect key="frame" x="44" y="20" width="330" height="211"/>
                     <clipView key="contentView" id="ufA-oN-CGJ">
                         <rect key="frame" x="1" y="1" width="328" height="209"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,25 +193,27 @@
             </subviews>
             <constraints>
                 <constraint firstItem="126" firstAttribute="leading" secondItem="151" secondAttribute="leading" id="491"/>
-                <constraint firstItem="151" firstAttribute="top" secondItem="126" secondAttribute="bottom" constant="8" symbolic="YES" id="492"/>
+                <constraint firstItem="151" firstAttribute="top" secondItem="126" secondAttribute="bottom" constant="13" id="492"/>
                 <constraint firstAttribute="trailing" secondItem="151" secondAttribute="trailing" constant="37" id="652"/>
                 <constraint firstItem="351" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="684"/>
                 <constraint firstItem="721" firstAttribute="top" secondItem="1" secondAttribute="top" constant="38" id="731"/>
                 <constraint firstItem="351" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="783"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="765" secondAttribute="leading" id="834"/>
-                <constraint firstItem="351" firstAttribute="top" secondItem="1" secondAttribute="top" constant="104" id="862"/>
+                <constraint firstItem="351" firstAttribute="top" secondItem="1" secondAttribute="top" constant="124" id="862"/>
                 <constraint firstItem="824" firstAttribute="trailing" secondItem="765" secondAttribute="trailing" id="864"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="869"/>
                 <constraint firstItem="765" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="873"/>
-                <constraint firstItem="824" firstAttribute="top" secondItem="1" secondAttribute="top" constant="60" id="874"/>
-                <constraint firstItem="765" firstAttribute="top" secondItem="1" secondAttribute="top" constant="82" id="882"/>
-                <constraint firstItem="126" firstAttribute="top" secondItem="1" secondAttribute="top" constant="137" id="887"/>
-                <constraint firstAttribute="bottom" secondItem="151" secondAttribute="bottom" constant="37" id="889"/>
+                <constraint firstItem="824" firstAttribute="top" secondItem="1" secondAttribute="top" constant="80" id="874"/>
+                <constraint firstItem="765" firstAttribute="top" secondItem="1" secondAttribute="top" constant="102" id="882"/>
+                <constraint firstItem="126" firstAttribute="top" secondItem="1" secondAttribute="top" constant="150" id="887"/>
+                <constraint firstAttribute="bottom" secondItem="151" secondAttribute="bottom" constant="20" id="889"/>
+                <constraint firstItem="D1C-WS-HOj" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="3bJ-tB-9un"/>
+                <constraint firstItem="D1C-WS-HOj" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="7" id="fOR-i9-VAK"/>
             </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="721" id="820"/>
             </connections>
-            <point key="canvasLocation" x="337.5" y="355"/>
+            <point key="canvasLocation" x="337.5" y="355.5"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="436"/>
     </objects>

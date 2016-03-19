@@ -518,7 +518,10 @@ static BSCService *bscSingleton;
                 
                 id<BeardedSpiceHostAppProtocol, NSObject> obj = [conn remoteObjectProxy];
                 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                 [obj performSelector:selector];
+#pragma clang diagnostic pop
             }
         }
     });

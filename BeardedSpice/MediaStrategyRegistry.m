@@ -73,6 +73,7 @@
 #import "RadioSwissJazzStrategy.h"
 #import "BrainFmStrategy.h"
 #import "WatchaPlayStrategy.h"
+#import "DailymotionStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -149,17 +150,17 @@
 -(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     if (tab.check) {
-        
+
         NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
         MediaStrategy *strat = _registeredCache[cacheKey];
         if (strat)
         /* Return the equivalent of a full scan except we dont repeat calculations */
         return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
-        
+
         for (MediaStrategy *strategy in availableStrategies)
         {
             BOOL accepted = [strategy accepts:tab];
-            
+
             /* Store the result of this calculation for future use */
             _registeredCache[cacheKey] = accepted ? strategy : @NO;
             if (accepted) {
@@ -198,6 +199,7 @@
                        [ChorusStrategy new],
                        [ComposedStrategy new],
                        [CourseraStrategy new],
+                       [DailymotionStrategy new],
                        [DeezerStrategy new],
                        [DigitallyImportedStrategy new],
                        [EightTracksStrategy new],

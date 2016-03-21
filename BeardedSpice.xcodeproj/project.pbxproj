@@ -40,6 +40,7 @@
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */; };
 		48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */; };
+		4B8D23A61C9DEF4B00E85020 /* DailymotionStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D23A51C9DEF4B00E85020 /* DailymotionStrategy.m */; };
 		4C4217291B306A5800B22853 /* SubsonicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4217281B306A5800B22853 /* SubsonicStrategy.m */; };
 		4C42172C1B307C2D00B22853 /* TuneInStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C42172B1B307C2D00B22853 /* TuneInStrategy.m */; };
 		4DB2F13319DB987D0010D194 /* ChorusStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2F13219DB987D0010D194 /* ChorusStrategy.m */; };
@@ -249,6 +250,8 @@
 		46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitchMediaStrategy.m; sourceTree = "<group>"; };
 		48BDDFDA19801E50009C897F /* AmazonMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicStrategy.h; sourceTree = "<group>"; };
 		48BDDFDB19801E57009C897F /* AmazonMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AmazonMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4B8D23A41C9DEF4B00E85020 /* DailymotionStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailymotionStrategy.h; sourceTree = "<group>"; };
+		4B8D23A51C9DEF4B00E85020 /* DailymotionStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailymotionStrategy.m; sourceTree = "<group>"; };
 		4C4217271B3069EF00B22853 /* SubsonicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubsonicStrategy.h; sourceTree = "<group>"; };
 		4C4217281B306A5800B22853 /* SubsonicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubsonicStrategy.m; sourceTree = "<group>"; };
 		4C42172A1B307C1B00B22853 /* TuneInStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuneInStrategy.h; sourceTree = "<group>"; };
@@ -508,6 +511,8 @@
 		03A34919185E9FC700C4A62B /* MediaStrategies */ = {
 			isa = PBXGroup;
 			children = (
+				4B8D23A41C9DEF4B00E85020 /* DailymotionStrategy.h */,
+				4B8D23A51C9DEF4B00E85020 /* DailymotionStrategy.m */,
 				112D3CBE1C8AA7C1009FE925 /* BrainFmStrategy.h */,
 				112D3CBF1C8AA7C1009FE925 /* BrainFmStrategy.m */,
 				1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */,
@@ -1168,6 +1173,7 @@
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
 				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
+				4B8D23A61C9DEF4B00E85020 /* DailymotionStrategy.m in Sources */,
 				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
 				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
 				32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */,

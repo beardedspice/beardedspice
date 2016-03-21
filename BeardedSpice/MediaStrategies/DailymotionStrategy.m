@@ -70,12 +70,12 @@
     
 }
 
--(NSString *) paused
+-(NSString *) pause
 {
     return @"(function(){ "
                 @"document.querySelector('#playerv5-iframe') == null"
-                @"? document.querySelector('#player').pause"
-                @": document.querySelector('#playerv5-iframe').contentWindow.document.querySelector('#player').pause;"
+                @"? document.querySelector('#player').pause()"
+                @": document.querySelector('#playerv5-iframe').contentWindow.document.querySelector('#player').pause();"
             @"})()";
 }
 

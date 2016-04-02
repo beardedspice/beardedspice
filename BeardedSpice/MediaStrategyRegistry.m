@@ -74,6 +74,7 @@
 #import "BrainFmStrategy.h"
 #import "WatchaPlayStrategy.h"
 #import "DailymotionStrategy.h"
+#import "XiamiStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -251,6 +252,7 @@
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
+                       [XiamiStrategy new],
                        [YouTubeStrategy new]
                     ];
     });

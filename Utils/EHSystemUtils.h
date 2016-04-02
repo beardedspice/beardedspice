@@ -43,6 +43,11 @@
 + (int)cliUtil:(NSString *)utilPath arguments:(NSArray *)arguments output:(NSString **)output;
 
 /**
+ Performs block on main queue synchronously.
+ */
++ (void)callOnMainQueue:(dispatch_block_t)block;
+
+/**
  Returns UUID (GUID).
  */
 + (NSString *)createUUID;

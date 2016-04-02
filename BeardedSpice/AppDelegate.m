@@ -894,26 +894,17 @@ BOOL accessibilityApiEnabled = NO;
 #ifdef DEBUG
         NSLog(@"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, activeTab);
 #endif
-        [self pauseActiveTab];
+        if (activeTab) {
+            [self pauseActiveTab];
+            if ([activeTab isActivated]) {
+                [activeTab toggleTab];
+            }
+        }
+        
+        activeTab = tab;
+        activeTabKey = [tab key];
+        NSLog(@"Active tab set to %@", activeTab);
     }
-
-//    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-//
-//        if (![tab isEqual:activeTab] &&
-//            [activeTab respondsToSelector:@selector(pause)])
-//            [(NativeAppTabAdapter *)activeTab pause];
-//    }
-//    else{
-//
-//        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-//        if (strategy && ![tab isEqual:activeTab]) {
-//            [activeTab executeJavascript:[strategy pause]];
-//        }
-//    }
-
-    activeTab = tab;
-    activeTabKey = [tab key];
-    NSLog(@"Active tab set to %@", activeTab);
 
     return YES;
 }

@@ -67,6 +67,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
 - [Coursera](https://www.coursera.org)
 - [Composed](https://www.composed.com/)
+- [Dailymotion](https://www.dailymotion.com)
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)

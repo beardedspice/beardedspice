@@ -7,6 +7,7 @@
 //
 
 #import "runningSBApplication.h"
+#import "EHSystemUtils.h"
 
 #define COMMAND_TIMEOUT         3 // 0.3 second
 
@@ -28,9 +29,15 @@
 }
 
 - (BOOL)frontmost{
+
+    __block BOOL result = NO;
+    [EHSystemUtils callOnMainQueue:^{
+        
+        NSRunningApplication *frontmostApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
+        result = [frontmostApp.bundleIdentifier isEqualToString:self.bundleIdentifier];
+    }];
     
-    NSRunningApplication *frontmostApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
-    return [frontmostApp.bundleIdentifier isEqualToString:self.bundleIdentifier];
+    return result;
 }
 
 - (pid_t)processIdentifier{
@@ -44,17 +51,23 @@
 }
 
 - (void)activate{
-    
-    [[self runningAppication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+    [EHSystemUtils callOnMainQueue:^{
+        
+        [[self runningAppication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+    }];
 }
 
 - (void)hide{
-    
-    [[self runningAppication] hide];
+    [EHSystemUtils callOnMainQueue:^{
+        
+        [[self runningAppication] hide];
+    }];
 }
 
 - (void)makeKeyFrontmostWindow{
-    
+  
+    [EHSystemUtils callOnMainQueue:^{
+        
         AXUIElementRef ref = AXUIElementCreateApplication(self.processIdentifier);
         
         if (ref) {
@@ -63,10 +76,10 @@
             CFArrayRef windowArray = NULL;
             AXError err = AXUIElementGetAttributeValueCount(ref, CFSTR("AXWindows"), &count);
             if (err == kAXErrorSuccess && count) {
-
+                
                 err = AXUIElementCopyAttributeValues(ref, CFSTR("AXWindows"), 0, count, &windowArray);
                 if (err == kAXErrorSuccess && windowArray) {
-
+                    
                     for ( CFIndex i = 0; i < count; i++){
                         
                         AXUIElementRef window = CFArrayGetValueAtIndex(windowArray, i);
@@ -90,6 +103,7 @@
             }
             CFRelease(ref);
         }
+    }];
 }
 
 /////////////////////////////////////////////////////////////////////////

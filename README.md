@@ -116,6 +116,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Watcha Play](https://play.watcha.net/)
 - [Wonder FM](http://wonder.fm/)
 - [XboxMusic](http://music.xbox.com)
+- [Xiami](http://www.xiami.com)
 - [Yandex Music](https://music.yandex.ru/)
 - [Yandex Radio](https://radio.yandex.ru/)
 - [YouTube](https://www.youtube.com/)

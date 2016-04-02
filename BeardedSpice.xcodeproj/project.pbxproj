@@ -140,6 +140,7 @@
 		D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */; };
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		DBDA9B5B1CB01D700024F3F6 /* XiamiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDA9B5A1CB01D700024F3F6 /* XiamiStrategy.m */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
 		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
 		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
@@ -437,6 +438,8 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DBDA9B591CB01CA80024F3F6 /* XiamiStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XiamiStrategy.h; sourceTree = "<group>"; };
+		DBDA9B5A1CB01D700024F3F6 /* XiamiStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiamiStrategy.m; sourceTree = "<group>"; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
 		F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JangoMediaStrategy.h; sourceTree = "<group>"; };
@@ -645,6 +648,8 @@
 				6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */,
 				8D882E291C84C96300A1179F /* WatchaPlayStrategy.m */,
 				8D882E2D1C84CA9200A1179F /* WatchaPlayStrategy.h */,
+				DBDA9B591CB01CA80024F3F6 /* XiamiStrategy.h */,
+				DBDA9B5A1CB01D700024F3F6 /* XiamiStrategy.m */,
 			);
 			path = MediaStrategies;
 			sourceTree = "<group>";
@@ -1110,6 +1115,7 @@
 				F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,
+				DBDA9B5B1CB01D700024F3F6 /* XiamiStrategy.m in Sources */,
 				50931CA61AEB97B400A38B8E /* WonderFmStrategy.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				8C6FC6D2192A09290050F426 /* XboxMusicStrategy.m in Sources */,

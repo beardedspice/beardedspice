@@ -51,6 +51,10 @@
     return @"document.querySelector('.pause-btn').click();";
 }
 
+- (NSString *)favorite {
+    return @"document.querySelector('#J_trackFav').click();";
+}
+
 -(NSString *) displayName
 {
     return @"Xiami";
@@ -62,6 +66,7 @@
                           'track': document.querySelector('#J_trackName').innerText, \
                           'artist': document.querySelector('#J_trackName + a').innerText, \
                           'album': document.querySelector('#J_playerCoverImg').alt.replace('-' + document.querySelector('#J_trackName + a').innerText, ''), \
+                          'favorited': document.querySelector('#J_trackFav').classList.contains('icon-faved'), \
                           'image': document.querySelector('#J_playerCoverImg').src }; \
                           })()"];
     
@@ -70,6 +75,7 @@
     track.artist = info[@"artist"];
     track.album = info[@"album"];
     track.image = [self imageByUrlString:info[@"image"]];
+    track.favorited = info[@"favorited"];
     
     return track;
 }

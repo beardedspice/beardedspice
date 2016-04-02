@@ -91,6 +91,11 @@
     }
 }
 
+- (NSUInteger)hash{
+
+    return [[self key] hash];
+}
+
 - (BOOL)check{
     
     NSNumber *result = [self executeJavascript:CHECK_EXEC];

@@ -1,13 +1,13 @@
 PODS:
   - MASPreferences (1.1.2)
-  - MASShortcut (2.2.0)
+  - MASShortcut (2.3.3)
 
 DEPENDENCIES:
   - MASPreferences (~> 1.1.2)
-  - MASShortcut (~> 2.2.0)
+  - MASShortcut (~> 2.3.3)
 
 SPEC CHECKSUMS:
   MASPreferences: 32d8a2c5ef1d60b63240f5676b011ff72e194cb1
-  MASShortcut: f016adee0731ece84a143ba39204afe46a68e1d9
+  MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
 
 COCOAPODS: 0.39.0

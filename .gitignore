@@ -19,8 +19,10 @@ DerivedData
 *.hmap
 *.ipa
 
-# CocoaPods
+# CocoaPods / Ruby env
 Pods
+.ruby-version
+.ruby-gemset
 
 # DMGs
 *.dmg

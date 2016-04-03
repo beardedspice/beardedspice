@@ -70,7 +70,10 @@
 #import "iHeartRadioStrategy.h"
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
+#import "RadioSwissJazzStrategy.h"
 #import "BrainFmStrategy.h"
+#import "WatchaPlayStrategy.h"
+#import "DailymotionStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -147,17 +150,17 @@
 -(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
 {
     if (tab.check) {
-        
+
         NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
         MediaStrategy *strat = _registeredCache[cacheKey];
         if (strat)
         /* Return the equivalent of a full scan except we dont repeat calculations */
         return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
-        
+
         for (MediaStrategy *strategy in availableStrategies)
         {
             BOOL accepted = [strategy accepts:tab];
-            
+
             /* Store the result of this calculation for future use */
             _registeredCache[cacheKey] = accepted ? strategy : @NO;
             if (accepted) {
@@ -191,10 +194,12 @@
                        [BeatsMusicStrategy new],
                        [BlitzrStrategy new],
                        [BopFm new],
+                       [BrainFmStrategy new],
                        [BugsMusicStrategy new],
                        [ChorusStrategy new],
                        [ComposedStrategy new],
                        [CourseraStrategy new],
+                       [DailymotionStrategy new],
                        [DeezerStrategy new],
                        [DigitallyImportedStrategy new],
                        [EightTracksStrategy new],
@@ -222,6 +227,7 @@
                        [PandoraStrategy new],
                        [PlexWebStrategy new],
                        [PocketCastsStrategy new],
+                       [RadioSwissJazzStrategy new],
                        [RhapsodyStrategy new],
                        [SaavnStrategy new],
                        [ShufflerFmStrategy new],
@@ -240,12 +246,12 @@
                        [VesselStrategy new],
                        [VimeoStrategy new],
                        [VkStrategy new],
+                       [WatchaPlayStrategy new],
                        [WonderFmStrategy new],
                        [XboxMusicStrategy new],
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
-                       [YouTubeStrategy new],
-                       [BrainFmStrategy new]
+                       [YouTubeStrategy new]
                     ];
     });
     return strategies;

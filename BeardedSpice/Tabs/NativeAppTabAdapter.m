@@ -9,6 +9,9 @@
 #import "NativeAppTabAdapter.h"
 #import "runningSBApplication.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 @implementation NativeAppTabAdapter
 
 +(id)tabAdapterWithApplication:(runningSBApplication *)application{
@@ -33,3 +36,5 @@
 
 
 @end
+
+#pragma clang diagnostic pop

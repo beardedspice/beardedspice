@@ -9,15 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import <Sparkle/Sparkle.h>
 
-#import "SPMediaKeyTap.h"
-
 #import "Chrome.h"
 #import "Safari.h"
 #import "iTunes.h"
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
 #import "NativeAppTabRegistry.h"
-#import "BSHeadphoneUnplugListener.h"
+#import "BeardedSpiceHostAppProtocol.h"
 
 @class runningSBApplication;
 
@@ -27,7 +25,7 @@ extern NSString *const SUUpdateDriverFinishedNotification;
 
 #import "MediaStrategy.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, SUUpdaterDelegate, BSHeadphoneUnplugListenerProtocol> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, SUUpdaterDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
 
     IBOutlet NSMenu *statusMenu;
     NSUInteger  statusMenuCount;
@@ -47,11 +45,10 @@ extern NSString *const SUUpdateDriverFinishedNotification;
 
     NSMutableArray *nativeApps;
 
-    SPMediaKeyTap *keyTap;
-
     TabAdapter *activeTab;
     NSString *activeTabKey;
     
+    NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
     
     MediaStrategyRegistry *mediaStrategyRegistry;
@@ -61,11 +58,12 @@ extern NSString *const SUUpdateDriverFinishedNotification;
     
     NSMutableSet    *openedWindows;
     
+    dispatch_queue_t workingQueue;
     dispatch_queue_t notificationQueue;
     
-    NSMutableArray *_mikeys;
-    NSMutableArray *_appleRemotes;
-    BSHeadphoneUnplugListener *_hpuListener;
+    NSXPCConnection *_connectionToService;
+    
+    BOOL _AXAPIEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;

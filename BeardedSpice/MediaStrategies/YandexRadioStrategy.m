@@ -10,8 +10,7 @@
 
 @implementation YandexRadioStrategy
 
--(id) init
-{
+-(id) init {
     self = [super init];
     if (self) {
         predicate = [NSPredicate predicateWithFormat:@"SELF LIKE[c] '*radio.yandex.*'"];
@@ -19,83 +18,51 @@
     return self;
 }
 
--(BOOL) accepts:(TabAdapter *)tab
-{
+-(NSString *) displayName {
+    return @"Yandex.Radio";
+}
+
+-(BOOL) accepts:(TabAdapter *)tab {
     return [predicate evaluateWithObject:[tab URL]];
 }
 
-- (BOOL)isPlaying:(TabAdapter *)tab {
-
-    NSNumber *value =
-            [tab executeJavascript:@"(function(){return Mu.Flow.flow.player.isPlaying();})()"];
-    return [value boolValue];
+-(BOOL) isPlaying:(TabAdapter *)tab {
+    NSNumber *result = [tab executeJavascript:@"externalAPI.isPlaying()"];
+    
+    return [result boolValue];
 }
 
--(NSString *) toggle
-{
-    return @"(function(){Mu.Flow.togglePause();})()";
+-(Track *) trackInfo:(TabAdapter *)tab {
+    Track *track = [[Track alloc] init];
+    
+    NSDictionary *info = [tab executeJavascript:@"externalAPI.getCurrentTrack()"];
+    
+    track.track = info[@"title"];
+    track.artist = info[@"artists"][0][@"title"];
+    track.album = info[@"album"][@"title"];
+    track.favorited = info[@"liked"];
+
+    NSString *urlCover = info[@"cover"];
+    urlCover = [urlCover stringByReplacingOccurrencesOfString:@"\%\%" withString:@"600x600"];
+    track.image = [self imageByUrlString:urlCover];
+    
+    return track;
 }
 
--(NSString *) next
-{
-    return @"(function(){var nextTreckInfo = Mu.Flow.flow.getNextTrack(); Mu.Flow.flow.next(\"nextpressed\"); return nextTreckInfo})()";
+-(NSString *) toggle {
+    return @"externalAPI.togglePause()";
 }
 
-- (NSString *)pause {
-    return @"(function(){\
-        if($('body').attr('class').length!=0){\
-            document.querySelector('.player-controls__play').click()\
-        }\
-    })()";
+-(NSString *) next {
+    return @"externalAPI.next()";
+}
+
+-(NSString *) pause {
+    return @"(function(){if(externalAPI.isPlaying())externalAPI.togglePause();})()";
 }
 
 -(NSString *) favorite {
-    return @"(function(){document.querySelector('.like_action_like').click()})()";
-}
-
--(NSString *) displayName
-{
-    return @"YandexRadio";
-}
-
-- (Track *)trackInfo:(TabAdapter *)tab {
-    Track *track = [[Track alloc] init];
-
-    // This "!(Mu.Flow.player.isPaused() || Mu.Flow.player.isPaused())"
-    // determine that flow is changed in current time.
-    NSDictionary *info =
-        [tab executeJavascript:@"(function(){ var result; if "
-             @"(!(Mu.Flow.player.isPaused() || "
-             @"Mu.Flow.player.isPlaying())) result = "
-             @"Mu.Flow.flow.getNextTrack(); else{ result = "
-             @"Mu.Flow.flow.getTrack(); result['liked'] = "
-             @"$('.like_action_like').hasClass('button_checked');} return "
-             @"result; })()"];
-
-    NSString *version = info[@"version"];
-
-    track.track =
-        (version ? [NSString stringWithFormat:@"%@ %@", info[@"title"], version]
-                 : info[@"title"]);
-
-    NSArray *list = info[@"artists"];
-    if (list) {
-        track.artist =
-            [[list valueForKey:@"name"] componentsJoinedByString:@" "];
-    }
-    list = info[@"albums"];
-    if (list) {
-        track.album = list[0][@"title"];
-        NSString *urlString = list[0][@"coverUri"];
-        urlString = [NSString
-            stringWithFormat:@"http://%@",
-                             [urlString stringByReplacingOccurrencesOfString:
-                                            @"\%\%" withString:@"600x600"]];
-        track.image = [self imageByUrlString:urlString];
-    }
-    track.favorited = info[@"liked"];
-
-    return track;
+    return @"externalAPI.toggleLike()";
 }
 
 @end

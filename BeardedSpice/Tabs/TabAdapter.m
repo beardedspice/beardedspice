@@ -13,6 +13,7 @@
 #define KEY_NAME            @"X_BeardedSpice_UUID"
 #define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})();"
 #define SET_KEY_FORMAT      @"(function(){ window." KEY_NAME @" = '%@';})();"
+#define CHECK_EXEC          @"(function(){ return 1;})();"
 
 @implementation TabAdapter
 
@@ -44,19 +45,21 @@
             [self.application activate];
             _wasActivated = YES;
         }
-        else
+        else{
             _wasActivated = NO;
+        }
     }
+}
+
+- (BOOL)isActivated{
+    return (_wasActivated && [self.application frontmost]);
 }
 
 - (void)toggleTab{
     
-    if ([self.application frontmost]){
-        if (_wasActivated) {
-            
-            [self.application hide];
-            _wasActivated = NO;
-        }
+    if ([self isActivated]){
+        [self.application hide];
+        _wasActivated = NO;
     }
     else
         [self activateTab];
@@ -86,6 +89,17 @@
         
         return [[self key] isEqualToString:[otherTab key]];
     }
+}
+
+- (NSUInteger)hash{
+
+    return [[self key] hash];
+}
+
+- (BOOL)check{
+    
+    NSNumber *result = [self executeJavascript:CHECK_EXEC];
+    return [result boolValue];
 }
 
 //////////////////////////////////////////////////////////////

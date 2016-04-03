@@ -19,8 +19,10 @@
 -(NSString *) title;
 -(NSString *) URL;
 -(NSString *) key;
+- (BOOL)check;
 
 - (void)activateTab;
+- (BOOL)isActivated;
 - (void)toggleTab;
 - (BOOL)frontmost;
 

@@ -7,6 +7,10 @@
 //
 
 #import "runningSBApplication.h"
+#import "EHSystemUtils.h"
+
+#define COMMAND_TIMEOUT         3 // 0.3 second
+#define RAISING_WINDOW_DELAY    0.1 //0.1 second
 
 @implementation runningSBApplication
 
@@ -18,15 +22,23 @@
         _sbApplication = application;
         _bundleIdentifier = bundleIdentifier;
         _processIdentifier = 0;
+        
+        _sbApplication.timeout = COMMAND_TIMEOUT;
     }
     
     return self;
 }
 
 - (BOOL)frontmost{
+
+    __block BOOL result = NO;
+    [EHSystemUtils callOnMainQueue:^{
+        
+        NSRunningApplication *frontmostApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
+        result = [frontmostApp.bundleIdentifier isEqualToString:self.bundleIdentifier];
+    }];
     
-    NSRunningApplication *frontmostApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
-    return [frontmostApp.bundleIdentifier isEqualToString:self.bundleIdentifier];
+    return result;
 }
 
 - (pid_t)processIdentifier{
@@ -40,17 +52,23 @@
 }
 
 - (void)activate{
-    
-    [[self runningAppication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+    [EHSystemUtils callOnMainQueue:^{
+        
+        [[self runningAppication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+    }];
 }
 
 - (void)hide{
-    
-    [[self runningAppication] hide];
+    [EHSystemUtils callOnMainQueue:^{
+        
+        [[self runningAppication] hide];
+    }];
 }
 
 - (void)makeKeyFrontmostWindow{
-    
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RAISING_WINDOW_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
         AXUIElementRef ref = AXUIElementCreateApplication(self.processIdentifier);
         
         if (ref) {
@@ -59,10 +77,10 @@
             CFArrayRef windowArray = NULL;
             AXError err = AXUIElementGetAttributeValueCount(ref, CFSTR("AXWindows"), &count);
             if (err == kAXErrorSuccess && count) {
-
+                
                 err = AXUIElementCopyAttributeValues(ref, CFSTR("AXWindows"), 0, count, &windowArray);
                 if (err == kAXErrorSuccess && windowArray) {
-
+                    
                     for ( CFIndex i = 0; i < count; i++){
                         
                         AXUIElementRef window = CFArrayGetValueAtIndex(windowArray, i);
@@ -74,8 +92,17 @@
                                 role &&
                                 CFStringCompare(role, CFSTR("AXWindow"), 0) == kCFCompareEqualTo) {
                                 
-                                err = AXUIElementPerformAction(window, CFSTR("AXRaise"));
-                                break;
+                                CFRelease(role);
+                                
+                                err = AXUIElementCopyAttributeValue(window, CFSTR("AXSubrole"), (CFTypeRef *)&role);
+                                if (err == kAXErrorSuccess &&
+                                    role &&
+                                    CFStringCompare(role, CFSTR("AXStandardWindow"), 0) == kCFCompareEqualTo) {
+                                    
+                                    CFRelease(role);
+                                    err = AXUIElementPerformAction(window, CFSTR("AXRaise"));
+                                    break;
+                                }
                             }
                         }
                         
@@ -86,6 +113,7 @@
             }
             CFRelease(ref);
         }
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////

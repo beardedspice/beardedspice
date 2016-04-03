@@ -6,6 +6,8 @@
 	<data>YnBsaXN0MDDUAQIDBAUGFhdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKMHCA9VJG51bGzTCQoLDA0OV0tleUNvZGVWJGNsYXNzXU1vZGlmaWVyRmxhZ3MQYYACEgAQAADSEBESE1okY2xhc3NuYW1lWCRjbGFzc2VzW01BU1Nob3J0Y3V0ohQVW01BU1Nob3J0Y3V0WE5TT2JqZWN0XxAPTlNLZXllZEFyY2hpdmVy0RgZVHJvb3SAAQgRGiMtMjc7QUhQV2VnaW5zfoeTlqKrvcDFAAAAAAAAAQEAAAAAAAAAGgAAAAAAAAAAAAAAAAAAAMc=</data>
 	<key>BeardedSpiceActiveControllers</key>
 	<dict>
+		<key>RadioSwissJazz</key>
+		<true/>
 		<key>Jango</key>
 		<true/>
 		<key>blitzr</key>
@@ -30,6 +32,18 @@
 		<true/>
 		<key>Bop.fm</key>
 		<true/>
+		<key>Brain.fm</key>
+		<true/>
+		<key>BugsMusic</key>
+		<true/>
+		<key>Chorus</key>
+		<true/>
+		<key>Dailymotion</key>
+		<true/>
+		<key>Deezer</key>
+		<true/>
+		<key>Digitally Imported</key>
+		<true/>
 		<key>GoogleMusic</key>
 		<true/>
 		<key>Grooveshark</key>
@@ -37,6 +51,8 @@
 		<key>HotNewHipHop</key>
 		<true/>
 		<key>HypeMachine</key>
+		<true/>
+		<key>iHeart Radio</key>
 		<true/>
 		<key>IndieShuffle</key>
 		<true/>
@@ -60,13 +76,15 @@
 		<true/>
 		<key>Pandora</key>
 		<true/>
-		<key>Rdio</key>
+		<key>PocketCasts</key>
+		<true/>
+		<key>Saavn</key>
 		<true/>
 		<key>Shuffler.fm</key>
 		<true/>
 		<key>Slacker</key>
 		<true/>
-		<key>Songza</key>
+		<key>SomaFM</key>
 		<true/>
 		<key>SoundCloud</key>
 		<true/>
@@ -75,6 +93,10 @@
 		<key>Stitcher</key>
 		<true/>
 		<key>Synology Audio Station</key>
+		<true/>
+		<key>TIDAL</key>
+		<true/>
+		<key>Vessel</key>
 		<true/>
 		<key>VK</key>
 		<true/>
@@ -85,6 +107,8 @@
 		<key>focus@will</key>
 		<true/>
 		<key>Udemy</key>
+		<true/>
+		<key>twitch.tv</key>
 		<true/>
 	</dict>
 	<key>BeardedSpiceAlwaysShowNotification</key>

@@ -3,6 +3,11 @@ xcodeproj 'BeardedSpice'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'Sparkle', '~> 1.9'
-pod 'MASShortcut', '~> 2.3.3'
-pod 'MASPreferences', '~> 1.1.2'
+target 'BeardedSpiceControllers' do
+    pod 'MASShortcut', '~> 2.3.3'
+
+    target 'BeardedSpice' do
+        pod 'MASPreferences', '~> 1.1.2'
+        pod 'Sparkle', '~> 1.9'
+    end
+end

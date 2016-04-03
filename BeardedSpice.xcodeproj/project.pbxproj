@@ -87,7 +87,6 @@
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
-		65A850181C8DA49000D54C77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
@@ -463,7 +462,6 @@
 			files = (
 				65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */,
 				65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */,
-				65A850181C8DA49000D54C77 /* libPods.a in Frameworks */,
 				8F71B135C6A2E276AE3D9A6D /* libPods-BeardedSpiceControllers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

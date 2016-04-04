@@ -7,9 +7,77 @@
 //
 
 #import "MediaStrategyRegistry.h"
+<<<<<<< HEAD
 #import "BSMediaStrategy.h"
 #import "BSStrategyCache.h"
 #import "TabAdapter.h"
+=======
+#import "LogitechMediaServerStrategy.h"
+#import "YouTubeStrategy.h"
+#import "PandoraStrategy.h"
+#import "CourseraStrategy.h"
+#import "BandCampStrategy.h"
+#import "GrooveSharkStrategy.h"
+#import "SoundCloudStrategy.h"
+#import "HypeMachineStrategy.h"
+#import "LastFmStrategy.h"
+#import "SpotifyStrategy.h"
+#import "GoogleMusicStrategy.h"
+#import "EightTracksStrategy.h"
+#import "SynologyStrategy.h"
+#import "ShufflerFmStrategy.h"
+#import "SlackerStrategy.h"
+#import "BeatsMusicStrategy.h"
+#import "MixCloudStrategy.h"
+#import "MusicUnlimitedStrategy.h"
+#import "YandexMusicStrategy.h"
+#import "StitcherStrategy.h"
+#import "XboxMusicStrategy.h"
+#import "VkStrategy.h"
+#import "BopFm.h"
+#import "AmazonMusicStrategy.h"
+#import "OvercastStrategy.h"
+#import "VimeoStrategy.h"
+#import "ChorusStrategy.h"
+#import "TwentyTwoTracksStrategy.h"
+#import "AudioMackStrategy.h"
+#import "DeezerStrategy.h"
+#import "FocusAtWillStrategy.h"
+#import "PocketCastsStrategy.h"
+#import "YandexRadioStrategy.h"
+#import "TidalHiFiStrategy.h"
+#import "NoAdRadioStrategy.h"
+#import "SomaFmStrategy.h"
+#import "DigitallyImportedStrategy.h"
+#import "BeatguideStrategy.h"
+#import "SaavnStrategy.h"
+#import "KollektFmStrategy.h"
+#import "WonderFmStrategy.h"
+#import "OdnoklassnikiStrategy.h"
+#import "SubsonicStrategy.h"
+#import "TuneInStrategy.h"
+#import "NoonPacificStrategy.h"
+#import "BlitzrStrategy.h"
+#import "IndieShuffleStrategy.h"
+#import "LeTournedisqueStrategy.h"
+#import "ComposedStrategy.h"
+#import "PlexWebStrategy.h"
+#import "NRKStrategy.h"
+#import "UdemyStrategy.h"
+#import "HotNewHipHopStrategy.h"
+#import "JangoMediaStrategy.h"
+#import "RhapsodyStrategy.h"
+#import "MusicForProgrammingStrategy.h"
+#import "NetflixStrategy.h"
+#import "AudibleStrategy.h"
+#import "BBCRadioStrategy.h"
+#import "TwitchMediaStrategy.h"
+#import "iHeartRadioStrategy.h"
+#import "BugsMusicStrategy.h"
+#import "VesselStrategy.h"
+#import "BrainFmStrategy.h"
+#import "TTMuzik.h"
+>>>>>>> 9855a8e... Added TurkTelekom Muzik
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableArray *availableStrategies;
@@ -26,20 +94,20 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 #pragma mark Initialize
 
 + (MediaStrategyRegistry *)singleton{
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+
         singletonMediaStrategyRegistry = [MediaStrategyRegistry alloc];
         singletonMediaStrategyRegistry = [singletonMediaStrategyRegistry init];
     });
-    
+
     return singletonMediaStrategyRegistry;
-    
+
 }
 
 - (id)init{
-    
+
     if (singletonMediaStrategyRegistry != self) {
         return nil;
     }
@@ -53,9 +121,9 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     _strategyCache = cache;
     _registeredCache = [NSMutableDictionary new];
     _availableStrategies = [NSMutableArray new];
-    
+
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
-    
+
     // enable strategies that are marked enabled or have no entry
     for (NSString *fileName in _strategyCache.cache)
     {

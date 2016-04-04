@@ -71,6 +71,7 @@
 #import "BugsMusicStrategy.h"
 #import "VesselStrategy.h"
 #import "BrainFmStrategy.h"
+#import "TTMuzik.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
@@ -245,7 +246,8 @@
                        [YandexMusicStrategy new],
                        [YandexRadioStrategy new],
                        [YouTubeStrategy new],
-                       [BrainFmStrategy new]
+                       [BrainFmStrategy new],
+                       [TTMuzik new]
                     ];
     });
     return strategies;

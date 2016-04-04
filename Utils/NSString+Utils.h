@@ -22,6 +22,9 @@
  */
 - (NSInteger)indexOf:(NSString *)string;
 
+
+- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive;
+
 /**
  Returns converted string where:
  \ symbol replaced on \\,

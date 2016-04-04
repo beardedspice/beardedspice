@@ -43,6 +43,14 @@
     return [self indexOf:string fromIndex:0];
 }
 
+- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive {
+    if (sensitive)
+        return ([self rangeOfString:str]).location != NSNotFound;
+    
+    return ([self rangeOfString:str options:NSCaseInsensitiveSearch])
+    .location != NSNotFound;
+}
+
 - (NSString *)stringForSubstitutionInJavascriptPlaceholder{
     
     NSString *sb = [self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];

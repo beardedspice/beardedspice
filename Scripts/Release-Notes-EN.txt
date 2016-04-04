@@ -1,1 +1,1 @@
-List of the changes <a href="https://github.com/beardedspice/beardedspice/issues?q=milestone%3A1.2.4+is%3Aclosed">here</a>.
+Hot fix for 10.9 OS X

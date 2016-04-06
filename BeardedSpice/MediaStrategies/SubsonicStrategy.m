@@ -26,13 +26,22 @@
 
 - (BOOL)isPlaying:(TabAdapter *)tab
 {
-    NSString *playerState = [tab executeJavascript:@"window.frames['playQueue'].jwplayer().getState()"];
+    NSString *playerState;
+    NSString *isNewPlayer = [tab executeJavascript:@"typeof window.frames['playQueue'].localPlayer"];
+    
+    if([isNewPlayer isEqualToString:@"object"]) {
+        playerState = [tab executeJavascript:@"window.frames['playQueue'].localPlayer.paused ? 'PAUSED' : 'PLAYING'"];
+    }
+    else {
+        playerState = [tab executeJavascript:@"window.frames['playQueue'].jwplayer().getState()"];
+    }
     return [playerState isEqualToString:@"PLAYING"];
+
 }
 
 -(NSString *) toggle
 {
-    return @"window.frames['playQueue'].jwplayer().play()";
+    return @"(function(){ (typeof window.frames['playQueue'].localPlayer) === 'object' ? (window.frames['playQueue'].localPlayer.paused ? window.frames['playQueue'].onStart() : window.frames['playQueue'].onStop()) : window.frames['playQueue'].jwplayer().play() })()";
 }
 
 -(NSString *) previous
@@ -47,8 +56,7 @@
 
 -(NSString *) pause
 {
-    return @"window.frames['playQueue'].jwplayer().pause(true)";
-}
+    return @"(function(){ (typeof window.frames['playQueue'].onStop) === 'function' ? window.frames['playQueue'].onStop() : window.frames['playQueue'].jwplayer().pause(true) })()";}
 
 -(NSString *) favorite
 {

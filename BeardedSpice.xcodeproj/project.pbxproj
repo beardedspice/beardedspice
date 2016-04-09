@@ -32,10 +32,10 @@
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1AAB7F031A3AACE900EC9E2D /* AudioMackStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */; };
 		1AB7F2531C5D09E4005AA3AC /* BugsMusicStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */; };
-		23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		2B0FAF3B1B8612D900E80E4F /* PlexWebStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */; };
 		32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F131451A71B6090029E9EF /* PocketCastsStrategy.m */; };
 		377A17A11A5C858C005595E5 /* DeezerStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A17A01A5C858C005595E5 /* DeezerStrategy.m */; };
+		39F6F821D4C096559599856F /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD20C6A325021AF63BD560D /* libPods-BeardedSpiceControllers.a */; };
 		3B0F61291AD5CC6900DADAC2 /* BeatguideStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F61271AD5CC6900DADAC2 /* BeatguideStrategy.m */; };
 		45F35ED61888357000AEB3E1 /* ShufflerFmStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F35ED41888357000AEB3E1 /* ShufflerFmStrategy.m */; };
 		46EFF9B01C33E58B00ACE9AB /* TwitchMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFF9AF1C33E58B00ACE9AB /* TwitchMediaStrategy.m */; };
@@ -91,7 +91,6 @@
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658B6A281AA66CCD00753DD9 /* TidalHiFiStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B6A271AA66CCD00753DD9 /* TidalHiFiStrategy.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
-		65A850181C8DA49000D54C77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2299BC537DEC481A9540F7CA /* libPods.a */; };
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
@@ -141,6 +140,7 @@
 		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
 		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
 		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
+		F40F2C2BE9B5CDD7F70F2A38 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D33BAA206486A684C160F1 /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
 		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
 		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
 		F8D2DCE21CB5912E002F9CC9 /* DeezerTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D2DCE11CB5912E002F9CC9 /* DeezerTabAdapter.m */; };
@@ -235,7 +235,7 @@
 		1AAB7F021A3AACE900EC9E2D /* AudioMackStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioMackStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1AB7F2511C5D09DA005AA3AC /* BugsMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsMusicStrategy.h; sourceTree = "<group>"; };
 		1AB7F2521C5D09E4005AA3AC /* BugsMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsMusicStrategy.m; sourceTree = "<group>"; };
-		21D5956B688103BAC9238102 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		1C14E4951B88B1B9BF3AD2D0 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B0FAF391B8612D900E80E4F /* PlexWebStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexWebStrategy.h; sourceTree = "<group>"; };
 		2B0FAF3A1B8612D900E80E4F /* PlexWebStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexWebStrategy.m; sourceTree = "<group>"; };
@@ -371,10 +371,12 @@
 		6F15BFA51C3BEB9200C86D13 /* RadioSwissJazzStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioSwissJazzStrategy.m; sourceTree = "<group>"; };
 		7577DA461B696DF80078B19D /* CourseraStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseraStrategy.h; sourceTree = "<group>"; };
 		7577DA471B6978C70078B19D /* CourseraStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseraStrategy.m; sourceTree = "<group>"; };
+		7FD20C6A325021AF63BD560D /* libPods-BeardedSpiceControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DA43D41950BF55000E98AC /* VkStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VkStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		81DA43D51950BF55000E98AC /* VkStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VkStrategy.h; sourceTree = "<group>"; };
 		83AAFD7618E0A79500640767 /* StitcherStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StitcherStrategy.h; sourceTree = "<group>"; };
 		83AAFD7718E0A79500640767 /* StitcherStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StitcherStrategy.m; sourceTree = "<group>"; };
+		88D33BAA206486A684C160F1 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6FC6D1192A09290050F426 /* XboxMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XboxMusicStrategy.m; sourceTree = "<group>"; };
 		8C6FC6D3192A09430050F426 /* XboxMusicStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxMusicStrategy.h; sourceTree = "<group>"; };
 		8D882E291C84C96300A1179F /* WatchaPlayStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchaPlayStrategy.m; sourceTree = "<group>"; };
@@ -406,9 +408,9 @@
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		969E45701863E5830037226B /* LastFmStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFmStrategy.h; sourceTree = "<group>"; };
 		969E45711863E5830037226B /* LastFmStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LastFmStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9AF442D31886F71400CD7266 /* EightTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightTracksStrategy.h; sourceTree = "<group>"; };
 		9AF442D41886F71400CD7266 /* EightTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EightTracksStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B269289F05DBE093646B3F6D /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
 		B500FC3618D33F2E00FEFD74 /* YandexMusicStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexMusicStrategy.h; sourceTree = "<group>"; };
 		B500FC3718D33F2E00FEFD74 /* YandexMusicStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YandexMusicStrategy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BB81E6301B8B3AA000F764EB /* NRKStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRKStrategy.m; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
 		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
 		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		D7201F912DC1FAEAE9115A78 /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
 		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
 		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
 		F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JangoMediaStrategy.h; sourceTree = "<group>"; };
@@ -446,6 +449,7 @@
 		F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotNewHipHopStrategy.m; sourceTree = "<group>"; };
 		F8D2DCE01CB5912E002F9CC9 /* DeezerTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerTabAdapter.h; sourceTree = "<group>"; };
 		F8D2DCE11CB5912E002F9CC9 /* DeezerTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerTabAdapter.m; sourceTree = "<group>"; };
+		FD0238EBD7B1D4DCD4D78189 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,7 +459,7 @@
 			files = (
 				65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */,
 				65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */,
-				65A850181C8DA49000D54C77 /* libPods.a in Frameworks */,
+				39F6F821D4C096559599856F /* libPods-BeardedSpiceControllers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +469,7 @@
 			files = (
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
-				23AAA028533E406E8D5AFF02 /* libPods.a in Frameworks */,
+				F40F2C2BE9B5CDD7F70F2A38 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,8 +488,10 @@
 		026BCA1451614966030FD4B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				21D5956B688103BAC9238102 /* Pods.debug.xcconfig */,
-				9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */,
+				B269289F05DBE093646B3F6D /* Pods-BeardedSpiceControllers.debug.xcconfig */,
+				D7201F912DC1FAEAE9115A78 /* Pods-BeardedSpiceControllers.release.xcconfig */,
+				1C14E4951B88B1B9BF3AD2D0 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */,
+				FD0238EBD7B1D4DCD4D78189 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -810,6 +816,8 @@
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
 				2299BC537DEC481A9540F7CA /* libPods.a */,
+				7FD20C6A325021AF63BD560D /* libPods-BeardedSpiceControllers.a */,
+				88D33BAA206486A684C160F1 /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -888,9 +896,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */;
 			buildPhases = (
+				2347A5CF8E47858340D7C44D /* Check Pods Manifest.lock */,
 				656AFFE61C8ACDCF00BD29F5 /* Sources */,
 				656AFFE71C8ACDCF00BD29F5 /* Frameworks */,
 				656AFFE81C8ACDCF00BD29F5 /* Resources */,
+				8449C49435F79BA2F22310E4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1027,6 +1037,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		2347A5CF8E47858340D7C44D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1039,7 +1064,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8449C49435F79BA2F22310E4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
@@ -1054,7 +1094,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1245,6 +1285,7 @@
 /* Begin XCBuildConfiguration section */
 		656AFFF61C8ACDCF00BD29F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B269289F05DBE093646B3F6D /* Pods-BeardedSpiceControllers.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1265,6 +1306,7 @@
 		};
 		656AFFF71C8ACDCF00BD29F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7201F912DC1FAEAE9115A78 /* Pods-BeardedSpiceControllers.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1285,7 +1327,6 @@
 		};
 		9679335B1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21D5956B688103BAC9238102 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1324,7 +1365,6 @@
 		};
 		9679335C1855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1356,7 +1396,7 @@
 		};
 		9679335E1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21D5956B688103BAC9238102 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 1C14E4951B88B1B9BF3AD2D0 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1378,7 +1418,7 @@
 		};
 		9679335F1855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A2AB0FE26377DAF9CDF46F0 /* Pods.release.xcconfig */;
+			baseConfigurationReference = FD0238EBD7B1D4DCD4D78189 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;

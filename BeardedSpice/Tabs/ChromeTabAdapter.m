@@ -143,11 +143,15 @@
     }
 }
 
+- (BOOL)isActivated{
+    return ([(ChromeApplication *)self.application.sbApplication frontmost]
+            && self.window.index == MULTI
+            && [self.tab id] == [self.window.activeTab id]);
+}
+
 - (void)toggleTab{
     
-    if ([(ChromeApplication *)self.application.sbApplication frontmost]
-        && self.window.index == MULTI
-        && [self.tab id] == [self.window.activeTab id]){
+    if ([self isActivated]){
         
         if ([self.tab id] != _previousTabId) {
             

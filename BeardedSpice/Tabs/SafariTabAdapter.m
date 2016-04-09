@@ -112,11 +112,16 @@
     
 }
 
+- (BOOL)isActivated{
+    
+    return ([(SafariApplication *)self.application.sbApplication frontmost]
+            && self.window.index == MULTI
+            && self.tab.index == self.window.currentTab.index);
+}
+
 - (void)toggleTab{
     
-    if ([(SafariApplication *)self.application.sbApplication frontmost]
-        && self.window.index == MULTI
-        && self.tab.index == self.window.currentTab.index){
+    if ([self isActivated]){
         
         if (self.tab.index != _previousTab.index) {
             

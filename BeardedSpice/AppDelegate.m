@@ -641,21 +641,26 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 
-- (void)refreshTabsForChrome:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
+- (NSArray *)refreshTabsForChrome:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
 
     if (timeout.reached) {
-        return;
+        return @[];
     }
 
+    NSMutableArray *items = [NSMutableArray array];
     @try {
 
+        NSMenuItem *item;
         ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
         if (chrome) {
             for (ChromeWindow *chromeWindow in [chrome.windows get]) {
                 for (ChromeTab *chromeTab in [chromeWindow.tabs get]) {
-                    [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
+                    item = [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
+                    if (item) {
+                        [items addObject:item];
+                    }
                     if (timeout.reached) {
-                        return;
+                        return items;
                     }
                 }
             }
@@ -664,23 +669,30 @@ BOOL accessibilityApiEnabled = NO;
     @catch (NSException *exception) {
         NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
     }
+    
+    return items;
 }
 
-- (void)refreshTabsForSafari:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
+- (NSArray *)refreshTabsForSafari:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
 
     if (timeout.reached) {
-        return;
+        return @[];
     }
 
+    NSMutableArray *items = [NSMutableArray array];
     @try {
         
+        NSMenuItem *item;
         SafariApplication *safari = (SafariApplication *)app.sbApplication;
         if (safari) {
             for (SafariWindow *safariWindow in [safari.windows get]) {
                 for (SafariTab *safariTab in [safariWindow.tabs get]) {
-                    [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+                    if (item) {
+                        [items addObject:item];
+                    }
                     if (timeout.reached) {
-                        return;
+                        return items;
                     }
                 }
             }
@@ -689,11 +701,14 @@ BOOL accessibilityApiEnabled = NO;
     @catch (NSException *exception) {
         NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
     }
+    
+    return items;
 }
 
-- (void)refreshTabsForNativeApp:(runningSBApplication *)app
+- (NSArray *)refreshTabsForNativeApp:(runningSBApplication *)app
                           class:(Class)theClass {
 
+    NSMutableArray *items = [NSMutableArray array];
     if (app) {
 
         TabAdapter *tab = [theClass tabAdapterWithApplication:app];
@@ -704,7 +719,7 @@ BOOL accessibilityApiEnabled = NO;
 
             if (menuItem) {
                 
-                [menuItems addObject:menuItem];
+                [items addObject:menuItem];
                 
                 [menuItem setRepresentedObject:tab];
 
@@ -717,74 +732,97 @@ BOOL accessibilityApiEnabled = NO;
             }
         }
     }
+    return items;
 }
 
 // must be invoked not on main queue
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Refreshing tabs...");
-    [self removeAllItems];
-    
-    //hold activeTab object
-    __unsafe_unretained TabAdapter *_activeTab = activeTab;
-    
-    if (accessibilityApiEnabled) {
+    @autoreleasepool {
         
-        BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-        [self refreshApplications:timeout];
+        //hold activeTab object
+        __unsafe_unretained TabAdapter *_activeTab = activeTab;
+        //hold tab list
+        NSArray *_menuItems = menuItems;
+        NSMutableArray *newItems = [NSMutableArray array];
         
-        [mediaStrategyRegistry beginStrategyQueries];
+        [self removeAllItems];
         
-        [self refreshTabsForChrome:chromeApp timeout:timeout];
-        [self refreshTabsForChrome:canaryApp timeout:timeout];
-        [self refreshTabsForChrome:yandexBrowserApp timeout:timeout];
-        [self refreshTabsForChrome:chromiumApp timeout:timeout];
-        [self refreshTabsForSafari:safariApp timeout:timeout];
-        
-        for (runningSBApplication *app in nativeApps) {
+        if (accessibilityApiEnabled) {
             
-            if (timeout.reached) {
-                break;
-            }
+            BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
+            [self refreshApplications:timeout];
             
-            [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
-        }
-        
-        [mediaStrategyRegistry endStrategyQueries];
-        
-    }
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        
-        [self resetStatusMenu];
-        
-        if (menuItems.count) {
+            [mediaStrategyRegistry beginStrategyQueries];
             
-            for (NSMenuItem *item in menuItems) {
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromeApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
+            
+            for (runningSBApplication *app in nativeApps) {
                 
-                [statusMenu insertItem:item atIndex:0];
+                if (timeout.reached) {
+                    break;
+                }
+                
+                [newItems addObjectsFromArray:[self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]]];
             }
-            //        [keyTap startWatchingMediaKeys];
+            
+            [mediaStrategyRegistry endStrategyQueries];
+            
         }
-        else{
-            //        [keyTap stopWatchingMediaKeys];
+        
+        //
+        NSMutableArray *tabs = [[newItems valueForKey:@"representedObject"] mutableCopy];
+        for (NSMenuItem *item in _menuItems) {
+            
+            NSUInteger index = [tabs indexOfObject:item.representedObject];
+            if (index != NSNotFound) {
+                [menuItems addObject:newItems[index]];
+                [newItems removeObjectAtIndex:index];
+                [tabs removeObjectAtIndex:index];
+            }
         }
-    });
-    
-    //check activeTab
-    if (_activeTab == activeTab) {
-        activeTab = nil;
+        [menuItems addObjectsFromArray:newItems];
+        //
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            [self resetStatusMenu];
+            
+            if (menuItems.count) {
+                
+                for (NSMenuItem *item in menuItems) {
+                    
+                    [statusMenu insertItem:item atIndex:0];
+                }
+                //        [keyTap startWatchingMediaKeys];
+            }
+            else{
+                //        [keyTap stopWatchingMediaKeys];
+            }
+        });
+        
+        //check activeTab
+        if (_activeTab == activeTab) {
+            activeTab = nil;
+        }
     }
 }
 
--(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
+-(NSMenuItem *)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
     TabAdapter *tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
     if (tab)
-        [self addStatusMenuItemFor:tab];
+        return [self addStatusMenuItemFor:tab];
+    
+    return nil;
 }
 
--(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
+-(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
     TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
@@ -797,23 +835,27 @@ BOOL accessibilityApiEnabled = NO;
         NSString *key = tab.key;
         if ([NSString isNullOrEmpty:key]) {
             //key was not assigned, we think this is fake pinned tab.
-            return;
+            return nil;
         }
         
         if ([SafariTabKeys containsObject:key]) {
             
-            return;
+            return nil;
         }
         //-------------------------------------------
         
-        if ([self addStatusMenuItemFor:tab]) {
+        NSMenuItem *item = [self addStatusMenuItemFor:tab];
+        if (item) {
             
             [SafariTabKeys addObject:key];
+            return item;
         }
     }
+    
+    return nil;
 }
 
--(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
+-(NSMenuItem *)addStatusMenuItemFor:(TabAdapter *)tab {
     
     MediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
     if (strategy) {
@@ -822,8 +864,6 @@ BOOL accessibilityApiEnabled = NO;
         
         if (menuItem){
 
-            [menuItems addObject:menuItem];
-            
             [menuItem setRepresentedObject:tab];
             
             // check playing status
@@ -832,11 +872,11 @@ BOOL accessibilityApiEnabled = NO;
             
             [self repairActiveTabFrom:tab];
 
-            return YES;
+            return menuItem;
         }
     }
     
-    return NO;
+    return nil;
 }
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab
@@ -865,26 +905,17 @@ BOOL accessibilityApiEnabled = NO;
 #ifdef DEBUG
         NSLog(@"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, activeTab);
 #endif
-        [self pauseActiveTab];
+        if (activeTab) {
+            [self pauseActiveTab];
+            if ([activeTab isActivated]) {
+                [activeTab toggleTab];
+            }
+        }
+        
+        activeTab = tab;
+        activeTabKey = [tab key];
+        NSLog(@"Active tab set to %@", activeTab);
     }
-    
-//    if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
-//
-//        if (![tab isEqual:activeTab] &&
-//            [activeTab respondsToSelector:@selector(pause)])
-//            [(NativeAppTabAdapter *)activeTab pause];
-//    }
-//    else{
-//        
-//        strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
-//        if (strategy && ![tab isEqual:activeTab]) {
-//            [activeTab executeJavascript:[strategy pause]];
-//        }
-//    }
-    
-    activeTab = tab;
-    activeTabKey = [tab key];
-    NSLog(@"Active tab set to %@", activeTab);
     
     return YES;
 }

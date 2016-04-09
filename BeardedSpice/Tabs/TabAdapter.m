@@ -45,19 +45,21 @@
             [self.application activate];
             _wasActivated = YES;
         }
-        else
+        else{
             _wasActivated = NO;
+        }
     }
+}
+
+- (BOOL)isActivated{
+    return (_wasActivated && [self.application frontmost]);
 }
 
 - (void)toggleTab{
     
-    if ([self.application frontmost]){
-        if (_wasActivated) {
-            
-            [self.application hide];
-            _wasActivated = NO;
-        }
+    if ([self isActivated]){
+        [self.application hide];
+        _wasActivated = NO;
     }
     else
         [self activateTab];
@@ -87,6 +89,11 @@
         
         return [[self key] isEqualToString:[otherTab key]];
     }
+}
+
+- (NSUInteger)hash{
+
+    return [[self key] hash];
 }
 
 - (BOOL)check{

@@ -13,7 +13,7 @@
 
 - (BOOL)accepts:(TabAdapter *)tab {
     
-    NSNumber *result = [tab executeJavascript:@"(function(){return (window.PLEXWEB != undefined);})()"];
+    NSNumber *result = [tab executeJavascript:@"(function(){return (document.querySelector('#plex') != null);})()"];
     return [result boolValue];
 }
 

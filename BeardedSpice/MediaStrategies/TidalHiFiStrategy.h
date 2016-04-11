@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface TidalHiFiStrategy : MediaStrategy{
+@interface TidalHiFiStrategy : MediaStrategy <MediaStrategyProtocol>{
     
     NSPredicate *predicate;
 }

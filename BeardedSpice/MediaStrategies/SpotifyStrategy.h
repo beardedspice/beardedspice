@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface SpotifyStrategy : MediaStrategy
+@interface SpotifyStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface SynologyStrategy : MediaStrategy
+@interface SynologyStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

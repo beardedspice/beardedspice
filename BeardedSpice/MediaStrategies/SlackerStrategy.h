@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface SlackerStrategy : MediaStrategy
+@interface SlackerStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

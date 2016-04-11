@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface SaavnStrategy : MediaStrategy
+@interface SaavnStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

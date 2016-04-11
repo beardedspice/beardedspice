@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface PandoraStrategy : MediaStrategy
+@interface PandoraStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

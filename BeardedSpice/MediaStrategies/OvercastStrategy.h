@@ -9,7 +9,7 @@
 
 #import "MediaStrategy.h"
 
-@interface OvercastStrategy : MediaStrategy
+@interface OvercastStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

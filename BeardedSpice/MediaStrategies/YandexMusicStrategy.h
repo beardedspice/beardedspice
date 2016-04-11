@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface YandexMusicStrategy : MediaStrategy
+@interface YandexMusicStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

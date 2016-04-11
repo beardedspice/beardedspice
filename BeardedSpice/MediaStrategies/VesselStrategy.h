@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface VesselStrategy : MediaStrategy
+@interface VesselStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

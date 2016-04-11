@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface NetflixStrategy : MediaStrategy
+@interface NetflixStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

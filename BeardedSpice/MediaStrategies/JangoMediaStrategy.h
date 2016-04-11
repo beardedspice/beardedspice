@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface JangoMediaStrategy : MediaStrategy
+@interface JangoMediaStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

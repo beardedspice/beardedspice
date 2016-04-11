@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface GrooveSharkStrategy : MediaStrategy
+@interface GrooveSharkStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

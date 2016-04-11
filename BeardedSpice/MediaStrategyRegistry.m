@@ -7,77 +7,11 @@
 //
 
 #import "MediaStrategyRegistry.h"
-#import "LogitechMediaServerStrategy.h"
-#import "YouTubeStrategy.h"
-#import "PandoraStrategy.h"
-#import "CourseraStrategy.h"
-#import "BandCampStrategy.h"
-#import "GrooveSharkStrategy.h"
-#import "SoundCloudStrategy.h"
-#import "HypeMachineStrategy.h"
-#import "LastFmStrategy.h"
-#import "SpotifyStrategy.h"
-#import "GoogleMusicStrategy.h"
-#import "EightTracksStrategy.h"
-#import "SynologyStrategy.h"
-#import "ShufflerFmStrategy.h"
-#import "SlackerStrategy.h"
-#import "BeatsMusicStrategy.h"
-#import "MixCloudStrategy.h"
-#import "MusicUnlimitedStrategy.h"
-#import "YandexMusicStrategy.h"
-#import "StitcherStrategy.h"
-#import "XboxMusicStrategy.h"
-#import "VkStrategy.h"
-#import "BopFm.h"
-#import "AmazonMusicStrategy.h"
-#import "OvercastStrategy.h"
-#import "VimeoStrategy.h"
-#import "ChorusStrategy.h"
-#import "TwentyTwoTracksStrategy.h"
-#import "AudioMackStrategy.h"
-#import "DeezerStrategy.h"
-#import "FocusAtWillStrategy.h"
-#import "PocketCastsStrategy.h"
-#import "YandexRadioStrategy.h"
-#import "TidalHiFiStrategy.h"
-#import "NoAdRadioStrategy.h"
-#import "SomaFmStrategy.h"
-#import "DigitallyImportedStrategy.h"
-#import "BeatguideStrategy.h"
-#import "SaavnStrategy.h"
-#import "KollektFmStrategy.h"
-#import "WonderFmStrategy.h"
-#import "OdnoklassnikiStrategy.h"
-#import "SubsonicStrategy.h"
-#import "TuneInStrategy.h"
-#import "NoonPacificStrategy.h"
-#import "BlitzrStrategy.h"
-#import "IndieShuffleStrategy.h"
-#import "LeTournedisqueStrategy.h"
-#import "ComposedStrategy.h"
-#import "PlexWebStrategy.h"
-#import "NRKStrategy.h"
-#import "UdemyStrategy.h"
-#import "HotNewHipHopStrategy.h"
-#import "JangoMediaStrategy.h"
-#import "RhapsodyStrategy.h"
-#import "MusicForProgrammingStrategy.h"
-#import "NetflixStrategy.h"
-#import "AudibleStrategy.h"
-#import "BBCRadioStrategy.h"
-#import "TwitchMediaStrategy.h"
-#import "iHeartRadioStrategy.h"
-#import "BugsMusicStrategy.h"
-#import "VesselStrategy.h"
-#import "RadioSwissJazzStrategy.h"
-#import "BrainFmStrategy.h"
-#import "WatchaPlayStrategy.h"
-#import "DailymotionStrategy.h"
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
 @property (nonatomic, strong) NSMutableSet *keyCache;
+@property (nonatomic, strong) NSArray *ioc_MediaStrategyProtocol;
 @end
 
 @implementation MediaStrategyRegistry
@@ -97,7 +31,7 @@
 {
     self = [self init];
     if (self) {
-        NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
+        NSArray *defaultStrategies = self.ioc_MediaStrategyProtocol;
         NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
 
         for (MediaStrategy *strategy in defaultStrategies) {
@@ -175,86 +109,6 @@
 -(NSArray *) getMediaStrategies
 {
     return [availableStrategies copy];
-}
-
-+(NSArray *) getDefaultMediaStrategies
-{
-    static dispatch_once_t setupDefaultStrategies;
-    static NSArray *strategies = nil;
-
-    dispatch_once(&setupDefaultStrategies, ^{
-        NSLog(@"Initializing default media strategies...");
-        strategies = @[
-                       [AmazonMusicStrategy new],
-                       [AudibleStrategy new],
-                       [AudioMackStrategy new],
-                       [BandCampStrategy new],
-                       [BBCRadioStrategy new],
-                       [BeatguideStrategy new],
-                       [BeatsMusicStrategy new],
-                       [BlitzrStrategy new],
-                       [BopFm new],
-                       [BrainFmStrategy new],
-                       [BugsMusicStrategy new],
-                       [ChorusStrategy new],
-                       [ComposedStrategy new],
-                       [CourseraStrategy new],
-                       [DailymotionStrategy new],
-                       [DeezerStrategy new],
-                       [DigitallyImportedStrategy new],
-                       [EightTracksStrategy new],
-                       [FocusAtWillStrategy new],
-                       [GoogleMusicStrategy new],
-                       [GrooveSharkStrategy new],
-                       [HotNewHipHopStrategy new],
-                       [HypeMachineStrategy new],
-                       [iHeartRadioStrategy new],
-                       [IndieShuffleStrategy new],
-                       [JangoMediaStrategy new],
-                       [KollektFmStrategy new],
-                       [LastFmStrategy new],
-                       [LeTournedisqueStrategy new],
-                       [LogitechMediaServerStrategy new],
-                       [MixCloudStrategy new],
-                       [MusicForProgrammingStrategy new],
-                       [MusicUnlimitedStrategy new],
-                       [NetflixStrategy new],
-                       [NoAdRadioStrategy new],
-                       [NoonPacificStrategy new],
-                       [NRKStrategy new],
-                       [OdnoklassnikiStrategy new],
-                       [OvercastStrategy new],
-                       [PandoraStrategy new],
-                       [PlexWebStrategy new],
-                       [PocketCastsStrategy new],
-                       [RadioSwissJazzStrategy new],
-                       [RhapsodyStrategy new],
-                       [SaavnStrategy new],
-                       [ShufflerFmStrategy new],
-                       [SlackerStrategy new],
-                       [SomaFmStrategy new],
-                       [SoundCloudStrategy new],
-                       [SpotifyStrategy new],
-                       [StitcherStrategy new],
-                       [SubsonicStrategy new],
-                       [SynologyStrategy new],
-                       [TidalHiFiStrategy new],
-                       [TuneInStrategy new],
-                       [TwentyTwoTracksStrategy new],
-                       [TwitchMediaStrategy new],
-                       [UdemyStrategy new],
-                       [VesselStrategy new],
-                       [VimeoStrategy new],
-                       [VkStrategy new],
-                       [WatchaPlayStrategy new],
-                       [WonderFmStrategy new],
-                       [XboxMusicStrategy new],
-                       [YandexMusicStrategy new],
-                       [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
-                    ];
-    });
-    return strategies;
 }
 
 @end

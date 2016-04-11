@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface BopFm : MediaStrategy
+@interface BopFm : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

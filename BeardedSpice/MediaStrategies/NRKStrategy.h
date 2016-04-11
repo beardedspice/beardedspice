@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface NRKStrategy : MediaStrategy
+@interface NRKStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

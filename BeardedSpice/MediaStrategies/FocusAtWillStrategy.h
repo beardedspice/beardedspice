@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface FocusAtWillStrategy : MediaStrategy
+@interface FocusAtWillStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

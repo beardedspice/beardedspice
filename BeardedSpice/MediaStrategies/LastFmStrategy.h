@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface LastFmStrategy : MediaStrategy
+@interface LastFmStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

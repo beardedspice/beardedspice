@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface GoogleMusicStrategy : MediaStrategy
+@interface GoogleMusicStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

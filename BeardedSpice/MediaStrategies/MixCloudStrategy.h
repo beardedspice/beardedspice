@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface MixCloudStrategy : MediaStrategy
+@interface MixCloudStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

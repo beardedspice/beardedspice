@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface SomaFmStrategy : MediaStrategy
+@interface SomaFmStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

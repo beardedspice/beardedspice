@@ -1,12 +1,24 @@
 PODS:
+  - AppleGuice (1.2.4)
   - MASPreferences (1.1.2)
   - MASShortcut (2.3.3)
 
 DEPENDENCIES:
+  - AppleGuice (from `https://github.com/arielpollack/AppleGuice`)
   - MASPreferences (~> 1.1.2)
   - MASShortcut (~> 2.3.3)
 
+EXTERNAL SOURCES:
+  AppleGuice:
+    :git: https://github.com/arielpollack/AppleGuice
+
+CHECKOUT OPTIONS:
+  AppleGuice:
+    :commit: 8a4e47ce0ac666a7139584fae250e50b144ad23a
+    :git: https://github.com/arielpollack/AppleGuice
+
 SPEC CHECKSUMS:
+  AppleGuice: a631b63c958dffab234824c7296dc06dcf0d08b0
   MASPreferences: 32d8a2c5ef1d60b63240f5676b011ff72e194cb1
   MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
 

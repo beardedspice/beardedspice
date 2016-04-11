@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface PocketCastsStrategy : MediaStrategy
+@interface PocketCastsStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface WonderFmStrategy : MediaStrategy
+@interface WonderFmStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

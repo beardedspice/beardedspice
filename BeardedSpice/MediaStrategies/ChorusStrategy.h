@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface ChorusStrategy : MediaStrategy
+@interface ChorusStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

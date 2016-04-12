@@ -25,6 +25,8 @@
 
 #import "runningSBApplication.h"
 
+#import <AppleGuice/AppleGuice.h>
+
 /// Because user defaults have good caching mechanism, we can use this macro.
 #define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
 
@@ -50,10 +52,17 @@ BOOL accessibilityApiEnabled = NO;
 
 @implementation AppDelegate
 
-
 - (void)dealloc{
     
     [self removeSystemEventsCallback];
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Dependency injection
+/////////////////////////////////////////////////////////////////////////
+
++ (void)initialize {
+    [AppleGuice startServiceWithImplementationDiscoveryPolicy:AppleGuiceImplementationDiscoveryPolicyRuntime];
 }
 
 /////////////////////////////////////////////////////////////////////////

@@ -8,5 +8,6 @@ target 'BeardedSpiceControllers' do
 
     target 'BeardedSpice' do
         pod 'MASPreferences', '~> 1.1.2'
+	pod 'AppleGuice', :git => 'https://github.com/arielpollack/AppleGuice'
     end
 end

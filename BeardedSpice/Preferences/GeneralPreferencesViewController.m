@@ -22,6 +22,12 @@ NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHead
 NSString *const BeardedSpiceUsingAppleRemote = @"BeardedSpiceUsingAppleRemote";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 
+@interface GeneralPreferencesViewController()
+
+@property (nonatomic, strong) NSArray* ioc_MediaStrategyProtocol;
+
+@end
+
 @implementation GeneralPreferencesViewController
 
 - (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry nativeAppTabRegistry:(NativeAppTabRegistry *)nativeAppTabRegistry
@@ -45,7 +51,7 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
             userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
         }
         
-        theArray = [MediaStrategyRegistry getDefaultMediaStrategies];
+        theArray = self.ioc_MediaStrategyProtocol;
         if (theArray.count) {
             MediaControllerObject *obj = [MediaControllerObject new];
             obj.isGroup = YES;

@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface UdemyStrategy : MediaStrategy
+@interface UdemyStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

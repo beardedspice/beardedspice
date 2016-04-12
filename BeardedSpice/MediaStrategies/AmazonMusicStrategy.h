@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface AmazonMusicStrategy : MediaStrategy
+@interface AmazonMusicStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface RhapsodyStrategy : MediaStrategy
+@interface RhapsodyStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

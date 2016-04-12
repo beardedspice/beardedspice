@@ -217,6 +217,10 @@ Define these properties of the `Track` object:
 A sample strategy for YandexMusic:
 
 ```Objective-C
+@interface YandexMusicStrategy : MediaStrategy <MediaStrategyProtocol>
+
+@end
+
 @implementation YandexMusicStrategy
 
 - (id)init {
@@ -299,20 +303,6 @@ A sample strategy for YandexMusic:
 }
 
 @end
-```
-
-Update the [`MediaStrategyRegistry`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategyRegistry.m) to include an instance of your new strategy:
-
-```Objective-C
-+(NSArray *) getDefaultMediaStrategies
-{
-        DefaultMediaStrategies = [NSArray arrayWithObjects:
-                                  // ...
-                                  [GoogleMusicStrategy new],
-                                  // add your new strategy!
-                                  [YandexMusicStrategy new],
-                                  nil];
-}
 ```
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.

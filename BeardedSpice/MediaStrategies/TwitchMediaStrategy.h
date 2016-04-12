@@ -1,6 +1,6 @@
 #import "MediaStrategy.h"
 
-@interface TwitchMediaStrategy : MediaStrategy {
+@interface TwitchMediaStrategy : MediaStrategy <MediaStrategyProtocol> {
     
     NSPredicate *predicate;
     

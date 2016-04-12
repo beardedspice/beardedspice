@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface WatchaPlayStrategy : MediaStrategy
+@interface WatchaPlayStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

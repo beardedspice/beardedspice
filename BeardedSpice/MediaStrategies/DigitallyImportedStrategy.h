@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MediaStrategy.h"
 
-@interface DigitallyImportedStrategy : MediaStrategy
+@interface DigitallyImportedStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

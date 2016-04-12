@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface SubsonicStrategy : MediaStrategy
+@interface SubsonicStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

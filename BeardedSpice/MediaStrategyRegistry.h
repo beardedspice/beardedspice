@@ -14,8 +14,6 @@
     NSMutableArray *availableStrategies;
 }
 
-+(NSArray *) getDefaultMediaStrategies;
-
 -(id) initWithUserDefaults:(NSString *)userDefaultsKeyPrefix;
 -(void) addMediaStrategy:(MediaStrategy *) strategy;
 -(void) removeMediaStrategy:(MediaStrategy *) strategy;

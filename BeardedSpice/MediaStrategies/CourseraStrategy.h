@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface CourseraStrategy : MediaStrategy
+@interface CourseraStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface StitcherStrategy : MediaStrategy
+@interface StitcherStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

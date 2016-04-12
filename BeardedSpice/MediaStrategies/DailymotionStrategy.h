@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface DailymotionStrategy : MediaStrategy
+@interface DailymotionStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

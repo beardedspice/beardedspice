@@ -7,6 +7,10 @@
 //
 
 #import "TabAdapter.h"
+#import <AppleGuice/AppleGuiceInjectable.h>
+
+@protocol MediaStrategyProtocol <AppleGuiceInjectable>
+@end
 
 @interface Track : NSObject
 

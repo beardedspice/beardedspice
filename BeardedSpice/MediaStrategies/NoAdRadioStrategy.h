@@ -6,7 +6,7 @@
 
 #import "MediaStrategy.h"
 
-@interface NoAdRadioStrategy : MediaStrategy
+@interface NoAdRadioStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

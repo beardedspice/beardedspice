@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface iHeartRadioStrategy : MediaStrategy
+@interface iHeartRadioStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

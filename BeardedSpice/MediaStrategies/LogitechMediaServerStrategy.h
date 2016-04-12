@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface LogitechMediaServerStrategy : MediaStrategy
+@interface LogitechMediaServerStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

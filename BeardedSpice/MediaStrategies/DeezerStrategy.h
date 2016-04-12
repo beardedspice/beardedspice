@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface DeezerStrategy : MediaStrategy
+@interface DeezerStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

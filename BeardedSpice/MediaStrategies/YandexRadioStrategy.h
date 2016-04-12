@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface YandexRadioStrategy : MediaStrategy
+@interface YandexRadioStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
     NSDictionary *_nextTrackInfo;

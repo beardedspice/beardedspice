@@ -9,7 +9,7 @@
 
 #import "MediaStrategy.h"
 
-@interface VimeoStrategy : MediaStrategy
+@interface VimeoStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

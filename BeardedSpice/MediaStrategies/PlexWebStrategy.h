@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface PlexWebStrategy : MediaStrategy
+@interface PlexWebStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

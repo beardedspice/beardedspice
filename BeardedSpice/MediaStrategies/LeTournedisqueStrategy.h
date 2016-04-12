@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface LeTournedisqueStrategy : MediaStrategy
+@interface LeTournedisqueStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

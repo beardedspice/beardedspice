@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface BandCampStrategy : MediaStrategy
+@interface BandCampStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

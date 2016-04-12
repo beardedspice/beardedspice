@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface YouTubeStrategy : MediaStrategy
+@interface YouTubeStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

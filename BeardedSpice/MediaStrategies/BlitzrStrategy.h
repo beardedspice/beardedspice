@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface BlitzrStrategy : MediaStrategy
+@interface BlitzrStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

@@ -8,7 +8,7 @@
 
 #import "MediaStrategy.h"
 
-@interface IndieShuffleStrategy : MediaStrategy
+@interface IndieShuffleStrategy : MediaStrategy <MediaStrategyProtocol>
 {
     NSPredicate *predicate;
 }

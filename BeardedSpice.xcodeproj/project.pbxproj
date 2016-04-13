@@ -14,6 +14,7 @@
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B355EF51CBEA3350089C2B3 /* Localizable.strings */; };
 		0BF06A551C95139A00534083 /* AmazonMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A121C95139900534083 /* AmazonMusic.plist */; };
 		0BF06A561C95139A00534083 /* AmazonMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A121C95139900534083 /* AmazonMusic.plist */; };
 		0BF06A571C95139A00534083 /* Audible.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A131C95139900534083 /* Audible.plist */; };
@@ -268,6 +269,7 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		0B355EF61CBEA3350089C2B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0BF06A121C95139900534083 /* AmazonMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AmazonMusic.plist; sourceTree = "<group>"; };
 		0BF06A131C95139900534083 /* Audible.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Audible.plist; sourceTree = "<group>"; };
 		0BF06A141C95139900534083 /* AudioMack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AudioMack.plist; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 				967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
 				9679333B1855173100A49AC7 /* main.m */,
 				9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */,
+				0B355EF51CBEA3350089C2B3 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				0BF06A931C95139A00534083 /* Netflix.plist in Resources */,
 				0BF06A7D1C95139A00534083 /* HypeMachine.plist in Resources */,
 				0BF06A8B1C95139A00534083 /* LogitechMediaServer.plist in Resources */,
+				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
 				0BF06ABD1C95139A00534083 /* TidalHiFi.plist in Resources */,
 				0BF06AAF1C95139A00534083 /* SomaFm.plist in Resources */,
 				0320C0521868C6C2009591CA /* beard.png in Resources */,
@@ -1262,6 +1266,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0B355EF51CBEA3350089C2B3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B355EF61CBEA3350089C2B3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

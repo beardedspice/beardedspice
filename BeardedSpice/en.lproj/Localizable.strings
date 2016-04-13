@@ -1,0 +1,19 @@
+/*
+  Localizable.strings
+  BeardedSpice
+
+  Created by Alex Evers on 4/13/16.
+  Copyright © 2016 BeardedSpice. All rights reserved.
+*/
+
+/* Menu Titles */
+
+"menu_item_title_compatibility_update"="Check for Compatibility Updates";
+"menu_item_title_checking"="Checking...";
+
+/* Notification Titles */
+
+"notification_status_update_title"="Bearded Spice - Compatibility Updates;
+"notification_status_update_no_new"="No new compatibilty updates.";
+"notification_status_update_x_new"="There were %u compatibility updates.";
+

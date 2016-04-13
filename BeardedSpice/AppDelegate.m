@@ -385,13 +385,10 @@ BOOL accessibilityApiEnabled = NO;
 - (void)sendUpdateNotificationWithString:(NSString *)message
 {
     NSUserNotification *notification = [NSUserNotification new];
-    notification.title = @"Bearded Spice - Compatibility Updates";
+    notification.title = NSLocalizedString(@"notification_status_update_title", @"Notification Titles");
     notification.subtitle = message;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
-
-static NSString *const kBSUpdateOriginalTitle = @"Check for Compatibility Updates";
-static NSString *const kBSUpdateCheckingTitle = @"Checking...";
 
 - (IBAction)checkForUpdates:(id)sender
 {
@@ -403,8 +400,7 @@ static NSString *const kBSUpdateCheckingTitle = @"Checking...";
 
     statusMenu.autoenablesItems = NO;
     item.enabled = NO;
-    item.title = kBSUpdateCheckingTitle;
-
+    item.title = NSLocalizedString(@"menu_item_title_checking", @"Menu Titles");
 
     __weak typeof(self) wself = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
@@ -414,7 +410,7 @@ static NSString *const kBSUpdateCheckingTitle = @"Checking...";
         NSUInteger updateCount = [manager performSyncUpdateCheck];
 
         if (updateCount == 0)
-            [sself sendUpdateNotificationWithString:@"No new compatibilty updates."];
+            [sself sendUpdateNotificationWithString:NSLocalizedString(@"notification_status_update_x_new", @"Notification Titles")];
 
         else
         {
@@ -427,12 +423,12 @@ static NSString *const kBSUpdateCheckingTitle = @"Checking...";
 
             [sself refreshTabs:nil];
 
-            NSString *message = [NSString stringWithFormat:@"There were %u compatibility updates.", updateCount];
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"notification_status_update_x_new", @"Notification Titles"), updateCount];
             [sself sendUpdateNotificationWithString:message];
         }
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            item.title = kBSUpdateOriginalTitle;
+            item.title = NSLocalizedString(@"menu_item_title_compatibility_update", @"Menu Titles");
             item.enabled = YES;
             statusMenu.autoenablesItems = YES;
         });

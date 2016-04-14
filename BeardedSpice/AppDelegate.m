@@ -79,11 +79,6 @@ BOOL accessibilityApiEnabled = NO;
     // Create serial queue for user actions
     workingQueue = dispatch_queue_create("WorkingQueue", DISPATCH_QUEUE_SERIAL);
 
-    /* Check for strategy updates from the master github repo */
-    BSStrategyVersionManager *versionManager = [BSStrategyVersionManager sharedVersionManager];
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUpdateAtLaunch])
-        [versionManager performUpdateCheck];
-
     // Create serial queue for notification
     // We need queue because track info may contain image,
     // which retrieved from URL, this may cause blocking of the main thread.
@@ -115,12 +110,16 @@ BOOL accessibilityApiEnabled = NO;
     [self shortcutsBind];
     [self newConnectionToControlService];
 
-    // Scan all available tabs
-    __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_global_queue(0,0), ^{
-        __strong typeof(wself) sself = wself;
-        [sself refreshTabs:nil];
-    });
+    /* Check for strategy updates from the master github repo */
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUpdateAtLaunch])
+        [self checkForUpdates:self];
+    
+//    // Scan all available tabs
+//    __weak typeof(self) wself = self;
+//    dispatch_async(dispatch_get_global_queue(0,0), ^{
+//        __strong typeof(wself) sself = wself;
+//        [sself refreshTabs:nil];
+//    });
 }
 
 - (void)awakeFromNib
@@ -385,13 +384,17 @@ BOOL accessibilityApiEnabled = NO;
 
 - (IBAction)checkForUpdates:(id)sender
 {
-    NSMenuItem *item = [statusMenu itemAtIndex:0];
-    NSString *title = item.title;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        item.title = @"Checking...";
-        item.enabled = NO;
-    });
+    // MainMenu.xib has this menu item tag set as 256
+    NSMenuItem *item = [statusMenu itemWithTag:256];
+    // quietly exit because this shouldn't have happened...
+    if (!item)
+        return;
 
+    statusMenu.autoenablesItems = NO;
+    item.enabled = NO;
+    item.title = NSLocalizedString(@"Checking...", @"Menu Titles");
+
+    BOOL checkFromMenu = (sender != self);
     __weak typeof(self) wself = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
         __strong typeof(wself) sself = wself;
@@ -399,28 +402,30 @@ BOOL accessibilityApiEnabled = NO;
         BSStrategyVersionManager *manager = [BSStrategyVersionManager sharedVersionManager];
         NSUInteger updateCount = [manager performSyncUpdateCheck];
 
-        NSArray *strategies = [MediaStrategyRegistry getDefaultMediaStrategyNames];
-        for (NSString *name in strategies)
+        if (updateCount == 0){
+            if (checkFromMenu) {
+                [sself sendUpdateNotificationWithString:NSLocalizedString(@"No new compatibilty updates.", @"Notification Titles")];
+            }
+        }
+        else
         {
-            BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
-            [strategy reloadData];
+            NSArray *strategies = [MediaStrategyRegistry getDefaultMediaStrategyNames];
+            for (NSString *name in strategies)
+            {
+                BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
+                [strategy reloadData];
+            }
+
+            [sself refreshTabs:nil];
+
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
+            [sself sendUpdateNotificationWithString:message];
         }
 
-        [sself refreshTabs:nil];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            item.title = title;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            item.title = NSLocalizedString(@"Check for Compatibility Updates", @"Menu Titles");
             item.enabled = YES;
         });
-
-        NSUserNotification *notification = [NSUserNotification new];
-        notification.title = @"Bearded Spice - Compatibility Updates";
-        if (updateCount > 0)
-            notification.subtitle = [NSString stringWithFormat:@"There were %u compatibility updates.", updateCount];
-        else
-            notification.subtitle = @"No new compatibilty updates.";
-
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     });
 }
 
@@ -671,21 +676,26 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 
-- (void)refreshTabsForChrome:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
+- (NSArray *)refreshTabsForChrome:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
 
     if (timeout.reached) {
-        return;
+        return @[];
     }
 
+    NSMutableArray *items = [NSMutableArray array];
     @try {
 
+        NSMenuItem *item;
         ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
         if (chrome) {
             for (ChromeWindow *chromeWindow in [chrome.windows get]) {
                 for (ChromeTab *chromeTab in [chromeWindow.tabs get]) {
-                    [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
+                    item = [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
+                    if (item) {
+                        [items addObject:item];
+                    }
                     if (timeout.reached) {
-                        return;
+                        return items;
                     }
                 }
             }
@@ -694,23 +704,30 @@ BOOL accessibilityApiEnabled = NO;
     @catch (NSException *exception) {
         NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
     }
+
+    return items;
 }
 
-- (void)refreshTabsForSafari:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
+- (NSArray *)refreshTabsForSafari:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
 
     if (timeout.reached) {
-        return;
+        return @[];
     }
 
+    NSMutableArray *items = [NSMutableArray array];
     @try {
 
+        NSMenuItem *item;
         SafariApplication *safari = (SafariApplication *)app.sbApplication;
         if (safari) {
             for (SafariWindow *safariWindow in [safari.windows get]) {
                 for (SafariTab *safariTab in [safariWindow.tabs get]) {
-                    [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+                    if (item) {
+                        [items addObject:item];
+                    }
                     if (timeout.reached) {
-                        return;
+                        return items;
                     }
                 }
             }
@@ -719,11 +736,14 @@ BOOL accessibilityApiEnabled = NO;
     @catch (NSException *exception) {
         NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
     }
+
+    return items;
 }
 
-- (void)refreshTabsForNativeApp:(runningSBApplication *)app
+- (NSArray *)refreshTabsForNativeApp:(runningSBApplication *)app
                           class:(Class)theClass {
 
+    NSMutableArray *items = [NSMutableArray array];
     if (app) {
 
         TabAdapter *tab = [theClass tabAdapterWithApplication:app];
@@ -734,8 +754,8 @@ BOOL accessibilityApiEnabled = NO;
 
             if (menuItem) {
 
-                [menuItems addObject:menuItem];
 
+                [items addObject:menuItem];
                 [menuItem setRepresentedObject:tab];
 
                 // check playing status
@@ -747,74 +767,97 @@ BOOL accessibilityApiEnabled = NO;
             }
         }
     }
+    return items;
 }
 
 // must be invoked not on main queue
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Refreshing tabs...");
-    [self removeAllItems];
+    @autoreleasepool {
 
-    //hold activeTab object
-    __unsafe_unretained TabAdapter *_activeTab = activeTab;
+        //hold activeTab object
+        __unsafe_unretained TabAdapter *_activeTab = activeTab;
+        //hold tab list
+        NSArray *_menuItems = menuItems;
+        NSMutableArray *newItems = [NSMutableArray array];
 
-    if (accessibilityApiEnabled) {
+        [self removeAllItems];
 
-        BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-        [self refreshApplications:timeout];
+        if (accessibilityApiEnabled) {
 
-        [mediaStrategyRegistry beginStrategyQueries];
+            BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
+            [self refreshApplications:timeout];
 
-        [self refreshTabsForChrome:chromeApp timeout:timeout];
-        [self refreshTabsForChrome:canaryApp timeout:timeout];
-        [self refreshTabsForChrome:yandexBrowserApp timeout:timeout];
-        [self refreshTabsForChrome:chromiumApp timeout:timeout];
-        [self refreshTabsForSafari:safariApp timeout:timeout];
+            [mediaStrategyRegistry beginStrategyQueries];
 
-        for (runningSBApplication *app in nativeApps) {
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromeApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
 
-            if (timeout.reached) {
-                break;
+            for (runningSBApplication *app in nativeApps) {
+
+                if (timeout.reached) {
+                    break;
+                }
+
+                [newItems addObjectsFromArray:[self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]]];
             }
 
-            [self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]];
+            [mediaStrategyRegistry endStrategyQueries];
+
         }
 
-        [mediaStrategyRegistry endStrategyQueries];
+        //
+        NSMutableArray *tabs = [[newItems valueForKey:@"representedObject"] mutableCopy];
+        for (NSMenuItem *item in _menuItems) {
 
-    }
-
-    dispatch_sync(dispatch_get_main_queue(), ^{
-
-        [self resetStatusMenu];
-
-        if (menuItems.count) {
-
-            for (NSMenuItem *item in menuItems) {
-
-                [statusMenu insertItem:item atIndex:0];
+            NSUInteger index = [tabs indexOfObject:item.representedObject];
+            if (index != NSNotFound) {
+                [menuItems addObject:newItems[index]];
+                [newItems removeObjectAtIndex:index];
+                [tabs removeObjectAtIndex:index];
             }
-            //        [keyTap startWatchingMediaKeys];
         }
-        else{
-            //        [keyTap stopWatchingMediaKeys];
-        }
-    });
+        [menuItems addObjectsFromArray:newItems];
+        //
 
-    //check activeTab
-    if (_activeTab == activeTab) {
-        activeTab = nil;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+
+            [self resetStatusMenu];
+
+            if (menuItems.count) {
+
+                for (NSMenuItem *item in menuItems) {
+
+                    [statusMenu insertItem:item atIndex:0];
+                }
+                //        [keyTap startWatchingMediaKeys];
+            }
+            else{
+                //        [keyTap stopWatchingMediaKeys];
+            }
+        });
+
+        //check activeTab
+        if (_activeTab == activeTab) {
+            activeTab = nil;
+        }
     }
 }
 
--(void)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
+-(NSMenuItem *)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
 {
     TabAdapter *tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
     if (tab)
-        [self addStatusMenuItemFor:tab];
+        return [self addStatusMenuItemFor:tab];
+
+    return nil;
 }
 
--(void)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
+-(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
 {
     TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
                                               andWindow:safariWindow
@@ -827,31 +870,32 @@ BOOL accessibilityApiEnabled = NO;
         NSString *key = tab.key;
         if ([NSString isNullOrEmpty:key]) {
             //key was not assigned, we think this is fake pinned tab.
-            return;
+            return nil;
         }
 
         if ([SafariTabKeys containsObject:key]) {
 
-            return;
+            return nil;
         }
         //-------------------------------------------
 
-        if ([self addStatusMenuItemFor:tab]) {
-
+        NSMenuItem *item = [self addStatusMenuItemFor:tab];
+        if (item) {
             [SafariTabKeys addObject:key];
+            return item;
         }
     }
+
+    return nil;
 }
 
--(BOOL)addStatusMenuItemFor:(TabAdapter *)tab {
+-(NSMenuItem *)addStatusMenuItemFor:(TabAdapter *)tab {
 
     BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
     if (strategy) {
 
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
         if (menuItem){
-
-            [menuItems addObject:menuItem];
 
             [menuItem setRepresentedObject:tab];
 
@@ -861,11 +905,11 @@ BOOL accessibilityApiEnabled = NO;
 
             [self repairActiveTabFrom:tab];
 
-            return YES;
+            return menuItem;
         }
     }
 
-    return NO;
+    return nil;
 }
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab
@@ -900,12 +944,11 @@ BOOL accessibilityApiEnabled = NO;
                 [activeTab toggleTab];
             }
         }
-        
+
         activeTab = tab;
         activeTabKey = [tab key];
         NSLog(@"Active tab set to %@", activeTab);
     }
-
     return YES;
 }
 
@@ -1196,6 +1239,15 @@ BOOL accessibilityApiEnabled = NO;
 
 
 }
+
+- (void)sendUpdateNotificationWithString:(NSString *)message
+{
+    NSUserNotification *notification = [NSUserNotification new];
+    notification.title = NSLocalizedString(@"Bearded Spice - Compatibility Updates", @"Notification Titles");
+    notification.subtitle = message;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods

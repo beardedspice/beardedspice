@@ -10,6 +10,7 @@
 #import "EHSystemUtils.h"
 
 #define COMMAND_TIMEOUT         3 // 0.3 second
+#define RAISING_WINDOW_DELAY    0.1 //0.1 second
 
 @implementation runningSBApplication
 
@@ -65,8 +66,8 @@
 }
 
 - (void)makeKeyFrontmostWindow{
-  
-    [EHSystemUtils callOnMainQueue:^{
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RAISING_WINDOW_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         AXUIElementRef ref = AXUIElementCreateApplication(self.processIdentifier);
         
@@ -91,8 +92,17 @@
                                 role &&
                                 CFStringCompare(role, CFSTR("AXWindow"), 0) == kCFCompareEqualTo) {
                                 
-                                err = AXUIElementPerformAction(window, CFSTR("AXRaise"));
-                                break;
+                                CFRelease(role);
+                                
+                                err = AXUIElementCopyAttributeValue(window, CFSTR("AXSubrole"), (CFTypeRef *)&role);
+                                if (err == kAXErrorSuccess &&
+                                    role &&
+                                    CFStringCompare(role, CFSTR("AXStandardWindow"), 0) == kCFCompareEqualTo) {
+                                    
+                                    CFRelease(role);
+                                    err = AXUIElementPerformAction(window, CFSTR("AXRaise"));
+                                    break;
+                                }
                             }
                         }
                         
@@ -103,7 +113,7 @@
             }
             CFRelease(ref);
         }
-    }];
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////

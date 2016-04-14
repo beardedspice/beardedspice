@@ -48,11 +48,11 @@
         //Get the result from the hack element
 
         [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];
-        
+
         NSDictionary *result = [self.tab executeJavascript:@"JSON.parse(document.getElementById('" HACK_NAME @"').innerText)"];
-        
+
         [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"').remove()"];
-        
+
         return result[@"hackResult"];
     }
 
@@ -150,9 +150,9 @@
 }
 
 - (void)toggleTab{
-    
+
     if ([self isActivated]){
-        
+
         if ([self.tab id] != _previousTabId) {
 
             NSInteger tabIndex = [self findTabIndexById:_previousTabId];

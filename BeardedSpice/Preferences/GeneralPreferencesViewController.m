@@ -98,8 +98,12 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 - (IBAction)toggleLaunchAtStartup:(id)sender{
 
     BOOL shouldBeLaunchAtLogin = [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceLaunchAtLogin];
-    [BSLaunchAtLogin launchAtStartup:shouldBeLaunchAtLogin];
+    // We launch Controller of the "Launch at Login" in concurrent queue,
+    //because probability exists of hanging app on obtaining list of the login items.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
+        [BSLaunchAtLogin launchAtStartup:shouldBeLaunchAtLogin];
+    });
 }
 
 - (IBAction)toggleAutoPause:(id)sender {
@@ -129,7 +133,15 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 // Repairs user defaults from login items.
 - (void)repairLaunchAtLogin{
 
-    [[NSUserDefaults standardUserDefaults] setBool:[BSLaunchAtLogin isLaunchAtStartup] forKey:BeardedSpiceLaunchAtLogin];
+    // We launch Controller of the "Launch at Login" in concurrent queue,
+    //because probability exists of hanging app on obtaining list of the login items.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        BOOL val = [BSLaunchAtLogin isLaunchAtStartup];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSUserDefaults standardUserDefaults] setBool:val forKey:BeardedSpiceLaunchAtLogin];
+
+        });
+    });
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {

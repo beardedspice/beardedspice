@@ -57,7 +57,7 @@
 }
 
 - (void)toggleTab{
-    
+
     if ([self isActivated]){
         [self.application hide];
         _wasActivated = NO;
@@ -92,8 +92,13 @@
     }
 }
 
+- (NSUInteger)hash{
+
+    return [[self key] hash];
+}
+
 - (BOOL)check{
-    
+
     NSNumber *result = [self executeJavascript:CHECK_EXEC];
     return [result boolValue];
 }

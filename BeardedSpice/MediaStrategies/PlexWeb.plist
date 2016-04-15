@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  PlexWeb.plist
+//  BeardedSpice
+//
+//  Created by Ryan Sullivan on 8/20/15.
+//  Copyright (c) 2015 BeardedSpice. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Plex Web</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>script</key>
+        <string>(function(){return (window.PLEXWEB != undefined);})()</string>
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function() {
+        var theButton = document.querySelector('.player.music .pause-btn');
+        if (theButton)
+            return !(theButton.classList.contains('hidden'));
+        else
+            return (document.querySelector('.video-player.playing') != undefined);
+    })()</string>
+
+    <key>toggle</key>
+    <string>(function () {
+        var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
+        var classList = document.querySelector(thePlayer+(document.querySelector(thePlayer+' .pause-btn').classList;
+        classList.contains('hidden') ? ' .play' : ' .pause')+'-btn').click();
+    })()</string>
+
+    <key>previous</key>
+    <string>(function (){
+        var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
+        document.querySelector(thePlayer+' .previous-btn').click()
+    })()</string>
+
+    <key>next</key>
+    <string>(function (){
+        var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
+        document.querySelector(thePlayer+' .next-btn').click()
+    })()</string>
+
+    <key>pause</key>
+    <string>(function (){
+        var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
+        document.querySelector(thePlayer+' .pause-btn').click()
+    })()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function (){
+        if (document.querySelector('.player.music')) {
+            var mediaPoster = document.querySelector('.player.music .media-poster');
+            return {
+                'image': mediaPoster.getAttribute('data-image-url'),
+                'track': mediaPoster.getAttribute('data-title'),
+                'album': mediaPoster.getAttribute('data-image-title'),
+                'artist': document.querySelector('.player.music  .grandparent-title').innerText,
+                'favorited': (document.querySelector('.player.music .rating-container .user-rating') != undefined)
+            }
+        }
+        return {}
+    })()</string>
+</dict>
+</plist>

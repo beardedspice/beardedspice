@@ -8,7 +8,7 @@
 
 #import "NSURL+Utils.h"
 
-@implementation NSURL (Utils)
+@implementation NSURL (BSUtils)
 
 /**
     Downloads data from that URL.
@@ -61,4 +61,52 @@
     }
 }
 
+#pragma mark - File Operations
+
++ (NSURL *)versionsFileFromURL
+{
+    return [self fileFromURL:@"versions"];
+}
+
++ (NSURL *)fileFromURL:(NSString *)fileName
+{
+    NSArray *documentPaths =  NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [documentPaths firstObject];
+    fileName = fileName ? [NSString stringWithFormat:@"%@.plist", fileName] : @"";
+
+    NSString *path = [NSString stringWithFormat:@"%@/BeardedSpice/MediaStrategies/%@", documentsDir, fileName];
+    // if no filename length then its a directory reference
+    return [[NSURL alloc] initFileURLWithPath:path isDirectory:fileName.length == 0];
+}
+
+- (BOOL)fileExists
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    return [fileManager fileExistsAtPath:[self path]];
+}
+
+- (BOOL)copyFileTo:(NSString * _Nonnull)targetFilePath
+{
+    // file referenced by this nsstring does not exist. aborting.
+    if (![self fileExists])
+        return NO;
+
+    NSURL *pathWithoutFile = [NSURL fileFromURL:nil];
+    NSURL *targetURL = [NSURL fileFromURL:targetFilePath];
+
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL ret = [fileManager createDirectoryAtURL:pathWithoutFile withIntermediateDirectories:YES attributes:nil error:&error];
+    if (!ret)
+    {
+        NSLog(@"An error occured creating the path to %@: %@", targetURL, [error localizedDescription]);
+        return ret;
+    }
+
+    ret = [fileManager copyItemAtURL:self toURL:targetURL error:&error];
+    if (error)
+        NSLog(@"An error occured while copying file %@: %@", targetURL, [error localizedDescription]);
+
+    return ret;
+}
 @end

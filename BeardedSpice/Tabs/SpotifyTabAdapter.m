@@ -8,8 +8,9 @@
 
 #import "SpotifyTabAdapter.h"
 #import "runningSBApplication.h"
+#import "BSTrack.h"
 #import "NSString+Utils.h"
-#import "MediaStrategy.h"
+#import "BSMediaStrategy.h"
 #import "NSURL+Utils.h"
 
 #define APPID_SPOTIFY           @"com.spotify.client"
@@ -18,34 +19,35 @@
 #define GET_INFO_TIMEOUT        1.0
 #define IMAGE_OPTIMAL_WIDTH     128
 
+
 @implementation SpotifyTabAdapter
 
 static NSString *_lastTrackId;
 static NSImage *_lastTrackImage;
 
 + (NSString *)displayName{
-    
+
     return APPNAME_SPOTIFY;
 }
 
 + (NSString *)bundleId{
-    
+
     return APPID_SPOTIFY;
 }
 
 - (NSString *)title{
 
     @autoreleasepool {
-        
+
         SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
         SpotifyTrack *currentTrack = [Spotify currentTrack];
-        
+
         NSString *title;
         if (currentTrack) {
-            
+
             if (![NSString isNullOrEmpty:currentTrack.name])
                 title = currentTrack.name;
-            
+
             if (![NSString isNullOrEmpty:currentTrack.artist]) {
 
                 if (title) title = [title stringByAppendingFormat:@" - %@", currentTrack.artist];
@@ -53,23 +55,23 @@ static NSImage *_lastTrackImage;
                     title = currentTrack.artist;
             }
         }
-        
+
         if ([NSString isNullOrEmpty:title]) {
             title = NSLocalizedString(@"No Track", @"SpotifyTabAdapter");
         }
-        
+
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_SPOTIFY];
     }
 }
 
 - (NSString *)URL{
-    
+
     return @"Spotify";
 }
 
 // We have only one window.
 - (NSString *)key{
-    
+
     return @"A:SPOTIFY";
 }
 
@@ -86,14 +88,14 @@ static NSImage *_lastTrackImage;
 //////////////////////////////////////////////////////////////
 
 - (void)toggle{
-    
+
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify playpause];
     }
 }
 - (void)pause{
-    
+
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify pause];
@@ -101,7 +103,7 @@ static NSImage *_lastTrackImage;
 
 }
 - (void)next{
-    
+
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify nextTrack];
@@ -109,7 +111,7 @@ static NSImage *_lastTrackImage;
 
 }
 - (void)previous{
-    
+
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify previousTrack];
@@ -117,14 +119,14 @@ static NSImage *_lastTrackImage;
 
 }
 
-- (Track *)trackInfo{
+- (BSTrack *)trackInfo{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
-        
+
         SpotifyTrack *iTrack = [Spotify currentTrack];
-        Track *track = [Track new];
-        
+        BSTrack *track = [BSTrack new];
+
         track.track = iTrack.name;
         track.album = iTrack.album;
         track.artist = iTrack.artist;
@@ -132,7 +134,7 @@ static NSImage *_lastTrackImage;
 
         return track;
     }
-    
+
     return nil;
 }
 
@@ -140,20 +142,20 @@ static NSImage *_lastTrackImage;
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
-     
+
         switch (Spotify.playerState) {
-                
+
             case SpotifyEPlSPaused:
             case SpotifyEPlSStopped:
-                
+
                 return NO;
-                
+
             default:
-                
+
                 return YES;
         }
     }
-    
+
     return NO;
 }
 

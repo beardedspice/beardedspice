@@ -7,6 +7,7 @@
 //
 
 #import "MediaControllerObject.h"
+#import "BSMediaStrategy.h"
 
 @implementation MediaControllerObject
 
@@ -14,26 +15,29 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 
 - (id)initWithObject:(id)object{
-    
+
     self = [super init];
     if (self) {
         if ([object respondsToSelector:@selector(displayName)]) {
             _name = [object displayName];
         }
-        if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
+
+        if ([object isMemberOfClass:BSMediaStrategy.class]) {
+            _isAuto = [object testIfImplemented:kBSMediaStrategyKeyIsPlaying];
+        } else if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
             _isAuto = YES;
         }
-        
+
         _representationObject = object;
     }
-    
+
     return self;
 }
 
 #pragma clang diagnostic pop
 
 - (id)init{
-    
+
     return [self initWithObject:nil];
 }
 

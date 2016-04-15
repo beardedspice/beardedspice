@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Stitcher.plist
+//  BeardedSpice
+//
+//  Created by Christopher Williams on 3/24/14.
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Stitcher</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*stitcher.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){ return document.getElementById('jp_audio_0').paused; })()</string>
+
+    <key>toggle</key>
+    <string>(function(){
+        var player = document.getElementById('jp_audio_0');
+        if (player.paused) { player.play() }
+        else { player.pause() }
+    })()</string>
+
+    <key>previous</key>
+    <string></string>
+
+    <key>next</key>
+    <string></string>
+
+    <key>pause</key>
+    <string>(function(){ return document.getElementById('jp_audio_0').pause(); })()</string>
+
+    <key>favorite</key>
+    <string></string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string></string>
+</dict>
+</plist>

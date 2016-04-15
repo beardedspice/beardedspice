@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  LastFm.plist
+//  BeardedSpice
+//
+//  Created by Tyler Rhodes on 12/19/13.
+//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>LastFM</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*last.fm/listen*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>(function(){
+        var e = document.querySelectorAll('#radioControlPlay')[0];
+        var t = document.querySelectorAll('#radioControlPause')[0];
+        var m = document.querySelectorAll('#webRadio')[0];
+        if(m.classList.contains('paused')) { e.click() }
+        else { t.click() }
+    })()</string>
+
+    <key>next</key>
+    <string>(function(){return document.querySelectorAll('#radioControlSkip')[0].click()})();</string>
+
+    <key>pause</key>
+    <string>(function(){var t=document.querySelectorAll('#radioControlPause')[0].click()})()</string>
+</dict>
+</plist>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  NoonPacific.m
+//  BeardedSpice
+//
+//  Created by Tomas on 07/05/15.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Noon Pacific</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*noonpacific.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- relevant javascripts go here -->
+    <key>isPlaying</key>
+    <string>(function() { return document.querySelector('.fa-pause') ? true:false;})()</string>
+
+    <key>toggle</key>
+    <string>(function(){return document.querySelectorAll('.fa-fw')[1].click()})()</string>
+
+    <key>previous</key>
+    <string>(function(){return document.querySelector('.fa-backward').click()})()</string>
+
+    <key>next</key>
+    <string>(function(){return document.querySelector('.fa-forward').click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){return document.querySelector('.fa-pause').click()})()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        var track = document.querySelectorAll('.track-info div p');
+        var imgSrc = document.querySelector('.mixtape-container img.mixtape').getAttribute('src');
+        var album = document.querySelector('.mixtape-container div.mixtape-label h3').innerText;
+        return {
+            'track':track[0].firstChild.nodeValue,
+            'artist':track[1].firstChild.nodeValue,
+            'album':album,
+            'image':imgSrc
+        }})()</string>
+</dict>
+</plist>

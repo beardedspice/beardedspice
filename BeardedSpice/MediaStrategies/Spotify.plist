@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Spotify.plist
+//  BeardedSpice
+//
+//  Created by Jose Falcon on 12/19/13.
+//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Spotify</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*play*.spotify.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>document.querySelector('#app-player').contentWindow.document.querySelector('#play-pause').classList.contains('playing')</string>
+
+    <key>toggle</key>
+    <string>(function(){document.querySelectorAll('#app-player')[0].contentWindow.document.querySelectorAll('#play-pause')[0].click()})()</string>
+
+    <key>previous</key>
+    <string>(function(){document.querySelectorAll('#app-player')[0].contentWindow.document.querySelectorAll('#previous')[0].click()})()</string>
+
+    <key>next</key>
+    <string>(function(){document.querySelectorAll('#app-player')[0].contentWindow.document.querySelectorAll('#next')[0].click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){
+        var e = document.querySelectorAll('#app-player')[0].contentWindow.document.querySelectorAll('#play-pause')[0];
+        if(e.classList.contains('playing')) { e.click() }
+    })()</string>
+
+    <key>favorite</key>
+    <string></string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string></string>
+</dict>
+</plist>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  PocketCasts.plist
+//  BeardedSpice
+//
+//  Created by Dmytro Piliugin on 1/23/15.
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>PocketCasts</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*play.pocketcasts.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>(function(){document.querySelector('div.play_pause_button').click()})()</string>
+
+    <key>previous</key>
+    <string>(function(){document.querySelector('div.skip_back_button').click()})()</string>
+
+    <key>next</key>
+    <string>(function(){document.querySelector('div.skip_forward_button').click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){document.querySelector('div.pause_button').click()})()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        return {
+            'track': document.querySelector('div.player_top div.player_episode').innerHTML,
+            'album': document.querySelector('div.player_top div.player_podcast_title').innerHTML,
+            'image': document.querySelector('div.player_top div.player_artwork img').src,
+        };
+    })()</string>
+</dict>
+</plist>

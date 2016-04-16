@@ -8,7 +8,8 @@
 
 #import "NSString+Utils.h"
 
-@implementation NSString (Utils)
+// FIXME change filename to match namespacing of category
+@implementation NSString (BSUtils)
 
 + (BOOL)isNullOrEmpty:(NSString *)str {
     return (!str || [str length] == 0);
@@ -25,8 +26,7 @@
     // Old (commented) variant may be true
     // return [str stringByTrimmingCharactersInSet:[NSCharacterSet
     // whitespaceCharacterSet]];
-    return [str stringByTrimmingCharactersInSet:
-                    [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 - (NSInteger)indexOf:(NSString *)string fromIndex:(NSUInteger)index {
@@ -43,9 +43,18 @@
     return [self indexOf:string fromIndex:0];
 }
 
-- (NSString *)stringForSubstitutionInJavascriptPlaceholder{
+- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive {
+    if (sensitive)
+        return ([self rangeOfString:str]).location != NSNotFound;
     
-    NSString *sb = [self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    return ([self rangeOfString:str options:NSCaseInsensitiveSearch])
+    .location != NSNotFound;
+}
+
+- (NSString *)stringForSubstitutionInJavascriptPlaceholder{
+
+    NSString *sb = [self stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    sb = [self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
     sb = [sb stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
     return [sb stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }

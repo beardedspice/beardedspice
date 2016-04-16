@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  AudioMack.plist
+//  BeardedSpice
+//
+//  Created by Sean Coker on 12/11/14.
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>AudioMack</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*audiomack.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!--
+    relevant javascripts go here.
+    NOTE: &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>toggle</key>
+    <string>(function(){
+        var player = document.getElementById('listplayer');
+        var play_button = document.getElementById('play-button');
+        if (player &amp;&amp; player.clientHeight) {
+            play_button.click();
+            return;
+        }
+        var feed_buttons = document.querySelectorAll('.feed a.play');
+        if (feed_buttons.length) {
+            feed_buttons[0].click();
+            return;
+        }
+        if (play_button) { play_button.click(); }
+    })()</string>
+
+    <key>previous</key>
+    <string>(function(){
+        var player = document.getElementById('listplayer');
+        if (player &amp;&amp; player.clientHeight) {
+            var prev_button = player.querySelector('.prev-track');
+            prev_button.click();
+            return;
+        }
+        var feed_buttons = document.querySelectorAll('.feed a.play');
+        if (feed_buttons.length) {
+            feed_buttons[0].click();
+            return;
+        }
+    })()</string>
+
+    <key>next</key>
+    <string>(function(){
+        var player = document.getElementById('listplayer');
+        if (player &amp;&amp; player.clientHeight) {
+            var next_button = player.querySelector('.next-track');
+            next_button.click();
+            return;
+        }
+        var feed_buttons = document.querySelectorAll('.feed a.play');
+        if (feed_buttons.length) {
+            feed_buttons[0].click();
+            return;
+        }
+    })()</string>
+
+    <key>pause</key>
+    <string>(function(){
+        var play_button = document.getElementById('play-button');
+        if (play_button.className.indexOf('pause') > 1) {
+            play_button.click();
+        }
+    })()</string>
+</dict>
+</plist>

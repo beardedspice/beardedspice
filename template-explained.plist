@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  NewStrategyName.plist
+//  BeardedSpice
+//
+//  Created by You on Today's Date.
+//  Copyright (c) 2015 Bearded Spice. All rights reserved.
+// OR
+//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//
+
+// We put the copyright inside the plist to retain consistent syntax coloring.
+-->
+<dict>
+    <!-- NOTE: This file MUST be viewable in xcode or validated by the plutil utility. -->
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string></string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*[YOUR-URL-DOMAIN-HERE]*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+        <!--
+        OR
+        <key>predicate</key>
+        <string>SELF LIKE[c] '[YOUR-TARGET-TITLE-HERE]'</string>
+        <key>tabValue</key>
+        <string>title</string>
+        OR
+        <key>script</key>
+        <string>some javascript here</string>
+        -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string></string>
+
+    <key>toggle</key>
+    <string></string>
+
+    <key>previous</key>
+    <string></string>
+
+    <key>next</key>
+    <string></string>
+
+    <key>pause</key>
+    <string></string>
+
+    <key>favorite</key>
+    <string></string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string></string>
+</dict>
+</plist>

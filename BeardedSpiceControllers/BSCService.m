@@ -18,6 +18,7 @@
 #import "DDHidAppleMikey.h"
 
 #import "EHSystemUtils.h"
+#import "NSString+Utils.h"
 
 @implementation BSCService{
     
@@ -533,7 +534,7 @@ static BSCService *bscSingleton;
         //checking that rcd is enabled and disabling it
         NSString *cliOutput = NULL;
         if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
-            _remoteControlDaemonEnabled = [cliOutput containsString:@"com.apple.rcd"];
+            _remoteControlDaemonEnabled = ( [cliOutput contains:@"com.apple.rcd" caseSensitive:YES] != -1 );
             if (_remoteControlDaemonEnabled) {
                 _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil] == 0);
             }

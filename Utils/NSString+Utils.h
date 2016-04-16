@@ -6,21 +6,25 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface NSString (Utils)
+// FIXME change filename to match namespacing of category
+@interface NSString (BSUtils)
 
-+ (BOOL)isNullOrEmpty:(NSString *)str;
-+ (BOOL)isNullOrWhiteSpace:(NSString *)str;
-+ (NSString *)stringByTrim:(NSString *)str;
++ (BOOL)isNullOrEmpty:(NSString * _Nullable)str;
++ (BOOL)isNullOrWhiteSpace:(NSString * _Nullable)str;
++ (NSString * _Nullable)stringByTrim:(NSString * _Nonnull)str;
 /**
  @return index of string into receiver, or -1 if not found
  */
-- (NSInteger)indexOf:(NSString *)string fromIndex:(NSUInteger)index;
+- (NSInteger)indexOf:(NSString * _Nonnull)string fromIndex:(NSUInteger)index;
 /**
  @return index of string into receiver, or -1 if not found
  */
-- (NSInteger)indexOf:(NSString *)string;
+- (NSInteger)indexOf:(NSString * _Nonnull)string;
+
+
+- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive;
 
 /**
  Returns converted string where:

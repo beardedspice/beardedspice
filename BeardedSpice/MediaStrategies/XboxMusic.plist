@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  XboxMusic.plist
+//  BeardedSpice
+//
+//  Created by Jonathan Ruiz on 5/20/14.
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Xbox Music</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*music.xbox.com*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string></string>
+
+    <key>toggle</key>
+    <string>(function(){window.app.mainViewModel.playerVM.togglePause()})();</string>
+
+    <key>previous</key>
+    <string>(function(){window.app.mainViewModel.playerVM.previous()})();</string>
+
+    <key>next</key>
+    <string>(function(){window.app.mainViewModel.playerVM.next()})();</string>
+
+    <key>pause</key>
+    <string>(function(){
+        var app = window.app.mainViewModel.playerVM;
+        if(app.isPlayingOrLoading()) { app.togglePause() }
+    })();</string>
+
+    <key>favorite</key>
+    <string></string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string></string>
+</dict>
+</plist>

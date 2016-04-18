@@ -100,7 +100,7 @@
                                     CFStringCompare(role, CFSTR("AXStandardWindow"), 0) == kCFCompareEqualTo) {
                                     
                                     CFRelease(role);
-                                    err = AXUIElementPerformAction(window, CFSTR("AXRaise"));
+                                    AXUIElementPerformAction(window, CFSTR("AXRaise"));
                                     break;
                                 }
                             }

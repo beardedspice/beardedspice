@@ -6,21 +6,19 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "MediaStrategy.h"
+@class BSMediaStrategy;
+@class TabAdapter;
 
 @interface MediaStrategyRegistry : NSObject
-{
-    NSMutableArray *availableStrategies;
-}
+@property (nonatomic, strong) NSMutableArray *availableStrategies;
 
-+(NSArray *) getDefaultMediaStrategies;
++(NSArray<NSString *> *)getDefaultMediaStrategyNames;
 
 -(id) initWithUserDefaults:(NSString *)userDefaultsKeyPrefix;
--(void) addMediaStrategy:(MediaStrategy *) strategy;
--(void) removeMediaStrategy:(MediaStrategy *) strategy;
--(void) containsMediaStrategy:(MediaStrategy *) strategy;
--(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *) tab;
+-(void) addMediaStrategy:(BSMediaStrategy *) strategy;
+-(void) removeMediaStrategy:(BSMediaStrategy *) strategy;
+-(void) containsMediaStrategy:(BSMediaStrategy *) strategy;
+-(BSMediaStrategy *) getMediaStrategyForTab:(TabAdapter *) tab;
 -(NSArray *) getMediaStrategies;
 
 - (void)clearCache;

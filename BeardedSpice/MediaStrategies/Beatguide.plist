@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  Beatguide.plist
+//  BeardedSpice
+//
+//  Created by Colin White on 08/04/15.
+//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>Beatguide</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*beatguide.me*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!--
+    relevant javascripts go here.
+    NOTE: &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>@"(function(){return ($('.pause-icon').css('display') == 'block');})()</string>
+
+    <key>toggle</key>
+    <string>(function(){return document.querySelectorAll('.play-icon')[0].click()})()</string>
+
+    <key>previous</key>
+    <string>(function(){return document.querySelectorAll('.fa-backward')[0].click()})()</string>
+
+    <key>next</key>
+    <string>(function(){return document.querySelectorAll('.fa-forward')[0].click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){return document.querySelectorAll('.fa-pause')[0].click()})()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function() {
+        return {
+            'track': document.querySelectorAll('.track-title')[0].innerText,
+            'artist': document.querySelectorAll('.artist-name')[0].innerText,
+            'image': document.querySelectorAll('.track-artwork')[0].src
+        }})()</string>
+</dict>
+</plist>

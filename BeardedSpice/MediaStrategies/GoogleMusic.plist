@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  GoogleMusic.plist
+//  BeardedSpice
+//
+//  Created by Jose Falcon on 1/9/14.
+//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>GoogleMusic</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*play.google.com/music/*'</string>
+        <key>tabValue</key>
+        <string>url</string> <!-- current 'url' or 'title' -->
+    </dict>
+
+    <!-- Relevant javascripts go here.
+    - Normal formatting is supported (can copy/paste with newlines and indentations)
+    - &amp; is used to escape '&' so the file is readable.
+    -->
+    <key>isPlaying</key>
+    <string>(function(){
+        var e = document.querySelector('[data-id=play-pause]');
+        return e.classList.contains('playing');
+    })()</string>
+
+    <key>toggle</key>
+    <string>(function(){document.querySelector('[data-id=play-pause]').click()})()</string>
+
+    <key>previous</key>
+    <string>(function(){document.querySelector('[data-id=rewind]').click()})()</string>
+
+    <key>next</key>
+    <string>(function(){document.querySelector('[data-id=forward]').click()})()</string>
+
+    <key>pause</key>
+    <string>(function(){
+        var e = document.querySelector('[data-id=play-pause]');
+        if(e.classList.contains('playing')){
+            e.click()
+        }
+    })()</string>
+
+    <key>favorite</key>
+    <string>(function(){
+        document.querySelector('paper-icon-button[data-rating="5"]').click()
+    })()</string>
+
+    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    -->
+    <key>trackInfo</key>
+    <string>(function(){
+        return {
+            'track':  document.getElementById('currently-playing-title').innerText,
+            'album':  document.getElementsByClassName('player-album')[0].innerText,
+            'artist': document.getElementById('player-artist').innerText,
+            'image':  document.getElementById('playingBarArt').getAttribute('src')
+    }})()</string>
+</dict>
+</plist>

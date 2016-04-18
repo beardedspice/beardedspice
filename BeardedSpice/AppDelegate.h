@@ -20,7 +20,7 @@
 
 extern BOOL accessibilityApiEnabled;
 
-#import "MediaStrategy.h"
+#import "BSMediaStrategy.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
 
@@ -40,27 +40,28 @@ extern BOOL accessibilityApiEnabled;
 
     TabAdapter *activeTab;
     NSString *activeTabKey;
-    
+
     NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
-    
+
     MediaStrategyRegistry *mediaStrategyRegistry;
     NativeAppTabRegistry *nativeAppRegistry;
 
     NSWindowController *_preferencesWindowController;
-    
+
     NSMutableSet    *openedWindows;
-    
+
     dispatch_queue_t workingQueue;
     dispatch_queue_t notificationQueue;
-    
+
     NSXPCConnection *_connectionToService;
-    
+
     BOOL _AXAPIEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 
+- (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
 - (void)showNotification;
 

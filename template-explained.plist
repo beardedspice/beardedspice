@@ -44,7 +44,7 @@
     - Normal formatting is supported (can copy/paste with newlines and indentations)
     - &amp; is used to escape '&' so the file is readable.
     -->
-    <key>isPlaying</key>
+    <key>isPlaying</key> <!-- Returns true or false -->
     <string></string>
 
     <key>toggle</key>
@@ -59,13 +59,21 @@
     <key>pause</key>
     <string></string>
 
-    <key>favorite</key>
+    <key>favorite</key> <!-- Toggles favorite on/off -->
     <string></string>
 
-    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
-    - Namespaced keys currently supported include: track, album, artist, favorited, image
+    <!-- Return a dictionary of namespaced key/values here. All manipulation should be supported in javascript.
+    - Namespaced keys currently supported include: track, album, artist, favorited, image (URL)
     -->
     <key>trackInfo</key>
-    <string></string>
+    <string>(function(){
+        return {
+            'track': "Some Song",
+            'artist': "Some Person",
+            'album': "Some Album",
+            'image': "http://www.example.com/some/album/artwork.png"
+            'favorited': true
+        };})()
+    </string>
 </dict>
 </plist>

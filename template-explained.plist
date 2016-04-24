@@ -20,7 +20,7 @@
     <key>version</key>
     <integer>1</integer>
     <key>displayName</key>
-    <string></string>
+    <string>Strategy Template</string>
 
     <key>accepts</key>
     <dict>

@@ -54,7 +54,7 @@
 - (NSString *)stringForSubstitutionInJavascriptPlaceholder{
 
     NSString *sb = [self stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    sb = [self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    sb = [sb stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
     sb = [sb stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
     return [sb stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }

@@ -85,9 +85,8 @@ static NSString *const kBSIndexVersion = @"version";
     {
         NSURL *path = [NSURL fileFromURL:fileName];
         NSURL *versionPath = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"plist"];
-        BOOL success = [path fileExists] ? YES : [versionPath copyFileTo:fileName];
-        if (success)
-            _currentVersions = [[NSMutableDictionary alloc] initWithContentsOfURL:path];
+        if (![path fileExists])
+            [versionPath copyFileTo:fileName];
     }
 }
 

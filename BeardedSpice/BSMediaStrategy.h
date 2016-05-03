@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
+#import <JavaScriptCore/JavaScriptCore.h>
+
 @class BSTrack;
 @class TabAdapter;
 
@@ -33,7 +35,7 @@ extern NSString *const kBSMediaStrategyKeyTrackInfo;
 @property (nonatomic, assign, readonly) long strategyVersion;
 
 // This data should only be used for tests. DO NOT directly access.
-@property (nonatomic, strong, readonly) NSDictionary<NSString *, id> *strategyData;
+@property (nonatomic, strong, readonly) JSValue *strategyData;
 
 /**
  Caches the loaded strategies for reuse and requerying without hitting the disk.

@@ -49,6 +49,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Spotify](https://www.spotify.com/)
 - [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
+- [Downcast](http://downcast.fm/)
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)

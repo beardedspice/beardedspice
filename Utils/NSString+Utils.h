@@ -24,7 +24,7 @@
 - (NSInteger)indexOf:(NSString * _Nonnull)string;
 
 
-- (BOOL)contains:(NSString *_Nonnull)str caseSensitive:(BOOL)sensitive;
+- (BOOL)contains:(NSString * _Nonnull)str caseSensitive:(BOOL)sensitive;
 
 /**
  @return the 'self' script string with '()' added to the end

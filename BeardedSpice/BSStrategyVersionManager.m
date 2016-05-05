@@ -152,7 +152,7 @@ static NSString *const kBSIndexVersion = @"version";
 - (NSUInteger)performSyncUpdateCheck
 {
     self.lastUpdated = [NSDate date];
-    NSDictionary *newVersions = [[NSDictionary alloc] initWithContentsOfURL:_versionURL];
+    NSMutableDictionary<NSString *, NSNumber *> *newVersions = [[NSMutableDictionary alloc] initWithContentsOfURL:_versionURL];
 
     NSUInteger foundNewVersions = 0;
     for (NSString *key in newVersions)

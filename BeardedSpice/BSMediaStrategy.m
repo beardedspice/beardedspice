@@ -55,7 +55,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
 @implementation BSMediaStrategy
 
-+ (BSMediaStrategy *)cacheForStrategyName:(NSString *)strategyName
++ (BSMediaStrategy * _Nullable)cacheForStrategyName:(NSString * _Nonnull)strategyName
 {
     static dispatch_once_t setupCache;
     static dispatch_queue_t cacheSerialQueue;
@@ -86,7 +86,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return strategy;
 }
 
-- (instancetype)initWithStrategyName:(NSString *)strategyName
+- (instancetype _Nonnull)initWithStrategyName:(NSString * _Nonnull)strategyName
 {
     self = [super init];
     if (self)
@@ -117,7 +117,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
 #pragma mark - Core Functionality
 
-- (NSString *)displayName
+- (NSString * _Nonnull)displayName
 {
     if (!_strategyData)
         return _fileName;
@@ -126,7 +126,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return displayName ?: @""; // so we dont double the calculations
 }
 
-- (BOOL)accepts:(TabAdapter *)tab
+- (BOOL)accepts:(TabAdapter * _Nonnull)tab
 {
     if (!_strategyData || !tab)
         return NO;
@@ -171,7 +171,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return (![scriptString isNull] && ![scriptString isUndefined]);
 }
 
-- (BOOL)isPlaying:(TabAdapter *)tab
+- (BOOL)isPlaying:(TabAdapter * _Nonnull)tab
 {
     if (!_strategyData || !tab)
         return NO;
@@ -185,7 +185,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return [isPlaying boolValue] ?: NO;
 }
 
-- (NSString *)toggle
+- (NSString * _Nonnull)toggle
 {
     if (!_strategyData)
         return @"";
@@ -194,7 +194,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
-- (NSString *)previous
+- (NSString * _Nonnull)previous
 {
     if (!_strategyData)
         return @"";
@@ -203,7 +203,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
-- (NSString *)next
+- (NSString * _Nonnull)next
 {
     if (!_strategyData)
         return @"";
@@ -212,7 +212,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
-- (NSString *)pause
+- (NSString * _Nonnull)pause
 {
     if (!_strategyData)
         return @"";
@@ -221,7 +221,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
-- (NSString *)favorite
+- (NSString * _Nonnull)favorite
 {
     if (!_strategyData)
         return @"";
@@ -230,7 +230,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
-- (BSTrack *)trackInfo:(TabAdapter *)tab
+- (BSTrack * _Nullable)trackInfo:(TabAdapter * _Nonnull)tab
 {
     if (!_strategyData)
         return nil;
@@ -245,7 +245,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
 #pragma mark - Helper Functions
 
-+ (JSValue *)loadFile:(NSString *)strategyName
++ (JSValue * _Nullable)loadFile:(NSString * _Nonnull)strategyName
 {
     if (!strategyName || !strategyName.length)
         return nil;

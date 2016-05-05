@@ -370,7 +370,7 @@
 		652AD3361CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		652AD3391CC04ABA005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		652AD3391CC04ABA005396CD /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabRegistry.h; sourceTree = "<group>"; };
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };

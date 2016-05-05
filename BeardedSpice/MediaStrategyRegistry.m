@@ -95,7 +95,7 @@
     if (tab.check) {
 
         NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
-        BSMediaStrategy *strat = _registeredCache[cacheKey];
+        id strat = _registeredCache[cacheKey];
 
         /* Return the equivalent of a full scan except we dont repeat calculations */
         if (strat == [NSNull null])

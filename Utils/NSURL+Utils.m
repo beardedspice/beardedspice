@@ -14,7 +14,7 @@
     Downloads data from that URL.
     @return NSData object, which contains requested data, or nil on failure.
  */
-- (NSData *_Nullable)getDataWithTimeout:(NSTimeInterval)timeout {
+- (NSData * _Nullable)getDataWithTimeout:(NSTimeInterval)timeout {
 
     @autoreleasepool {
 

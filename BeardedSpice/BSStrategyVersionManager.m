@@ -13,10 +13,10 @@
 // This is the path format which requires a user/branch/filename for the target plist file.
 #ifndef DEBUG
 // release pathing that ONLY targets the official beardedspice master branch
-static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.plist";
+static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.js";
 #else
 // development pathing that allows dynamic branch assignment
-static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/%@/beardedspice/%@/BeardedSpice/MediaStrategies/%@.plist";
+static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/%@/beardedspice/%@/BeardedSpice/MediaStrategies/%@.js";
 #endif
 
 // This is to determine which repo fork we're working off

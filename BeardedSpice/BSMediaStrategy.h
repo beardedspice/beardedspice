@@ -14,13 +14,8 @@
 extern NSString *const kBSMediaStrategyKeyVersion;
 extern NSString *const kBSMediaStrategyKeyDisplayName;
 
-extern NSString *const kBSMediaStrategyKeyPredicate;
-extern NSString *const kBSMediaStrategyKeyScript;
-extern NSString *const kBSMediaStrategyKeyTabValue;
-extern NSString *const kBSMediaStrategyKeyTabValueURL;
-extern NSString *const kBSMediaStrategyKeyTabValueTitle;
-
-extern NSString *const kBSMediaStrategyKeyAccepts;
+extern NSString *const kBSMediaStrategyKeyAcceptsMethod;
+extern NSString *const kBSMediaStrategyKeyAcceptsParams;
 extern NSString *const kBSMediaStrategyKeyIsPlaying;
 extern NSString *const kBSMediaStrategyKeyToggle;
 extern NSString *const kBSMediaStrategyKeyPrevious;
@@ -28,6 +23,13 @@ extern NSString *const kBSMediaStrategyKeyNext;
 extern NSString *const kBSMediaStrategyKeyFavorite;
 extern NSString *const kBSMediaStrategyKeyPause;
 extern NSString *const kBSMediaStrategyKeyTrackInfo;
+
+extern NSString *const kBSMediaStrategyAcceptPredicateOnTab;
+extern NSString *const kBSMediaStrategyAcceptScript;
+extern NSString *const kBSMediaStrategyAcceptKeyFormat;
+extern NSString *const kBSMediaStrategyAcceptKeyArgs;
+extern NSString *const kBSMediaStrategyAcceptValueURL;
+extern NSString *const kBSMediaStrategyAcceptValueTitle;
 
 @interface BSMediaStrategy : NSObject
 

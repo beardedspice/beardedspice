@@ -43,15 +43,22 @@
     return [self indexOf:string fromIndex:0];
 }
 
-- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive {
+- (BOOL)contains:(NSString * _Nonnull)str caseSensitive:(BOOL)sensitive {
     if (sensitive)
         return ([self rangeOfString:str]).location != NSNotFound;
-    
+
     return ([self rangeOfString:str options:NSCaseInsensitiveSearch])
     .location != NSNotFound;
 }
 
-- (NSString *)stringForSubstitutionInJavascriptPlaceholder{
+- (NSString * _Nonnull)makeFunctionExecute
+{
+    // TODO add checks before hand to make sure we don't double execute
+    // TODO add checks before hand ot make sure this is actually a func
+    return [[NSString alloc] initWithFormat:@"%@();", self];
+}
+
+- (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder{
 
     NSString *sb = [self stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     sb = [sb stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];

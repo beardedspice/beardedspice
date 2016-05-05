@@ -679,7 +679,7 @@ BOOL accessibilityApiEnabled = NO;
     NSMutableArray *items = [NSMutableArray array];
     @try {
 
-        NSMenuItem *item;
+        NSMenuItem *item = nil;
         ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
         if (chrome) {
             for (ChromeWindow *chromeWindow in [chrome.windows get]) {

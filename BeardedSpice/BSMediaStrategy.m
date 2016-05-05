@@ -136,11 +136,15 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         return NO;
 
     NSString *acceptType = [self.strategyData[kBSMediaStrategyKeyAcceptsMethod] toString];
-    NSString *typeFormat = acceptParams[kBSMediaStrategyAcceptKeyFormat];
-    NSString *typeArgs = acceptParams[kBSMediaStrategyAcceptKeyArgs];
-
-    if ([acceptType isEqualToString:kBSMediaStrategyAcceptPredicateOnTab] && typeFormat)
+    if ([acceptType isEqualToString:kBSMediaStrategyAcceptPredicateOnTab])
     {
+        NSDictionary *acceptParams = [self.strategyData[kBSMediaStrategyKeyAcceptsParams] toDictionary];
+        if (!acceptParams.count)
+            return NO;
+
+        NSString *typeFormat = acceptParams[kBSMediaStrategyAcceptKeyFormat];
+        NSString *typeArgs = acceptParams[kBSMediaStrategyAcceptKeyArgs];
+
         id object = nil;
         if ([typeArgs isEqualToString:kBSMediaStrategyAcceptValueURL])
             object = [tab URL];
@@ -152,8 +156,10 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     }
     else if ([acceptType isEqualToString:kBSMediaStrategyAcceptScript])
     {
-        NSString *scriptString = acceptParams[kBSMediaStrategyAcceptScript];
-        return [[tab executeJavascript:scriptString] boolValue];
+        JSValue *acceptParams = _strategyData[kBSMediaStrategyKeyAcceptsParams];
+        JSValue *acceptScript = acceptParams[kBSMediaStrategyAcceptScript];
+        NSString *scriptString = [acceptScript toString];
+        return [[tab executeJavascript:[scriptString makeFunctionExecute]] boolValue];
     }
 
     return NO;
@@ -175,7 +181,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     if (!scriptString || !scriptString.length)
         return NO;
 
-    NSNumber *isPlaying = [tab executeJavascript:scriptString];
+    NSNumber *isPlaying = [tab executeJavascript:[scriptString makeFunctionExecute]];
     return [isPlaying boolValue] ?: NO;
 }
 
@@ -185,7 +191,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         return @"";
 
     JSValue *value = self.strategyData[kBSMediaStrategyKeyToggle];
-    return ([value isNull] || [value isUndefined]) ? @"" : [value toString];
+    return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
 - (NSString *)previous
@@ -194,7 +200,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         return @"";
 
     JSValue *value = self.strategyData[kBSMediaStrategyKeyPrevious];
-    return ([value isNull] || [value isUndefined]) ? @"" : [value toString];
+    return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
 - (NSString *)next
@@ -203,7 +209,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         return @"";
 
     JSValue *value = self.strategyData[kBSMediaStrategyKeyNext];
-    return ([value isNull] || [value isUndefined]) ? @"" : [value toString];
+    return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
 - (NSString *)pause
@@ -212,7 +218,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         return @"";
 
     JSValue *value = self.strategyData[kBSMediaStrategyKeyPause];
-    return ([value isNull] || [value isUndefined]) ? @"" : [value toString];
+    return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
 - (NSString *)favorite
@@ -221,7 +227,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         return @"";
 
     JSValue *value = self.strategyData[kBSMediaStrategyKeyDisplayName];
-    return ([value isNull] || [value isUndefined]) ? @"" : [value toString];
+    return ([value isNull] || [value isUndefined]) ? @"" : [[value toString] makeFunctionExecute];
 }
 
 - (BSTrack *)trackInfo:(TabAdapter *)tab
@@ -233,7 +239,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     if (!trackString || !trackString.length)
         return nil;
 
-    NSDictionary *trackData = [tab executeJavascript:trackString];
+    NSDictionary *trackData = [tab executeJavascript:[trackString makeFunctionExecute]];
     return (trackData && trackData.count) ? [[BSTrack alloc] initWithInfo:trackData] : nil;
 }
 

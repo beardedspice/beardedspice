@@ -24,7 +24,12 @@
 - (NSInteger)indexOf:(NSString * _Nonnull)string;
 
 
-- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive;
+- (BOOL)contains:(NSString *_Nonnull)str caseSensitive:(BOOL)sensitive;
+
+/**
+ @return the 'self' script string with '()' added to the end
+ */
+- (NSString * _Nonnull)makeFunctionExecute;
 
 /**
  Returns converted string where:
@@ -32,6 +37,6 @@
  ' symbol replaced on \',
  " symbol replaced on \".
  */
-- (NSString *)stringForSubstitutionInJavascriptPlaceholder;
+- (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder;
 
 @end

@@ -13,8 +13,8 @@ BSStrategy = {
     format:"SELF LIKE[c] '*shuffler.fm/tracks*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {
+  isPlaying: function () {},
+  toggle: function () {
     var ap=window.SHUFFLER.audioPlayer;
     if(ap.playing()) {
       ap.pause();
@@ -22,9 +22,9 @@ BSStrategy = {
       ap.play();
     }
   },
-  next: function next () {window.SHUFFLER.playerController.onAudioPlayerPlaybackEndHandler();},
-  favorite: function favorite () {},
-  previous: function previous () {SHUFFLER.playerController.onPlayerUiButtonPrevHandler();},
-  pause: function pause () {window.SHUFFLER.audioPlayer.pause();},
-  trackInfo: function trackInfo () {}
+  next: function () {window.SHUFFLER.playerController.onAudioPlayerPlaybackEndHandler();},
+  favorite: function () {},
+  previous: function () {SHUFFLER.playerController.onPlayerUiButtonPrevHandler();},
+  pause: function () {window.SHUFFLER.audioPlayer.pause();},
+  trackInfo: function () {}
 }

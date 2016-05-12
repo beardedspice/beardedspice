@@ -13,8 +13,8 @@ BSStrategy = {
     format:"SELF LIKE[c] '*wonder.fm*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {return $('div.jp-audio').hasClass('jp-state-playing');},
-  toggle: function toggle () {
+  isPlaying: function () {return $('div.jp-audio').hasClass('jp-state-playing');},
+  toggle: function () {
     var e = document.querySelector('.jp-type-single');
     var u = 'none' === getComputedStyle(e,null).display;
     var n = 'none' === getComputedStyle(l,null).display;
@@ -31,11 +31,11 @@ BSStrategy = {
       l.click();
     }
   },
-  next: function next () {document.querySelector('a.jp-next').click()},
-  favorite:function favorite () { document.querySelector('.track_active .track_fav').click() },
-  previous: function previous () {},
-  pause: function pause () {document.querySelector('a.jp-pause').click()},
-  trackInfo: function trackInfo () {
+  next: function () {document.querySelector('a.jp-next').click()},
+  favorite:function () { document.querySelector('.track_active .track_fav').click() },
+  previous: function () {},
+  pause: function () {document.querySelector('a.jp-pause').click()},
+  trackInfo: function () {
     return {
       'track': document.querySelector('.track_active .track_name > a').text,
       'artist': document.querySelector('.track_active .track_artist > a').text

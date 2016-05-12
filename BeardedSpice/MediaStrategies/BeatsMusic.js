@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*listen.beatsmusic.com*'",
     args: "url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {document.querySelectorAll('#t-play')[0].click()},
-  next: function next () {document.querySelectorAll('#t-next')[0].click()},
-  favorite: function favorite () {},
-  previous: function previous () {document.querySelectorAll('#t-prev')[0].click()},
-  pause: function pause () {window.sm.pauseAll()},
-  trackInfo: function trackInfo () {}
+  isPlaying: function () {},
+  toggle: function () {document.querySelectorAll('#t-play')[0].click()},
+  next: function () {document.querySelectorAll('#t-next')[0].click()},
+  favorite: function () {},
+  previous: function () {document.querySelectorAll('#t-prev')[0].click()},
+  pause: function () {window.sm.pauseAll()},
+  trackInfo: function () {}
 }

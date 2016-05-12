@@ -13,12 +13,12 @@ BSStrategy = {
     format:"SELF LIKE[c] '*letournedisque.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {return (document.querySelectorAll('.playing')[0]) ? true : false},
-  toggle: function toggle () {return document.querySelectorAll('div.play')[0].click()},
-  next: function next () {return document.querySelectorAll('div.next')[0].click()},
-  previous: function previous () {return document.querySelectorAll('div.prev')[0].click()},
-  pause: function pause () {return document.querySelectorAll('div.playing')[0].click()},
-  trackInfo: function trackInfo () {
+  isPlaying: function () {return (document.querySelectorAll('.playing')[0]) ? true : false},
+  toggle: function () {return document.querySelectorAll('div.play')[0].click()},
+  next: function () {return document.querySelectorAll('div.next')[0].click()},
+  previous: function () {return document.querySelectorAll('div.prev')[0].click()},
+  pause: function () {return document.querySelectorAll('div.playing')[0].click()},
+  trackInfo: function () {
     return {
       'artist': $('.info-text .artiste strong, .info-text .artiste a').text(),
       'track': $.trim($('.info-text .name').text())

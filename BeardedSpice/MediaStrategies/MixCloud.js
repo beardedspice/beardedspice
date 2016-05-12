@@ -13,9 +13,9 @@ BSStrategy = {
     format:"SELF LIKE[c] '*mixcloud.com*'",
     args:"url"
   },
-  pause: function pause () { document.querySelector('.pause-state').click() },
-  toggle: function toggle () { document.querySelector('.player-control').click(); },
-  trackInfo: function trackInfo () {
+  pause: function () { document.querySelector('.pause-state').click() },
+  toggle: function () { document.querySelector('.player-control').click(); },
+  trackInfo: function () {
     return {
       'track': document.querySelector('.player-cloudcast-title').text,
       'artist': document.querySelector('.player-cloudcast-author-link').text,

@@ -20,6 +20,6 @@ BSStrategy = {
     if(m.classList.contains('paused')) { e.click() }
     else { t.click() }
   },
-  next: function next () {return document.querySelectorAll('#radioControlSkip')[0].click()},
-  pause: function pause () {var t=document.querySelectorAll('#radioControlPause')[0].click()}
+  next: function () {return document.querySelectorAll('#radioControlSkip')[0].click()},
+  pause: function () {var t=document.querySelectorAll('#radioControlPause')[0].click()}
 }

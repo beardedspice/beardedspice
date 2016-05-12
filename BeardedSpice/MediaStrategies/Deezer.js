@@ -13,9 +13,9 @@ BSStrategy = {
     format:"SELF LIKE[c] '*deezer.com*'",
     args: "url"
   },
-  toggle: function toggle () {dzPlayer.control.togglePause()},
-  next: function next () {dzPlayer.control.nextSong()},
-  favorite: function favorite (){return document.querySelectorAll('a.icon-love-circle')[0].click()},
-  previous: function previous () {dzPlayer.control.prevSong()},
-  pause: function pause () {dzPlayer.control.pause()}
+  toggle: function () {dzPlayer.control.togglePause()},
+  next: function () {dzPlayer.control.nextSong()},
+  favorite: function (){return document.querySelectorAll('a.icon-love-circle')[0].click()},
+  previous: function () {dzPlayer.control.prevSong()},
+  pause: function () {dzPlayer.control.pause()}
 }

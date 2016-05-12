@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*22tracks.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.playpause()},
-  next: function next () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.next()},
-  favorite: function favorite () {},
-  previous: function previous () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.previous()},
-  pause: function pause () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.pause()},
-  trackInfo: function trackInfo () {}
+  isPlaying: function () {},
+  toggle: function () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.playpause()},
+  next: function () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.next()},
+  favorite: function () {},
+  previous: function () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.previous()},
+  pause: function () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.pause()},
+  trackInfo: function () {}
 }

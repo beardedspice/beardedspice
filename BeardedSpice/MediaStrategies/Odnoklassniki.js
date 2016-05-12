@@ -13,7 +13,7 @@ BSStrategy = {
     format:"SELF LIKE[c] '*ok.ru*' OR SELF LIKE[c] '*odnoklassniki.ru*'",
     args:"url"
   },
-  toggle: function toggle () {
+  toggle: function () {
     if (odklMusic.playingTrack() == "") {
       if (window['__getMusicFlash']) {
         __getMusicFlash().lcResume()
@@ -24,10 +24,10 @@ BSStrategy = {
       __getMusicFlash().lcPause();
     }
   },
-  next: function next () { __getMusicFlash().lcNext() },
-  previous: function previous () { __getMusicFlash().lcPrev() },
-  pause: function pause () { __getMusicFlash().lcPause(); },
-  trackInfo: function trackInfo () {
+  next: function () { __getMusicFlash().lcNext() },
+  previous: function () { __getMusicFlash().lcPrev() },
+  pause: function () { __getMusicFlash().lcPause(); },
+  trackInfo: function () {
     return {
       'track': document.querySelector('#mmpcw .mus_player_song').firstChild.nodeValue,
       'artist': document.querySelector('#mmpcw .mus_player_artist').firstChild.nodeValue

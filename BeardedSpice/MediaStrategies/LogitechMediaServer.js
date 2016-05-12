@@ -13,9 +13,9 @@ BSStrategy = {
     format:"SELF LIKE[c] 'Logitech Media Server'",
     args:"title"
   },
-  toggle: function toggle () {return window.SqueezeJS.Controller.togglePause()},
-  next: function next () {return document.querySelectorAll('#ctrlNext button')[0].click()},
-  previous: function previous () {return document.querySelectorAll('#ctrlPrevious button')[0].click()},
-  pause: function pause () {return window.SqueezeJS.Controller.playerControl(['pause'])},
-  trackInfo: function trackInfo () {}
+  toggle: function () {return window.SqueezeJS.Controller.togglePause()},
+  next: function () {return document.querySelectorAll('#ctrlNext button')[0].click()},
+  previous: function () {return document.querySelectorAll('#ctrlPrevious button')[0].click()},
+  pause: function () {return window.SqueezeJS.Controller.playerControl(['pause'])},
+  trackInfo: function () {}
 }

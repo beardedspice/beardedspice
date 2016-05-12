@@ -13,12 +13,12 @@ BSStrategy = {
     format:"SELF LIKE[c] '*hypem.com*'",
     args:"url"
   },
-  toggle: function toggle () {return window.togglePlay()},
-  next: function next () {return window.nextTrack()},
-  previous: function previous () {return window.prevTrack()},
-  favorite: function favorite (){return window.toggleFavoriteItem()},
-  pause: function pause () {return window.currentPlayerObj[0].pause()},
-  trackInfo: function trackInfo () {
+  toggle: function () {return window.togglePlay()},
+  next: function () {return window.nextTrack()},
+  previous: function () {return window.prevTrack()},
+  favorite: function (){return window.toggleFavoriteItem()},
+  pause: function () {return window.currentPlayerObj[0].pause()},
+  trackInfo: function () {
     return {
       'artist': now_playing[0].text,
       'track': now_playing[2].text

@@ -13,16 +13,16 @@ BSStrategy = {
     format:"SELF LIKE[c] '*blitzr.com*'",
     args: "url"
   },
-  isPlaying: function isPlaying () { return document.querySelector('#blitzr_playpause span.fa').className.indexOf('fa-play') == -1 },
-  toggle: function toggle () {document.querySelector('#blitzr_playpause').click()},
-  next: function next () {document.querySelector('#blitzr_next').click()},
-  previous: function previous () {document.querySelector('#blitzr_prev').click()},
-  pause: function pause () {
+  isPlaying: function () { return document.querySelector('#blitzr_playpause span.fa').className.indexOf('fa-play') == -1 },
+  toggle: function () {document.querySelector('#blitzr_playpause').click()},
+  next: function () {document.querySelector('#blitzr_next').click()},
+  previous: function () {document.querySelector('#blitzr_prev').click()},
+  pause: function () {
     if (document.querySelector('#blitzr_playpause span.fa').className.indexOf('fa-play') == -1) {
       document.querySelector('#blitzr_playpause').click()
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     return {
       'track': document.querySelector('#playerTitle strong').innerHTML,
       'album': document.querySelector('#playerInfo .media-left a').title,

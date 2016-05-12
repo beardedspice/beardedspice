@@ -13,11 +13,11 @@ BSStrategy = {
     format: "SELF LIKE[c] '*8tracks.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {
+  isPlaying: function () {
     var pause = document.querySelector('#player_pause_button');
     return pause !== null && pause !== undefined &&pause.style.display !== 'none';
   },
-  toggle: function toggle () {
+  toggle: function () {
     var play = document.querySelector('#player_play_button');
     var pause = document.querySelector('#player_pause_button');
     var overlay = document.querySelector('#play_overlay');
@@ -25,19 +25,19 @@ BSStrategy = {
     else if (pause !== undefined && pause !== null && pause.style.display !== 'none') { pause.click(); }
     else if (overlay !== undefined) { overlay.click(); }
   },
-  next: function next () {
+  next: function () {
     var skip = document.querySelector('#player_skip_button');
       if (skip !== undefined && skip !== null) skip.click();
   },
-  favorite: function favorite () {
+  favorite: function () {
     var fav = document.querySelector('#now_playing a.fav');
       if (fav !== null && fav !== undefined) fav.click()
   },
-  pause: function pause () {
+  pause: function () {
     var pause = document.querySelector('#player_pause_button');
       if (pause !== null && pause !== undefined) pause.click()
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var nowPlaying = document.querySelector('#now_playing');
     var titleArtist = nowPlaying.querySelector('.title_artist');
     return {

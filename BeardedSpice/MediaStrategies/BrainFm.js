@@ -13,21 +13,21 @@ BSStrategy = {
     format: "SELF LIKE[c] '*brain.fm/app*'",
     args: "url"
   },
-  isPlaying: function isPlaying () {
+  isPlaying: function () {
     var p = document.querySelector('#play_button');
     return p.classList.contains('tc_pause');
   },
-  toggle: function toggle () {document.querySelectorAll('#play_button')[0].click();},
-  previous: function previous () {},
-  next: function next () {return document.querySelectorAll('#skip_button')[0].click()},
-  pause: function pause () {
+  toggle: function () {document.querySelectorAll('#play_button')[0].click();},
+  previous: function () {},
+  next: function () {return document.querySelectorAll('#skip_button')[0].click()},
+  pause: function () {
     var p = document.querySelectorAll('#play_button')[0];
     if(p.classList.contains('tc_pause')){
       p.click();
     }
   },
-  favorite: function favorite () {},
-  trackInfo: function trackInfo (){
+  favorite: function () {},
+  trackInfo: function (){
     return {
       track: document.querySelector('#playing_title').textContent
     }

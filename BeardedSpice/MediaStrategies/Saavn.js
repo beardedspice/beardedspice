@@ -13,15 +13,15 @@ BSStrategy = {
     format:"SELF LIKE[c] '*saavn.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {
+  isPlaying: function () {},
+  toggle: function () {
     var e = document.getElementById('play');
     var t = document.getElementById('pause');
     if (t.className.indexOf('hide')===-1) { t.click(); }
     else { e.click(); }
   },
-  next: function next () { document.getElementById('fwd').click();},
-  previous: function previous () { document.getElementById('rew').click();},
-  pause: function pause () { document.getElementById('pause').click();},
-  trackInfo: function trackInfo () {}
+  next: function () { document.getElementById('fwd').click();},
+  previous: function () { document.getElementById('rew').click();},
+  pause: function () { document.getElementById('pause').click();},
+  trackInfo: function () {}
 }

@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*coursera.org*'",
     args: "url"
   },
-  isPlaying: function isPlaying () {
+  isPlaying: function () {
     var v = vjs(document.querySelectorAll('.video-js')[0].querySelector('video').id);
     return ! v.paused();
   },
-  toggle: function toggle () {
+  toggle: function () {
     var v = vjs(document.querySelectorAll('.video-js')[0].querySelector('video').id);
     if (v.paused()) {
       v.play();
@@ -25,13 +25,13 @@ BSStrategy = {
       v.pause();
     }
   },
-  next: function next () {return document.querySelectorAll('.c-item-side-nav-right .c-block-icon-link')[0].click()},
-  previous: function previous () {return document.querySelectorAll('.c-item-side-nav-left .c-block-icon-link')[0].click()},
-  pause: function pause () {
+  next: function () {return document.querySelectorAll('.c-item-side-nav-right .c-block-icon-link')[0].click()},
+  previous: function () {return document.querySelectorAll('.c-item-side-nav-left .c-block-icon-link')[0].click()},
+  pause: function () {
     var v = vjs(document.querySelectorAll('.video-js')[0].querySelector('video').id);
     v.pause();
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     return {
       'track': document.querySelector('.c-video-title').firstChild.nodeValue,
       'artist': 'Coursera'

@@ -13,10 +13,10 @@ BSStrategy = {
     format:"SELF LIKE[c] '*radio.nrk.no*'",
     args:"url"
   },
-  toggle: function toggle () {return window.nrk.modules.player.getApi().toggleplay()},
-  next: function next () {},
-  previous: function previous () {},
-  pause: function pause () {return window.nrk.modules.player.getApi().pause()},
-  favorite: function favorite () {},
-  trackInfo: function trackInfo() {}
+  toggle: function () {return window.nrk.modules.player.getApi().toggleplay()},
+  next: function () {},
+  previous: function () {},
+  pause: function () {return window.nrk.modules.player.getApi().pause()},
+  favorite: function () {},
+  trackInfo: function() {}
 }

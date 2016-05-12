@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*vimeo.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {return window.vimeo.active_player.paused?window.vimeo.active_player.play():window.vimeo.active_player.pause()},
-  next: function next () {},
-  favorite: function favorite () {},
-  previous: function previous () {},
-  pause: function pause () {return window.vimeo.active_player.pause()},
-  trackInfo: function trackInfo () {}
+  isPlaying: function () {},
+  toggle: function () {return window.vimeo.active_player.paused?window.vimeo.active_player.play():window.vimeo.active_player.pause()},
+  next: function () {},
+  favorite: function () {},
+  previous: function () {},
+  pause: function () {return window.vimeo.active_player.pause()},
+  trackInfo: function () {}
 }

@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*bandcamp.com*'",
     args: "url"
   },
-  toggle: function toggle () {gplaylist.playpause()},
-  next: function next () {gplaylist.next_track()},
-  previous: function previous () {gplaylist.prev_track()},
-  pause: function pause () {gplaylist.pause()},
-  trackInfo: function trackInfo () {
+  toggle: function () {gplaylist.playpause()},
+  next: function () {gplaylist.next_track()},
+  previous: function () {gplaylist.prev_track()},
+  pause: function () {gplaylist.pause()},
+  trackInfo: function () {
     return {
       'artist': EmbedData.artist,
       'album': EmbedData.album_title,

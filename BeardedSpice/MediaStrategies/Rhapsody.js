@@ -13,19 +13,19 @@ BSStrategy = {
     format:"SELF LIKE[c] '*app.rhapsody.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {return !!$('.player-play-button .icon-pause2').length;},
-  toggle: function toggle () {
+  isPlaying: function () {return !!$('.player-play-button .icon-pause2').length;},
+  toggle: function () {
     if ($('.player-play-button .icon-pause2').length) {
       $('.player-play-button .icon-pause2').click();
     } else {
       $('.player-play-button .icon-play-button').click()
     }
   },
-  next: function next () {$('.player-advance-button').click();},
-  favorite: function favorite () {$('.favorite-button').click()},
-  previous: function previous () {$('.player-rewind-button').click();},
-  pause: function pause () {$('.player-play-button .icon-pause2').click();},
-  trackInfo: function trackInfo () {
+  next: function () {$('.player-advance-button').click();},
+  favorite: function () {$('.favorite-button').click()},
+  previous: function () {$('.player-rewind-button').click();},
+  pause: function () {$('.player-play-button .icon-pause2').click();},
+  trackInfo: function () {
     function titleize(slug) {
       var words = slug.split('-');
       return words.map(function(word) {

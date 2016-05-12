@@ -12,7 +12,7 @@ BSStrategy = {
     format:"SELF LIKE[c] '*twitch.tv/*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {
+  isPlaying: function () {
       var doc = document;
       var frame = $('iframe[src^=\'http://player.twitch.tv/?channel=\']').get(0);
       if (frame) {
@@ -20,7 +20,7 @@ BSStrategy = {
       }
       return (doc.querySelector('.player[data-paused=\"false\"]') != null);
   },
-  toggle: function toggle () {
+  toggle: function () {
     var doc = document;
     var frame = $("iframe[src^='http://player.twitch.tv/?channel=']").get(0);
     if (frame) {
@@ -28,10 +28,10 @@ BSStrategy = {
     }
     doc.querySelector('.js-control-playpause-button').click()
   },
-  next: function next () {},
-  favorite: function favorite () {},
-  previous: function previous () {},
-  pause: function pause () {
+  next: function () {},
+  favorite: function () {},
+  previous: function () {},
+  pause: function () {
       var doc = document;
       var frame = $('iframe[src^=\'http://player.twitch.tv/?channel=\']').get(0);
       if (frame) {
@@ -39,5 +39,5 @@ BSStrategy = {
       }
       doc.querySelector('.player[data-paused="false"] .js-control-playpause-button').click()
   },
-  trackInfo: function trackInfo () {}
+  trackInfo: function () {}
 }

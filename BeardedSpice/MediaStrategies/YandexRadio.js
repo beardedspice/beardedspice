@@ -13,16 +13,16 @@ BSStrategy = {
     format:"SELF LIKE[c] '*radio.yandex.*'",
     args:"url"
   },
-  isPlaying: function isPlaying () { return Mu.Flow.flow.player.isPlaying(); },
-  toggle: function toggle () { Mu.Flow.togglePause(); },
-  next: function next () {
+  isPlaying: function () { return Mu.Flow.flow.player.isPlaying(); },
+  toggle: function () { Mu.Flow.togglePause(); },
+  next: function () {
     var nextTreckInfo = Mu.Flow.flow.getNextTrack();
     Mu.Flow.flow.next("nextpressed");
     return nextTreckInfo
   },
-  favorite: function favorite () {},
-  previous: function previous () {},
-  pause: function pause () {
+  favorite: function () {},
+  previous: function () {},
+  pause: function () {
     if($('body').attr('class').length!=0){
       document.querySelector('.player-controls__play').click()
     }

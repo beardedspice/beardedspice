@@ -13,17 +13,17 @@ BSStrategy = {
     format:"SELF LIKE[c] '*tunein.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () { return $('#tuner').attr('class') === 'playing' },
-  toggle: function toggle() { document.querySelector('.playbutton-cont').click(); },
-  next: function next () {},
-  favorite: function favorite () { $('.icon.follow').click() },
-  previous: function previous () {},
-  pause: function pause () {
+  isPlaying: function () { return $('#tuner').attr('class') === 'playing' },
+  toggle: function() { document.querySelector('.playbutton-cont').click(); },
+  next: function () {},
+  favorite: function () { $('.icon.follow').click() },
+  previous: function () {},
+  pause: function () {
     if($('#tuner').attr('class') == 'playing'){
       document.querySelector('.playbutton-cont').click();
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var ret = TuneIn.app.nowPlaying.broadcast;
     return {
       'track': ret.DisplaySubtitle,

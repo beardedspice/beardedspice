@@ -13,16 +13,16 @@ BSStrategy = {
     format:"SELF LIKE[c] '*hotnewhiphop.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () { return document.getElementById('jp_audio_0').paused; },
-  toggle: function toggle () {
+  isPlaying: function () { return document.getElementById('jp_audio_0').paused; },
+  toggle: function () {
     var player = document.getElementById('jp_audio_0');
     if (player.paused) { player.play() }
     else { player.pause() }
   },
-  next: function next () {$(".jp-next").click();},
-  previous: function previous () {$(".jp-previous").click();},
-  pause: function pause () {$("#jquery_jplayer_playlist").jPlayer("pause");},
-  trackInfo: function trackInfo () {
+  next: function () {$(".jp-next").click();},
+  previous: function () {$(".jp-previous").click();},
+  pause: function () {$("#jquery_jplayer_playlist").jPlayer("pause");},
+  trackInfo: function () {
     var album = $('.mixtape-info-title')[0].innerText;
     var artist = $('.mixtape-info-artist')[0].innerText;
     return {

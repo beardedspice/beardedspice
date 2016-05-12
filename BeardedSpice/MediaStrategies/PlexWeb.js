@@ -12,14 +12,14 @@ BSStrategy = {
   acceptParams: {
     script: function accepts () {return (window.PLEXWEB != undefined);}
   },
-  isPlaying: function isPlaying()  {
+  isPlaying: function()  {
     var theButton = document.querySelector('.player.music .pause-btn');
     if (theButton)
       return !(theButton.classList.contains('hidden'));
     else
       return (document.querySelector('.video-player.playing') != undefined);
   },
-  toggle: function toggle ()  {
+  toggle: function ()  {
     var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
     var pauseButton = document.querySelector(thePlayer+' .pause-btn');
     var playerButton = document.querySelector(thePlayer+pauseButton)
@@ -28,19 +28,19 @@ BSStrategy = {
     var toggleButton = document.querySelector((listHasHidden ? ' .play' : ' .pause') + '-btn');
     toggleButton.click();
   },
-  next: function next () {
+  next: function () {
     var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
     document.querySelector(thePlayer+' .next-btn').click()
   },
-  previous: function previous () {
+  previous: function () {
     var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
     document.querySelector(thePlayer+' .previous-btn').click()
   },
-  pause: function pause () {
+  pause: function () {
     var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
     document.querySelector(thePlayer+' .pause-btn').click()
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     if (document.querySelector('.player.music')) {
       var mediaPoster = document.querySelector('.player.music .media-poster');
       return {

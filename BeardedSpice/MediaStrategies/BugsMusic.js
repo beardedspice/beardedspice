@@ -13,22 +13,22 @@ BSStrategy = {
     format:"SELF LIKE[c] '*music.bugs.co.kr/newPlayer*'",
     args: "url"
   },
-  isPlaying: function isPlaying () { return bugs.player.isPlayingTrack; },
-  toggle: function toggle () { bugs.player.playButtonHandler().call(); },
-  next: function next () { bugs.player.nextButtonHandler().call(); },
-  favorite: function favorite (){
+  isPlaying: function () { return bugs.player.isPlayingTrack; },
+  toggle: function () { bugs.player.playButtonHandler().call(); },
+  next: function () { bugs.player.nextButtonHandler().call(); },
+  favorite: function (){
     if (document.querySelector('.btnLikeTrackCancel').style.display == "none") {
       bugs.player.likeButtonHandler().call();
     }
     bugs.player.likeCancelButtonHandler().call();
   },
-  previous: function previous () { bugs.player.prevButtonHandler().call(); },
-  pause:function pause () {
+  previous: function () { bugs.player.prevButtonHandler().call(); },
+  pause:function () {
     if (bugs.player.isPlayingTrack) {
       bugs.player.playButtonHandler().call();
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     return {
       image:  document.querySelector('.thumbnail > img').getAttribute('src'),
       track:  bugs.player.getCurrentTrackInfo().track_title,

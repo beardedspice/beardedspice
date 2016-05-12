@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*synology.me*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {document.querySelectorAll('.player-play button')[0].click()},
-  next: function next () {document.querySelectorAll('.player-next button')[0].click()},
-  favorite: function favorite () {},
-  previous: function previous () {document.querySelectorAll('.player-prev button')[0].click()},
-  pause: function pause () {document.querySelectorAll('.player-stop button')[0].click()},
-  trackInfo: function trackInfo () {}
+  isPlaying: function () {},
+  toggle: function () {document.querySelectorAll('.player-play button')[0].click()},
+  next: function () {document.querySelectorAll('.player-next button')[0].click()},
+  favorite: function () {},
+  previous: function () {document.querySelectorAll('.player-prev button')[0].click()},
+  pause: function () {document.querySelectorAll('.player-stop button')[0].click()},
+  trackInfo: function () {}
 }

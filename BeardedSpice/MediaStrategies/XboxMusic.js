@@ -13,16 +13,16 @@ BSStrategy = {
     format:"SELF LIKE[c] '*music.xbox.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {window.app.mainViewModel.playerVM.togglePause()},
-  next: function next () {window.app.mainViewModel.playerVM.next()},
-  favorite: function favorite () {},
-  previous: function previous () {window.app.mainViewModel.playerVM.previous()},
-  pause: function pause () {
+  isPlaying: function () {},
+  toggle: function () {window.app.mainViewModel.playerVM.togglePause()},
+  next: function () {window.app.mainViewModel.playerVM.next()},
+  favorite: function () {},
+  previous: function () {window.app.mainViewModel.playerVM.previous()},
+  pause: function () {
     var app = window.app.mainViewModel.playerVM;
     if(app.isPlayingOrLoading()) {
       app.togglePause()
     }
   },
-  trackInfo: function trackInfo () {}
+  trackInfo: function () {}
 }

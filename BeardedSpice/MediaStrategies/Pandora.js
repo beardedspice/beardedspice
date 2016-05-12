@@ -13,19 +13,19 @@ BSStrategy = {
     format:"SELF LIKE[c] '*pandora.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {
+  isPlaying: function () {
     var t = document.querySelector('.pauseButton');
     return (t.style.display === 'block');
   },
-  toggle: function toggle () {
+  toggle: function () {
     var e = document.querySelector('.playButton');
     var t = document.querySelector('.pauseButton');
     if(t.style.display==='block') { t.click() }
     else { e.click() }
   },
-  next: function next () { document.querySelector('.skipButton').click(); },
-  pause: function pause () { document.querySelector('.pauseButton').click(); },
-  trackInfo: function trackInfo () {
+  next: function () { document.querySelector('.skipButton').click(); },
+  pause: function () { document.querySelector('.pauseButton').click(); },
+  trackInfo: function () {
     return {
       'track': document.querySelector('.playerBarSong').innerText,
       'artist': document.querySelector('.playerBarArtist').innerText,

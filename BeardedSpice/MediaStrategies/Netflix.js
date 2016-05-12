@@ -25,14 +25,14 @@ BSStrategy = {
     var v=document.querySelector('video');
     if (v) {v.paused ? v.play() : v.pause();}
   },
-  next: function next () {},
-  favorite: function favorite () {},
-  previous: function previous () {},
+  next: function () {},
+  favorite: function () {},
+  previous: function () {},
   pause:function () {
     var v=document.querySelector('video');
     v && v.pause();
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var track=document.querySelector('.player-status-main-title');
     return {
       'track': track ? track.innerText : ''

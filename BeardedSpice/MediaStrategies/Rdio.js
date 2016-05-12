@@ -13,9 +13,9 @@ BSStrategy = {
     format:"SELF LIKE[c] '*rdio.com*'",
     args:"url"
   },
-  toggle: function toggle () {window.R.player.playPause()},
-  next: function next () {window.R.player.next()},
-  previous: function previous () {window.R.player.previous()},
-  pause: function pause () {window.R.player.pause()},
-  trackInfo: function trackInfo () {}
+  toggle: function () {window.R.player.playPause()},
+  next: function () {window.R.player.next()},
+  previous: function () {window.R.player.previous()},
+  pause: function () {window.R.player.pause()},
+  trackInfo: function () {}
 }

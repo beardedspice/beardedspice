@@ -13,12 +13,12 @@ BSStrategy = {
     format:"SELF LIKE[c] '*music.yandex.*'",
     args: "url"
   },
-  isPlaying: function isPlaying () {return (document.querySelector('.player-controls__btn_play.player-controls__btn_pause') != null);},
-  toggle: function toggle () { document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()},
-  next: function next () {document.querySelector('div.b-jambox__next, .player-controls__btn_next').click()},
-  favorite: function favorite () {$('.player-controls .like.player-controls__btn').click();},
-  previous: function previous () {document.querySelector('div.b-jambox__prev, .player-controls__btn_prev').click()},
-  pause: function pause () {
+  isPlaying: function () {return (document.querySelector('.player-controls__btn_play.player-controls__btn_pause') != null);},
+  toggle: function () { document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()},
+  next: function () {document.querySelector('div.b-jambox__next, .player-controls__btn_next').click()},
+  favorite: function () {$('.player-controls .like.player-controls__btn').click();},
+  previous: function () {document.querySelector('div.b-jambox__prev, .player-controls__btn_prev').click()},
+  pause: function () {
     var e = document.querySelector('.player-controls__btn_play');
     if(e!=null) {
       if(e.classList.contains('player-controls__btn_pause')){
@@ -31,7 +31,7 @@ BSStrategy = {
       }
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var track = $('.track.track_type_player').get(0);
     return {
       'track': $('.track__title', track)[0].innerText,

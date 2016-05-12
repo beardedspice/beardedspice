@@ -17,18 +17,18 @@ BSStrategy = {
     format:"SELF LIKE[c] '*musicforprogramming.net/*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {return ( (document.querySelector('.playerControls #player_playpause').innerText === '[PAUSE]'));},
-  toggle: function toggle () {document.querySelector('.playerControls #player_playpause').click();},
-  next: function next () {document.querySelector('.playerControls #player_ffw').click()},
-  favorite: function favorite () {},
-  previous: function previous () {document.querySelector('.playerControls #player_rew').click()},
+  isPlaying: function () {return ( (document.querySelector('.playerControls #player_playpause').innerText === '[PAUSE]'));},
+  toggle: function () {document.querySelector('.playerControls #player_playpause').click();},
+  next: function () {document.querySelector('.playerControls #player_ffw').click()},
+  favorite: function () {},
+  previous: function () {document.querySelector('.playerControls #player_rew').click()},
   pause:function () {
     var playPause=document.querySelector('.playerControls #player_playpause');
     if(playPause && playPause.innerText === '[PAUSE]'){
         playPause.click();
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var track=document.querySelector('.selected');
     return {
         'track': track ? track.innerText : ''

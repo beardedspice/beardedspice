@@ -22,7 +22,7 @@ BSStrategy = {
     if (player.isPlaying()) { player.pause(); }
     else { player.resume(); }
   },
-  next: function next () {require('media/playbackController').playNext();},
+  next: function () {require('media/playbackController').playNext();},
   favorite:function () {
     var obj = require('media/playbackController').getCurrentTrack();
     var event = {
@@ -32,9 +32,9 @@ BSStrategy = {
     };
     require('controllers/favorites').favoriteEventHandler(event);
   },
-  previous: function previous () {require('media/playbackController').playPrevious();},
-  pause: function pause () {require('media/playbackController').pause();},
-  trackInfo: function trackInfo () {
+  previous: function () {require('media/playbackController').playPrevious();},
+  pause: function () {require('media/playbackController').pause();},
+  trackInfo: function () {
     var obj = require('media/playbackController').getCurrentTrack().attributes;
     return {
       'track':obj.title,

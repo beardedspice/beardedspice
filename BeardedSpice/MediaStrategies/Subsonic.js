@@ -13,13 +13,13 @@ BSStrategy = {
     format:"SELF LIKE[c] '*Subsonic*'",
     args:"url"
   },
-  isPlaying: function isPlaying () { return window.frames['playQueue'].jwplayer().getState() === 'PLAYING' },
-  toggle:function toggle () { window.frames['playQueue'].jwplayer().play() },
-  next:function next () { window.frames['playQueue'].onNext() },
+  isPlaying: function () { return window.frames['playQueue'].jwplayer().getState() === 'PLAYING' },
+  toggle:function () { window.frames['playQueue'].jwplayer().play() },
+  next:function () { window.frames['playQueue'].onNext() },
   favorite: function () { window.frames['playQueue'].onStar(window.frames['playQueue']).getCurrentSongIndex() },
-  previous:function previous () { window.frames['playQueue'].onPrevious() },
-  pause:function pause () { window.frames['playQueue'].jwplayer().pause(true) },
-  trackInfo: function trackInfo () {
+  previous:function () { window.frames['playQueue'].onPrevious() },
+  pause:function () { window.frames['playQueue'].jwplayer().pause(true) },
+  trackInfo: function () {
     var index = window.frames['playQueue'].getCurrentSongIndex();
     var playQueue = window.frames['playQueue'].songs[index];
     var ret = playQueue.getCurrentSongIndex();

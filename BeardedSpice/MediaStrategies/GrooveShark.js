@@ -13,12 +13,12 @@ BSStrategy = {
     format:"SELF LIKE[c] '*grooveshark.im*'",
     args:"url"
   },
-  toggle: function toggle () {return window.Grooveshark.togglePlayPause()},
-  next: function next () { playNextSong(0); },
-  favorite: function favorite () {return window.Grooveshark.favoriteCurrentSong()},
-  previous: function previous () { playBackSong(); },
-  pause: function pause () { pause(); },
-  trackInfo: function trackInfo () {
+  toggle: function () {return window.Grooveshark.togglePlayPause()},
+  next: function () { playNextSong(0); },
+  favorite: function () {return window.Grooveshark.favoriteCurrentSong()},
+  previous: function () { playBackSong(); },
+  pause: function () { pause(); },
+  trackInfo: function () {
     var data = window.Grooveshark.getCurrentSongStatus()["song"];
     return {
       'track': data["songName"],

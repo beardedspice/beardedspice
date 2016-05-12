@@ -13,17 +13,17 @@ BSStrategy = {
     format:"SELF LIKE[c] '*songza.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {return document.querySelector('.player-wrapper').classList.contains('player-state-play');},
-  toggle: function toggle () {document.querySelector('.miniplayer-control-play-pause').click()},
-  next: function next () {return document.querySelector('.miniplayer-control-skip').click()},
-  favorite: function favorite () {document.querySelector('.miniplayer-info-playlist-favorite-status').click()},
-  previous: function previous () {},
-  pause: function pause () {
+  isPlaying: function () {return document.querySelector('.player-wrapper').classList.contains('player-state-play');},
+  toggle: function () {document.querySelector('.miniplayer-control-play-pause').click()},
+  next: function () {return document.querySelector('.miniplayer-control-skip').click()},
+  favorite: function () {document.querySelector('.miniplayer-info-playlist-favorite-status').click()},
+  previous: function () {},
+  pause: function () {
     if (document.querySelector('.player-wrapper').classList.contains('player-state-play')) {
       document.querySelector('.miniplayer-control-play-pause').click()
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var track = document.querySelector('.miniplayer-info-track-title > a').getAttribute('title');
     var artist = document.querySelector('.miniplayer-info-artist-name > a').getAttribute('title');
     var albumArt = document.querySelector('.miniplayer-album-art').getAttribute('src');

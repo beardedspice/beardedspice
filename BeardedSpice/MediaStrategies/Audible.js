@@ -22,15 +22,15 @@ BSStrategy = {
     var p=document.querySelector('.pause');
     return (p && !p.classList.contains('hide'));
   },
-  toggle: function toggle () {document.querySelector('.play').click();},
-  next: function next () {document.querySelector('.fav').click();},
-  favorite: function favorite () {},
-  previous: function previous () {document.querySelector('.repeat').click()},
+  toggle: function () {document.querySelector('.play').click();},
+  next: function () {document.querySelector('.fav').click();},
+  favorite: function () {},
+  previous: function () {document.querySelector('.repeat').click()},
   pause:function () {
     var p=document.querySelector('.pause');
     if(p && !p.classList.contains('hide')){ p.click();}
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var art = document.querySelector('.item img');
     var chapter = document.querySelector('.chapter');
     var timeCur = document.querySelector('.cur');

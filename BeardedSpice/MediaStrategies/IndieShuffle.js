@@ -14,23 +14,23 @@ BSStrategy = {
     args:"url"
   },
   isPlaying:function () { return document.querySelector('#currentSong .commontrack.active') != undefined;},
-  toggle: function toggle () {document.querySelector('#currentSong .commontrack').click()},
-  next: function next () {
+  toggle: function () {document.querySelector('#currentSong .commontrack').click()},
+  next: function () {
     if(p=document.querySelector('#playNextSong')){
       p.click();
     }
   },
-  previous: function previous () {
+  previous: function () {
     if(p=document.querySelector('#prevSong .song_artwork')){
       p.click();
     }
   },
-  pause: function pause () {
+  pause: function () {
     if(p=document.querySelector('#currentSong .commontrack.active')){
       p.click();
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var song = document.querySelector('#currentSong');
     return {
       'artist': song.querySelector('.artist_name').innerText,

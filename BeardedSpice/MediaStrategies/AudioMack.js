@@ -13,7 +13,7 @@ BSStrategy = {
     format:"SELF LIKE[c] '*audiomack.com*'",
     args:"url"
   },
-  toggle: function toggle () {
+  toggle: function () {
     var player = document.getElementById('listplayer');
     var play_button = document.getElementById('play-button');
     if (player && player.clientHeight) {
@@ -27,7 +27,7 @@ BSStrategy = {
     }
     if (play_button) { play_button.click(); }
   },
-  next: function next () {
+  next: function () {
     var player = document.getElementById('listplayer');
     if (player && player.clientHeight) {
         var next_button = player.querySelector('.next-track');
@@ -40,7 +40,7 @@ BSStrategy = {
         return;
     }
   },
-  previous: function previous () {
+  previous: function () {
     var player = document.getElementById('listplayer');
     if (player && player.clientHeight) {
         var prev_button = player.querySelector('.prev-track');
@@ -53,7 +53,7 @@ BSStrategy = {
         return;
     }
   },
-  pause: function pause () {
+  pause: function () {
     var play_button = document.getElementById('play-button');
     if (play_button.className.indexOf('pause') > 1) {
         play_button.click();

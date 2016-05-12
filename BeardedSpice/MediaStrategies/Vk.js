@@ -13,8 +13,8 @@ BSStrategy = {
     format:"SELF LIKE[c] '*vk.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () { !!document.querySelector('#ac_play.playing, #gp_play.playing'); },
-  toggle: function toggle (w) {
+  isPlaying: function () { !!document.querySelector('#ac_play.playing, #gp_play.playing'); },
+  toggle: function (w) {
     var el = document.querySelector('#ac_play, #gp_play');
     if (el) { el.click(); return; }
     w.Pads.show('mus', null);
@@ -29,7 +29,7 @@ BSStrategy = {
         }
     })(w),10);
   }(window),
-  next: function next (w) {
+  next: function (w) {
     var el = document.querySelector('#ac_next');
     if (el) { el.click(); return; }
     w.Pads.show('mus', null);
@@ -44,7 +44,7 @@ BSStrategy = {
         }
     })(w), 10);
   }(window),
-  favorite: function favorite (w) {
+  favorite: function (w) {
     var el = document.querySelector('#ac_add');
     if (el) { el.click(); return; }
     w.Pads.show('mus', null);
@@ -59,7 +59,7 @@ BSStrategy = {
         }
     })(w), 10);
   }(window),
-  previous: function previous (w) {
+  previous: function (w) {
       var el = document.querySelector('#ac_prev');
       if (el) { el.click(); return; }
       w.Pads.show('mus', null);
@@ -73,7 +73,7 @@ BSStrategy = {
           }
       })(w), 10);
   }(window),
-  pause: function pause (w) {
+  pause: function (w) {
       var el = document.querySelector('#ac_play.playing, #gp_play.playing');
       if (el) { el.click(); return; }
       w.Pads.show('mus', null);
@@ -89,7 +89,7 @@ BSStrategy = {
       })(w), 10);
       setTimeout(function(){clearInterval(pollPlayerInterval);}, 1000);
     }(window),
-  trackInfo: function trackInfo (w) {
+  trackInfo: function (w) {
       var titleEl = document.querySelector('span#ac_title, #gp_title');
       var artistEl = document.querySelector('span#ac_performer, #gp_performer');
       if (! titleEl || ! artistEl) {

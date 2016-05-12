@@ -29,11 +29,11 @@ BSStrategy = {
       play.click();
     }
   },
-  next: function next () {},
-  favorite: function favorite () {document.querySelector('#toggle-mystations').click();},
-  previous: function previous () {},
-  pause: function pause () {document.querySelector('#btn-pause').click();},
-  trackInfo: function trackInfo () {
+  next: function () {},
+  favorite: function () {document.querySelector('#toggle-mystations').click();},
+  previous: function () {},
+  pause: function () {document.querySelector('#btn-pause').click();},
+  trackInfo: function () {
     var playlister=document.querySelector('.playlister'), art, title, artist;
     if (playlister) {
       art=document.querySelector('.playlister img'),

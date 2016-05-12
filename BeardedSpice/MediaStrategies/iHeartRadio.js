@@ -13,8 +13,8 @@ BSStrategy = {
     format:"SELF LIKE[c] '*iheart.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying() { document.querySelectorAll('[aria-label="Stop"], [aria-label="Pause"]').length > 0 },
-  toggle:function toggle () {
+  isPlaying: function() { document.querySelectorAll('[aria-label="Stop"], [aria-label="Pause"]').length > 0 },
+  toggle:function () {
     if (document.querySelectorAll('[aria-label="Stop"], [aria-label="Pause"]').length > 0) {
       try{
         document.querySelector('[aria-label="Stop"]').click();
@@ -26,11 +26,11 @@ BSStrategy = {
       plays[plays.length-1].click();
     }
   },
-  next: function next () {document.querySelector('[aria-label="Skip"]').click();},
-  favorite: function favorite () {},
-  previous: function previous () {},
-  pause: function pause () {document.querySelector('[aria-label="Stop"]').click();},
-  trackInfo: function trackInfo () {
+  next: function () {document.querySelector('[aria-label="Skip"]').click();},
+  favorite: function () {},
+  previous: function () {},
+  pause: function () {document.querySelector('[aria-label="Stop"]').click();},
+  trackInfo: function () {
     return {
       'track': document.querySelector(".player-song").textContent,
       'album': document.querySelector(".player-artist").textContent,

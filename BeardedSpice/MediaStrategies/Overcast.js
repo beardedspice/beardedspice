@@ -19,16 +19,16 @@ BSStrategy = {
     var p=document.querySelector('#playpausebutton_playicon');
     return (p && p.style.display==='none');
   },
-  toggle: function toggle () { document.getElementById('playpausebutton').click();},
-  next: function next () { document.getElementById('seekforwardbutton').click();},
-  previous: function previous () { document.getElementById('seekbackbutton').click();},
-  pause: function pause () {
+  toggle: function () { document.getElementById('playpausebutton').click();},
+  next: function () { document.getElementById('seekforwardbutton').click();},
+  previous: function () { document.getElementById('seekbackbutton').click();},
+  pause: function () {
     var p=document.querySelector('#playpausebutton_playicon');
     if(p && p.style.display==='none'){
       document.getElementById('playpausebutton').click();
     }
   },
-  trackInfo: function trackInfo () {
+  trackInfo: function () {
     var artist=document.querySelector('.caption2 a');
     var track=document.querySelector('.title');
     var art=document.querySelector('.art.fullart');

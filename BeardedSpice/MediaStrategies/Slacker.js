@@ -13,11 +13,11 @@ BSStrategy = {
     format:"SELF LIKE[c] '*slacker.com*'",
     args:"url"
   },
-  isPlaying: function isPlaying () {},
-  toggle: function toggle () {window.playPause()},
-  next: function next () {window.skip()},
-  favorite: function favorite () {},
-  previous: function previous () {window.skipBack()},
-  pause: function pause () {window.PLAYER_ENGINE.pause()},
-  trackInfo: function trackInfo () {}
+  isPlaying: function () {},
+  toggle: function () {window.playPause()},
+  next: function () {window.skip()},
+  favorite: function () {},
+  previous: function () {window.skipBack()},
+  pause: function () {window.PLAYER_ENGINE.pause()},
+  trackInfo: function () {}
 }

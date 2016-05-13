@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Shuffler.fm",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*shuffler.fm/tracks*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*shuffler.fm/tracks*'",
+    args: ["URL"]
   },
   isPlaying: function () {},
   toggle: function () {

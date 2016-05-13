@@ -12,10 +12,10 @@
 BSStrategy = {
   version:1,
   displayName:"Netflix",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*netflix.com/watch/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*netflix.com/watch/*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var v=document.querySelector('video');

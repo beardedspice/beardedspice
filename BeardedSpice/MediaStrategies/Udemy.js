@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Udemy",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*udemy.com*/lecture/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*udemy.com*/lecture/*'",
+    args: ["URL"]
   },
   isPlaying: function () {return !(document.querySelector('div.ud-lectureangular > iframe').contentWindow.document.querySelector('video').paused);},
   toggle: function () {

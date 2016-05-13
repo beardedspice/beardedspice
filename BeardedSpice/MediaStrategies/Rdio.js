@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Rdio",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*rdio.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*rdio.com*'",
+    args: ["URL"]
   },
   toggle: function () {window.R.player.playPause()},
   next: function () {window.R.player.next()},

@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"HotNewHipHop",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*hotnewhiphop.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*hotnewhiphop.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { return document.getElementById('jp_audio_0').paused; },
   toggle: function () {

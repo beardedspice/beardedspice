@@ -8,10 +8,10 @@
 BSStrategy = {
   version: 1,
   displayName: "8tracks",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format: "SELF LIKE[c] '*8tracks.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format: "%K LIKE[c] '*8tracks.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {
     var pause = document.querySelector('#player_pause_button');

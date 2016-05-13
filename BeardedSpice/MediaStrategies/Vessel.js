@@ -8,10 +8,10 @@
 BSStrategy = {
   version: 1,
   displayName: "Vessel",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format: "SELF LIKE[c] '*vessel.com/videos/*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format: "%K LIKE[c] '*vessel.com/videos/*'",
+    args: ["URL"]
   },
   isPlaying: function () { return !(document.querySelector('video.video-show').paused)},
   toggle: function () {

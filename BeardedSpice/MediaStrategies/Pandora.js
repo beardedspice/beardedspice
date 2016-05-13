@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Pandora",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*pandora.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*pandora.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {
     var t = document.querySelector('.pauseButton');

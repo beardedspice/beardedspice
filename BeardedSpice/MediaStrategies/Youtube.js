@@ -8,10 +8,10 @@
 BSStrategy = {
   version: 1,
   displayName: "YouTube",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format: "SELF LIKE[c] '*youtube.com/watch*'",
-    args: 'url'
+  accepts: {
+    method: "predicateOnTab",
+    format: "%K LIKE[c] '*youtube.com/watch*'",
+    args: ["URL"]
   },
   isPlaying: function () { return !document.querySelector('#movie_player video').paused; },
   toggle: function () { document.querySelector('#movie_player .ytp-play-button').click(); },

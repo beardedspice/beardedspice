@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"MusicUnlimited",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*music.sonyentertainmentnetwork.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*music.sonyentertainmentnetwork.com*'",
+    args: ["URL"]
   },
   toggle: function () { document.querySelector('#PlayerPlayPause').click(); },
   next: function () { document.querySelector('#PlayerNext').click(); },

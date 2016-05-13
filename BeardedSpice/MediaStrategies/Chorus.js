@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Chorus",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '▶ * | Chorus.'",
-    args: "title"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '▶ * | Chorus.'",
+    args: ["title"]
   },
   toggle: function () {return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.togglePlay() : app.shellView.playerPlay() },
   next: function () {return app.audioStreaming.getPlayer() === 'local' ? app.audioStreaming.next() : app.shellView.playerNext()},

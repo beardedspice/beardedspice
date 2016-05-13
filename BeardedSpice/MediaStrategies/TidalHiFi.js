@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"TidalHiFi",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*listen.tidal.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*listen.tidal.com*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var player = require('media/playbackController');

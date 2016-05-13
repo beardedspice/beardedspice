@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"PocketCasts",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*play.pocketcasts.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*play.pocketcasts.com*'",
+    args: ["URL"]
   },
   toggle: function () {document.querySelector('div.play_pause_button').click()},
   next: function () {document.querySelector('div.skip_forward_button').click()},

@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Songza",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*songza.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*songza.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {return document.querySelector('.player-wrapper').classList.contains('player-state-play');},
   toggle: function () {document.querySelector('.miniplayer-control-play-pause').click()},

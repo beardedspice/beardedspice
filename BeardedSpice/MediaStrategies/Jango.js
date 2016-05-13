@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Jango",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*jango.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*jango.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { return (document.querySelector('#btn-playpause.pause') != null);},
   toggle: function () {document.querySelector('a#btn-playpause').click()},

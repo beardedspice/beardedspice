@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Subsonic",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*Subsonic*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*Subsonic*'",
+    args: ["URL"]
   },
   isPlaying: function () { return window.frames['playQueue'].jwplayer().getState() === 'PLAYING' },
   toggle:function () { window.frames['playQueue'].jwplayer().play() },

@@ -7,10 +7,10 @@
 BSStrategy = {
   version:1,
   displayName:"twitch.tv",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*twitch.tv/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*twitch.tv/*'",
+    args: ["URL"]
   },
   isPlaying: function () {
       var doc = document;

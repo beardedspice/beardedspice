@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"YandexRadio",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*radio.yandex.*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*radio.yandex.*'",
+    args: ["URL"]
   },
   isPlaying: function () { return Mu.Flow.flow.player.isPlaying(); },
   toggle: function () { Mu.Flow.togglePause(); },

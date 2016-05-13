@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Amazon Music",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*amazon.com/gp/dmusic/cloudplayer/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*amazon.com/gp/dmusic/cloudplayer/*'",
+    args: ["URL"]
   },
   isPlaying: function () {return window.amznMusic.widgets.player.isPlaying();},
   toggle: function () {return window.amznMusic.widgets.player.playHash('togglePlay')},

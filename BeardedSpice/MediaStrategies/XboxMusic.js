@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Xbox Music",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*music.xbox.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*music.xbox.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {},
   toggle: function () {window.app.mainViewModel.playerVM.togglePause()},

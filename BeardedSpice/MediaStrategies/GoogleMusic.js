@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"GoogleMusic",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*play.google.com/music/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*play.google.com/music/*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var e = document.querySelector('[data-id=play-pause]');

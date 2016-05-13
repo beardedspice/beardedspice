@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Coursera",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*coursera.org*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*coursera.org*'",
+    args: ["URL"]
   },
   isPlaying: function () {
     var v = vjs(document.querySelectorAll('.video-js')[0].querySelector('video').id);

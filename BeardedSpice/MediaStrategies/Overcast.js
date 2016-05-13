@@ -10,10 +10,10 @@
 BSStrategy = {
   version:1,
   displayName:"Overcast.fm",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*overcast.fm*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*overcast.fm*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var p=document.querySelector('#playpausebutton_playicon');

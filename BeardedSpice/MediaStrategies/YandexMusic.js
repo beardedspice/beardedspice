@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"YandexMusic",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*music.yandex.*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*music.yandex.*'",
+    args: ["URL"]
   },
   isPlaying: function () {return (document.querySelector('.player-controls__btn_play.player-controls__btn_pause') != null);},
   toggle: function () { document.querySelector('div.b-jambox__play, .player-controls__btn_play').click()},

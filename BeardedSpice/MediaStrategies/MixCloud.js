@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"MixCloud",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*mixcloud.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*mixcloud.com*'",
+    args: ["URL"]
   },
   pause: function () { document.querySelector('.pause-state').click() },
   toggle: function () { document.querySelector('.player-control').click(); },

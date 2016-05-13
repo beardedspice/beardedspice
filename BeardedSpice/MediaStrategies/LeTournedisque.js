@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"LeTournedisque",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*letournedisque.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*letournedisque.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {return (document.querySelectorAll('.playing')[0]) ? true : false},
   toggle: function () {return document.querySelectorAll('div.play')[0].click()},

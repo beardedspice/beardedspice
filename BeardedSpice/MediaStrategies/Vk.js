@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"VK",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*vk.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*vk.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { !!document.querySelector('#ac_play.playing, #gp_play.playing'); },
   toggle: function (w) {

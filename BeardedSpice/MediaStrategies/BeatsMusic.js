@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Beats Music",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*listen.beatsmusic.com*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*listen.beatsmusic.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {},
   toggle: function () {document.querySelectorAll('#t-play')[0].click()},

@@ -12,10 +12,10 @@
 BSStrategy = {
   version:1,
   displayName:"MusicForProgramming",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*musicforprogramming.net/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*musicforprogramming.net/*'",
+    args: ["URL"]
   },
   isPlaying: function () {return ( (document.querySelector('.playerControls #player_playpause').innerText === '[PAUSE]'));},
   toggle: function () {document.querySelector('.playerControls #player_playpause').click();},

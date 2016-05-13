@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"AudioMack",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*audiomack.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*audiomack.com*'",
+    args: ["URL"]
   },
   toggle: function () {
     var player = document.getElementById('listplayer');

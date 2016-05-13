@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"iHeartRadio",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*iheart.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*iheart.com*'",
+    args: ["URL"]
   },
   isPlaying: function() { document.querySelectorAll('[aria-label="Stop"], [aria-label="Pause"]').length > 0 },
   toggle:function () {

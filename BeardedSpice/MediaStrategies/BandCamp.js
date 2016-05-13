@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"BandCamp",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*bandcamp.com*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*bandcamp.com*'",
+    args: ["URL"]
   },
   toggle: function () {gplaylist.playpause()},
   next: function () {gplaylist.next_track()},

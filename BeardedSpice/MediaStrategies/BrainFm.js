@@ -8,10 +8,10 @@
 BSStrategy = {
   version: 1,
   displayName: "Brain.fm",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format: "SELF LIKE[c] '*brain.fm/app*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format: "%K LIKE[c] '*brain.fm/app*'",
+    args: ["URL"]
   },
   isPlaying: function () {
     var p = document.querySelector('#play_button');

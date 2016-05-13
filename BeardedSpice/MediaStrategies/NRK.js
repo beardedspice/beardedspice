@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"NRK",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*radio.nrk.no*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*radio.nrk.no*'",
+    args: ["URL"]
   },
   toggle: function () {return window.nrk.modules.player.getApi().toggleplay()},
   next: function () {},

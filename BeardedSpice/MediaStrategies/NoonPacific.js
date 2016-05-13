@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Noon Pacific",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*noonpacific.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*noonpacific.com*'",
+    args: ["URL"]
   },
   isPlaying: function() { return document.querySelector('.fa-pause') ? true:false;},
   toggle: function () {return document.querySelectorAll('.fa-fw')[1].click()},

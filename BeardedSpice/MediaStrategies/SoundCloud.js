@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"SoundCloud",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*soundcloud.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*soundcloud.com*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var play = document.querySelector('.playControl');

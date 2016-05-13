@@ -11,10 +11,10 @@
 BSStrategy = {
   version:1,
   displayName:"Watcha Play",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*play.watcha.net/watch*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*play.watcha.net/watch*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var v = document.querySelector('video');

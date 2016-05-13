@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Spotify",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*play*.spotify.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*play*.spotify.com*'",
+    args: ["URL"]
   },
   isPlaying:function() { document.querySelector('#app-player').contentWindow.document.querySelector('#play-pause').classList.contains('playing') },
   toggle: function () {document.querySelectorAll('#app-player')[0].contentWindow.document.querySelectorAll('#play-pause')[0].click()},

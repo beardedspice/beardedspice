@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Synology Audio Station",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*synology.me*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*synology.me*'",
+    args: ["URL"]
   },
   isPlaying: function () {},
   toggle: function () {document.querySelectorAll('.player-play button')[0].click()},

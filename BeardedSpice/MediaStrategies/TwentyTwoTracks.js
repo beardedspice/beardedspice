@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"22tracks",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*22tracks.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*22tracks.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {},
   toggle: function () {angular.element(document.querySelector('.player .ng-scope')).scope().Audio.playpause()},

@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"WonderFM",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*wonder.fm*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*wonder.fm*'",
+    args: ["URL"]
   },
   isPlaying: function () {return $('div.jp-audio').hasClass('jp-state-playing');},
   toggle: function () {

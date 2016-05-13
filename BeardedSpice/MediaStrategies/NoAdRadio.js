@@ -5,10 +5,10 @@
 BSStrategy = {
   version:1,
   displayName:"NoAdRadio",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*noadradio.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*noadradio.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { return (document.querySelector('#btn-playpause.pause') != null);},
   toggle: function () {document.querySelector('a#btn-playpause').click()},

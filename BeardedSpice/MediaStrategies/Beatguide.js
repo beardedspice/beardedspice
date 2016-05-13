@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Beatguide",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*beatguide.me*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*beatguide.me*'",
+    args: ["URL"]
   },
   isPlaying: function () {return ($('.pause-icon').css('display') == 'block');},
   toggle: function () {return document.querySelectorAll('.play-icon')[0].click()},

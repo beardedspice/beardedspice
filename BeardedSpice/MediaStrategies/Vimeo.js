@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Vimeo",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*vimeo.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*vimeo.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {},
   toggle: function () {return window.vimeo.active_player.paused?window.vimeo.active_player.play():window.vimeo.active_player.pause()},

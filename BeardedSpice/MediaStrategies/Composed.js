@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Composed",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*play.composed.com*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*play.composed.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {return document.querySelectorAll('.player-buttons__pause').length != 0},
   toggle: function () {document.querySelectorAll('.player-buttons button')[1].click()},

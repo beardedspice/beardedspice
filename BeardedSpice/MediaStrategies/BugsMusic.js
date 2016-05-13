@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Bugs Music",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*music.bugs.co.kr/newPlayer*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*music.bugs.co.kr/newPlayer*'",
+    args: ["URL"]
   },
   isPlaying: function () { return bugs.player.isPlayingTrack; },
   toggle: function () { bugs.player.playButtonHandler().call(); },

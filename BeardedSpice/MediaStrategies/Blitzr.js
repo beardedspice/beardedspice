@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Blitzr",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*blitzr.com*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*blitzr.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { return document.querySelector('#blitzr_playpause span.fa').className.indexOf('fa-play') == -1 },
   toggle: function () {document.querySelector('#blitzr_playpause').click()},

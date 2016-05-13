@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Rhapsody",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*app.rhapsody.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*app.rhapsody.com*'",
+    args: ["URL"]
   },
   isPlaying: function () {return !!$('.player-play-button .icon-pause2').length;},
   toggle: function () {

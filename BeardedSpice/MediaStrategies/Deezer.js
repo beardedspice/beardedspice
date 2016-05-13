@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Deezer",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*deezer.com*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*deezer.com*'",
+    args: ["URL"]
   },
   toggle: function () {dzPlayer.control.togglePause()},
   next: function () {dzPlayer.control.nextSong()},

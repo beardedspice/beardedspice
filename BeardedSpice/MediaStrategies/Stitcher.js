@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Stitcher",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*stitcher.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*stitcher.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { return document.getElementById('jp_audio_0').paused; },
   toggle:function () {

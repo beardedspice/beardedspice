@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Odnoklassniki",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*ok.ru*' OR SELF LIKE[c] '*odnoklassniki.ru*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*ok.ru*' OR %@ LIKE[c] '*odnoklassniki.ru*'",
+    args: ["URL", "URL"]
   },
   toggle: function () {
     if (odklMusic.playingTrack() == "") {

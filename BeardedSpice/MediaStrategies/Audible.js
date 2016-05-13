@@ -13,10 +13,10 @@
 BSStrategy = {
   version:1,
   displayName:"Audible",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*audible.com/cloud-player*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*audible.com/cloud-player*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var p=document.querySelector('.pause');

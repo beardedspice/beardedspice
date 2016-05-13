@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"LastFM",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*last.fm/listen*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*last.fm/listen*'",
+    args: ["URL"]
   },
   toggle:function () {
     var e = document.querySelectorAll('#radioControlPlay')[0];

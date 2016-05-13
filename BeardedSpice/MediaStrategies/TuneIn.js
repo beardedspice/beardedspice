@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"TuneIn",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*tunein.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*tunein.com*'",
+    args: ["URL"]
   },
   isPlaying: function () { return $('#tuner').attr('class') === 'playing' },
   toggle: function() { document.querySelector('.playbutton-cont').click(); },

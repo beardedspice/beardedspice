@@ -8,8 +8,8 @@
 BSStrategy = {
   version:1,
   displayName:"Plex Web",
-  acceptMethod: "script",
-  acceptParams: {
+  accepts: {
+    method: "script",
     script: function accepts () {return (window.PLEXWEB != undefined);}
   },
   isPlaying: function()  {

@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"SomaFM",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*somafm.com/player/*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*somafm.com/player/*'",
+    args: ["URL"]
   },
   isPlaying: function () {return ( (document.querySelector('#stopBtn:not(.ng-hide)') ? true : false));},
   toggle: function () {(document.querySelector('#playBtn:not(.ng-hide)') || document.querySelector('#stopBtn:not(.ng-hide)')).click()},

@@ -14,8 +14,7 @@
 extern NSString * _Nonnull const kBSMediaStrategyKeyVersion;
 extern NSString * _Nonnull const kBSMediaStrategyKeyDisplayName;
 
-extern NSString * _Nonnull const kBSMediaStrategyKeyAcceptsMethod;
-extern NSString * _Nonnull const kBSMediaStrategyKeyAcceptsParams;
+extern NSString * _Nonnull const kBSMediaStrategyKeyAccept;
 extern NSString * _Nonnull const kBSMediaStrategyKeyIsPlaying;
 extern NSString * _Nonnull const kBSMediaStrategyKeyToggle;
 extern NSString * _Nonnull const kBSMediaStrategyKeyPrevious;
@@ -24,6 +23,7 @@ extern NSString * _Nonnull const kBSMediaStrategyKeyFavorite;
 extern NSString * _Nonnull const kBSMediaStrategyKeyPause;
 extern NSString * _Nonnull const kBSMediaStrategyKeyTrackInfo;
 
+extern NSString * _Nonnull const kBSMediaStrategyAcceptMethod;
 extern NSString * _Nonnull const kBSMediaStrategyAcceptPredicateOnTab;
 extern NSString * _Nonnull const kBSMediaStrategyAcceptScript;
 extern NSString * _Nonnull const kBSMediaStrategyAcceptKeyFormat;

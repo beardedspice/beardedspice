@@ -10,10 +10,10 @@
 BSStrategy = {
   version:1,
   displayName:"BBC Radio",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*bbc.co.uk/radio/player/*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*bbc.co.uk/radio/player/*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var s=document.querySelector('#controls');

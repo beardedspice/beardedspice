@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"IndieShuffle",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*indieshuffle.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*indieshuffle.com*'",
+    args: ["URL"]
   },
   isPlaying:function () { return document.querySelector('#currentSong .commontrack.active') != undefined;},
   toggle: function () {document.querySelector('#currentSong .commontrack').click()},

@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Grooveshark",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*grooveshark.im*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*grooveshark.im*'",
+    args: ["URL"]
   },
   toggle: function () {return window.Grooveshark.togglePlayPause()},
   next: function () { playNextSong(0); },

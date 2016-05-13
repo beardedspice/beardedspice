@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Logitech Media Server",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] 'Logitech Media Server'",
-    args:"title"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] 'Logitech Media Server'",
+    args: ["title"]
   },
   toggle: function () {return window.SqueezeJS.Controller.togglePause()},
   next: function () {return document.querySelectorAll('#ctrlNext button')[0].click()},

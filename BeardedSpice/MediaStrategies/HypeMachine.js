@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"HypeMachine",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*hypem.com*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*hypem.com*'",
+    args: ["URL"]
   },
   toggle: function () {return window.togglePlay()},
   next: function () {return window.nextTrack()},

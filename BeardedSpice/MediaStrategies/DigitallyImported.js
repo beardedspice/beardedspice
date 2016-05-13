@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Digitally Imported",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*di.fm*'",
-    args: "url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*di.fm*'",
+    args: ["URL"]
   },
   isPlaying:function () {
     var pause = $('#webplayer-region .controls .ico.icon-pause').get(0);

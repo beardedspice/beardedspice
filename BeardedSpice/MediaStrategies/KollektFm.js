@@ -8,10 +8,10 @@
 BSStrategy = {
   version:1,
   displayName:"Kollekt.FM",
-  acceptMethod: "predicateOnTab",
-  acceptParams: {
-    format:"SELF LIKE[c] '*kollekt.fm*'",
-    args:"url"
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*kollekt.fm*'",
+    args: ["URL"]
   },
   toggle: function() { $( "i[ng-click='playPause()']" ).click; },
   next: function() { $( "i[ng-click='next()']" ).click; },

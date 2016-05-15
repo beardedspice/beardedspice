@@ -227,13 +227,6 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
 
     if ([method isEqualToString:kBSMediaStrategyAcceptPredicateOnTab])
     {
-        /*id object = nil;
-        NSArray *typeArgs = (NSArray *)_acceptParams[kBSMediaStrategyAcceptKeyArgs];
-        if ([typeArgs containsObject:kBSMediaStrategyAcceptValueURL])
-            object = [tab URL];
-        else if ([typeArgs containsObject:kBSMediaStrategyAcceptValueTitle])
-            object = [tab title];
-        */
         NSPredicate *acceptValue = (NSPredicate *)_acceptParams[kBSMediaStrategyKeyAccept];
         return acceptValue ? [acceptValue evaluateWithObject:tab] : NO;
     }
@@ -264,7 +257,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!_scripts)
         return @"";
 
-    return _scripts[kBSMediaStrategyKeyToggle];
+    return _scripts[kBSMediaStrategyKeyToggle] ?: @"";
 }
 
 - (NSString * _Nonnull)previous
@@ -272,7 +265,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!_scripts)
         return @"";
 
-    return _scripts[kBSMediaStrategyKeyPrevious];
+    return _scripts[kBSMediaStrategyKeyPrevious] ?: @"";
 }
 
 - (NSString * _Nonnull)next
@@ -280,7 +273,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!_scripts)
         return @"";
 
-    return _scripts[kBSMediaStrategyKeyNext];
+    return _scripts[kBSMediaStrategyKeyNext] ?: @"";
 }
 
 - (NSString * _Nonnull)pause
@@ -288,7 +281,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!_scripts)
         return @"";
 
-    return _scripts[kBSMediaStrategyKeyPause];
+    return _scripts[kBSMediaStrategyKeyPause] ?: @"";
 }
 
 - (NSString * _Nonnull)favorite
@@ -296,7 +289,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!_scripts)
         return @"";
 
-    return _scripts[kBSMediaStrategyKeyFavorite];
+    return _scripts[kBSMediaStrategyKeyFavorite] ?: @"";
 }
 
 - (BSTrack * _Nullable)trackInfo:(TabAdapter * _Nonnull)tab

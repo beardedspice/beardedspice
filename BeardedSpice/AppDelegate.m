@@ -598,14 +598,14 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (BOOL)setActiveTabShortcutForSafari:(runningSBApplication *)app {
-    SafariApplication *safari = (SafariApplication *)app.sbApplication;
+    SafariTechnologyPreviewApplication  *safari = (SafariTechnologyPreviewApplication  *)app.sbApplication;
     // is safari.windows[0] the frontmost?
-    SafariWindow *safariWindow = safari.windows[0];
+    SafariTechnologyPreviewWindow *SafariTechnologyPreviewWindow = safari.windows[0];
 
     // use 'get' to force a hard reference.
     return [self updateActiveTab:[SafariTabAdapter initWithApplication:app
-                                                      andWindow:safariWindow
-                                                         andTab:[safariWindow currentTab]]];
+                                                      andWindow:SafariTechnologyPreviewWindow
+                                                         andTab:[SafariTechnologyPreviewWindow currentTab]]];
 }
 
 - (BOOL)setActiveTabShortcut{
@@ -712,11 +712,11 @@ BOOL accessibilityApiEnabled = NO;
     @try {
 
         NSMenuItem *item;
-        SafariApplication *safari = (SafariApplication *)app.sbApplication;
+        SafariTechnologyPreviewApplication *safari = (SafariTechnologyPreviewApplication *)app.sbApplication;
         if (safari) {
-            for (SafariWindow *safariWindow in [safari.windows get]) {
-                for (SafariTab *safariTab in [safariWindow.tabs get]) {
-                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+            for (SafariTechnologyPreviewWindow *SafariTechnologyPreviewWindow in [safari.windows get]) {
+                for (SafariTechnologyPreviewTab *safariTab in [SafariTechnologyPreviewWindow.tabs get]) {
+                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:SafariTechnologyPreviewWindow];
                     if (item) {
                         [items addObject:item];
                     }
@@ -851,10 +851,10 @@ BOOL accessibilityApiEnabled = NO;
     return nil;
 }
 
--(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
+-(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTechnologyPreviewTab *)safariTab andWindow:(SafariTechnologyPreviewWindow*)SafariTechnologyPreviewWindow
 {
     TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
-                                              andWindow:safariWindow
+                                              andWindow:SafariTechnologyPreviewWindow
                                                  andTab:safariTab];
     if (tab){
 

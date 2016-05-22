@@ -16,15 +16,15 @@
 
 @implementation SafariTabAdapter
 
-+ (id)initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
++ (id)initWithApplication:(runningSBApplication *)application andWindow:(SafariTechnologyPreviewWindow *)window andTab:(SafariTechnologyPreviewTab *)tab
 {
     SafariTabAdapter *out = [SafariTabAdapter new];
 
     // TODO(trhodeos): I can't remember why we used [object get] instead of the object directly.
     //   Checking to make sure that the object returned by 'get' is not null before using it, as it
     //   seems to be an issue w/ safari.
-    SafariTab *gottenTab = [tab get];
-    SafariWindow *gottenWindow = [window get];
+    SafariTechnologyPreviewTab*gottenTab = [tab get];
+    SafariTechnologyPreviewWindow *gottenWindow = [window get];
     if (gottenTab != nil) {
         [out setTab:gottenTab];
     } else {
@@ -41,7 +41,8 @@
 
 -(id) executeJavascript:(NSString *) javascript
 {
-    return [(SafariApplication *)self.application.sbApplication doJavaScript:javascript in:self.tab];
+    SafariTechnologyPreviewApplication * app = self.application.sbApplication;
+    return [app doJavaScript:javascript in:self.tab];
 }
 
 -(NSString *) title
@@ -89,8 +90,8 @@
             _wasWindowActivated = NO;
             if (self.window.index != MULTI) {
                 
-                SafariApplication *app = (SafariApplication *)[self.application sbApplication];
-                for (SafariWindow *window in [[app windows] get]) {
+                SafariTechnologyPreviewApplication *app = (SafariTechnologyPreviewApplication *)[self.application sbApplication];
+                for (SafariTechnologyPreviewWindow *window in [[app windows] get]) {
                     
                     NSInteger index = window.index;
                     if (index == MULTI) {
@@ -114,7 +115,7 @@
 
 - (BOOL)isActivated{
     
-    return ([(SafariApplication *)self.application.sbApplication frontmost]
+    return ([(SafariTechnologyPreviewApplication *)self.application.sbApplication frontmost]
             && self.window.index == MULTI
             && self.tab.index == self.window.currentTab.index);
 }

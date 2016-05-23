@@ -89,6 +89,8 @@
     <integer>1</integer>
     <key>PocketCasts</key>
     <integer>1</integer>
+    <key>ProductHunt</key>
+    <integer>1</integer>
     <key>Rdio</key>
     <integer>1</integer>
     <key>Rhapsody</key>

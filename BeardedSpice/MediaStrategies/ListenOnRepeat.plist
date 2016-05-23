@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+//
+//  ListenOnRepeat
+//  BeardedSpice
+//  Created by Alexandre Daussy (Kureb) on 05/23/16.
+//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//
+-->
+<dict>
+    <!-- metadata -->
+    <key>version</key>
+    <integer>1</integer>
+    <key>displayName</key>
+    <string>ListenOnRepeat</string>
+
+    <key>accepts</key>
+    <dict>
+        <key>predicate</key>
+        <string>SELF LIKE[c] '*listenonrepeat.com/*'</string>
+        <key>tabValue</key>
+        <string>url</string>
+    </dict>
+
+
+    <key>isPlaying</key>
+    <string>(function(){return document.querySelector('i.mdi-av-pause') == null;}())</string>
+
+    <key>toggle</key>
+    <string>(function(){ return document.querySelector('div.control-play-pause').click(); })()</string>
+
+    <key>previous</key>
+    <string>(function(){return document.querySelector('i.mdi-av-skip-previous').click(); })()</string>
+
+    <key>next</key>
+    <string>(function(){return document.querySelector('i.mdi-av-skip-next').click(); })()</string>
+
+    <key>pause</key>
+    <string>(function(){document.querySelector('i.mdi-av-pause').click(); })()</string>
+
+    <key>favorite</key>
+    <string>(function() {document.querySelector('mdi-action-favorite-outline').click(); })()</string>
+
+    <key>trackInfo</key>
+    <string>(function(){
+        return {
+            'track': document.querySelector('div.video-title').innerHTML,
+            'favorite': document.querySelector('div.control-heart > i:nth-child(1)').getAttribute("title").indexOf("Add") == -1
+        };
+        })();
+    </string>
+</dict>
+</plist>

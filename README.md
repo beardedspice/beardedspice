@@ -81,6 +81,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Kollekt.FM](https://kollekt.fm/)
 - [Last.fm](http://www.last.fm/)
 - [Le Tournedisque](http://www.letournedisque.com/)
+- [ListenOnRepeat](http://listenonrepeat.com/)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
 - [Mixcloud](https://www.mixcloud.com/)
 - [Music For Programming](http://musicforprogramming.net/)

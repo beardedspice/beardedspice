@@ -62,6 +62,8 @@
 		<true/>
 		<key>LastFM</key>
 		<true/>
+		<key>ListenOnRepeat</key>
+		<true/>
 		<key>Logitech Media Server</key>
 		<true/>
 		<key>MixCloud</key>

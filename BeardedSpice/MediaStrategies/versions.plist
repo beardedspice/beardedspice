@@ -58,6 +58,8 @@
 	<integer>1</integer>
 	<key>LeTournedisque</key>
 	<integer>1</integer>
+    <key>ListenOnRepeat</key>
+    <integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
 	<key>MixCloud</key>

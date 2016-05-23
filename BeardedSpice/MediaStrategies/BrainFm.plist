@@ -24,7 +24,6 @@
         <string>SELF LIKE[c] '*brain.fm/app*'</string>
         <key>tabValue</key>
         <string>url</string>
-        -->
     </dict>
 
     <!-- Relevant javascripts go here.

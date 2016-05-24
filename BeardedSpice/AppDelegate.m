@@ -574,6 +574,11 @@ BOOL accessibilityApiEnabled = NO;
     if (timeout.reached) {
         return;
     }
+    
+    safariTPApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARITP];
+    if (timeout.reached) {
+        return;
+    }
 
     [nativeApps removeAllObjects];
     for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
@@ -598,14 +603,14 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (BOOL)setActiveTabShortcutForSafari:(runningSBApplication *)app {
-    SafariTechnologyPreviewApplication  *safari = (SafariTechnologyPreviewApplication  *)app.sbApplication;
+    SafariApplication  *safari = (SafariApplication  *)app.sbApplication;
     // is safari.windows[0] the frontmost?
-    SafariTechnologyPreviewWindow *SafariTechnologyPreviewWindow = safari.windows[0];
+    SafariWindow *SafariWindow = safari.windows[0];
 
     // use 'get' to force a hard reference.
     return [self updateActiveTab:[SafariTabAdapter initWithApplication:app
-                                                      andWindow:SafariTechnologyPreviewWindow
-                                                         andTab:[SafariTechnologyPreviewWindow currentTab]]];
+                                                      andWindow:SafariWindow
+                                                         andTab:[SafariWindow currentTab]]];
 }
 
 - (BOOL)setActiveTabShortcut{
@@ -621,6 +626,8 @@ BOOL accessibilityApiEnabled = NO;
         result = [self setActiveTabShortcutForChrome:chromiumApp];
     } else if (safariApp.frontmost) {
         result = [self setActiveTabShortcutForSafari:safariApp];
+    } else if (safariTPApp.frontmost) {
+        result = [self setActiveTabShortcutForSafari:safariTPApp];
     } else {
 
         for (runningSBApplication *app in nativeApps) {
@@ -712,11 +719,11 @@ BOOL accessibilityApiEnabled = NO;
     @try {
 
         NSMenuItem *item;
-        SafariTechnologyPreviewApplication *safari = (SafariTechnologyPreviewApplication *)app.sbApplication;
+        SafariApplication *safari = (SafariApplication *)app.sbApplication;
         if (safari) {
-            for (SafariTechnologyPreviewWindow *SafariTechnologyPreviewWindow in [safari.windows get]) {
-                for (SafariTechnologyPreviewTab *safariTab in [SafariTechnologyPreviewWindow.tabs get]) {
-                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:SafariTechnologyPreviewWindow];
+            for (SafariWindow *safariWindow in [safari.windows get]) {
+                for (SafariTab *safariTab in [safariWindow.tabs get]) {
+                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow andApplication:app];
                     if (item) {
                         [items addObject:item];
                     }
@@ -790,6 +797,7 @@ BOOL accessibilityApiEnabled = NO;
             [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariTPApp timeout:timeout]];
 
             for (runningSBApplication *app in nativeApps) {
 
@@ -851,10 +859,11 @@ BOOL accessibilityApiEnabled = NO;
     return nil;
 }
 
--(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTechnologyPreviewTab *)safariTab andWindow:(SafariTechnologyPreviewWindow*)SafariTechnologyPreviewWindow
+
+-(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow andApplication:(runningSBApplication *)application
 {
-    TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
-                                              andWindow:SafariTechnologyPreviewWindow
+    TabAdapter *tab = [SafariTabAdapter initWithApplication:application
+                                              andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab){
 

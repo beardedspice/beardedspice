@@ -7,23 +7,24 @@
 //
 
 #import "TabAdapter.h"
-#import "SafariTechnologyPreview.h"
+#import "Safari.h"
 
-#define APPID_SAFARI            @"com.apple.SafariTechnologyPreview"
+#define APPID_SAFARI            @"com.apple.Safari"
+#define APPID_SAFARITP          @"com.apple.SafariTechnologyPreview"
 
 @class runningSBApplication;
 
 @interface SafariTabAdapter : TabAdapter{
     
-    SafariTechnologyPreviewTab *_previousTab;
-    SafariTechnologyPreviewWindow *_previousTopWindow;
+    SafariTab *_previousTab;
+    SafariWindow *_previousTopWindow;
     BOOL _wasWindowActivated;
 
 }
 
-+(id) initWithApplication:(runningSBApplication *)application andWindow:(SafariTechnologyPreviewWindow *)window andTab:(SafariTechnologyPreviewTab *)tab;
++(id) initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab;
 
-@property SafariTechnologyPreviewWindow *window; // we need this for the equality check
-@property SafariTechnologyPreviewTab *tab;
+@property SafariWindow *window; // we need this for the equality check
+@property SafariTab *tab;
 
 @end

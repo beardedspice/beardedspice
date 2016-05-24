@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "Chrome.h"
-#import "SafariTechnologyPreview.h"
+#import "Safari.h"
 #import "iTunes.h"
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
@@ -34,6 +34,7 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *chromiumApp;
 
     runningSBApplication *safariApp;
+    runningSBApplication *safariTPApp;
     NSMutableSet *SafariTabKeys;
 
     NSMutableArray *nativeApps;

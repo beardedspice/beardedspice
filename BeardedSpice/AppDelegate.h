@@ -35,6 +35,8 @@ extern BOOL accessibilityApiEnabled;
 
     runningSBApplication *safariApp;
     NSMutableSet *SafariTabKeys;
+    
+    runningSBApplication *safariTPApp;
 
     NSMutableArray *nativeApps;
 

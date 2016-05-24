@@ -3,7 +3,7 @@ PODS:
   - MASShortcut (2.3.3)
 
 DEPENDENCIES:
-  - MASPreferences (~> 1.1.2)
+  - MASPreferences (~> 1.1.4)
   - MASShortcut (~> 2.3.3)
 
 SPEC CHECKSUMS:

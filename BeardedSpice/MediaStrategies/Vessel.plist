@@ -24,7 +24,6 @@
         <string>SELF LIKE[c] '*vessel.com/videos/*'</string>
         <key>tabValue</key>
         <string>url</string>
-        -->
     </dict>
 
     <!-- Relevant javascripts go here.

@@ -23,7 +23,7 @@
     // TODO(trhodeos): I can't remember why we used [object get] instead of the object directly.
     //   Checking to make sure that the object returned by 'get' is not null before using it, as it
     //   seems to be an issue w/ safari.
-    SafariTab*gottenTab = [tab get];
+    SafariTab *gottenTab = [tab get];
     SafariWindow *gottenWindow = [window get];
     if (gottenTab != nil) {
         [out setTab:gottenTab];
@@ -41,8 +41,7 @@
 
 -(id) executeJavascript:(NSString *) javascript
 {
-    SafariApplication * app = self.application.sbApplication;
-    return [app doJavaScript:javascript in:self.tab];
+    return [(SafariApplication *)self.application.sbApplication doJavaScript:javascript in:self.tab];
 }
 
 -(NSString *) title

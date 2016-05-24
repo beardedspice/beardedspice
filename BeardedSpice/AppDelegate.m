@@ -603,14 +603,14 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (BOOL)setActiveTabShortcutForSafari:(runningSBApplication *)app {
-    SafariApplication  *safari = (SafariApplication  *)app.sbApplication;
+    SafariApplication *safari = (SafariApplication *)app.sbApplication;
     // is safari.windows[0] the frontmost?
-    SafariWindow *SafariWindow = safari.windows[0];
+    SafariWindow *safariWindow = safari.windows[0];
 
     // use 'get' to force a hard reference.
     return [self updateActiveTab:[SafariTabAdapter initWithApplication:app
-                                                      andWindow:SafariWindow
-                                                         andTab:[SafariWindow currentTab]]];
+                                                      andWindow:safariWindow
+                                                         andTab:[safariWindow currentTab]]];
 }
 
 - (BOOL)setActiveTabShortcut{

@@ -1,66 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<!--
-//
-//  Subsonic.plist
-//  BeardedSpice
-//
-//  Created by Michael Alden on 6/16/2015.
-//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
-//
--->
 <dict>
-    <!-- metadata -->
-    <key>version</key>
-    <integer>1</integer>
-    <key>displayName</key>
-    <string>Subsonic</string>
-
-    <key>accepts</key>
-    <dict>
-        <key>predicate</key>
-        <string>SELF LIKE[c] '*Subsonic*'</string>
-        <key>tabValue</key>
-        <string>title</string> <!-- current 'url' or 'title' -->
-    </dict>
-
-    <!-- Relevant javascripts go here.
-    - Normal formatting is supported (can copy/paste with newlines and indentations)
-    - &amp; is used to escape '&' so the file is readable.
-    -->
-    <key>isPlaying</key>
-    <string>(function() { return window.frames['playQueue'].jwplayer().getState() === 'PLAYING' })()</string>
-
-    <key>toggle</key>
-    <string>window.frames['playQueue'].jwplayer().play()</string>
-
-    <key>previous</key>
-    <string>window.frames['playQueue'].onPrevious()</string>
-
-    <key>next</key>
-    <string>window.frames['playQueue'].onNext()</string>
-
-    <key>pause</key>
-    <string>window.frames['playQueue'].jwplayer().pause(true)</string>
-
-    <key>favorite</key>
-    <string>window.frames['playQueue'].onStar(window.frames['playQueue'].getCurrentSongIndex())</string>
-
-    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
-    - Namespaced keys currently supported include: track, album, artist, favorited, image
-    -->
-    <key>trackInfo</key>
-    <string>(function(){
-        var playQueue = window.frames['playQueue'].songs[window.frames['playQueue'];
+	<key>version</key>
+	<integer>1</integer>
+	<key>displayName</key>
+	<string>Subsonic</string>
+	<key>accepts</key>
+	<dict>
+		<key>predicate</key>
+		<string>SELF LIKE[c] &apos;*Subsonic*&apos;</string>
+		<key>tabValue</key>
+		<string>title</string>
+	</dict>
+	<key>isPlaying</key>
+	<string>(function() {
+    if ((typeof window.frames[&apos;playQueue&apos;].localPlayer) === &apos;object&apos;) {
+        return window.frames[&apos;playQueue&apos;].localPlayer.paused ? &apos;PAUSED&apos; : &apos;PLAYING&apos;;
+    }
+    else {
+        return window.frames[&apos;playQueue&apos;].jwplayer().getState()
+    }
+})()</string>
+	<key>toggle</key>
+	<string>(function() {
+    if ((typeof window.frames[&apos;playQueue&apos;].localPlayer) === &apos;object&apos;) {
+        window.frames[&apos;playQueue&apos;].localPlayer.paused ? window.frames[&apos;playQueue&apos;].onStart() : window.frames[&apos;playQueue&apos;].onStop();
+    }
+    else {
+        window.frames[&apos;playQueue&apos;].jwplayer().play()
+    }
+})()</string>
+	<key>previous</key>
+	<string>window.frames[&apos;playQueue&apos;].onPrevious()</string>
+	<key>next</key>
+	<string>window.frames[&apos;playQueue&apos;].onNext()</string>
+	<key>pause</key>
+	<string>(function() {
+    if((typeof window.frames[&apos;playQueue&apos;].onStop) === &apos;function&apos;) {
+        window.frames[&apos;playQueue&apos;].onStop(); 
+    }
+    else {
+        window.frames[&apos;playQueue&apos;].jwplayer().pause(true)
+    }
+})()</string>
+	<key>favorite</key>
+	<string>window.frames[&apos;playQueue&apos;].onStar(window.frames[&apos;playQueue&apos;].getCurrentSongIndex())</string>
+	<key>trackInfo</key>
+	<string>(function(){
+        var playQueue = window.frames[&apos;playQueue&apos;].songs[window.frames[&apos;playQueue&apos;];
         var ret = playQueue.getCurrentSongIndex()];
 
         return {
-            'title': ret.title,
-            'album': ret.album,
-            'artist': ret.artist,
-            'favorited': ret.starred,
-            'image': playQueue.getCurrentSongIndex()].albumUrl.replace('main','coverArt').concat('&amp;size=128'),
+            &apos;title&apos;: ret.title,
+            &apos;album&apos;: ret.album,
+            &apos;artist&apos;: ret.artist,
+            &apos;favorited&apos;: ret.starred,
+            &apos;image&apos;: playQueue.getCurrentSongIndex()].albumUrl.replace(&apos;main&apos;,&apos;coverArt&apos;).concat(&apos;&amp;size=128&apos;),
         };
     })()</string>
 </dict>

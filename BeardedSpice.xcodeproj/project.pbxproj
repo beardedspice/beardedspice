@@ -212,6 +212,14 @@
 		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
+		D0E89A631C0EB54E0033077D /* MusicForProgrammingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */; };
+		D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */; };
+		D2D98CD9197F34BD00941CBD /* BopFm.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D98CD8197F34BD00941CBD /* BopFm.m */; };
+		EDA824431B0A5C9500B03E23 /* LeTournedisqueStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */; };
+		F40F2C2BE9B5CDD7F70F2A38 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D33BAA206486A684C160F1 /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
+		F634B5D71BF073150098BC59 /* JangoMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */; };
+		F72B16AE1BEE2788007B79FA /* HotNewHipHopStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */; };
+		F8D2DCE21CB5912E002F9CC9 /* DeezerTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D2DCE11CB5912E002F9CC9 /* DeezerTabAdapter.m */; };
 		DAD858605B37FF09D3AAD082 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
 /* End PBXBuildFile section */
 
@@ -454,6 +462,22 @@
 		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
 		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
 		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
+		D0E89A611C0EB54E0033077D /* MusicForProgrammingStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicForProgrammingStrategy.h; sourceTree = "<group>"; };
+		D0E89A621C0EB54E0033077D /* MusicForProgrammingStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicForProgrammingStrategy.m; sourceTree = "<group>"; };
+		D2222A781A180E6900910CFE /* TwentyTwoTracksStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwentyTwoTracksStrategy.h; sourceTree = "<group>"; };
+		D2222A791A180E6900910CFE /* TwentyTwoTracksStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwentyTwoTracksStrategy.m; sourceTree = "<group>"; };
+		D2D98CD7197F34BD00941CBD /* BopFm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BopFm.h; sourceTree = "<group>"; };
+		D2D98CD8197F34BD00941CBD /* BopFm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BopFm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		D7201F912DC1FAEAE9115A78 /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
+		EDA824421B0A5C9500B03E23 /* LeTournedisqueStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeTournedisqueStrategy.m; sourceTree = "<group>"; };
+		EDA824441B0A5C9B00B03E23 /* LeTournedisqueStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeTournedisqueStrategy.h; sourceTree = "<group>"; };
+		F634B5D51BF073150098BC59 /* JangoMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JangoMediaStrategy.h; sourceTree = "<group>"; };
+		F634B5D61BF073150098BC59 /* JangoMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JangoMediaStrategy.m; sourceTree = "<group>"; };
+		F72B16AC1BEE2788007B79FA /* HotNewHipHopStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotNewHipHopStrategy.h; sourceTree = "<group>"; };
+		F72B16AD1BEE2788007B79FA /* HotNewHipHopStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotNewHipHopStrategy.m; sourceTree = "<group>"; };
+		F8D2DCE01CB5912E002F9CC9 /* DeezerTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerTabAdapter.h; sourceTree = "<group>"; };
+		F8D2DCE11CB5912E002F9CC9 /* DeezerTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerTabAdapter.m; sourceTree = "<group>"; };
+		FD0238EBD7B1D4DCD4D78189 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
 		EC34526CCB5D146FD02423F4 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -525,6 +549,8 @@
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				F8D2DCE01CB5912E002F9CC9 /* DeezerTabAdapter.h */,
+				F8D2DCE11CB5912E002F9CC9 /* DeezerTabAdapter.m */,
 				D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */,
 				D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */,
 				D09EFF211C8CD49E00B24DA9 /* VLC.h */,
@@ -1239,6 +1265,13 @@
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
+				03A34925185EB20E00C4A62B /* YouTubeStrategy.m in Sources */,
+				D2222A7A1A180E6900910CFE /* TwentyTwoTracksStrategy.m in Sources */,
+				4B8D23A61C9DEF4B00E85020 /* DailymotionStrategy.m in Sources */,
+				F8D2DCE21CB5912E002F9CC9 /* DeezerTabAdapter.m in Sources */,
+				48BDDFDC19801E57009C897F /* AmazonMusicStrategy.m in Sources */,
+				9AF442D51886F71400CD7266 /* EightTracksStrategy.m in Sources */,
+				32F131461A71B6090029E9EF /* PocketCastsStrategy.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,

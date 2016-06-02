@@ -23,6 +23,7 @@
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
 
+#import "BSStrategyCache.h"
 #import "BSTrack.h"
 #import "BSStrategyVersionManager.h"
 
@@ -98,12 +99,16 @@ BOOL accessibilityApiEnabled = NO;
     // Application notifications
     [self setupSystemEventsCallback];
 
+    BSStrategyCache *strategyCache = [BSStrategyCache new];
+
+    self.versionManager = [[BSStrategyVersionManager alloc] initWithStrategyCache:strategyCache];
+    [_versionManager loadStrategies];
+
     // setup default media strategy
-    mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers];
+    mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers strategyCache:strategyCache];
 
     // setup native apps
-    nativeAppRegistry = [[NativeAppTabRegistry alloc]
-        initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
+    nativeAppRegistry = [[NativeAppTabRegistry alloc] initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
 
     nativeApps = [NSMutableArray array];
 
@@ -393,8 +398,7 @@ BOOL accessibilityApiEnabled = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
         __strong typeof(wself) sself = wself;
 
-        BSStrategyVersionManager *manager = [BSStrategyVersionManager sharedVersionManager];
-        NSUInteger updateCount = [manager performSyncUpdateCheck];
+        NSUInteger updateCount = [sself.versionManager performSyncUpdateCheck];
 
         if (updateCount == 0){
             if (checkFromMenu) {
@@ -403,13 +407,6 @@ BOOL accessibilityApiEnabled = NO;
         }
         else
         {
-            NSArray *strategies = [MediaStrategyRegistry getDefaultMediaStrategyNames];
-            for (NSString *name in strategies)
-            {
-                BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
-                [strategy reloadData];
-            }
-
             [sself refreshTabs:nil];
 
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
@@ -436,7 +433,6 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)updateActiveTabFromMenuItem:(id) sender
 {
-
     dispatch_async(workingQueue, ^{
 
         [self updateActiveTab:[sender representedObject]];

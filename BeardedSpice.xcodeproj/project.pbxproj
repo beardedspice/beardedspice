@@ -19,7 +19,10 @@
 		0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */; };
 		0B1AF3811CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF37A1CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m */; };
 		0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */; };
+		0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
+		0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
 		0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B355EF51CBEA3350089C2B3 /* Localizable.strings */; };
+		0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */; };
 		0BD1B2F01CD2196600B72A3E /* Youtube.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1B2EF1CD2196600B72A3E /* Youtube.js */; };
 		0BD1B2F11CD2196700B72A3E /* Youtube.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1B2EF1CD2196600B72A3E /* Youtube.js */; };
 		0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
@@ -160,6 +163,7 @@
 		0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */; };
 		0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */; };
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
+		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
 		1E1426F8950EBED0E2020816 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F20B81547A29635C2DF0434 /* libPods-BeardedSpiceControllers.a */; };
@@ -187,7 +191,6 @@
 		656A00331C8AD41A00BD29F5 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
 		656A00341C8AD41A00BD29F5 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
 		656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
-		656A00361C8AD41A00BD29F5 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
 		656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
 		656A00381C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
 		656A003D1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */; };
@@ -284,6 +287,9 @@
 		0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyTests.m; sourceTree = "<group>"; };
 		0B1AF37A1CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyVersionManagerTests.m; sourceTree = "<group>"; };
 		0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackTests.m; sourceTree = "<group>"; };
+		0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyCache.h; sourceTree = "<group>"; };
+		0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyCache.m; sourceTree = "<group>"; };
+		0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vcr-strategy-urls.plist"; sourceTree = "<group>"; };
 		0BD1B2EF1CD2196600B72A3E /* Youtube.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Youtube.js; sourceTree = "<group>"; };
 		0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		0BD1B2F51CD2211300B72A3E /* cassettes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cassettes; sourceTree = "<group>"; };
@@ -812,6 +818,8 @@
 				0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */,
 				0BF06ADF1C9513A800534083 /* BSTrack.h */,
 				0BF06AE01C9513A800534083 /* BSTrack.m */,
+				0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */,
+				0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */,
 				6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */,
 				6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */,
 				65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */,
@@ -861,6 +869,7 @@
 		967933541855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */,
 				967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -1115,6 +1124,7 @@
 				0BE800441CDA4F5B001A4DDF /* Netflix.js in Resources */,
 				0BE8000E1CDA4F5B001A4DDF /* BBCRadio.js in Resources */,
 				0BE800681CDA4F5B001A4DDF /* Stitcher.js in Resources */,
+				0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */,
 				0BE800861CDA4F5B001A4DDF /* YandexMusic.js in Resources */,
 				0BE8003C1CDA4F5B001A4DDF /* LogitechMediaServer.js in Resources */,
 				0BE8007E1CDA4F5B001A4DDF /* Vk.js in Resources */,
@@ -1265,6 +1275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */,
 				656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */,
 				656A00231C8AD3E200BD29F5 /* SPMediaKeyTap.m in Sources */,
 				656A00321C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
@@ -1272,7 +1283,6 @@
 				65A850161C8B065000D54C77 /* BSCService.m in Sources */,
 				656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */,
 				65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */,
-				656A00361C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
 				656A00221C8AD3E200BD29F5 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				656A003E1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */,
 				656A001C1C8AD3C800BD29F5 /* NSXReturnThrowError.m in Sources */,
@@ -1321,6 +1331,7 @@
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
+				0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */,
 				6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */,
@@ -1333,6 +1344,7 @@
 			files = (
 				0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */,
 				0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */,
+				0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
 				0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */,
 				0B1AF3811CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m in Sources */,
 				0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */,

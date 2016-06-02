@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <JavaScriptCore/JavaScriptCore.h>
-
 @class BSTrack;
 @class TabAdapter;
 
@@ -33,42 +31,40 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 
 @interface BSMediaStrategy : NSObject
 
-@property (nonatomic, strong, readonly) NSString * _Nonnull fileName;
+@property (nonatomic, assign, readonly, getter=isLoaded) BOOL loaded;
 @property (nonatomic, assign, readonly) long strategyVersion;
+@property (nonatomic, strong, readonly) NSString * _Nonnull fileName;
+@property (nonatomic, strong, readonly) NSURL * _Nonnull strategyURL;
 
 // This data should only be used for tests. DO NOT directly access.
-@property (nonatomic, strong, readonly) JSValue * _Nullable strategyData;
+@property (nonatomic, strong, readonly) NSDictionary * _Nonnull acceptParams;
+@property (nonatomic, strong, readonly) NSDictionary * _Nonnull scripts;
 
 /**
- Caches the loaded strategies for reuse and requerying without hitting the disk.
- @param strategyName the name of the strategy file to be accessed. Case Sensitive.
- @param reloadData YES to refresh the cache entry from file. NO to go straight to cache unless it's a miss.
- @returns a dictionary with the most recently loaded copy of the specified strategy
+    @param strategyURL The URL to the most up-to-date version of the strategy
+    @return Returns a BSMediaStrategy object with data loaded from the provided plist.
+        The loaded flag is set to determine if the file existed or not.
  */
-+ (BSMediaStrategy * _Nullable)cacheForStrategyName:(NSString * _Nonnull)strategyName;
+//- (instancetype _Nonnull)initWithStrategyName:(NSString * _Nonnull)strategyName;
+- (instancetype _Nonnull)initWithStrategyURL:(NSURL * _Nonnull)strategyURL;
 
 /**
  A method for reloading the strategy plist from file, updating all future uses of this
  object to be with the most up-to-date plan of attack.
+ @param strategyURL
+ @return A boolean stating the success of the operation
  */
-- (void)reloadData;
-
-/**
-    @param strategyName
-    @return Returns a BSMediaStrategy object with data loaded from the provided plist.
-        The loaded flag is set to determine if the file existed or not.
- */
-- (instancetype _Nonnull)initWithStrategyName:(NSString * _Nonnull)strategyName;
+- (BOOL)reloadDataFromURL:(NSURL *_Nonnull)strategyURL;
 
 /**
     @return Returns name of that media stratery.
  */
--(NSString * _Nonnull)displayName; // Required override in subclass.
+- (NSString * _Nonnull)displayName; // Required override in subclass.
 
 /**
     @return A Boolean saying if this is a tab that accepts this strategy.
  */
--(BOOL)accepts:(TabAdapter * _Nonnull)tab; // Required override in subclass.
+- (BOOL)accepts:(TabAdapter * _Nonnull)tab; // Required override in subclass.
 
 
 /**
@@ -83,10 +79,21 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 - (BOOL)isPlaying:(TabAdapter * _Nonnull)tab;
 
 /**
+    Provides the underlying script to run against tests/validations.
+    @return A string containing the isPlaying script string, or an empty string if none exists.
+ */
+- (NSString * _Nonnull)isPlayingScript;
+
+/**
     @return Returns track information object from tab.
  */
 - (BSTrack * _Nullable)trackInfo:(TabAdapter * _Nonnull)tab;
 
+/**
+    Provides the underlying script to run against tests/validations.
+    @return A string containing the isPlaying script string, or an empty string if none exists.
+ */
+- (NSString * _Nonnull)trackInfoScript;
 
 // Methods, which return javascript code for apropriated actions.
 //---------------------------------------------------------------
@@ -94,26 +101,26 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 /**
     @return Returns javascript code of the play/pause toggle.
  */
--(NSString * _Nonnull)toggle; // Required override in subclass.
+- (NSString * _Nonnull)toggle; // Required override in subclass.
 
 /**
     @return Returns javascript code of the previous track action.
  */
--(NSString * _Nonnull)previous;
+- (NSString * _Nonnull)previous;
 
 /**
     @return Returns javascript code of the next track action.
  */
--(NSString * _Nonnull)next;
+- (NSString * _Nonnull)next;
 
 /**
     @return Returns javascript code of the pausing action. Used mainly for pausing before switching active tabs.
  */
--(NSString * _Nonnull)pause; // Required override in subclass.
+- (NSString * _Nonnull)pause; // Required override in subclass.
 
 /**
     @return Returns javascript code of the "favorite" toggle.
  */
--(NSString * _Nonnull)favorite;
+- (NSString * _Nonnull)favorite;
 
 @end

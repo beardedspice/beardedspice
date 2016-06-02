@@ -61,52 +61,84 @@
     }
 }
 
-#pragma mark - File Operations
+#pragma mark - File Paths and Operations
 
-+ (NSURL *)versionsFileFromURL
-{
-    return [self fileFromURL:@"versions"];
+static inline NSString *appSupportPath() {
+    NSArray *documentPaths =  NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    return [documentPaths firstObject];
 }
 
-+ (NSURL *)fileFromURL:(NSString *)fileName
++ (NSURL * _Nonnull)URLForSavedStrategies
 {
-    NSArray *documentPaths =  NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *documentsDir = [documentPaths firstObject];
-    fileName = fileName ? [NSString stringWithFormat:@"%@.plist", fileName] : @"";
+    // TODO make static
+    NSString *pathString = [NSString stringWithFormat:@"%@/BeardedSpice/Strategies/", appSupportPath()];
+    return [NSURL fileURLWithPath:pathString isDirectory:YES];
+}
 
-    NSString *path = [NSString stringWithFormat:@"%@/BeardedSpice/MediaStrategies/%@", documentsDir, fileName];
-    // if no filename length then its a directory reference
-    return [[NSURL alloc] initFileURLWithPath:path isDirectory:fileName.length == 0];
++ (NSURL * _Nonnull)URLForCustomStrategies
+{
+    // TODO make static
+    NSString *pathString = [NSString stringWithFormat:@"%@/BeardedSpice/CustomStrategies/", appSupportPath()];
+    return [NSURL fileURLWithPath:pathString isDirectory:YES];
+}
+
++ (NSURL * _Nonnull)URLForVersionsFile
+{
+    // only ever care about initial versions file from app resources
+    return [[NSBundle mainBundle] URLForResource:@"versions" withExtension:@"plist"];
+}
+
++ (NSURL * _Nonnull)URLForFileName:(NSString *)fileName
+{
+    return [self URLForFileName:fileName ofType:@"js"];
+}
+
++ (NSURL * _Nonnull)URLForFileName:(NSString *)fileName ofType:(NSString * _Nonnull)typeString
+{
+    fileName = fileName ? [NSString stringWithFormat:@"%@.%@", fileName, typeString] : @"";
+
+    return [[self URLForSavedStrategies] URLByAppendingPathComponent:fileName isDirectory:NO];
+}
+
+- (BOOL)createDirectoriesToURL
+{
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL ret = [fileManager createDirectoryAtURL:self withIntermediateDirectories:YES attributes:nil error:&error];
+    if (!ret || error)
+        NSLog(@"An error occured creating the path to %@: %@", self, [error localizedDescription]);
+    return ret;
 }
 
 - (BOOL)fileExists
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    return [fileManager fileExistsAtPath:[self path]];
+    return [fileManager fileExistsAtPath:[self path] isDirectory:NO];
 }
 
-- (BOOL)copyFileTo:(NSString * _Nonnull)targetFilePath
+- (BOOL)directoryExists
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    return [fileManager fileExistsAtPath:[self path] isDirectory:YES];
+}
+
+- (BOOL)copyStrategyToAppSupport:(NSString * _Nonnull)fileName
 {
     // file referenced by this nsstring does not exist. aborting.
     if (![self fileExists])
         return NO;
 
-    NSURL *pathWithoutFile = [NSURL fileFromURL:nil];
-    NSURL *targetURL = [NSURL fileFromURL:targetFilePath];
+    NSURL *targetURL = [NSURL URLForFileName:fileName];
+    if ([targetURL fileExists])
+        return YES;
 
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL ret = [fileManager createDirectoryAtURL:pathWithoutFile withIntermediateDirectories:YES attributes:nil error:&error];
-    if (!ret)
-    {
-        NSLog(@"An error occured creating the path to %@: %@", targetURL, [error localizedDescription]);
-        return ret;
-    }
-
-    ret = [fileManager copyItemAtURL:self toURL:targetURL error:&error];
+    BOOL ret = [fileManager copyItemAtURL:self toURL:targetURL error:&error];
     if (error)
         NSLog(@"An error occured while copying file %@: %@", targetURL, [error localizedDescription]);
 
     return ret;
 }
+
 @end

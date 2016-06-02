@@ -9,6 +9,8 @@
 #define kBSVersionErrorNotFound     -1
 #define kBSVersionErrorInvalidInput -2
 
+@class BSStrategyCache;
+
 /**
   Load currently saved version index
   At specified time, download a copy of the remote version index from the git repo
@@ -19,8 +21,17 @@
 
 @property (nonatomic, strong, readonly) NSDate *lastUpdated;
 @property (nonatomic, strong, readonly) NSURL *versionURL;
+@property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
 
-+ (BSStrategyVersionManager *)sharedVersionManager;
+/**
+ FIXME documentation about how strategyCache is the central point of ref
+ */
+- (instancetype)initWithStrategyCache:(BSStrategyCache *)cache;
+
+/**
+ FIXME documentation about loading strategies and how they're cached
+ */
+- (BOOL)loadStrategies;
 
 /**
  @return returns the version number for the currently loaded index file.

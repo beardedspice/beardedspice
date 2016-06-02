@@ -7,7 +7,9 @@
 //
 
 #import "BSStrategyVersionManager.h"
+
 #import "MediaStrategyRegistry.h"
+#import "BSStrategyCache.h"
 #import "BSMediaStrategy.h"
 
 // This is the path format which requires a user/branch/filename for the target plist file.
@@ -34,31 +36,22 @@ static NSString *const kBSIndexVersion = @"version";
 @property (nonatomic, strong) NSDate *lastUpdated;
 @property (nonatomic, strong) NSURL *versionURL;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *currentVersions;
+@property (nonatomic, strong) BSStrategyCache *strategyCache;
 
 - (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file;
+- (BOOL)updateStrategiesFromSourceURL:(NSURL * _Nonnull)path;
 
 @end
 
 @implementation BSStrategyVersionManager
 
-+ (BSStrategyVersionManager *)sharedVersionManager
-{
-    static dispatch_once_t setupManager;
-    static BSStrategyVersionManager *versionManager;
-
-    dispatch_once(&setupManager, ^{
-        versionManager = [BSStrategyVersionManager new];
-    });
-
-    return versionManager;
-}
-
-- (instancetype)init
+-(instancetype)initWithStrategyCache:(BSStrategyCache *)cache
 {
     self = [super init];
     if (self)
     {
         _versionURL = [self repositoryURLForFile:kBSIndexFileName];
+        _strategyCache = cache;
 
         [self setupVersionFile];
         [self setupStrategyFiles];
@@ -71,22 +64,21 @@ static NSString *const kBSIndexVersion = @"version";
 - (void)setupVersionFile
 {
     // load from application support mutable file. Otherwise copy the bundle'd file there and load it.
-    NSURL *path = [NSURL versionsFileFromURL];
-    NSURL *versionPath = [[NSBundle mainBundle] URLForResource:@"versions" withExtension:@"plist"];
-    BOOL success = [path fileExists] ? YES : [versionPath copyFileTo:@"versions"];
-    if (success)
+    NSURL *path = [NSURL URLForVersionsFile];
+    if ([path fileExists])
         _currentVersions = [[NSMutableDictionary alloc] initWithContentsOfURL:path];
 }
 
 - (void)setupStrategyFiles
 {
+    NSArray<NSString *> *fileNames = [self.strategyCache allKeys];
     // load from application support mutable file. Otherwise copy the bundle'd file(s) there and load it.
-    for (NSString *fileName in [MediaStrategyRegistry getDefaultMediaStrategyNames])
+    for (NSString *fileName in fileNames)
     {
-        NSURL *path = [NSURL fileFromURL:fileName];
-        NSURL *versionPath = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"plist"];
+        NSURL *path = [NSURL URLForFileName:fileName];
+        NSURL *versionPath = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"js"];
         if (![path fileExists])
-            [versionPath copyFileTo:fileName];
+            [versionPath copyStrategyToAppSupport:fileName];
     }
 }
 
@@ -97,7 +89,7 @@ static NSString *const kBSIndexVersion = @"version";
 
     self.currentVersions = updateVersions;
 
-    NSURL *path = [NSURL versionsFileFromURL];
+    NSURL *path = [NSURL URLForVersionsFile];
     return [_currentVersions writeToURL:path atomically:YES];
 }
 
@@ -154,7 +146,7 @@ static NSString *const kBSIndexVersion = @"version";
     self.lastUpdated = [NSDate date];
     NSMutableDictionary<NSString *, NSNumber *> *newVersions = [[NSMutableDictionary alloc] initWithContentsOfURL:_versionURL];
 
-    NSUInteger foundNewVersions = 0;
+    __block NSUInteger foundNewVersions = 0;
     for (NSString *key in newVersions)
     {
         long version = [self versionForMediaStrategy:key];
@@ -166,7 +158,9 @@ static NSString *const kBSIndexVersion = @"version";
         __weak typeof(self) wself = self; // new pointer for self to avoid autoretain cycles
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
             __strong typeof(wself) sself = wself;
-            [sself performUpdateOfMediaStrategy:key];
+            BOOL ret = [sself performUpdateOfMediaStrategy:key];
+            if (!ret) // if the file failed to save/wasn't valid
+                foundNewVersions--;
         });
     }
 
@@ -178,13 +172,93 @@ static NSString *const kBSIndexVersion = @"version";
 
 - (BOOL)performUpdateOfMediaStrategy:(NSString *)mediaStrategy
 {
+    NSError *error = nil;
     NSURL *pathURL = [self repositoryURLForFile:mediaStrategy];
-    NSDictionary *newVersions = [[NSDictionary alloc] initWithContentsOfURL:pathURL];
-    if (!newVersions || !newVersions.count)
+    // download from remote repository
+    NSString *newVersions = [[NSString alloc] initWithContentsOfURL:pathURL encoding:NSUTF8StringEncoding error:&error];
+    if (error)
+    {
+        NSLog(@"Error downloading strategy %@: %@", mediaStrategy, [error localizedDescription]);
+        return NO;
+    }
+
+    if (!newVersions || !newVersions.length)
         return NO;
 
-    NSURL *pathToFile = [NSURL fileFromURL:mediaStrategy];
-    return [newVersions writeToURL:pathToFile atomically:YES];
+    error = nil; // reset the local error
+    NSURL *pathToFile = [NSURL URLForFileName:mediaStrategy];
+    BOOL success = [newVersions writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error)
+    {
+        NSLog(@"Error saving strategy %@: %@", mediaStrategy, [error localizedDescription]);
+        return NO;
+    }
+
+    if (!success)
+        return NO;
+
+    [self.strategyCache updateCacheWithURL:pathToFile];
+    BSMediaStrategy *strategy = [self.strategyCache strategyForName:mediaStrategy];
+    return strategy.isLoaded;
+}
+
+#pragma mark - Cache Management
+
+- (BOOL)loadStrategies
+{
+    if (!_strategyCache)
+        return NO;
+
+    NSURL *savedURL = [NSURL URLForSavedStrategies];
+    BOOL ret = [savedURL createDirectoriesToURL];
+    if (!ret)
+        return NO;
+
+    //if (![savedURL directoryExists])
+    {
+        NSURL *indexFile = [NSURL URLForVersionsFile];
+        NSDictionary *index = [NSDictionary dictionaryWithContentsOfURL:indexFile];
+        for (NSString *fileName in index)
+        {
+            NSURL *filePath = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"js"];
+            [filePath copyStrategyToAppSupport:fileName];
+        }
+    }
+
+    ret = [self updateStrategiesFromSourceURL:savedURL];
+    if (!ret)
+        return NO;
+
+    NSURL *customURL = [NSURL URLForCustomStrategies];
+    ret = [self updateStrategiesFromSourceURL:customURL];
+    if (!ret)
+        NSLog(@"Warning updating custom strategies. Reverting to official.");
+
+    return YES;
+}
+
+// FIXME assumes strategies copied to AppSupport at first run
+- (BOOL)updateStrategiesFromSourceURL:(NSURL * _Nonnull)path
+{
+    NSError *error = nil;
+    NSString *absPath = path.path;
+    BOOL success = [path createDirectoriesToURL];
+    if (!success)
+        return NO;
+
+    NSArray<NSString *> *elements = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:absPath error:&error];
+    if (error)
+    {
+        NSLog(@"Error updating strategies from URL (%@): %@", absPath, [error localizedDescription]);
+        return NO;
+    }
+
+    for (NSString *fileName in elements)
+    {
+        NSURL *filePath = [[NSURL alloc] initWithString:fileName relativeToURL:path];
+        [_strategyCache updateCacheWithURL:filePath];
+    }
+    return YES;
 }
 
 @end

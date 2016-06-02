@@ -11,6 +11,7 @@
 #import "BSLaunchAtLogin.h"
 #import "BSMediaStrategyEnableButton.h"
 #import "BSMediaStrategy.h"
+#import "BSStrategyCache.h"
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
@@ -47,14 +48,15 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
             userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
         }
 
-        theArray = [MediaStrategyRegistry getDefaultMediaStrategyNames];
+        BSStrategyCache *cache = mediaStrategyRegistry.strategyCache;
+        theArray = [cache allKeys];
         if (theArray.count) {
             MediaControllerObject *obj = [MediaControllerObject new];
             obj.isGroup = YES;
             obj.name = NSLocalizedString(@"Web", @"General preferences - controllers table");
             [mediaControllers addObject:obj];
             for (NSString *name in theArray) {
-                BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
+                BSMediaStrategy *strategy = [cache strategyForName:name];
                 [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:strategy]];
             }
             userStrategies = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveControllers]];

@@ -29,7 +29,7 @@
 /**
  @return the 'self' script string with '()' added to the end
  */
-- (NSString * _Nonnull)makeFunctionExecute;
+- (NSString * _Nonnull)addExecutionStringToScript;
 
 /**
  Returns converted string where:

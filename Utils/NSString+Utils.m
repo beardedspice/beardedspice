@@ -11,6 +11,8 @@
 // FIXME change filename to match namespacing of category
 @implementation NSString (BSUtils)
 
+#pragma mark - Query Operations
+
 + (BOOL)isNullOrEmpty:(NSString *)str {
     return (!str || [str length] == 0);
 }
@@ -47,15 +49,14 @@
     if (sensitive)
         return ([self rangeOfString:str]).location != NSNotFound;
 
-    return ([self rangeOfString:str options:NSCaseInsensitiveSearch])
-    .location != NSNotFound;
+    return ([self rangeOfString:str options:NSCaseInsensitiveSearch]) .location != NSNotFound;
 }
 
-- (NSString * _Nonnull)makeFunctionExecute
+- (NSString * _Nonnull)addExecutionStringToScript
 {
     // TODO add checks before hand to make sure we don't double execute
     // TODO add checks before hand ot make sure this is actually a func
-    return [[NSString alloc] initWithFormat:@"%@();", self];
+    return [[NSString alloc] initWithFormat:@"(%@)();", self];
 }
 
 - (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder{

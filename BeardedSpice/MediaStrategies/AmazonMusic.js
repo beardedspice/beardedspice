@@ -10,7 +10,7 @@ BSStrategy = {
   displayName:"Amazon Music",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*amazon.com/gp/dmusic/cloudplayer/*'",
+    format:"%K LIKE[c] '*music.amazon.*'",
     args: ["URL"]
   },
   isPlaying: function () {return window.amznMusic.widgets.player.isPlaying();},

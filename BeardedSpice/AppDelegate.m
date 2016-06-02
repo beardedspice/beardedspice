@@ -78,13 +78,12 @@ BOOL accessibilityApiEnabled = NO;
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
 
     // Create serial queue for user actions
-    workingQueue = dispatch_queue_create("WorkingQueue", DISPATCH_QUEUE_SERIAL);
+    workingQueue = dispatch_queue_create("com.beardedspice.working.serial", DISPATCH_QUEUE_SERIAL);
 
     // Create serial queue for notification
     // We need queue because track info may contain image,
     // which retrieved from URL, this may cause blocking of the main thread.
-    notificationQueue = dispatch_queue_create("NotificationQueue", DISPATCH_QUEUE_SERIAL);
-    //
+    notificationQueue = dispatch_queue_create("com.beardedspice.notification.serial", DISPATCH_QUEUE_SERIAL);
 
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
 
@@ -118,7 +117,6 @@ BOOL accessibilityApiEnabled = NO;
     /* Check for strategy updates from the master github repo */
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUpdateAtLaunch])
         [self checkForUpdates:self];
-    
 }
 
 - (void)awakeFromNib
@@ -142,13 +140,11 @@ BOOL accessibilityApiEnabled = NO;
 
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] prepareForClosingConnectionWithCompletion:^{
-
             [_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         }];
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
             [_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         });
@@ -162,12 +158,10 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)menuNeedsUpdate:(NSMenu *)menu{
-
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:NO];
-        dispatch_sync(dispatch_get_main_queue(), ^{
 
+        dispatch_sync(dispatch_get_main_queue(), ^{
             [self setStatusMenuItemsStatus];
         });
     });
@@ -184,12 +178,10 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)playPauseToggle{
-
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:YES];
-        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
 
+        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(toggle)]) {
                 [tab toggle];
@@ -198,7 +190,6 @@ BOOL accessibilityApiEnabled = NO;
                     [self showNotification];
             }
         } else {
-
             BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy && ![NSString isNullOrEmpty:[strategy toggle]]) {
                 [activeTab executeJavascript:[strategy toggle]];
@@ -210,12 +201,10 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 - (void)nextTrack{
-
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:NO];
-        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
 
+        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(next)]) {
                 [tab next];
@@ -228,13 +217,11 @@ BOOL accessibilityApiEnabled = NO;
                                });
             }
         } else {
-
             BSMediaStrategy *strategy =[mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
                 [activeTab executeJavascript:[strategy next]];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-
                                    if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                                        [self showNotification];
                                    }
@@ -245,18 +232,15 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)previousTrack{
-
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:NO];
-        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
 
+        if ([activeTab isKindOfClass:[NativeAppTabAdapter class]]) {
             NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(previous)]) {
                 [tab previous];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-
                                    if ([tab showNotifications] && ALWAYSSHOWNOTIFICATION &&
                                        ![tab frontmost])
                                        [self showNotification];
@@ -269,7 +253,6 @@ BOOL accessibilityApiEnabled = NO;
                 [activeTab executeJavascript:[strategy previous]];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHANGE_TRACK_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-
                                    if (ALWAYSSHOWNOTIFICATION && ![activeTab frontmost]) {
                                        [self showNotification];
                                    }
@@ -280,25 +263,18 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)activeTab{
-
     dispatch_async(workingQueue, ^{
-
         [self refreshTabs:self];
         [self setActiveTabShortcut];
     });
-
 }
 
 - (void)favorite{
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:NO];
 
-        if ([activeTab isKindOfClass:
-             [NativeAppTabAdapter class]]) {
-
-            NativeAppTabAdapter *tab =
-            (NativeAppTabAdapter *)activeTab;
+        if ([activeTab isKindOfClass: [NativeAppTabAdapter class]]) {
+            NativeAppTabAdapter *tab = (NativeAppTabAdapter *)activeTab;
             if ([tab respondsToSelector:@selector(favorite)]) {
                 [tab favorite];
                 if ([[tab trackInfo] favorited]) {
@@ -306,11 +282,9 @@ BOOL accessibilityApiEnabled = NO;
                 }
             }
         } else {
-
             BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:activeTab];
             if (strategy) {
-                [activeTab
-                 executeJavascript:[strategy favorite]];
+                [activeTab executeJavascript:[strategy favorite]];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(FAVORITED_DELAY * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
                                    @try {
@@ -327,50 +301,41 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)notification{
-
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:NO];
         [self showNotificationUsingFallback:YES];
     });
-
 }
 
 - (void)activatePlayingTab{
-
     dispatch_async(workingQueue, ^{
-
         [self autoSelectTabWithForceFocused:NO];
         [activeTab toggleTab];
     });
 }
 
 - (void)playerNext{
-
     [self switchPlayerWithDirection:SwithPlayerNext];
 }
-- (void)playerPrevious{
 
+- (void)playerPrevious{
     [self switchPlayerWithDirection:SwithPlayerPrevious];
 }
 
 - (void)volumeUp{
     dispatch_async(dispatch_get_main_queue(), ^{
-
         [self pressKey:NX_KEYTYPE_SOUND_UP];
     });
 }
+
 - (void)volumeDown{
     dispatch_async(dispatch_get_main_queue(), ^{
-
         [self pressKey:NX_KEYTYPE_SOUND_DOWN];
     });
 }
 
 - (void)headphoneUnplug{
-
     dispatch_async(workingQueue, ^{
-
         [self pauseActiveTab];
     });
 }

@@ -96,6 +96,7 @@
 		ADC96EF0D23DFA415D9AF91B /* libPods-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D287FBEC9984673138DB77 /* libPods-BeardedSpiceTests.a */; };
 		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
 		DAD858605B37FF09D3AAD082 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
+		DF2DDF86750A9EC700B47866 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C0EF681BC0F792D0C18DFD /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,11 +172,12 @@
 		0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyVersionManager.m; sourceTree = "<group>"; };
 		0BF06ADF1C9513A800534083 /* BSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrack.h; sourceTree = "<group>"; };
 		0BF06AE01C9513A800534083 /* BSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrack.m; sourceTree = "<group>"; };
+		156B0C5EDD950F6190116EC9 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
 		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EE0B94D1622AD415AB0D947 /* Pods-BeardedSpiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceTests/Pods-BeardedSpiceTests.release.xcconfig"; sourceTree = "<group>"; };
+		5509350992CF86767338B01C /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		7A9EAC832D8E08D9DFB67396 /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
 		7F20B81547A29635C2DF0434 /* libPods-BeardedSpiceControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C0EF681BC0F792D0C18DFD /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -285,7 +288,6 @@
 		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
 		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
 		EC34526CCB5D146FD02423F4 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
-		F1D15E62C276D74EC9CBF26E /* Pods-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceTests/Pods-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4D287FBEC9984673138DB77 /* libPods-BeardedSpiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -319,6 +321,7 @@
 				967933501855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */,
 				ADC96EF0D23DFA415D9AF91B /* libPods-BeardedSpiceTests.a in Frameworks */,
+				DF2DDF86750A9EC700B47866 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,8 +335,8 @@
 				9F9355D0AD84C962E403B8AB /* Pods-BeardedSpiceControllers.release.xcconfig */,
 				EC34526CCB5D146FD02423F4 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */,
 				CBC84E9024D0B34C3324D861 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
-				F1D15E62C276D74EC9CBF26E /* Pods-BeardedSpiceTests.debug.xcconfig */,
-				3EE0B94D1622AD415AB0D947 /* Pods-BeardedSpiceTests.release.xcconfig */,
+				5509350992CF86767338B01C /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */,
+				156B0C5EDD950F6190116EC9 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				7F20B81547A29635C2DF0434 /* libPods-BeardedSpiceControllers.a */,
 				28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
 				F4D287FBEC9984673138DB77 /* libPods-BeardedSpiceTests.a */,
+				95C0EF681BC0F792D0C18DFD /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -780,7 +784,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceTests/Pods-BeardedSpiceTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2347A5CF8E47858340D7C44D /* Check Pods Manifest.lock */ = {
@@ -870,7 +874,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceTests/Pods-BeardedSpiceTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1173,7 +1177,7 @@
 		};
 		967933611855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1D15E62C276D74EC9CBF26E /* Pods-BeardedSpiceTests.debug.xcconfig */;
+			baseConfigurationReference = 5509350992CF86767338B01C /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
@@ -1197,7 +1201,7 @@
 		};
 		967933621855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3EE0B94D1622AD415AB0D947 /* Pods-BeardedSpiceTests.release.xcconfig */;
+			baseConfigurationReference = 156B0C5EDD950F6190116EC9 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";

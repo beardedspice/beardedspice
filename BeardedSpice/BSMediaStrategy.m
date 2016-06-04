@@ -228,7 +228,11 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!tab)
         return NO;
 
-    NSString *script = [self isPlayingScript];
+    NSString *script = _scripts[kBSMediaStrategyKeyIsPlaying];
+    if ([NSString isNullOrEmpty:script]) {
+        return NO;
+    }
+    
     NSNumber *isPlaying = [tab executeJavascript:script];
     return [isPlaying boolValue] ?: NO;
 }
@@ -278,34 +282,13 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (!_scripts)
         return nil;
 
-    NSString *script = [self trackInfoScript];
+    NSString *script = _scripts[kBSMediaStrategyKeyTrackInfo];
+    if ([NSString isNullOrEmpty:script]) {
+        return nil;
+    }
+    
     NSDictionary *trackData = [tab executeJavascript:script];
     return (trackData && trackData.count) ? [[BSTrack alloc] initWithInfo:trackData] : nil;
-}
-
-
-- (NSString * _Nonnull)isPlayingScript
-{
-    return [self scriptForKey:kBSMediaStrategyKeyIsPlaying];
-}
-
-- (NSString * _Nonnull)trackInfoScript
-{
-    return [self scriptForKey:kBSMediaStrategyKeyTrackInfo];
-}
-
-#pragma mark - Internal script retrieval
-
-- (NSString * _Nonnull)scriptForKey:(NSString * _Nonnull)key
-{
-    if (!_scripts || !_scripts.count)
-        return @"";
-
-    NSString *script = _scripts[key];
-    if (!script || !script.length)
-        return @"";
-
-    return script;
 }
 
 @end

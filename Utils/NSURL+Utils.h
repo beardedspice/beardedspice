@@ -32,13 +32,6 @@
 + (NSURL * _Nonnull)URLForCustomStrategies;
 
 /**
- Constant path to the versions file copied to documents.
- DOES NOT provide a path to the bundled version that comes with the binary.
- @return path to where a mutable version of the versions.plist file is to be held.
- */
-+ (NSURL * _Nonnull)URLForVersionsFile;
-
-/**
  */
 + (NSURL * _Nonnull)URLForFileName:(NSString * _Nullable)fileName;
 
@@ -51,15 +44,5 @@
  @return BOOL yes/no if a file exists at the given filepath.
  */
 - (BOOL)fileExists;
-
-/**
- */
-- (BOOL)directoryExists;
-
-/**
- @param targetFileName Name of the file to be copied to the app support directory
- @return Boolean saying if the operation was successful or not.
- */
-- (BOOL)copyStrategyToAppSupport:(NSString * _Nonnull)targetFileName;
 
 @end

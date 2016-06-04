@@ -35,6 +35,7 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 @property (nonatomic, assign, readonly) long strategyVersion;
 @property (nonatomic, strong, readonly) NSString * _Nonnull fileName;
 @property (nonatomic, strong, readonly) NSURL * _Nonnull strategyURL;
+@property (nonatomic, readonly) BOOL custom;
 
 // This data should only be used for tests. DO NOT directly access.
 @property (nonatomic, strong, readonly) NSDictionary * _Nonnull acceptParams;

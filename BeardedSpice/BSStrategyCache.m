@@ -70,8 +70,13 @@
 {
     NSString *fileName = [strategyURL lastPathComponent];
     BSMediaStrategy *strategy = [_cache objectForKey:fileName];
-    if (strategy)
-        [strategy reloadDataFromURL:strategyURL];
+    if (strategy){
+        // do not update strategy if it was loaded from custom folder already,
+        // or update if path is equal
+        if (!strategy.custom || [strategyURL isEqual:strategy.strategyURL]) {
+            [strategy reloadDataFromURL:strategyURL];
+        }
+    }
     else
         _cache[fileName] = [[BSMediaStrategy alloc] initWithStrategyURL:strategyURL];
 }

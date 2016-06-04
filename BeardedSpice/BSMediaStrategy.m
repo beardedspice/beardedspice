@@ -64,7 +64,8 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
         _loaded = NO;
         _strategyURL = strategyURL;
         _fileName = [strategyURL lastPathComponent];
-
+        _custom = [[strategyURL absoluteString] hasPrefix:[[NSURL URLForCustomStrategies] absoluteString]];
+        
         // if we reload on every init, the point of a cache will be lost.
         JSValue *strategyData = [self _loadFile];
         if (strategyData)

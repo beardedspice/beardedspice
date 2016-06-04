@@ -23,143 +23,11 @@
 		0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
 		0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B355EF51CBEA3350089C2B3 /* Localizable.strings */; };
 		0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */; };
-		0BD1B2F01CD2196600B72A3E /* Youtube.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1B2EF1CD2196600B72A3E /* Youtube.js */; };
-		0BD1B2F11CD2196700B72A3E /* Youtube.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1B2EF1CD2196600B72A3E /* Youtube.js */; };
 		0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
 		0BD1B2F41CD21AB100B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
 		0BD1B2F61CD2211300B72A3E /* cassettes in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1B2F51CD2211300B72A3E /* cassettes */; };
-		0BE800051CDA4F5B001A4DDF /* AmazonMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC11CDA4F5B001A4DDF /* AmazonMusic.js */; };
-		0BE800061CDA4F5B001A4DDF /* AmazonMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC11CDA4F5B001A4DDF /* AmazonMusic.js */; };
-		0BE800071CDA4F5B001A4DDF /* Audible.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC21CDA4F5B001A4DDF /* Audible.js */; };
-		0BE800081CDA4F5B001A4DDF /* Audible.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC21CDA4F5B001A4DDF /* Audible.js */; };
-		0BE800091CDA4F5B001A4DDF /* AudioMack.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC31CDA4F5B001A4DDF /* AudioMack.js */; };
-		0BE8000A1CDA4F5B001A4DDF /* AudioMack.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC31CDA4F5B001A4DDF /* AudioMack.js */; };
-		0BE8000B1CDA4F5B001A4DDF /* BandCamp.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC41CDA4F5B001A4DDF /* BandCamp.js */; };
-		0BE8000C1CDA4F5B001A4DDF /* BandCamp.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC41CDA4F5B001A4DDF /* BandCamp.js */; };
-		0BE8000D1CDA4F5B001A4DDF /* BBCRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC51CDA4F5B001A4DDF /* BBCRadio.js */; };
-		0BE8000E1CDA4F5B001A4DDF /* BBCRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC51CDA4F5B001A4DDF /* BBCRadio.js */; };
-		0BE8000F1CDA4F5B001A4DDF /* Beatguide.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC61CDA4F5B001A4DDF /* Beatguide.js */; };
-		0BE800101CDA4F5B001A4DDF /* Beatguide.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC61CDA4F5B001A4DDF /* Beatguide.js */; };
-		0BE800111CDA4F5B001A4DDF /* BeatsMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC71CDA4F5B001A4DDF /* BeatsMusic.js */; };
-		0BE800121CDA4F5B001A4DDF /* BeatsMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC71CDA4F5B001A4DDF /* BeatsMusic.js */; };
-		0BE800131CDA4F5B001A4DDF /* Blitzr.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC81CDA4F5B001A4DDF /* Blitzr.js */; };
-		0BE800141CDA4F5B001A4DDF /* Blitzr.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC81CDA4F5B001A4DDF /* Blitzr.js */; };
-		0BE800151CDA4F5B001A4DDF /* BrainFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC91CDA4F5B001A4DDF /* BrainFm.js */; };
-		0BE800161CDA4F5B001A4DDF /* BrainFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFC91CDA4F5B001A4DDF /* BrainFm.js */; };
-		0BE800171CDA4F5B001A4DDF /* BugsMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCA1CDA4F5B001A4DDF /* BugsMusic.js */; };
-		0BE800181CDA4F5B001A4DDF /* BugsMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCA1CDA4F5B001A4DDF /* BugsMusic.js */; };
-		0BE800191CDA4F5B001A4DDF /* Chorus.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCB1CDA4F5B001A4DDF /* Chorus.js */; };
-		0BE8001A1CDA4F5B001A4DDF /* Chorus.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCB1CDA4F5B001A4DDF /* Chorus.js */; };
-		0BE8001B1CDA4F5B001A4DDF /* Composed.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCC1CDA4F5B001A4DDF /* Composed.js */; };
-		0BE8001C1CDA4F5B001A4DDF /* Composed.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCC1CDA4F5B001A4DDF /* Composed.js */; };
-		0BE8001D1CDA4F5B001A4DDF /* Coursera.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCD1CDA4F5B001A4DDF /* Coursera.js */; };
-		0BE8001E1CDA4F5B001A4DDF /* Coursera.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCD1CDA4F5B001A4DDF /* Coursera.js */; };
-		0BE8001F1CDA4F5B001A4DDF /* Deezer.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCE1CDA4F5B001A4DDF /* Deezer.js */; };
-		0BE800201CDA4F5B001A4DDF /* Deezer.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCE1CDA4F5B001A4DDF /* Deezer.js */; };
-		0BE800211CDA4F5B001A4DDF /* DigitallyImported.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCF1CDA4F5B001A4DDF /* DigitallyImported.js */; };
-		0BE800221CDA4F5B001A4DDF /* DigitallyImported.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFCF1CDA4F5B001A4DDF /* DigitallyImported.js */; };
-		0BE800231CDA4F5B001A4DDF /* EightTracks.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD01CDA4F5B001A4DDF /* EightTracks.js */; };
-		0BE800241CDA4F5B001A4DDF /* EightTracks.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD01CDA4F5B001A4DDF /* EightTracks.js */; };
-		0BE800251CDA4F5B001A4DDF /* FocusAtWill.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD11CDA4F5B001A4DDF /* FocusAtWill.js */; };
-		0BE800261CDA4F5B001A4DDF /* FocusAtWill.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD11CDA4F5B001A4DDF /* FocusAtWill.js */; };
-		0BE800271CDA4F5B001A4DDF /* GoogleMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD21CDA4F5B001A4DDF /* GoogleMusic.js */; };
-		0BE800281CDA4F5B001A4DDF /* GoogleMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD21CDA4F5B001A4DDF /* GoogleMusic.js */; };
-		0BE800291CDA4F5B001A4DDF /* GrooveShark.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD31CDA4F5B001A4DDF /* GrooveShark.js */; };
-		0BE8002A1CDA4F5B001A4DDF /* GrooveShark.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD31CDA4F5B001A4DDF /* GrooveShark.js */; };
-		0BE8002B1CDA4F5B001A4DDF /* HotNewHipHop.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD41CDA4F5B001A4DDF /* HotNewHipHop.js */; };
-		0BE8002C1CDA4F5B001A4DDF /* HotNewHipHop.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD41CDA4F5B001A4DDF /* HotNewHipHop.js */; };
-		0BE8002D1CDA4F5B001A4DDF /* HypeMachine.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD51CDA4F5B001A4DDF /* HypeMachine.js */; };
-		0BE8002E1CDA4F5B001A4DDF /* HypeMachine.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD51CDA4F5B001A4DDF /* HypeMachine.js */; };
-		0BE8002F1CDA4F5B001A4DDF /* iHeartRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD61CDA4F5B001A4DDF /* iHeartRadio.js */; };
-		0BE800301CDA4F5B001A4DDF /* iHeartRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD61CDA4F5B001A4DDF /* iHeartRadio.js */; };
-		0BE800311CDA4F5B001A4DDF /* IndieShuffle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD71CDA4F5B001A4DDF /* IndieShuffle.js */; };
-		0BE800321CDA4F5B001A4DDF /* IndieShuffle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD71CDA4F5B001A4DDF /* IndieShuffle.js */; };
-		0BE800331CDA4F5B001A4DDF /* Jango.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD81CDA4F5B001A4DDF /* Jango.js */; };
-		0BE800341CDA4F5B001A4DDF /* Jango.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD81CDA4F5B001A4DDF /* Jango.js */; };
-		0BE800351CDA4F5B001A4DDF /* KollektFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD91CDA4F5B001A4DDF /* KollektFm.js */; };
-		0BE800361CDA4F5B001A4DDF /* KollektFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFD91CDA4F5B001A4DDF /* KollektFm.js */; };
-		0BE800371CDA4F5B001A4DDF /* LastFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDA1CDA4F5B001A4DDF /* LastFm.js */; };
-		0BE800381CDA4F5B001A4DDF /* LastFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDA1CDA4F5B001A4DDF /* LastFm.js */; };
-		0BE800391CDA4F5B001A4DDF /* LeTournedisque.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDB1CDA4F5B001A4DDF /* LeTournedisque.js */; };
-		0BE8003A1CDA4F5B001A4DDF /* LeTournedisque.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDB1CDA4F5B001A4DDF /* LeTournedisque.js */; };
-		0BE8003B1CDA4F5B001A4DDF /* LogitechMediaServer.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDC1CDA4F5B001A4DDF /* LogitechMediaServer.js */; };
-		0BE8003C1CDA4F5B001A4DDF /* LogitechMediaServer.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDC1CDA4F5B001A4DDF /* LogitechMediaServer.js */; };
-		0BE8003D1CDA4F5B001A4DDF /* MixCloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDD1CDA4F5B001A4DDF /* MixCloud.js */; };
-		0BE8003E1CDA4F5B001A4DDF /* MixCloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDD1CDA4F5B001A4DDF /* MixCloud.js */; };
-		0BE8003F1CDA4F5B001A4DDF /* MusicForProgramming.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDE1CDA4F5B001A4DDF /* MusicForProgramming.js */; };
-		0BE800401CDA4F5B001A4DDF /* MusicForProgramming.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDE1CDA4F5B001A4DDF /* MusicForProgramming.js */; };
-		0BE800411CDA4F5B001A4DDF /* MusicUnlimited.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDF1CDA4F5B001A4DDF /* MusicUnlimited.js */; };
-		0BE800421CDA4F5B001A4DDF /* MusicUnlimited.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFDF1CDA4F5B001A4DDF /* MusicUnlimited.js */; };
-		0BE800431CDA4F5B001A4DDF /* Netflix.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE01CDA4F5B001A4DDF /* Netflix.js */; };
-		0BE800441CDA4F5B001A4DDF /* Netflix.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE01CDA4F5B001A4DDF /* Netflix.js */; };
-		0BE800451CDA4F5B001A4DDF /* NoAdRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE11CDA4F5B001A4DDF /* NoAdRadio.js */; };
-		0BE800461CDA4F5B001A4DDF /* NoAdRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE11CDA4F5B001A4DDF /* NoAdRadio.js */; };
-		0BE800471CDA4F5B001A4DDF /* NoonPacific.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE21CDA4F5B001A4DDF /* NoonPacific.js */; };
-		0BE800481CDA4F5B001A4DDF /* NoonPacific.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE21CDA4F5B001A4DDF /* NoonPacific.js */; };
-		0BE800491CDA4F5B001A4DDF /* NRK.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE31CDA4F5B001A4DDF /* NRK.js */; };
-		0BE8004A1CDA4F5B001A4DDF /* NRK.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE31CDA4F5B001A4DDF /* NRK.js */; };
-		0BE8004B1CDA4F5B001A4DDF /* Odnoklassniki.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE41CDA4F5B001A4DDF /* Odnoklassniki.js */; };
-		0BE8004C1CDA4F5B001A4DDF /* Odnoklassniki.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE41CDA4F5B001A4DDF /* Odnoklassniki.js */; };
-		0BE8004D1CDA4F5B001A4DDF /* Overcast.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE51CDA4F5B001A4DDF /* Overcast.js */; };
-		0BE8004E1CDA4F5B001A4DDF /* Overcast.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE51CDA4F5B001A4DDF /* Overcast.js */; };
-		0BE8004F1CDA4F5B001A4DDF /* Pandora.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE61CDA4F5B001A4DDF /* Pandora.js */; };
-		0BE800501CDA4F5B001A4DDF /* Pandora.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE61CDA4F5B001A4DDF /* Pandora.js */; };
-		0BE800511CDA4F5B001A4DDF /* PlexWeb.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE71CDA4F5B001A4DDF /* PlexWeb.js */; };
-		0BE800521CDA4F5B001A4DDF /* PlexWeb.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE71CDA4F5B001A4DDF /* PlexWeb.js */; };
-		0BE800531CDA4F5B001A4DDF /* PocketCasts.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE81CDA4F5B001A4DDF /* PocketCasts.js */; };
-		0BE800541CDA4F5B001A4DDF /* PocketCasts.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE81CDA4F5B001A4DDF /* PocketCasts.js */; };
-		0BE800551CDA4F5B001A4DDF /* Rdio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE91CDA4F5B001A4DDF /* Rdio.js */; };
-		0BE800561CDA4F5B001A4DDF /* Rdio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFE91CDA4F5B001A4DDF /* Rdio.js */; };
-		0BE800571CDA4F5B001A4DDF /* Rhapsody.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEA1CDA4F5B001A4DDF /* Rhapsody.js */; };
-		0BE800581CDA4F5B001A4DDF /* Rhapsody.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEA1CDA4F5B001A4DDF /* Rhapsody.js */; };
-		0BE800591CDA4F5B001A4DDF /* Saavn.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEB1CDA4F5B001A4DDF /* Saavn.js */; };
-		0BE8005A1CDA4F5B001A4DDF /* Saavn.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEB1CDA4F5B001A4DDF /* Saavn.js */; };
-		0BE8005B1CDA4F5B001A4DDF /* ShufflerFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEC1CDA4F5B001A4DDF /* ShufflerFm.js */; };
-		0BE8005C1CDA4F5B001A4DDF /* ShufflerFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEC1CDA4F5B001A4DDF /* ShufflerFm.js */; };
-		0BE8005D1CDA4F5B001A4DDF /* Slacker.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFED1CDA4F5B001A4DDF /* Slacker.js */; };
-		0BE8005E1CDA4F5B001A4DDF /* Slacker.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFED1CDA4F5B001A4DDF /* Slacker.js */; };
-		0BE8005F1CDA4F5B001A4DDF /* SomaFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEE1CDA4F5B001A4DDF /* SomaFm.js */; };
-		0BE800601CDA4F5B001A4DDF /* SomaFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEE1CDA4F5B001A4DDF /* SomaFm.js */; };
-		0BE800611CDA4F5B001A4DDF /* Songza.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEF1CDA4F5B001A4DDF /* Songza.js */; };
-		0BE800621CDA4F5B001A4DDF /* Songza.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFEF1CDA4F5B001A4DDF /* Songza.js */; };
-		0BE800631CDA4F5B001A4DDF /* SoundCloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF01CDA4F5B001A4DDF /* SoundCloud.js */; };
-		0BE800641CDA4F5B001A4DDF /* SoundCloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF01CDA4F5B001A4DDF /* SoundCloud.js */; };
-		0BE800651CDA4F5B001A4DDF /* Spotify.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF11CDA4F5B001A4DDF /* Spotify.js */; };
-		0BE800661CDA4F5B001A4DDF /* Spotify.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF11CDA4F5B001A4DDF /* Spotify.js */; };
-		0BE800671CDA4F5B001A4DDF /* Stitcher.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF21CDA4F5B001A4DDF /* Stitcher.js */; };
-		0BE800681CDA4F5B001A4DDF /* Stitcher.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF21CDA4F5B001A4DDF /* Stitcher.js */; };
-		0BE800691CDA4F5B001A4DDF /* Subsonic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF31CDA4F5B001A4DDF /* Subsonic.js */; };
-		0BE8006A1CDA4F5B001A4DDF /* Subsonic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF31CDA4F5B001A4DDF /* Subsonic.js */; };
-		0BE8006B1CDA4F5B001A4DDF /* Synology.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF41CDA4F5B001A4DDF /* Synology.js */; };
-		0BE8006C1CDA4F5B001A4DDF /* Synology.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF41CDA4F5B001A4DDF /* Synology.js */; };
-		0BE8006D1CDA4F5B001A4DDF /* TidalHiFi.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF51CDA4F5B001A4DDF /* TidalHiFi.js */; };
-		0BE8006E1CDA4F5B001A4DDF /* TidalHiFi.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF51CDA4F5B001A4DDF /* TidalHiFi.js */; };
-		0BE8006F1CDA4F5B001A4DDF /* TuneIn.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF61CDA4F5B001A4DDF /* TuneIn.js */; };
-		0BE800701CDA4F5B001A4DDF /* TuneIn.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF61CDA4F5B001A4DDF /* TuneIn.js */; };
-		0BE800711CDA4F5B001A4DDF /* TwentyTwoTracks.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF71CDA4F5B001A4DDF /* TwentyTwoTracks.js */; };
-		0BE800721CDA4F5B001A4DDF /* TwentyTwoTracks.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF71CDA4F5B001A4DDF /* TwentyTwoTracks.js */; };
-		0BE800731CDA4F5B001A4DDF /* Twitch.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF81CDA4F5B001A4DDF /* Twitch.js */; };
-		0BE800741CDA4F5B001A4DDF /* Twitch.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF81CDA4F5B001A4DDF /* Twitch.js */; };
-		0BE800751CDA4F5B001A4DDF /* Udemy.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF91CDA4F5B001A4DDF /* Udemy.js */; };
-		0BE800761CDA4F5B001A4DDF /* Udemy.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFF91CDA4F5B001A4DDF /* Udemy.js */; };
 		0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
 		0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
-		0BE800791CDA4F5B001A4DDF /* Vessel.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFB1CDA4F5B001A4DDF /* Vessel.js */; };
-		0BE8007A1CDA4F5B001A4DDF /* Vessel.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFB1CDA4F5B001A4DDF /* Vessel.js */; };
-		0BE8007B1CDA4F5B001A4DDF /* Vimeo.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFC1CDA4F5B001A4DDF /* Vimeo.js */; };
-		0BE8007C1CDA4F5B001A4DDF /* Vimeo.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFC1CDA4F5B001A4DDF /* Vimeo.js */; };
-		0BE8007D1CDA4F5B001A4DDF /* Vk.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFD1CDA4F5B001A4DDF /* Vk.js */; };
-		0BE8007E1CDA4F5B001A4DDF /* Vk.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFD1CDA4F5B001A4DDF /* Vk.js */; };
-		0BE8007F1CDA4F5B001A4DDF /* WatchaPlay.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFE1CDA4F5B001A4DDF /* WatchaPlay.js */; };
-		0BE800801CDA4F5B001A4DDF /* WatchaPlay.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFE1CDA4F5B001A4DDF /* WatchaPlay.js */; };
-		0BE800811CDA4F5B001A4DDF /* WonderFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFF1CDA4F5B001A4DDF /* WonderFm.js */; };
-		0BE800821CDA4F5B001A4DDF /* WonderFm.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFF1CDA4F5B001A4DDF /* WonderFm.js */; };
-		0BE800831CDA4F5B001A4DDF /* XboxMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE800001CDA4F5B001A4DDF /* XboxMusic.js */; };
-		0BE800841CDA4F5B001A4DDF /* XboxMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE800001CDA4F5B001A4DDF /* XboxMusic.js */; };
-		0BE800851CDA4F5B001A4DDF /* YandexMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE800011CDA4F5B001A4DDF /* YandexMusic.js */; };
-		0BE800861CDA4F5B001A4DDF /* YandexMusic.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE800011CDA4F5B001A4DDF /* YandexMusic.js */; };
-		0BE800871CDA4F5B001A4DDF /* YandexRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE800021CDA4F5B001A4DDF /* YandexRadio.js */; };
-		0BE800881CDA4F5B001A4DDF /* YandexRadio.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BE800021CDA4F5B001A4DDF /* YandexRadio.js */; };
 		0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */; };
 		0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */; };
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
@@ -207,6 +75,10 @@
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
+		65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */ = {isa = PBXBuildFile; fileRef = 65D57FCA1D02CBFE0016F270 /* MediaStrategies */; };
+		65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */ = {isa = PBXBuildFile; fileRef = 65D57FCA1D02CBFE0016F270 /* MediaStrategies */; };
+		65D57FCD1D02CCB00016F270 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
+		65D57FCE1D02CD140016F270 /* BSMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */; };
 		65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */; };
 		65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */; };
 		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
@@ -290,75 +162,9 @@
 		0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyCache.h; sourceTree = "<group>"; };
 		0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyCache.m; sourceTree = "<group>"; };
 		0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vcr-strategy-urls.plist"; sourceTree = "<group>"; };
-		0BD1B2EF1CD2196600B72A3E /* Youtube.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Youtube.js; sourceTree = "<group>"; };
 		0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		0BD1B2F51CD2211300B72A3E /* cassettes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cassettes; sourceTree = "<group>"; };
-		0BE800001CDA4F5B001A4DDF /* XboxMusic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = XboxMusic.js; sourceTree = "<group>"; };
-		0BE800011CDA4F5B001A4DDF /* YandexMusic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = YandexMusic.js; sourceTree = "<group>"; };
-		0BE800021CDA4F5B001A4DDF /* YandexRadio.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = YandexRadio.js; sourceTree = "<group>"; };
-		0BE8FFC11CDA4F5B001A4DDF /* AmazonMusic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AmazonMusic.js; sourceTree = "<group>"; };
-		0BE8FFC21CDA4F5B001A4DDF /* Audible.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Audible.js; sourceTree = "<group>"; };
-		0BE8FFC31CDA4F5B001A4DDF /* AudioMack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AudioMack.js; sourceTree = "<group>"; };
-		0BE8FFC41CDA4F5B001A4DDF /* BandCamp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = BandCamp.js; sourceTree = "<group>"; };
-		0BE8FFC51CDA4F5B001A4DDF /* BBCRadio.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = BBCRadio.js; sourceTree = "<group>"; };
-		0BE8FFC61CDA4F5B001A4DDF /* Beatguide.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Beatguide.js; sourceTree = "<group>"; };
-		0BE8FFC71CDA4F5B001A4DDF /* BeatsMusic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = BeatsMusic.js; sourceTree = "<group>"; };
-		0BE8FFC81CDA4F5B001A4DDF /* Blitzr.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Blitzr.js; sourceTree = "<group>"; };
-		0BE8FFC91CDA4F5B001A4DDF /* BrainFm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = BrainFm.js; sourceTree = "<group>"; };
-		0BE8FFCA1CDA4F5B001A4DDF /* BugsMusic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = BugsMusic.js; sourceTree = "<group>"; };
-		0BE8FFCB1CDA4F5B001A4DDF /* Chorus.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Chorus.js; sourceTree = "<group>"; };
-		0BE8FFCC1CDA4F5B001A4DDF /* Composed.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Composed.js; sourceTree = "<group>"; };
-		0BE8FFCD1CDA4F5B001A4DDF /* Coursera.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Coursera.js; sourceTree = "<group>"; };
-		0BE8FFCE1CDA4F5B001A4DDF /* Deezer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Deezer.js; sourceTree = "<group>"; };
-		0BE8FFCF1CDA4F5B001A4DDF /* DigitallyImported.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = DigitallyImported.js; sourceTree = "<group>"; };
-		0BE8FFD01CDA4F5B001A4DDF /* EightTracks.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = EightTracks.js; sourceTree = "<group>"; };
-		0BE8FFD11CDA4F5B001A4DDF /* FocusAtWill.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FocusAtWill.js; sourceTree = "<group>"; };
-		0BE8FFD21CDA4F5B001A4DDF /* GoogleMusic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = GoogleMusic.js; sourceTree = "<group>"; };
-		0BE8FFD31CDA4F5B001A4DDF /* GrooveShark.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = GrooveShark.js; sourceTree = "<group>"; };
-		0BE8FFD41CDA4F5B001A4DDF /* HotNewHipHop.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = HotNewHipHop.js; sourceTree = "<group>"; };
-		0BE8FFD51CDA4F5B001A4DDF /* HypeMachine.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = HypeMachine.js; sourceTree = "<group>"; };
-		0BE8FFD61CDA4F5B001A4DDF /* iHeartRadio.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = iHeartRadio.js; sourceTree = "<group>"; };
-		0BE8FFD71CDA4F5B001A4DDF /* IndieShuffle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = IndieShuffle.js; sourceTree = "<group>"; };
-		0BE8FFD81CDA4F5B001A4DDF /* Jango.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Jango.js; sourceTree = "<group>"; };
-		0BE8FFD91CDA4F5B001A4DDF /* KollektFm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = KollektFm.js; sourceTree = "<group>"; };
-		0BE8FFDA1CDA4F5B001A4DDF /* LastFm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = LastFm.js; sourceTree = "<group>"; };
-		0BE8FFDB1CDA4F5B001A4DDF /* LeTournedisque.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = LeTournedisque.js; sourceTree = "<group>"; };
-		0BE8FFDC1CDA4F5B001A4DDF /* LogitechMediaServer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = LogitechMediaServer.js; sourceTree = "<group>"; };
-		0BE8FFDD1CDA4F5B001A4DDF /* MixCloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MixCloud.js; sourceTree = "<group>"; };
-		0BE8FFDE1CDA4F5B001A4DDF /* MusicForProgramming.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MusicForProgramming.js; sourceTree = "<group>"; };
-		0BE8FFDF1CDA4F5B001A4DDF /* MusicUnlimited.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MusicUnlimited.js; sourceTree = "<group>"; };
-		0BE8FFE01CDA4F5B001A4DDF /* Netflix.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Netflix.js; sourceTree = "<group>"; };
-		0BE8FFE11CDA4F5B001A4DDF /* NoAdRadio.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NoAdRadio.js; sourceTree = "<group>"; };
-		0BE8FFE21CDA4F5B001A4DDF /* NoonPacific.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NoonPacific.js; sourceTree = "<group>"; };
-		0BE8FFE31CDA4F5B001A4DDF /* NRK.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NRK.js; sourceTree = "<group>"; };
-		0BE8FFE41CDA4F5B001A4DDF /* Odnoklassniki.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Odnoklassniki.js; sourceTree = "<group>"; };
-		0BE8FFE51CDA4F5B001A4DDF /* Overcast.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Overcast.js; sourceTree = "<group>"; };
-		0BE8FFE61CDA4F5B001A4DDF /* Pandora.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Pandora.js; sourceTree = "<group>"; };
-		0BE8FFE71CDA4F5B001A4DDF /* PlexWeb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PlexWeb.js; sourceTree = "<group>"; };
-		0BE8FFE81CDA4F5B001A4DDF /* PocketCasts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PocketCasts.js; sourceTree = "<group>"; };
-		0BE8FFE91CDA4F5B001A4DDF /* Rdio.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Rdio.js; sourceTree = "<group>"; };
-		0BE8FFEA1CDA4F5B001A4DDF /* Rhapsody.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Rhapsody.js; sourceTree = "<group>"; };
-		0BE8FFEB1CDA4F5B001A4DDF /* Saavn.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Saavn.js; sourceTree = "<group>"; };
-		0BE8FFEC1CDA4F5B001A4DDF /* ShufflerFm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ShufflerFm.js; sourceTree = "<group>"; };
-		0BE8FFED1CDA4F5B001A4DDF /* Slacker.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Slacker.js; sourceTree = "<group>"; };
-		0BE8FFEE1CDA4F5B001A4DDF /* SomaFm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SomaFm.js; sourceTree = "<group>"; };
-		0BE8FFEF1CDA4F5B001A4DDF /* Songza.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Songza.js; sourceTree = "<group>"; };
-		0BE8FFF01CDA4F5B001A4DDF /* SoundCloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SoundCloud.js; sourceTree = "<group>"; };
-		0BE8FFF11CDA4F5B001A4DDF /* Spotify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Spotify.js; sourceTree = "<group>"; };
-		0BE8FFF21CDA4F5B001A4DDF /* Stitcher.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Stitcher.js; sourceTree = "<group>"; };
-		0BE8FFF31CDA4F5B001A4DDF /* Subsonic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Subsonic.js; sourceTree = "<group>"; };
-		0BE8FFF41CDA4F5B001A4DDF /* Synology.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Synology.js; sourceTree = "<group>"; };
-		0BE8FFF51CDA4F5B001A4DDF /* TidalHiFi.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TidalHiFi.js; sourceTree = "<group>"; };
-		0BE8FFF61CDA4F5B001A4DDF /* TuneIn.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TuneIn.js; sourceTree = "<group>"; };
-		0BE8FFF71CDA4F5B001A4DDF /* TwentyTwoTracks.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TwentyTwoTracks.js; sourceTree = "<group>"; };
-		0BE8FFF81CDA4F5B001A4DDF /* Twitch.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Twitch.js; sourceTree = "<group>"; };
-		0BE8FFF91CDA4F5B001A4DDF /* Udemy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Udemy.js; sourceTree = "<group>"; };
 		0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = versions.plist; path = MediaStrategies/versions.plist; sourceTree = "<group>"; };
-		0BE8FFFB1CDA4F5B001A4DDF /* Vessel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vessel.js; sourceTree = "<group>"; };
-		0BE8FFFC1CDA4F5B001A4DDF /* Vimeo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vimeo.js; sourceTree = "<group>"; };
-		0BE8FFFD1CDA4F5B001A4DDF /* Vk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vk.js; sourceTree = "<group>"; };
-		0BE8FFFE1CDA4F5B001A4DDF /* WatchaPlay.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = WatchaPlay.js; sourceTree = "<group>"; };
-		0BE8FFFF1CDA4F5B001A4DDF /* WonderFm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = WonderFm.js; sourceTree = "<group>"; };
 		0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategy.h; sourceTree = "<group>"; };
 		0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategy.m; sourceTree = "<group>"; };
 		0BF06ADD1C9513A800534083 /* BSStrategyVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyVersionManager.h; sourceTree = "<group>"; };
@@ -444,6 +250,8 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabAdapter.m; sourceTree = "<group>"; };
+		65D57FCA1D02CBFE0016F270 /* MediaStrategies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MediaStrategies; sourceTree = "<group>"; };
+		65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-Config.xcconfig"; sourceTree = "<group>"; };
 		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		65E5670C1B76A07700AD2D46 /* BSMediaStrategyEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategyEnableButton.h; sourceTree = "<group>"; };
 		65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyEnableButton.m; sourceTree = "<group>"; };
@@ -579,80 +387,6 @@
 			);
 			path = Tabs;
 			sourceTree = "<group>";
-		};
-		0BF06A111C95139900534083 /* MediaStrategies */ = {
-			isa = PBXGroup;
-			children = (
-				0BE8FFC11CDA4F5B001A4DDF /* AmazonMusic.js */,
-				0BE8FFC21CDA4F5B001A4DDF /* Audible.js */,
-				0BE8FFC31CDA4F5B001A4DDF /* AudioMack.js */,
-				0BE8FFC41CDA4F5B001A4DDF /* BandCamp.js */,
-				0BE8FFC51CDA4F5B001A4DDF /* BBCRadio.js */,
-				0BE8FFC61CDA4F5B001A4DDF /* Beatguide.js */,
-				0BE8FFC71CDA4F5B001A4DDF /* BeatsMusic.js */,
-				0BE8FFC81CDA4F5B001A4DDF /* Blitzr.js */,
-				0BE8FFC91CDA4F5B001A4DDF /* BrainFm.js */,
-				0BE8FFCA1CDA4F5B001A4DDF /* BugsMusic.js */,
-				0BE8FFCB1CDA4F5B001A4DDF /* Chorus.js */,
-				0BE8FFCC1CDA4F5B001A4DDF /* Composed.js */,
-				0BE8FFCD1CDA4F5B001A4DDF /* Coursera.js */,
-				0BE8FFCE1CDA4F5B001A4DDF /* Deezer.js */,
-				0BE8FFCF1CDA4F5B001A4DDF /* DigitallyImported.js */,
-				0BE8FFD01CDA4F5B001A4DDF /* EightTracks.js */,
-				0BE8FFD11CDA4F5B001A4DDF /* FocusAtWill.js */,
-				0BE8FFD21CDA4F5B001A4DDF /* GoogleMusic.js */,
-				0BE8FFD31CDA4F5B001A4DDF /* GrooveShark.js */,
-				0BE8FFD41CDA4F5B001A4DDF /* HotNewHipHop.js */,
-				0BE8FFD51CDA4F5B001A4DDF /* HypeMachine.js */,
-				0BE8FFD61CDA4F5B001A4DDF /* iHeartRadio.js */,
-				0BE8FFD71CDA4F5B001A4DDF /* IndieShuffle.js */,
-				0BE8FFD81CDA4F5B001A4DDF /* Jango.js */,
-				0BE8FFD91CDA4F5B001A4DDF /* KollektFm.js */,
-				0BE8FFDA1CDA4F5B001A4DDF /* LastFm.js */,
-				0BE8FFDB1CDA4F5B001A4DDF /* LeTournedisque.js */,
-				0BE8FFDC1CDA4F5B001A4DDF /* LogitechMediaServer.js */,
-				0BE8FFDD1CDA4F5B001A4DDF /* MixCloud.js */,
-				0BE8FFDE1CDA4F5B001A4DDF /* MusicForProgramming.js */,
-				0BE8FFDF1CDA4F5B001A4DDF /* MusicUnlimited.js */,
-				0BE8FFE01CDA4F5B001A4DDF /* Netflix.js */,
-				0BE8FFE11CDA4F5B001A4DDF /* NoAdRadio.js */,
-				0BE8FFE21CDA4F5B001A4DDF /* NoonPacific.js */,
-				0BE8FFE31CDA4F5B001A4DDF /* NRK.js */,
-				0BE8FFE41CDA4F5B001A4DDF /* Odnoklassniki.js */,
-				0BE8FFE51CDA4F5B001A4DDF /* Overcast.js */,
-				0BE8FFE61CDA4F5B001A4DDF /* Pandora.js */,
-				0BE8FFE71CDA4F5B001A4DDF /* PlexWeb.js */,
-				0BE8FFE81CDA4F5B001A4DDF /* PocketCasts.js */,
-				0BE8FFE91CDA4F5B001A4DDF /* Rdio.js */,
-				0BE8FFEA1CDA4F5B001A4DDF /* Rhapsody.js */,
-				0BE8FFEB1CDA4F5B001A4DDF /* Saavn.js */,
-				0BE8FFEC1CDA4F5B001A4DDF /* ShufflerFm.js */,
-				0BE8FFED1CDA4F5B001A4DDF /* Slacker.js */,
-				0BE8FFEE1CDA4F5B001A4DDF /* SomaFm.js */,
-				0BE8FFEF1CDA4F5B001A4DDF /* Songza.js */,
-				0BE8FFF01CDA4F5B001A4DDF /* SoundCloud.js */,
-				0BE8FFF11CDA4F5B001A4DDF /* Spotify.js */,
-				0BE8FFF21CDA4F5B001A4DDF /* Stitcher.js */,
-				0BE8FFF31CDA4F5B001A4DDF /* Subsonic.js */,
-				0BE8FFF41CDA4F5B001A4DDF /* Synology.js */,
-				0BE8FFF51CDA4F5B001A4DDF /* TidalHiFi.js */,
-				0BE8FFF61CDA4F5B001A4DDF /* TuneIn.js */,
-				0BE8FFF71CDA4F5B001A4DDF /* TwentyTwoTracks.js */,
-				0BE8FFF81CDA4F5B001A4DDF /* Twitch.js */,
-				0BE8FFF91CDA4F5B001A4DDF /* Udemy.js */,
-				0BE8FFFB1CDA4F5B001A4DDF /* Vessel.js */,
-				0BE8FFFC1CDA4F5B001A4DDF /* Vimeo.js */,
-				0BE8FFFD1CDA4F5B001A4DDF /* Vk.js */,
-				0BE8FFFE1CDA4F5B001A4DDF /* WatchaPlay.js */,
-				0BE8FFFF1CDA4F5B001A4DDF /* WonderFm.js */,
-				0BE800001CDA4F5B001A4DDF /* XboxMusic.js */,
-				0BE800011CDA4F5B001A4DDF /* YandexMusic.js */,
-				0BE800021CDA4F5B001A4DDF /* YandexRadio.js */,
-				0BD1B2EF1CD2196600B72A3E /* Youtube.js */,
-			);
-			name = MediaStrategies;
-			path = BeardedSpice/MediaStrategies;
-			sourceTree = SOURCE_ROOT;
 		};
 		656A001D1C8AD3E200BD29F5 /* SPMediaKeyTap */ = {
 			isa = PBXGroup;
@@ -806,14 +540,15 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
-				0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */,
-				0BF06A111C95139900534083 /* MediaStrategies */,
+				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
+				65D57FCA1D02CBFE0016F270 /* MediaStrategies */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
 				0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */,
 				0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */,
+				0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */,
 				0BF06ADD1C9513A800534083 /* BSStrategyVersionManager.h */,
 				0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */,
 				0BF06ADF1C9513A800534083 /* BSTrack.h */,
@@ -989,83 +724,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BE800571CDA4F5B001A4DDF /* Rhapsody.js in Resources */,
-				0BE800791CDA4F5B001A4DDF /* Vessel.js in Resources */,
-				0BE800591CDA4F5B001A4DDF /* Saavn.js in Resources */,
-				0BE8001B1CDA4F5B001A4DDF /* Composed.js in Resources */,
-				0BE800311CDA4F5B001A4DDF /* IndieShuffle.js in Resources */,
-				0BE800471CDA4F5B001A4DDF /* NoonPacific.js in Resources */,
-				0BE8001D1CDA4F5B001A4DDF /* Coursera.js in Resources */,
-				0BE800871CDA4F5B001A4DDF /* YandexRadio.js in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
-				0BE8001F1CDA4F5B001A4DDF /* Deezer.js in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
-				0BE8006F1CDA4F5B001A4DDF /* TuneIn.js in Resources */,
-				0BE800271CDA4F5B001A4DDF /* GoogleMusic.js in Resources */,
-				0BE8007D1CDA4F5B001A4DDF /* Vk.js in Resources */,
-				0BD1B2F01CD2196600B72A3E /* Youtube.js in Resources */,
-				0BE800131CDA4F5B001A4DDF /* Blitzr.js in Resources */,
-				0BE8000F1CDA4F5B001A4DDF /* Beatguide.js in Resources */,
-				0BE800211CDA4F5B001A4DDF /* DigitallyImported.js in Resources */,
-				0BE800831CDA4F5B001A4DDF /* XboxMusic.js in Resources */,
-				0BE800731CDA4F5B001A4DDF /* Twitch.js in Resources */,
-				0BE800251CDA4F5B001A4DDF /* FocusAtWill.js in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
-				0BE800851CDA4F5B001A4DDF /* YandexMusic.js in Resources */,
-				0BE8004F1CDA4F5B001A4DDF /* Pandora.js in Resources */,
-				0BE8004D1CDA4F5B001A4DDF /* Overcast.js in Resources */,
-				0BE800751CDA4F5B001A4DDF /* Udemy.js in Resources */,
-				0BE800711CDA4F5B001A4DDF /* TwentyTwoTracks.js in Resources */,
-				0BE800111CDA4F5B001A4DDF /* BeatsMusic.js in Resources */,
-				0BE8003F1CDA4F5B001A4DDF /* MusicForProgramming.js in Resources */,
-				0BE800651CDA4F5B001A4DDF /* Spotify.js in Resources */,
 				0320C0521868C6C2009591CA /* beard.png in Resources */,
-				0BE800511CDA4F5B001A4DDF /* PlexWeb.js in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
-				0BE800151CDA4F5B001A4DDF /* BrainFm.js in Resources */,
-				0BE800411CDA4F5B001A4DDF /* MusicUnlimited.js in Resources */,
-				0BE800231CDA4F5B001A4DDF /* EightTracks.js in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
-				0BE800691CDA4F5B001A4DDF /* Subsonic.js in Resources */,
-				0BE8003D1CDA4F5B001A4DDF /* MixCloud.js in Resources */,
+				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
 				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
-				0BE8002D1CDA4F5B001A4DDF /* HypeMachine.js in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
-				0BE800091CDA4F5B001A4DDF /* AudioMack.js in Resources */,
-				0BE800491CDA4F5B001A4DDF /* NRK.js in Resources */,
-				0BE800071CDA4F5B001A4DDF /* Audible.js in Resources */,
-				0BE800171CDA4F5B001A4DDF /* BugsMusic.js in Resources */,
-				0BE8002B1CDA4F5B001A4DDF /* HotNewHipHop.js in Resources */,
-				0BE8007B1CDA4F5B001A4DDF /* Vimeo.js in Resources */,
-				0BE800291CDA4F5B001A4DDF /* GrooveShark.js in Resources */,
-				0BE800551CDA4F5B001A4DDF /* Rdio.js in Resources */,
-				0BE800051CDA4F5B001A4DDF /* AmazonMusic.js in Resources */,
-				0BE800431CDA4F5B001A4DDF /* Netflix.js in Resources */,
-				0BE800351CDA4F5B001A4DDF /* KollektFm.js in Resources */,
-				0BE8000B1CDA4F5B001A4DDF /* BandCamp.js in Resources */,
-				0BE8004B1CDA4F5B001A4DDF /* Odnoklassniki.js in Resources */,
 				17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */,
-				0BE800371CDA4F5B001A4DDF /* LastFm.js in Resources */,
-				0BE8006D1CDA4F5B001A4DDF /* TidalHiFi.js in Resources */,
-				0BE8000D1CDA4F5B001A4DDF /* BBCRadio.js in Resources */,
-				0BE8005F1CDA4F5B001A4DDF /* SomaFm.js in Resources */,
-				0BE8007F1CDA4F5B001A4DDF /* WatchaPlay.js in Resources */,
-				0BE800611CDA4F5B001A4DDF /* Songza.js in Resources */,
-				0BE800671CDA4F5B001A4DDF /* Stitcher.js in Resources */,
 				0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */,
-				0BE8002F1CDA4F5B001A4DDF /* iHeartRadio.js in Resources */,
 				17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */,
-				0BE800391CDA4F5B001A4DDF /* LeTournedisque.js in Resources */,
-				0BE8005B1CDA4F5B001A4DDF /* ShufflerFm.js in Resources */,
-				0BE800331CDA4F5B001A4DDF /* Jango.js in Resources */,
-				0BE800191CDA4F5B001A4DDF /* Chorus.js in Resources */,
-				0BE8006B1CDA4F5B001A4DDF /* Synology.js in Resources */,
-				0BE800531CDA4F5B001A4DDF /* PocketCasts.js in Resources */,
-				0BE800631CDA4F5B001A4DDF /* SoundCloud.js in Resources */,
-				0BE800451CDA4F5B001A4DDF /* NoAdRadio.js in Resources */,
-				0BE8005D1CDA4F5B001A4DDF /* Slacker.js in Resources */,
-				0BE8003B1CDA4F5B001A4DDF /* LogitechMediaServer.js in Resources */,
-				0BE800811CDA4F5B001A4DDF /* WonderFm.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1073,75 +743,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BE8001C1CDA4F5B001A4DDF /* Composed.js in Resources */,
-				0BE800181CDA4F5B001A4DDF /* BugsMusic.js in Resources */,
-				0BE800161CDA4F5B001A4DDF /* BrainFm.js in Resources */,
-				0BE800841CDA4F5B001A4DDF /* XboxMusic.js in Resources */,
-				0BE8005C1CDA4F5B001A4DDF /* ShufflerFm.js in Resources */,
-				0BE800721CDA4F5B001A4DDF /* TwentyTwoTracks.js in Resources */,
-				0BE8003A1CDA4F5B001A4DDF /* LeTournedisque.js in Resources */,
-				0BE8006E1CDA4F5B001A4DDF /* TidalHiFi.js in Resources */,
-				0BE800561CDA4F5B001A4DDF /* Rdio.js in Resources */,
-				0BE800541CDA4F5B001A4DDF /* PocketCasts.js in Resources */,
-				0BE8004A1CDA4F5B001A4DDF /* NRK.js in Resources */,
-				0BE800421CDA4F5B001A4DDF /* MusicUnlimited.js in Resources */,
-				0BE800801CDA4F5B001A4DDF /* WatchaPlay.js in Resources */,
-				0BE8001A1CDA4F5B001A4DDF /* Chorus.js in Resources */,
-				0BE8005E1CDA4F5B001A4DDF /* Slacker.js in Resources */,
-				0BE800581CDA4F5B001A4DDF /* Rhapsody.js in Resources */,
-				0BE8002E1CDA4F5B001A4DDF /* HypeMachine.js in Resources */,
-				0BE8002C1CDA4F5B001A4DDF /* HotNewHipHop.js in Resources */,
-				0BE8002A1CDA4F5B001A4DDF /* GrooveShark.js in Resources */,
-				0BE800401CDA4F5B001A4DDF /* MusicForProgramming.js in Resources */,
-				0BE800621CDA4F5B001A4DDF /* Songza.js in Resources */,
-				0BE800121CDA4F5B001A4DDF /* BeatsMusic.js in Resources */,
-				0BE800061CDA4F5B001A4DDF /* AmazonMusic.js in Resources */,
-				0BE800661CDA4F5B001A4DDF /* Spotify.js in Resources */,
-				0BE8007A1CDA4F5B001A4DDF /* Vessel.js in Resources */,
-				0BE8004E1CDA4F5B001A4DDF /* Overcast.js in Resources */,
-				0BE800081CDA4F5B001A4DDF /* Audible.js in Resources */,
+				65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */,
 				0BD1B2F61CD2211300B72A3E /* cassettes in Resources */,
-				0BE800241CDA4F5B001A4DDF /* EightTracks.js in Resources */,
-				0BE8005A1CDA4F5B001A4DDF /* Saavn.js in Resources */,
-				0BE800321CDA4F5B001A4DDF /* IndieShuffle.js in Resources */,
-				0BE800461CDA4F5B001A4DDF /* NoAdRadio.js in Resources */,
-				0BE800221CDA4F5B001A4DDF /* DigitallyImported.js in Resources */,
-				0BE8006A1CDA4F5B001A4DDF /* Subsonic.js in Resources */,
-				0BE800701CDA4F5B001A4DDF /* TuneIn.js in Resources */,
-				0BE800101CDA4F5B001A4DDF /* Beatguide.js in Resources */,
-				0BE800381CDA4F5B001A4DDF /* LastFm.js in Resources */,
-				0BE800641CDA4F5B001A4DDF /* SoundCloud.js in Resources */,
-				0BE800521CDA4F5B001A4DDF /* PlexWeb.js in Resources */,
-				0BE8006C1CDA4F5B001A4DDF /* Synology.js in Resources */,
 				0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */,
-				0BE800281CDA4F5B001A4DDF /* GoogleMusic.js in Resources */,
-				0BE800341CDA4F5B001A4DDF /* Jango.js in Resources */,
-				0BE800741CDA4F5B001A4DDF /* Twitch.js in Resources */,
-				0BE8000C1CDA4F5B001A4DDF /* BandCamp.js in Resources */,
-				0BE800821CDA4F5B001A4DDF /* WonderFm.js in Resources */,
-				0BE800601CDA4F5B001A4DDF /* SomaFm.js in Resources */,
-				0BE8001E1CDA4F5B001A4DDF /* Coursera.js in Resources */,
-				0BE800441CDA4F5B001A4DDF /* Netflix.js in Resources */,
-				0BE8000E1CDA4F5B001A4DDF /* BBCRadio.js in Resources */,
-				0BE800681CDA4F5B001A4DDF /* Stitcher.js in Resources */,
 				0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */,
-				0BE800861CDA4F5B001A4DDF /* YandexMusic.js in Resources */,
-				0BE8003C1CDA4F5B001A4DDF /* LogitechMediaServer.js in Resources */,
-				0BE8007E1CDA4F5B001A4DDF /* Vk.js in Resources */,
-				0BE800761CDA4F5B001A4DDF /* Udemy.js in Resources */,
-				0BE8000A1CDA4F5B001A4DDF /* AudioMack.js in Resources */,
-				0BE800141CDA4F5B001A4DDF /* Blitzr.js in Resources */,
-				0BE8007C1CDA4F5B001A4DDF /* Vimeo.js in Resources */,
-				0BE8004C1CDA4F5B001A4DDF /* Odnoklassniki.js in Resources */,
-				0BD1B2F11CD2196700B72A3E /* Youtube.js in Resources */,
-				0BE800501CDA4F5B001A4DDF /* Pandora.js in Resources */,
-				0BE8003E1CDA4F5B001A4DDF /* MixCloud.js in Resources */,
-				0BE800361CDA4F5B001A4DDF /* KollektFm.js in Resources */,
-				0BE800881CDA4F5B001A4DDF /* YandexRadio.js in Resources */,
-				0BE800261CDA4F5B001A4DDF /* FocusAtWill.js in Resources */,
-				0BE800481CDA4F5B001A4DDF /* NoonPacific.js in Resources */,
-				0BE800201CDA4F5B001A4DDF /* Deezer.js in Resources */,
-				0BE800301CDA4F5B001A4DDF /* iHeartRadio.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1346,6 +951,8 @@
 				0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */,
 				0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
 				0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */,
+				65D57FCE1D02CD140016F270 /* BSMediaStrategy.m in Sources */,
+				65D57FCD1D02CCB00016F270 /* NSURL+Utils.m in Sources */,
 				0B1AF3811CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m in Sources */,
 				0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */,
 			);
@@ -1446,6 +1053,7 @@
 		};
 		9679335B1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1468,8 +1076,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
-					"$(inherited)",
 					"JSC_OBJC_API_ENABLED=1",
+					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1524,7 +1132,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1532,11 +1140,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"COCOAPODS=1",
-					"JSC_OBJC_API_ENABLED=1",
-				);
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
@@ -1552,7 +1155,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1560,11 +1163,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"COCOAPODS=1",
-					"JSC_OBJC_API_ENABLED=1",
-				);
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
@@ -1588,10 +1186,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;

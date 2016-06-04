@@ -82,12 +82,6 @@ static inline NSString *appSupportPath() {
     return [NSURL fileURLWithPath:pathString isDirectory:YES];
 }
 
-+ (NSURL * _Nonnull)URLForVersionsFile
-{
-    // only ever care about initial versions file from app resources
-    return [[NSBundle mainBundle] URLForResource:@"versions" withExtension:@"plist"];
-}
-
 + (NSURL * _Nonnull)URLForFileName:(NSString *)fileName
 {
     return [self URLForFileName:fileName ofType:@"js"];
@@ -114,31 +108,6 @@ static inline NSString *appSupportPath() {
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     return [fileManager fileExistsAtPath:[self path] isDirectory:NO];
-}
-
-- (BOOL)directoryExists
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    return [fileManager fileExistsAtPath:[self path] isDirectory:YES];
-}
-
-- (BOOL)copyStrategyToAppSupport:(NSString * _Nonnull)fileName
-{
-    // file referenced by this nsstring does not exist. aborting.
-    if (![self fileExists])
-        return NO;
-
-    NSURL *targetURL = [NSURL URLForFileName:fileName];
-    if ([targetURL fileExists])
-        return YES;
-
-    NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL ret = [fileManager copyItemAtURL:self toURL:targetURL error:&error];
-    if (error)
-        NSLog(@"An error occured while copying file %@: %@", targetURL, [error localizedDescription]);
-
-    return ret;
 }
 
 @end

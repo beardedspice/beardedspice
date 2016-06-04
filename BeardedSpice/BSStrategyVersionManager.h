@@ -34,18 +34,6 @@
 - (BOOL)loadStrategies;
 
 /**
- @return returns the version number for the currently loaded index file.
- This file is commonly identified as 'versions.plist'
- */
-- (long)indexVersion;
-
-/**
- @param mediaStrategy The filename of the strategy template to check.
- @return returns the version number for the version of the strategy found in the index plist (versions.plist)
- */
-- (long)versionForMediaStrategy:(NSString *)mediaStrategy;
-
-/**
  Downloads the versions.plist file from the target repository URL and checks if any new strategy template
  versions are marked as higher version than the currently loaded number.
  */

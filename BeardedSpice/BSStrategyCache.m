@@ -123,6 +123,9 @@ static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
 
     for (NSString *fileName in elements)
     {
+        if ([fileName isEqualToString:@"versions.plist"])
+            continue;
+
         NSURL *filePath = [[NSURL alloc] initWithString:fileName relativeToURL:path];
         [self updateCacheWithURL:filePath];
     }

@@ -14,7 +14,7 @@
 
 // This is the path format which requires a user/branch/filename for the target plist file.
 // release pathing that ONLY targets the official beardedspice master branch
-static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.js";
+static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.%@";
 
 // This is the name of the version index plist to be downloaded.
 static NSString *const kBSIndexFileName = @"versions";
@@ -32,18 +32,16 @@ static NSString *const kBSIndexFileName = @"versions";
 
 @implementation BSStrategyVersionManager
 
--(instancetype)initWithStrategyCache:(BSStrategyCache *)cache
+- (instancetype)initWithStrategyCache:(BSStrategyCache *)cache
 {
     self = [super init];
     if (self)
     {
-        _versionURL = [self repositoryURLForFile:kBSIndexFileName];
+        _versionURL = [self repositoryURLForFile:kBSIndexFileName ofType:@"plist"];
         _strategyCache = cache;
     }
     return self;
 }
-
-#pragma mark - Setup and Maintenance functions
 
 #pragma mark - Version Accessors
 
@@ -61,8 +59,13 @@ static NSString *const kBSIndexFileName = @"versions";
 
 - (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file
 {
+    return [self repositoryURLForFile:file ofType:@"js"];
+}
+
+- (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file ofType:(NSString *_Nonnull)type
+{
     // target source for strategy version
-    NSString *path = [[NSString alloc] initWithFormat:kBSVersionIndexURL, file];
+    NSString *path = [[NSString alloc] initWithFormat:kBSVersionIndexURL, file, type];
 
     return [NSURL URLWithString:path];
 }

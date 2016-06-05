@@ -29,9 +29,10 @@
 - (instancetype)initWithStrategyCache:(BSStrategyCache *)cache;
 
 /**
- FIXME documentation about loading strategies and how they're cached
+ @param mediaStrategy The filename of the strategy template to check.
+ @return returns the version number for the version of the strategy found in the index plist (versions.plist)
  */
-- (BOOL)loadStrategies;
+- (long)versionForMediaStrategy:(NSString *)mediaStrategy;
 
 /**
  Downloads the versions.plist file from the target repository URL and checks if any new strategy template

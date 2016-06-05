@@ -1114,11 +1114,10 @@ BOOL accessibilityApiEnabled = NO;
             }
 
             TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
-            TabAdapter *prevTab =
-            [[statusMenu itemAtIndex:(size - 1)] representedObject];
+            TabAdapter *prevTab = [[statusMenu itemAtIndex:(size - 1)] representedObject];
             TabAdapter *nextTab = [[statusMenu itemAtIndex:1] representedObject];
-            for (int i = 0; i < size; i++) {
 
+            for (int i = 0; i < size; i++) {
                 if ([activeTab isEqual:tab]) {
                     if (direction == SwithPlayerNext) {
                         [self updateActiveTab:nextTab];
@@ -1141,16 +1140,13 @@ BOOL accessibilityApiEnabled = NO;
                     }
 
                     notification.informativeText = [activeTab title];
-                    [[NSUserNotificationCenter defaultUserNotificationCenter]
-                     deliverNotification:notification];
+                    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 
                     return;
                 }
                 prevTab = tab;
                 tab = nextTab;
-                nextTab = i < (size - 2)
-                ? [[statusMenu itemAtIndex:(i + 2)] representedObject]
-                : [[statusMenu itemAtIndex:0] representedObject];
+                nextTab = (i < (size - 2)) ? [[statusMenu itemAtIndex:(i + 2)] representedObject] : [[statusMenu itemAtIndex:0] representedObject];
             }
 
             return;
@@ -1166,7 +1162,6 @@ BOOL accessibilityApiEnabled = NO;
     }
 
     if (!menuItems.count) {
-
         NSMenuItem *item = nil;
         if (accessibilityApiEnabled) {
              item = [statusMenu insertItemWithTitle:NSLocalizedString(@"No applicable tabs open", @"Title on empty menu")

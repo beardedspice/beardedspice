@@ -36,8 +36,8 @@
 
 #pragma clang diagnostic pop
 
-- (id)init{
-
+- (id)init
+{
     return [self initWithObject:nil];
 }
 

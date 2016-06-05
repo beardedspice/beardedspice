@@ -214,14 +214,14 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
 - (NSView *)tableView:(NSTableView *)tableView strategyViewForObject:(MediaControllerObject *)obj{
 
-    NSButton *result = [tableView makeViewWithIdentifier:@"AvailbleStrategiesView" owner:self];
+    NSButton *result = [tableView makeViewWithIdentifier:@"AvailableStrategiesView" owner:self];
 
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
         result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
 
         // this allows the cell to be reused.
-        result.identifier = @"AvailbleStrategiesView";
+        result.identifier = @"AvailableStrategiesView";
 
         // make it a checkbox
         [result setButtonType:NSSwitchButton];

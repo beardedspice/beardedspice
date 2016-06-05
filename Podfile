@@ -7,8 +7,8 @@ target 'BeardedSpiceControllers' do
     pod 'MASShortcut', '~> 2.3.3'
 
     target 'BeardedSpice' do
-        pod 'MASPreferences', '~> 1.1.2'
-        
+        pod 'MASPreferences', '~> 1.1.4'
+
         # all pods for tests should ONLY go here
         target 'BeardedSpiceTests' do
             pod 'Kiwi'

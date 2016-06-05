@@ -9,6 +9,9 @@
 #import "BSStrategyCache.h"
 #import "BSMediaStrategy.h"
 
+/// Folder name, which contains media strategies, in app bundle.
+static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
+
 @interface BSStrategyCache ()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, BSMediaStrategy *> *cache;
 @property (nonatomic, strong) dispatch_queue_t cacheSerialQueue;

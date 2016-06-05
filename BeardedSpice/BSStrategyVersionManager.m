@@ -18,8 +18,6 @@ static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/
 
 // This is the name of the version index plist to be downloaded.
 static NSString *const kBSIndexFileName = @"versions";
-/// Folder name, which contains media strategies, in app bundle.
-static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
 
 @interface BSStrategyVersionManager ()
 

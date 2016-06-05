@@ -49,10 +49,7 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
         }
 
         BSStrategyCache *cache = mediaStrategyRegistry.strategyCache;
-        theArray = [[cache allKeys]
-                    sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            return [obj1 compare:obj2];
-        }];
+        theArray = [[cache allKeys] sortedArrayUsingSelector:@selector(compare:)];
         if (theArray.count) {
             MediaControllerObject *obj = [MediaControllerObject new];
             obj.isGroup = YES;

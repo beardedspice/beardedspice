@@ -114,9 +114,11 @@ BOOL accessibilityApiEnabled = NO;
     [self shortcutsBind];
     [self newConnectionToControlService];
 
+#if !DEBUG_STRATEGY
     /* Check for strategy updates from the master github repo */
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUpdateAtLaunch])
         [self checkForUpdates:self];
+#endif
 }
 
 - (void)awakeFromNib

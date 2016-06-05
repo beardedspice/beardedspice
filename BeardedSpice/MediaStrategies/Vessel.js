@@ -31,7 +31,8 @@ BSStrategy = {
   trackInfo: function () {
     return {
       'track': document.title.substr(6),
-      'image': document.querySelector('img[style="width:34px;height:34px;border-bottom-left-radius:4px;border-top-left-radius:4px;"]').src.replace(/?w=.*/, '')
+      // FIXME selector currently is invalid
+      //'image': document.querySelector('img[style="width:34px;height:34px;border-bottom-left-radius:4px;border-top-left-radius:4px;"]').src.replace(/?w=.*/, '')
     };
   }
 }

@@ -16,18 +16,6 @@
 
 @implementation BSStrategyCache
 
-+ (BSStrategyCache * _Nonnull)strategyCache
-{
-    static dispatch_once_t setupCache;
-    static BSStrategyCache *strategyCache = nil;
-
-    dispatch_once(&setupCache, ^{
-        strategyCache = [BSStrategyCache new];
-    });
-
-    return strategyCache;
-}
-
 - (instancetype)init
 {
     self = [super init];
@@ -84,6 +72,58 @@
 - (BSMediaStrategy * _Nullable)strategyForName:(NSString * _Nonnull)strategyName
 {
     return _cache[strategyName];
+}
+
+#pragma mark - Cache Management
+
+- (BOOL)loadStrategies
+{
+    NSURL *resourcesUrl = [[NSBundle mainBundle] resourceURL];
+    BOOL ret = [self updateStrategiesFromSourceURL:[resourcesUrl URLByAppendingPathComponent:kBSMediaStrategiesResourcesFolder]];
+    if (!ret)
+        return NO;
+
+#if !DEBUG_STRATEGY
+    NSURL *savedURL = [NSURL URLForSavedStrategies];
+    ret = [savedURL createDirectoriesToURL];
+    if (!ret)
+        return NO;
+
+    ret = [self updateStrategiesFromSourceURL:savedURL];
+    if (!ret)
+        return NO;
+
+    NSURL *customURL = [NSURL URLForCustomStrategies];
+    ret = [customURL createDirectoriesToURL];
+    if (!ret)
+        return NO;
+
+    ret = [self updateStrategiesFromSourceURL:customURL];
+    if (!ret)
+        NSLog(@"Warning updating custom strategies. Reverting to official.");
+#endif
+
+    return YES;
+}
+
+- (BOOL)updateStrategiesFromSourceURL:(NSURL * _Nonnull)path
+{
+    NSError *error = nil;
+    NSString *absPath = path.path;
+
+    NSArray<NSString *> *elements = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:absPath error:&error];
+    if (error)
+    {
+        NSLog(@"Error updating strategies from URL (%@): %@", absPath, [error localizedDescription]);
+        return NO;
+    }
+
+    for (NSString *fileName in elements)
+    {
+        NSURL *filePath = [[NSURL alloc] initWithString:fileName relativeToURL:path];
+        [self updateCacheWithURL:filePath];
+    }
+    return YES;
 }
 
 @end

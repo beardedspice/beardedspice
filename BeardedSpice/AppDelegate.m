@@ -99,9 +99,9 @@ BOOL accessibilityApiEnabled = NO;
     [self setupSystemEventsCallback];
 
     BSStrategyCache *strategyCache = [BSStrategyCache new];
+    [strategyCache loadStrategies];
 
     self.versionManager = [[BSStrategyVersionManager alloc] initWithStrategyCache:strategyCache];
-    [_versionManager loadStrategies];
 
     // setup default media strategy
     mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers strategyCache:strategyCache];

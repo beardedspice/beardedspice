@@ -13,11 +13,18 @@
 @property (nonatomic, strong, readonly) NSMutableDictionary<NSString *, BSMediaStrategy *> * _Nonnull cache;
 
 /**
- Singleton accessor for strategy cache object.
- @return a singleton instance of BSStrategyCache
+ FIXME documentation about loading strategies and how they're cached
  */
-+ (BSStrategyCache * _Nonnull)strategyCache;
+- (BOOL)loadStrategies;
 
+/**
+ FIXME documentation
+ */
+- (BOOL)updateStrategiesFromSourceURL:(NSURL * _Nonnull)path;
+
+/**
+ FIXME documentation
+ */
 - (NSArray<NSString *> * _Nonnull)allKeys;
 
 /**

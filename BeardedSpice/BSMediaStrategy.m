@@ -137,6 +137,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
         return NO;
     }
 
+    self.strategyVersion = strategyVersion;
     self.acceptParams = [self _setupAccept:data];
 
     NSString *displayName = [data[kBSMediaStrategyKeyDisplayName] toString];

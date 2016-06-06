@@ -26,7 +26,6 @@ static NSString *const kBSIndexFileName = @"versions";
 @property (nonatomic, strong) BSStrategyCache *strategyCache;
 
 - (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file;
-- (BOOL)updateStrategiesFromSourceURL:(NSURL * _Nonnull)path;
 
 @end
 

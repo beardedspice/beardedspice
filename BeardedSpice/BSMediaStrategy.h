@@ -80,21 +80,9 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 - (BOOL)isPlaying:(TabAdapter * _Nonnull)tab;
 
 /**
-    Provides the underlying script to run against tests/validations.
-    @return A string containing the isPlaying script string, or an empty string if none exists.
- */
-- (NSString * _Nonnull)isPlayingScript;
-
-/**
     @return Returns track information object from tab.
  */
 - (BSTrack * _Nullable)trackInfo:(TabAdapter * _Nonnull)tab;
-
-/**
-    Provides the underlying script to run against tests/validations.
-    @return A string containing the isPlaying script string, or an empty string if none exists.
- */
-- (NSString * _Nonnull)trackInfoScript;
 
 // Methods, which return javascript code for apropriated actions.
 //---------------------------------------------------------------

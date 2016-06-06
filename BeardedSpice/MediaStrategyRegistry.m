@@ -107,12 +107,15 @@
         BOOL accepted = [strategy accepts:tab];
 
         /* Store the result of this calculation for future use */
-        _registeredCache[cacheKey] = accepted ? strategy : [NSNull null];
-        if (accepted) {
+        if (accepted)
+        {
+            _registeredCache[cacheKey] = strategy;
             NSLog(@"%@ is valid for %@", strategy, tab);
             return strategy;
         }
     }
+    /* Worst case, no compatible registry found */
+    _registeredCache[cacheKey] = [NSNull null];
     return nil;
 }
 

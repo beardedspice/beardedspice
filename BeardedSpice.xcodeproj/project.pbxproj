@@ -21,7 +21,6 @@
 		0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
 		0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
 		0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B355EF51CBEA3350089C2B3 /* Localizable.strings */; };
-		0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */; };
 		0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
 		0BD1B2F41CD21AB100B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
 		0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
@@ -158,7 +157,6 @@
 		0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackTests.m; sourceTree = "<group>"; };
 		0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyCache.h; sourceTree = "<group>"; };
 		0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyCache.m; sourceTree = "<group>"; };
-		0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vcr-strategy-urls.plist"; sourceTree = "<group>"; };
 		0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = versions.plist; path = MediaStrategies/versions.plist; sourceTree = "<group>"; };
 		0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategy.h; sourceTree = "<group>"; };
@@ -583,7 +581,6 @@
 		967933541855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */,
 				967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -737,7 +734,6 @@
 			files = (
 				65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */,
 				0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */,
-				0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

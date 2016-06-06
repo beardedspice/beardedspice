@@ -17,7 +17,6 @@
 		0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */; };
 		0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */; };
 		0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */; };
-		0B1AF3811CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF37A1CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m */; };
 		0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */; };
 		0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
 		0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
@@ -157,7 +156,6 @@
 		0B1AF3771CCE4D4C0021BBEA /* BSStrategyMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyMockObject.h; sourceTree = "<group>"; };
 		0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyMockObject.m; sourceTree = "<group>"; };
 		0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyTests.m; sourceTree = "<group>"; };
-		0B1AF37A1CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyVersionManagerTests.m; sourceTree = "<group>"; };
 		0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackTests.m; sourceTree = "<group>"; };
 		0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyCache.h; sourceTree = "<group>"; };
 		0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyCache.m; sourceTree = "<group>"; };
@@ -578,7 +576,6 @@
 				0B1AF3771CCE4D4C0021BBEA /* BSStrategyMockObject.h */,
 				0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */,
 				0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */,
-				0B1AF37A1CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m */,
 				0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */,
 				0BD1B2F51CD2211300B72A3E /* cassettes */,
 				967933541855173100A49AC7 /* Supporting Files */,
@@ -951,7 +948,6 @@
 				0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */,
 				65D57FCE1D02CD140016F270 /* BSMediaStrategy.m in Sources */,
 				65D57FCD1D02CCB00016F270 /* NSURL+Utils.m in Sources */,
-				0B1AF3811CCE4D4C0021BBEA /* BSStrategyVersionManagerTests.m in Sources */,
 				0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

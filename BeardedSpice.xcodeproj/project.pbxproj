@@ -24,7 +24,6 @@
 		0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */; };
 		0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
 		0BD1B2F41CD21AB100B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
-		0BD1B2F61CD2211300B72A3E /* cassettes in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1B2F51CD2211300B72A3E /* cassettes */; };
 		0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
 		0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
 		0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */; };
@@ -161,7 +160,6 @@
 		0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyCache.m; sourceTree = "<group>"; };
 		0BAA1A691CDC992500CD7D89 /* vcr-strategy-urls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vcr-strategy-urls.plist"; sourceTree = "<group>"; };
 		0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		0BD1B2F51CD2211300B72A3E /* cassettes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cassettes; sourceTree = "<group>"; };
 		0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = versions.plist; path = MediaStrategies/versions.plist; sourceTree = "<group>"; };
 		0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategy.h; sourceTree = "<group>"; };
 		0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategy.m; sourceTree = "<group>"; };
@@ -577,7 +575,6 @@
 				0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */,
 				0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */,
 				0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */,
-				0BD1B2F51CD2211300B72A3E /* cassettes */,
 				967933541855173100A49AC7 /* Supporting Files */,
 			);
 			path = BeardedSpiceTests;
@@ -739,7 +736,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */,
-				0BD1B2F61CD2211300B72A3E /* cassettes in Resources */,
 				0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */,
 				0BAA1A6A1CDC992500CD7D89 /* vcr-strategy-urls.plist in Resources */,
 			);

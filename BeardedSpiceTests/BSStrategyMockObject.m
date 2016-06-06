@@ -58,8 +58,8 @@
         return NO;
 
    //[self replayStrategySite];
-   [self recordStrategySite];
-    VCRCassette *cassette = [VCR cassette];
+   //[self recordStrategySite];
+   // VCRCassette *cassette = [VCR cassette];
     /*if (!cassette || !cassette.data)
     {
         [self recordStrategySite];

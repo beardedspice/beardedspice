@@ -20,14 +20,14 @@ sharedExamplesFor(@"MediaStrategy", ^(NSDictionary *data) {
     __block NSURL *path = nil;
     __block NSURL *fileURL = nil;
     __block BSMediaStrategy *strategy = nil;
-    __block BSStrategyMockObject *mock = nil;
+    //__block BSStrategyMockObject *mock = nil;
 
     beforeAll(^{
          strategyFileName = data[@"strategyName"];
          path = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"];
          fileURL = [[NSURL alloc] initWithString:strategyFileName relativeToURL:path];
          strategy = [[BSMediaStrategy alloc] initWithStrategyURL:fileURL];
-         mock = [[BSStrategyMockObject alloc] initWithStrategyName:strategyFileName];
+         //mock = [[BSStrategyMockObject alloc] initWithStrategyName:strategyFileName];
     });
 
     context(@"Tests for Media Strategy", ^{

@@ -14,6 +14,11 @@
 + (BOOL)isNullOrEmpty:(NSString * _Nullable)str;
 + (BOOL)isNullOrWhiteSpace:(NSString * _Nullable)str;
 + (NSString * _Nullable)stringByTrim:(NSString * _Nonnull)str;
+
+/**
+ */
+-(NSString * _Nonnull)trimToLength:(NSInteger)max;
+
 /**
  @return index of string into receiver, or -1 if not found
  */

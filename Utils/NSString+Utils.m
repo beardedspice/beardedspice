@@ -31,6 +31,14 @@
     return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+-(NSString *)trimToLength:(NSInteger)max
+{
+    if ([self length] > max) {
+        return [NSString stringWithFormat:@"%@...", [self substringToIndex:(max - 3)]];
+    }
+    return [self substringToIndex: [self length]];
+}
+
 - (NSInteger)indexOf:(NSString *)string fromIndex:(NSUInteger)index {
     NSRange range =
         [self rangeOfString:string

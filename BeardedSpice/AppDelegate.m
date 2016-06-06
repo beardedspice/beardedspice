@@ -499,14 +499,6 @@ BOOL accessibilityApiEnabled = NO;
     return NULL;
 }
 
--(NSString *)trim:(NSString *)string toLength:(NSInteger)max
-{
-    if ([string length] > max) {
-        return [NSString stringWithFormat:@"%@...", [string substringToIndex:(max - 3)]];
-    }
-    return [string substringToIndex: [string length]];
-}
-
 - (void)refreshApplications:(BSTimeout *)timeout {
 
     if (timeout.reached) {
@@ -707,7 +699,7 @@ BOOL accessibilityApiEnabled = NO;
 
         if (tab) {
 
-            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
 
             if (menuItem) {
 
@@ -851,7 +843,7 @@ BOOL accessibilityApiEnabled = NO;
     BSMediaStrategy *strategy = [mediaStrategyRegistry getMediaStrategyForTab:tab];
     if (strategy) {
 
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[self trim:tab.title toLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
         if (menuItem){
 
             [menuItem setRepresentedObject:tab];

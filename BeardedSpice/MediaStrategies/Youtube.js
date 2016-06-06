@@ -7,7 +7,7 @@
 //
 BSStrategy = {
   version: 1,
-  displayName: "YouTube",
+  displayName: "Youtube",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*youtube.com/watch*'",

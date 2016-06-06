@@ -85,7 +85,7 @@
 
 - (NSURL *)strategyTemplateURL
 {
-    return [NSURL fileFromURL:_strategyName];
+    return [NSURL URLForFileName:_strategyName];
 }
 
 - (NSURL *)vcrFileURL

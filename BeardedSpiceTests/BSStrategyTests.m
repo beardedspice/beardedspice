@@ -6,123 +6,83 @@
 //  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import <XCTest/XCTest.h>
 #import <Kiwi/Kiwi.h>
 
 #import "BSStrategyMockObject.h"
+#import "BSStrategyCache.h"
 #import "BSMediaStrategy.h"
 
-SPEC_BEGIN(BSStrategyTests)
+SHARED_EXAMPLES_BEGIN(BSMediaStrategyTestHelper)
 
-describe(@"Test Strategy Mocks", ^{
+sharedExamplesFor(@"MediaStrategy", ^(NSDictionary *data) {
 
-    let (strategyName, ^{ return @"Youtube"; });
-    let (strategy, ^{ return [[BSMediaStrategy alloc] initWithStrategyName:strategyName]; });
-    let (mock, ^{ return [[BSStrategyMockObject alloc] initWithStrategyName:strategyName]; });
+    __block NSString *strategyFileName = nil;
+    __block NSURL *path = nil;
+    __block NSURL *fileURL = nil;
+    __block BSMediaStrategy *strategy = nil;
+    __block BSStrategyMockObject *mock = nil;
 
-    context(@"startup the mock and test scripts", ^{
+    beforeAll(^{
+         strategyFileName = data[@"strategyName"];
+         path = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"];
+         fileURL = [[NSURL alloc] initWithString:strategyFileName relativeToURL:path];
+         strategy = [[BSMediaStrategy alloc] initWithStrategyURL:fileURL];
+         mock = [[BSStrategyMockObject alloc] initWithStrategyName:strategyFileName];
+    });
 
-        beforeAll(^{
-            /*[mock start];
-            while (!mock.finishedLoading) {
-                sleep(1);
-                NSLog(@"sleeping... %@", [[mock.webView mainFrame] DOMDocument]);
-            }*/
+    context(@"Tests for Media Strategy", ^{
+        it(@"should be properly loaded", ^{
+            [[theValue(strategy.isLoaded) should] equal:theValue(YES)];
         });
 
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
+        /* Excluding keys:
+            kBSMediaStrategyKeyIsPlaying
+            kBSMediaStrategyKeyFavorite
+            kBSMediaStrategyKeyPrevious
+            kBSMediaStrategyKeyNext
+            kBSMediaStrategyKeyPause
+            kBSMediaStrategyKeyTrackInfo
+        */
+
+        /* Bare minimum components a strategy should have */
+
         it(@"should have a valid accept script", ^{
-            NSDictionary *acceptScript = strategy.strategyData[kBSMediaStrategyKeyAccepts];
+            NSDictionary *acceptParams = strategy.acceptParams;
+            [[acceptParams shouldNot] beNil];
+            [[acceptParams shouldNot] beEmpty];
+
+            NSString *acceptScript = acceptParams[kBSMediaStrategyAcceptMethod];
             [[acceptScript shouldNot] beNil];
             [[acceptScript shouldNot] beEmpty];
-            //kBSMediaStrategyKeyPredicate
-            //kBSMediaStrategyKeyScript
-            //kBSMediaStrategyKeyTabValue
-            //kBSMediaStrategyKeyTabValueURL
-            //kBSMediaStrategyKeyTabValueTitle
-            //NSString *result = [mock evaluateScript:script];
-            //[[result shouldNot] beNil];
-            //[[result shouldNot] beEmpty];
         });
 
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
-        it(@"should have a valid isPlaying script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyIsPlaying];
-            [[script shouldNot] beNil];
-            [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];*/
-
-        });
-
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
         it(@"should have a valid toggle script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyToggle];
+            NSString *script = strategy.scripts[kBSMediaStrategyKeyToggle];
             [[script shouldNot] beNil];
             [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];*/
-        });
-
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
-        it(@"should have a valid previous script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyPrevious];
-            [[script shouldNot] beNil];
-            [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];*/
-        });
-
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
-        it(@"should have a valid next script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyNext];
-            [[script shouldNot] beNil];
-            [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];*/
-        });
-
-        /*it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
-        it(@"should have a valid favorite script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyFavorite];
-            [[script shouldNot] beNil];
-            [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];
-        });*/
-
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
-        it(@"should have a valid pause script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyPause];
-            [[script shouldNot] beNil];
-            [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];*/
-        });
-
-        it(@"should be a valid object", ^{ [[mock should] beKindOfClass:BSStrategyMockObject.class]; });
-        it(@"should have a valid trackInfo script", ^{
-            NSString *script = strategy.strategyData[kBSMediaStrategyKeyTrackInfo];
-            [[script shouldNot] beNil];
-            [[script shouldNot] beEmpty];
-
-            /*NSString *result = [mock evaluateScript:script];
-            [[result shouldNot] beNil];
-            [[result shouldNot] beEmpty];*/
         });
     });
 });
+
+SHARED_EXAMPLES_END
+
+SPEC_BEGIN(BSMediaStrategyTest)
+
+__block BSStrategyCache *cache = nil;
+
+describe(@"BSStrategyCache properly loads all strategies.", ^{
+    cache = [BSStrategyCache new];
+    [cache loadStrategies];
+
+    [[theValue([cache allKeys].count) should] beGreaterThan:theValue(0)];
+});
+
+for (NSString *strategyName in [cache allKeys])
+{
+    describe([NSString stringWithFormat:@"Test %@ for valid javascript", strategyName], ^{
+        itBehavesLike(@"MediaStrategy", @{ @"strategyName": strategyName });
+    });
+    //break;
+}
 
 SPEC_END

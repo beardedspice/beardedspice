@@ -12,12 +12,15 @@
 SPEC_BEGIN(BSMediaStrategyTests)
 
 describe(@"Create an empty strategy", ^{
+    let(path, ^{ return [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"]; });
+
     it(@"will initialize defaults without template data", ^{
         NSString *fileName = @"random-file-name";
-        BSMediaStrategy *strategy = [[BSMediaStrategy alloc] initWithStrategyName:fileName];
+        NSURL *fileURL = [[NSURL alloc] initWithString:fileName relativeToURL:path];
+        BSMediaStrategy *strategy = [[BSMediaStrategy alloc] initWithStrategyURL:fileURL];
         [[strategy should] beMemberOfClass:BSMediaStrategy.class];
 
-        [[strategy.strategyData should] beNil];
+        [[strategy.scripts should] beNil];
         [[theValue(strategy.strategyVersion) should] equal:theValue(0)];
 
         [[strategy.displayName should] equal:fileName];
@@ -26,16 +29,20 @@ describe(@"Create an empty strategy", ^{
 });
 
 describe(@"Load the Youtube strategy", ^{
+    let(path, ^{ return [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"]; });
+
     it(@"will load the strategy properly", ^{
         NSString *youtubeName = @"Youtube";
-        BSMediaStrategy *strategy = [[BSMediaStrategy alloc] initWithStrategyName:youtubeName]; // case sensitive
+        NSString *fileName = [NSString stringWithFormat:@"%@.js", youtubeName];
+        NSURL *fileURL = [[NSURL alloc] initWithString:fileName relativeToURL:path];
+        BSMediaStrategy *strategy = [[BSMediaStrategy alloc] initWithStrategyURL:fileURL];
         [[strategy should] beMemberOfClass:BSMediaStrategy.class];
 
-        [[strategy.strategyData shouldNot] beNil];
+        [[strategy.scripts shouldNot] beNil];
         [[theValue(strategy.strategyVersion) shouldNot] equal:theValue(0)];
 
-        [[strategy.displayName should] equal:@"YouTube"]; // pasted from Youtube.plist
-        [[strategy.fileName should] equal:youtubeName];
+        [[strategy.displayName should] equal:@"Youtube"]; // pasted from js
+        [[strategy.fileName should] equal:@"Youtube.js"];
         [[strategy.displayName shouldNot] equal:strategy.fileName];
 
         [[strategy.toggle shouldNot] beNil];

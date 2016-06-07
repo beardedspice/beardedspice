@@ -7,7 +7,7 @@
 BeardedSpice allows you to control web based media players (Like *SoundCloud*, and *YouTube* ... [List of supported sites to date](#supported-sites)) and some native apps with the media keys found on Mac keyboards.
 
 ## How?
-All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon and select the website you want to control using your media keys.
+All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon <img src="images/icon20x19@2x.png" style="width: 20px; height: 19px; display: inline"/> and select the website you want to control using your media keys.
 
 #### Interested in doing it with a keyboard-shortcut?
 We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look below!

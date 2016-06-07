@@ -207,8 +207,6 @@ BSStrategy = {
 
 - `pause` - a special case used when changing the active tab.
 
-- `isPlaying` - [Optional] If you define the `isPlaying` method, the media strategy will be used in autoselect mechanism, a description of which you may find in [issue #67](https://github.com/beardedspice/beardedspice/issues/67).
-
 - `trackInfo` - [Optional] returns a `BSTrack` object based on the currently accepted 5 keys (see trackInfo in the above xml), which used in notifications for the user.
 
 

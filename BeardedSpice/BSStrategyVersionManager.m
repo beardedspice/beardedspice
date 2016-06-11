@@ -14,9 +14,7 @@
 
 // This is the path format which requires a user/branch/filename for the target plist file.
 // release pathing that ONLY targets the official beardedspice master branch
-//static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.%@";
-// temporary for test
-static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/js-conversion/BeardedSpice/MediaStrategies/%@.%@";
+static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.%@";
 
 // This is the name of the version index plist to be downloaded.
 static NSString *const kBSIndexFileName = @"versions";

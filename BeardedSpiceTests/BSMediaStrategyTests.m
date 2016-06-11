@@ -11,6 +11,7 @@
 
 SPEC_BEGIN(BSMediaStrategyTests)
 
+/*
 describe(@"Create an empty strategy", ^{
     let(path, ^{ return [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"]; });
 
@@ -27,6 +28,7 @@ describe(@"Create an empty strategy", ^{
         [[strategy.fileName should] equal:fileName];
     });
 });
+*/
 
 describe(@"Load the Youtube strategy", ^{
     let(path, ^{ return [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"]; });

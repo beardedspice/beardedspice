@@ -1160,7 +1160,7 @@
 			baseConfigurationReference = 2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1173,7 +1173,7 @@
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1184,7 +1184,7 @@
 			baseConfigurationReference = 2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1197,7 +1197,7 @@
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

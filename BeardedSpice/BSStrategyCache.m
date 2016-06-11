@@ -12,6 +12,9 @@
 /// Folder name, which contains media strategies, in app bundle.
 static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
 
+
+NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
+
 @interface BSStrategyCache ()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, BSMediaStrategy *> *cache;
 @property (nonatomic, strong) dispatch_queue_t cacheSerialQueue;
@@ -37,6 +40,11 @@ static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
     return [self.cache allKeys];
 }
 
+- (NSArray <BSMediaStrategy *> *)allStrategies{
+    
+    return [self.cache allValues];
+}
+
 - (void)removeStrategyFromCache:(NSString * _Nonnull)strategyName
 {
     __weak typeof(self) wself = self;
@@ -47,32 +55,46 @@ static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
     });
 }
 
-- (void)updateCacheWithURL:(NSURL * _Nonnull)strategyURL
+- (NSError *)updateStrategyWithURL:(NSURL * _Nonnull)strategyURL
 {
-    __weak typeof(self) wself = self;
+    
+    __block NSError *result = nil;
     dispatch_sync(_cacheSerialQueue, ^{
-        // make a new strong pointer to this obj
-        __strong typeof(wself) sself = wself;
-        [sself _updateCacheWithURL:strategyURL];
-    });
-}
-
-- (void)_updateCacheWithURL:(NSURL *_Nonnull)strategyURL
-{
-    NSString *fileName = [strategyURL lastPathComponent];
-    BSMediaStrategy *strategy = [_cache objectForKey:fileName];
-    if (strategy){
-        // do not update strategy if it was loaded from custom folder already,
-        // or update if path is equal
-        if (!strategy.custom || [strategyURL isEqual:strategy.strategyURL]) {
-            [strategy reloadDataFromURL:strategyURL];
+        NSString *fileName = [strategyURL lastPathComponent];
+        BSMediaStrategy *strategy = [_cache objectForKey:fileName];
+        if (strategy){
+            // do not update strategy if it was loaded from custom folder already,
+            // or update if path is equal
+            if (!strategy.custom || [strategyURL isEqual:strategy.strategyURL]) {
+                if (![strategy reloadDataFromURL:strategyURL]) {
+                    result = [NSError errorWithDomain:BSMediaStrategyErrorDomain code:BSSC_ERROR_STARTEGY_UPDATE userInfo:nil];
+                };
+            }
         }
-    }
-    else
-        _cache[fileName] = [[BSMediaStrategy alloc] initWithStrategyURL:strategyURL];
+        else{
+            result = [NSError errorWithDomain:BSMediaStrategyErrorDomain code:BSSC_ERROR_STARTEGY_NOTFOUND userInfo:nil];
+        }
+    });
+    
+    return result;
 }
 
-- (BSMediaStrategy * _Nullable)strategyForName:(NSString * _Nonnull)strategyName
+- (BSMediaStrategy *)addStrategyWithURL:(NSURL * _Nonnull)strategyURL
+{
+    
+    __block BSMediaStrategy *result = nil;
+    dispatch_sync(_cacheSerialQueue, ^{
+        NSString *fileName = [strategyURL lastPathComponent];
+        result = [[BSMediaStrategy alloc] initWithStrategyURL:strategyURL];
+        if (result) {
+            _cache[fileName] = result;
+        }
+    });
+    
+    return result;
+}
+
+- (BSMediaStrategy * _Nullable)strategyForFileName:(NSString * _Nonnull)strategyName
 {
     return _cache[strategyName];
 }
@@ -127,7 +149,10 @@ static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
             continue;
 
         NSURL *filePath = [[NSURL alloc] initWithString:fileName relativeToURL:path];
-        [self updateCacheWithURL:filePath];
+        NSError *err = [self updateStrategyWithURL:filePath];
+        if (err.code == BSSC_ERROR_STARTEGY_NOTFOUND) {
+            [self addStrategyWithURL:filePath];
+        };
     }
     return YES;
 }

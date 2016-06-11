@@ -9,6 +9,11 @@
 #define kBSVersionErrorNotFound     -1
 #define kBSVersionErrorInvalidInput -2
 
+/**
+ FIXME
+ */
+extern NSString *BSVMStrategyChangedNotification;
+
 @class BSStrategyCache;
 
 /**

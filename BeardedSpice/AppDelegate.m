@@ -104,10 +104,12 @@ BOOL accessibilityApiEnabled = NO;
     self.versionManager = [[BSStrategyVersionManager alloc] initWithStrategyCache:strategyCache];
 
     // setup default media strategy
-    mediaStrategyRegistry = [[MediaStrategyRegistry alloc] initWithUserDefaults:BeardedSpiceActiveControllers strategyCache:strategyCache];
+    mediaStrategyRegistry = [MediaStrategyRegistry singleton];
+    [mediaStrategyRegistry setUserDefaults:BeardedSpiceActiveControllers strategyCache:strategyCache];
 
     // setup native apps
-    nativeAppRegistry = [[NativeAppTabRegistry alloc] initWithUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
+    nativeAppRegistry = [NativeAppTabRegistry singleton];
+    [nativeAppRegistry setUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
 
     nativeApps = [NSMutableArray array];
 
@@ -1067,7 +1069,7 @@ BOOL accessibilityApiEnabled = NO;
 {
     if (_preferencesWindowController == nil)
     {
-        NSViewController *generalViewController = [[GeneralPreferencesViewController alloc] initWithMediaStrategyRegistry:mediaStrategyRegistry nativeAppTabRegistry:nativeAppRegistry];
+        NSViewController *generalViewController = [GeneralPreferencesViewController new];
         NSViewController *shortcutsViewController = [ShortcutsPreferencesViewController new];
         NSArray *controllers = @[generalViewController, shortcutsViewController];
 

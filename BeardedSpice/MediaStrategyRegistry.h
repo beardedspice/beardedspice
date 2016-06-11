@@ -13,7 +13,12 @@
 @interface MediaStrategyRegistry : NSObject
 @property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
 
--(instancetype)initWithUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache;
++ (MediaStrategyRegistry *)singleton;
+
+/**
+ Resets registry.
+ */
+- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache;
 
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy;

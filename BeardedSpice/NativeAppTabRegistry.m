@@ -15,30 +15,57 @@
 
 @implementation NativeAppTabRegistry
 
-- (id)initWithUserDefaultsKey:(NSString *)defaultsKey{
 
-    self = [super init];
-    if (self) {
+static NativeAppTabRegistry *singletonNativeAppTabRegistry;
 
-        _availableAppClasses = [NSMutableArray array];
-        _availableCache = [NSMutableDictionary dictionary];
+/////////////////////////////////////////////////////////////////////
+#pragma mark Initialize
 
-        NSArray *defaultApps = [NativeAppTabRegistry defaultNativeAppClasses];
-        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:defaultsKey];
++ (NativeAppTabRegistry *)singleton{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        singletonNativeAppTabRegistry = [NativeAppTabRegistry alloc];
+        singletonNativeAppTabRegistry = [singletonNativeAppTabRegistry init];
+    });
+    
+    return singletonNativeAppTabRegistry;
+    
+}
 
-        for (Class appClass in defaultApps) {
-            NSString *name = [appClass displayName];
-            if (name) {
-                NSNumber *enabled = [defaults objectForKey:name];
-                if (!enabled || [enabled boolValue]) {
-                    [self enableNativeAppClass:appClass];
-                }
-            }
-        }
-
+- (id)init{
+    
+    if (singletonNativeAppTabRegistry != self) {
+        return nil;
     }
+    self = [super init];
+    
     return self;
 }
+
+- (void)setUserDefaultsKey:(NSString *)defaultsKey{
+    
+    _availableAppClasses = [NSMutableArray array];
+    _availableCache = [NSMutableDictionary dictionary];
+    
+    NSArray *defaultApps = [NativeAppTabRegistry defaultNativeAppClasses];
+    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:defaultsKey];
+    
+    for (Class appClass in defaultApps) {
+        NSString *name = [appClass displayName];
+        if (name) {
+            NSNumber *enabled = [defaults objectForKey:name];
+            if (!enabled || [enabled boolValue]) {
+                [self enableNativeAppClass:appClass];
+            }
+        }
+    }
+    
+}
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Methods
 
 + (NSArray *)defaultNativeAppClasses {
 

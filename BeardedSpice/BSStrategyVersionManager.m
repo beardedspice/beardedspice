@@ -14,10 +14,15 @@
 
 // This is the path format which requires a user/branch/filename for the target plist file.
 // release pathing that ONLY targets the official beardedspice master branch
-static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.%@";
+//static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.%@";
+// temporary for test
+static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/js-conversion/BeardedSpice/MediaStrategies/%@.%@";
 
 // This is the name of the version index plist to be downloaded.
 static NSString *const kBSIndexFileName = @"versions";
+
+
+NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
 
 @interface BSStrategyVersionManager ()
 
@@ -49,7 +54,7 @@ static NSString *const kBSIndexFileName = @"versions";
     if (!mediaStrategy || !mediaStrategy.length)
         return kBSVersionErrorInvalidInput;
 
-    BSMediaStrategy *stratery = [_strategyCache strategyForName:mediaStrategy];
+    BSMediaStrategy *stratery = [_strategyCache strategyForFileName:[mediaStrategy stringByAppendingString:@".js"]];
     if (stratery)
         return stratery.strategyVersion;
 
@@ -86,21 +91,36 @@ static NSString *const kBSIndexFileName = @"versions";
     NSMutableDictionary<NSString *, NSNumber *> *newVersions = [[NSMutableDictionary alloc] initWithContentsOfURL:_versionURL];
 
     __block NSUInteger foundNewVersions = 0;
-    for (NSString *key in newVersions)
-    {
-        long version = [self versionForMediaStrategy:key];
-        long newVersion = [newVersions[key] longValue];
-        if (version >= newVersion) // greater than? wat.
-            continue;
-
-        foundNewVersions++;
-        __weak typeof(self) wself = self; // new pointer for self to avoid autoretain cycles
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
-            __strong typeof(wself) sself = wself;
-            BOOL ret = [sself performUpdateOfMediaStrategy:key];
-            if (!ret) // if the file failed to save/wasn't valid
-                foundNewVersions--;
-        });
+    dispatch_group_t group = dispatch_group_create();
+    if (group) {
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
+        for (NSString *key in newVersions)
+        {
+            long version = [self versionForMediaStrategy:key];
+            long newVersion = [newVersions[key] longValue];
+            if (version >= newVersion) // greater than? wat.
+                continue;
+            
+            foundNewVersions++;
+            __weak typeof(self) wself = self; // new pointer for self to avoid autoretain cycles
+            dispatch_group_async(group, queue, ^{
+                
+                __strong typeof(wself) sself = wself;
+                BOOL ret = [sself performUpdateOfMediaStrategy:key];
+                if (!ret) // if the file failed to save/wasn't valid
+                    foundNewVersions--;
+            });
+            
+        }
+        
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+        if (foundNewVersions) {
+            [self notifyThatAdded];
+        }
+    }
+    else{
+        NSLog(@"Error of creating of the queue group!");
     }
 
     return foundNewVersions;
@@ -111,19 +131,16 @@ static NSString *const kBSIndexFileName = @"versions";
     NSError *error = nil;
     NSURL *pathURL = [self repositoryURLForFile:mediaStrategy];
     // download from remote repository
-    NSString *newVersions = [[NSString alloc] initWithContentsOfURL:pathURL encoding:NSUTF8StringEncoding error:&error];
-    if (error)
+    BSMediaStrategy *newVersions = [[BSMediaStrategy alloc] initWithStrategyURL:pathURL];
+    if (!newVersions)
     {
-        NSLog(@"Error downloading strategy %@: %@", mediaStrategy, [error localizedDescription]);
+        NSLog(@"Error downloading strategy \"%@\"", mediaStrategy);
         return NO;
     }
 
-    if (!newVersions || !newVersions.length)
-        return NO;
-
     error = nil; // reset the local error
     NSURL *pathToFile = [NSURL URLForFileName:mediaStrategy];
-    BOOL success = [newVersions writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    BOOL success = [newVersions.strategyJsBody writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error)
     {
         NSLog(@"Error saving strategy %@: %@", mediaStrategy, [error localizedDescription]);
@@ -133,9 +150,32 @@ static NSString *const kBSIndexFileName = @"versions";
     if (!success)
         return NO;
 
-    [self.strategyCache updateCacheWithURL:pathToFile];
-    BSMediaStrategy *strategy = [self.strategyCache strategyForName:mediaStrategy];
-    return strategy.isLoaded;
+    NSError *err = [self.strategyCache updateStrategyWithURL:pathToFile];
+    if (!err) {
+        return  YES;
+    }
+    
+    if (err.code == BSSC_ERROR_STARTEGY_NOTFOUND) {
+        
+        BSMediaStrategy *newStrategy = [self.strategyCache addStrategyWithURL:pathToFile];
+        if (newStrategy) {
+            
+            [[MediaStrategyRegistry singleton] addMediaStrategy:newStrategy];
+            return YES;
+        }
+    };
+    
+    return NO;
 }
 
+#pragma mark - Helper Methods
+
+- (void)notifyThatAdded{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:BSVMStrategyChangedNotification
+         object:self];
+    });
+}
 @end

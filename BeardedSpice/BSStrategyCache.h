@@ -8,6 +8,10 @@
 
 @class BSMediaStrategy;
 
+extern NSString * _Nonnull BSStrategyCacheErrorDomain;
+#define BSSC_ERROR_STARTEGY_NOTFOUND            100
+#define BSSC_ERROR_STARTEGY_UPDATE              200
+
 @interface BSStrategyCache : NSObject
 
 @property (nonatomic, strong, readonly) NSMutableDictionary<NSString *, BSMediaStrategy *> * _Nonnull cache;
@@ -28,10 +32,21 @@
 - (NSArray<NSString *> * _Nonnull)allKeys;
 
 /**
- Updates or addes the strategy at the given URL to the object's cache.
+ */
+- (NSArray <BSMediaStrategy *> * _Nonnull)allStrategies;
+
+/**
+ Updates the strategy at the given URL to the object's cache.
  @param strategyURL the URL which contains the strategy data
  */
-- (void)updateCacheWithURL:(NSURL * _Nonnull)strategyURL;
+- (NSError * _Nullable)updateStrategyWithURL:(NSURL * _Nonnull)strategyURL;
+
+/**
+ Addes the strategy at the given URL to the object's cache.
+ @param strategyURL the URL which contains the strategy data
+ @return Returns BSMediaStrategy object, which was added or nil if failure.
+ */
+- (BSMediaStrategy * _Nullable)addStrategyWithURL:(NSURL * _Nonnull)strategyURL;
 
 /**
  FIXME simple remove docs
@@ -43,6 +58,6 @@
  @param strategyName the name of the strategy file to be accessed. Case Sensitive.
  @returns A reference to the cached BSMediaStrategy object associated with the given strategyName
  */
-- (BSMediaStrategy * _Nullable)strategyForName:(NSString * _Nonnull)strategyName;
+- (BSMediaStrategy * _Nullable)strategyForFileName:(NSString * _Nonnull)strategyName;
 
 @end

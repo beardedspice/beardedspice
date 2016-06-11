@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
 #import "Shortcut.h"
-#import "MediaStrategyRegistry.h"
-#import "NativeAppTabRegistry.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications
@@ -46,16 +44,10 @@ extern NSString *const BeardedSpiceUpdateAtLaunch;
     NSMutableDictionary *userNativeApps;
 
     NSNumber *alwaysShow;
-
-    // shared registry object for controlling behavior
-    MediaStrategyRegistry *strategyRegistry;
-    NativeAppTabRegistry *nativeRegistry;
 }
 
 @property (assign) IBOutlet NSTableView *strategiesView;
 @property (weak) IBOutlet NSButton *firstResponderView;
-
-- (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry nativeAppTabRegistry:(NativeAppTabRegistry *)nativeAppTabRegistry;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions

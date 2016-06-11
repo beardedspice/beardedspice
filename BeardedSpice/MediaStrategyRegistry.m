@@ -20,29 +20,55 @@
 
 @implementation MediaStrategyRegistry
 
--(instancetype)initWithUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
-{
-    self = [self init];
-    if (self)
-    {
-        _strategyCache = cache;
-        _registeredCache = [NSMutableDictionary new];
-        _availableStrategies = [NSMutableArray new];
+static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 
-        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
+/////////////////////////////////////////////////////////////////////
+#pragma mark Initialize
 
-        // enable strategies that are marked enabled or have no entry
-        for (NSString *fileName in _strategyCache.cache)
-        {
-            BSMediaStrategy *strategy = _strategyCache.cache[fileName];
-            NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if (!enabled || [enabled boolValue]) {
-                [self addMediaStrategy:strategy];
-            }
-        }
++ (MediaStrategyRegistry *)singleton{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        singletonMediaStrategyRegistry = [MediaStrategyRegistry alloc];
+        singletonMediaStrategyRegistry = [singletonMediaStrategyRegistry init];
+    });
+    
+    return singletonMediaStrategyRegistry;
+    
+}
+
+- (id)init{
+    
+    if (singletonMediaStrategyRegistry != self) {
+        return nil;
     }
+    self = [super init];
+
     return self;
 }
+
+- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
+{
+    _strategyCache = cache;
+    _registeredCache = [NSMutableDictionary new];
+    _availableStrategies = [NSMutableArray new];
+    
+    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
+    
+    // enable strategies that are marked enabled or have no entry
+    for (NSString *fileName in _strategyCache.cache)
+    {
+        BSMediaStrategy *strategy = _strategyCache.cache[fileName];
+        NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
+        if (!enabled || [enabled boolValue]) {
+            [self addMediaStrategy:strategy];
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Methods
 
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy
 {

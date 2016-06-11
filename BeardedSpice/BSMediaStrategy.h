@@ -31,11 +31,11 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 
 @interface BSMediaStrategy : NSObject
 
-@property (nonatomic, assign, readonly, getter=isLoaded) BOOL loaded;
 @property (nonatomic, assign, readonly) long strategyVersion;
 @property (nonatomic, strong, readonly) NSString * _Nonnull fileName;
 @property (nonatomic, strong, readonly) NSURL * _Nonnull strategyURL;
 @property (nonatomic, readonly) BOOL custom;
+@property (nonatomic, readonly) NSString * _Nonnull strategyJsBody;
 
 // This data should only be used for tests. DO NOT directly access.
 @property (nonatomic, strong, readonly) NSDictionary * _Nonnull acceptParams;
@@ -44,13 +44,22 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 /**
     @param strategyURL The URL to the most up-to-date version of the strategy
     @return Returns a BSMediaStrategy object with data loaded from the provided plist.
-        The loaded flag is set to determine if the file existed or not.
+        Or returns nil if failure.
  */
-//- (instancetype _Nonnull)initWithStrategyName:(NSString * _Nonnull)strategyName;
-- (instancetype _Nonnull)initWithStrategyURL:(NSURL * _Nonnull)strategyURL;
+//- (instancetype )initWithStrategyName:(NSString * _Nonnull)strategyName;
+- (instancetype _Nullable)initWithStrategyURL:(NSURL * _Nonnull)strategyURL;
 
 /**
- A method for reloading the strategy plist from file, updating all future uses of this
+ Copying of the variables, which reflect state of the object.
+ 
+ @param strategy Object from which performed copying.
+ 
+ @return Returns self.
+ */
+- (instancetype _Nonnull)copyStateFrom:(BSMediaStrategy * _Nonnull)strategy;
+
+/**
+ A method for reloading the strategy from file, updating all future uses of this
  object to be with the most up-to-date plan of attack.
  @param strategyURL
  @return A boolean stating the success of the operation
@@ -67,6 +76,8 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
  */
 - (BOOL)accepts:(TabAdapter * _Nonnull)tab; // Required override in subclass.
 
+
+- (NSComparisonResult)compare:(BSMediaStrategy * _Nonnull)strategy;
 
 /**
     @param methodName the name of the method to check if is implemented by this strategy

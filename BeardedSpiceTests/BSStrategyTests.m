@@ -32,7 +32,7 @@ sharedExamplesFor(@"MediaStrategy", ^(NSDictionary *data) {
 
     context(@"Tests for Media Strategy", ^{
         it(@"should be properly loaded", ^{
-            [[theValue(strategy.isLoaded) should] equal:theValue(YES)];
+            [[theValue(strategy) shouldNot] beNil];
         });
 
         /* Excluding keys:

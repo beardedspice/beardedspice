@@ -36,6 +36,8 @@
 	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
+	<key>Gaana</key>
+	<integer>1</integer>
 	<key>GoogleMusic</key>
 	<integer>1</integer>
 	<key>GrooveShark</key>

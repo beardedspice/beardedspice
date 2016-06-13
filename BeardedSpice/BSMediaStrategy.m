@@ -79,6 +79,13 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
 #pragma mark - Helper Functions
 
+/**
+ Copying of the variables, which reflect state of the object.
+ 
+ @param strategy Object from which performed copying.
+ 
+ @return Returns self.
+ */
 - (instancetype _Nonnull)copyStateFrom:(BSMediaStrategy * _Nonnull)strategy{
 
     self.strategyVersion = strategy.strategyVersion;

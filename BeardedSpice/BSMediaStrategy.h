@@ -50,15 +50,6 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 - (instancetype _Nullable)initWithStrategyURL:(NSURL * _Nonnull)strategyURL;
 
 /**
- Copying of the variables, which reflect state of the object.
- 
- @param strategy Object from which performed copying.
- 
- @return Returns self.
- */
-- (instancetype _Nonnull)copyStateFrom:(BSMediaStrategy * _Nonnull)strategy;
-
-/**
  A method for reloading the strategy from file, updating all future uses of this
  object to be with the most up-to-date plan of attack.
  @param strategyURL

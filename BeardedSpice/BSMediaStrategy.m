@@ -41,6 +41,8 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 @property (nonatomic, assign) long strategyVersion;
 @property (nonatomic, strong) NSString *fileName;
 @property (nonatomic, strong) NSURL *strategyURL;
+@property (nonatomic) BOOL custom;
+@property (nonatomic) NSString * _Nonnull strategyJsBody;
 
 // Cached scripts/components
 @property (nonatomic, strong) NSDictionary *acceptParams;
@@ -79,13 +81,13 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
 - (instancetype _Nonnull)copyStateFrom:(BSMediaStrategy * _Nonnull)strategy{
 
-    _strategyVersion = strategy->_strategyVersion;
-    _strategyURL = strategy->_strategyURL;
-    _strategyJsBody = strategy->_strategyJsBody;
-    _custom = strategy->_custom;
-    _fileName = strategy->_fileName;
-    _scripts = strategy->_scripts;
-    _acceptParams = strategy->_acceptParams;
+    self.strategyVersion = strategy.strategyVersion;
+    self.strategyURL = strategy.strategyURL;
+    self.strategyJsBody = strategy.strategyJsBody;
+    self.custom = strategy.custom;
+    self.fileName = strategy.fileName;
+    self.scripts = strategy.scripts;
+    self.acceptParams = strategy.acceptParams;
     
     return self;
 }

@@ -219,6 +219,37 @@ Update the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
 
+## Updating a *Media Strategy*
+
+In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate plist file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.js) has javascript for all five functions as well as partial trackInfo retrieval.
+
+After updating a strategy, update it's version in the ServiceName.plist you've created, as well as the ServiceName entry in the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) file. Updating a version means incrementing the number by 1. All references to the service should have the same version when creating a PR.
+
+```xml
+    <!-- versions.plist -->
+    <key>AmazonMusic</key>
+    <integer>1</integer>
+
+    <!-- AmazonMusic.plist -->
+    <key>version</key>
+    <integer>1</integer>
+```
+
+becomes
+
+```xml
+    <!-- versions.plist -->
+    <key>AmazonMusic</key>
+    <integer>2</integer>
+
+    <!-- AmazonMusic.plist -->
+    <key>version</key>
+    <integer>2</integer>
+```
+
+If you find that javascript alone cannot properly control a service, please [create an issue](https://github.com/beardedspice/beardedspice/issues/new?title=%5BDevelopment%20Support%5D) specifying your work branch (as a link), the service in question, and your difficulty as precisely as possible.
+
+
 # About pull requests
 Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods with the most modern API for the service, please. PR with a strategy that is not fully implemented for no reason will be rejected.
 

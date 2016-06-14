@@ -14,7 +14,7 @@
     Downloads data from that URL.
     @return NSData object, which contains requested data, or nil on failure.
  */
-- (NSData *)getDataWithTimeout:(NSTimeInterval)timeout {
+- (NSData * _Nullable)getDataWithTimeout:(NSTimeInterval)timeout {
 
     @autoreleasepool {
 
@@ -61,52 +61,53 @@
     }
 }
 
-#pragma mark - File Operations
+#pragma mark - File Paths and Operations
 
-+ (NSURL *)versionsFileFromURL
-{
-    return [self fileFromURL:@"versions"];
+static inline NSString *appSupportPath() {
+    NSArray *documentPaths =  NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    return [documentPaths firstObject];
 }
 
-+ (NSURL *)fileFromURL:(NSString *)fileName
++ (NSURL * _Nonnull)URLForSavedStrategies
 {
-    NSArray *documentPaths =  NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *documentsDir = [documentPaths firstObject];
-    fileName = fileName ? [NSString stringWithFormat:@"%@.plist", fileName] : @"";
+    // TODO make static
+    NSString *pathString = [NSString stringWithFormat:@"%@/BeardedSpice/Strategies/", appSupportPath()];
+    return [NSURL fileURLWithPath:pathString isDirectory:YES];
+}
 
-    NSString *path = [NSString stringWithFormat:@"%@/BeardedSpice/MediaStrategies/%@", documentsDir, fileName];
-    // if no filename length then its a directory reference
-    return [[NSURL alloc] initFileURLWithPath:path isDirectory:fileName.length == 0];
++ (NSURL * _Nonnull)URLForCustomStrategies
+{
+    // TODO make static
+    NSString *pathString = [NSString stringWithFormat:@"%@/BeardedSpice/CustomStrategies/", appSupportPath()];
+    return [NSURL fileURLWithPath:pathString isDirectory:YES];
+}
+
++ (NSURL * _Nonnull)URLForFileName:(NSString *)fileName
+{
+    return [self URLForFileName:fileName ofType:@"js"];
+}
+
++ (NSURL * _Nonnull)URLForFileName:(NSString *)fileName ofType:(NSString * _Nonnull)typeString
+{
+    fileName = fileName ? [NSString stringWithFormat:@"%@.%@", fileName, typeString] : @"";
+
+    return [[self URLForSavedStrategies] URLByAppendingPathComponent:fileName isDirectory:NO];
+}
+
+- (BOOL)createDirectoriesToURL
+{
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL ret = [fileManager createDirectoryAtURL:self withIntermediateDirectories:YES attributes:nil error:&error];
+    if (!ret || error)
+        NSLog(@"An error occured creating the path to %@: %@", self, [error localizedDescription]);
+    return ret;
 }
 
 - (BOOL)fileExists
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    return [fileManager fileExistsAtPath:[self path]];
+    return [fileManager fileExistsAtPath:[self path] isDirectory:NO];
 }
 
-- (BOOL)copyFileTo:(NSString * _Nonnull)targetFilePath
-{
-    // file referenced by this nsstring does not exist. aborting.
-    if (![self fileExists])
-        return NO;
-
-    NSURL *pathWithoutFile = [NSURL fileFromURL:nil];
-    NSURL *targetURL = [NSURL fileFromURL:targetFilePath];
-
-    NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL ret = [fileManager createDirectoryAtURL:pathWithoutFile withIntermediateDirectories:YES attributes:nil error:&error];
-    if (!ret)
-    {
-        NSLog(@"An error occured creating the path to %@: %@", targetURL, [error localizedDescription]);
-        return ret;
-    }
-
-    ret = [fileManager copyItemAtURL:self toURL:targetURL error:&error];
-    if (error)
-        NSLog(@"An error occured while copying file %@: %@", targetURL, [error localizedDescription]);
-
-    return ret;
-}
 @end

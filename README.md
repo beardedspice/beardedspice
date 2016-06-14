@@ -7,7 +7,7 @@
 BeardedSpice allows you to control web based media players (Like *SoundCloud*, and *YouTube* ... [List of supported sites to date](#supported-sites)) and some native apps with the media keys found on Mac keyboards.
 
 ## How?
-All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon ![BeardedSpice](BeardedSpice/beard.png) and select the website you want to control using your media keys.
+All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon <img src="images/icon20x19.png" /> and select the website you want to control using your media keys.
 
 #### Interested in doing it with a keyboard-shortcut?
 We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look below!
@@ -29,12 +29,12 @@ BeardedSpice tries to automatically guess which tab it should control for you. W
 No more checking for new releases on our website, BeardedSpice will automatically notify you when a new release is available.
 
 ### Keyboard Shortcuts
-BeardedSpice comes with a handy list of Keyboard Shortcuts that can be configured under the `Shortcuts` tab of BeardedSpice Prefrences (available through the menubar icon). Here is a table of Default Keyboard Shortcuts:
+BeardedSpice comes with a handy list of Keyboard Shortcuts that can be configured under the `Shortcuts` tab of BeardedSpice Preferences (available through the menubar icon). Here is a table of Default Keyboard Shortcuts:
 
 Default Shortcut | Action
 :---------------:|:------:
 `⌘` + `F8` |  Set Focused Browser tab as *Active Player* (effectively directing your commands to that tab)
-`⌘` + `F6` | Focus *Active Player* (Shows the tab currently controled by BeardedSpice)
+`⌘` + `F6` | Focus *Active Player* (Shows the tab currently controlled by BeardedSpice)
 `⌘` + `F10` | Toggle Favorite (Add currently playing track to your favorites on it's site)
 `⌘` + `F11` | Show Track information (shows a notification with info about the currently playing tab)
 
@@ -145,13 +145,9 @@ BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTa
 
 ## Writing a *Media Strategy*
 
-Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/template-explained.plist). Each strategy defines a collection of Javascript functions to be executed on particular webpages.
+Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/template-explained.js). Each strategy defines a collection of Javascript functions to be executed on particular webpages.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<!--
+```javascript
 //
 //  NewStrategyName.plist
 //  BeardedSpice
@@ -163,70 +159,46 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 //
 
 // We put the copyright inside the plist to retain consistent syntax coloring.
--->
-<dict>
-    <!-- NOTE: This file MUST be viewable in xcode or validated by the plutil utility. -->
-    <!-- metadata -->
-    <key>version</key>
-    <integer>1</integer>
-    <key>displayName</key>
-    <string>Amazon Music</string>
 
-    <key>accepts</key>
-    <dict>
-        <key>predicate</key>
-        <string>SELF LIKE[c] '*[YOUR-URL-DOMAIN-HERE]*'</string>
-        <key>tabValue</key>
-        <string>url</string> <!-- current 'url' or 'title' -->
-        <!--
-        OR
-        <key>predicate</key>
-        <string>SELF LIKE[c] '[YOUR-TARGET-TITLE-HERE]'</string>
-        <key>tabValue</key>
-        <string>title</string>
-        OR
-        <key>script</key>
-        <string>some javascript here that returns a boolean value</string>
-        -->
-    </dict>
+// Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
+// Normal formatting is supported (can copy/paste with newlines and indentations)
 
-    <!-- Relevant javascripts go here.
-    - Normal formatting is supported (can copy/paste with newlines and indentations)
-    - &amp; is used to escape '&' so the file is readable.
-    -->
-    <key>isPlaying</key>
-    <string></string>
+BSStrategy = {
+  version: 1,
+  displayName: "Strategy Name",
+  accepts: {
+    method: "predicateOnTab" /* OR "script" */,
+    /* Use these if "predicateOnTab" */
+    format: "%K LIKE[c] '*[YOUR-URL-DOMAIN-OR-TITLE-HERE]*'",
+    args: ["URL" /* OR "title" */]
+    /* Use "script" if method is "script" */
+    /* script: "some javascript here that returns a boolean value" */
+  },
 
-    <key>toggle</key>
-    <string></string>
+  isPlaying: function () { /* javascript that returns a boolean */ },
+  toggle: function () {  },
+  previous: function () { },
+  next: function () {  },
+  pause: function () { },
+  favorite: function () { /* toggles favorite on/off */},
+  /*
+  - Return a dictionary of namespaced key/values here.
+  All manipulation should be supported in javascript.
 
-    <key>previous</key>
-    <string></string>
-
-    <key>next</key>
-    <string></string>
-
-    <key>pause</key>
-    <string></string>
-
-    <key>favorite</key>
-    <string></string>
-
-    <!-- Generate dictionary of namespaced key/values here. All manipulation should be supported in javascript.
-    - Namespaced keys currently supported include: track, album, artist, favorited, image
-    -->
-    <key>trackInfo</key>
-    <string>(function() {
-      return {
+  - Namespaced keys currently supported include: track, album, artist, favorited, image (URL)
+  */
+  trackInfo: function () {
+    return {
         'track': 'the name of the track',
         'album': 'the name of the current album',
         'artist': 'the name of the current artist',
-        'image': 'the URL to the image associated with the track',
+        'image': 'http://www.example.com/some/album/artwork.png',
         'favorited': 'true/false if the track has been favorited',
-      };
-    })();</string>
-</dict>
-</plist>
+    };
+  }
+}
+// The file must have an empty line at the end.
+
 ```
 
 - `accepts` - takes a `Tab` object and returns `YES` if the strategy can control the given tab.
@@ -234,8 +206,6 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 - `displayName` - must return a unique string describing the controller and will be used as the name shown in the Preferences panel. Some other functions return a Javascript function for the particular action.
 
 - `pause` - a special case used when changing the active tab.
-
-- `isPlaying` - [Optional] If you define the `isPlaying` method, the media strategy will be used in autoselect mechanism, a description of which you may find in [issue #67](https://github.com/beardedspice/beardedspice/issues/67).
 
 - `trackInfo` - [Optional] returns a `BSTrack` object based on the currently accepted 5 keys (see trackInfo in the above xml), which used in notifications for the user.
 
@@ -251,7 +221,7 @@ Finally, update the [default preferences plist](https://github.com/beardedspice/
 
 ## Updating a *Media Strategy*
 
-In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate plist file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.plist) has javascript for all five functions as well as partial trackInfo retrieval.
+In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate plist file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.js) has javascript for all five functions as well as partial trackInfo retrieval.
 
 After updating a strategy, update it's version in the ServiceName.plist you've created, as well as the ServiceName entry in the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) file. Updating a version means incrementing the number by 1. All references to the service should have the same version when creating a PR.
 

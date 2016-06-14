@@ -8,44 +8,67 @@
 
 #import "MediaStrategyRegistry.h"
 #import "BSMediaStrategy.h"
+#import "BSStrategyCache.h"
 #import "TabAdapter.h"
 
 @interface MediaStrategyRegistry ()
+@property (nonatomic, strong) NSMutableArray *availableStrategies;
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
 @property (nonatomic, strong) NSMutableSet *keyCache;
+@property (nonatomic, strong) BSStrategyCache *strategyCache;
 @end
 
 @implementation MediaStrategyRegistry
 
--(id) init
-{
-    self = [super init];
-    if (self)
-    {
-        _registeredCache = [NSMutableDictionary new];
-        _availableStrategies = [NSMutableArray new];
+static MediaStrategyRegistry *singletonMediaStrategyRegistry;
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Initialize
+
++ (MediaStrategyRegistry *)singleton{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        singletonMediaStrategyRegistry = [MediaStrategyRegistry alloc];
+        singletonMediaStrategyRegistry = [singletonMediaStrategyRegistry init];
+    });
+    
+    return singletonMediaStrategyRegistry;
+    
+}
+
+- (id)init{
+    
+    if (singletonMediaStrategyRegistry != self) {
+        return nil;
     }
+    self = [super init];
+
     return self;
 }
 
--(id) initWithUserDefaults:(NSString *)userDefaultsKey
+- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
 {
-    self = [self init];
-    if (self) {
-        NSArray<NSString *> *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategyNames];
-        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
-
-        // enable strategies that are marked enabled or have no entry
-        for (NSString *name in defaultStrategies) {
-            BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
-            NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if (!enabled || [enabled boolValue]) {
-                [self addMediaStrategy:strategy];
-            }
+    _strategyCache = cache;
+    _registeredCache = [NSMutableDictionary new];
+    _availableStrategies = [NSMutableArray new];
+    
+    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
+    
+    // enable strategies that are marked enabled or have no entry
+    for (NSString *fileName in _strategyCache.cache)
+    {
+        BSMediaStrategy *strategy = _strategyCache.cache[fileName];
+        NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
+        if (!enabled || [enabled boolValue]) {
+            [self addMediaStrategy:strategy];
         }
     }
-    return self;
 }
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Methods
 
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy
 {
@@ -66,7 +89,8 @@
 
 - (void)clearCache
 {
-    self.registeredCache = [NSMutableDictionary dictionary];
+    if (_registeredCache.count)
+        self.registeredCache = [NSMutableDictionary dictionary];
 }
 
 - (void)beginStrategyQueries
@@ -90,54 +114,35 @@
     self.keyCache = nil;
 }
 
--(BSMediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
+- (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab
 {
-    if (tab.check) {
+    if (!tab.check)
+        return nil;
 
-        NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
-        BSMediaStrategy *strat = _registeredCache[cacheKey];
+    NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
+    id strat = _registeredCache[cacheKey];
 
-        /* Return the equivalent of a full scan except we dont repeat calculations */
-        if (strat == [NSNull null])
-            return nil;
-        if (strat)
-            return strat;
+    /* Return the equivalent of a full scan except we dont repeat calculations */
+    if (strat == [NSNull null])
+        return nil;
+    if (strat)
+        return strat;
 
-        for (BSMediaStrategy *strategy in _availableStrategies)
+    for (BSMediaStrategy *strategy in _availableStrategies)
+    {
+        BOOL accepted = [strategy accepts:tab];
+
+        /* Store the result of this calculation for future use */
+        if (accepted)
         {
-            BOOL accepted = [strategy accepts:tab];
-
-            /* Store the result of this calculation for future use */
-            _registeredCache[cacheKey] = accepted ? strategy : [NSNull null];
-            if (accepted) {
-                NSLog(@"%@ is valid for %@", strategy, tab);
-                return strategy;
-            }
+            _registeredCache[cacheKey] = strategy;
+            NSLog(@"%@ is valid for %@", strategy, tab);
+            return strategy;
         }
     }
+    /* Worst case, no compatible registry found */
+    _registeredCache[cacheKey] = [NSNull null];
     return nil;
-}
-
--(NSArray *) getMediaStrategies
-{
-    return [_availableStrategies copy];
-}
-
-// FIXME make this cache somehow. we don't want to hit the disk every time.
-+(NSArray<NSString *> *)getDefaultMediaStrategyNames
-{
-    NSURL *versionPath = [NSURL versionsFileFromURL];
-    if (![versionPath fileExists]) // failover in case we dont have a mutable index file yet.
-        versionPath = [[NSBundle mainBundle] URLForResource:@"versions" withExtension:@"plist"];
-
-    NSMutableDictionary *versions = [[NSMutableDictionary alloc] initWithContentsOfURL:versionPath];
-    [versions removeObjectForKey:@"version"]; // remove the meta version of the index file.
-    if (versions)
-        return [[versions allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            return [obj1 compare:obj2];
-        }];
-
-    return @[];
 }
 
 @end

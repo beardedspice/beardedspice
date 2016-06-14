@@ -7,10 +7,15 @@
 //
 
 #import "GeneralPreferencesViewController.h"
+#import "MediaStrategyRegistry.h"
+#import "NativeAppTabRegistry.h"
 #import "MediaControllerObject.h"
 #import "BSLaunchAtLogin.h"
 #import "BSMediaStrategyEnableButton.h"
 #import "BSMediaStrategy.h"
+#import "BSStrategyCache.h"
+#import "BSStrategyVersionManager.h"
+
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
@@ -26,44 +31,19 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
 @implementation GeneralPreferencesViewController
 
-- (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry nativeAppTabRegistry:(NativeAppTabRegistry *)nativeAppTabRegistry
-{
+- (id)init{
+    
     self = [super initWithNibName:@"GeneralPreferencesView" bundle:nil];
     if (self) {
-
-        NSMutableArray *mediaControllers = [NSMutableArray array];
-
-        NSArray *theArray = [NativeAppTabRegistry defaultNativeAppClasses];
-        if (theArray.count) {
-
-            MediaControllerObject *obj = [MediaControllerObject new];
-            obj.isGroup = YES;
-            obj.name = NSLocalizedString(@"Native", @"General preferences - controllers table");
-            [mediaControllers addObject:obj];
-            for (Class theClass in theArray) {
-                [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:theClass]];
-            }
-
-            userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
-        }
-
-        theArray = [MediaStrategyRegistry getDefaultMediaStrategyNames];
-        if (theArray.count) {
-            MediaControllerObject *obj = [MediaControllerObject new];
-            obj.isGroup = YES;
-            obj.name = NSLocalizedString(@"Web", @"General preferences - controllers table");
-            [mediaControllers addObject:obj];
-            for (NSString *name in theArray) {
-                BSMediaStrategy *strategy = [BSMediaStrategy cacheForStrategyName:name];
-                [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:strategy]];
-            }
-            userStrategies = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveControllers]];
-        }
-        strategyRegistry = mediaStrategyRegistry;
-        nativeRegistry = nativeAppTabRegistry;
-        mediaControllerObjects = [mediaControllers copy];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(strategyChangedNotify:) name: BSVMStrategyChangedNotification object:nil];
+        [self loadMediaControllerObjects];
     }
     return self;
+}
+
+- (void)dealloc{
+    
 }
 
 - (NSString *)identifier
@@ -209,14 +189,14 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
 - (NSView *)tableView:(NSTableView *)tableView strategyViewForObject:(MediaControllerObject *)obj{
 
-    NSButton *result = [tableView makeViewWithIdentifier:@"AvailbleStrategiesView" owner:self];
+    NSButton *result = [tableView makeViewWithIdentifier:@"AvailableStrategiesView" owner:self];
 
     // there is no existing cell to reuse so create a new one
     if (result == nil) {
         result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
 
         // this allows the cell to be reused.
-        result.identifier = @"AvailbleStrategiesView";
+        result.identifier = @"AvailableStrategiesView";
 
         // make it a checkbox
         [result setButtonType:NSSwitchButton];
@@ -286,9 +266,9 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
         // Strategy
         if (enabled) {
-            [strategyRegistry addMediaStrategy:obj.representationObject];
+            [[MediaStrategyRegistry singleton] addMediaStrategy:obj.representationObject];
         } else {
-            [strategyRegistry removeMediaStrategy:obj.representationObject];
+            [[MediaStrategyRegistry singleton] removeMediaStrategy:obj.representationObject];
         }
         // save user strategies
         [userStrategies setObject:@(enabled) forKey:obj.name];
@@ -298,9 +278,9 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     } else {
         // Native
         if (enabled) {
-            [nativeRegistry enableNativeAppClass:obj.representationObject];
+            [[NativeAppTabRegistry singleton] enableNativeAppClass:obj.representationObject];
         } else {
-            [nativeRegistry disableNativeAppClass:obj.representationObject];
+            [[NativeAppTabRegistry singleton] disableNativeAppClass:obj.representationObject];
         }
         // save user strategies
         [userNativeApps setObject:@(enabled) forKey:obj.name];
@@ -316,4 +296,42 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     }
 }
 
+- (void)loadMediaControllerObjects{
+    
+    NSMutableArray *mediaControllers = [NSMutableArray array];
+    
+    NSArray *theArray = [NativeAppTabRegistry defaultNativeAppClasses];
+    if (theArray.count) {
+        
+        MediaControllerObject *obj = [MediaControllerObject new];
+        obj.isGroup = YES;
+        obj.name = NSLocalizedString(@"Native", @"General preferences - controllers table");
+        [mediaControllers addObject:obj];
+        for (Class theClass in theArray) {
+            [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:theClass]];
+        }
+        
+        userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
+    }
+    
+    BSStrategyCache *cache = [[MediaStrategyRegistry singleton] strategyCache];
+    theArray = [[cache allStrategies] sortedArrayUsingSelector:@selector(compare:)];
+    if (theArray.count) {
+        MediaControllerObject *obj = [MediaControllerObject new];
+        obj.isGroup = YES;
+        obj.name = NSLocalizedString(@"Web", @"General preferences - controllers table");
+        [mediaControllers addObject:obj];
+        for (BSMediaStrategy *strategy in theArray) {
+            [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:strategy]];
+        }
+        userStrategies = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveControllers]];
+    }
+    mediaControllerObjects = [mediaControllers copy];
+}
+
+- (void)strategyChangedNotify:(NSNotification*) notification{
+    
+    [self loadMediaControllerObjects];
+    [self.strategiesView reloadData];
+}
 @end

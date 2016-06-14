@@ -14,6 +14,11 @@
 + (BOOL)isNullOrEmpty:(NSString * _Nullable)str;
 + (BOOL)isNullOrWhiteSpace:(NSString * _Nullable)str;
 + (NSString * _Nullable)stringByTrim:(NSString * _Nonnull)str;
+
+/**
+ */
+-(NSString * _Nonnull)trimToLength:(NSInteger)max;
+
 /**
  @return index of string into receiver, or -1 if not found
  */
@@ -24,7 +29,12 @@
 - (NSInteger)indexOf:(NSString * _Nonnull)string;
 
 
-- (BOOL)contains:(NSString *)str caseSensitive:(BOOL)sensitive;
+- (BOOL)contains:(NSString * _Nonnull)str caseSensitive:(BOOL)sensitive;
+
+/**
+ @return the 'self' script string with '()' added to the end
+ */
+- (NSString * _Nonnull)addExecutionStringToScript;
 
 /**
  Returns converted string where:
@@ -32,6 +42,6 @@
  ' symbol replaced on \',
  " symbol replaced on \".
  */
-- (NSString *)stringForSubstitutionInJavascriptPlaceholder;
+- (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder;
 
 @end

@@ -14,147 +14,25 @@
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */; };
+		0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */; };
+		0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */; };
+		0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */; };
+		0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
+		0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */; };
 		0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B355EF51CBEA3350089C2B3 /* Localizable.strings */; };
-		0BF06A551C95139A00534083 /* AmazonMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A121C95139900534083 /* AmazonMusic.plist */; };
-		0BF06A561C95139A00534083 /* AmazonMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A121C95139900534083 /* AmazonMusic.plist */; };
-		0BF06A571C95139A00534083 /* Audible.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A131C95139900534083 /* Audible.plist */; };
-		0BF06A581C95139A00534083 /* Audible.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A131C95139900534083 /* Audible.plist */; };
-		0BF06A591C95139A00534083 /* AudioMack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A141C95139900534083 /* AudioMack.plist */; };
-		0BF06A5A1C95139A00534083 /* AudioMack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A141C95139900534083 /* AudioMack.plist */; };
-		0BF06A5B1C95139A00534083 /* BandCamp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A151C95139900534083 /* BandCamp.plist */; };
-		0BF06A5C1C95139A00534083 /* BandCamp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A151C95139900534083 /* BandCamp.plist */; };
-		0BF06A5D1C95139A00534083 /* BBCRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A161C95139900534083 /* BBCRadio.plist */; };
-		0BF06A5E1C95139A00534083 /* BBCRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A161C95139900534083 /* BBCRadio.plist */; };
-		0BF06A5F1C95139A00534083 /* Beatguide.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A171C95139900534083 /* Beatguide.plist */; };
-		0BF06A601C95139A00534083 /* Beatguide.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A171C95139900534083 /* Beatguide.plist */; };
-		0BF06A611C95139A00534083 /* BeatsMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A181C95139900534083 /* BeatsMusic.plist */; };
-		0BF06A621C95139A00534083 /* BeatsMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A181C95139900534083 /* BeatsMusic.plist */; };
-		0BF06A631C95139A00534083 /* Blitzr.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A191C95139900534083 /* Blitzr.plist */; };
-		0BF06A641C95139A00534083 /* Blitzr.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A191C95139900534083 /* Blitzr.plist */; };
-		0BF06A651C95139A00534083 /* BrainFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1A1C95139900534083 /* BrainFm.plist */; };
-		0BF06A661C95139A00534083 /* BrainFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1A1C95139900534083 /* BrainFm.plist */; };
-		0BF06A671C95139A00534083 /* BugsMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1B1C95139900534083 /* BugsMusic.plist */; };
-		0BF06A681C95139A00534083 /* BugsMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1B1C95139900534083 /* BugsMusic.plist */; };
-		0BF06A691C95139A00534083 /* Chorus.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1C1C95139900534083 /* Chorus.plist */; };
-		0BF06A6A1C95139A00534083 /* Chorus.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1C1C95139900534083 /* Chorus.plist */; };
-		0BF06A6B1C95139A00534083 /* Composed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1D1C95139900534083 /* Composed.plist */; };
-		0BF06A6C1C95139A00534083 /* Composed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1D1C95139900534083 /* Composed.plist */; };
-		0BF06A6D1C95139A00534083 /* Coursera.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1E1C95139900534083 /* Coursera.plist */; };
-		0BF06A6E1C95139A00534083 /* Coursera.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1E1C95139900534083 /* Coursera.plist */; };
-		0BF06A6F1C95139A00534083 /* Deezer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1F1C95139900534083 /* Deezer.plist */; };
-		0BF06A701C95139A00534083 /* Deezer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A1F1C95139900534083 /* Deezer.plist */; };
-		0BF06A711C95139A00534083 /* DigitallyImported.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A201C95139900534083 /* DigitallyImported.plist */; };
-		0BF06A721C95139A00534083 /* DigitallyImported.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A201C95139900534083 /* DigitallyImported.plist */; };
-		0BF06A731C95139A00534083 /* EightTracks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A211C95139900534083 /* EightTracks.plist */; };
-		0BF06A741C95139A00534083 /* EightTracks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A211C95139900534083 /* EightTracks.plist */; };
-		0BF06A751C95139A00534083 /* FocusAtWill.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A221C95139900534083 /* FocusAtWill.plist */; };
-		0BF06A761C95139A00534083 /* FocusAtWill.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A221C95139900534083 /* FocusAtWill.plist */; };
-		0BF06A771C95139A00534083 /* GoogleMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A231C95139900534083 /* GoogleMusic.plist */; };
-		0BF06A781C95139A00534083 /* GoogleMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A231C95139900534083 /* GoogleMusic.plist */; };
-		0BF06A791C95139A00534083 /* GrooveShark.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A241C95139900534083 /* GrooveShark.plist */; };
-		0BF06A7A1C95139A00534083 /* GrooveShark.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A241C95139900534083 /* GrooveShark.plist */; };
-		0BF06A7B1C95139A00534083 /* HotNewHipHop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A251C95139900534083 /* HotNewHipHop.plist */; };
-		0BF06A7C1C95139A00534083 /* HotNewHipHop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A251C95139900534083 /* HotNewHipHop.plist */; };
-		0BF06A7D1C95139A00534083 /* HypeMachine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A261C95139900534083 /* HypeMachine.plist */; };
-		0BF06A7E1C95139A00534083 /* HypeMachine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A261C95139900534083 /* HypeMachine.plist */; };
-		0BF06A7F1C95139A00534083 /* iHeartRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A271C95139A00534083 /* iHeartRadio.plist */; };
-		0BF06A801C95139A00534083 /* iHeartRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A271C95139A00534083 /* iHeartRadio.plist */; };
-		0BF06A811C95139A00534083 /* IndieShuffle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A281C95139A00534083 /* IndieShuffle.plist */; };
-		0BF06A821C95139A00534083 /* IndieShuffle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A281C95139A00534083 /* IndieShuffle.plist */; };
-		0BF06A831C95139A00534083 /* Jango.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A291C95139A00534083 /* Jango.plist */; };
-		0BF06A841C95139A00534083 /* Jango.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A291C95139A00534083 /* Jango.plist */; };
-		0BF06A851C95139A00534083 /* KollektFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2A1C95139A00534083 /* KollektFm.plist */; };
-		0BF06A861C95139A00534083 /* KollektFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2A1C95139A00534083 /* KollektFm.plist */; };
-		0BF06A871C95139A00534083 /* LastFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2B1C95139A00534083 /* LastFm.plist */; };
-		0BF06A881C95139A00534083 /* LastFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2B1C95139A00534083 /* LastFm.plist */; };
-		0BF06A891C95139A00534083 /* LeTournedisque.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2C1C95139A00534083 /* LeTournedisque.plist */; };
-		0BF06A8A1C95139A00534083 /* LeTournedisque.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2C1C95139A00534083 /* LeTournedisque.plist */; };
-		0BF06A8B1C95139A00534083 /* LogitechMediaServer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2D1C95139A00534083 /* LogitechMediaServer.plist */; };
-		0BF06A8C1C95139A00534083 /* LogitechMediaServer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2D1C95139A00534083 /* LogitechMediaServer.plist */; };
-		0BF06A8D1C95139A00534083 /* MixCloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2E1C95139A00534083 /* MixCloud.plist */; };
-		0BF06A8E1C95139A00534083 /* MixCloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2E1C95139A00534083 /* MixCloud.plist */; };
-		0BF06A8F1C95139A00534083 /* MusicForProgramming.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2F1C95139A00534083 /* MusicForProgramming.plist */; };
-		0BF06A901C95139A00534083 /* MusicForProgramming.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A2F1C95139A00534083 /* MusicForProgramming.plist */; };
-		0BF06A911C95139A00534083 /* MusicUnlimited.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A301C95139A00534083 /* MusicUnlimited.plist */; };
-		0BF06A921C95139A00534083 /* MusicUnlimited.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A301C95139A00534083 /* MusicUnlimited.plist */; };
-		0BF06A931C95139A00534083 /* Netflix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A311C95139A00534083 /* Netflix.plist */; };
-		0BF06A941C95139A00534083 /* Netflix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A311C95139A00534083 /* Netflix.plist */; };
-		0BF06A951C95139A00534083 /* NoAdRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A321C95139A00534083 /* NoAdRadio.plist */; };
-		0BF06A961C95139A00534083 /* NoAdRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A321C95139A00534083 /* NoAdRadio.plist */; };
-		0BF06A971C95139A00534083 /* NoonPacific.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A331C95139A00534083 /* NoonPacific.plist */; };
-		0BF06A981C95139A00534083 /* NoonPacific.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A331C95139A00534083 /* NoonPacific.plist */; };
-		0BF06A991C95139A00534083 /* NRK.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A341C95139A00534083 /* NRK.plist */; };
-		0BF06A9A1C95139A00534083 /* NRK.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A341C95139A00534083 /* NRK.plist */; };
-		0BF06A9B1C95139A00534083 /* Odnoklassniki.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A351C95139A00534083 /* Odnoklassniki.plist */; };
-		0BF06A9C1C95139A00534083 /* Odnoklassniki.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A351C95139A00534083 /* Odnoklassniki.plist */; };
-		0BF06A9D1C95139A00534083 /* Overcast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A361C95139A00534083 /* Overcast.plist */; };
-		0BF06A9E1C95139A00534083 /* Overcast.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A361C95139A00534083 /* Overcast.plist */; };
-		0BF06A9F1C95139A00534083 /* Pandora.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A371C95139A00534083 /* Pandora.plist */; };
-		0BF06AA01C95139A00534083 /* Pandora.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A371C95139A00534083 /* Pandora.plist */; };
-		0BF06AA11C95139A00534083 /* PlexWeb.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A381C95139A00534083 /* PlexWeb.plist */; };
-		0BF06AA21C95139A00534083 /* PlexWeb.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A381C95139A00534083 /* PlexWeb.plist */; };
-		0BF06AA31C95139A00534083 /* PocketCasts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A391C95139A00534083 /* PocketCasts.plist */; };
-		0BF06AA41C95139A00534083 /* PocketCasts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A391C95139A00534083 /* PocketCasts.plist */; };
-		0BF06AA51C95139A00534083 /* Rdio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3A1C95139A00534083 /* Rdio.plist */; };
-		0BF06AA61C95139A00534083 /* Rdio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3A1C95139A00534083 /* Rdio.plist */; };
-		0BF06AA71C95139A00534083 /* Rhapsody.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3B1C95139A00534083 /* Rhapsody.plist */; };
-		0BF06AA81C95139A00534083 /* Rhapsody.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3B1C95139A00534083 /* Rhapsody.plist */; };
-		0BF06AA91C95139A00534083 /* Saavn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3C1C95139A00534083 /* Saavn.plist */; };
-		0BF06AAA1C95139A00534083 /* Saavn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3C1C95139A00534083 /* Saavn.plist */; };
-		0BF06AAB1C95139A00534083 /* ShufflerFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3D1C95139A00534083 /* ShufflerFm.plist */; };
-		0BF06AAC1C95139A00534083 /* ShufflerFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3D1C95139A00534083 /* ShufflerFm.plist */; };
-		0BF06AAD1C95139A00534083 /* Slacker.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3E1C95139A00534083 /* Slacker.plist */; };
-		0BF06AAE1C95139A00534083 /* Slacker.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3E1C95139A00534083 /* Slacker.plist */; };
-		0BF06AAF1C95139A00534083 /* SomaFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3F1C95139A00534083 /* SomaFm.plist */; };
-		0BF06AB01C95139A00534083 /* SomaFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A3F1C95139A00534083 /* SomaFm.plist */; };
-		0BF06AB11C95139A00534083 /* Songza.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A401C95139A00534083 /* Songza.plist */; };
-		0BF06AB21C95139A00534083 /* Songza.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A401C95139A00534083 /* Songza.plist */; };
-		0BF06AB31C95139A00534083 /* SoundCloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A411C95139A00534083 /* SoundCloud.plist */; };
-		0BF06AB41C95139A00534083 /* SoundCloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A411C95139A00534083 /* SoundCloud.plist */; };
-		0BF06AB51C95139A00534083 /* Spotify.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A421C95139A00534083 /* Spotify.plist */; };
-		0BF06AB61C95139A00534083 /* Spotify.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A421C95139A00534083 /* Spotify.plist */; };
-		0BF06AB71C95139A00534083 /* Stitcher.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A431C95139A00534083 /* Stitcher.plist */; };
-		0BF06AB81C95139A00534083 /* Stitcher.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A431C95139A00534083 /* Stitcher.plist */; };
-		0BF06AB91C95139A00534083 /* Subsonic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A441C95139A00534083 /* Subsonic.plist */; };
-		0BF06ABA1C95139A00534083 /* Subsonic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A441C95139A00534083 /* Subsonic.plist */; };
-		0BF06ABB1C95139A00534083 /* Synology.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A451C95139A00534083 /* Synology.plist */; };
-		0BF06ABC1C95139A00534083 /* Synology.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A451C95139A00534083 /* Synology.plist */; };
-		0BF06ABD1C95139A00534083 /* TidalHiFi.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A461C95139A00534083 /* TidalHiFi.plist */; };
-		0BF06ABE1C95139A00534083 /* TidalHiFi.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A461C95139A00534083 /* TidalHiFi.plist */; };
-		0BF06ABF1C95139A00534083 /* TuneIn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A471C95139A00534083 /* TuneIn.plist */; };
-		0BF06AC01C95139A00534083 /* TuneIn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A471C95139A00534083 /* TuneIn.plist */; };
-		0BF06AC11C95139A00534083 /* TwentyTwoTracks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A481C95139A00534083 /* TwentyTwoTracks.plist */; };
-		0BF06AC21C95139A00534083 /* TwentyTwoTracks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A481C95139A00534083 /* TwentyTwoTracks.plist */; };
-		0BF06AC31C95139A00534083 /* Twitch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A491C95139A00534083 /* Twitch.plist */; };
-		0BF06AC41C95139A00534083 /* Twitch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A491C95139A00534083 /* Twitch.plist */; };
-		0BF06AC51C95139A00534083 /* Udemy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4A1C95139A00534083 /* Udemy.plist */; };
-		0BF06AC61C95139A00534083 /* Udemy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4A1C95139A00534083 /* Udemy.plist */; };
-		0BF06AC71C95139A00534083 /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4B1C95139A00534083 /* versions.plist */; };
-		0BF06AC81C95139A00534083 /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4B1C95139A00534083 /* versions.plist */; };
-		0BF06AC91C95139A00534083 /* Vessel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4C1C95139A00534083 /* Vessel.plist */; };
-		0BF06ACA1C95139A00534083 /* Vessel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4C1C95139A00534083 /* Vessel.plist */; };
-		0BF06ACB1C95139A00534083 /* Vimeo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4D1C95139A00534083 /* Vimeo.plist */; };
-		0BF06ACC1C95139A00534083 /* Vimeo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4D1C95139A00534083 /* Vimeo.plist */; };
-		0BF06ACD1C95139A00534083 /* Vk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4E1C95139A00534083 /* Vk.plist */; };
-		0BF06ACE1C95139A00534083 /* Vk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4E1C95139A00534083 /* Vk.plist */; };
-		0BF06ACF1C95139A00534083 /* WatchaPlay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4F1C95139A00534083 /* WatchaPlay.plist */; };
-		0BF06AD01C95139A00534083 /* WatchaPlay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A4F1C95139A00534083 /* WatchaPlay.plist */; };
-		0BF06AD11C95139A00534083 /* WonderFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A501C95139A00534083 /* WonderFm.plist */; };
-		0BF06AD21C95139A00534083 /* WonderFm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A501C95139A00534083 /* WonderFm.plist */; };
-		0BF06AD31C95139A00534083 /* XboxMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A511C95139A00534083 /* XboxMusic.plist */; };
-		0BF06AD41C95139A00534083 /* XboxMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A511C95139A00534083 /* XboxMusic.plist */; };
-		0BF06AD51C95139A00534083 /* YandexMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A521C95139A00534083 /* YandexMusic.plist */; };
-		0BF06AD61C95139A00534083 /* YandexMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A521C95139A00534083 /* YandexMusic.plist */; };
-		0BF06AD71C95139A00534083 /* YandexRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A531C95139A00534083 /* YandexRadio.plist */; };
-		0BF06AD81C95139A00534083 /* YandexRadio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A531C95139A00534083 /* YandexRadio.plist */; };
-		0BF06AD91C95139A00534083 /* Youtube.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A541C95139A00534083 /* Youtube.plist */; };
-		0BF06ADA1C95139A00534083 /* Youtube.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06A541C95139A00534083 /* Youtube.plist */; };
+		0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
+		0BD1B2F41CD21AB100B72A3E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */; };
+		0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
+		0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */; };
 		0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */; };
 		0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */; };
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
+		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
+		11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 		17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63918DB33C0006F38C1 /* beard@2x.png */; };
 		17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */; };
-		1E1426F8950EBED0E2020816 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F20B81547A29635C2DF0434 /* libPods-BeardedSpiceControllers.a */; };
+		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
@@ -179,7 +57,6 @@
 		656A00331C8AD41A00BD29F5 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
 		656A00341C8AD41A00BD29F5 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
 		656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
-		656A00361C8AD41A00BD29F5 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
 		656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
 		656A00381C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
 		656A003D1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */; };
@@ -196,12 +73,17 @@
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
+		65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */ = {isa = PBXBuildFile; fileRef = 65D57FCA1D02CBFE0016F270 /* MediaStrategies */; };
+		65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */ = {isa = PBXBuildFile; fileRef = 65D57FCA1D02CBFE0016F270 /* MediaStrategies */; };
+		65D57FCD1D02CCB00016F270 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
+		65D57FCE1D02CD140016F270 /* BSMediaStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */; };
 		65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */; };
 		65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */; };
 		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
+		7D8A002D0E49A89BB9CB53DD /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
 		967933431855173100A49AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933421855173100A49AC7 /* AppDelegate.m */; };
@@ -209,10 +91,8 @@
 		967933481855173100A49AC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967933471855173100A49AC7 /* Images.xcassets */; };
 		9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679334E1855173100A49AC7 /* XCTest.framework */; };
 		967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
-		9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933591855173100A49AC7 /* BeardedSpiceTests.m */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
-		DAD858605B37FF09D3AAD082 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,7 +141,7 @@
 		0320C0511868C6C2009591CA /* beard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beard.png; sourceTree = "<group>"; };
 		0320C0531868C7A4009591CA /* beard-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted.png"; sourceTree = "<group>"; };
 		0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencesViewController.h; sourceTree = "<group>"; };
-		0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; };
+		0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GeneralPreferencesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MediaStrategyRegistry.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MediaStrategyRegistry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -270,90 +150,36 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		0BF06A121C95139900534083 /* AmazonMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AmazonMusic.plist; sourceTree = "<group>"; };
-		0BF06A131C95139900534083 /* Audible.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Audible.plist; sourceTree = "<group>"; };
-		0BF06A141C95139900534083 /* AudioMack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AudioMack.plist; sourceTree = "<group>"; };
-		0BF06A151C95139900534083 /* BandCamp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BandCamp.plist; sourceTree = "<group>"; };
-		0BF06A161C95139900534083 /* BBCRadio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BBCRadio.plist; sourceTree = "<group>"; };
-		0BF06A171C95139900534083 /* Beatguide.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beatguide.plist; sourceTree = "<group>"; };
-		0BF06A181C95139900534083 /* BeatsMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeatsMusic.plist; sourceTree = "<group>"; };
-		0BF06A191C95139900534083 /* Blitzr.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Blitzr.plist; sourceTree = "<group>"; };
-		0BF06A1A1C95139900534083 /* BrainFm.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BrainFm.plist; sourceTree = "<group>"; };
-		0BF06A1B1C95139900534083 /* BugsMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BugsMusic.plist; sourceTree = "<group>"; };
-		0BF06A1C1C95139900534083 /* Chorus.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Chorus.plist; sourceTree = "<group>"; };
-		0BF06A1D1C95139900534083 /* Composed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Composed.plist; sourceTree = "<group>"; };
-		0BF06A1E1C95139900534083 /* Coursera.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Coursera.plist; sourceTree = "<group>"; };
-		0BF06A1F1C95139900534083 /* Deezer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Deezer.plist; sourceTree = "<group>"; };
-		0BF06A201C95139900534083 /* DigitallyImported.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DigitallyImported.plist; sourceTree = "<group>"; };
-		0BF06A211C95139900534083 /* EightTracks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EightTracks.plist; sourceTree = "<group>"; };
-		0BF06A221C95139900534083 /* FocusAtWill.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FocusAtWill.plist; sourceTree = "<group>"; };
-		0BF06A231C95139900534083 /* GoogleMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GoogleMusic.plist; sourceTree = "<group>"; };
-		0BF06A241C95139900534083 /* GrooveShark.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GrooveShark.plist; sourceTree = "<group>"; };
-		0BF06A251C95139900534083 /* HotNewHipHop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HotNewHipHop.plist; sourceTree = "<group>"; };
-		0BF06A261C95139900534083 /* HypeMachine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HypeMachine.plist; sourceTree = "<group>"; };
-		0BF06A271C95139A00534083 /* iHeartRadio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iHeartRadio.plist; sourceTree = "<group>"; };
-		0BF06A281C95139A00534083 /* IndieShuffle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IndieShuffle.plist; sourceTree = "<group>"; };
-		0BF06A291C95139A00534083 /* Jango.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Jango.plist; sourceTree = "<group>"; };
-		0BF06A2A1C95139A00534083 /* KollektFm.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KollektFm.plist; sourceTree = "<group>"; };
-		0BF06A2B1C95139A00534083 /* LastFm.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LastFm.plist; sourceTree = "<group>"; };
-		0BF06A2C1C95139A00534083 /* LeTournedisque.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeTournedisque.plist; sourceTree = "<group>"; };
-		0BF06A2D1C95139A00534083 /* LogitechMediaServer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LogitechMediaServer.plist; sourceTree = "<group>"; };
-		0BF06A2E1C95139A00534083 /* MixCloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MixCloud.plist; sourceTree = "<group>"; };
-		0BF06A2F1C95139A00534083 /* MusicForProgramming.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MusicForProgramming.plist; sourceTree = "<group>"; };
-		0BF06A301C95139A00534083 /* MusicUnlimited.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MusicUnlimited.plist; sourceTree = "<group>"; };
-		0BF06A311C95139A00534083 /* Netflix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Netflix.plist; sourceTree = "<group>"; };
-		0BF06A321C95139A00534083 /* NoAdRadio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoAdRadio.plist; sourceTree = "<group>"; };
-		0BF06A331C95139A00534083 /* NoonPacific.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoonPacific.plist; sourceTree = "<group>"; };
-		0BF06A341C95139A00534083 /* NRK.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NRK.plist; sourceTree = "<group>"; };
-		0BF06A351C95139A00534083 /* Odnoklassniki.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Odnoklassniki.plist; sourceTree = "<group>"; };
-		0BF06A361C95139A00534083 /* Overcast.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Overcast.plist; sourceTree = "<group>"; };
-		0BF06A371C95139A00534083 /* Pandora.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pandora.plist; sourceTree = "<group>"; };
-		0BF06A381C95139A00534083 /* PlexWeb.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlexWeb.plist; sourceTree = "<group>"; };
-		0BF06A391C95139A00534083 /* PocketCasts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PocketCasts.plist; sourceTree = "<group>"; };
-		0BF06A3A1C95139A00534083 /* Rdio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Rdio.plist; sourceTree = "<group>"; };
-		0BF06A3B1C95139A00534083 /* Rhapsody.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Rhapsody.plist; sourceTree = "<group>"; };
-		0BF06A3C1C95139A00534083 /* Saavn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Saavn.plist; sourceTree = "<group>"; };
-		0BF06A3D1C95139A00534083 /* ShufflerFm.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShufflerFm.plist; sourceTree = "<group>"; };
-		0BF06A3E1C95139A00534083 /* Slacker.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Slacker.plist; sourceTree = "<group>"; };
-		0BF06A3F1C95139A00534083 /* SomaFm.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SomaFm.plist; sourceTree = "<group>"; };
-		0BF06A401C95139A00534083 /* Songza.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Songza.plist; sourceTree = "<group>"; };
-		0BF06A411C95139A00534083 /* SoundCloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundCloud.plist; sourceTree = "<group>"; };
-		0BF06A421C95139A00534083 /* Spotify.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Spotify.plist; sourceTree = "<group>"; };
-		0BF06A431C95139A00534083 /* Stitcher.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stitcher.plist; sourceTree = "<group>"; };
-		0BF06A441C95139A00534083 /* Subsonic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Subsonic.plist; sourceTree = "<group>"; };
-		0BF06A451C95139A00534083 /* Synology.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Synology.plist; sourceTree = "<group>"; };
-		0BF06A461C95139A00534083 /* TidalHiFi.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TidalHiFi.plist; sourceTree = "<group>"; };
-		0BF06A471C95139A00534083 /* TuneIn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TuneIn.plist; sourceTree = "<group>"; };
-		0BF06A481C95139A00534083 /* TwentyTwoTracks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TwentyTwoTracks.plist; sourceTree = "<group>"; };
-		0BF06A491C95139A00534083 /* Twitch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Twitch.plist; sourceTree = "<group>"; };
-		0BF06A4A1C95139A00534083 /* Udemy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Udemy.plist; sourceTree = "<group>"; };
-		0BF06A4B1C95139A00534083 /* versions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = versions.plist; sourceTree = "<group>"; };
-		0BF06A4C1C95139A00534083 /* Vessel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Vessel.plist; sourceTree = "<group>"; };
-		0BF06A4D1C95139A00534083 /* Vimeo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Vimeo.plist; sourceTree = "<group>"; };
-		0BF06A4E1C95139A00534083 /* Vk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Vk.plist; sourceTree = "<group>"; };
-		0BF06A4F1C95139A00534083 /* WatchaPlay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WatchaPlay.plist; sourceTree = "<group>"; };
-		0BF06A501C95139A00534083 /* WonderFm.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WonderFm.plist; sourceTree = "<group>"; };
-		0BF06A511C95139A00534083 /* XboxMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XboxMusic.plist; sourceTree = "<group>"; };
-		0BF06A521C95139A00534083 /* YandexMusic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YandexMusic.plist; sourceTree = "<group>"; };
-		0BF06A531C95139A00534083 /* YandexRadio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YandexRadio.plist; sourceTree = "<group>"; };
-		0BF06A541C95139A00534083 /* Youtube.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Youtube.plist; sourceTree = "<group>"; };
+		0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyTests.m; sourceTree = "<group>"; };
+		0B1AF3771CCE4D4C0021BBEA /* BSStrategyMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyMockObject.h; sourceTree = "<group>"; };
+		0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyMockObject.m; sourceTree = "<group>"; };
+		0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyTests.m; sourceTree = "<group>"; };
+		0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrackTests.m; sourceTree = "<group>"; };
+		0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyCache.h; sourceTree = "<group>"; };
+		0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyCache.m; sourceTree = "<group>"; };
+		0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = versions.plist; path = MediaStrategies/versions.plist; sourceTree = "<group>"; };
 		0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategy.h; sourceTree = "<group>"; };
 		0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategy.m; sourceTree = "<group>"; };
-		0BF06ADD1C9513A800534083 /* BSStrategyVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyVersionManager.h; sourceTree = "<group>"; };
-		0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyVersionManager.m; sourceTree = "<group>"; };
+		0BF06ADD1C9513A800534083 /* BSStrategyVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSStrategyVersionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSStrategyVersionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0BF06ADF1C9513A800534083 /* BSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrack.h; sourceTree = "<group>"; };
 		0BF06AE01C9513A800534083 /* BSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrack.m; sourceTree = "<group>"; };
 		17C5B63918DB33C0006F38C1 /* beard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard@2x.png"; sourceTree = "<group>"; };
 		17C5B63B18DB3649006F38C1 /* beard-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beard-highlighted@2x.png"; sourceTree = "<group>"; };
-		2299BC537DEC481A9540F7CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
+		2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; sourceTree = "<group>"; };
+		412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
+		47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
+		53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
 		652AD3361CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		652AD3391CC04ABA005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		652AD3391CC04ABA005396CD /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabRegistry.h; sourceTree = "<group>"; };
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };
@@ -421,6 +247,8 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabAdapter.m; sourceTree = "<group>"; };
+		65D57FCA1D02CBFE0016F270 /* MediaStrategies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MediaStrategies; sourceTree = "<group>"; };
+		65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-Config.xcconfig"; sourceTree = "<group>"; };
 		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		65E5670C1B76A07700AD2D46 /* BSMediaStrategyEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMediaStrategyEnableButton.h; sourceTree = "<group>"; };
 		65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyEnableButton.m; sourceTree = "<group>"; };
@@ -430,8 +258,8 @@
 		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
 		65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLaunchAtLogin.h; sourceTree = "<group>"; };
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
-		7A9EAC832D8E08D9DFB67396 /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
-		7F20B81547A29635C2DF0434 /* libPods-BeardedSpiceControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -446,15 +274,12 @@
 		9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeardedSpiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679334E1855173100A49AC7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
-		967933591855173100A49AC7 /* BeardedSpiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BeardedSpiceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
-		9F9355D0AD84C962E403B8AB /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
-		CBC84E9024D0B34C3324D861 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
+		A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
 		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
 		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
-		EC34526CCB5D146FD02423F4 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,7 +289,7 @@
 			files = (
 				65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */,
 				65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */,
-				1E1426F8950EBED0E2020816 /* libPods-BeardedSpiceControllers.a in Frameworks */,
+				57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +299,8 @@
 			files = (
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
-				DAD858605B37FF09D3AAD082 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */,
+				0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */,
+				7D8A002D0E49A89BB9CB53DD /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,25 +308,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD1B2F41CD21AB100B72A3E /* JavaScriptCore.framework in Frameworks */,
 				967933501855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */,
+				11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		026BCA1451614966030FD4B5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7A9EAC832D8E08D9DFB67396 /* Pods-BeardedSpiceControllers.debug.xcconfig */,
-				9F9355D0AD84C962E403B8AB /* Pods-BeardedSpiceControllers.release.xcconfig */,
-				EC34526CCB5D146FD02423F4 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */,
-				CBC84E9024D0B34C3324D861 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		0369231B1862934000E04DDB /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,81 +367,6 @@
 			);
 			path = Tabs;
 			sourceTree = "<group>";
-		};
-		0BF06A111C95139900534083 /* MediaStrategies */ = {
-			isa = PBXGroup;
-			children = (
-				0BF06A121C95139900534083 /* AmazonMusic.plist */,
-				0BF06A131C95139900534083 /* Audible.plist */,
-				0BF06A141C95139900534083 /* AudioMack.plist */,
-				0BF06A151C95139900534083 /* BandCamp.plist */,
-				0BF06A161C95139900534083 /* BBCRadio.plist */,
-				0BF06A171C95139900534083 /* Beatguide.plist */,
-				0BF06A181C95139900534083 /* BeatsMusic.plist */,
-				0BF06A191C95139900534083 /* Blitzr.plist */,
-				0BF06A1A1C95139900534083 /* BrainFm.plist */,
-				0BF06A1B1C95139900534083 /* BugsMusic.plist */,
-				0BF06A1C1C95139900534083 /* Chorus.plist */,
-				0BF06A1D1C95139900534083 /* Composed.plist */,
-				0BF06A1E1C95139900534083 /* Coursera.plist */,
-				0BF06A1F1C95139900534083 /* Deezer.plist */,
-				0BF06A201C95139900534083 /* DigitallyImported.plist */,
-				0BF06A211C95139900534083 /* EightTracks.plist */,
-				0BF06A221C95139900534083 /* FocusAtWill.plist */,
-				0BF06A231C95139900534083 /* GoogleMusic.plist */,
-				0BF06A241C95139900534083 /* GrooveShark.plist */,
-				0BF06A251C95139900534083 /* HotNewHipHop.plist */,
-				0BF06A261C95139900534083 /* HypeMachine.plist */,
-				0BF06A271C95139A00534083 /* iHeartRadio.plist */,
-				0BF06A281C95139A00534083 /* IndieShuffle.plist */,
-				0BF06A291C95139A00534083 /* Jango.plist */,
-				0BF06A2A1C95139A00534083 /* KollektFm.plist */,
-				0BF06A2B1C95139A00534083 /* LastFm.plist */,
-				0BF06A2C1C95139A00534083 /* LeTournedisque.plist */,
-				0BF06A2D1C95139A00534083 /* LogitechMediaServer.plist */,
-				0BF06A2E1C95139A00534083 /* MixCloud.plist */,
-				0BF06A2F1C95139A00534083 /* MusicForProgramming.plist */,
-				0BF06A301C95139A00534083 /* MusicUnlimited.plist */,
-				0BF06A311C95139A00534083 /* Netflix.plist */,
-				0BF06A321C95139A00534083 /* NoAdRadio.plist */,
-				0BF06A331C95139A00534083 /* NoonPacific.plist */,
-				0BF06A341C95139A00534083 /* NRK.plist */,
-				0BF06A351C95139A00534083 /* Odnoklassniki.plist */,
-				0BF06A361C95139A00534083 /* Overcast.plist */,
-				0BF06A371C95139A00534083 /* Pandora.plist */,
-				0BF06A381C95139A00534083 /* PlexWeb.plist */,
-				0BF06A391C95139A00534083 /* PocketCasts.plist */,
-				0BF06A3A1C95139A00534083 /* Rdio.plist */,
-				0BF06A3B1C95139A00534083 /* Rhapsody.plist */,
-				0BF06A3C1C95139A00534083 /* Saavn.plist */,
-				0BF06A3D1C95139A00534083 /* ShufflerFm.plist */,
-				0BF06A3E1C95139A00534083 /* Slacker.plist */,
-				0BF06A3F1C95139A00534083 /* SomaFm.plist */,
-				0BF06A401C95139A00534083 /* Songza.plist */,
-				0BF06A411C95139A00534083 /* SoundCloud.plist */,
-				0BF06A421C95139A00534083 /* Spotify.plist */,
-				0BF06A431C95139A00534083 /* Stitcher.plist */,
-				0BF06A441C95139A00534083 /* Subsonic.plist */,
-				0BF06A451C95139A00534083 /* Synology.plist */,
-				0BF06A461C95139A00534083 /* TidalHiFi.plist */,
-				0BF06A471C95139A00534083 /* TuneIn.plist */,
-				0BF06A481C95139A00534083 /* TwentyTwoTracks.plist */,
-				0BF06A491C95139A00534083 /* Twitch.plist */,
-				0BF06A4A1C95139A00534083 /* Udemy.plist */,
-				0BF06A4B1C95139A00534083 /* versions.plist */,
-				0BF06A4C1C95139A00534083 /* Vessel.plist */,
-				0BF06A4D1C95139A00534083 /* Vimeo.plist */,
-				0BF06A4E1C95139A00534083 /* Vk.plist */,
-				0BF06A4F1C95139A00534083 /* WatchaPlay.plist */,
-				0BF06A501C95139A00534083 /* WonderFm.plist */,
-				0BF06A511C95139A00534083 /* XboxMusic.plist */,
-				0BF06A521C95139A00534083 /* YandexMusic.plist */,
-				0BF06A531C95139A00534083 /* YandexRadio.plist */,
-				0BF06A541C95139A00534083 /* Youtube.plist */,
-			);
-			name = MediaStrategies;
-			path = BeardedSpice/MediaStrategies;
-			sourceTree = SOURCE_ROOT;
 		};
 		656A001D1C8AD3E200BD29F5 /* SPMediaKeyTap */ = {
 			isa = PBXGroup;
@@ -729,7 +471,7 @@
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
-				026BCA1451614966030FD4B5 /* Pods */,
+				C5F7A2FBB1AC4C50850BCEEB /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -750,15 +492,16 @@
 		9679332E1855173100A49AC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */,
 				65E567071B76104300AD2D46 /* CoreAudio.framework */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
 				9679336418551BCC00A49AC7 /* ScriptingBridge.framework */,
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
-				2299BC537DEC481A9540F7CA /* libPods.a */,
-				7F20B81547A29635C2DF0434 /* libPods-BeardedSpiceControllers.a */,
-				28CA978C46A156EA9D1CFA4A /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
+				7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */,
+				A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
+				53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -776,17 +519,21 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
-				0BF06A111C95139900534083 /* MediaStrategies */,
+				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
+				65D57FCA1D02CBFE0016F270 /* MediaStrategies */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
 				0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */,
 				0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */,
+				0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */,
 				0BF06ADD1C9513A800534083 /* BSStrategyVersionManager.h */,
 				0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */,
 				0BF06ADF1C9513A800534083 /* BSTrack.h */,
 				0BF06AE01C9513A800534083 /* BSTrack.m */,
+				0B33014C1CFA643F0090DB67 /* BSStrategyCache.h */,
+				0B33014D1CFA643F0090DB67 /* BSStrategyCache.m */,
 				6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */,
 				6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */,
 				65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */,
@@ -821,7 +568,11 @@
 		967933531855173100A49AC7 /* BeardedSpiceTests */ = {
 			isa = PBXGroup;
 			children = (
-				967933591855173100A49AC7 /* BeardedSpiceTests.m */,
+				0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */,
+				0B1AF3771CCE4D4C0021BBEA /* BSStrategyMockObject.h */,
+				0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */,
+				0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */,
+				0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */,
 				967933541855173100A49AC7 /* Supporting Files */,
 			);
 			path = BeardedSpiceTests;
@@ -835,6 +586,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C5F7A2FBB1AC4C50850BCEEB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */,
+				19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */,
+				47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */,
+				412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
+				2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */,
+				2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -842,11 +606,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */;
 			buildPhases = (
-				2347A5CF8E47858340D7C44D /* Check Pods Manifest.lock */,
+				19168B7827BBC96768A4C0E7 /* [CP] Check Pods Manifest.lock */,
 				656AFFE61C8ACDCF00BD29F5 /* Sources */,
 				656AFFE71C8ACDCF00BD29F5 /* Frameworks */,
 				656AFFE81C8ACDCF00BD29F5 /* Resources */,
-				8449C49435F79BA2F22310E4 /* Copy Pods Resources */,
+				899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -861,14 +625,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */;
 			buildPhases = (
-				1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */,
+				444DB68E61F8ED39440C7D99 /* [CP] Check Pods Manifest.lock */,
 				967933281855173100A49AC7 /* Sources */,
 				967933291855173100A49AC7 /* Frameworks */,
 				9679332A1855173100A49AC7 /* Resources */,
-				B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */,
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
-				790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */,
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
+				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
+				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -884,9 +648,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */;
 			buildPhases = (
+				AB9AD96DE64B6D494415BFF9 /* [CP] Check Pods Manifest.lock */,
 				967933491855173100A49AC7 /* Sources */,
 				9679334A1855173100A49AC7 /* Frameworks */,
 				9679334B1855173100A49AC7 /* Resources */,
+				261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */,
+				189AA939D297EACACE65A248 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -939,73 +706,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BF06AAC1C95139A00534083 /* ShufflerFm.plist in Resources */,
-				0BF06AC41C95139A00534083 /* Twitch.plist in Resources */,
-				0BF06A6E1C95139A00534083 /* Coursera.plist in Resources */,
-				0BF06A941C95139A00534083 /* Netflix.plist in Resources */,
-				0BF06A701C95139A00534083 /* Deezer.plist in Resources */,
-				0BF06A8E1C95139A00534083 /* MixCloud.plist in Resources */,
-				0BF06ABA1C95139A00534083 /* Subsonic.plist in Resources */,
-				0BF06A921C95139A00534083 /* MusicUnlimited.plist in Resources */,
-				0BF06AC01C95139A00534083 /* TuneIn.plist in Resources */,
-				0BF06A9E1C95139A00534083 /* Overcast.plist in Resources */,
-				0BF06ADA1C95139A00534083 /* Youtube.plist in Resources */,
-				0BF06A721C95139A00534083 /* DigitallyImported.plist in Resources */,
-				0BF06AD41C95139A00534083 /* XboxMusic.plist in Resources */,
-				0BF06A621C95139A00534083 /* BeatsMusic.plist in Resources */,
-				0BF06AB61C95139A00534083 /* Spotify.plist in Resources */,
-				0BF06ACE1C95139A00534083 /* Vk.plist in Resources */,
-				0BF06A9A1C95139A00534083 /* NRK.plist in Resources */,
-				0BF06A741C95139A00534083 /* EightTracks.plist in Resources */,
-				0BF06A5E1C95139A00534083 /* BBCRadio.plist in Resources */,
-				0BF06A561C95139A00534083 /* AmazonMusic.plist in Resources */,
-				0BF06AA81C95139A00534083 /* Rhapsody.plist in Resources */,
-				0BF06ABC1C95139A00534083 /* Synology.plist in Resources */,
-				0BF06A681C95139A00534083 /* BugsMusic.plist in Resources */,
-				0BF06A581C95139A00534083 /* Audible.plist in Resources */,
-				0BF06A8A1C95139A00534083 /* LeTournedisque.plist in Resources */,
-				0BF06AA61C95139A00534083 /* Rdio.plist in Resources */,
-				0BF06AC81C95139A00534083 /* versions.plist in Resources */,
-				0BF06AA21C95139A00534083 /* PlexWeb.plist in Resources */,
-				0BF06ACC1C95139A00534083 /* Vimeo.plist in Resources */,
-				0BF06AD21C95139A00534083 /* WonderFm.plist in Resources */,
-				0BF06A7E1C95139A00534083 /* HypeMachine.plist in Resources */,
-				0BF06AD01C95139A00534083 /* WatchaPlay.plist in Resources */,
-				0BF06A981C95139A00534083 /* NoonPacific.plist in Resources */,
-				0BF06AC21C95139A00534083 /* TwentyTwoTracks.plist in Resources */,
-				0BF06A961C95139A00534083 /* NoAdRadio.plist in Resources */,
-				0BF06AA01C95139A00534083 /* Pandora.plist in Resources */,
-				0BF06AB21C95139A00534083 /* Songza.plist in Resources */,
-				0BF06AAA1C95139A00534083 /* Saavn.plist in Resources */,
-				0BF06AAE1C95139A00534083 /* Slacker.plist in Resources */,
-				0BF06ACA1C95139A00534083 /* Vessel.plist in Resources */,
-				0BF06AB41C95139A00534083 /* SoundCloud.plist in Resources */,
-				0BF06A781C95139A00534083 /* GoogleMusic.plist in Resources */,
-				0BF06AD61C95139A00534083 /* YandexMusic.plist in Resources */,
-				0BF06A6A1C95139A00534083 /* Chorus.plist in Resources */,
-				0BF06A7A1C95139A00534083 /* GrooveShark.plist in Resources */,
-				0BF06A5C1C95139A00534083 /* BandCamp.plist in Resources */,
-				0BF06A901C95139A00534083 /* MusicForProgramming.plist in Resources */,
-				0BF06A661C95139A00534083 /* BrainFm.plist in Resources */,
-				0BF06AD81C95139A00534083 /* YandexRadio.plist in Resources */,
-				0BF06A641C95139A00534083 /* Blitzr.plist in Resources */,
-				0BF06A8C1C95139A00534083 /* LogitechMediaServer.plist in Resources */,
-				0BF06AB01C95139A00534083 /* SomaFm.plist in Resources */,
-				0BF06A761C95139A00534083 /* FocusAtWill.plist in Resources */,
-				0BF06A821C95139A00534083 /* IndieShuffle.plist in Resources */,
-				0BF06A861C95139A00534083 /* KollektFm.plist in Resources */,
-				0BF06ABE1C95139A00534083 /* TidalHiFi.plist in Resources */,
-				0BF06A5A1C95139A00534083 /* AudioMack.plist in Resources */,
-				0BF06A7C1C95139A00534083 /* HotNewHipHop.plist in Resources */,
-				0BF06A9C1C95139A00534083 /* Odnoklassniki.plist in Resources */,
-				0BF06A881C95139A00534083 /* LastFm.plist in Resources */,
-				0BF06AC61C95139A00534083 /* Udemy.plist in Resources */,
-				0BF06A841C95139A00534083 /* Jango.plist in Resources */,
-				0BF06A6C1C95139A00534083 /* Composed.plist in Resources */,
-				0BF06AB81C95139A00534083 /* Stitcher.plist in Resources */,
-				0BF06A601C95139A00534083 /* Beatguide.plist in Resources */,
-				0BF06A801C95139A00534083 /* iHeartRadio.plist in Resources */,
-				0BF06AA41C95139A00534083 /* PocketCasts.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,83 +713,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BF06AA31C95139A00534083 /* PocketCasts.plist in Resources */,
-				0BF06A6F1C95139A00534083 /* Deezer.plist in Resources */,
-				0BF06AA91C95139A00534083 /* Saavn.plist in Resources */,
-				0BF06A8D1C95139A00534083 /* MixCloud.plist in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
-				0BF06AA51C95139A00534083 /* Rdio.plist in Resources */,
-				0BF06AAD1C95139A00534083 /* Slacker.plist in Resources */,
-				0BF06ABF1C95139A00534083 /* TuneIn.plist in Resources */,
-				0BF06AD91C95139A00534083 /* Youtube.plist in Resources */,
-				0BF06A9F1C95139A00534083 /* Pandora.plist in Resources */,
-				0BF06A811C95139A00534083 /* IndieShuffle.plist in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
-				0BF06A5D1C95139A00534083 /* BBCRadio.plist in Resources */,
-				0BF06A571C95139A00534083 /* Audible.plist in Resources */,
-				0BF06A8F1C95139A00534083 /* MusicForProgramming.plist in Resources */,
-				0BF06A951C95139A00534083 /* NoAdRadio.plist in Resources */,
-				0BF06A851C95139A00534083 /* KollektFm.plist in Resources */,
-				0BF06A7F1C95139A00534083 /* iHeartRadio.plist in Resources */,
-				0BF06AB11C95139A00534083 /* Songza.plist in Resources */,
-				0BF06AD11C95139A00534083 /* WonderFm.plist in Resources */,
-				0BF06A6B1C95139A00534083 /* Composed.plist in Resources */,
-				0BF06A931C95139A00534083 /* Netflix.plist in Resources */,
-				0BF06A7D1C95139A00534083 /* HypeMachine.plist in Resources */,
-				0BF06A8B1C95139A00534083 /* LogitechMediaServer.plist in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
-				0BF06ABD1C95139A00534083 /* TidalHiFi.plist in Resources */,
-				0BF06AAF1C95139A00534083 /* SomaFm.plist in Resources */,
 				0320C0521868C6C2009591CA /* beard.png in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
-				0BF06A751C95139A00534083 /* FocusAtWill.plist in Resources */,
-				0BF06A771C95139A00534083 /* GoogleMusic.plist in Resources */,
-				0BF06ACF1C95139A00534083 /* WatchaPlay.plist in Resources */,
-				0BF06ACB1C95139A00534083 /* Vimeo.plist in Resources */,
-				0BF06AC11C95139A00534083 /* TwentyTwoTracks.plist in Resources */,
-				0BF06A711C95139A00534083 /* DigitallyImported.plist in Resources */,
-				0BF06AD31C95139A00534083 /* XboxMusic.plist in Resources */,
-				0BF06A911C95139A00534083 /* MusicUnlimited.plist in Resources */,
-				0BF06A971C95139A00534083 /* NoonPacific.plist in Resources */,
-				0BF06A7B1C95139A00534083 /* HotNewHipHop.plist in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
-				0BF06AA71C95139A00534083 /* Rhapsody.plist in Resources */,
+				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
 				0320C0541868C7A4009591CA /* beard-highlighted.png in Resources */,
-				0BF06A551C95139A00534083 /* AmazonMusic.plist in Resources */,
-				0BF06A791C95139A00534083 /* GrooveShark.plist in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
-				0BF06AB71C95139A00534083 /* Stitcher.plist in Resources */,
-				0BF06A611C95139A00534083 /* BeatsMusic.plist in Resources */,
-				0BF06AA11C95139A00534083 /* PlexWeb.plist in Resources */,
 				17C5B63C18DB3649006F38C1 /* beard-highlighted@2x.png in Resources */,
-				0BF06AC31C95139A00534083 /* Twitch.plist in Resources */,
-				0BF06AB51C95139A00534083 /* Spotify.plist in Resources */,
-				0BF06AD51C95139A00534083 /* YandexMusic.plist in Resources */,
-				0BF06A9B1C95139A00534083 /* Odnoklassniki.plist in Resources */,
-				0BF06A5F1C95139A00534083 /* Beatguide.plist in Resources */,
+				0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */,
 				17C5B63A18DB33C0006F38C1 /* beard@2x.png in Resources */,
-				0BF06A651C95139A00534083 /* BrainFm.plist in Resources */,
-				0BF06AAB1C95139A00534083 /* ShufflerFm.plist in Resources */,
-				0BF06A5B1C95139A00534083 /* BandCamp.plist in Resources */,
-				0BF06A991C95139A00534083 /* NRK.plist in Resources */,
-				0BF06A891C95139A00534083 /* LeTournedisque.plist in Resources */,
-				0BF06A9D1C95139A00534083 /* Overcast.plist in Resources */,
-				0BF06ABB1C95139A00534083 /* Synology.plist in Resources */,
-				0BF06AB91C95139A00534083 /* Subsonic.plist in Resources */,
-				0BF06A831C95139A00534083 /* Jango.plist in Resources */,
-				0BF06A631C95139A00534083 /* Blitzr.plist in Resources */,
-				0BF06A591C95139A00534083 /* AudioMack.plist in Resources */,
-				0BF06AC51C95139A00534083 /* Udemy.plist in Resources */,
-				0BF06AD71C95139A00534083 /* YandexRadio.plist in Resources */,
-				0BF06A871C95139A00534083 /* LastFm.plist in Resources */,
-				0BF06AC71C95139A00534083 /* versions.plist in Resources */,
-				0BF06A691C95139A00534083 /* Chorus.plist in Resources */,
-				0BF06A6D1C95139A00534083 /* Coursera.plist in Resources */,
-				0BF06AC91C95139A00534083 /* Vessel.plist in Resources */,
-				0BF06A731C95139A00534083 /* EightTracks.plist in Resources */,
-				0BF06A671C95139A00534083 /* BugsMusic.plist in Resources */,
-				0BF06AB31C95139A00534083 /* SoundCloud.plist in Resources */,
-				0BF06ACD1C95139A00534083 /* Vk.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,20 +732,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */,
+				0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B37E2ED2CE348E4A35365B6 /* Check Pods Manifest.lock */ = {
+		189AA939D297EACACE65A248 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		19168B7827BBC96768A4C0E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1118,14 +770,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		2347A5CF8E47858340D7C44D /* Check Pods Manifest.lock */ = {
+		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		444DB68E61F8ED39440C7D99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1133,14 +800,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		790986C3E0FD0317E1DDA091 /* Embed Pods Frameworks */ = {
+		49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1148,14 +815,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8449C49435F79BA2F22310E4 /* Copy Pods Resources */ = {
+		503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1163,19 +845,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B3F72F996C864D30BAFDCE71 /* Copy Pods Resources */ = {
+		AB9AD96DE64B6D494415BFF9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1185,6 +867,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */,
 				656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */,
 				656A00231C8AD3E200BD29F5 /* SPMediaKeyTap.m in Sources */,
 				656A00321C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
@@ -1192,7 +875,6 @@
 				65A850161C8B065000D54C77 /* BSCService.m in Sources */,
 				656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */,
 				65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */,
-				656A00361C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
 				656A00221C8AD3E200BD29F5 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				656A003E1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */,
 				656A001C1C8AD3C800BD29F5 /* NSXReturnThrowError.m in Sources */,
@@ -1241,6 +923,7 @@
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
+				0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */,
 				6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */,
@@ -1251,7 +934,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9679335A1855173100A49AC7 /* BeardedSpiceTests.m in Sources */,
+				0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */,
+				0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */,
+				0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
+				0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */,
+				65D57FCE1D02CD140016F270 /* BSMediaStrategy.m in Sources */,
+				65D57FCD1D02CCB00016F270 /* NSURL+Utils.m in Sources */,
+				0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1308,7 +997,7 @@
 /* Begin XCBuildConfiguration section */
 		656AFFF61C8ACDCF00BD29F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A9EAC832D8E08D9DFB67396 /* Pods-BeardedSpiceControllers.debug.xcconfig */;
+			baseConfigurationReference = 91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1319,7 +1008,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = BeardedSpiceControllers/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beardedspice.BeardedSpiceControllers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1329,7 +1017,7 @@
 		};
 		656AFFF71C8ACDCF00BD29F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F9355D0AD84C962E403B8AB /* Pods-BeardedSpiceControllers.release.xcconfig */;
+			baseConfigurationReference = 19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1340,7 +1028,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = BeardedSpiceControllers/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beardedspice.BeardedSpiceControllers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1350,6 +1037,7 @@
 		};
 		9679335B1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1372,6 +1060,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
+					"JSC_OBJC_API_ENABLED=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1381,7 +1070,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1408,25 +1097,26 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "JSC_OBJC_API_ENABLED=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		9679335E1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC34526CCB5D146FD02423F4 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */;
+			baseConfigurationReference = 47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1444,12 +1134,12 @@
 		};
 		9679335F1855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBC84E9024D0B34C3324D861 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */;
+			baseConfigurationReference = 412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1467,8 +1157,10 @@
 		};
 		967933611855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1478,22 +1170,21 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		967933621855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1506,7 +1197,7 @@
 				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BeardedSpiceTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

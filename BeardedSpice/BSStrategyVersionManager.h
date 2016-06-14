@@ -10,6 +10,13 @@
 #define kBSVersionErrorInvalidInput -2
 
 /**
+ FIXME
+ */
+extern NSString *BSVMStrategyChangedNotification;
+
+@class BSStrategyCache;
+
+/**
   Load currently saved version index
   At specified time, download a copy of the remote version index from the git repo
   Save the new index and download updated plists if any exist
@@ -19,14 +26,12 @@
 
 @property (nonatomic, strong, readonly) NSDate *lastUpdated;
 @property (nonatomic, strong, readonly) NSURL *versionURL;
-
-+ (BSStrategyVersionManager *)sharedVersionManager;
+@property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
 
 /**
- @return returns the version number for the currently loaded index file.
- This file is commonly identified as 'versions.plist'
+ FIXME documentation about how strategyCache is the central point of ref
  */
-- (long)indexVersion;
+- (instancetype)initWithStrategyCache:(BSStrategyCache *)cache;
 
 /**
  @param mediaStrategy The filename of the strategy template to check.

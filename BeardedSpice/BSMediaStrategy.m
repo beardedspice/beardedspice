@@ -1,33 +1,23 @@
 //
-//  MediaStrategy.m
+//  BSMediaStrategy.m
 //  BeardedSpice
 //
 //  Created by Jose Falcon on 12/15/13.
-//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-// Order is important.
-// New custom classes should go at the bottom of the list. Libraries and protocols go just below main import
+#import <JavaScriptCore/JavaScriptCore.h>
 
 #import "BSMediaStrategy.h"
-#import "BSStrategyVersionManager.h"
 #import "TabAdapter.h"
 #import "BSTrack.h"
-
-#define NBSP_STRING                         @"\u00a0"
+#import "NSString+Utils.h"
 
 NSString *const kBSMediaStrategyKeyVersion       = @"version";
 NSString *const kBSMediaStrategyKeyDisplayName   = @"displayName";
 
-// Metadata and categorization/breakdown of complex types
-NSString *const kBSMediaStrategyKeyPredicate     = @"predicate";
-NSString *const kBSMediaStrategyKeyScript        = @"script";
-NSString *const kBSMediaStrategyKeyTabValue      = @"tabValue";
-NSString *const kBSMediaStrategyKeyTabValueURL   = @"url";
-NSString *const kBSMediaStrategyKeyTabValueTitle = @"title";
-
 // Strategy values custom implemented in each plist
-NSString *const kBSMediaStrategyKeyAccepts       = @"accepts";
+NSString *const kBSMediaStrategyKeyAccept        = @"accepts";
 NSString *const kBSMediaStrategyKeyIsPlaying     = @"isPlaying";
 NSString *const kBSMediaStrategyKeyToggle        = @"toggle";
 NSString *const kBSMediaStrategyKeyPrevious      = @"previous";
@@ -36,209 +26,303 @@ NSString *const kBSMediaStrategyKeyFavorite      = @"favorite";
 NSString *const kBSMediaStrategyKeyPause         = @"pause";
 NSString *const kBSMediaStrategyKeyTrackInfo     = @"trackInfo";
 
+// Metadata and categorization/breakdown of complex types
+NSString *const kBSMediaStrategyAcceptMethod         = @"method";
+NSString *const kBSMediaStrategyAcceptPredicateOnTab = @"predicateOnTab";
+NSString *const kBSMediaStrategyAcceptScript         = @"script";
+NSString *const kBSMediaStrategyAcceptKeyFormat      = @"format";
+NSString *const kBSMediaStrategyAcceptKeyArgs        = @"args";
+NSString *const kBSMediaStrategyAcceptValueURL       = @"url";
+NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
+
 @interface BSMediaStrategy ()
 
+// Metadata
 @property (nonatomic, assign) long strategyVersion;
-@property (nonatomic, strong) NSDictionary<NSString *, id> *strategyData;
 @property (nonatomic, strong) NSString *fileName;
+@property (nonatomic, strong) NSURL *strategyURL;
+@property (nonatomic) BOOL custom;
+@property (nonatomic) NSString * _Nonnull strategyJsBody;
 
-+ (NSDictionary *)loadFile:(NSString *)strategyName;
+// Cached scripts/components
+@property (nonatomic, strong) NSDictionary *acceptParams;
+@property (nonatomic, strong) NSDictionary *scripts;
+
+// Internal setup functions
+- (BOOL)_loadFile;
+- (BOOL)_setupData:(JSValue *_Nonnull)data;
+- (NSDictionary *_Nonnull)_setupAccept:(JSValue *_Nonnull)data;
 
 @end
 
 @implementation BSMediaStrategy
 
-+ (BSMediaStrategy *)cacheForStrategyName:(NSString *)strategyName
-{
-    static dispatch_once_t setupCache;
-    static dispatch_queue_t cacheSerialQueue;
-    static NSCache *strategyCache = nil;
-
-    dispatch_once(&setupCache, ^{
-        cacheSerialQueue = dispatch_queue_create("com.beardedspice.strategies.cache", DISPATCH_QUEUE_SERIAL);
-        strategyCache = [NSCache new];
-        [strategyCache setName:@"MediaStrategyCache"];
-    });
-
-    __block BSMediaStrategy *strategy = nil;
-    dispatch_sync(cacheSerialQueue, ^{
-        strategy = [strategyCache objectForKey:strategyName];
-        if (!strategy)
-        {
-            strategy = [[BSMediaStrategy alloc] initWithStrategyName:strategyName];
-            [strategyCache setObject:strategy forKey:strategyName];
-        }
-
-        long currentVersion = [BSStrategyVersionManager.sharedVersionManager versionForMediaStrategy:strategy.fileName];
-        BOOL isOlder = strategy.strategyVersion < currentVersion;
-        if (isOlder)
-        {
-            [strategy reloadData];
-        }
-    });
-    return strategy;
-}
-
-- (instancetype)initWithStrategyName:(NSString *)strategyName
+- (instancetype)initWithStrategyURL:(NSURL * _Nonnull)strategyURL
 {
     self = [super init];
     if (self)
     {
-        _fileName = strategyName;
-
-        // if we reload on every init, the point of a cache will be lost.
-        _strategyData = [BSMediaStrategy loadFile:_fileName];
-        if (!_strategyData)
-            NSLog(@"Failed to load strategy with name: %@", strategyName);
-
-        _strategyVersion = [(_strategyData ? _strategyData[kBSMediaStrategyKeyVersion] : @0) longValue];
+        _strategyURL = strategyURL;
+        _fileName = [strategyURL lastPathComponent];
+        _custom = [[strategyURL absoluteString] hasPrefix:[[NSURL URLForCustomStrategies] absoluteString]];
+        
+        //We don't need strategy, which is not loaded.
+        if (![self _loadFile]) {
+            NSLog(@"Failed to load strategy with URL: %@", strategyURL);
+            return nil;
+        }
+        
     }
     return self;
 }
 
-- (void)reloadData
-{
-    if (_fileName && _fileName.length)
-    {
-        self.strategyData = [BSMediaStrategy loadFile:_fileName];
-        self.strategyVersion = [(_strategyData ? _strategyData[kBSMediaStrategyKeyVersion] : 0) longValue];
-    }
+
+#pragma mark - Helper Functions
+
+/**
+ Copying of the variables, which reflect state of the object.
+ 
+ @param strategy Object from which performed copying.
+ 
+ @return Returns self.
+ */
+- (instancetype _Nonnull)copyStateFrom:(BSMediaStrategy * _Nonnull)strategy{
+
+    self.strategyVersion = strategy.strategyVersion;
+    self.strategyURL = strategy.strategyURL;
+    self.strategyJsBody = strategy.strategyJsBody;
+    self.custom = strategy.custom;
+    self.fileName = strategy.fileName;
+    self.scripts = strategy.scripts;
+    self.acceptParams = strategy.acceptParams;
+    
+    return self;
 }
 
-#pragma mark - Core Functionality
-
-- (NSString *)displayName
-{
-    if (!_strategyData)
-        return _fileName;
-
-    return self.strategyData[kBSMediaStrategyKeyDisplayName] ?: @"";
-}
-
-- (BOOL)accepts:(TabAdapter *)tab
-{
-    if (!_strategyData || !tab)
-        return NO;
-
-    NSDictionary<NSString *, NSString *> *acceptDict = self.strategyData[kBSMediaStrategyKeyAccepts];
-    if (!acceptDict.count)
-        return NO;
-
-    NSString *predicateString = acceptDict[kBSMediaStrategyKeyPredicate];
-    NSString *scriptString = acceptDict[kBSMediaStrategyKeyScript];
-
-    BOOL hasPredicate = (predicateString && [predicateString length]);
-    BOOL hasScriptString = (scriptString && [scriptString length]);
-
-    if (hasPredicate)
-    {
-        id object = nil;
-        // tabValue is the value to take from the provided tab. URL or Title for existing types
-        NSString *tabValue = acceptDict[kBSMediaStrategyKeyTabValue];
-        if ([tabValue isEqualToString:kBSMediaStrategyKeyTabValueURL])
-            object = [tab URL];
-        else if ([tabValue isEqualToString:kBSMediaStrategyKeyTabValueTitle])
-            object = [tab title];
-
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
-        return object ? [predicate evaluateWithObject:object] : NO;
-    }
-    else if (hasScriptString)
-        return [[tab executeJavascript:scriptString] boolValue];
-
-    return NO;
+- (NSComparisonResult)compare:(BSMediaStrategy *)strategy{
+    
+    return [self.displayName localizedCompare:strategy.displayName];
 }
 
 - (BOOL)testIfImplemented:(NSString * _Nonnull)methodName
 {
-    NSString *scriptString = self.strategyData[methodName];
-    return scriptString && scriptString.length;
+    NSString *value = _scripts[methodName];
+    return (value && value.length);
 }
 
-- (BOOL)isPlaying:(TabAdapter *)tab
+- (BOOL)_loadFile
 {
-    if (!_strategyData || !tab)
+    if (!_strategyURL)
+        return NO;
+    
+    NSError *error = nil;
+    _strategyJsBody = [[NSString alloc] initWithContentsOfURL:_strategyURL encoding:NSUTF8StringEncoding error:&error];
+    if ([NSString isNullOrEmpty:_strategyJsBody])
+        return NO;
+    
+    __block BOOL _loaded = YES;
+    JSContext *context = [JSContext new];
+    
+    // This is run synchronously with evaluateScript :)
+    context.exceptionHandler = ^(JSContext __attribute__((unused)) *context, JSValue *exception) {
+        _loaded = NO;
+        NSLog(@"JS Error with Strategy (%@): %@", _fileName, exception);
+    };
+    
+    JSValue *strategyData = [context evaluateScript:_strategyJsBody];
+    if (_loaded && strategyData.isObject)
+        return [self _setupData:strategyData];
+    
+    return NO;
+}
+
+- (BOOL)reloadDataFromURL:(NSURL *_Nonnull)strategyURL
+{
+    BSMediaStrategy *newStrategy = [[BSMediaStrategy alloc] initWithStrategyURL:strategyURL];
+    if (newStrategy) {
+        [self copyStateFrom:newStrategy];
+        return YES;
+    }
+    return NO;
+}
+
+// quick helper function for safely extracting script strings from jsvalue
+static inline NSString *js_string_for_key(NSString *key, JSValue *node)
+{
+    JSValue *value = node[key];
+    if (!value || [value isNull] || [value isUndefined])
+        return @"";
+
+    return [[value toString] addExecutionStringToScript];
+}
+
+- (BOOL)_setupData:(JSValue *_Nonnull)data
+{
+    if (!_fileName || !_fileName.length)
         return NO;
 
-    NSString *scriptString = self.strategyData[kBSMediaStrategyKeyIsPlaying];
-    if (!scriptString || !scriptString.length)
+    NSString *displayName = [data[kBSMediaStrategyKeyDisplayName] toString];
+    if ([NSString isNullOrEmpty:displayName]) {
+        return NO;
+    }
+    
+    JSValue *version = data[kBSMediaStrategyKeyVersion];
+    NSInteger strategyVersion = ([version isNull] || [version isUndefined]) ? 0 : [version toUInt32];
+    if (_strategyVersion >= strategyVersion)
+    {
+        NSLog(@"WARNING: Tried to update a strategy %@ with an older version.", _fileName);
+        return NO;
+    }
+
+    self.strategyVersion = strategyVersion;
+    self.acceptParams = [self _setupAccept:data];
+
+    self.scripts = @{
+        kBSMediaStrategyKeyDisplayName: displayName,
+        kBSMediaStrategyKeyIsPlaying:   js_string_for_key(kBSMediaStrategyKeyIsPlaying, data),
+        kBSMediaStrategyKeyToggle:      js_string_for_key(kBSMediaStrategyKeyToggle, data),
+        kBSMediaStrategyKeyNext:        js_string_for_key(kBSMediaStrategyKeyNext, data),
+        kBSMediaStrategyKeyPrevious:    js_string_for_key(kBSMediaStrategyKeyPrevious, data),
+        kBSMediaStrategyKeyPause:       js_string_for_key(kBSMediaStrategyKeyPause, data),
+        kBSMediaStrategyKeyFavorite:    js_string_for_key(kBSMediaStrategyKeyFavorite, data),
+        kBSMediaStrategyKeyTrackInfo:   js_string_for_key(kBSMediaStrategyKeyTrackInfo, data)
+    };
+    return YES;
+}
+
+- (NSDictionary *_Nonnull)_setupAccept:(JSValue *_Nonnull)data
+{
+    JSValue *acceptJS = data[kBSMediaStrategyKeyAccept];
+    if (!acceptJS || [acceptJS isNull] || [acceptJS isUndefined])
+        return @{};
+
+    NSDictionary *dict = [acceptJS toDictionary];
+    if (!dict)
+        return @{};
+
+    NSString *method = dict[kBSMediaStrategyAcceptMethod];
+    if (!method)
+        return @{};
+
+    if ([method isEqualToString:kBSMediaStrategyAcceptPredicateOnTab])
+    {
+        NSString *typeFormat = dict[kBSMediaStrategyAcceptKeyFormat];
+        NSArray *typeArgs = dict[kBSMediaStrategyAcceptKeyArgs];
+        return @{
+            kBSMediaStrategyAcceptMethod: method,
+            kBSMediaStrategyAcceptKeyArgs: typeArgs ?: @[],
+            kBSMediaStrategyKeyAccept: [NSPredicate predicateWithFormat:typeFormat argumentArray:typeArgs]
+        };
+    }
+    else if ([method isEqualToString:kBSMediaStrategyAcceptScript])
+    {
+        JSValue *value = acceptJS[kBSMediaStrategyAcceptScript];
+        NSString *acceptScript = [value toString];
+        return @{
+            kBSMediaStrategyAcceptMethod: method,
+            kBSMediaStrategyKeyAccept: (acceptScript ?: @"")
+        };
+    }
+
+    return @{};
+}
+
+#pragma mark - Core Functionality
+
+- (NSString * _Nonnull)displayName
+{
+    return _scripts[kBSMediaStrategyKeyDisplayName];
+}
+
+- (BOOL)accepts:(TabAdapter * _Nonnull)tab
+{
+    if (!tab || !_acceptParams)
         return NO;
 
-    NSNumber *isPlaying = [tab executeJavascript:scriptString];
+    NSString *method = _acceptParams[kBSMediaStrategyAcceptMethod];
+    if (!method)
+        return NO;
+
+    if ([method isEqualToString:kBSMediaStrategyAcceptPredicateOnTab])
+    {
+        NSPredicate *acceptValue = (NSPredicate *)_acceptParams[kBSMediaStrategyKeyAccept];
+        return acceptValue ? [acceptValue evaluateWithObject:tab] : NO;
+    }
+    else if ([method isEqualToString:kBSMediaStrategyAcceptScript])
+    {
+        NSString *acceptValue = (NSString *)_acceptParams[kBSMediaStrategyKeyAccept];
+        return [[tab executeJavascript:acceptValue] boolValue];
+    }
+
+    return NO;
+}
+
+- (BOOL)isPlaying:(TabAdapter * _Nonnull)tab
+{
+    if (!tab)
+        return NO;
+
+    NSString *script = _scripts[kBSMediaStrategyKeyIsPlaying];
+    if ([NSString isNullOrEmpty:script]) {
+        return NO;
+    }
+    
+    NSNumber *isPlaying = [tab executeJavascript:script];
     return [isPlaying boolValue] ?: NO;
 }
 
-- (NSString *)toggle
+- (NSString * _Nonnull)toggle
 {
-    if (!_strategyData)
+    if (!_scripts)
         return @"";
 
-    return self.strategyData[kBSMediaStrategyKeyToggle] ?: @"";
+    return _scripts[kBSMediaStrategyKeyToggle] ?: @"";
 }
 
-- (NSString *)previous
+- (NSString * _Nonnull)previous
 {
-    if (!_strategyData)
+    if (!_scripts)
         return @"";
 
-    return self.strategyData[kBSMediaStrategyKeyPrevious] ?: @"";
+    return _scripts[kBSMediaStrategyKeyPrevious] ?: @"";
 }
 
-- (NSString *)next
+- (NSString * _Nonnull)next
 {
-    if (!_strategyData)
+    if (!_scripts)
         return @"";
 
-    return self.strategyData[kBSMediaStrategyKeyNext] ?: @"";
+    return _scripts[kBSMediaStrategyKeyNext] ?: @"";
 }
 
-- (NSString *)pause
+- (NSString * _Nonnull)pause
 {
-    if (!_strategyData)
+    if (!_scripts)
         return @"";
 
-    return self.strategyData[kBSMediaStrategyKeyPause] ?: @"";
+    return _scripts[kBSMediaStrategyKeyPause] ?: @"";
 }
 
-- (NSString *)favorite
+- (NSString * _Nonnull)favorite
 {
-    if (!_strategyData)
+    if (!_scripts)
         return @"";
 
-    return self.strategyData[kBSMediaStrategyKeyDisplayName] ?: @"";
+    return _scripts[kBSMediaStrategyKeyFavorite] ?: @"";
 }
 
-- (BSTrack *)trackInfo:(TabAdapter *)tab
+- (BSTrack * _Nullable)trackInfo:(TabAdapter * _Nonnull)tab
 {
-    if (!_strategyData)
+    if (!_scripts)
         return nil;
 
-    NSString *trackString = self.strategyData[kBSMediaStrategyKeyTrackInfo];
-    if (!trackString || !trackString.length)
+    NSString *script = _scripts[kBSMediaStrategyKeyTrackInfo];
+    if ([NSString isNullOrEmpty:script]) {
         return nil;
-
-    NSDictionary *trackData = [tab executeJavascript:trackString];
+    }
+    
+    NSDictionary *trackData = [tab executeJavascript:script];
     return (trackData && trackData.count) ? [[BSTrack alloc] initWithInfo:trackData] : nil;
-}
-
-#pragma mark - Helper Functions
-
-+ (NSDictionary *)loadFile:(NSString *)strategyName
-{
-    if (!strategyName || !strategyName.length)
-        return nil;
-
-    NSURL *dataString = [NSURL fileFromURL:strategyName];
-    if (!dataString)
-        dataString = [[NSBundle mainBundle] URLForResource:strategyName withExtension:@"plist"];
-    if (!dataString)
-        return nil;
-
-    NSDictionary<NSString *, id> *data = [[NSDictionary alloc] initWithContentsOfURL:dataString];
-    if (!data || !data.count)
-        return nil;
-
-    return data;
 }
 
 @end

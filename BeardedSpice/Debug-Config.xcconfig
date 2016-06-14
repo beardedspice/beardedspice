@@ -1,0 +1,16 @@
+//
+//  Config.xcconfig
+//  BeardedSpice
+//
+//  Created by Roman Sokolov on 04.06.16.
+//  Copyright © 2016 BeardedSpice. All rights reserved.
+//
+
+// if DEBUG_STRATEGY set to 1,
+// then BeardedSpice uses strategies only from bundle resources folder.
+DEBUG_STRATEGY = 0
+
+
+
+// Marco definition
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG_STRATEGY=$(DEBUG_STRATEGY)

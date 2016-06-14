@@ -16,11 +16,11 @@
 #import "NativeAppTabRegistry.h"
 #import "BeardedSpiceHostAppProtocol.h"
 
-@class runningSBApplication;
+#import "BSMediaStrategy.h"
+
+@class runningSBApplication, BSStrategyVersionManager;
 
 extern BOOL accessibilityApiEnabled;
-
-#import "BSMediaStrategy.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
 
@@ -60,6 +60,7 @@ extern BOOL accessibilityApiEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
+@property (nonatomic, strong) BSStrategyVersionManager *versionManager;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;

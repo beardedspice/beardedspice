@@ -8,18 +8,22 @@
 
 @class BSMediaStrategy;
 @class TabAdapter;
+@class BSStrategyCache;
 
 @interface MediaStrategyRegistry : NSObject
-@property (nonatomic, strong) NSMutableArray *availableStrategies;
+@property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
 
-+(NSArray<NSString *> *)getDefaultMediaStrategyNames;
++ (MediaStrategyRegistry *)singleton;
 
--(id) initWithUserDefaults:(NSString *)userDefaultsKeyPrefix;
+/**
+ Resets registry.
+ */
+- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache;
+
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) containsMediaStrategy:(BSMediaStrategy *) strategy;
 -(BSMediaStrategy *) getMediaStrategyForTab:(TabAdapter *) tab;
--(NSArray *) getMediaStrategies;
 
 - (void)clearCache;
 - (void)beginStrategyQueries;

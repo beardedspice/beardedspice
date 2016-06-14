@@ -1,5 +1,13 @@
-osx_image: xcode7
+os: osx
+osx_image: xcode7.3
 language: objective-c
-xcode_workspace: BeardedSpice.xcworkspace
-xcode_scheme: BeardedSpice
-before_install: gem install cocoapods
+rvm:
+  - 2.2.4
+before_install:
+  - gem install cocoapods -v 1.0.1
+  - gem install xcpretty -N --no-ri --no-rdoc
+
+script:
+  - set -o pipefail
+  - xcodebuild clean test -workspace BeardedSpice.xcworkspace -scheme BeardedSpice -sdk macosx -enableCodeCoverage YES | xcpretty
+

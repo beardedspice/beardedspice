@@ -9,63 +9,66 @@
 @class BSTrack;
 @class TabAdapter;
 
-extern NSString *const kBSMediaStrategyKeyVersion;
-extern NSString *const kBSMediaStrategyKeyDisplayName;
+extern NSString * _Nonnull const kBSMediaStrategyKeyVersion;
+extern NSString * _Nonnull const kBSMediaStrategyKeyDisplayName;
 
-extern NSString *const kBSMediaStrategyKeyPredicate;
-extern NSString *const kBSMediaStrategyKeyScript;
-extern NSString *const kBSMediaStrategyKeyTabValue;
-extern NSString *const kBSMediaStrategyKeyTabValueURL;
-extern NSString *const kBSMediaStrategyKeyTabValueTitle;
+extern NSString * _Nonnull const kBSMediaStrategyKeyAccept;
+extern NSString * _Nonnull const kBSMediaStrategyKeyIsPlaying;
+extern NSString * _Nonnull const kBSMediaStrategyKeyToggle;
+extern NSString * _Nonnull const kBSMediaStrategyKeyPrevious;
+extern NSString * _Nonnull const kBSMediaStrategyKeyNext;
+extern NSString * _Nonnull const kBSMediaStrategyKeyFavorite;
+extern NSString * _Nonnull const kBSMediaStrategyKeyPause;
+extern NSString * _Nonnull const kBSMediaStrategyKeyTrackInfo;
 
-extern NSString *const kBSMediaStrategyKeyAccepts;
-extern NSString *const kBSMediaStrategyKeyIsPlaying;
-extern NSString *const kBSMediaStrategyKeyToggle;
-extern NSString *const kBSMediaStrategyKeyPrevious;
-extern NSString *const kBSMediaStrategyKeyNext;
-extern NSString *const kBSMediaStrategyKeyFavorite;
-extern NSString *const kBSMediaStrategyKeyPause;
-extern NSString *const kBSMediaStrategyKeyTrackInfo;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptMethod;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptPredicateOnTab;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptScript;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptKeyFormat;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptKeyArgs;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptValueURL;
+extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 
 @interface BSMediaStrategy : NSObject
 
-@property (nonatomic, strong, readonly) NSString *fileName;
 @property (nonatomic, assign, readonly) long strategyVersion;
+@property (nonatomic, strong, readonly) NSString * _Nonnull fileName;
+@property (nonatomic, strong, readonly) NSURL * _Nonnull strategyURL;
+@property (nonatomic, readonly) BOOL custom;
+@property (nonatomic, readonly) NSString * _Nonnull strategyJsBody;
 
 // This data should only be used for tests. DO NOT directly access.
-@property (nonatomic, strong, readonly) NSDictionary<NSString *, id> *strategyData;
+@property (nonatomic, strong, readonly) NSDictionary * _Nonnull acceptParams;
+@property (nonatomic, strong, readonly) NSDictionary * _Nonnull scripts;
 
 /**
- Caches the loaded strategies for reuse and requerying without hitting the disk.
- @param strategyName the name of the strategy file to be accessed. Case Sensitive.
- @param reloadData YES to refresh the cache entry from file. NO to go straight to cache unless it's a miss.
- @returns a dictionary with the most recently loaded copy of the specified strategy
- */
-+ (BSMediaStrategy *)cacheForStrategyName:(NSString *)strategyName;
-
-/**
- A method for reloading the strategy plist from file, updating all future uses of this
- object to be with the most up-to-date plan of attack.
- */
-- (void)reloadData;
-
-/**
-    @param strategyName
+    @param strategyURL The URL to the most up-to-date version of the strategy
     @return Returns a BSMediaStrategy object with data loaded from the provided plist.
-        The loaded flag is set to determine if the file existed or not.
+        Or returns nil if failure.
  */
-- (instancetype)initWithStrategyName:(NSString *)strategyName;
+//- (instancetype )initWithStrategyName:(NSString * _Nonnull)strategyName;
+- (instancetype _Nullable)initWithStrategyURL:(NSURL * _Nonnull)strategyURL;
+
+/**
+ A method for reloading the strategy from file, updating all future uses of this
+ object to be with the most up-to-date plan of attack.
+ @param strategyURL
+ @return A boolean stating the success of the operation
+ */
+- (BOOL)reloadDataFromURL:(NSURL *_Nonnull)strategyURL;
 
 /**
     @return Returns name of that media stratery.
  */
--(NSString *)displayName; // Required override in subclass.
+- (NSString * _Nonnull)displayName; // Required override in subclass.
 
 /**
     @return A Boolean saying if this is a tab that accepts this strategy.
  */
--(BOOL)accepts:(TabAdapter *)tab; // Required override in subclass.
+- (BOOL)accepts:(TabAdapter * _Nonnull)tab; // Required override in subclass.
 
+
+- (NSComparisonResult)compare:(BSMediaStrategy * _Nonnull)strategy;
 
 /**
     @param methodName the name of the method to check if is implemented by this strategy
@@ -76,13 +79,12 @@ extern NSString *const kBSMediaStrategyKeyTrackInfo;
 /**
     @return A Boolean saying if this tab is in the playback state.
  */
-- (BOOL)isPlaying:(TabAdapter *)tab;
+- (BOOL)isPlaying:(TabAdapter * _Nonnull)tab;
 
 /**
     @return Returns track information object from tab.
  */
-- (BSTrack *)trackInfo:(TabAdapter *)tab;
-
+- (BSTrack * _Nullable)trackInfo:(TabAdapter * _Nonnull)tab;
 
 // Methods, which return javascript code for apropriated actions.
 //---------------------------------------------------------------
@@ -90,26 +92,26 @@ extern NSString *const kBSMediaStrategyKeyTrackInfo;
 /**
     @return Returns javascript code of the play/pause toggle.
  */
--(NSString *)toggle; // Required override in subclass.
+- (NSString * _Nonnull)toggle; // Required override in subclass.
 
 /**
     @return Returns javascript code of the previous track action.
  */
--(NSString *)previous;
+- (NSString * _Nonnull)previous;
 
 /**
     @return Returns javascript code of the next track action.
  */
--(NSString *)next;
+- (NSString * _Nonnull)next;
 
 /**
     @return Returns javascript code of the pausing action. Used mainly for pausing before switching active tabs.
  */
--(NSString *)pause; // Required override in subclass.
+- (NSString * _Nonnull)pause; // Required override in subclass.
 
 /**
     @return Returns javascript code of the "favorite" toggle.
  */
--(NSString *)favorite;
+- (NSString * _Nonnull)favorite;
 
 @end

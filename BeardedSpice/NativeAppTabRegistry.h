@@ -15,7 +15,8 @@
     NSMutableDictionary *_availableCache;
 }
 
-- (id)initWithUserDefaultsKey:(NSString *)defaultsKey;
++ (NativeAppTabRegistry *)singleton;
+- (void)setUserDefaultsKey:(NSString *)defaultsKey;
 
 + (NSArray *)defaultNativeAppClasses;
 - (NSArray *)enabledNativeAppClasses;

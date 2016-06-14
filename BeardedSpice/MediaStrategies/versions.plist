@@ -36,6 +36,8 @@
 	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
+	<key>Gaana</key>
+	<integer>1</integer>
 	<key>GoogleMusic</key>
 	<integer>1</integer>
 	<key>GrooveShark</key>
@@ -81,6 +83,8 @@
 	<key>PlexWeb</key>
 	<integer>1</integer>
 	<key>PocketCasts</key>
+	<integer>1</integer>
+	<key>PoolsideFM</key>
 	<integer>1</integer>
 	<key>Rdio</key>
 	<integer>1</integer>

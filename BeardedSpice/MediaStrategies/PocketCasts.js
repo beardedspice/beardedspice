@@ -19,8 +19,8 @@ BSStrategy = {
   pause: function () {document.querySelector('div.pause_button').click()},
   trackInfo: function () {
     return {
-      'track': document.querySelector('div.player_top div.player_episode').innerHTML,
-      'album': document.querySelector('div.player_top div.player_podcast_title').innerHTML,
+      'track': document.querySelector('div.player_top div.player_episode').innerText,
+      'album': document.querySelector('div.player_top div.player_podcast_title').innerText,
       'image': document.querySelector('div.player_top div.player_artwork img').src,
     };
   }

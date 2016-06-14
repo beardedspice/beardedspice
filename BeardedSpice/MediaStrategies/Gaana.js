@@ -2,7 +2,7 @@
 //  Gaana.js
 //  BeardedSpice
 //
-//  Created by Coder-256 on 7/23/14.
+//  Created by Coder-256 on 6/12/16.
 //  Copyright (c) 2016 Coder-256. All rights reserved.
 //
 BSStrategy = {

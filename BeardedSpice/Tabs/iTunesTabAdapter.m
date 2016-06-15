@@ -64,7 +64,7 @@
             title = NSLocalizedString(@"No Track", @"iTunesTabAdapter");
         }
 
-        return [NSString stringWithFormat:@"%@ (%@)", title, iTunes.name];
+        return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_ITUNES];
     }
 }
 

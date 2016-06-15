@@ -52,6 +52,8 @@
 	<integer>1</integer>
 	<key>Jango</key>
 	<integer>1</integer>
+    <key>KCRW</key>
+    <integer>1</integer>
 	<key>KollektFm</key>
 	<integer>1</integer>
 	<key>LastFm</key>

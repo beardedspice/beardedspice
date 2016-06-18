@@ -151,16 +151,16 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 
 ```javascript
 //
-//  NewStrategyName.plist
+//  NewStrategyName.js
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2015 Bearded Spice. All rights reserved.
+//  Copyright (c) 2016 Bearded Spice. All rights reserved.
 // OR
-//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-// We put the copyright inside the plist to retain consistent syntax coloring.
+// We put the copyright inside the file to retain consistent syntax coloring.
 
 // Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
 // Normal formatting is supported (can copy/paste with newlines and indentations)

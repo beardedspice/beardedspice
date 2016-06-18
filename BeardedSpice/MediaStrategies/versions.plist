@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>StyleJukebox</key>
+	<integer>1</integer>
 	<key>AmazonMusic</key>
 	<integer>1</integer>
 	<key>Audible</key>
@@ -52,16 +54,16 @@
 	<integer>1</integer>
 	<key>Jango</key>
 	<integer>1</integer>
-    <key>KCRW</key>
-    <integer>1</integer>
+	<key>KCRW</key>
+	<integer>1</integer>
 	<key>KollektFm</key>
 	<integer>1</integer>
 	<key>LastFm</key>
 	<integer>1</integer>
 	<key>LeTournedisque</key>
 	<integer>1</integer>
-    <key>ListenOnRepeat</key>
-    <integer>1</integer>
+	<key>ListenOnRepeat</key>
+	<integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
 	<key>MixCloud</key>

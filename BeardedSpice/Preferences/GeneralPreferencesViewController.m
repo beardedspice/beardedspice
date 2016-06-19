@@ -15,6 +15,7 @@
 #import "BSMediaStrategy.h"
 #import "BSStrategyCache.h"
 #import "BSStrategyVersionManager.h"
+#import "EHVerticalCenteredTextField.h"
 
 
 NSString *const GeneralPreferencesNativeAppChangedNoticiation = @"GeneralPreferencesNativeAppChangedNoticiation";
@@ -177,9 +178,18 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     }
 
     //
-    if ([[tableColumn identifier] isEqualToString:@"strategy"]) {
+    NSString *ident = [tableColumn identifier];
+    if ([ident isEqualToString:@"check"]) {
 
-        return [self tableView:tableView strategyViewForObject:obj];
+        return [self tableView:tableView checkViewForObject:obj];
+    }
+    else if ([ident isEqualToString:@"name"]){
+        
+        return [self tableView:tableView nameViewForObject:obj];
+    }
+    else if ([ident isEqualToString:@"version"]){
+        
+        return [self tableView:tableView versionViewForObject:obj];
     }
     else{
 
@@ -187,23 +197,13 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     }
 }
 
-- (NSView *)tableView:(NSTableView *)tableView strategyViewForObject:(MediaControllerObject *)obj{
+- (NSView *)tableView:(NSTableView *)tableView checkViewForObject:(MediaControllerObject *)obj{
 
-    NSButton *result = [tableView makeViewWithIdentifier:@"AvailableStrategiesView" owner:self];
+    BSMediaStrategyEnableButton* result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
 
-    // there is no existing cell to reuse so create a new one
-    if (result == nil) {
-        result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
-
-        // this allows the cell to be reused.
-        result.identifier = @"AvailableStrategiesView";
-
-        // make it a checkbox
-        [result setButtonType:NSSwitchButton];
-//        result.refusesFirstResponder = YES;
-
-    }
-
+    // make it a checkbox
+    [result setButtonType:NSSwitchButton];
+    //        result.refusesFirstResponder = YES;
 
     // check the user defaults
 
@@ -220,24 +220,41 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
         [result setState:NSOffState];
     }
 
-    [result setTitle:obj.name];
+//    [result setTitle:@""];
     [result setTarget:self];
     [result setAction:@selector(updateMediaStrategyRegistry:)];
     return result;
 }
 
+- (NSView *)tableView:(NSTableView *)tableView nameViewForObject:(MediaControllerObject *)obj{
+    
+    EHVerticalCenteredTextField *result = [EHVerticalCenteredTextField new];
+    result.selectable = result.editable = result.drawsBackground = result.bordered = NO;
+    
+    result.stringValue = obj.name;
+    
+    
+    return result;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView versionViewForObject:(MediaControllerObject *)obj{
+    
+    EHVerticalCenteredTextField *result = [EHVerticalCenteredTextField new];
+    result.selectable = result.editable = result.drawsBackground = result.bordered = NO;
+    
+    result.stringValue = obj.version;
+    
+    
+    return result;
+}
+
 - (NSView *)tableView:(NSTableView *)tableView indicatorViewForObject:(MediaControllerObject *)obj{
 
-    NSImageView *result = [tableView makeViewWithIdentifier:@"StrategyView" owner:self];
+    NSImageView* result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 21, 21)];
 
-    // there is no existing cell to reuse so create a new one
-    if (result == nil) {
-        result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 21, 21)];
+    result.imageScaling = NSImageScaleNone;
+    result.identifier = @"StrategyView";
 
-        result.imageScaling = NSImageScaleNone;
-        result.identifier = @"StrategyView";
-
-    }
     if (obj.isAuto)
         result.image = [NSImage imageNamed:@"auto"];
 

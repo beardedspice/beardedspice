@@ -15,6 +15,7 @@
 @property BOOL isGroup;
 @property NSString *name;
 @property BOOL isAuto;
+@property NSString *version;
 @property id representationObject;
 
 @end

@@ -71,6 +71,7 @@
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
+		65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */ = {isa = PBXBuildFile; fileRef = 65D57FCA1D02CBFE0016F270 /* MediaStrategies */; };
@@ -92,7 +93,6 @@
 		9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679334E1855173100A49AC7 /* XCTest.framework */; };
 		967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
-		A0AA490D0E6079CB34E14114 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FACCAAD500B85D9CE1DDC04C /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
 		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
 /* End PBXBuildFile section */
 
@@ -241,6 +241,8 @@
 		65A850151C8B065000D54C77 /* BSCService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSCShortcutMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCShortcutMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65ADE6031D169D0C000C29F1 /* EHVerticalCenteredTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHVerticalCenteredTextField.h; sourceTree = "<group>"; };
+		65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHVerticalCenteredTextField.m; sourceTree = "<group>"; };
 		65B32B8C1AD99D1600F696B9 /* TabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAdapter.h; sourceTree = "<group>"; };
 		65B32B8D1AD99D1600F696B9 /* TabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabAdapter.m; sourceTree = "<group>"; };
 		65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTabAdapter.m; sourceTree = "<group>"; };
@@ -336,6 +338,8 @@
 				65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */,
 				65E567121B775C9300AD2D46 /* BSShortcutView.h */,
 				65E567131B775C9300AD2D46 /* BSShortcutView.m */,
+				65ADE6031D169D0C000C29F1 /* EHVerticalCenteredTextField.h */,
+				65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -901,6 +905,7 @@
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0BF06AE51C9513A800534083 /* BSTrack.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
+				65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,

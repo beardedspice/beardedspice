@@ -24,10 +24,12 @@
 
         if ([object isMemberOfClass:BSMediaStrategy.class]) {
             _isAuto = [object testIfImplemented:kBSMediaStrategyKeyIsPlaying];
+            _version = [NSString stringWithFormat:@"%ld", [object strategyVersion]];
         } else if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
             _isAuto = YES;
+            _version = [NSString string];
         }
-
+        
         _representationObject = object;
     }
 

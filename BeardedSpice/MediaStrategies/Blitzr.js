@@ -24,9 +24,9 @@ BSStrategy = {
   },
   trackInfo: function () {
     return {
-      'track': document.querySelector('#playerTitle strong').innerHTML,
+      'track': document.querySelector('#playerTitle strong').innerText,
       'album': document.querySelector('#playerInfo .media-left a').title,
-      'artist': document.querySelectorAll('#playerArtists')[0].querySelector('a').innerHTML,
+      'artist': document.querySelectorAll('#playerArtists')[0].querySelector('a').innerText,
       'image': document.querySelector('#playerInfo .media-left a img').style['background-image'].slice(4, -1),
     }
   }

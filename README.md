@@ -16,7 +16,7 @@ We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look 
 
 Ready to give BeardedSpice a spin? You can download the [latest release here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
 
-*Mac OS X 10.8 or greater required.
+*Mac OS X 10.9 or greater required.
 
 ## Features
 
@@ -81,6 +81,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Kollekt.FM](https://kollekt.fm/)
 - [Last.fm](http://www.last.fm/)
 - [Le Tournedisque](http://www.letournedisque.com/)
+- [ListenOnRepeat](http://listenonrepeat.com/)
 - [Logitech Media Server](http://www.mysqueezebox.com/) (`Default` web interface only)
 - [Mixcloud](https://www.mixcloud.com/)
 - [Music For Programming](http://musicforprogramming.net/)
@@ -94,6 +95,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Pandora](http://www.pandora.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
+- [ProductHunt](https://www.producthunt.com/podcasts)
 - [Radio Swiss Jazz](http://www.radioswissjazz.ch/)
 - [Rdio](http://rdio.com)
 - [Rhapsody](http://www.rhapsody.com/)
@@ -103,7 +105,8 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [SomaFM](http://somafm.com)
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)
-- [STITCHER](http://www.stitcher.com)
+- [STITCHER](http://www.stitcher.com/)
+- [Style Jukebox] (http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
 - [TIDAL (Web)](http://listen.tidal.com/)
@@ -149,16 +152,16 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 
 ```javascript
 //
-//  NewStrategyName.plist
+//  NewStrategyName.js
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2015 Bearded Spice. All rights reserved.
+//  Copyright (c) 2016 Bearded Spice. All rights reserved.
 // OR
-//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-// We put the copyright inside the plist to retain consistent syntax coloring.
+// We put the copyright inside the file to retain consistent syntax coloring.
 
 // Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
 // Normal formatting is supported (can copy/paste with newlines and indentations)
@@ -218,6 +221,43 @@ Update the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/
 ```
 
 Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
+
+## Updating a *Media Strategy*
+
+In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate .js file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.js) has javascript for all five functions as well as partial trackInfo retrieval.
+
+After updating a strategy, update it's version in the `ServiceName.js` you've created, as well as the ServiceName entry in the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) file. Updating a version means incrementing the number by 1. All references to the service should have the same version when creating a PR.
+
+```xml
+    <!-- versions.plist -->
+    <key>AmazonMusic</key>
+    <integer>1</integer>
+```
+```js
+    // AmazonMusic.js
+    BSStrategy = {
+      version: 1,
+      ...
+    }
+```
+
+becomes
+
+```
+    <!-- versions.plist -->
+    <key>AmazonMusic</key>
+    <integer>2</integer>
+```
+```js
+    // AmazonMusic.js
+    BSStrategy = {
+      version: 2,
+      ...
+    }
+```
+
+If you find that javascript alone cannot properly control a service, please [create an issue](https://github.com/beardedspice/beardedspice/issues/new?label=%5BApp%20Support%5D) specifying your work branch (as a link), the service in question, and your difficulty as precisely as possible.
+
 
 # About pull requests
 Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods with the most modern API for the service, please. PR with a strategy that is not fully implemented for no reason will be rejected.

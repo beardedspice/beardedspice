@@ -34,7 +34,7 @@ BSStrategy = {
     }
     return {
       'track': $('.player-track a')[0].innerText,
-      'artist': ($('.player-artist a')[0].innerHTML).split('- ').slice(1).join('- ').trim(),
+      'artist': ($('.player-artist a')[0].innerText).split('- ').slice(1).join('- ').trim(),
       'album': titleize($('.player-wrapper a').attr('href').split('album/')[1]),
       'image': $('.player-album-thumbnail img')[0].src
     };

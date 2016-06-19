@@ -26,20 +26,20 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 #pragma mark Initialize
 
 + (MediaStrategyRegistry *)singleton{
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+
         singletonMediaStrategyRegistry = [MediaStrategyRegistry alloc];
         singletonMediaStrategyRegistry = [singletonMediaStrategyRegistry init];
     });
-    
+
     return singletonMediaStrategyRegistry;
-    
+
 }
 
 - (id)init{
-    
+
     if (singletonMediaStrategyRegistry != self) {
         return nil;
     }
@@ -53,9 +53,9 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     _strategyCache = cache;
     _registeredCache = [NSMutableDictionary new];
     _availableStrategies = [NSMutableArray new];
-    
+
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
-    
+
     // enable strategies that are marked enabled or have no entry
     for (NSString *fileName in _strategyCache.cache)
     {

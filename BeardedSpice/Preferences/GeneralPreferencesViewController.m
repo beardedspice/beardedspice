@@ -191,10 +191,12 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
         
         return [self tableView:tableView versionViewForObject:obj];
     }
-    else{
+    else if ([ident isEqualToString:@"smartIndicator"]){
 
         return [self tableView:tableView indicatorViewForObject:obj];
     }
+    
+    return nil;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView checkViewForObject:(MediaControllerObject *)obj{
@@ -243,6 +245,7 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     result.selectable = result.editable = result.drawsBackground = result.bordered = NO;
     
     result.stringValue = obj.version;
+    result.alignment = NSTextAlignmentRight;
     
     
     return result;
@@ -250,13 +253,15 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
 - (NSView *)tableView:(NSTableView *)tableView indicatorViewForObject:(MediaControllerObject *)obj{
 
-    NSImageView* result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 21, 21)];
+    NSImageView* result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)];
 
     result.imageScaling = NSImageScaleNone;
-    result.identifier = @"StrategyView";
+    result.toolTip = NSLocalizedString(@"This strategy is user custom defined.", @"In preferences, strategies list. ToolTip for image, which meens that this strategy is user defined.");
 
-    if (obj.isAuto)
-        result.image = [NSImage imageNamed:@"auto"];
+    if (obj.isCustom){
+        result.image = [NSImage imageNamed:@"custom"];
+        result.toolTip = NSLocalizedString(@"This strategy is user custom defined.", @"In preferences, strategies list. ToolTip for image, which meens that this strategy is user defined.");
+    }
 
     return result;
 }

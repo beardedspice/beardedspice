@@ -12,7 +12,7 @@ BSStrategy = {
     format: "%K LIKE[c] '*mp3.zing.vn/*'",
     args: ["URL"]
   },
-  toggle: function(){ document.querySelector('.jp-play').click(); },
+toggle: function(){  if (document.querySelector('.jp-play').style.display === 'none') { document.querySelector('.jp-pause').click(); } else { document.querySelector('.jp-play').click();} },
   previous: function(){ document.querySelector('.fn-prev').click(); },
   next: function(){ document.querySelector('.fn-next').click(); },
   pause: function(){ document.querySelector('.jp-pause').click(); },

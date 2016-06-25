@@ -30,13 +30,26 @@ NSString *const BeardedSpiceUsingAppleRemote = @"BeardedSpiceUsingAppleRemote";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 
+@interface GeneralPreferencesViewController ()
+
+@property BOOL selectedRowAllowExport;
+@property BOOL selectedRowAllowRemove;
+
+@end
+
 @implementation GeneralPreferencesViewController
 
 - (id)init{
     
     self = [super initWithNibName:@"GeneralPreferencesView" bundle:nil];
     if (self) {
-        
+
+        _toolTipForCustomStrategy = NSLocalizedString(
+            @"This strategy is user custom defined.",
+            @"(GeneralPreferencesViewController) In preferences, strategies "
+            @"list. ToolTip for row, which meens that this strategy is user "
+            @"defined.");
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(strategyChangedNotify:) name: BSVMStrategyChangedNotification object:nil];
         [self loadMediaControllerObjects];
     }
@@ -187,10 +200,6 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
         
         return [self tableView:tableView nameViewForObject:obj];
     }
-    else if ([ident isEqualToString:@"version"]){
-        
-        return [self tableView:tableView versionViewForObject:obj];
-    }
     else if ([ident isEqualToString:@"smartIndicator"]){
 
         return [self tableView:tableView indicatorViewForObject:obj];
@@ -232,21 +241,34 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     
     EHVerticalCenteredTextField *result = [EHVerticalCenteredTextField new];
     result.selectable = result.editable = result.drawsBackground = result.bordered = NO;
-    
-    result.stringValue = obj.name;
-    
-    
-    return result;
-}
 
-- (NSView *)tableView:(NSTableView *)tableView versionViewForObject:(MediaControllerObject *)obj{
+    NSMutableAttributedString *name = [[NSMutableAttributedString alloc]
+        initWithString:obj.name
+            attributes:@{
+                NSFontAttributeName :
+                    [NSFont systemFontOfSize:[NSFont systemFontSize]]
+            }];
+    if (![NSString isNullOrEmpty:obj.version]) {
+        NSString *vString = [NSString
+                             stringWithFormat:NSLocalizedString(@"  v.%@",
+                                                                @"(GeneralPreferencesViewController) In preferences, strategies list."
+                                                                @" Output format for name column "
+                                                                @"of the strategy list."),
+                             obj.version];
+        NSAttributedString *version = [[NSAttributedString alloc]
+                                       initWithString:vString
+                                       attributes:@{
+                                                    NSFontAttributeName :
+                                                        [NSFont systemFontOfSize:[NSFont labelFontSize]],
+                                                    NSForegroundColorAttributeName : [NSColor grayColor]
+                                                    }];
+        [name appendAttributedString:version];
+    }
+    result.attributedStringValue = name;
     
-    EHVerticalCenteredTextField *result = [EHVerticalCenteredTextField new];
-    result.selectable = result.editable = result.drawsBackground = result.bordered = NO;
-    
-    result.stringValue = obj.version;
-    result.alignment = NSTextAlignmentRight;
-    
+    if (obj.isCustom) {
+        result.toolTip = _toolTipForCustomStrategy;
+    }
     
     return result;
 }
@@ -256,14 +278,37 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
     NSImageView* result = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)];
 
     result.imageScaling = NSImageScaleNone;
-    result.toolTip = NSLocalizedString(@"This strategy is user custom defined.", @"In preferences, strategies list. ToolTip for image, which meens that this strategy is user defined.");
 
     if (obj.isCustom){
         result.image = [NSImage imageNamed:@"custom"];
-        result.toolTip = NSLocalizedString(@"This strategy is user custom defined.", @"In preferences, strategies list. ToolTip for image, which meens that this strategy is user defined.");
+        result.toolTip = _toolTipForCustomStrategy;
     }
 
     return result;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification{
+
+    NSTableView *tableView = notification.object;
+    
+    if (tableView) {
+        
+        self.selectedRowAllowExport = self.selectedRowAllowRemove = NO;
+        
+        NSInteger index = [tableView selectedRow];
+        if (index < 0) {
+            return;
+        }
+        
+        MediaControllerObject *obj = mediaControllerObjects[index];
+        if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
+            
+            self.selectedRowAllowExport = YES;
+            if (obj.isCustom) {
+                self.selectedRowAllowRemove = YES;
+            }
+        }
+    }
 }
 
 - (void)updateMediaStrategyRegistry:(id)sender {

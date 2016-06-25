@@ -44,10 +44,14 @@ extern NSString *const BeardedSpiceUpdateAtLaunch;
     NSMutableDictionary *userNativeApps;
 
     NSNumber *alwaysShow;
+    NSString *_toolTipForCustomStrategy;
 }
 
 @property (assign) IBOutlet NSTableView *strategiesView;
 @property (weak) IBOutlet NSButton *firstResponderView;
+
+@property (readonly) BOOL selectedRowAllowExport;
+@property (readonly) BOOL selectedRowAllowRemove;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions

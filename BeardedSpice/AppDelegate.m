@@ -26,6 +26,7 @@
 #import "BSStrategyCache.h"
 #import "BSTrack.h"
 #import "BSStrategyVersionManager.h"
+#import "BSCustomStrategyManager.h"
 
 #import "runningSBApplication.h"
 
@@ -65,7 +66,7 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Application Delegates
 /////////////////////////////////////////////////////////////////////////
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
 //    // Insert code here to initialize your application
 //    // Register defaults for the whitelist of apps that want to use media keys
@@ -138,6 +139,12 @@ BOOL accessibilityApiEnabled = NO;
     [self checkAccessibilityTrusted];
 
     [self resetStatusMenu];
+}
+
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
+    
+    [[BSCustomStrategyManager singleton] importFromPath:filename];
+    return YES;
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender{

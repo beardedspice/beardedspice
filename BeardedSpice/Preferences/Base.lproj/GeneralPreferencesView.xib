@@ -141,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="152">
-                                <rect key="frame" x="0.0" y="0.0" width="314" height="220"/>
+                                <rect key="frame" x="0.0" y="0.0" width="314" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="4" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -187,6 +187,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="-2" id="173"/>
                                     <outlet property="delegate" destination="-2" id="172"/>
+                                    <outlet property="nextKeyView" destination="Jrd-6H-JSR" id="JTc-HJ-F1V"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -208,12 +209,23 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <action selector="clickExport:" target="-2" id="6PQ-yt-kXu"/>
+                        <binding destination="-2" name="enabled2" keyPath="self.importExportPanelOpened" previousBinding="jrW-8e-pZK" id="9tb-vt-HsK">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowExport" id="jrW-8e-pZK">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>
                             </dictionary>
                         </binding>
+                        <outlet property="nextKeyView" destination="sDy-jH-cwD" id="zHl-tg-rSR"/>
                     </connections>
                 </button>
                 <button toolTip="Import user custom defined strategy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sDy-jH-cwD">
@@ -222,6 +234,17 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="clickImport:" target="-2" id="6f2-5p-inU"/>
+                        <binding destination="-2" name="enabled" keyPath="self.importExportPanelOpened" id="9Uh-Kf-5tC">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <outlet property="nextKeyView" destination="9cs-yg-Oga" id="ryX-L5-uNc"/>
+                    </connections>
                 </button>
                 <button toolTip="Remove current selected custom defined strategy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9cs-yg-Oga">
                     <rect key="frame" x="222" y="37" width="100" height="32"/>
@@ -230,6 +253,16 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <action selector="clickRemove:" target="-2" id="eeI-06-JBI"/>
+                        <binding destination="-2" name="enabled2" keyPath="self.importExportPanelOpened" previousBinding="jnB-pz-F9l" id="kDw-JE-2ax">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowRemove" id="jnB-pz-F9l">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>

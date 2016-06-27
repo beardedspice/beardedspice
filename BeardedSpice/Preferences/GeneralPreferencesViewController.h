@@ -30,6 +30,8 @@ extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
 extern NSString *const BeardedSpiceUpdateAtLaunch;
 
+extern NSString *const BeardedSpiceImportExportLastDirectory;
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController
 /////////////////////////////////////////////////////////////////////////
@@ -52,6 +54,8 @@ extern NSString *const BeardedSpiceUpdateAtLaunch;
 
 @property (readonly) BOOL selectedRowAllowExport;
 @property (readonly) BOOL selectedRowAllowRemove;
+@property (readonly) BOOL importExportPanelOpened;
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
@@ -60,5 +64,8 @@ extern NSString *const BeardedSpiceUpdateAtLaunch;
 - (IBAction)toggleLaunchAtStartup:(id)sender;
 - (IBAction)toggleAutoPause:(id)sender;
 - (IBAction)toggleUseRemote:(id)sender;
+- (IBAction)clickExport:(id)sender;
+- (IBAction)clickImport:(id)sender;
+- (IBAction)clickRemove:(id)sender;
 
 @end

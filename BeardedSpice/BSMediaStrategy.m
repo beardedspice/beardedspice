@@ -35,6 +35,10 @@ NSString *const kBSMediaStrategyAcceptKeyArgs        = @"args";
 NSString *const kBSMediaStrategyAcceptValueURL       = @"url";
 NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
+//---
+NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain";
+
+
 @interface BSMediaStrategy ()
 
 // Metadata
@@ -49,33 +53,40 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 @property (nonatomic, strong) NSDictionary *scripts;
 
 // Internal setup functions
-- (BOOL)_loadFile;
-- (BOOL)_setupData:(JSValue *_Nonnull)data;
+- (NSError *)_loadFile;
+- (NSError *)_setupData:(JSValue *_Nonnull)data;
 - (NSDictionary *_Nonnull)_setupAccept:(JSValue *_Nonnull)data;
 
 @end
 
 @implementation BSMediaStrategy
 
-- (instancetype)initWithStrategyURL:(NSURL * _Nonnull)strategyURL
-{
-    self = [super init];
-    if (self)
-    {
-        _strategyURL = strategyURL;
-        _fileName = [strategyURL lastPathComponent];
-        _custom = [[strategyURL absoluteString] hasPrefix:[[NSURL URLForCustomStrategies] absoluteString]];
-        
-        //We don't need strategy, which is not loaded.
-        if (![self _loadFile]) {
-            NSLog(@"Failed to load strategy with URL: %@", strategyURL);
-            return nil;
-        }
-        
-    }
-    return self;
-}
++ (BSMediaStrategy *)mediaStrategyWithURL:(NSURL *)strategyURL
+                                    error:(NSError **)error {
 
+    BSMediaStrategy *strategy = [BSMediaStrategy new];
+
+    strategy.strategyURL = strategyURL;
+    
+    strategy.fileName = [[[strategyURL lastPathComponent]
+        stringByDeletingPathExtension] stringByAppendingString:@".js"]; // Prevent custom extension, like 'bsstrategy'
+
+    strategy.custom = [[strategyURL absoluteString]
+        hasPrefix:[[NSURL URLForCustomStrategies] absoluteString]];
+
+    // We don't need strategy, which is not loaded.
+    NSError *err = [strategy _loadFile];
+    if (err) {
+        NSLog(@"Failed to load strategy with URL: %@", strategyURL);
+        if (error) {
+            *error = err;
+        }
+
+        strategy = nil;
+    }
+
+    return strategy;
+}
 
 #pragma mark - Helper Functions
 
@@ -110,40 +121,50 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
     return (value && value.length);
 }
 
-- (BOOL)_loadFile
+- (NSError *)_loadFile
 {
     if (!_strategyURL)
-        return NO;
+        return [self internalError];
     
     NSError *error = nil;
     _strategyJsBody = [[NSString alloc] initWithContentsOfURL:_strategyURL encoding:NSUTF8StringEncoding error:&error];
     if ([NSString isNullOrEmpty:_strategyJsBody])
-        return NO;
+        return [self internalError];
     
-    __block BOOL _loaded = YES;
+    __block NSError *err = nil;
     JSContext *context = [JSContext new];
     
     // This is run synchronously with evaluateScript :)
-    context.exceptionHandler = ^(JSContext __attribute__((unused)) *context, JSValue *exception) {
-        _loaded = NO;
-        NSLog(@"JS Error with Strategy (%@): %@", _fileName, exception);
+    context.exceptionHandler = ^(JSContext __attribute__((unused)) * context,
+                                 JSValue * exception) {
+      NSString *descr = [NSString
+          stringWithFormat:NSLocalizedString(
+                               @"Error occured when parsing javascript: %@",
+                               @"(BSMediaStrategy) Parsing javascript error "
+                               @"description."),
+                           exception];
+      err = [NSError errorWithDomain:kBSMediaStrategyErrorDomain
+                                code:BSMS_ERROR_JSPARSING
+                            userInfo:@{NSLocalizedDescriptionKey : descr}];
+      NSLog(@"JS Error with Strategy (%@): %@", _fileName, exception);
     };
-    
+
     JSValue *strategyData = [context evaluateScript:_strategyJsBody];
-    if (_loaded && strategyData.isObject)
+    if (!err && strategyData.isObject)
         return [self _setupData:strategyData];
     
-    return NO;
+    return err;
 }
 
-- (BOOL)reloadDataFromURL:(NSURL *_Nonnull)strategyURL
+- (NSError *)reloadDataFromURL:(NSURL *_Nonnull)strategyURL
 {
-    BSMediaStrategy *newStrategy = [[BSMediaStrategy alloc] initWithStrategyURL:strategyURL];
+    NSError *error;
+    BSMediaStrategy *newStrategy = [BSMediaStrategy mediaStrategyWithURL:strategyURL error:&error];
     if (newStrategy) {
         [self copyStateFrom:newStrategy];
-        return YES;
+        return nil;
     }
-    return NO;
+    return error;
 }
 
 // quick helper function for safely extracting script strings from jsvalue
@@ -156,25 +177,27 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     return [[value toString] addExecutionStringToScript];
 }
 
-- (BOOL)_setupData:(JSValue *_Nonnull)data
+- (NSError *)_setupData:(JSValue *_Nonnull)data
 {
     if (!_fileName || !_fileName.length)
-        return NO;
+        return [self internalError];
 
     NSString *displayName = [data[kBSMediaStrategyKeyDisplayName] toString];
     if ([NSString isNullOrEmpty:displayName]) {
-        return NO;
-    }
-    
-    JSValue *version = data[kBSMediaStrategyKeyVersion];
-    NSInteger strategyVersion = ([version isNull] || [version isUndefined]) ? 0 : [version toUInt32];
-    if (_strategyVersion >= strategyVersion)
-    {
-        NSLog(@"WARNING: Tried to update a strategy %@ with an older version.", _fileName);
-        return NO;
+        return [NSError
+            errorWithDomain:kBSMediaStrategyErrorDomain
+                       code:BSMS_ERROR_DISPLAYNAME
+                   userInfo:@{
+                       NSLocalizedDescriptionKey : NSLocalizedString(
+                           @"Error occured when checking strategy: display "
+                           @"name of the strategy don't found.",
+                           @"(BSMediaStrategy) Not found displayName error "
+                           @"description")
+                   }];
     }
 
-    self.strategyVersion = strategyVersion;
+    JSValue *version = data[kBSMediaStrategyKeyVersion];
+    self.strategyVersion = ([version isNull] || [version isUndefined]) ? 0 : [version toUInt32];
     self.acceptParams = [self _setupAccept:data];
 
     self.scripts = @{
@@ -187,7 +210,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
         kBSMediaStrategyKeyFavorite:    js_string_for_key(kBSMediaStrategyKeyFavorite, data),
         kBSMediaStrategyKeyTrackInfo:   js_string_for_key(kBSMediaStrategyKeyTrackInfo, data)
     };
-    return YES;
+    return nil;
 }
 
 - (NSDictionary *_Nonnull)_setupAccept:(JSValue *_Nonnull)data
@@ -225,6 +248,16 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     }
 
     return @{};
+}
+
+- (NSError *)internalError{
+
+    return [NSError errorWithDomain:kBSMediaStrategyErrorDomain
+                               code:BSMS_ERROR_INTERNAL
+                           userInfo:@{
+                               NSLocalizedDescriptionKey :
+                                   NSLocalizedString(@"Internal error occured.", @"(BSMediaStrategy) Internal error description.")
+                               }];
 }
 
 #pragma mark - Core Functionality
@@ -323,6 +356,16 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     
     NSDictionary *trackData = [tab executeJavascript:script];
     return (trackData && trackData.count) ? [[BSTrack alloc] initWithInfo:trackData] : nil;
+}
+
+- (NSString *)description{
+
+    return [NSString
+        stringWithFormat:
+            NSLocalizedString(
+                @"Strategy with file name: \"%@\"\nDisplay name: \"%@\"\nVersion: %d",
+                @"(BSMediaStrategy) Format of the media strategy description"),
+            self.fileName, self.displayName, self.strategyVersion];
 }
 
 @end

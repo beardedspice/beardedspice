@@ -14,3 +14,5 @@ DEBUG_STRATEGY = 0
 
 // Marco definition
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG_STRATEGY=$(DEBUG_STRATEGY)
+
+#include "Config.xcconfig"

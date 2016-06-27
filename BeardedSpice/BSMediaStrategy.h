@@ -29,6 +29,12 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptKeyArgs;
 extern NSString * _Nonnull const kBSMediaStrategyAcceptValueURL;
 extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 
+extern NSString *_Nonnull const kBSMediaStrategyErrorDomain;
+
+#define BSMS_ERROR_INTERNAL     100
+#define BSMS_ERROR_JSPARSING    200
+#define BSMS_ERROR_DISPLAYNAME  300
+
 @interface BSMediaStrategy : NSObject
 
 @property (nonatomic, assign, readonly) long strategyVersion;
@@ -42,20 +48,22 @@ extern NSString * _Nonnull const kBSMediaStrategyAcceptValueTitle;
 @property (nonatomic, strong, readonly) NSDictionary * _Nonnull scripts;
 
 /**
-    @param strategyURL The URL to the most up-to-date version of the strategy
-    @return Returns a BSMediaStrategy object with data loaded from the provided plist.
-        Or returns nil if failure.
+    @param strategyURL The URL to the strategy
+    @param error returning parameter, may be nil. 
+    If error occurs and parameter not nil, returns error object.
+ 
+    @return Returns a BSMediaStrategy object with data loaded from the provided URL.
+    Or returns nil if failure.
  */
-//- (instancetype )initWithStrategyName:(NSString * _Nonnull)strategyName;
-- (instancetype _Nullable)initWithStrategyURL:(NSURL * _Nonnull)strategyURL;
++ (BSMediaStrategy *_Nullable)mediaStrategyWithURL:(NSURL *_Nonnull)strategyURL error:(NSError *_Nonnull *_Nullable)error;
 
 /**
  A method for reloading the strategy from file, updating all future uses of this
  object to be with the most up-to-date plan of attack.
  @param strategyURL
- @return A boolean stating the success of the operation
+ @return Returns nil on success.
  */
-- (BOOL)reloadDataFromURL:(NSURL *_Nonnull)strategyURL;
+- (NSError * _Nullable)reloadDataFromURL:(NSURL *_Nonnull)strategyURL;
 
 /**
     @return Returns name of that media stratery.

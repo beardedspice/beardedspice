@@ -32,6 +32,11 @@
 + (NSURL * _Nonnull)URLForCustomStrategies;
 
 /**
+ Path to the BeardedSpice bundle strategy folder.
+ */
++ (NSURL * _Nonnull)URLForBundleStrategies;
+
+/**
  */
 + (NSURL * _Nonnull)URLForFileName:(NSString * _Nullable)fileName;
 

@@ -26,7 +26,7 @@ sharedExamplesFor(@"MediaStrategy", ^(NSDictionary *data) {
          strategyFileName = data[@"strategyName"];
          path = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"];
          fileURL = [[NSURL alloc] initWithString:strategyFileName relativeToURL:path];
-         strategy = [[BSMediaStrategy alloc] initWithStrategyURL:fileURL];
+         strategy = [BSMediaStrategy mediaStrategyWithURL:fileURL error:nil];
          //mock = [[BSStrategyMockObject alloc] initWithStrategyName:strategyFileName];
     });
 

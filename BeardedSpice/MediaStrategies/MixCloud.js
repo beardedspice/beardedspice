@@ -6,19 +6,21 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"MixCloud",
   accepts: {
     method: "predicateOnTab",
     format:"%K LIKE[c] '*mixcloud.com*'",
     args: ["URL"]
   },
-  pause: function () { document.querySelector('.pause-state').click() },
+  isPlaying: function() {return (document.querySelector('.player-control.pause-state') != null)},
+  pause: function () { var aButton = document.querySelector('.player-control.pause-state'); if(aButton) aButton.click() },
   toggle: function () { document.querySelector('.player-control').click(); },
   trackInfo: function () {
     return {
       'track': document.querySelector('.player-cloudcast-title').text,
       'artist': document.querySelector('.player-cloudcast-author-link').text,
+      'image' : document.querySelector('div.player img.loaded').getAttribute('src')
     }
   }
 }

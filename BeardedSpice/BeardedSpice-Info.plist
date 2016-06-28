@@ -12,7 +12,7 @@
 				<string>$(BS_STRATEGY_EXTENSION)</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>AppIcon</string>
+			<string>StrategyIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>BeardedSpice Strategy Javascript.</string>
 			<key>CFBundleTypeRole</key>
@@ -83,7 +83,7 @@
 			<key>UTTypeDescription</key>
 			<string>BeardedSpice Strategy Javascript.</string>
 			<key>UTTypeIconFile</key>
-			<string>AppIcon</string>
+			<string>StrategyIcon</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.beardedspice.bsstrategy</string>
 			<key>UTTypeReferenceURL</key>

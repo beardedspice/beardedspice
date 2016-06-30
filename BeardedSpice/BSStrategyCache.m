@@ -9,9 +9,6 @@
 #import "BSStrategyCache.h"
 #import "BSMediaStrategy.h"
 
-/// Folder name, which contains media strategies, in app bundle.
-static NSString *const kBSMediaStrategiesResourcesFolder = @"MediaStrategies";
-
 
 NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
 
@@ -65,10 +62,8 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
         if (strategy){
             // do not update strategy if it was loaded from custom folder already,
             // or update if path is equal
-            if (!strategy.custom || [strategyURL isEqual:strategy.strategyURL]) {
-                if (![strategy reloadDataFromURL:strategyURL]) {
-                    result = [NSError errorWithDomain:BSMediaStrategyErrorDomain code:BSSC_ERROR_STARTEGY_UPDATE userInfo:nil];
-                };
+            if (!strategy.custom || [[strategyURL path] isEqualToString:[strategy.strategyURL path]]) {
+                result = [strategy reloadDataFromURL:strategyURL];
             }
         }
         else{
@@ -85,7 +80,7 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
     __block BSMediaStrategy *result = nil;
     dispatch_sync(_cacheSerialQueue, ^{
         NSString *fileName = [strategyURL lastPathComponent];
-        result = [[BSMediaStrategy alloc] initWithStrategyURL:strategyURL];
+        result = [BSMediaStrategy mediaStrategyWithURL:strategyURL error:nil];
         if (result) {
             _cache[fileName] = result;
         }
@@ -103,8 +98,8 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
 
 - (BOOL)loadStrategies
 {
-    NSURL *resourcesUrl = [[NSBundle mainBundle] resourceURL];
-    BOOL ret = [self updateStrategiesFromSourceURL:[resourcesUrl URLByAppendingPathComponent:kBSMediaStrategiesResourcesFolder]];
+    NSURL *resourcesUrl = [NSURL URLForBundleStrategies];
+    BOOL ret = [self updateStrategiesFromSourceURL:resourcesUrl];
     if (!ret)
         return NO;
 

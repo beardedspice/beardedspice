@@ -68,18 +68,40 @@ static inline NSString *appSupportPath() {
     return [documentPaths firstObject];
 }
 
-+ (NSURL * _Nonnull)URLForSavedStrategies
-{
-    // TODO make static
-    NSString *pathString = [NSString stringWithFormat:@"%@/BeardedSpice/Strategies/", appSupportPath()];
-    return [NSURL fileURLWithPath:pathString isDirectory:YES];
++ (NSURL *_Nonnull)URLForSavedStrategies {
+    
+    static NSURL *result;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+      NSString *pathString = [NSString
+          stringWithFormat:@"%@/BeardedSpice/Strategies/", appSupportPath()];
+      result = [NSURL fileURLWithPath:pathString isDirectory:YES];
+    });
+    return result;
 }
 
-+ (NSURL * _Nonnull)URLForCustomStrategies
-{
-    // TODO make static
-    NSString *pathString = [NSString stringWithFormat:@"%@/BeardedSpice/CustomStrategies/", appSupportPath()];
-    return [NSURL fileURLWithPath:pathString isDirectory:YES];
++ (NSURL *_Nonnull)URLForCustomStrategies {
+    
+    static NSURL *result;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+      NSString *pathString =
+          [NSString stringWithFormat:@"%@/BeardedSpice/CustomStrategies/",
+                                     appSupportPath()];
+      result = [NSURL fileURLWithPath:pathString isDirectory:YES];
+    });
+    return result;
+}
+
++ (NSURL * _Nonnull)URLForBundleStrategies{
+    
+    static NSURL *result;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        result = [[NSBundle mainBundle] resourceURL];
+        result = [result URLByAppendingPathComponent:@"MediaStrategies"];
+    });
+    return result;
 }
 
 + (NSURL * _Nonnull)URLForFileName:(NSString *)fileName

@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#define kBSVersionErrorNotFound     -1
-#define kBSVersionErrorInvalidInput -2
-
 /**
  FIXME
  */
@@ -33,11 +30,11 @@ extern NSString *BSVMStrategyChangedNotification;
  */
 - (instancetype)initWithStrategyCache:(BSStrategyCache *)cache;
 
-/**
- @param mediaStrategy The filename of the strategy template to check.
- @return returns the version number for the version of the strategy found in the index plist (versions.plist)
- */
-- (long)versionForMediaStrategy:(NSString *)mediaStrategy;
+///**
+// @param mediaStrategy The filename of the strategy template to check.
+// @return returns the version number for the version of the strategy found in the index plist (versions.plist)
+// */
+//- (long)versionForMediaStrategy:(NSString *)mediaStrategy;
 
 /**
  Downloads the versions.plist file from the target repository URL and checks if any new strategy template

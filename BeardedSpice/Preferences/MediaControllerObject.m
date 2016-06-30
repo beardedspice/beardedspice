@@ -23,11 +23,13 @@
         }
 
         if ([object isMemberOfClass:BSMediaStrategy.class]) {
-            _isAuto = [object testIfImplemented:kBSMediaStrategyKeyIsPlaying];
+            _isCustom = [object custom];
+            _version = [NSString stringWithFormat:@"%ld", [object strategyVersion]];
         } else if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
-            _isAuto = YES;
+            _isCustom = NO;
+            _version = [NSString string];
         }
-
+        
         _representationObject = object;
     }
 

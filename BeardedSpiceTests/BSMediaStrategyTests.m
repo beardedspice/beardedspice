@@ -37,7 +37,7 @@ describe(@"Load the Youtube strategy", ^{
         NSString *youtubeName = @"Youtube";
         NSString *fileName = [NSString stringWithFormat:@"%@.js", youtubeName];
         NSURL *fileURL = [[NSURL alloc] initWithString:fileName relativeToURL:path];
-        BSMediaStrategy *strategy = [[BSMediaStrategy alloc] initWithStrategyURL:fileURL];
+        BSMediaStrategy *strategy = [BSMediaStrategy mediaStrategyWithURL:fileURL error:nil];
         [[strategy should] beMemberOfClass:BSMediaStrategy.class];
 
         [[strategy.scripts shouldNot] beNil];

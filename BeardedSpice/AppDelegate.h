@@ -18,6 +18,8 @@
 
 #import "BSMediaStrategy.h"
 
+#define APPDELEGATE     ([[NSApplication sharedApplication] delegate])
+
 @class runningSBApplication, BSStrategyVersionManager;
 
 extern BOOL accessibilityApiEnabled;
@@ -65,5 +67,11 @@ extern BOOL accessibilityApiEnabled;
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
 - (void)showNotification;
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Windows control methods
+
+-(void)windowWillBeVisible:(id)window;
+-(void)removeWindow:(id)obj;
 
 @end

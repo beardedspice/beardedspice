@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralPreferencesViewController">
@@ -15,11 +15,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="411" height="411"/>
+            <rect key="frame" x="0.0" y="0.0" width="412" height="475"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                    <rect key="frame" x="42" y="356" width="115" height="18"/>
+                    <rect key="frame" x="42" y="421" width="115" height="18"/>
                     <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="722">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -38,7 +38,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="126">
-                    <rect key="frame" x="42" y="244" width="142" height="17"/>
+                    <rect key="frame" x="42" y="308" width="142" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="138" id="494"/>
                     </constraints>
@@ -49,7 +49,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="351">
-                    <rect key="frame" x="42" y="290" width="328" height="18"/>
+                    <rect key="frame" x="42" y="335" width="328" height="18"/>
                     <buttonCell key="cell" type="check" title="Show track info on keypress when player is hidden" bezelStyle="regularSquare" imagePosition="left" inset="2" id="352">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -74,8 +74,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="D1C-WS-HOj" userLabel="Check for Updates at Launch">
-                    <rect key="frame" x="42" y="336" width="283" height="18"/>
-                    <animations/>
+                    <rect key="frame" x="42" y="400" width="283" height="18"/>
                     <buttonCell key="cell" type="check" title="Check for Compatibility Updates at Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C81-eE-dH1">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -98,7 +97,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="765">
-                    <rect key="frame" x="42" y="312" width="294" height="18"/>
+                    <rect key="frame" x="42" y="357" width="294" height="18"/>
                     <buttonCell key="cell" type="check" title="Pause playback when headphone is removed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="766">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -117,7 +116,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="824">
-                    <rect key="frame" x="42" y="334" width="294" height="18"/>
+                    <rect key="frame" x="42" y="379" width="294" height="18"/>
                     <buttonCell key="cell" type="check" title="Use Apple Remote for control playback" bezelStyle="regularSquare" imagePosition="left" inset="2" id="825">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -135,33 +134,45 @@
                         <outlet property="nextKeyView" destination="351" id="826"/>
                     </connections>
                 </button>
-                <scrollView horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="151">
-                    <rect key="frame" x="44" y="20" width="330" height="211"/>
+                <scrollView horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="151">
+                    <rect key="frame" x="44" y="73" width="331" height="222"/>
                     <clipView key="contentView" id="ufA-oN-CGJ">
-                        <rect key="frame" x="1" y="1" width="328" height="209"/>
+                        <rect key="frame" x="1" y="1" width="314" height="220"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="25" viewBased="YES" id="152">
-                                <rect key="frame" x="0.0" y="0.0" width="313" height="0.0"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="152">
+                                <rect key="frame" x="0.0" y="0.0" width="314" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="4" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <color key="gridColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="strategy" width="285" minWidth="40" maxWidth="285" id="156">
+                                    <tableColumn identifier="check" width="19" minWidth="19" maxWidth="19" id="X2t-Wp-njL" userLabel="check">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableHeaderCell>
-                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="159">
+                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="xev-x9-5TQ">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </tableColumn>
-                                    <tableColumn identifier="smartIndicator" editable="NO" width="20" minWidth="20" maxWidth="20" id="536">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                    <tableColumn identifier="name" editable="NO" width="262" minWidth="262" maxWidth="350" id="156">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tableHeaderCell>
+                                        <buttonCell key="dataCell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1zA-Oh-nLV">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                    </tableColumn>
+                                    <tableColumn identifier="smartIndicator" editable="NO" width="21" minWidth="21" maxWidth="21" id="536">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -176,6 +187,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="-2" id="173"/>
                                     <outlet property="delegate" destination="-2" id="172"/>
+                                    <outlet property="nextKeyView" destination="Jrd-6H-JSR" id="JTc-HJ-F1V"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -186,10 +198,79 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="155">
-                        <rect key="frame" x="313" y="1" width="16" height="209"/>
+                        <rect key="frame" x="315" y="1" width="15" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <button toolTip="Export current selected strategy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-6H-JSR">
+                    <rect key="frame" x="38" y="37" width="92" height="32"/>
+                    <buttonCell key="cell" type="push" title="Export..." bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ynr-Hy-ewZ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="clickExport:" target="-2" id="6PQ-yt-kXu"/>
+                        <binding destination="-2" name="enabled2" keyPath="self.importExportPanelOpened" previousBinding="jrW-8e-pZK" id="9tb-vt-HsK">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowExport" id="jrW-8e-pZK">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                        <outlet property="nextKeyView" destination="sDy-jH-cwD" id="zHl-tg-rSR"/>
+                    </connections>
+                </button>
+                <button toolTip="Import user custom defined strategy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sDy-jH-cwD">
+                    <rect key="frame" x="130" y="37" width="92" height="32"/>
+                    <buttonCell key="cell" type="push" title="Import..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTd-5X-Tbo">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="clickImport:" target="-2" id="6f2-5p-inU"/>
+                        <binding destination="-2" name="enabled" keyPath="self.importExportPanelOpened" id="9Uh-Kf-5tC">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <outlet property="nextKeyView" destination="9cs-yg-Oga" id="ryX-L5-uNc"/>
+                    </connections>
+                </button>
+                <button toolTip="Remove current selected custom defined strategy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9cs-yg-Oga">
+                    <rect key="frame" x="222" y="37" width="100" height="32"/>
+                    <buttonCell key="cell" type="push" title="Remove..." bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PrJ-PR-KHV">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="clickRemove:" target="-2" id="eeI-06-JBI"/>
+                        <binding destination="-2" name="enabled2" keyPath="self.importExportPanelOpened" previousBinding="jnB-pz-F9l" id="kDw-JE-2ax">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowRemove" id="jnB-pz-F9l">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="126" firstAttribute="leading" secondItem="151" secondAttribute="leading" id="491"/>
@@ -206,14 +287,21 @@
                 <constraint firstItem="824" firstAttribute="top" secondItem="1" secondAttribute="top" constant="80" id="874"/>
                 <constraint firstItem="765" firstAttribute="top" secondItem="1" secondAttribute="top" constant="102" id="882"/>
                 <constraint firstItem="126" firstAttribute="top" secondItem="1" secondAttribute="top" constant="150" id="887"/>
-                <constraint firstAttribute="bottom" secondItem="151" secondAttribute="bottom" constant="20" id="889"/>
+                <constraint firstItem="sDy-jH-cwD" firstAttribute="centerY" secondItem="Jrd-6H-JSR" secondAttribute="centerY" id="0eM-rU-Tea"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="3bJ-tB-9un"/>
+                <constraint firstAttribute="bottom" secondItem="Jrd-6H-JSR" secondAttribute="bottom" constant="44" id="494-uk-jGM"/>
+                <constraint firstItem="Jrd-6H-JSR" firstAttribute="leading" secondItem="151" secondAttribute="leading" id="IN9-Ox-TqH"/>
+                <constraint firstItem="sDy-jH-cwD" firstAttribute="leading" secondItem="Jrd-6H-JSR" secondAttribute="trailing" constant="12" id="L8t-I9-WdQ"/>
+                <constraint firstItem="151" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="44" id="Tre-OR-xIf"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="7" id="fOR-i9-VAK"/>
+                <constraint firstItem="9cs-yg-Oga" firstAttribute="leading" secondItem="sDy-jH-cwD" secondAttribute="trailing" constant="12" id="hEp-fG-654"/>
+                <constraint firstItem="9cs-yg-Oga" firstAttribute="centerY" secondItem="Jrd-6H-JSR" secondAttribute="centerY" id="hu8-fv-lti"/>
+                <constraint firstItem="Jrd-6H-JSR" firstAttribute="top" secondItem="151" secondAttribute="bottom" constant="8" id="lu8-J6-tfu"/>
             </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="721" id="820"/>
             </connections>
-            <point key="canvasLocation" x="337.5" y="355.5"/>
+            <point key="canvasLocation" x="336" y="387.5"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="436"/>
     </objects>

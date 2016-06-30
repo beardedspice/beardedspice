@@ -47,16 +47,12 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
 
 #pragma mark - Version Accessors
 
-- (long)versionForMediaStrategy:(NSString *)mediaStrategy
+- (BSMediaStrategy *)mediaStrategy:(NSString *)mediaStrategy
 {
     if (!mediaStrategy || !mediaStrategy.length)
-        return kBSVersionErrorInvalidInput;
+        return nil;
 
-    BSMediaStrategy *stratery = [_strategyCache strategyForFileName:[mediaStrategy stringByAppendingString:@".js"]];
-    if (stratery)
-        return stratery.strategyVersion;
-
-    return kBSVersionErrorNotFound;
+    return [_strategyCache strategyForFileName:[mediaStrategy stringByAppendingString:@".js"]];
 }
 
 - (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file
@@ -95,7 +91,16 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
         for (NSString *key in newVersions)
         {
-            long version = [self versionForMediaStrategy:key];
+            
+            long version = 0;
+            // This is because we don't need update custom strategy,
+            // because it may have version number smoller than version of the strategy from backend server.
+            BSMediaStrategy *strategy = [self mediaStrategy:key];
+            if (strategy.custom) {
+                continue;
+            }
+            version = strategy.strategyVersion;
+            
             long newVersion = [newVersions[key] longValue];
             if (version >= newVersion) // greater than? wat.
                 continue;
@@ -114,7 +119,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
         
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
         if (foundNewVersions) {
-            [self notifyThatAdded];
+            [self notifyThatChanged];
         }
     }
     else{
@@ -129,7 +134,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
     NSError *error = nil;
     NSURL *pathURL = [self repositoryURLForFile:mediaStrategy];
     // download from remote repository
-    BSMediaStrategy *newVersions = [[BSMediaStrategy alloc] initWithStrategyURL:pathURL];
+    BSMediaStrategy *newVersions = [BSMediaStrategy mediaStrategyWithURL:pathURL error:nil];
     if (!newVersions)
     {
         NSLog(@"Error downloading strategy \"%@\"", mediaStrategy);
@@ -168,7 +173,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
 
 #pragma mark - Helper Methods
 
-- (void)notifyThatAdded{
+- (void)notifyThatChanged{
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]

@@ -72,6 +72,8 @@
 	<integer>1</integer>
 	<key>MusicUnlimited</key>
 	<integer>1</integer>
+	<key>Napster</key>
+	<integer>1</integer>
 	<key>Netflix</key>
 	<integer>1</integer>
 	<key>NoAdRadio</key>
@@ -95,8 +97,6 @@
 	<key>ProductHunt</key>
 	<integer>1</integer>
 	<key>Rdio</key>
-	<integer>1</integer>
-	<key>Rhapsody</key>
 	<integer>1</integer>
 	<key>Saavn</key>
 	<integer>1</integer>

@@ -67,7 +67,7 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
     BSMediaStrategy *strategy = [BSMediaStrategy new];
 
     strategy.strategyURL = strategyURL;
-    
+
     strategy.fileName = [[[strategyURL lastPathComponent]
         stringByDeletingPathExtension] stringByAppendingString:@".js"]; // Prevent custom extension, like 'bsstrategy'
 
@@ -92,9 +92,9 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
 
 /**
  Copying of the variables, which reflect state of the object.
- 
+
  @param strategy Object from which performed copying.
- 
+
  @return Returns self.
  */
 - (instancetype _Nonnull)copyStateFrom:(BSMediaStrategy * _Nonnull)strategy{
@@ -106,12 +106,12 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
     self.fileName = strategy.fileName;
     self.scripts = strategy.scripts;
     self.acceptParams = strategy.acceptParams;
-    
+
     return self;
 }
 
 - (NSComparisonResult)compare:(BSMediaStrategy *)strategy{
-    
+
     return [self.displayName localizedCompare:strategy.displayName];
 }
 
@@ -125,15 +125,15 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
 {
     if (!_strategyURL)
         return [self internalError];
-    
+
     NSError *error = nil;
     _strategyJsBody = [[NSString alloc] initWithContentsOfURL:_strategyURL encoding:NSUTF8StringEncoding error:&error];
     if ([NSString isNullOrEmpty:_strategyJsBody])
         return [self internalError];
-    
+
     __block NSError *err = nil;
     JSContext *context = [JSContext new];
-    
+
     // This is run synchronously with evaluateScript :)
     context.exceptionHandler = ^(JSContext __attribute__((unused)) * context,
                                  JSValue * exception) {
@@ -152,7 +152,7 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
     JSValue *strategyData = [context evaluateScript:_strategyJsBody];
     if (!err && strategyData.isObject)
         return [self _setupData:strategyData];
-    
+
     return err;
 }
 
@@ -299,7 +299,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if ([NSString isNullOrEmpty:script]) {
         return NO;
     }
-    
+
     NSNumber *isPlaying = [tab executeJavascript:script];
     return [isPlaying boolValue] ?: NO;
 }
@@ -353,7 +353,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if ([NSString isNullOrEmpty:script]) {
         return nil;
     }
-    
+
     NSDictionary *trackData = [tab executeJavascript:script];
     return (trackData && trackData.count) ? [[BSTrack alloc] initWithInfo:trackData] : nil;
 }

@@ -15,9 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *availableStrategies;
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
 @property (nonatomic, strong) BSStrategyCache *strategyCache;
-@property (nonatomic) NSCompoundPredicate *commonAcceptPredicate;
-@property (nonatomic) NSString *commonAcceptScript;
-
 @end
 
 @implementation MediaStrategyRegistry {
@@ -68,8 +65,6 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
             [_availableStrategies addObject:strategy];
         }
     }
-    
-    [self reloadCommonAccept];
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -79,59 +74,18 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 {
     [_availableStrategies addObject:strategy];
     [self clearCache];
-    [self reloadCommonAccept];
 }
 
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
     [self clearCache];
-    [self reloadCommonAccept];
 }
 
 - (void)clearCache
 {
     if (_registeredCache.count)
         self.registeredCache = [NSMutableDictionary dictionary];
-}
-
-- (void)reloadCommonAccept {
-
-    @autoreleasepool {
-
-        NSMutableArray<NSPredicate *> *predicates = [NSMutableArray new];
-        NSMutableArray<NSString *> *scripts = [NSMutableArray new];
-        for (BSMediaStrategy *item in self.availableStrategies) {
-
-            NSString *method = item.acceptParams[kBSMediaStrategyAcceptMethod];
-            if (!method)
-                continue;
-
-            if ([method isEqualToString:kBSMediaStrategyAcceptPredicateOnTab]) {
-                NSPredicate *acceptPredicate = item.acceptParams[kBSMediaStrategyKeyAccept];
-                if (acceptPredicate) {
-                    [predicates addObject:acceptPredicate];
-                }
-            } else if ([method isEqualToString:kBSMediaStrategyAcceptScript]) {
-                NSString *acceptScript = item.acceptParams[kBSMediaStrategyKeyAccept];
-                if (acceptScript) {
-                    [scripts addObject:acceptScript];
-                }
-            }
-        }
-        
-        if (predicates.count) {
-            self.commonAcceptPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
-        }
-        else
-            self.commonAcceptPredicate = nil;
-        
-        if (scripts.count) {
-            self.commonAcceptScript = [NSString stringWithFormat:@"(function(){return (%@)})();", [scripts componentsJoinedByString:@" || "]];
-        }
-        else
-            self.commonAcceptScript = nil;
-    }
 }
 
 - (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {
@@ -145,28 +99,16 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     if (strat)
         return strat;
 
-    BOOL commonCheck = NO;
-    if (self.commonAcceptPredicate) {
-        
-        commonCheck = [self.commonAcceptPredicate evaluateWithObject:tab];
-    }
     if (tab.check) {
 
-        if (!commonCheck && self.commonAcceptScript) {
-            
-            commonCheck = [[tab executeJavascript:self.commonAcceptScript] boolValue];
-        }
-        if (commonCheck) {
-            
-            for (BSMediaStrategy *strategy in _availableStrategies) {
-                BOOL accepted = [strategy accepts:tab];
-                
-                /* Store the result of this calculation for future use */
-                if (accepted) {
-                    _registeredCache[cacheKey] = strategy;
-                    NSLog(@"%@ is valid for %@", strategy, tab);
-                    return strategy;
-                }
+        for (BSMediaStrategy *strategy in _availableStrategies) {
+            BOOL accepted = [strategy accepts:tab];
+
+            /* Store the result of this calculation for future use */
+            if (accepted) {
+                _registeredCache[cacheKey] = strategy;
+                NSLog(@"%@ is valid for %@", strategy, tab);
+                return strategy;
             }
         }
     }

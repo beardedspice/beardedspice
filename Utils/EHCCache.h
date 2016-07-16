@@ -1,9 +1,8 @@
 //
 //  EHCCache.h
-//  ACommons
 //
 //  Created by Roman Sokolov on 14.03.14.
-//  Copyright (c) 2014 Performix. All rights reserved.
+//  Copyright (c) 2014 Roman Sokolov. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

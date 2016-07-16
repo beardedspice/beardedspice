@@ -22,11 +22,6 @@
 
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy;
--(void) containsMediaStrategy:(BSMediaStrategy *) strategy;
 -(BSMediaStrategy *) getMediaStrategyForTab:(TabAdapter *) tab;
-
-- (void)clearCache;
-- (void)beginStrategyQueries;
-- (void)endStrategyQueries;
 
 @end

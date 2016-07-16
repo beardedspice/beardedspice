@@ -747,8 +747,6 @@ BOOL accessibilityApiEnabled = NO;
             BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
             [self refreshApplications:timeout];
 
-            [mediaStrategyRegistry beginStrategyQueries];
-
             [newItems addObjectsFromArray:[self refreshTabsForChrome:chromeApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
@@ -763,9 +761,6 @@ BOOL accessibilityApiEnabled = NO;
 
                 [newItems addObjectsFromArray:[self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]]];
             }
-
-            [mediaStrategyRegistry endStrategyQueries];
-
         }
 
         //

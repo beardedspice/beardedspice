@@ -34,6 +34,8 @@
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
+		655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA61D3ABFAA00E316EA /* EHCCache.m */; };
+		655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */; };
 		656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00151C8AD3C800BD29F5 /* DDHidDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00041C8AD3C800BD29F5 /* DDHidDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -180,6 +182,10 @@
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
+		655AACA51D3ABFAA00E316EA /* EHCCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCCache.h; sourceTree = "<group>"; };
+		655AACA61D3ABFAA00E316EA /* EHCCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCCache.m; sourceTree = "<group>"; };
+		655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
+		655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
 		656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleMikey.m; sourceTree = "<group>"; };
 		656A00011C8AD3C800BD29F5 /* DDHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleRemote.h; sourceTree = "<group>"; };
 		656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleRemote.m; sourceTree = "<group>"; };
@@ -383,6 +389,10 @@
 		656A00241C8AD41A00BD29F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				655AACA51D3ABFAA00E316EA /* EHCCache.h */,
+				655AACA61D3ABFAA00E316EA /* EHCCache.m */,
+				655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */,
+				655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */,
 				656A00251C8AD41A00BD29F5 /* BSTimeout.h */,
 				656A00261C8AD41A00BD29F5 /* BSTimeout.m */,
 				656A00271C8AD41A00BD29F5 /* EHSystemUtils.h */,
@@ -895,6 +905,7 @@
 			files = (
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0BF06AE51C9513A800534083 /* BSTrack.m in Sources */,
+				655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
@@ -921,6 +932,7 @@
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
+				655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */,
 				0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */,

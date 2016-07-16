@@ -10,10 +10,13 @@
 #import "BSMediaStrategy.h"
 #import "BSStrategyCache.h"
 #import "TabAdapter.h"
+#import "EHCCache.h"
+
+#define MAX_REGISTERED_CACHE            500
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableArray *availableStrategies;
-@property (nonatomic, strong) NSMutableDictionary *registeredCache;
+@property (nonatomic, strong) EHCCache *registeredCache;
 @property (nonatomic, strong) BSStrategyCache *strategyCache;
 @end
 
@@ -51,7 +54,7 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 - (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
 {
     _strategyCache = cache;
-    _registeredCache = [NSMutableDictionary new];
+    _registeredCache = [[EHCCache alloc] initWithCapacity:MAX_REGISTERED_CACHE];
     _availableStrategies = [NSMutableArray new];
 
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
@@ -73,25 +76,19 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies addObject:strategy];
-    [self clearCache];
+    [self.registeredCache clear];
 }
 
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
-    [self clearCache];
-}
-
-- (void)clearCache
-{
-    if (_registeredCache.count)
-        self.registeredCache = [NSMutableDictionary dictionary];
+    [self.registeredCache clear];
 }
 
 - (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {
 
     NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
-    id strat = _registeredCache[cacheKey];
+    id strat = self.registeredCache[cacheKey];
 
     /* Return the equivalent of a full scan except we dont repeat calculations */
     if (strat == [NSNull null])
@@ -106,14 +103,14 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 
             /* Store the result of this calculation for future use */
             if (accepted) {
-                _registeredCache[cacheKey] = strategy;
+                [self.registeredCache addValue:strategy forKey:cacheKey];
                 NSLog(@"%@ is valid for %@", strategy, tab);
                 return strategy;
             }
         }
     }
     /* Worst case, no compatible registry found */
-    _registeredCache[cacheKey] = [NSNull null];
+    [self.registeredCache addValue:[NSNull null] forKey:cacheKey];
     return nil;
 }
 

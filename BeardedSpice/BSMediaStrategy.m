@@ -243,7 +243,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
         NSString *acceptScript = [value toString];
         return @{
             kBSMediaStrategyAcceptMethod: method,
-            kBSMediaStrategyKeyAccept: (acceptScript ?: @"")
+            kBSMediaStrategyKeyAccept: ([acceptScript addExecutionStringToScript] ?: @"")
         };
     }
 

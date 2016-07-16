@@ -10,7 +10,7 @@ BSStrategy = {
   displayName:"Plex Web",
   accepts: {
     method: "script",
-    script: function accepts () {return (window.PLEXWEB != undefined);}
+    script: function () {return (window.PLEXWEB != undefined);}
   },
   isPlaying: function()  {
     var theButton = document.querySelector('.player.music .pause-btn');

@@ -64,7 +64,7 @@
 {
     // TODO add checks before hand to make sure we don't double execute
     // TODO add checks before hand ot make sure this is actually a func
-    return [[NSString alloc] initWithFormat:@"(%@)();", self];
+    return [[NSString alloc] initWithFormat:@"(%@)()", self];
 }
 
 - (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder{

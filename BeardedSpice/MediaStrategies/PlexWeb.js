@@ -6,11 +6,13 @@
 //  Copyright (c) 2015 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"Plex Web",
   accepts: {
     method: "script",
-    script: function accepts () {return (window.PLEXWEB != undefined);}
+    script: function accepts () {
+        return (window.PLEXWEB != undefined || document.querySelector('#plex') != null);
+    },
   },
   isPlaying: function()  {
     var theButton = document.querySelector('.player.music .pause-btn');

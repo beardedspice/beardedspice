@@ -14,11 +14,14 @@
 @interface MediaStrategyRegistry ()
 @property (nonatomic, strong) NSMutableArray *availableStrategies;
 @property (nonatomic, strong) NSMutableDictionary *registeredCache;
-@property (nonatomic, strong) NSMutableSet *keyCache;
 @property (nonatomic, strong) BSStrategyCache *strategyCache;
+@property (nonatomic) NSCompoundPredicate *commonAcceptPredicate;
+@property (nonatomic) NSString *commonAcceptScript;
+
 @end
 
-@implementation MediaStrategyRegistry
+@implementation MediaStrategyRegistry {
+}
 
 static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 
@@ -62,9 +65,11 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
         BSMediaStrategy *strategy = _strategyCache.cache[fileName];
         NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
         if (!enabled || [enabled boolValue]) {
-            [self addMediaStrategy:strategy];
+            [_availableStrategies addObject:strategy];
         }
     }
+    
+    [self reloadCommonAccept];
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -74,17 +79,14 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 {
     [_availableStrategies addObject:strategy];
     [self clearCache];
+    [self reloadCommonAccept];
 }
 
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
     [self clearCache];
-}
-
--(void) containsMediaStrategy:(BSMediaStrategy *) strategy
-{
-    [_availableStrategies containsObject:strategy];
+    [self reloadCommonAccept];
 }
 
 - (void)clearCache
@@ -93,31 +95,46 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
         self.registeredCache = [NSMutableDictionary dictionary];
 }
 
-- (void)beginStrategyQueries
-{
-    self.keyCache = [NSMutableSet setWithArray:[_registeredCache allKeys]];
-}
+- (void)reloadCommonAccept {
 
-- (void)endStrategyQueries
-{
-    if (!_keyCache)
-    {
-        NSLog(@"WARNING - Strategy Queries not started.");
-        return;
+    @autoreleasepool {
+
+        NSMutableArray<NSPredicate *> *predicates = [NSMutableArray new];
+        NSMutableArray<NSString *> *scripts = [NSMutableArray new];
+        for (BSMediaStrategy *item in self.availableStrategies) {
+
+            NSString *method = item.acceptParams[kBSMediaStrategyAcceptMethod];
+            if (!method)
+                continue;
+
+            if ([method isEqualToString:kBSMediaStrategyAcceptPredicateOnTab]) {
+                NSPredicate *acceptPredicate = item.acceptParams[kBSMediaStrategyKeyAccept];
+                if (acceptPredicate) {
+                    [predicates addObject:acceptPredicate];
+                }
+            } else if ([method isEqualToString:kBSMediaStrategyAcceptScript]) {
+                NSString *acceptScript = item.acceptParams[kBSMediaStrategyKeyAccept];
+                if (acceptScript) {
+                    [scripts addObject:acceptScript];
+                }
+            }
+        }
+        
+        if (predicates.count) {
+            self.commonAcceptPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+        }
+        else
+            self.commonAcceptPredicate = nil;
+        
+        if (scripts.count) {
+            self.commonAcceptScript = [NSString stringWithFormat:@"(function(){return (%@)})();", [scripts componentsJoinedByString:@" || "]];
+        }
+        else
+            self.commonAcceptScript = nil;
     }
-
-    /* Clean the cache of tabs that dont exist anymore */
-    NSSet *updatedKeys = [NSSet setWithArray:[_registeredCache allKeys]];
-    [_keyCache minusSet:updatedKeys];
-    [_registeredCache removeObjectsForKeys:[_keyCache allObjects]];
-
-    self.keyCache = nil;
 }
 
-- (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab
-{
-    if (!tab.check)
-        return nil;
+- (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {
 
     NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
     id strat = _registeredCache[cacheKey];
@@ -128,16 +145,29 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     if (strat)
         return strat;
 
-    for (BSMediaStrategy *strategy in _availableStrategies)
-    {
-        BOOL accepted = [strategy accepts:tab];
+    BOOL commonCheck = NO;
+    if (self.commonAcceptPredicate) {
+        
+        commonCheck = [self.commonAcceptPredicate evaluateWithObject:tab];
+    }
+    if (tab.check) {
 
-        /* Store the result of this calculation for future use */
-        if (accepted)
-        {
-            _registeredCache[cacheKey] = strategy;
-            NSLog(@"%@ is valid for %@", strategy, tab);
-            return strategy;
+        if (!commonCheck && self.commonAcceptScript) {
+            
+            commonCheck = [[tab executeJavascript:self.commonAcceptScript] boolValue];
+        }
+        if (commonCheck) {
+            
+            for (BSMediaStrategy *strategy in _availableStrategies) {
+                BOOL accepted = [strategy accepts:tab];
+                
+                /* Store the result of this calculation for future use */
+                if (accepted) {
+                    _registeredCache[cacheKey] = strategy;
+                    NSLog(@"%@ is valid for %@", strategy, tab);
+                    return strategy;
+                }
+            }
         }
     }
     /* Worst case, no compatible registry found */

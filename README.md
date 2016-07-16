@@ -175,7 +175,7 @@ BSStrategy = {
     format: "%K LIKE[c] '*[YOUR-URL-DOMAIN-OR-TITLE-HERE]*'",
     args: ["URL" /* OR "title" */]
     /* Use "script" if method is "script" */
-    /* script: "some javascript here that returns a boolean value" */
+    /* script: function () { "javascript that returns a boolean value" } */
   },
 
   isPlaying: function () { /* javascript that returns a boolean */ },

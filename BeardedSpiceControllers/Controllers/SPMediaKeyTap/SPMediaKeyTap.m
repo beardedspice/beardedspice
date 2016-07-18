@@ -304,8 +304,8 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
     NSValue *psnv =
         [NSValue valueWithBytes:&psn objCType:@encode(ProcessSerialNumber)];
 
-    NSDictionary *processInfo = (__bridge id)ProcessInformationCopyDictionary(
-        &psn, kProcessDictionaryIncludeAllInformationMask);
+    NSDictionary *processInfo = CFBridgingRelease(ProcessInformationCopyDictionary(
+                                                                                   &psn, kProcessDictionaryIncludeAllInformationMask));
     NSString *bundleIdentifier =
         [processInfo objectForKey:(id)kCFBundleIdentifierKey];
 

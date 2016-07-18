@@ -7,254 +7,111 @@
 //
 
 #import "MediaStrategyRegistry.h"
-#import "LogitechMediaServerStrategy.h"
-#import "YouTubeStrategy.h"
-#import "PandoraStrategy.h"
-#import "CourseraStrategy.h"
-#import "BandCampStrategy.h"
-#import "GrooveSharkStrategy.h"
-#import "SoundCloudStrategy.h"
-#import "HypeMachineStrategy.h"
-#import "LastFmStrategy.h"
-#import "SpotifyStrategy.h"
-#import "GoogleMusicStrategy.h"
-#import "EightTracksStrategy.h"
-#import "SynologyStrategy.h"
-#import "ShufflerFmStrategy.h"
-#import "SlackerStrategy.h"
-#import "BeatsMusicStrategy.h"
-#import "MixCloudStrategy.h"
-#import "MusicUnlimitedStrategy.h"
-#import "YandexMusicStrategy.h"
-#import "StitcherStrategy.h"
-#import "XboxMusicStrategy.h"
-#import "VkStrategy.h"
-#import "BopFm.h"
-#import "AmazonMusicStrategy.h"
-#import "OvercastStrategy.h"
-#import "VimeoStrategy.h"
-#import "ChorusStrategy.h"
-#import "TwentyTwoTracksStrategy.h"
-#import "AudioMackStrategy.h"
-#import "DeezerStrategy.h"
-#import "FocusAtWillStrategy.h"
-#import "PocketCastsStrategy.h"
-#import "YandexRadioStrategy.h"
-#import "TidalHiFiStrategy.h"
-#import "NoAdRadioStrategy.h"
-#import "SomaFmStrategy.h"
-#import "DigitallyImportedStrategy.h"
-#import "BeatguideStrategy.h"
-#import "SaavnStrategy.h"
-#import "KollektFmStrategy.h"
-#import "WonderFmStrategy.h"
-#import "OdnoklassnikiStrategy.h"
-#import "SubsonicStrategy.h"
-#import "TuneInStrategy.h"
-#import "NoonPacificStrategy.h"
-#import "BlitzrStrategy.h"
-#import "IndieShuffleStrategy.h"
-#import "LeTournedisqueStrategy.h"
-#import "ComposedStrategy.h"
-#import "PlexWebStrategy.h"
-#import "NRKStrategy.h"
-#import "UdemyStrategy.h"
-#import "HotNewHipHopStrategy.h"
-#import "JangoMediaStrategy.h"
-#import "RhapsodyStrategy.h"
-#import "MusicForProgrammingStrategy.h"
-#import "NetflixStrategy.h"
-#import "AudibleStrategy.h"
-#import "BBCRadioStrategy.h"
-#import "TwitchMediaStrategy.h"
-#import "iHeartRadioStrategy.h"
-#import "BugsMusicStrategy.h"
-#import "VesselStrategy.h"
-#import "RadioSwissJazzStrategy.h"
-#import "BrainFmStrategy.h"
-#import "WatchaPlayStrategy.h"
-#import "DailymotionStrategy.h"
+#import "BSMediaStrategy.h"
+#import "BSStrategyCache.h"
+#import "TabAdapter.h"
+#import "EHCCache.h"
+
+#define MAX_REGISTERED_CACHE            500
 
 @interface MediaStrategyRegistry ()
-@property (nonatomic, strong) NSMutableDictionary *registeredCache;
-@property (nonatomic, strong) NSMutableSet *keyCache;
+@property (nonatomic, strong) NSMutableArray *availableStrategies;
+@property (nonatomic, strong) EHCCache *registeredCache;
+@property (nonatomic, strong) BSStrategyCache *strategyCache;
 @end
 
-@implementation MediaStrategyRegistry
+@implementation MediaStrategyRegistry {
+}
 
--(id) init
-{
-    self = [super init];
-    if (self)
-    {
-        self.registeredCache = [NSMutableDictionary dictionary];
-        availableStrategies = [NSMutableArray array];
+static MediaStrategyRegistry *singletonMediaStrategyRegistry;
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Initialize
+
++ (MediaStrategyRegistry *)singleton{
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+
+        singletonMediaStrategyRegistry = [MediaStrategyRegistry alloc];
+        singletonMediaStrategyRegistry = [singletonMediaStrategyRegistry init];
+    });
+
+    return singletonMediaStrategyRegistry;
+
+}
+
+- (id)init{
+
+    if (singletonMediaStrategyRegistry != self) {
+        return nil;
     }
+    self = [super init];
+
     return self;
 }
 
--(id) initWithUserDefaults:(NSString *)userDefaultsKey
+- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
 {
-    self = [self init];
-    if (self) {
-        NSArray *defaultStrategies = [MediaStrategyRegistry getDefaultMediaStrategies];
-        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
+    _strategyCache = cache;
+    _registeredCache = [[EHCCache alloc] initWithCapacity:MAX_REGISTERED_CACHE];
+    _availableStrategies = [NSMutableArray new];
 
-        for (MediaStrategy *strategy in defaultStrategies) {
-            NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
-            if (!enabled || [enabled boolValue]) {
-                [self addMediaStrategy:strategy];
-            }
+    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
+
+    // enable strategies that are marked enabled or have no entry
+    for (NSString *fileName in _strategyCache.cache)
+    {
+        BSMediaStrategy *strategy = _strategyCache.cache[fileName];
+        NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
+        if (!enabled || [enabled boolValue]) {
+            [_availableStrategies addObject:strategy];
         }
     }
-    return self;
 }
 
--(void) addMediaStrategy:(MediaStrategy *) strategy
+/////////////////////////////////////////////////////////////////////
+#pragma mark Methods
+
+-(void) addMediaStrategy:(BSMediaStrategy *) strategy
 {
-    [availableStrategies addObject:strategy];
-    [self clearCache];
+    [_availableStrategies addObject:strategy];
+    [self.registeredCache clear];
 }
 
--(void) removeMediaStrategy:(MediaStrategy *) strategy
+-(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
-    [availableStrategies removeObject:strategy];
-    [self clearCache];
+    [_availableStrategies removeObject:strategy];
+    [self.registeredCache clear];
 }
 
--(void) containsMediaStrategy:(MediaStrategy *) strategy
-{
-    [availableStrategies containsObject:strategy];
-}
+- (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {
 
-- (void)clearCache
-{
-    self.registeredCache = [NSMutableDictionary dictionary];
-}
+    NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
+    id strat = self.registeredCache[cacheKey];
 
-- (void)beginStrategyQueries
-{
-    self.keyCache = [NSMutableSet setWithArray:[_registeredCache allKeys]];
-}
+    /* Return the equivalent of a full scan except we dont repeat calculations */
+    if (strat == [NSNull null])
+        return nil;
+    if (strat)
+        return strat;
 
-- (void)endStrategyQueries
-{
-    /* Clean the cache of tabs that dont exist anymore */
-    NSSet *updatedKeys = [NSSet setWithArray:[_registeredCache allKeys]];
-    [_keyCache minusSet:updatedKeys];
-    [_registeredCache removeObjectsForKeys:[_keyCache allObjects]];
-
-    self.keyCache = nil;
-}
-
--(MediaStrategy *) getMediaStrategyForTab:(TabAdapter *)tab
-{
     if (tab.check) {
 
-        NSString *cacheKey = [NSString stringWithFormat:@"%@", tab.URL];
-        MediaStrategy *strat = _registeredCache[cacheKey];
-        if (strat)
-        /* Return the equivalent of a full scan except we dont repeat calculations */
-        return [strat isKindOfClass:[MediaStrategy class]] ? strat : NULL;
-
-        for (MediaStrategy *strategy in availableStrategies)
-        {
+        for (BSMediaStrategy *strategy in _availableStrategies) {
             BOOL accepted = [strategy accepts:tab];
 
             /* Store the result of this calculation for future use */
-            _registeredCache[cacheKey] = accepted ? strategy : @NO;
             if (accepted) {
+                [self.registeredCache addValue:strategy forKey:cacheKey];
                 NSLog(@"%@ is valid for %@", strategy, tab);
                 return strategy;
             }
         }
     }
+    /* Worst case, no compatible registry found */
+    [self.registeredCache addValue:[NSNull null] forKey:cacheKey];
     return nil;
-}
-
--(NSArray *) getMediaStrategies
-{
-    return [availableStrategies copy];
-}
-
-+(NSArray *) getDefaultMediaStrategies
-{
-    static dispatch_once_t setupDefaultStrategies;
-    static NSArray *strategies = nil;
-
-    dispatch_once(&setupDefaultStrategies, ^{
-        NSLog(@"Initializing default media strategies...");
-        strategies = @[
-                       [AmazonMusicStrategy new],
-                       [AudibleStrategy new],
-                       [AudioMackStrategy new],
-                       [BandCampStrategy new],
-                       [BBCRadioStrategy new],
-                       [BeatguideStrategy new],
-                       [BeatsMusicStrategy new],
-                       [BlitzrStrategy new],
-                       [BopFm new],
-                       [BrainFmStrategy new],
-                       [BugsMusicStrategy new],
-                       [ChorusStrategy new],
-                       [ComposedStrategy new],
-                       [CourseraStrategy new],
-                       [DailymotionStrategy new],
-                       [DeezerStrategy new],
-                       [DigitallyImportedStrategy new],
-                       [EightTracksStrategy new],
-                       [FocusAtWillStrategy new],
-                       [GoogleMusicStrategy new],
-                       [GrooveSharkStrategy new],
-                       [HotNewHipHopStrategy new],
-                       [HypeMachineStrategy new],
-                       [iHeartRadioStrategy new],
-                       [IndieShuffleStrategy new],
-                       [JangoMediaStrategy new],
-                       [KollektFmStrategy new],
-                       [LastFmStrategy new],
-                       [LeTournedisqueStrategy new],
-                       [LogitechMediaServerStrategy new],
-                       [MixCloudStrategy new],
-                       [MusicForProgrammingStrategy new],
-                       [MusicUnlimitedStrategy new],
-                       [NetflixStrategy new],
-                       [NoAdRadioStrategy new],
-                       [NoonPacificStrategy new],
-                       [NRKStrategy new],
-                       [OdnoklassnikiStrategy new],
-                       [OvercastStrategy new],
-                       [PandoraStrategy new],
-                       [PlexWebStrategy new],
-                       [PocketCastsStrategy new],
-                       [RadioSwissJazzStrategy new],
-                       [RhapsodyStrategy new],
-                       [SaavnStrategy new],
-                       [ShufflerFmStrategy new],
-                       [SlackerStrategy new],
-                       [SomaFmStrategy new],
-                       [SoundCloudStrategy new],
-                       [SpotifyStrategy new],
-                       [StitcherStrategy new],
-                       [SubsonicStrategy new],
-                       [SynologyStrategy new],
-                       [TidalHiFiStrategy new],
-                       [TuneInStrategy new],
-                       [TwentyTwoTracksStrategy new],
-                       [TwitchMediaStrategy new],
-                       [UdemyStrategy new],
-                       [VesselStrategy new],
-                       [VimeoStrategy new],
-                       [VkStrategy new],
-                       [WatchaPlayStrategy new],
-                       [WonderFmStrategy new],
-                       [XboxMusicStrategy new],
-                       [YandexMusicStrategy new],
-                       [YandexRadioStrategy new],
-                       [YouTubeStrategy new]
-                    ];
-    });
-    return strategies;
 }
 
 @end

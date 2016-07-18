@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
 #import "Shortcut.h"
-#import "MediaStrategyRegistry.h"
-#import "NativeAppTabRegistry.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications
@@ -30,6 +28,9 @@ extern NSString *const BeardedSpiceActiveNativeAppControllers;
 extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
 extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
+extern NSString *const BeardedSpiceUpdateAtLaunch;
+
+extern NSString *const BeardedSpiceImportExportLastDirectory;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController
@@ -45,16 +46,16 @@ extern NSString *const BeardedSpiceLaunchAtLogin;
     NSMutableDictionary *userNativeApps;
 
     NSNumber *alwaysShow;
-
-    // shared registry object for controlling behavior
-    MediaStrategyRegistry *strategyRegistry;
-    NativeAppTabRegistry *nativeRegistry;
+    NSString *_toolTipForCustomStrategy;
 }
 
 @property (assign) IBOutlet NSTableView *strategiesView;
 @property (weak) IBOutlet NSButton *firstResponderView;
 
-- (id)initWithMediaStrategyRegistry:(MediaStrategyRegistry *)mediaStrategyRegistry nativeAppTabRegistry:(NativeAppTabRegistry *)nativeAppTabRegistry;
+@property (readonly) BOOL selectedRowAllowExport;
+@property (readonly) BOOL selectedRowAllowRemove;
+@property (readonly) BOOL importExportPanelOpened;
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
@@ -63,5 +64,8 @@ extern NSString *const BeardedSpiceLaunchAtLogin;
 - (IBAction)toggleLaunchAtStartup:(id)sender;
 - (IBAction)toggleAutoPause:(id)sender;
 - (IBAction)toggleUseRemote:(id)sender;
+- (IBAction)clickExport:(id)sender;
+- (IBAction)clickImport:(id)sender;
+- (IBAction)clickRemove:(id)sender;
 
 @end

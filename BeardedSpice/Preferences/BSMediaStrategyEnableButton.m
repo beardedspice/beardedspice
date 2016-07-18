@@ -43,4 +43,10 @@
     return NO;
 }
 
+
+- (void)mouseDown:(NSEvent *)theEvent{
+    
+    [super mouseDown:theEvent];
+}
+
 @end

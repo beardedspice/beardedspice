@@ -1,1 +1,3 @@
-Hot fix for 10.9 OS X
+Main improvement, that now BeardedSpice strategy is a javascript file. And you can import custom strategies.
+Also update of the strategies from project repository is performed separately from update of the app.
+You can check list of changes <a href="https://github.com/beardedspice/beardedspice/milestone/4?closed=1">here</a>.

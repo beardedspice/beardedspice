@@ -17,13 +17,14 @@
 #import "NativeAppTabRegistry.h"
 #import "BeardedSpiceHostAppProtocol.h"
 
-@class runningSBApplication;
+#import "BSMediaStrategy.h"
 
-extern BOOL accessibilityApiEnabled;
+#define APPDELEGATE     ([[NSApplication sharedApplication] delegate])
+
+@class runningSBApplication, BSStrategyVersionManager;
 
 extern NSString *const SUUpdateDriverFinishedNotification;
-
-#import "MediaStrategy.h"
+extern BOOL accessibilityApiEnabled;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, SUUpdaterDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
 
@@ -47,30 +48,38 @@ extern NSString *const SUUpdateDriverFinishedNotification;
 
     TabAdapter *activeTab;
     NSString *activeTabKey;
-    
+
     NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
-    
+
     MediaStrategyRegistry *mediaStrategyRegistry;
     NativeAppTabRegistry *nativeAppRegistry;
 
     NSWindowController *_preferencesWindowController;
-    
+
     NSMutableSet    *openedWindows;
-    
+
     dispatch_queue_t workingQueue;
     dispatch_queue_t notificationQueue;
-    
+
     NSXPCConnection *_connectionToService;
-    
+
     BOOL _AXAPIEnabled;
 }
 
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
+@property (nonatomic, strong) BSStrategyVersionManager *versionManager;
 
-- (IBAction)openPreferences:(id)sender;
 - (IBAction)checkForUpdates:(id)sender;
+- (IBAction)openPreferences:(id)sender;
+- (IBAction)checkForAppUpdates:(id)sender;
 
 - (void)showNotification;
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark Windows control methods
+
+-(void)windowWillBeVisible:(id)window;
+-(void)removeWindow:(id)obj;
 
 @end

@@ -6,14 +6,48 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface NSURL (Utils)
+@interface NSURL (BSUtils)
+
+/**
+ */
+- (BOOL)createDirectoriesToURL;
 
 /**
  Downloads data from that URL.
  @return NSData object, which contains requested data, or nil on failure.
  */
-- (NSData *)getDataWithTimeout:(NSTimeInterval)timeout;
+- (NSData * _Nullable)getDataWithTimeout:(NSTimeInterval)timeout;
+
+/**
+ Application Support path to the Bearded Spice official strategy folder.
+ */
++ (NSURL * _Nonnull)URLForSavedStrategies;
+
+/**
+ Application Support path to the Bearded Spice third-party/custom strategy folder.
+ This path is manually managed by any given client.
+ */
++ (NSURL * _Nonnull)URLForCustomStrategies;
+
+/**
+ Path to the BeardedSpice bundle strategy folder.
+ */
++ (NSURL * _Nonnull)URLForBundleStrategies;
+
+/**
+ */
++ (NSURL * _Nonnull)URLForFileName:(NSString * _Nullable)fileName;
+
+/**
+ */
++ (NSURL * _Nonnull)URLForFileName:(NSString * _Nonnull)fileName ofType:(NSString * _Nonnull)typeString;
+
+/**
+ Simple wrapper for checking if the given file path exists
+ @return BOOL yes/no if a file exists at the given filepath.
+ */
+- (BOOL)fileExists;
 
 @end

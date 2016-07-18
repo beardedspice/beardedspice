@@ -8,8 +8,9 @@
 
 #import "iTunesTabAdapter.h"
 #import "runningSBApplication.h"
+#import "BSMediaStrategy.h"
+#import "BSTrack.h"
 #import "NSString+Utils.h"
-#import "MediaStrategy.h"
 
 #define ERROR_TRACE                         NSLog(@"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
 
@@ -29,28 +30,28 @@
 }
 
 + (NSString *)displayName{
-    
+
     return APPNAME_ITUNES;
 }
 
 + (NSString *)bundleId{
-    
+
     return APPID_ITUNES;
 }
 
 - (NSString *)title{
 
     @autoreleasepool {
-        
+
         iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
         iTunesTrack *currentTrack = [[iTunes currentTrack] get];
-        
+
         NSString *title;
         if (currentTrack) {
-            
+
             if (![NSString isNullOrEmpty:currentTrack.name])
                 title = currentTrack.name;
-            
+
             if (![NSString isNullOrEmpty:currentTrack.artist]) {
 
                 if (title) title = [title stringByAppendingFormat:@" - %@", currentTrack.artist];
@@ -58,23 +59,23 @@
                     title = currentTrack.artist;
             }
         }
-        
+
         if ([NSString isNullOrEmpty:title]) {
             title = NSLocalizedString(@"No Track", @"iTunesTabAdapter");
         }
-        
-        return [NSString stringWithFormat:@"%@ (%@)", title, iTunes.name];
+
+        return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_ITUNES];
     }
 }
 
 - (NSString *)URL{
-    
+
     return @"iTunes";
 }
 
 // We have only one window.
 - (NSString *)key{
-    
+
     return @"A:ITUNES";
 }
 
@@ -91,7 +92,7 @@
 //////////////////////////////////////////////////////////////
 
 - (void)toggle{
-    
+
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes playpause];
@@ -99,7 +100,7 @@
     iTunesNeedDisplayNotification = YES;
 }
 - (void)pause{
-    
+
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes pause];
@@ -107,7 +108,7 @@
     iTunesNeedDisplayNotification = YES;
 }
 - (void)next{
-    
+
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes nextTrack];
@@ -115,7 +116,7 @@
     iTunesNeedDisplayNotification = NO;
 }
 - (void)previous{
-    
+
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes previousTrack];
@@ -124,7 +125,7 @@
 }
 
 - (void)favorite{
-    
+
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         iTunesTrack *track = [[iTunes currentTrack] get];
@@ -135,31 +136,31 @@
                 track.loved = YES;
         }
         @catch (NSException *exception) {
-            
+
             NSLog(@"Error when calling [iTunes loved]: %@", exception);
             ERROR_TRACE;
         }
     }
-    
+
 }
 
-- (Track *)trackInfo{
+- (BSTrack *)trackInfo{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
-        
+
         iTunesTrack *iTrack = [[iTunes currentTrack] get];
         if (iTrack) {
-            Track *track = [Track new];
-            
+            BSTrack *track = [BSTrack new];
+
             track.track = iTrack.name;
             track.album = iTrack.album;
             track.artist = iTrack.artist;
-            
+
             NSArray *artworks = [[iTrack artworks] get];
             iTunesArtwork *art = [[artworks firstObject] get];
             track.image = art.data;
-            
+
             @try {
                 track.favorited = @(iTrack.loved);
             }
@@ -167,11 +168,11 @@
                 NSLog(@"Error when calling [iTunes loved]: %@", exception);
                 ERROR_TRACE;
             }
-            
+
             return track;
         }
     }
-    
+
     return nil;
 }
 
@@ -179,20 +180,20 @@
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
-     
+
         switch (iTunes.playerState) {
-                
+
             case iTunesEPlSPaused:
             case iTunesEPlSStopped:
-                
+
                 return NO;
-                
+
             default:
-                
+
                 return YES;
         }
     }
-    
+
     return NO;
 }
 

@@ -148,5 +148,7 @@
 	<integer>1</integer>
 	<key>Youtube</key>
 	<integer>1</integer>
+	<key>Zing</key>
+	<integer>1</integer>
 </dict>
 </plist>

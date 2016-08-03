@@ -59,6 +59,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [BandCamp](http://bandcamp.com)
 - [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](https://beatguide.me/)
+- [Beatport](https://beatport.com)
 - [BeatsMusic](http://listen.beatsmusic.com)
 - [Blitzr](http://blitzr.com)
 - [Bop.fm](http://bop.fm)

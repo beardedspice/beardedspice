@@ -143,7 +143,7 @@
 	<key>YandexMusic</key>
 	<integer>1</integer>
 	<key>YandexRadio</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Youtube</key>
 	<integer>1</integer>
 </dict>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"YandexRadio",
   accepts: {
     method: "predicateOnTab",

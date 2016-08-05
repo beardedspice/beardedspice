@@ -6,7 +6,7 @@
 //  Copyright © 2015 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"Napster",
   accepts: {
     method: "predicateOnTab",

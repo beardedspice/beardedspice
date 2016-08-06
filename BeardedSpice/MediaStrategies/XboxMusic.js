@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"Xbox Music",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*music.xbox.com*'",
+    format:"%K LIKE[c] '*music.microsoft.com*'",
     args: ["URL"]
   },
   isPlaying: function () {},

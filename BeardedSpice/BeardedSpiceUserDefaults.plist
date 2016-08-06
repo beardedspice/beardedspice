@@ -22,6 +22,8 @@
 		<true/>
 		<key>Beatguide</key>
 		<true/>
+		<key>Beatport</key>
+		<true/>
 		<key>Beats Music</key>
 		<true/>
 		<key>blitzr</key>
@@ -131,6 +133,8 @@
 		<key>YandexMusic</key>
 		<true/>
 		<key>YouTube</key>
+		<true/>
+		<key>Zing</key>
 		<true/>
 	</dict>
 	<key>BeardedSpiceActiveTabShortcut</key>

@@ -26,7 +26,7 @@ BSStrategy = {
     var thePlayer = document.querySelector('.player.music') ? '.player.music' : '.video-player';
     var pauseButton = document.querySelector(thePlayer + ' .pause-btn');
     var buttonIsHidden = pauseButton.classList.contains('hidden');
-    var toggleButton = document.querySelector((buttonIsHidden ? ' .play' : ' .pause') + '-btn');
+    var toggleButton = document.querySelector('button' + (buttonIsHidden ? '.play' : '.pause') + '-btn');
     toggleButton.click();
   },
   next: function () {

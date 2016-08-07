@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:2,
+  version:3,
   displayName:"Plex Web",
   accepts: {
     method: "script",

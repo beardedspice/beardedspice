@@ -6,6 +6,8 @@
 	<integer>1</integer>
 	<key>AmazonMusic</key>
 	<integer>1</integer>
+	<key>AppleDeveloper</key>
+	<integer>1</integer>
 	<key>Audible</key>
 	<integer>1</integer>
 	<key>AudioMack</key>

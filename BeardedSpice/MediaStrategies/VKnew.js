@@ -6,12 +6,12 @@
 //  Copyright © 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-    version: 1,
-    displayName: "newVK",
-    accepts: {
-    method: "predicateOnTab",
-    format:"%K LIKE[c] '*new.vk.com*'",
-    args: ["URL"]
+        version: 1,
+        displayName: "newVK",
+        accepts: {
+        method: "predicateOnTab",
+        format:"%K LIKE[c] '*vk.com*'",
+        args: ["URL"]
     },
     isPlaying: function () {
         var play = document.getElementsByClassName('top_audio_player top_audio_player_enabled');
@@ -19,12 +19,12 @@ BSStrategy = {
     },
     toggle: function () {
         (function (w) {
-         var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play._top_audio_player_play');
+         var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play');
          if (el) { el.click(); return; }
          w.AudioUtils.showAudioLayer();
          var pollPlayerInterval = setInterval(
             (function(w){
-                    return function(){
+                return function(){
                     var el = document.querySelector('.audio_page_player_play');
                     if (!el) { return; }
                     clearInterval(pollPlayerInterval);
@@ -62,7 +62,7 @@ BSStrategy = {
         return;
     },
     pause: function () {
-        var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play._top_audio_player_play');
+        var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play');
         if (el) { el.click(); }
         return;
     },

@@ -29,6 +29,7 @@
 		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
 		11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
+		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
@@ -169,6 +170,9 @@
 		412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
 		47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
 		53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E80769C1D58CE180002855D /* Downcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downcast.h; sourceTree = "<group>"; };
+		5E80769D1D58CE180002855D /* DowncastTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowncastTabAdapter.h; sourceTree = "<group>"; };
+		5E80769E1D58CE180002855D /* DowncastTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowncastTabAdapter.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -349,6 +353,9 @@
 		03F33EE31857E21100E8F77E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				5E80769C1D58CE180002855D /* Downcast.h */,
+				5E80769D1D58CE180002855D /* DowncastTabAdapter.h */,
+				5E80769E1D58CE180002855D /* DowncastTabAdapter.m */,
 				D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */,
 				D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */,
 				D09EFF211C8CD49E00B24DA9 /* VLC.h */,
@@ -933,6 +940,7 @@
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 				655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */,
+				5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */,
 				0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */,

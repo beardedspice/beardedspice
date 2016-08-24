@@ -63,7 +63,7 @@
 		656AFFEF1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFEE1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m */; };
 		656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFF01C8ACDCF00BD29F5 /* main.m */; };
 		656AFFF51C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.m */; };
+		656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
@@ -232,8 +232,8 @@
 		656AFFEE1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeardedSpiceControllers.m; sourceTree = "<group>"; };
 		656AFFF01C8ACDCF00BD29F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		656AFFF21C8ACDCF00BD29F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		656AFFFB1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneUnplugListener.h; sourceTree = "<group>"; };
-		656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneUnplugListener.m; sourceTree = "<group>"; };
+		656AFFFB1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneStatusListener.h; sourceTree = "<group>"; };
+		656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneStatusListener.m; sourceTree = "<group>"; };
 		656AFFFF1C8AD3C800BD29F5 /* DDHidAppleMikey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleMikey.h; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
@@ -442,8 +442,8 @@
 		656AFFFA1C8AD37E00BD29F5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				656AFFFB1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.h */,
-				656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.m */,
+				656AFFFB1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.h */,
+				656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */,
 				65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */,
 				65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */,
 				656A001D1C8AD3E200BD29F5 /* SPMediaKeyTap */,
@@ -897,7 +897,7 @@
 				656A00181C8AD3C800BD29F5 /* DDHidQueue.m in Sources */,
 				656A00381C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */,
 				656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */,
-				656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneUnplugListener.m in Sources */,
+				656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m in Sources */,
 				656A001B1C8AD3C800BD29F5 /* NSDictionary+DDHidExtras.m in Sources */,
 				656A001A1C8AD3C800BD29F5 /* DDHidUsageTables.m in Sources */,
 				656A00191C8AD3C800BD29F5 /* DDHidUsage.m in Sources */,

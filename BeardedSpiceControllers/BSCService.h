@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSHeadphoneUnplugListener.h"
+#import "BSHeadphoneStatusListener.h"
 #import "Shortcut.h"
 
-@interface BSCService : NSObject < BSHeadphoneUnplugListenerProtocol >
+@interface BSCService : NSObject < BSHeadphoneStatusListenerProtocol >
 
 + (BSCService *)singleton;
 

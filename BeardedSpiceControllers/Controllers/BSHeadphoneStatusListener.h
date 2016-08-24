@@ -13,12 +13,17 @@
 #pragma mark - BSHeadphoneUnplugListener
 /////////////////////////////////////////////////////////////////////
 
-@protocol BSHeadphoneUnplugListenerProtocol <NSObject>
+@protocol BSHeadphoneStatusListenerProtocol <NSObject>
 
 /**
     Action is called when headphone is unplugged.
  */
 - (void)headphoneUnplugAction;
+
+/**
+ Action is called when headphone is plugged in.
+ */
+- (void)headphonePlugAction;
 
 @end
 
@@ -31,7 +36,7 @@
     Attempt to determine unplugging headphone from it. 
     And perform action when raises this event.
  */
-@interface BSHeadphoneUnplugListener : NSObject{
+@interface BSHeadphoneStatusListener : NSObject{
     
     AudioDeviceID _defaultDevice;
     UInt32        _sourceId;
@@ -47,13 +52,13 @@
 #pragma mark Init and class methods
 /////////////////////////////////////////////////////////////////////
 
-- (BSHeadphoneUnplugListener *)initWithDelegate:(id<BSHeadphoneUnplugListenerProtocol>)delegate;
+- (BSHeadphoneStatusListener *)initWithDelegate:(id<BSHeadphoneStatusListenerProtocol>)delegate;
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Properties and public methods
 /////////////////////////////////////////////////////////////////////
 
-@property (weak, readonly, nonatomic) id<BSHeadphoneUnplugListenerProtocol> delegate;
+@property (weak, readonly, nonatomic) id<BSHeadphoneStatusListenerProtocol> delegate;
 
 @property BOOL enabled;
 

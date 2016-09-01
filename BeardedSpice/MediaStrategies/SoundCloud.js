@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"SoundCloud",
   accepts: {
     method: "predicateOnTab",
@@ -19,12 +19,12 @@ BSStrategy = {
   },
   toggle: function () {return document.querySelectorAll('.playControl')[0].click()},
   next: function () {return document.querySelectorAll('.skipControl__next')[0].click()},
-  favorite:function () {
-    var play = document.querySelector('.playControl');
-    if(play.classList.contains('playing')) { play.click(); }
-  },
+  favorite:function () {return document.querySelector('div.playControls button.playbackSoundBadge__like').click()},
   previous: function () {return document.querySelectorAll('.skipControl__previous')[0].click()},
-  pause: function (){return document.querySelector('div.playControls button.playbackSoundBadge__like').click()},
+  pause: function (){
+      var play = document.querySelector('.playControl');
+      if(play.classList.contains('playing')) { play.click(); }
+  },
   trackInfo: function () {
     var meta = document.querySelector('a.playbackSoundBadge__title.sc-truncate');
     return {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary xmlns:xi="http://www.w3.org/2001/XInclude" title="Airfoil Satellite Terminology">
+
+    <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
+
+	<suite name="Bearded Spice Suite" code="BSss">
+
+			<class name="application" code="capp" inherits="application" description="The application's top-level scripting object.">
+				<cocoa class="NSApplication"/>
+					<property name="full title" code="pTtl" description="Currently active tab track title, if available" type="text" access="r">
+						<cocoa key="fullTitle"/>
+					</property>
+			</class>
+			
+			<command name="playpause" code="BSssplpa" description="Toggles playback between playing and paused.">
+				<cocoa class="BSAppleScriptPlayPauseCommand"/>
+			</command>
+
+			<command name="next" code="BSssnext" description="Play the next track">
+				<cocoa class="BSAppleScriptNextCommand"/>
+			</command>
+
+			<command name="previous" code="BSssprev" description="Play the previous track">
+				<cocoa class="BSAppleScriptPrevCommand"/>
+			</command>
+			
+	</suite>
+</dictionary>

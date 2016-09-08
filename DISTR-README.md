@@ -11,6 +11,7 @@ Check the setting evar BS_UPDATER_PRIVATE_KEY_FILE, it should point to the priva
 
 ## Preparing sources.
 - Merge from the master branch;
+- Perform command `pod install`
 - Resolve conflicts and delete unnecessary files;
 - Check version number and build number in project;
 

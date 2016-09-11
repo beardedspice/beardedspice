@@ -6,47 +6,26 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"YandexRadio",
   accepts: {
     method: "predicateOnTab",
     format:"%K LIKE[c] '*radio.yandex.*'",
     args: ["URL"]
   },
-  isPlaying: function () { return Mu.Flow.flow.player.isPlaying(); },
-  toggle: function () { Mu.Flow.togglePause(); },
-  next: function () {
-    var nextTreckInfo = Mu.Flow.flow.getNextTrack();
-    Mu.Flow.flow.next("nextpressed");
-    return nextTreckInfo
-  },
-  favorite: function () {},
+  isPlaying: function () { return !!document.querySelector('body.body_state_playing'); },
+  toggle: function () { document.querySelector('.player-controls__play').click(); },
+  next: function () { document.querySelector('.slider__item_track.slider__item_next .slider__item-bar').click(); },
+  favorite: function () { document.querySelector('.player-controls__bar .button.like.like_action_like').click(); },
   previous: function () {},
-  pause: function () {
-    if($('body').attr('class').length!=0){
-      document.querySelector('.player-controls__play').click()
-    }
-  },
+  pause: function () { document.querySelector('.player-controls__play').click(); },
   trackInfo:function () {
-    var result;
-    if (!(Mu.Flow.player.isPaused() || Mu.Flow.player.isPlaying())) {
-      result = Mu.Flow.flow.getNextTrack();
-    }
-    else {
-      result = Mu.Flow.flow.getTrack();
-      result['favorited'] = $('.like_action_like').hasClass('button_checked');
-    }
-    var albums = result.albums
-    if (albums) {
-      result["album"] = albums[0]["title"]
-      result["image"] = albums[0]["coverUri"].replace('\%\%', '600x600')
-      /* FIXME - UNTESTED */
-    }
     return {
-      'favorited': result.favorited,
-      'track': result.version ? (result.title+' '+result.version) : result.title,
-      'image': result.image,
-      'album': result.album
+      track: document.querySelector('.player-controls__title').title,
+      artist: document.querySelector('.player-controls__artists').title,
+      favorited: !!document.querySelector('.player-controls__bar .button.like.like_action_like.button_checked'),
+      image: document.querySelector('.slider__item_track.slider__item_playing .track__cover')
+        .style.backgroundImage.match(/url\(\"\/\/(.*)\"/)[1]
     };
   }
 }

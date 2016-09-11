@@ -77,6 +77,10 @@
 	<string>${BS_DISTRIBUTE_BASE_URL}/${BS_APPCAST_NAME}</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
+	<key>OSAScriptingDefinition</key>
+	<string>BeardedSpiceSuite.sdef</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

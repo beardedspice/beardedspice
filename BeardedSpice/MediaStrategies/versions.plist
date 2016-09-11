@@ -16,6 +16,8 @@
 	<integer>1</integer>
 	<key>Beatguide</key>
 	<integer>1</integer>
+	<key>Beatport</key>
+	<integer>1</integer>
 	<key>BeatsMusic</key>
 	<integer>1</integer>
 	<key>Blitzr</key>
@@ -87,7 +89,7 @@
 	<key>Pandora</key>
 	<integer>1</integer>
 	<key>PlexWeb</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>PocketCasts</key>
 	<integer>1</integer>
 	<key>PoolsideFM</key>
@@ -109,7 +111,7 @@
 	<key>Songza</key>
 	<integer>1</integer>
 	<key>SoundCloud</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Spotify</key>
 	<integer>1</integer>
 	<key>Stitcher</key>
@@ -139,12 +141,14 @@
 	<key>WonderFm</key>
 	<integer>1</integer>
 	<key>XboxMusic</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>YandexMusic</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>YandexRadio</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Youtube</key>
+	<integer>1</integer>
+	<key>Zing</key>
 	<integer>1</integer>
 </dict>
 </plist>

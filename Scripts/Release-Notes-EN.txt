@@ -1,3 +1,5 @@
-Main improvement, that now BeardedSpice strategy is a javascript file. And you can import custom strategies.
-Also update of the strategies from project repository is performed separately from update of the app.
-You can check list of changes <a href="https://github.com/beardedspice/beardedspice/milestone/4?closed=1">here</a>.
+Added app compatibility for Downcast, Beatport.
+A number of web strategies have been updated and are included by default.
+Increased the brightness of the BeardedSpice icon.
+
+You can check list of changes <a href="https://github.com/beardedspice/beardedspice/milestone/10?closed=1">here</a>.

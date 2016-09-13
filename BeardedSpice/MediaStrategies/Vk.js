@@ -1,121 +1,80 @@
 //
-//  Vk.plist
+//  newVk.js
 //  BeardedSpice
 //
-//  Created by Anton Mihailov on 17/06/14.
-//  Copyright (c) 2014 Anton Mihailov. All rights reserved.
+//  Created by Max Kupetskii on 21/07/16.
+//  Copyright © 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-  version: 1,
-  displayName:"VK",
-  accepts: {
-    method: "predicateOnTab",
-    format:"%K LIKE[c] '*vk.com*'",
-    args: ["URL"]
-  },
-  isPlaying: function () { !!document.querySelector('#ac_play.playing, #gp_play.playing'); },
-  toggle: function () {
-    (function (w) {
-      var el = document.querySelector('#ac_play, #gp_play');
-      if (el) { el.click(); return; }
-      w.Pads.show('mus', null);
-      var pollPlayerInterval = setInterval(
-      (function(w){
-          return function(){
-              var el = document.querySelector('#pd_play');
-              if (!el) { return; }
-              clearInterval(pollPlayerInterval);
-              el.click();
-              w.Pads.hide('mus', null);
-          }
-      })(w),10);
-    }(window))
-  },
-  next: function () {
-    (function (w) {
-      var el = document.querySelector('#ac_next');
-      if (el) { el.click(); return; }
-      w.Pads.show('mus', null);
-      var pollPlayerInterval = setInterval(
-      (function(w){
-          return function(){
-              var el = document.querySelector('#pd_next');
-              if (!el) { return; }
-              clearInterval(pollPlayerInterval);
-              el.click();
-              w.Pads.hide('mus', null);
-          }
-      })(w), 10);
-    }(window))
-  },
-  favorite: function () {
-    (function (w) {
-      var el = document.querySelector('#ac_add');
-      if (el) { el.click(); return; }
-      w.Pads.show('mus', null);
-      var pollPlayerInterval = setInterval(
-      (function(w){
-          return function(){
-              var el = document.querySelector('#pd_add');
-              if (!el) { return; }
-              clearInterval(pollPlayerInterval);
-              el.click();
-              w.Pads.hide('mus', null);
-          }
-      })(w), 10);
-    }(window))
-  },
-  previous: function () {
-    (function (w) {
-      var el = document.querySelector('#ac_prev');
-      if (el) { el.click(); return; }
-      w.Pads.show('mus', null);
-      var pollPlayerInterval = setInterval( (function(w){
-          return function(){
-              var el = document.querySelector('#pd_prev');
-              if (!el) { return; }
-              clearInterval(pollPlayerInterval);
-              el.click();
-              w.Pads.hide('mus', null);
-          }
-      })(w), 10);
-    }(window))
-  },
-  pause: function () {
-    (function (w) {
-      var el = document.querySelector('#ac_play.playing, #gp_play.playing');
-      if (el) { el.click(); return; }
-      w.Pads.show('mus', null);
-      var pollPlayerInterval = setInterval(
-      (function(w){
-          return function(){
-              var el = document.querySelector('#pd_play.playing');
-              if (!el) { return; }
-              clearInterval(pollPlayerInterval);
-              el.click();
-              w.Pads.hide('mus', null);
-          }
-      })(w), 10);
-      setTimeout(function(){clearInterval(pollPlayerInterval);}, 1000);
-    }(window))
-  },
-  trackInfo: function () {
-    (function (w) {
-      var titleEl = document.querySelector('span#ac_title, #gp_title');
-      var artistEl = document.querySelector('span#ac_performer, #gp_performer');
-      if (! titleEl || ! artistEl) {
-          w.Pads.show('mus', null);
-          titleEl = document.querySelector('span#pd_title'),
-          artistEl = document.querySelector('span#pd_performer');
-          w.Pads.hide('mus', null);
-      }
-      if (!(titleEl && artistEl)) {
-        return {};
-      }
-      return {
-          'title': titleEl.firstChild.nodeValue,
-          'artist': artistEl.firstChild.nodeValue
-      };
-    }(window))
-  },
+        version: 2,
+        displayName: "VK",
+        accepts: {
+        method: "predicateOnTab",
+        format:"%K LIKE[c] '*vk.com*'",
+        args: ["URL"]
+    },
+    isPlaying: function () {
+        var play = document.getElementsByClassName('top_audio_player top_audio_player_enabled');
+        return play.length > 0 && play[0].classList.contains('top_audio_player_playing');
+    },
+    toggle: function () {
+        (function (w) {
+         var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play');
+         if (el) { el.click(); return; }
+         w.AudioUtils.showAudioLayer();
+         var pollPlayerInterval = setInterval(
+            (function(w){
+                return function(){
+                    var el = document.querySelector('.audio_page_player_play');
+                    if (!el) { return; }
+                    clearInterval(pollPlayerInterval);
+                    el.click();
+                    w.AudioUtils.showAudioLayer();
+                }
+            })(w), 10);
+         }(window))
+    },
+    next: function () {
+        var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_next');
+        if (el) { el.click(); return; }
+        return;
+    },
+    favorite: function () {
+        (function (w) {
+         var el = document.querySelector('.audio_page_player_add#add');
+         if (el) { el.click(); return; }
+         w.AudioUtils.showAudioLayer();
+         var pollPlayerInterval = setInterval(
+            (function(w){
+                return function(){
+                    var el = document.querySelector('.audio_page_player_add#add');
+                    if (!el) { return; }
+                    clearInterval(pollPlayerInterval);
+                    el.click();
+                    w.AudioUtils.showAudioLayer();
+                }
+            })(w), 10);
+         }(window))
+    },
+    previous: function () {
+        var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_prev');
+        if (el) { el.click(); }
+        return;
+    },
+    pause: function () {
+        var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play');
+        if (el) { el.click(); }
+        return;
+    },
+    trackInfo: function () {
+        var fullTitle = document.querySelector('#top_audio_player > div.top_audio_player_title_wrap > div');
+        var fullTitleText = fullTitle.textContent.split(" – ");
+        if (!fullTitle) {
+            return {};
+        }
+        return {
+            'artist': fullTitleText[0],
+            'track': fullTitleText[1]
+        };
+    },
 }

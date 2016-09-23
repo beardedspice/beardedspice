@@ -157,6 +157,8 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
            @"com.plug.Plug2",
            @"com.netease.163music",
            @"com.coppertino.Vox",
+           @"com.tidal.desktop",
+           @"com.amazon.music",
            nil
            ];
 }

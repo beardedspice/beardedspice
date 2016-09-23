@@ -51,6 +51,8 @@ static BSCService *bscSingleton;
         self = [super init];
         if (self) {
 
+            [[NSUserDefaults standardUserDefaults] registerDefaults:@{kMediaKeyUsingBundleIdentifiersDefaultsKey: [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers]}];
+            
             _connections = [NSMutableArray arrayWithCapacity:1];
             _shortcuts = [NSMutableDictionary dictionary];
             _remoteControlDaemonEnabled = NO;
@@ -462,6 +464,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+                        
                         [self sendMessagesToConnections:@selector(activeTab)];
                     }];
                 }
@@ -478,6 +482,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+                        
                         [self sendMessagesToConnections:@selector(notification)];
                     }];
                 }
@@ -485,6 +491,8 @@ static BSCService *bscSingleton;
                 shortcut = _shortcuts[BeardedSpiceActivatePlayingTabShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
+                        
+                        [self refreshMediaKeys];
 
                         [self sendMessagesToConnections:@selector(activatePlayingTab)];
                     }];
@@ -494,6 +502,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+
                         [self sendMessagesToConnections:@selector(playerNext)];
                     }];
                 }
@@ -502,6 +512,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+                        
                         [self sendMessagesToConnections:@selector(playerPrevious)];
                     }];
                 }

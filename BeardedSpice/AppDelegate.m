@@ -1479,7 +1479,8 @@ BOOL accessibilityApiEnabled = NO;
     for (Class theClass in [nativeAppRegistry enabledNativeAppClasses]) {
         [keyTapBlackList addObject:[theClass bundleId]];
     }
-
+    [keyTapBlackList addObject:[[NSBundle mainBundle] bundleIdentifier]];
+    
     if (_connectionToService) {
 
         [[_connectionToService remoteObjectProxy] setMediaKeysSupportedApps:keyTapBlackList];

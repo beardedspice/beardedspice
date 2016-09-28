@@ -7,7 +7,7 @@
 //
 BSStrategy = {
   version:2,
-  displayName:"MixCloud",
+  displayName:"Mixcloud",
   accepts: {
     method: "predicateOnTab",
     format:"%K LIKE[c] '*www.mixcloud.com*'",

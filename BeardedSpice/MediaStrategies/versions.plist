@@ -68,9 +68,9 @@
 	<integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
-	<key>Mixcloud</key>
-	<integer>2</integer>
-	<key>Mixcloud Beta</key>
+	<key>MixCloud</key>
+	<integer>3</integer>
+	<key>MixcloudBeta</key>
 	<integer>1</integer>
 	<key>MusicForProgramming</key>
 	<integer>1</integer>

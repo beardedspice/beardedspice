@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:2,
+  version:3,
   displayName:"Mixcloud",
   accepts: {
     method: "predicateOnTab",

@@ -7,10 +7,10 @@
 //
 BSStrategy = {
   version:2,
-  displayName:"MixCloud",
+  displayName:"Mixcloud",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*mixcloud.com*'",
+    format:"%K LIKE[c] '*www.mixcloud.com*'",
     args: ["URL"]
   },
   isPlaying: function() {return (document.querySelector('.player-control.pause-state') != null)},

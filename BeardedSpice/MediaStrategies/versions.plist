@@ -118,6 +118,8 @@
 	<integer>1</integer>
 	<key>Stitcher</key>
 	<integer>1</integer>
+    <key>Stripewaves</key>
+	<integer>1</integer>
 	<key>Subsonic</key>
 	<integer>1</integer>
 	<key>Synology</key>

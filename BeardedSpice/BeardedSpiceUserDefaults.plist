@@ -108,6 +108,8 @@
 		<true/>
 		<key>Stitcher</key>
 		<true/>
+        <key>Stripewaves</key>
+		<true/>
 		<key>Synology Audio Station</key>
 		<true/>
 		<key>TIDAL</key>

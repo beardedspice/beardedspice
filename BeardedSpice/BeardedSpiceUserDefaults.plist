@@ -44,6 +44,8 @@
 		<true/>
 		<key>Digitally Imported</key>
 		<true/>
+		<key>Fip</key>
+		<true/>
 		<key>focus@will</key>
 		<true/>
 		<key>Gaana</key>
@@ -110,7 +112,7 @@
 		<true/>
 		<key>Stitcher</key>
 		<true/>
-        <key>Stripewaves</key>
+    <key>Stripewaves</key>
 		<true/>
 		<key>Synology Audio Station</key>
 		<true/>

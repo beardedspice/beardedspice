@@ -2,8 +2,8 @@
 //  YouTube.plist
 //  BeardedSpice
 //
-//  Created by Jose Falcon on 12/15/13.
-//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Created by Jean Bertrand on 10/10/16.
+//  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version: 1,

@@ -72,6 +72,8 @@
 	<integer>3</integer>
 	<key>MixcloudBeta</key>
 	<integer>1</integer>
+	<key>Moov</key>
+	<integer>1</integer>
 	<key>MusicForProgramming</key>
 	<integer>1</integer>
 	<key>MusicUnlimited</key>

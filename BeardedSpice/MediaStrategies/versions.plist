@@ -104,6 +104,8 @@
 	<integer>1</integer>
 	<key>Rhapsody</key>
 	<integer>1</integer>
+	<key>Qobuz</key>
+	<integer>1</integer>
 	<key>Saavn</key>
 	<integer>1</integer>
 	<key>ShufflerFm</key>

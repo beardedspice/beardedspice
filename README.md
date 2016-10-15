@@ -99,7 +99,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [ProductHunt](https://www.producthunt.com/podcasts/)
-- [Qobuz](https://http://player.qobuz.com/)
+- [Qobuz](http://player.qobuz.com/)
 - [Radio Swiss Jazz](http://www.radioswissjazz.ch/)
 - [Rdio](http://rdio.com)
 - [Rhapsody](http://www.rhapsody.com/)

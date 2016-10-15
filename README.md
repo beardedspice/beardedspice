@@ -224,8 +224,6 @@ Update the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/
     <integer>1</integer>
 ```
 
-Finally, update the [default preferences plist](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/BeardedSpiceUserDefaults.plist) to include your strategy.
-
 ## Updating a *Media Strategy*
 
 In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate .js file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.js) has javascript for all five functions as well as partial trackInfo retrieval.

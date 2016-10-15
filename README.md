@@ -62,7 +62,6 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](https://beatguide.me/)
 - [Beatport](https://beatport.com)
-- [BeatsMusic](http://listen.beatsmusic.com)
 - [Blitzr](http://blitzr.com)
 - [Bop.fm](http://bop.fm)
 - [Brain.fm](https://brain.fm/)
@@ -264,8 +263,3 @@ If you find that javascript alone cannot properly control a service, please [cre
 Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods with the most modern API for the service, please. PR with a strategy that is not fully implemented for no reason will be rejected.
 
 [![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
-
-# Contact
-
-- [@chedkid](https://twitter.com/chedkid)
-- [@trhodeos](https://twitter.com/trhodeos)

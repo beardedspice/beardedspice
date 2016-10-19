@@ -42,6 +42,8 @@
 	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
+	<key>FocusMusicFM</key>
+	<integer>1</integer>
 	<key>Gaana</key>
 	<integer>1</integer>
 	<key>GoogleMusic</key>

@@ -172,5 +172,7 @@
 	<integer>1</integer>
 	<key>Fip</key>
 	<integer>1</integer>
+	<key>Xiami</key>
+	<integer>1</integer>
 </dict>
 </plist>

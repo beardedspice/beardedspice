@@ -161,8 +161,6 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2016 Bearded Spice. All rights reserved.
-// OR
 //  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 

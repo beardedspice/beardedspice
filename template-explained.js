@@ -3,8 +3,6 @@
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2015 Bearded Spice. All rights reserved.
-// OR
 //  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 

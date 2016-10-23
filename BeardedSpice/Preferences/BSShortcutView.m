@@ -52,17 +52,6 @@
 
 #pragma mark - Focus ring
 
-- (NSRect)focusRingMaskBounds {
-    return [self bounds];
-}
-
-- (void)drawFocusRingMask {
-    
-    if (self.focusRingType != NSFocusRingTypeNone) {
-        NSRectFill([self bounds]);
-    }
-}
-
 - (BOOL)acceptsFirstResponder{
     if (self.enabled) {
         return YES;

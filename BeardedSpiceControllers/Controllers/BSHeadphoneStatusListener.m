@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 BeardedSpice. All rights reserved.
 //
 
-#import "BSHeadphoneUnplugListener.h"
+#import "BSHeadphoneStatusListener.h"
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark - BSHeadphoneUnplugListener
 /////////////////////////////////////////////////////////////////////
 
-@implementation BSHeadphoneUnplugListener
+@implementation BSHeadphoneStatusListener
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Init and class methods
 /////////////////////////////////////////////////////////////////////
 
-- (BSHeadphoneUnplugListener *)initWithDelegate:(id<BSHeadphoneUnplugListenerProtocol>)delegate{
+- (BSHeadphoneStatusListener *)initWithDelegate:(id<BSHeadphoneStatusListenerProtocol>)delegate{
     
     if (!delegate) {
         return nil;
@@ -42,18 +42,24 @@
         
         AudioObjectGetPropertyData(kAudioObjectSystemObject, &defaultAddr, 0, NULL, &defaultSize, &_defaultDevice);
         
-        __weak BSHeadphoneUnplugListener *bself = self;
+        __weak BSHeadphoneStatusListener *bself = self;
         _listenerBlock = ^(UInt32 inNumberAddresses,
                            const AudioObjectPropertyAddress *inAddresses) {
             
             UInt32 newSourceId = [bself currentSource:(AudioObjectPropertyAddress *)inAddresses];
             
-            if (_sourceId == 'hdpn' && _sourceId != newSourceId) {
-                dispatch_async(dispatch_get_current_queue(), ^{
-                    [bself.delegate headphoneUnplugAction];
-                });
+            if (_sourceId != newSourceId) {
+                if (_sourceId == 'hdpn') {
+                    dispatch_async(dispatch_get_current_queue(), ^{
+                        [bself.delegate headphoneUnplugAction];
+                    });
+                } else if (newSourceId == 'hdpn') {
+                    dispatch_async(dispatch_get_current_queue(), ^{
+                        [bself.delegate headphonePlugAction];
+                    });
+                }
+                _sourceId = newSourceId;
             }
-            _sourceId = newSourceId;
         };
      
         _enabled = NO;

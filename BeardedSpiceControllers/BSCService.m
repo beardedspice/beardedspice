@@ -26,7 +26,7 @@
     SPMediaKeyTap *_keyTap;
     NSMutableArray *_mikeys;
     NSMutableArray *_appleRemotes;
-    BSHeadphoneUnplugListener *_hpuListener;
+    BSHeadphoneStatusListener *_hpuListener;
 
     NSMutableDictionary *_shortcuts;
 
@@ -59,7 +59,7 @@ static BSCService *bscSingleton;
 
             workingQueue = dispatch_queue_create("BeardedSpiceControllerService", DISPATCH_QUEUE_SERIAL);
 
-            _hpuListener = [[BSHeadphoneUnplugListener alloc] initWithDelegate:self];
+            _hpuListener = [[BSHeadphoneStatusListener alloc] initWithDelegate:self];
             _keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
 
 
@@ -248,6 +248,13 @@ static BSCService *bscSingleton;
 - (void)headphoneUnplugAction{
 
     [self sendMessagesToConnections:@selector(headphoneUnplug)];
+}
+
+- (void)headphonePlugAction
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self refreshMikeys];
+    });
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;

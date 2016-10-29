@@ -40,6 +40,8 @@
 	<integer>2</integer>
 	<key>DigitallyImported</key>
 	<integer>1</integer>
+	<key>Disco</key>
+	<integer>1</integer>
 	<key>EightTracks</key>
 	<integer>1</integer>
 	<key>FocusAtWill</key>

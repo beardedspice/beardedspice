@@ -73,6 +73,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Dailymotion](https://www.dailymotion.com)
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
+- [Disco.io](http://disco.io/)
 - [focus@will](https://www.focusatwill.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)

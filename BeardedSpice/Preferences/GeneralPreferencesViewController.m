@@ -45,7 +45,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 @implementation GeneralPreferencesViewController
 
 - (id)init{
-    
+
     self = [super initWithNibName:@"GeneralPreferencesView" bundle:nil];
     if (self) {
 
@@ -56,7 +56,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
             @"defined.");
 
         self.importExportPanelOpened = self.selectedRowAllowExport = self.selectedRowAllowRemove = NO;
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(strategyChangedNotify:) name: BSVMStrategyChangedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(strategyChangedNotify:) name: BSCStrategyChangedNotification object:nil];
         [self loadMediaControllerObjects];
@@ -65,7 +65,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 }
 
 - (void)dealloc{
-    
+
 }
 
 - (NSString *)identifier
@@ -130,16 +130,16 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 - (IBAction)clickExport:(id)sender {
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+
         @autoreleasepool {
-            
+
             BSMediaStrategy *strategy = [self strategyFromTableSelection];
             if (strategy) {
-                
+
                 self.importExportPanelOpened = YES;
-                
+
                 NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-                
+
                 openPanel.directoryURL =
                 [self importExportDirectoryForCustomStrategy];
                 openPanel.allowedFileTypes = nil;
@@ -157,21 +157,21 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                                                      @"Export", @"(GeneralPreferencesViewController) In "
                                                      @"preferences, strategies list. 'Choose folder for "
                                                      @"exporting' panel. Export button title.");
-                
+
                 [openPanel beginWithCompletionHandler:^(NSInteger result) {
-                    
+
                     if (result == NSFileHandlingPanelOKButton) {
-                        
+
                         // export to file
                         NSURL *fileURL = openPanel.URL;
                         [[NSUserDefaults standardUserDefaults]
                          setObject:[fileURL path]
                          forKey:BeardedSpiceImportExportLastDirectory];
-                        
+
                         [[BSCustomStrategyManager singleton] exportStrategy:strategy
                                                                    toFolder:fileURL];
                     }
-                    
+
                     self.importExportPanelOpened = NO;
                 }];
             }
@@ -207,16 +207,16 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                          @"importing' panel. Import button title.");
 
           [openPanel  beginWithCompletionHandler:^(NSInteger result) {
-              
+
               if (result == NSFileHandlingPanelOKButton) {
-                  
+
                   NSURL *fileURL = openPanel.URL;
                   [[NSUserDefaults standardUserDefaults]
                    setObject:[openPanel.directoryURL path]
                    forKey:BeardedSpiceImportExportLastDirectory];
-                  
+
                   [[BSCustomStrategyManager singleton] importFromUrl:fileURL];
-                  
+
               }
               self.importExportPanelOpened = NO;
           }];
@@ -338,14 +338,14 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
         return [self tableView:tableView checkViewForObject:obj];
     }
     else if ([ident isEqualToString:@"name"]){
-        
+
         return [self tableView:tableView nameViewForObject:obj];
     }
     else if ([ident isEqualToString:@"smartIndicator"]){
 
         return [self tableView:tableView indicatorViewForObject:obj];
     }
-    
+
     return nil;
 }
 
@@ -379,7 +379,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 }
 
 - (NSView *)tableView:(NSTableView *)tableView nameViewForObject:(MediaControllerObject *)obj{
-    
+
     EHVerticalCenteredTextField *result = [EHVerticalCenteredTextField new];
     result.selectable = result.editable = result.drawsBackground = result.bordered = NO;
 
@@ -406,11 +406,11 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
         [name appendAttributedString:version];
     }
     result.attributedStringValue = name;
-    
+
     if (obj.isCustom) {
         result.toolTip = _toolTipForCustomStrategy;
     }
-    
+
     return result;
 }
 
@@ -431,25 +431,25 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 - (void)tableViewSelectionDidChange:(NSNotification *)notification{
 
     NSTableView *tableView = notification.object;
-    
+
     if (tableView) {
-        
+
         self.selectedRowAllowExport = self.selectedRowAllowRemove = NO;
-        
+
         NSInteger index = [tableView selectedRow];
         if (index < 0) {
             return;
         }
-        
+
         MediaControllerObject *obj = mediaControllerObjects[index];
         if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
-            
+
             self.selectedRowAllowExport = YES;
             if (obj.isCustom) {
                 self.selectedRowAllowRemove = YES;
             }
         }
-        
+
         [self.view.window recalculateKeyViewLoop];
     }
 }
@@ -507,12 +507,12 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 }
 
 - (void)loadMediaControllerObjects{
-    
+
     NSMutableArray *mediaControllers = [NSMutableArray array];
-    
+
     NSArray *theArray = [NativeAppTabRegistry defaultNativeAppClasses];
     if (theArray.count) {
-        
+
         MediaControllerObject *obj = [MediaControllerObject new];
         obj.isGroup = YES;
         obj.name = NSLocalizedString(@"Native", @"General preferences - controllers table");
@@ -520,10 +520,10 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
         for (Class theClass in theArray) {
             [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:theClass]];
         }
-        
+
         userNativeApps = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveNativeAppControllers]];
     }
-    
+
     BSStrategyCache *cache = [[MediaStrategyRegistry singleton] strategyCache];
     theArray = [[cache allStrategies] sortedArrayUsingSelector:@selector(compare:)];
     if (theArray.count) {
@@ -540,7 +540,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 }
 
 - (void)strategyChangedNotify:(NSNotification*) notification{
-    
+
     [self loadMediaControllerObjects];
     [self.strategiesView reloadData];
 }
@@ -570,15 +570,15 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 }
 
 - (BSMediaStrategy *)strategyFromTableSelection{
-    
+
     NSInteger index = [self.strategiesView selectedRow];
     if (index < 0 || mediaControllerObjects.count <= index) {
         return nil;
     }
-    
+
     MediaControllerObject *obj = mediaControllerObjects[index];
     if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
-        
+
         return obj.representationObject;
     }
 

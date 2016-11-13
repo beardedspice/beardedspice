@@ -1,4 +1,10 @@
 
+[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
+
+# Common Issues
+
+It's asked that anyone with an issue check the [Wiki Section](wiki) before posting a new issue.
+
 # Users Guide
 
 [![BeardedSpice](images/bs.jpg)](images/bs.jpg)
@@ -133,6 +139,3 @@ No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/
 
 Or, if you're in the mood to try something new, just follow the **[Developers' How To](docs/developers-guide-web.md)** below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires **NO objective-c experience** and a little of JavaScript basics.
 
----
-
-[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)

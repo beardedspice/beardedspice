@@ -106,6 +106,8 @@
 	<integer>1</integer>
 	<key>Rdio</key>
 	<integer>1</integer>
+	<key>RedditMusic</key>
+	<integer>1</integer>
 	<key>Rhapsody</key>
 	<integer>1</integer>
 	<key>Qobuz</key>

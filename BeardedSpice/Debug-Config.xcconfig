@@ -13,6 +13,6 @@ DEBUG_STRATEGY = 1
 
 #include "./Config.xcconfig"
 
-// Marco definition
+// Macro definition
 GCC_PREPROCESSOR_DEFINITIONS = BS_STRATEGY_EXTENSION=@\"$(BS_STRATEGY_EXTENSION)\" DEBUG_STRATEGY=$(DEBUG_STRATEGY)
 

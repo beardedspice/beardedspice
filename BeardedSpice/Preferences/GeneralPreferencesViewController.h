@@ -29,6 +29,7 @@ extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
 extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
 extern NSString *const BeardedSpiceUpdateAtLaunch;
+extern NSString *const BeardedSpiceShowProgress;
 
 extern NSString *const BeardedSpiceImportExportLastDirectory;
 

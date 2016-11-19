@@ -8,10 +8,13 @@
 
 #import "BSTrack.h"
 
+#import "GeneralPreferencesViewController.h"
+
 NSString *const kBSTrackNameImage = @"image";
 NSString *const kBSTrackNameTrack = @"track";
 NSString *const kBSTrackNameAlbum = @"album";
 NSString *const kBSTrackNameArtist = @"artist";
+NSString *const kBSTrackNameProgress = @"progress";
 NSString *const kBSTrackNameFavorited = @"favorited";
 
 @interface BSTrack ()
@@ -35,6 +38,7 @@ NSString *const kBSTrackNameFavorited = @"favorited";
         _track = @"";
         _album = @"";
         _artist = @"";
+        _progress = @"";
         _favorited = @0;
         _image = nil;
     }
@@ -49,6 +53,7 @@ NSString *const kBSTrackNameFavorited = @"favorited";
         _track = info[kBSTrackNameTrack] ?: @"";
         _album = info[kBSTrackNameAlbum] ?: @"";
         _artist = info[kBSTrackNameArtist] ?: @"";
+        _progress = info[kBSTrackNameProgress] ?: @"";
         _favorited = info[kBSTrackNameFavorited] ?: @0; // 0 could also be evaluated as @NO
         _image = nil;
         _imageURL = info[kBSTrackNameImage] ?: nil;
@@ -71,9 +76,15 @@ NSString *const kBSTrackNameFavorited = @"favorited";
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
 
+    BOOL isShowProgressActive = [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceShowProgress];
+
+    if (self.progress.length == 0) {
+        isShowProgressActive = NO;
+    }
+
     notification.title = self.track;
-    notification.subtitle = self.album;
-    notification.informativeText = self.artist;
+    notification.subtitle = isShowProgressActive ? self.artist : self.album;
+    notification.informativeText = isShowProgressActive ? self.progress : self.artist;
 
     if (self.favorited && [self.favorited boolValue]) {
 

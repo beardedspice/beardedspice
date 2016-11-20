@@ -32,10 +32,6 @@
 
 #import "runningSBApplication.h"
 
-
-/// Because user defaults have good caching mechanism, we can use this macro.
-#define ALWAYSSHOWNOTIFICATION  [[[NSUserDefaults standardUserDefaults] objectForKey:BeardedSpiceAlwaysShowNotification] boolValue]
-
 /**
  Timeout for command of the user iteraction.
  */

@@ -10,8 +10,6 @@
 #import "NativeAppTabAdapter.h";
 #import "MediaStrategyRegistry.h";
 
-#define BS_LOG(x, y, ...) { NSLog(y, __VA_ARGS__); }
-
 /// Delay displaying notification after changing favorited status of the current track.
 #define FAVORITED_DELAY         0.3
 

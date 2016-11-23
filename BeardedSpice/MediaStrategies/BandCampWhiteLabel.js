@@ -2,7 +2,7 @@
 //  BandCamp.plist
 //  BeardedSpice
 //
-//  Created by Jose Falcon on 12/16/13.
+//  Copied from BandCamp.js and editted by Jon Bramley on 23/11/2016.
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {

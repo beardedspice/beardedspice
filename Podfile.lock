@@ -2,23 +2,23 @@ PODS:
   - Kiwi (2.4.0)
   - MASPreferences (1.1.4)
   - MASShortcut (2.3.3)
-  - Sparkle (1.9.0)
+  - Sparkle (1.14.0)
   - VCRURLConnection (0.2.0)
 
 DEPENDENCIES:
   - Kiwi
   - MASPreferences (= 1.1.4)
   - MASShortcut (~> 2.3.3)
-  - Sparkle (~> 1.9)
+  - Sparkle (~> 1.14)
   - VCRURLConnection
 
 SPEC CHECKSUMS:
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   MASPreferences: 7bdcfe891d7840453cf48f95fa866c3e152ace7a
   MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
-  Sparkle: 75bbbc5ab2d666f7f77c241afe7fd28364a8f9f7
+  Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
   VCRURLConnection: accd771ebd4be11183a3e4d5a4403f180a9a235e
 
-PODFILE CHECKSUM: 4c1034fa376f30e7aa16eb520779934367ee0e9b
+PODFILE CHECKSUM: 266af544f19d2b9b8f3b4c88276c9dc0662171c7
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

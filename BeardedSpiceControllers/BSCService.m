@@ -26,7 +26,7 @@
     SPMediaKeyTap *_keyTap;
     NSMutableArray *_mikeys;
     NSMutableArray *_appleRemotes;
-    BSHeadphoneUnplugListener *_hpuListener;
+    BSHeadphoneStatusListener *_hpuListener;
 
     NSMutableDictionary *_shortcuts;
 
@@ -51,13 +51,15 @@ static BSCService *bscSingleton;
         self = [super init];
         if (self) {
 
+            [[NSUserDefaults standardUserDefaults] registerDefaults:@{kMediaKeyUsingBundleIdentifiersDefaultsKey: [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers]}];
+            
             _connections = [NSMutableArray arrayWithCapacity:1];
             _shortcuts = [NSMutableDictionary dictionary];
             _remoteControlDaemonEnabled = NO;
 
             workingQueue = dispatch_queue_create("BeardedSpiceControllerService", DISPATCH_QUEUE_SERIAL);
 
-            _hpuListener = [[BSHeadphoneUnplugListener alloc] initWithDelegate:self];
+            _hpuListener = [[BSHeadphoneStatusListener alloc] initWithDelegate:self];
             _keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
 
 
@@ -246,6 +248,13 @@ static BSCService *bscSingleton;
 - (void)headphoneUnplugAction{
 
     [self sendMessagesToConnections:@selector(headphoneUnplug)];
+}
+
+- (void)headphonePlugAction
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self refreshMikeys];
+    });
 }
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
@@ -462,6 +471,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+                        
                         [self sendMessagesToConnections:@selector(activeTab)];
                     }];
                 }
@@ -478,6 +489,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+                        
                         [self sendMessagesToConnections:@selector(notification)];
                     }];
                 }
@@ -485,6 +498,8 @@ static BSCService *bscSingleton;
                 shortcut = _shortcuts[BeardedSpiceActivatePlayingTabShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
+                        
+                        [self refreshMediaKeys];
 
                         [self sendMessagesToConnections:@selector(activatePlayingTab)];
                     }];
@@ -494,6 +509,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+
                         [self sendMessagesToConnections:@selector(playerNext)];
                     }];
                 }
@@ -502,6 +519,8 @@ static BSCService *bscSingleton;
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
+                        [self refreshMediaKeys];
+                        
                         [self sendMessagesToConnections:@selector(playerPrevious)];
                     }];
                 }

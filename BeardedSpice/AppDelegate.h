@@ -19,7 +19,7 @@
 
 #import "BSMediaStrategy.h"
 
-#define APPDELEGATE     ([[NSApplication sharedApplication] delegate])
+#define APPDELEGATE     (AppDelegate *)([[NSApplication sharedApplication] delegate])
 
 @class runningSBApplication, BSStrategyVersionManager;
 

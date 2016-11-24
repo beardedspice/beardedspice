@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"GoogleMusic",
   accepts: {
     method: "predicateOnTab",
@@ -32,7 +32,7 @@ BSStrategy = {
       'track':  document.getElementById('currently-playing-title').innerText,
       'album':  document.getElementsByClassName('player-album')[0].innerText,
       'artist': document.getElementById('player-artist').innerText,
-      'image':  document.getElementById('playingBarArt').getAttribute('src')
+      'image':  document.getElementById('playerBarArt').getAttribute('src')
     }
   }
 }

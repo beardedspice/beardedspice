@@ -1,16 +1,16 @@
 //
-//  Rhapsody.plist
+//  Napster.plist
 //  BeardedSpice
 //
 //  Created by Aaron Pollack on 11/17/15.
 //  Copyright © 2015 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:1,
-  displayName:"Rhapsody",
+  version:2,
+  displayName:"Napster",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*app.rhapsody.com*'",
+    format:"%K LIKE[c] '*app.napster.com*'",
     args: ["URL"]
   },
   isPlaying: function () {return !!$('.player-play-button .icon-pause2').length;},

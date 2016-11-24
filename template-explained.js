@@ -1,11 +1,9 @@
 //
-//  NewStrategyName.plist
+//  NewStrategyName.js
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2015 Bearded Spice. All rights reserved.
-// OR
-//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 // We put the copyright inside the plist to retain consistent syntax coloring.

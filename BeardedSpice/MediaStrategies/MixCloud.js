@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:2,
-  displayName:"MixCloud",
+  version:3,
+  displayName:"Mixcloud",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*mixcloud.com*'",
+    format:"%K LIKE[c] '*www.mixcloud.com*'",
     args: ["URL"]
   },
   isPlaying: function() {return (document.querySelector('.player-control.pause-state') != null)},

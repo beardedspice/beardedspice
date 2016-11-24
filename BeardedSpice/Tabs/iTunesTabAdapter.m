@@ -44,7 +44,7 @@
     @autoreleasepool {
 
         iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
-        iTunesTrack *currentTrack = [[iTunes currentTrack] get];
+        iTunesTrack *currentTrack = [iTunes currentTrack];
 
         NSString *title;
         if (currentTrack) {

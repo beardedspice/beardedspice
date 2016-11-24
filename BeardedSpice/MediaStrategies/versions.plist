@@ -2,9 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BandCampWhiteLabel</key>
+	<integer>1</integer>
 	<key>StyleJukebox</key>
 	<integer>1</integer>
 	<key>AmazonMusic</key>
+	<integer>1</integer>
+	<key>AppleDeveloper</key>
 	<integer>1</integer>
 	<key>Audible</key>
 	<integer>1</integer>
@@ -14,11 +18,11 @@
 	<integer>1</integer>
 	<key>BBCRadio</key>
 	<integer>1</integer>
+	<key>BE-AT.TV</key>
+	<integer>1</integer>
 	<key>Beatguide</key>
 	<integer>1</integer>
 	<key>Beatport</key>
-	<integer>1</integer>
-	<key>BeatsMusic</key>
 	<integer>1</integer>
 	<key>Blitzr</key>
 	<integer>1</integer>
@@ -32,6 +36,8 @@
 	<integer>1</integer>
 	<key>Coursera</key>
 	<integer>1</integer>
+	<key>CozyCloud</key>
+	<integer>1</integer>
 	<key>Deezer</key>
 	<integer>2</integer>
 	<key>DigitallyImported</key>
@@ -40,10 +46,12 @@
 	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
+	<key>FocusMusicFM</key>
+	<integer>1</integer>
 	<key>Gaana</key>
 	<integer>1</integer>
 	<key>GoogleMusic</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>GrooveShark</key>
 	<integer>1</integer>
 	<key>HotNewHipHop</key>
@@ -69,11 +77,15 @@
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
 	<key>MixCloud</key>
-	<integer>2</integer>
+	<integer>3</integer>
+	<key>MixcloudBeta</key>
+	<integer>1</integer>
 	<key>MusicForProgramming</key>
 	<integer>1</integer>
 	<key>MusicUnlimited</key>
 	<integer>1</integer>
+	<key>Napster</key>
+	<integer>2</integer>
 	<key>Netflix</key>
 	<integer>1</integer>
 	<key>NoAdRadio</key>
@@ -98,7 +110,11 @@
 	<integer>1</integer>
 	<key>Rdio</key>
 	<integer>1</integer>
+	<key>RedditMusic</key>
+	<integer>1</integer>
 	<key>Rhapsody</key>
+	<integer>1</integer>
+	<key>Qobuz</key>
 	<integer>1</integer>
 	<key>Saavn</key>
 	<integer>1</integer>
@@ -115,6 +131,8 @@
 	<key>Spotify</key>
 	<integer>1</integer>
 	<key>Stitcher</key>
+	<integer>1</integer>
+	<key>Stripewaves</key>
 	<integer>1</integer>
 	<key>Subsonic</key>
 	<integer>1</integer>
@@ -135,7 +153,7 @@
 	<key>Vimeo</key>
 	<integer>1</integer>
 	<key>Vk</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>WatchaPlay</key>
 	<integer>1</integer>
 	<key>WonderFm</key>
@@ -149,6 +167,10 @@
 	<key>Youtube</key>
 	<integer>1</integer>
 	<key>Zing</key>
+	<integer>1</integer>
+	<key>Anghami</key>
+	<integer>1</integer>
+	<key>Fip</key>
 	<integer>1</integer>
 </dict>
 </plist>

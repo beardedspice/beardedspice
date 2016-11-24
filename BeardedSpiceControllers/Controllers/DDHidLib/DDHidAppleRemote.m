@@ -113,6 +113,8 @@
                                   forKey: @"18_14_6_5_18_14_6_5_"];
     [mCookieToButtonMapping ddhid_setInt: kDDHidRemoteButtonPlay_Sleep
                                   forKey: @"35_31_19_18_35_31_19_18_"];
+    [mCookieToButtonMapping ddhid_setInt: kDDHidRemoteButtonPlay_Sleep
+                                  forKey: @"37_33_21_20_2_37_33_21_20_2_"];
     [mCookieToButtonMapping ddhid_setInt: kDDHidRemoteControl_Switched
                                   forKey: @"19_"];
     //[mCookieToButtonMapping ddhid_setInt: kDDHidRemoteControl_Switched
@@ -137,6 +139,8 @@
                                   forKey:@"33_22_21_20_2_33_22_21_20_2_"];
     [mCookieToButtonMapping ddhid_setInt: kDDHidRemoteButtonPlayPause
                                   forKey:@"33_21_20_8_2_33_21_20_8_2_"];
+    [mCookieToButtonMapping ddhid_setInt: kDDHidRemoteButtonPlayPause
+                                  forKey:@"33_23_21_20_2_33_23_21_20_2_"];
 
     [self initRemoteElements: [self elements]];
     

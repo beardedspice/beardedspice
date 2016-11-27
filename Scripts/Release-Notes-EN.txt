@@ -1,5 +1,25 @@
-Added app compatibility for Downcast, Beatport.
-A number of web strategies have been updated and are included by default.
-Increased the brightness of the BeardedSpice icon.
+### Change and PR List
+
+- (#465)  Yutaka Tsutano - `Support white plastic Apple Remote`
+- (#514)  Jon Bramley - `Added strategy to deal with bandbamp whitelabel sites that do not use the bandcamp.com domain - e.g. furtherrecords.org`
+- (#447)  Aaron Pollack - `Change strategy for Rhapsody to Napster to reflect their rename.`
+- (#508)  Matthew Medal - `Fixed "No Track" bug in title return for iTunesTabAdapter`
+- (#511)  Travis Emery - `Added Reddit Music Player.`
+- (#506)  Eli Goberdon - `Updated GoogleMusic Strategy`
+- (#475)  Raja Baz - `Fix mike not working after it's unplugged and plugged back in`
+- (#503)  Marvin Tam - `Add strategy for be-at.tv`
+- (c468b8f)  Roman Sokolov - `fixed focus ring on shortcut button`
+- (b2c360d)  Roman Sokolov - `Removed beatsmusic`
+- (#468)  Chloe Stars - `Add Apple Developer support`
+- (#500)  Adam Albrecht - `Add media strategy for FocusMusicFM.com`
+- (7c96f8f)  Roman Sokolov - `Removed ActiveController key from defaults.plist, because we don't need it now`
+- (29032e0)  Roman Sokolov - `Add Qobuz support`
+- (#495)  Jean Bertrand - `Add support for Fip Player`
+- (#462)  Cedric Patchane Lacane - `Add Cozy Cloud Music app support`
+- (#474)  Raja Baz - `Added Anghami strategy`
+- (#492)  Wouter Beugelsdijk - `Added a new media strategy for Stripewaves.com`
+- (#487)  George Davaris - `Add Mixcloud Beta media strategy`
+- (#454)  Max Kupetskiy - `Vk.js support for the new design.`
+- (#515)  Nelson Chen - `Update Udemy MediaStrategy for Late 2016`
 
 You can check list of changes <a href="https://github.com/beardedspice/beardedspice/milestone/10?closed=1">here</a>.

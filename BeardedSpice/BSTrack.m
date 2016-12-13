@@ -13,6 +13,7 @@ NSString *const kBSTrackNameTrack = @"track";
 NSString *const kBSTrackNameAlbum = @"album";
 NSString *const kBSTrackNameArtist = @"artist";
 NSString *const kBSTrackNameFavorited = @"favorited";
+NSString *const kBSTrackNameIdentifier = @"BSTrack Notification";
 
 @interface BSTrack ()
 
@@ -71,7 +72,7 @@ NSString *const kBSTrackNameFavorited = @"favorited";
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
 
-    notification.identifier = @"BSTrack Notification";
+    notification.identifier = kBSTrackNameIdentifier;
     notification.title = self.track;
     notification.subtitle = self.album;
     notification.informativeText = self.artist;

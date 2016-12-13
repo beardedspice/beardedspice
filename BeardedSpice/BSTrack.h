@@ -11,6 +11,7 @@ extern NSString *const kBSTrackNameTrack;
 extern NSString *const kBSTrackNameAlbum;
 extern NSString *const kBSTrackNameArtist;
 extern NSString *const kBSTrackNameFavorited;
+extern NSString *const kBSTrackNameIdentifier;
 
 @interface BSTrack : NSObject
 

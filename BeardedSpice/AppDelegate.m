@@ -183,6 +183,12 @@ BOOL accessibilityApiEnabled = NO;
     return YES;
 }
 
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification{
+    if ([kBSTrackNameIdentifier isEqualToString:notification.identifier]) {
+        [self activatePlayingTab];
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark BeardedSpiceHostAppProtocol methods

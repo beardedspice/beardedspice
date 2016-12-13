@@ -71,6 +71,7 @@ NSString *const kBSTrackNameFavorited = @"favorited";
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
 
+    notification.identifier = @"BSTrack Notification";
     notification.title = self.track;
     notification.subtitle = self.album;
     notification.informativeText = self.artist;

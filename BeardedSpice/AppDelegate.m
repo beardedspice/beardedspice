@@ -1014,6 +1014,10 @@ BOOL accessibilityApiEnabled = NO;
                 if (!([NSString isNullOrEmpty:track.track] &&
                       [NSString isNullOrEmpty:track.artist] &&
                       [NSString isNullOrEmpty:track.album])) {
+                    
+                    // Remove previous notification.
+                    [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:[track asNotification]];
+                    
                     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
                     NSLog(@"Show Notification: %@", track);
                 } else if (useFallback) {

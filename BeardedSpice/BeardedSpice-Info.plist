@@ -79,6 +79,8 @@
 	<string>${BS_DISTRIBUTE_BASE_URL}/${BS_APPCAST_NAME}</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>SUEnableJavaScriptKey</key>
+	<true/>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>OSAScriptingDefinition</key>

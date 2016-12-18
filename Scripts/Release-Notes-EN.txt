@@ -1,3 +1,1 @@
-- (dc1bf01) - `Hotfix for Google Music (and others) being broken by conflicting variable names.`
-- (#534) Anthony Whitaker - `Added favorite function to pandora (tied to thumbs up).`
-
+Fix for broken release notes display on upgrade.

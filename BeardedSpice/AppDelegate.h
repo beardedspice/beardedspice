@@ -20,7 +20,9 @@
 
 #define APPDELEGATE     (AppDelegate *)([[NSApplication sharedApplication] delegate])
 
-@class runningSBApplication, BSStrategyVersionManager;
+@class runningSBApplication;
+@class BSStrategyVersionManager;
+@class BSActiveTab;
 
 extern BOOL accessibilityApiEnabled;
 
@@ -40,13 +42,9 @@ extern BOOL accessibilityApiEnabled;
 
     NSMutableArray *nativeApps;
 
-    TabAdapter *activeTab;
-    NSString *activeTabKey;
-
     NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
 
-    MediaStrategyRegistry *mediaStrategyRegistry;
     NativeAppTabRegistry *nativeAppRegistry;
 
     NSWindowController *_preferencesWindowController;
@@ -54,13 +52,13 @@ extern BOOL accessibilityApiEnabled;
     NSMutableSet    *openedWindows;
 
     dispatch_queue_t workingQueue;
-    dispatch_queue_t notificationQueue;
 
     NSXPCConnection *_connectionToService;
 
     BOOL _AXAPIEnabled;
 }
 
+@property (nonatomic, strong) BSActiveTab *activeApp;
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 @property (nonatomic, strong) BSStrategyVersionManager *versionManager;
 

@@ -86,6 +86,8 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 }
 
 - (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {
+    if (tab == nil)
+        return nil;
 
     NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
     id strat = self.registeredCache[cacheKey];

@@ -5,7 +5,7 @@
 //  Created by Weslly on 4/2/2016.
 //  Converted to js by Alex Evers on 10/22/2016
 //
-//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 BSStrategy = {

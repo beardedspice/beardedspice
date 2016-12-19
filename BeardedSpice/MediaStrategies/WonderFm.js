@@ -1,13 +1,13 @@
 //
-//  WonderFm.plist
+//  WonderFm.js
 //  BeardedSpice
 //
 //  Created by Kyle Conarro on 2/3/15.
 //  Edited  by Richard Schreiber on 12/18/16
-//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-    version: 1,
+    version: 2,
     displayName: "WonderFM",
     accepts: {
         method: "predicateOnTab",

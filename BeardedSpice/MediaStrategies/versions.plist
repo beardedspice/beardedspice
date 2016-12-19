@@ -100,6 +100,8 @@
 	<integer>1</integer>
 	<key>Pandora</key>
 	<integer>2</integer>
+	<key>Pandora2016</key>
+	<integer>1</integer>
 	<key>PlexWeb</key>
 	<integer>3</integer>
 	<key>PocketCasts</key>

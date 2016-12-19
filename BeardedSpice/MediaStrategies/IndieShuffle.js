@@ -25,5 +25,6 @@ BSStrategy = {
       'image': song.artwork,
       'track': song.title,
       'artist': song.artist
+    }
   }
 }

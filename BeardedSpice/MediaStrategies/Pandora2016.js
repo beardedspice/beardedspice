@@ -28,7 +28,7 @@ BSStrategy = {
       'track': document.querySelector('.nowPlayingTopInfo__current__trackName .Marquee__wrapper__content__child').innerText,
       'artist': document.querySelector('.nowPlayingTopInfo__current__artistName').innerText,
       'album': document.querySelector('.nowPlayingTopInfo__current__albumName').innerText,
-      'image': document.querySelector('[data-qa=album_active_image').style['background-image'].slice(5, -2),
+      'image': document.querySelector('[data-qa=album_active_image]').style['background-image'].slice(5, -2),
       'favorited': document.querySelector('[data-qa=thumbs_up_button]').classList.contains('ThumbUpButton--active')
     };
   }

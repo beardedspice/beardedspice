@@ -6,7 +6,7 @@
 //  Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-  version:1,
+  version: 2,
   displayName:"BandCampWhiteLabel",
   accepts: {
     method: "script",

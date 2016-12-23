@@ -15,6 +15,11 @@ target 'BeardedSpiceControllers' do
             # pod 'OCMock'
             pod 'VCRURLConnection'
         end
+
+        # prerelease only!
+        use_frameworks!
+        pod 'Fabric'
+        pod 'Crashlytics'
     end
 end
 

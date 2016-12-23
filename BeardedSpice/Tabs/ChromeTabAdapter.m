@@ -71,7 +71,6 @@
             if (index > 0 )
                 title = [title substringFromIndex:(index + 3)];
         }
-
         return title;
     }
 }

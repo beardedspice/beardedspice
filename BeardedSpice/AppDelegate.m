@@ -60,6 +60,14 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
+#ifdef PRERELEASE
+    // only for prerelease builds
+#ifdef DEBUG_STRATEGY
+    [[Fabric sharedSDK] setDebug:YES];
+#endif
+    [Fabric with:@[CrashlyticsKit]];
+#endif
+
 //    // Insert code here to initialize your application
 //    // Register defaults for the whitelist of apps that want to use media keys
 //    NSMutableDictionary *registeredDefaults = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -458,7 +466,7 @@ BOOL accessibilityApiEnabled = NO;
     if (timeout.reached) {
         return;
     }
-    
+
     safariTPApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARITP];
     if (timeout.reached) {
         return;

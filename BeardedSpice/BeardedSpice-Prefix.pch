@@ -8,6 +8,11 @@
   @import Foundation;
   @import Cocoa;
 
+#ifdef PRERELEASE
+  #import <Fabric/Fabric.h>
+  #import <Crashlytics/Crashlytics.h>
+#endif
+
   #import "NSURL+Utils.h" // FIXME update to reflect namespaced category BSUtils
   #import "NSString+Utils.h"
 #endif

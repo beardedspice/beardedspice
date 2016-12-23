@@ -146,13 +146,23 @@ dispatch_queue_t notificationQueue() {
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
         if ([tab respondsToSelector:@selector(toggle)]) {
             [tab toggle];
+            [Answers logCustomEventWithName:@"toggle" customAttributes:@{
+                @"app": NSStringFromClass(_activeTab.class),
+                @"origin": NSStringFromClass(tab.class),
+            }];
             if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
                 [self showNotification];
         }
     } else {
         BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
         if (strategy && ![NSString isNullOrEmpty:[strategy toggle]]) {
-            [_activeTab executeJavascript:[strategy toggle]];
+            NSString *result = [_activeTab executeJavascript:[strategy toggle]];
+
+            [Answers logCustomEventWithName:@"toggle" customAttributes:@{
+                @"app": NSStringFromClass(_activeTab.class),
+                @"origin": strategy.fileName,
+                @"version": @(strategy.strategyVersion),
+            }];
             if (alwaysShowNotification() && ![_activeTab frontmost]) {
                 [self showNotification];
             }
@@ -166,6 +176,10 @@ dispatch_queue_t notificationQueue() {
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
         if ([tab respondsToSelector:@selector(next)]) {
             [tab next];
+            [Answers logCustomEventWithName:@"next" customAttributes:@{
+                @"app": NSStringFromClass(_activeTab.class),
+                @"origin": NSStringFromClass(tab.class),
+            }];
             if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
                 dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
         }
@@ -173,6 +187,11 @@ dispatch_queue_t notificationQueue() {
         BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
         if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
             [_activeTab executeJavascript:[strategy next]];
+            [Answers logCustomEventWithName:@"next" customAttributes:@{
+                @"app": NSStringFromClass(_activeTab.class),
+                @"origin": strategy.fileName,
+                @"version": @(strategy.strategyVersion),
+            }];
             if (alwaysShowNotification() && ![_activeTab frontmost])
                 dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
         }
@@ -185,6 +204,10 @@ dispatch_queue_t notificationQueue() {
         NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
         if ([tab respondsToSelector:@selector(previous)]) {
             [tab previous];
+            [Answers logCustomEventWithName:@"previous" customAttributes:@{
+                @"app": NSStringFromClass(_activeTab.class),
+                @"origin": NSStringFromClass(tab.class),
+            }];
             if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
                 dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
@@ -192,6 +215,11 @@ dispatch_queue_t notificationQueue() {
         BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
         if (strategy && ![NSString isNullOrEmpty:[strategy previous]]) {
             [_activeTab executeJavascript:[strategy previous]];
+            [Answers logCustomEventWithName:@"previous" customAttributes:@{
+                @"app": NSStringFromClass(_activeTab.class),
+                @"origin": strategy.fileName,
+                @"version": @(strategy.strategyVersion),
+            }];
             if (alwaysShowNotification() && ![_activeTab frontmost])
                 dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }

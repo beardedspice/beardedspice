@@ -21,7 +21,7 @@ BSStrategy = {
         document
           .querySelector('.Tuner__Control__Play__Button')
           .attributes['data-qa']
-          .value === 'play_button';
+          .value === 'pause_button';
     } else {
       return document.querySelector('.pauseButton').style.display === 'block';
     }

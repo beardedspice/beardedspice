@@ -158,7 +158,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
         return  YES;
     }
     
-    if (err.code == BSSC_ERROR_STARTEGY_NOTFOUND) {
+    if (err.code == BSSC_ERROR_STRATEGY_NOTFOUND) {
         
         BSMediaStrategy *newStrategy = [self.strategyCache addStrategyWithURL:pathToFile];
         if (newStrategy) {

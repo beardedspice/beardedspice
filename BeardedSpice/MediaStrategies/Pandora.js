@@ -7,11 +7,11 @@
 //  Modified by Anthony Whitaker on 12/13/16
 //
 BSStrategy = {
-  version:2,
-  displayName:"Pandora",
+  version: 2,
+  displayName: "Pandora",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*pandora.com*'",
+    format: "%K LIKE[c] '*pandora.com*'",
     args: ["URL"]
   },
   isPlaying: function () {
@@ -21,19 +21,26 @@ BSStrategy = {
   toggle: function () {
     var e = document.querySelector('.playButton');
     var t = document.querySelector('.pauseButton');
-    if(t.style.display==='block') { t.click() }
+    if (t.style.display==='block') { t.click() }
     else { e.click() }
   },
-  next: function () { document.querySelector('.skipButton').click(); },
-  pause: function () { document.querySelector('.pauseButton').click(); },
-  favorite: function() { document.querySelector('.thumbUpButton').click(); },
+  next: function () {
+    document.querySelector('.skipButton').click();
+  },
+  pause: function () {
+    document.querySelector('.pauseButton').click();
+  },
+  favorite: function () {
+    document.querySelector('.thumbUpButton').click();
+  },
   trackInfo: function () {
     return {
       'track': document.querySelector('.playerBarSong').innerText,
       'artist': document.querySelector('.playerBarArtist').innerText,
       'album': document.querySelector('.playerBarAlbum').innerText,
       'image': document.querySelector('.playerBarArt').src,
-      'favorited': document.querySelector('.thumb').style.display === 'block' && document.querySelector('.thumb').id === 'thumbup'
+      'favorited': document.querySelector('.thumb').style.display === 'block' &&
+                   document.querySelector('.thumb').id === 'thumbup'
     };
   }
 }

@@ -15,8 +15,7 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function () {
-    var t = document.querySelector('.pauseButton');
-    return (t.style.display === 'block');
+    return document.querySelector('.pauseButton').style.display === 'block';
   },
   toggle: function () {
     var e = document.querySelector('.playButton');

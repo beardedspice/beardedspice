@@ -18,10 +18,10 @@ BSStrategy = {
     return document.querySelector('.pauseButton').style.display === 'block';
   },
   toggle: function () {
-    var e = document.querySelector('.playButton');
-    var t = document.querySelector('.pauseButton');
-    if (t.style.display==='block') { t.click() }
-    else { e.click() }
+    var playButton = document.querySelector('.playButton');
+    var pauseButton = document.querySelector('.pauseButton');
+    if (playButton.style.display==='block') { playButton.click() }
+    else { pauseButton.click() }
   },
   next: function () {
     document.querySelector('.skipButton').click();

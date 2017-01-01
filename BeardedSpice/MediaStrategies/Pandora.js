@@ -7,7 +7,7 @@
 //  Modified by Anthony Whitaker on 12/13/16
 //
 BSStrategy = {
-  version: 2,
+  version: 3,
   displayName: "Pandora",
   accepts: {
     method: "predicateOnTab",

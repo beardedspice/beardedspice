@@ -1,10 +1,11 @@
 //
-//  Pandora.plist
+//  Pandora.js
 //  BeardedSpice
 //
-//  Created by Jose Falcon on 12/16/13.
-//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
-//  Modified by Anthony Whitaker on 12/13/16
+//  Created by Jose Falcon on 2013-12-16
+//  Updated by Anthony Whitaker on 2016-12-13
+//  Support for new UI added by Bret Martin on 2017-01-01
+//  Copyright (c) 2013-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version: 3,

@@ -76,8 +76,9 @@ BSStrategy = {
         'artist': document.querySelector('.playerBarArtist').innerText,
         'album': document.querySelector('.playerBarAlbum').innerText,
         'image': document.querySelector('.playerBarArt').src,
-        'favorited': document.querySelector('.thumb').style.display === 'block' &&
-                     document.querySelector('.thumb').id === 'thumbup'
+        'favorited': document
+                       .querySelector('div.thumbUpButton')
+                       .classList.contains('indicator')
       };
     };
   }

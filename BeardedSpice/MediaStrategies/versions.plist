@@ -132,6 +132,8 @@
 	<integer>2</integer>
 	<key>Spotify</key>
 	<integer>1</integer>
+	<key>Stingray</key>
+	<integer>1</integer>
 	<key>Stitcher</key>
 	<integer>1</integer>
 	<key>Stripewaves</key>

@@ -100,6 +100,8 @@
 	<integer>1</integer>
 	<key>Pandora</key>
 	<integer>3</integer>
+	<key>PhishTracks</key>
+	<integer>1</integer>
 	<key>PlexWeb</key>
 	<integer>3</integer>
 	<key>PocketCasts</key>
@@ -173,8 +175,6 @@
 	<key>Fip</key>
 	<integer>1</integer>
 	<key>Xiami</key>
-	<integer>1</integer>
-	<key>PhishTracks</key>
 	<integer>1</integer>
 </dict>
 </plist>

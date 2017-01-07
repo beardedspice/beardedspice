@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BandCampWhiteLabel</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>StyleJukebox</key>
 	<integer>1</integer>
 	<key>AmazonMusic</key>
@@ -99,7 +99,9 @@
 	<key>Overcast</key>
 	<integer>1</integer>
 	<key>Pandora</key>
-	<integer>2</integer>
+	<integer>3</integer>
+	<key>PhishTracks</key>
+	<integer>1</integer>
 	<key>PlexWeb</key>
 	<integer>3</integer>
 	<key>PocketCasts</key>
@@ -129,6 +131,8 @@
 	<key>SoundCloud</key>
 	<integer>2</integer>
 	<key>Spotify</key>
+	<integer>1</integer>
+	<key>Stingray</key>
 	<integer>1</integer>
 	<key>Stitcher</key>
 	<integer>1</integer>

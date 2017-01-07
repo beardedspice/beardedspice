@@ -9,7 +9,7 @@
 @class BSMediaStrategy;
 
 extern NSString * _Nonnull BSStrategyCacheErrorDomain;
-#define BSSC_ERROR_STARTEGY_NOTFOUND            100
+#define BSSC_ERROR_STRATEGY_NOTFOUND            100
 
 @interface BSStrategyCache : NSObject
 

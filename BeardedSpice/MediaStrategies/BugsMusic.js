@@ -18,7 +18,9 @@ BSStrategy = {
   next: function () { bugs.player.nextButtonHandler(); },
   favorite: function (){
     if (document.querySelector('.btnLikeTrackCancel').style.display == "none") {
-      bugs.player.likeButtonHandler();
+      try {
+        bugs.player.likeButtonHandler();
+      } catch (err) {}
     } else {
       bugs.player.likeCancelButtonHandler();
     }

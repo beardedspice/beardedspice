@@ -97,6 +97,8 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
 - [Pandora](http://www.pandora.com)
+- [Phish.in](http://phish.in)
+- [PhishTracks](http://PhishTracks.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [ProductHunt](https://www.producthunt.com/podcasts/)
@@ -109,6 +111,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [SomaFM](http://somafm.com)
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)
+- [Stingray](https://webplayer.stingray.com)
 - [STITCHER](http://www.stitcher.com/)
 - [Style Jukebox] (http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
@@ -128,6 +131,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Yandex Radio](https://radio.yandex.ru/)
 - [YouTube](https://www.youtube.com/)
 - [Zing MP3](https://mp3.zing.vn)
+- [Zvooq](http://zvooq.com)
 
 #### Don't see your favorite site in the list ?
 No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.

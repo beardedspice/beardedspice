@@ -1,3 +1,4 @@
+[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
 
 # Users Guide
 
@@ -70,7 +71,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Coursera](https://www.coursera.org)
 - [Composed](https://www.composed.com/)
 - [Cozy Cloud](https://cozy.io/en/) ([cozy-music](https://github.com/cozy-labs/cozy-music) application)
-- [Dailymotion](https://www.dailymotion.com)
+- [Dailymotion](https://www.dailymotion.com)[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)
@@ -266,5 +267,3 @@ If you find that javascript alone cannot properly control a service, please [cre
 
 # About pull requests
 Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods with the most modern API for the service, please. PR with a strategy that is not fully implemented for no reason will be rejected.
-
-[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)

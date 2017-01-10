@@ -6,7 +6,7 @@
 //  Copyright © 2016 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"Bugs Music",
   accepts: {
     method: "predicateOnTab",
@@ -14,18 +14,19 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function () { return bugs.player.isPlayingTrack; },
-  toggle: function () { bugs.player.playButtonHandler().call(); },
-  next: function () { bugs.player.nextButtonHandler().call(); },
+  toggle: function () { bugs.player.playButtonHandler(); },
+  next: function () { bugs.player.nextButtonHandler(); },
   favorite: function (){
     if (document.querySelector('.btnLikeTrackCancel').style.display == "none") {
-      bugs.player.likeButtonHandler().call();
+      bugs.player.likeButtonHandler();
+    } else {
+      bugs.player.likeCancelButtonHandler();
     }
-    bugs.player.likeCancelButtonHandler().call();
   },
-  previous: function () { bugs.player.prevButtonHandler().call(); },
+  previous: function () { bugs.player.prevButtonHandler(); },
   pause:function () {
     if (bugs.player.isPlayingTrack) {
-      bugs.player.playButtonHandler().call();
+      bugs.player.playButtonHandler();
     }
   },
   trackInfo: function () {

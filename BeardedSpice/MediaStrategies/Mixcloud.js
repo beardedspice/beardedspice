@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 BSStrategy = {
-  version:3,
+  version:4,
   displayName:"Mixcloud",
   accepts: {
     method: "predicateOnTab",

@@ -534,6 +534,10 @@ BOOL accessibilityApiEnabled = NO;
         return;
     }
 
+    vivaldiApp = [self getRunningSBApplicationWithIdentifier:APPID_VIVALDI];
+    if (timeout.reached) {
+        return;
+    }
     safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
     if (timeout.reached) {
         return;
@@ -583,6 +587,8 @@ BOOL accessibilityApiEnabled = NO;
         result = [self setActiveTabShortcutForChrome:yandexBrowserApp];
     } else if (chromiumApp.frontmost) {
         result = [self setActiveTabShortcutForChrome:chromiumApp];
+    }else if (vivaldiApp.frontmost) {
+        result = [self setActiveTabShortcutForChrome:vivaldiApp];
     } else if (safariApp.frontmost) {
         result = [self setActiveTabShortcutForSafari:safariApp];
     } else {
@@ -751,8 +757,8 @@ BOOL accessibilityApiEnabled = NO;
             [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:vivaldiApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
-
             for (runningSBApplication *app in nativeApps) {
 
                 if (timeout.reached) {

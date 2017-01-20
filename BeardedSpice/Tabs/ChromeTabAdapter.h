@@ -13,6 +13,7 @@
 #define APPID_CANARY            @"com.google.Chrome.canary"
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
 #define APPID_CHROMIUM          @"org.chromium.Chromium"
+#define APPID_VIVALDI           @"com.vivaldi.Vivaldi"
 
 @class runningSBApplication;
 

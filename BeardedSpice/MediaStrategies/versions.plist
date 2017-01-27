@@ -90,6 +90,8 @@
 	<integer>1</integer>
 	<key>NoAdRadio</key>
 	<integer>1</integer>
+	<key>NPROne</key>
+	<integer>1</integer>
 	<key>NoonPacific</key>
 	<integer>1</integer>
 	<key>NRK</key>

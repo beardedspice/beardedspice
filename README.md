@@ -94,6 +94,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Netflix](http://www.netflix.com)
 - [NoAdRadio.com](http://www.noadradio.com/)
 - [NoonPacific.com](http://noonpacific.com)
+- [NPR One](http://one.npr.org/)
 - [NRK Radio](https://radio.nrk.no/)
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)

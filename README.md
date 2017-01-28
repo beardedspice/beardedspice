@@ -98,6 +98,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [NRK Radio](https://radio.nrk.no/)
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
+- [Pakartot](http://www.pakartot.lt)
 - [Pandora](http://www.pandora.com)
 - [Phish.in](http://phish.in)
 - [PhishTracks](http://PhishTracks.com)

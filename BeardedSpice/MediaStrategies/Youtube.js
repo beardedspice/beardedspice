@@ -22,7 +22,8 @@ BSStrategy = {
     return {
       'image': document.querySelector('link[itemprop=thumbnailUrl]').getAttribute('href'),
       'track': document.querySelector('meta[itemprop=name]').getAttribute('content'),
-      'artist': document.querySelector('.yt-user-info').innerText
+      'artist': document.querySelector('.yt-user-info').innerText,
+      'progress': document.querySelector('.ytp-progress-bar').getAttribute("aria-valuetext")
     };
   }
 }

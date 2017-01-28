@@ -18,6 +18,7 @@ extern NSString *const kBSTrackNameIdentifier;
 @property (nonatomic, strong) NSString *track;
 @property (nonatomic, strong) NSString *album;
 @property (nonatomic, strong) NSString *artist;
+@property (nonatomic, strong) NSString *progress;
 
 @property (nonatomic, strong) NSImage *image;
 @property (nonatomic, strong) NSNumber *favorited;

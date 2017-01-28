@@ -8,6 +8,7 @@
 
 
 #import "AppDelegate.h"
+#import "BSActiveTab.h"
 
 @interface BSAppleScriptPlayPauseCommand: NSScriptCommand { } @end
 @interface BSAppleScriptNextCommand: NSScriptCommand { } @end
@@ -29,7 +30,7 @@
     [self menuNeedsUpdate: statusMenu];
     
     //Safe to access activeTab ivar here?
-    return [activeTab title];
+    return [self.activeApp displayName];
 }
 
 @end

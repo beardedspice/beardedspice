@@ -8,7 +8,7 @@
 
 @class runningSBApplication;
 
-@interface TabAdapter : NSObject{
+@interface TabAdapter : NSObject {
 
     BOOL _wasActivated;
 }

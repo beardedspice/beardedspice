@@ -76,6 +76,8 @@
 	<integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
+	<key>Lynda</key>
+	<integer>1</integer>
 	<key>MixCloud</key>
 	<integer>3</integer>
 	<key>MusicForProgramming</key>
@@ -88,6 +90,8 @@
 	<integer>1</integer>
 	<key>NoAdRadio</key>
 	<integer>1</integer>
+	<key>NPROne</key>
+	<integer>1</integer>
 	<key>NoonPacific</key>
 	<integer>1</integer>
 	<key>NRK</key>
@@ -95,6 +99,8 @@
 	<key>Odnoklassniki</key>
 	<integer>1</integer>
 	<key>Overcast</key>
+	<integer>1</integer>
+	<key>Pakartot</key>
 	<integer>1</integer>
 	<key>Pandora</key>
 	<integer>3</integer>

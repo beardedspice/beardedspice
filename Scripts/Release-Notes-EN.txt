@@ -1,1 +1,22 @@
-Fix for broken release notes display on upgrade.
+<h3>Change and PR List</h3>
+
+<ul>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/413">#413</a>) - <code>Added Safari Tech Preview.</code> (<a href="https://github.com/mermaid">@mermaid</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/513">#513</a>) - <code>Added progress track info</code> (<a href="https://github.com/revolter">@revolter</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/522">#522</a>) - <code>Added the Stingray strategy.</code> (<a href="https://github.com/jmcouillard">@jmcouillard</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/532">#532</a>) - <code>Replace Track Notification</code> (<a href="https://github.com/AnthonyWhitakerJr">@AnthonyWhitakerJr</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/533">#533</a>) - <code>Clickable Track Notification</code> (<a href="https://github.com/AnthonyWhitakerJr">@AnthonyWhitakerJr</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/544">#544</a>) - <code>Fixed wonderfm controls, added prev-track functionality</code> (<a href="https://github.com/wiffbi">@wiffbi</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/546">#546</a>) - <code>BandCamp White Label : be more defensive with siteroot</code> (<a href="https://github.com/xavhan">@xavhan</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/548">#548</a>) - <code>Zvooq media strategy</code> (<a href="https://github.com/etataurov">@etataurov</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/550">#550</a>) - <code>Added support for optional new Pandora UI</code> (<a href="https://github.com/bretmartin">@bretmartin</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/557">#557</a>) - <code>Implemented PhishTracks.com Strategy</code> (<a href="https://github.com/febbraro">@febbraro</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/558">#558</a>) - <code>Added support for phish.in</code> (<a href="https://github.com/febbraro">@febbraro</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/563">#563</a>) - <code>MixcloudBeta deprecation</code> (<a href="https://github.com/davarisg">@davarisg</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/568">#568</a>) - <code>Added Vivaldi Support</code> (<a href="https://github.com/hamdullahshah">@hamdullahshah</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/572">#572</a>) - <code>Added Lynda Strategy</code> (<a href="https://github.com/alt3red">@alt3red</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/pull/583">#583</a>) - <code>Added strategy for Listeners Playlist (lp.anzi.kr)</code> (<a href="https://github.com/dubstrike">@dubstrike</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/commit/6f2996568bbccf5482c61fffea2b3ad740a50ebe">6f299656</a>) - <code>Updated Indieshuffle strategy.</code> (<a href="https://github.com/1ps0">@1ps0</a>)</li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/commit/c06b6d932df81449e8d32f25efa7c395900e0e22">c06b6d93</a>) - <code>ActiveTab has been refactored into its own class for easier tracking and  ([@1ps0](https://github.com/1ps0))manipulation (step 1 for other improvements).</code></li>
+<li>(<a href="https://github.com/beardedspice/beardedspice/commit/e374e1f7874cfd577a85e84e49d04602be335594">e374e1f7</a>) - <code>Added NPROne Strategy</code> (<a href="https://github.com/1ps0">@1ps0</a>)</li>
+</ul>

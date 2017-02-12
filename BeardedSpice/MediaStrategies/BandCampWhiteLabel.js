@@ -3,15 +3,15 @@
 //  BeardedSpice
 //
 //  Copied from BandCamp.js and editted by Jon Bramley on 23/11/2016.
-// Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-  version:1,
+  version: 2,
   displayName:"BandCampWhiteLabel",
   accepts: {
     method: "script",
     script: function () {
-      return (RegExp("https?://bandcamp\.com").test(siteroot));
+      return window.siteroot ? RegExp("https?://bandcamp\.com").test(window.siteroot) : false;
     }
   },
   toggle: function () {gplaylist.playpause()},

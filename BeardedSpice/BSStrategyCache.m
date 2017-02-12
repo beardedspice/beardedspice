@@ -67,7 +67,7 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
             }
         }
         else{
-            result = [NSError errorWithDomain:BSMediaStrategyErrorDomain code:BSSC_ERROR_STARTEGY_NOTFOUND userInfo:nil];
+            result = [NSError errorWithDomain:BSMediaStrategyErrorDomain code:BSSC_ERROR_STRATEGY_NOTFOUND userInfo:nil];
         }
     });
     
@@ -145,7 +145,7 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
 
         NSURL *filePath = [[NSURL alloc] initWithString:fileName relativeToURL:path];
         NSError *err = [self updateStrategyWithURL:filePath];
-        if (err.code == BSSC_ERROR_STARTEGY_NOTFOUND) {
+        if (err.code == BSSC_ERROR_STRATEGY_NOTFOUND) {
             [self addStrategyWithURL:filePath];
         };
     }

@@ -12,6 +12,7 @@
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */; };
 		0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */; };
 		0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */; };
 		0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */; };
@@ -142,6 +143,8 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSActiveTab.h; sourceTree = "<group>"; };
+		0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSActiveTab.m; sourceTree = "<group>"; };
 		0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyTests.m; sourceTree = "<group>"; };
 		0B1AF3771CCE4D4C0021BBEA /* BSStrategyMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyMockObject.h; sourceTree = "<group>"; };
 		0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyMockObject.m; sourceTree = "<group>"; };
@@ -589,6 +592,8 @@
 				03F33EE31857E21100E8F77E /* Tabs */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */,
+				0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */,
 				0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */,
 				0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */,
 				0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */,
@@ -990,6 +995,7 @@
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
+				0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,

@@ -2,11 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BandCampWhiteLabel</key>
-	<integer>2</integer>
-	<key>StyleJukebox</key>
-	<integer>1</integer>
 	<key>AmazonMusic</key>
+	<integer>1</integer>
+	<key>Anghami</key>
 	<integer>1</integer>
 	<key>AppleDeveloper</key>
 	<integer>1</integer>
@@ -16,6 +14,8 @@
 	<integer>1</integer>
 	<key>BandCamp</key>
 	<integer>1</integer>
+	<key>BandCampWhiteLabel</key>
+	<integer>2</integer>
 	<key>BBCRadio</key>
 	<integer>1</integer>
 	<key>BE-AT.TV</key>
@@ -44,6 +44,8 @@
 	<integer>1</integer>
 	<key>EightTracks</key>
 	<integer>1</integer>
+	<key>Fip</key>
+	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
 	<key>FocusMusicFM</key>
@@ -61,7 +63,7 @@
 	<key>iHeartRadio</key>
 	<integer>1</integer>
 	<key>IndieShuffle</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Jango</key>
 	<integer>1</integer>
 	<key>KCRW</key>
@@ -146,6 +148,8 @@
 	<integer>1</integer>
 	<key>Stripewaves</key>
 	<integer>1</integer>
+	<key>StyleJukebox</key>
+	<integer>1</integer>
 	<key>Subsonic</key>
 	<integer>1</integer>
 	<key>Synology</key>
@@ -172,6 +176,8 @@
 	<integer>2</integer>
 	<key>XboxMusic</key>
 	<integer>2</integer>
+	<key>Xiami</key>
+	<integer>1</integer>
 	<key>YandexMusic</key>
 	<integer>2</integer>
 	<key>YandexRadio</key>
@@ -179,12 +185,6 @@
 	<key>Youtube</key>
 	<integer>1</integer>
 	<key>Zing</key>
-	<integer>1</integer>
-	<key>Anghami</key>
-	<integer>1</integer>
-	<key>Fip</key>
-	<integer>1</integer>
-	<key>Xiami</key>
 	<integer>1</integer>
 	<key>Zvooq</key>
 	<integer>1</integer>

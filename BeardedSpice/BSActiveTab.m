@@ -254,6 +254,8 @@ dispatch_queue_t notificationQueue() {
     BOOL hasArtist = [NSString isNullOrEmpty:track.artist];
     BOOL hasAlbum = [NSString isNullOrEmpty:track.album];
     if (!(hasTrack && hasArtist && hasAlbum)) {
+        // Remove previous notification.
+        [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:[track asNotification]];
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
         BS_LOG(LOG_DEBUG, @"Show Notification: %@", track);
     } else if (fallback) {

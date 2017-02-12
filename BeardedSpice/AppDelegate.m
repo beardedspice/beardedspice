@@ -172,6 +172,12 @@ BOOL accessibilityApiEnabled = NO;
     return YES;
 }
 
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification{
+    if ([kBSTrackNameIdentifier isEqualToString:notification.identifier]) {
+        [self activatePlayingTab];
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark BeardedSpiceHostAppProtocol methods
@@ -457,6 +463,11 @@ BOOL accessibilityApiEnabled = NO;
         return;
     }
 
+    safariTPApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARITP];
+    if (timeout.reached) {
+        return;
+    }
+
     [nativeApps removeAllObjects];
     for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
         runningSBApplication *app =
@@ -505,6 +516,8 @@ BOOL accessibilityApiEnabled = NO;
         result = [self setActiveTabShortcutForChrome:vivaldiApp];
     } else if (safariApp.frontmost) {
         result = [self setActiveTabShortcutForSafari:safariApp];
+    } else if (safariTPApp.frontmost) {
+        result = [self setActiveTabShortcutForSafari:safariTPApp];
     } else {
 
         for (runningSBApplication *app in nativeApps) {
@@ -595,7 +608,7 @@ BOOL accessibilityApiEnabled = NO;
         if (safari) {
             for (SafariWindow *safariWindow in [safari.windows get]) {
                 for (SafariTab *safariTab in [safariWindow.tabs get]) {
-                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow];
+                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow andApplication:app];
                     if (item) {
                         [items addObject:item];
                     }
@@ -659,6 +672,8 @@ BOOL accessibilityApiEnabled = NO;
             [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:vivaldiApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariTPApp timeout:timeout]];
+
             for (runningSBApplication *app in nativeApps) {
 
                 if (timeout.reached) {
@@ -703,9 +718,10 @@ BOOL accessibilityApiEnabled = NO;
     return nil;
 }
 
--(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow
+
+-(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow andApplication:(runningSBApplication *)application
 {
-    TabAdapter *tab = [SafariTabAdapter initWithApplication:safariApp
+    TabAdapter *tab = [SafariTabAdapter initWithApplication:application
                                               andWindow:safariWindow
                                                  andTab:safariTab];
     if (tab) {

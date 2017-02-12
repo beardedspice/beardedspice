@@ -21,7 +21,8 @@ BSStrategy = {
     return {
       'artist': EmbedData.artist,
       'album': EmbedData.album_title,
-      'track': gplaylist.get_track_info().title
+      'track': gplaylist.get_track_info().title,
+      'progress': document.getElementsByClassName("time_elapsed")[0].innerText + " / " + document.getElementsByClassName("time_total")[0].innerText
     }
   }
 }

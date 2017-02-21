@@ -94,6 +94,8 @@
 	<integer>1</integer>
 	<key>NoAdRadio</key>
 	<integer>1</integer>
+	<key>NPR</key>
+    <integer>1</integer>
 	<key>NPROne</key>
 	<integer>1</integer>
 	<key>NoonPacific</key>

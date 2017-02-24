@@ -2,7 +2,7 @@
 
 # Common Issues
 
-It's asked that anyone with an issue check the [Wiki Section](wiki) before posting a new issue.
+It's asked that anyone with an issue check the [Wiki Section](https://github.com/beardedspice/beardedspice/wiki) before posting a new issue.
 
 # Users Guide
 

@@ -28,9 +28,9 @@
     //But at least they'll update -eventually-, so your next call will get something useful
 
     [self menuNeedsUpdate: statusMenu];
-    
+
     //Safe to access activeTab ivar here?
-    return [self.activeApp displayName];
+    return [self.activeApp title];
 }
 
 @end

@@ -55,8 +55,11 @@ dispatch_queue_t notificationQueue() {
 }
 
 - (NSString *)title {
-    // FIXME
-    return [self displayName];
+    if ([self isNativeAdapter]) {
+        return [_activeTab.class displayName];
+    } else {
+        return _activeTab.title;
+    }
 }
 
 - (BOOL)isNativeAdapter {

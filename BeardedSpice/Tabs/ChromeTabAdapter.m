@@ -49,9 +49,9 @@
 
         [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];
 
-        NSDictionary *result = [self.tab executeJavascript:@"JSON.parse(document.getElementById('" HACK_NAME @"').innerText)"];
+        NSDictionary *result = [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"') ? JSON.parse(document.getElementById('" HACK_NAME @"').innerText) : {}"];
 
-        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"').remove()"];
+        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"') && document.getElementById('" HACK_NAME @"').remove()"];
 
         return result[@"hackResult"];
     }

@@ -13,7 +13,7 @@
 	<key>AudioMack</key>
 	<integer>1</integer>
 	<key>BandCamp</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>BandCampWhiteLabel</key>
 	<integer>2</integer>
 	<key>BBCRadio</key>
@@ -94,6 +94,8 @@
 	<integer>1</integer>
 	<key>NoAdRadio</key>
 	<integer>1</integer>
+	<key>NPR</key>
+    <integer>1</integer>
 	<key>NPROne</key>
 	<integer>1</integer>
 	<key>NoonPacific</key>

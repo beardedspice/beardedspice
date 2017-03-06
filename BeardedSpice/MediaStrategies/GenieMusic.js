@@ -1,5 +1,5 @@
 //
-//  Genie Music.js
+//  GenieMusic.js
 //  BeardedSpice
 //
 //  Created by Pnamu on 2017. 03. 05
@@ -8,7 +8,7 @@
 
 BSStrategy = {
   version:1,
-  displayName:"Genie Music",
+  displayName:"GenieMusic",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*genie.co.kr/player*'",

@@ -7,9 +7,10 @@ BSStrategy = {
   version: 2,
   displayName: "Synology Audio Station",
   accepts: {
-    method: "predicateOnTab",
-    format:"%K LIKE[c] '* - Audio Station*'",
-    args: ["title"]
+    method: "script",
+    script: function () {
+        return (baseURL == "webman/3rdparty/AudioStation");
+    }
   },
   isPlaying: function () {return ( (document.querySelector('.player-play span:not(.player-btn-pause)') ? false : true));},
   toggle: function () {document.querySelectorAll('.player-play button')[0].click()},

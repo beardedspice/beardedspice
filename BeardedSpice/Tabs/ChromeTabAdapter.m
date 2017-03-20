@@ -28,7 +28,7 @@
     // https://github.com/beardedspice/beardedspice/issues/257
     out.applescriptIsolatedVersion = NO;
     NSInteger version = [[(ChromeApplication *)application.sbApplication version] integerValue];
-    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM];
+    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM, APPID_VIVALDI];
     if (version > 45 && [googleBundleIds containsObject:application.bundleIdentifier]){
         out.applescriptIsolatedVersion = YES;
     }
@@ -44,14 +44,14 @@
         // https://github.com/beardedspice/beardedspice/issues/257
 
         //Add the hack element
-        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){id='" HACK_NAME @"';if (document.getElementById(id) === null){node = document.createElement('pre');node.id = id;node.hidden = true; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", [javascript stringForSubstitutionInJavascriptPlaceholder]];
+        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){var id_hack='" HACK_NAME @"';if (document.getElementById(id_hack) === null){node = document.createElement('pre');node.id = id_hack;node.hidden = true; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id_hack).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", [javascript stringForSubstitutionInJavascriptPlaceholder]];
         //Get the result from the hack element
 
         [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];
 
-        NSDictionary *result = [self.tab executeJavascript:@"JSON.parse(document.getElementById('" HACK_NAME @"').innerText)"];
+        NSDictionary *result = [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"') ? JSON.parse(document.getElementById('" HACK_NAME @"').innerText) : {}"];
 
-        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"').remove()"];
+        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"') && document.getElementById('" HACK_NAME @"').remove()"];
 
         return result[@"hackResult"];
     }

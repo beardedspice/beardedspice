@@ -1,5 +1,5 @@
 //
-//  Eggheadio.plist
+//  Eggheadio.js
 //  BeardedSpice
 //
 //  Created by Carlos Filoteo on 3/20/17.
@@ -7,7 +7,7 @@
 //
 BSStrategy = {
   version:1,
-  displayName:"Eggheadio",
+  displayName:"Egghead.io",
   accepts: {
     method: "predicateOnTab",
     format:"%K LIKE[c] '*egghead.io/lessons*'",

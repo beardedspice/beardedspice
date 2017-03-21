@@ -2,7 +2,8 @@
 //  Stingray.js
 //  BeardedSpice
 //
-//  Created by Jean-Maxime Couillard on December 5th 2016.
+//  Created by Jean-Maxime Couillard on 2016-12-05.
+//  Updated v2 by Jean-Maxime Couillard on 2017-03-20.
 //  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {

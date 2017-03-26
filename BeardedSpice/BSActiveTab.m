@@ -253,10 +253,10 @@ dispatch_queue_t notificationQueue() {
             track = [strategy trackInfo:_activeTab];
     }
 
-    BOOL hasTrack = [NSString isNullOrEmpty:track.track];
-    BOOL hasArtist = [NSString isNullOrEmpty:track.artist];
-    BOOL hasAlbum = [NSString isNullOrEmpty:track.album];
-    if (!(hasTrack && hasArtist && hasAlbum)) {
+    BOOL noTrack = [NSString isNullOrEmpty:track.track];
+    BOOL noArtist = [NSString isNullOrEmpty:track.artist];
+    BOOL noAlbum = [NSString isNullOrEmpty:track.album];
+    if (!(noTrack && noArtist && noAlbum)) {
         // Remove previous notification.
         [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:[track asNotification]];
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];

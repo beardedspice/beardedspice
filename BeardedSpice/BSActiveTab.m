@@ -35,10 +35,10 @@ dispatch_queue_t notificationQueue() {
     return self;
 }
 
-- (BOOL)isEqual:(id)obj {
-    if ([obj isKindOfClass:TabAdapter.class] ||
-        [obj isKindOfClass:NativeAppTabAdapter.class])
-        return [_activeTab isEqual:obj];
+- (BOOL)hasEqualTabAdapter:(id)tabAdapter {
+    if ([tabAdapter isKindOfClass:TabAdapter.class] ||
+        [tabAdapter isKindOfClass:NativeAppTabAdapter.class])
+        return [_activeTab isEqual:tabAdapter];
 
     return NO;
 }

@@ -28,12 +28,16 @@ BSStrategy = {
     var albumArtist = document.querySelector('.info-album-artist span').innerText.split(' - ');
     var album = albumArtist[0];
     var artist = albumArtist.reverse();
-    // Image not used due to image resources can only be loaded by authenticated apps
-    // var albumArt = document.querySelector('.player-info-thumb').getAttribute('src');
+    var progress = document.querySelector('.syno-as-player-position-block').innerText;
+    /*
+    Image not used due to image resources can only be loaded by authenticated apps
+    var albumArt = document.querySelector('.player-info-thumb').getAttribute('src');
+    */
     return {
       'track': track,
       'artist': artist[0],
       'album': album,
+      'progress': progress
     };
   }
 }

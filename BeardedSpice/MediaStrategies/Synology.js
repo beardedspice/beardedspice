@@ -1,23 +1,43 @@
 //
 //  Synology.plist
 //  BeardedSpice
-//
-//  Created by Stephan van Diepen on 16/01/2014.
-//  Copyright (c) 2013 Stephan van Diepen. All rights reserved.
+//  
 //
 BSStrategy = {
-  version:1,
-  displayName:"Synology Audio Station",
+  version: 2,
+  displayName: "Synology Audio Station",
   accepts: {
-    method: "predicateOnTab",
-    format:"%K LIKE[c] '*synology.me*'",
-    args: ["URL"]
+    method: "script",
+    script: function () {
+        return (baseURL == "webman/3rdparty/AudioStation");
+    }
   },
-  isPlaying: function () {},
+  isPlaying: function () {return ( (document.querySelector('.player-play span:not(.player-btn-pause)') ? false : true));},
   toggle: function () {document.querySelectorAll('.player-play button')[0].click()},
   next: function () {document.querySelectorAll('.player-next button')[0].click()},
-  favorite: function () {},
   previous: function () {document.querySelectorAll('.player-prev button')[0].click()},
   pause: function () {document.querySelectorAll('.player-stop button')[0].click()},
-  trackInfo: function () {}
+  favorite: function () {},
+  /*
+  - Return a dictionary of namespaced key/values here.
+  All manipulation should be supported in javascript.
+  - Namespaced keys currently supported include: track, album, artist, favorited, image (URL)
+  */
+  trackInfo: function () {
+    var track = document.querySelector('.info-title span').innerText;
+    var albumArtist = document.querySelector('.info-album-artist span').innerText.split(' - ');
+    var album = albumArtist[0];
+    var artist = albumArtist.reverse();
+    var progress = document.querySelector('.syno-as-player-position-block').innerText;
+    /*
+    Image not used due to image resources can only be loaded by authenticated apps
+    var albumArt = document.querySelector('.player-info-thumb').getAttribute('src');
+    */
+    return {
+      'track': track,
+      'artist': artist[0],
+      'album': album,
+      'progress': progress
+    };
+  }
 }

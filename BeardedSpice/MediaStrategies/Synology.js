@@ -1,15 +1,19 @@
 //
 //  Synology.plist
 //  BeardedSpice
-//  
+//
 //
 BSStrategy = {
-  version: 2,
+  version: 3,
   displayName: "Synology Audio Station",
   accepts: {
     method: "script",
     script: function () {
+      /* first check if the window is running synology webmanager  */
+      if (window.SYNO_WebManager_Strings != undefined) {
+        /* check if window is running synology audio station */
         return (baseURL == "webman/3rdparty/AudioStation");
+      }
     }
   },
   isPlaying: function () {return ( (document.querySelector('.player-play span:not(.player-btn-pause)') ? false : true));},

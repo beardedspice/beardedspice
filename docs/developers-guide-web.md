@@ -1,5 +1,5 @@
 
-#Developers' Guide for Website Strategies
+# Developers' Guide for Website Strategies
 
 ## Dependencies
 

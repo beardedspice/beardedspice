@@ -301,17 +301,16 @@ BOOL accessibilityApiEnabled = NO;
         __strong typeof(wself) sself = wself;
 
         NSUInteger updateCount = [sself.versionManager performSyncUpdateCheck];
-
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
+        
         if (updateCount == 0){
             if (checkFromMenu) {
-                [sself sendUpdateNotificationWithString:NSLocalizedString(@"No new compatibilty updates.", @"Notification Titles")];
+                [sself sendUpdateNotificationWithString:message];
             }
         }
         else
         {
             [sself refreshTabs:nil];
-
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
             [sself sendUpdateNotificationWithString:message];
         }
 

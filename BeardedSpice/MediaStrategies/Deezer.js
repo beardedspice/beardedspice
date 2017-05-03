@@ -7,28 +7,39 @@
 //
 
 BSStrategy = {
-  version:2,
-  displayName:"Deezer",
+  version: 3,
+  displayName: "Deezer",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*deezer.com*'",
+    format: "%K LIKE[c] '*deezer.com*'",
     args: ["URL"]
   },
-  isPlaying: function(){return dzPlayer.isPlaying();},
-  toggle: function () {dzPlayer.control.togglePause()},
-  next: function () {dzPlayer.control.nextSong()},
-  favorite: function (){document.querySelector('div.player-actions span.icon-love').click()},
-  previous: function () {dzPlayer.control.prevSong()},
-  pause: function () {dzPlayer.control.pause()},
-
+  isPlaying: function() {
+    return document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause');
+  },
+  toggle: function () {
+    document.querySelector('.control-play').click();
+  },
+  next: function () {
+    document.querySelector('.control-next').click();
+  },
+  favorite: function (){
+    document.querySelector('div.player-actions span.icon-love').click();
+  },
+  previous: function () {
+    document.querySelector('.control-prev').click();
+  },
+  pause: function () {
+    if (document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause')) {
+      document.querySelector('.control-play').click();
+    }
+  },
   trackInfo: function () {
-      var info = dzPlayer.getCurrentSong();
-      return {
-          'track': info["SNG_TITLE"] + (info["VERSION"] == "" ? "" : " " + info["VERSION"]),
-          'album': info["ALB_TITLE"],
-          'artist': dzPlayer.getArtistName(),
-          'image': 'http://cdn-images.deezer.com/images/cover/' + info["ALB_PICTURE"]+ '/250x250.jpg',
-          'favorited': userData.isFavorite('song',info["SNG_ID"])
-      };
+    return {
+      "track": document.querySelector('#player-cover .player-track-title .player-track-link').innerText,
+      "artist": document.querySelector('#player-cover .player-track-artist .player-track-link').innerText,
+      "image": document.querySelector('#player-cover img').src,
+      "favorited": document.querySelector('.player-actions button .icon-love').classList.contains('active')
+    };
   }
 }

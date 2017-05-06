@@ -19,16 +19,42 @@
 @implementation AirfoilSatelliteTabAdapter {
     
     BOOL _showNotification;
+    BOOL _isConnectedPropertyExists;
 }
 
 - (id)init {
     
     self = [super init];
     if (self) {
+        
         _showNotification = YES;
+        
+        _isConnectedPropertyExists = NO;
     }
     
     return self;
+}
+
++ (id)tabAdapterWithApplication:(runningSBApplication *)application {
+    
+    AirfoilSatelliteTabAdapter *tab = [super tabAdapterWithApplication:application];
+    if (tab) {
+        
+        AirfoilSatelliteApplication *app =
+        (AirfoilSatelliteApplication *)[application sbApplication];
+        
+        if (app) {
+            
+            SBObject *isConnectedObj = [app propertyWithCode:'pCnt'];
+            
+            if ([isConnectedObj get]) {
+                tab->_isConnectedPropertyExists = YES;
+            }
+        }
+        
+    }
+    
+    return tab;
 }
 
 + (NSString *)displayName{
@@ -155,7 +181,14 @@
     
     AirfoilSatelliteApplication *app = (AirfoilSatelliteApplication *)[self.application sbApplication];
     
-    return app && ! [NSString isNullOrEmpty:app.trackTitle];
+    BOOL result = NO;
+    if (app) {
+        return _isConnectedPropertyExists ?
+        app.isConnected
+        : ! [NSString isNullOrEmpty:app.trackTitle];
+    }
+    
+    return result;
 }
 
 

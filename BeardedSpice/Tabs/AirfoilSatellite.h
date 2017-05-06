@@ -100,6 +100,7 @@ typedef enum AirfoilSatellitePrintingErrorHandling AirfoilSatellitePrintingError
 @property (copy, readonly) NSString *artist;  // Currently playing artist name, if available
 @property (copy, readonly) NSString *album;  // Currently playing album name, if available
 @property (copy, readonly) NSData *artwork;  // Currently playing artwork image, if avaliable
+@property (readonly) BOOL isConnected;  // Is a remote sender connected to Airfoil Satellite
 
 @end
 

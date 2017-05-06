@@ -6,7 +6,7 @@
 //  Copyright © 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-        version: 2,
+        version: 3,
         displayName: "VK",
         accepts: {
         method: "predicateOnTab",
@@ -14,8 +14,7 @@ BSStrategy = {
         args: ["URL"]
     },
     isPlaying: function () {
-        var play = document.getElementsByClassName('top_audio_player top_audio_player_enabled');
-        return play.length > 0 && play[0].classList.contains('top_audio_player_playing');
+        return (document.querySelector('#top_audio_player.top_audio_player_playing') != null);
     },
     toggle: function () {
         (function (w) {
@@ -62,9 +61,12 @@ BSStrategy = {
         return;
     },
     pause: function () {
-        var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play');
-        if (el) { el.click(); }
+        if (document.querySelector('#top_audio_player.top_audio_player_playing') != null) {
+            var el = document.querySelector('#top_audio_player > button.top_audio_player_btn.top_audio_player_play');
+            if (el) { el.click(); }
+        }
         return;
+            
     },
     trackInfo: function () {
         var fullTitle = document.querySelector('#top_audio_player > div.top_audio_player_title_wrap > div');

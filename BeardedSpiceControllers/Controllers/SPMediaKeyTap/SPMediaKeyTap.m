@@ -227,11 +227,25 @@ static CGEventRef tapEventCallback2(CGEventTapProxy proxy, CGEventType type, CGE
               return event;
        }
 
+    // Passthrough marker found
+    if (nsEvent.data2 == SPPassthroughEventData2Value) {
+        return event;
+    }
+    
        if (type != NX_SYSDEFINED || [nsEvent subtype] != SPSystemDefinedEventMediaKeys)
               return event;
 
        int keyCode = (([nsEvent data1] & 0xFFFF0000) >> 16);
-    if (keyCode != NX_KEYTYPE_PLAY && keyCode != NX_KEYTYPE_FAST && keyCode != NX_KEYTYPE_REWIND && keyCode != NX_KEYTYPE_PREVIOUS && keyCode != NX_KEYTYPE_NEXT)
+    
+    if (keyCode != NX_KEYTYPE_PLAY
+        && keyCode != NX_KEYTYPE_FAST
+        && keyCode != NX_KEYTYPE_REWIND
+        && keyCode != NX_KEYTYPE_PREVIOUS
+        && keyCode != NX_KEYTYPE_NEXT
+        && keyCode != NX_KEYTYPE_MUTE
+        && keyCode != NX_KEYTYPE_SOUND_UP
+        && keyCode != NX_KEYTYPE_SOUND_DOWN
+        )
               return event;
 
        if (![self shouldInterceptMediaKeyEvents])

@@ -86,6 +86,9 @@
 		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
+		65FBCE391EBEE500004EFFC7 /* BSNativeAppMenuBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE381EBEE500004EFFC7 /* BSNativeAppMenuBarController.m */; };
+		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
+		65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */; };
 		78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */; };
@@ -276,6 +279,11 @@
 		65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPreferencesWindowController.m; sourceTree = "<group>"; };
 		65E567121B775C9300AD2D46 /* BSShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSShortcutView.h; sourceTree = "<group>"; };
 		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
+		65FBCE371EBEE500004EFFC7 /* BSNativeAppMenuBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNativeAppMenuBarController.h; sourceTree = "<group>"; };
+		65FBCE381EBEE500004EFFC7 /* BSNativeAppMenuBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNativeAppMenuBarController.m; sourceTree = "<group>"; };
+		65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVolumeWindowController.h; sourceTree = "<group>"; };
+		65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVolumeWindowController.m; sourceTree = "<group>"; };
+		65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSVolumeWindowController.xib; sourceTree = "<group>"; };
 		65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLaunchAtLogin.h; sourceTree = "<group>"; };
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAppleScriptSupport.m; sourceTree = "<group>"; };
@@ -394,6 +402,8 @@
 				6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */,
 				657635A61E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.h */,
 				657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */,
+				65FBCE371EBEE500004EFFC7 /* BSNativeAppMenuBarController.h */,
+				65FBCE381EBEE500004EFFC7 /* BSNativeAppMenuBarController.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -495,6 +505,16 @@
 			path = DDHidLib;
 			sourceTree = "<group>";
 		};
+		65FBCE3B1EC0F8F3004EFFC7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */,
+				65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */,
+				65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +576,7 @@
 				65ABBAA81D1FDC5400F882CE /* Config.xcconfig */,
 				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
 				65D57FCA1D02CBFE0016F270 /* MediaStrategies */,
+				65FBCE3B1EC0F8F3004EFFC7 /* UI */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
@@ -760,6 +781,7 @@
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
 				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
+				65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */,
 				0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,6 +977,8 @@
 				656A00311C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
 				65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */,
 				0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */,
+				65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */,
+				65FBCE391EBEE500004EFFC7 /* BSNativeAppMenuBarController.m in Sources */,
 				656A00331C8AD41A00BD29F5 /* NSException+Utils.m in Sources */,
 				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
@@ -1122,7 +1146,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1160,7 +1184,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 			};
 			name = Release;

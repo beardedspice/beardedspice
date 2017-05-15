@@ -64,6 +64,8 @@ extern BOOL accessibilityApiEnabled;
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 @property (nonatomic, strong) BSStrategyVersionManager *versionManager;
 
+- (IBAction)TEST:(id)sender;
+
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
 - (void)showNotification;

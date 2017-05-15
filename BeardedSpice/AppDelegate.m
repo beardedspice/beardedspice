@@ -32,6 +32,9 @@
 
 #import "runningSBApplication.h"
 
+#import "SPMediaKeyTap.h"
+#import "BSVolumeWindowController.h"
+
 /**
  Timeout for command of the user iteraction.
  */
@@ -271,6 +274,10 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 
+- (void)volumeMute{
+    
+}
+
 - (void)headphoneUnplug{
     __weak typeof(self) wself = self;
     dispatch_async(workingQueue, ^{
@@ -282,6 +289,11 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
+
+- (IBAction)TEST:(id)sender {
+    
+    [[BSVolumeWindowController singleton] showWithType:BSVWUp title:@"TIDAL"];
+}
 
 - (IBAction)checkForUpdates:(id)sender
 {
@@ -406,7 +418,7 @@ BOOL accessibilityApiEnabled = NO;
                                          context:nil
                                          subtype:0x8
                                            data1:(keytype << 16) | (state << 8)
-                                           data2:-1];
+                                           data2:SPPassthroughEventData2Value];
 
     CGEventPost(0, [event CGEvent]);
 }

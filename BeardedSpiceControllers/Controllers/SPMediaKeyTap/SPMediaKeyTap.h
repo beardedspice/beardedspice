@@ -4,7 +4,8 @@
 
 // http://overooped.com/post/2593597587/mediakeys
 
-#define SPSystemDefinedEventMediaKeys 8
+#define SPSystemDefinedEventMediaKeys       8
+#define SPPassthroughEventData2Value        -10
 
 @interface SPMediaKeyTap : NSObject {
        EventHandlerRef _app_switching_ref;

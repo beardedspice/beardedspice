@@ -1,0 +1,66 @@
+//
+//  BBCRadio.plist
+//  BeardedSpice
+//
+//  Created by Ben Pollman on 05/16/17.
+//  Copyright (c) 2015 Ben Pollman. All rights reserved.
+//
+// strategy/site notes
+// - previous and next available on site but not implemented by script
+// - favorite available on site but not implemented
+BSStrategy = {
+  version:1,
+  displayName:"BBC Radio Programmes",
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*bbc.co.uk/programmes/*'",
+    args: ["URL"]
+  },
+  isPlaying:function () {
+  	let iframe = window.parent.document.querySelector('iframe[id^="smphtml5iframeepisode-playout-"]');
+  	
+  	if (iframe == null) {
+  		return
+  	}
+    let pause = iframe.contentDocument.querySelector('.p_pauseButton');
+    
+    return pause != null;
+    
+  },
+  toggle:function () {
+  
+  	let iframe = window.parent.document.querySelector('iframe[id^="smphtml5iframeepisode-playout-"]');
+  
+    let play = iframe.contentDocument.querySelector('.p_playButton');
+    let pause = iframe.contentDocument.querySelector('.p_pauseButton');
+   
+    if (play != null) {
+      play.click();
+    } else if (pause != null) {
+      pause.click();
+    }
+  },
+  next: function () {},
+  favorite: function () {},
+  previous: function () {},
+  pause: function () {
+  	let iframe = window.parent.document.querySelector('iframe[id^="smphtml5iframeepisode-playout-"]');
+    let pause = iframe.contentDocument.querySelector('.p_pauseButton').click();
+    },
+  trackInfo: function () {
+  	  let iframe = window.parent.document.querySelector('iframe[id^="smphtml5iframeepisode-playout-"]');
+  	
+  	  let imagediv = iframe.contentDocument.querySelector('#mediaContainer');
+  	  let titlediv = window.parent.document.querySelector('div.br-masthead__title > a');
+  	  let artistdiv = window.parent.document.querySelector("div.island > div > h1[property='name']");
+  	
+  	console.log(imagediv.style);
+  	console.log(titlediv.text);
+  	console.log(artistdiv.innerText);
+  	
+    return {'image': imagediv ? imagediv.style.backgroundImage : null,
+            'track': titlediv ? titlediv.text : null,
+            'artist': artistdiv ? artistdiv.innerText : null
+    };
+  }
+}

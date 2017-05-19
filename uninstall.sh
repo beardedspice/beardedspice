@@ -8,6 +8,7 @@ sudo rm -rf ~/Library/Application\ Support/BeardedSpice
 sudo rm -rf /Applications/BeardedSpice.app
 
 # Reboot the notifications service so it realizes that the app is gone
-sudo killall usernoted
+launchctl stop com.apple.usernoted
+launchctl start com.apple.usernoted
 
 echo \# BeardedSpice has been uninstalled

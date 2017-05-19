@@ -3,11 +3,8 @@
 //  BeardedSpice
 //
 //  Created by Ben Pollman on 05/16/17.
-//  Copyright (c) 2015 Ben Pollman. All rights reserved.
+//  Copyright (c) 2017 Ben Pollman. All rights reserved.
 //
-// strategy/site notes
-// - previous and next available on site but not implemented by script
-// - favorite available on site but not implemented
 BSStrategy = {
   version:1,
   displayName:"BBC Radio Programmes",

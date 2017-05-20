@@ -2,11 +2,12 @@
 //  Stingray.js
 //  BeardedSpice
 //
-//  Created by Jean-Maxime Couillard on December 5th 2016.
+//  Created by Jean-Maxime Couillard on 2016-12-05.
+//  Updated v2 by Jean-Maxime Couillard on 2017-03-20.
 //  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-	version: 1,
+	version: 2,
 	displayName: "Stingray",
 	accepts: {
 		method: "predicateOnTab" /* OR "script" */,
@@ -17,12 +18,12 @@ BSStrategy = {
 		return (document.querySelectorAll("minimized-player .stopped-info").length === 0);
 	},
 	toggle: function () {
-		return document.querySelector('player-controls custom-button .content').click();
+		return document.querySelectorAll('player-controls image-local.button')[0].click();
 	},
 	previous: function () {
 	},
-	next: function () {
-		return document.querySelector("player-controls custom-button.skip .content").click();
+    next: function () {
+        return document.querySelectorAll('player-controls image-local.button')[1].click();
 	},
 	pause: function () {
 	},

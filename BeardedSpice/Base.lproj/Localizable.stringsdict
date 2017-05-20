@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>There were %u compatibility updates.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@num_updates@</string>
+		<key>num_updates</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>No new compatibilty updates.</string>
+			<key>one</key>
+			<string>There was %u compatibility update.</string>
+			<key>other</key>
+			<string>There were %u compatibility updates.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

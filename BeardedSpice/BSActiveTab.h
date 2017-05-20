@@ -62,6 +62,7 @@ static inline BOOL alwaysShowNotification() {
 
 #pragma mark -
 
+- (BOOL)hasEqualTabAdapter:(id)tabAdapter;
 - (BOOL)isNativeAdapter;
 - (BOOL)isTabAdapter;
 - (BOOL)respondsTo:(SEL)selector;

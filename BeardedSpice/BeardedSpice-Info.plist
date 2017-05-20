@@ -53,11 +53,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.2-b1</string>
+	<string>2.2.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>26</string>
+	<string>27</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>LSUIElement</key>
@@ -70,19 +70,19 @@
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015-2016 BeardedSpice. All rights reserved.</string>
+	<string>Copyright © 2015-2017 BeardedSpice. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>OSAScriptingDefinition</key>
+	<string>BeardedSpiceSuite.sdef</string>
+	<key>SUEnableJavaScript</key>
+	<true/>
 	<key>SUFeedURL</key>
 	<string>${BS_DISTRIBUTE_BASE_URL}/${BS_APPCAST_NAME}</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
-	<key>SUEnableJavaScript</key>
-	<true/>
-	<key>OSAScriptingDefinition</key>
-	<string>BeardedSpiceSuite.sdef</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

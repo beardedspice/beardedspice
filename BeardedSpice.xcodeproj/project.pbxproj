@@ -28,9 +28,7 @@
 		0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */; };
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
 		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
-		11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
-		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
@@ -91,6 +89,7 @@
 		67780DA2F661EB65287F24A9 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC938D7B6B2C85F19728E04D /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 		78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */; };
 		78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */; };
+		7DE6B957F01A63355BBB05F5 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DB5C0262B45745C939AEC4 /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
 		967933431855173100A49AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933421855173100A49AC7 /* AppDelegate.m */; };
@@ -101,7 +100,7 @@
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
 		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
 		EBADB5737602FB1FF06A26B2 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEA65C0F90F2A3E5B08CDA4 /* libPods-BeardedSpiceControllers.a */; };
-		EC287333189368D85BA01946 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A575D92C57EA77687EB760 /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
+		EC287333189368D85BA01946 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,14 +163,8 @@
 		0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSStrategyVersionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0BF06ADF1C9513A800534083 /* BSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrack.h; sourceTree = "<group>"; };
 		0BF06AE01C9513A800534083 /* BSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrack.m; sourceTree = "<group>"; };
-		19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
-		2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		19DB5C0262B45745C939AEC4 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25D13F6E1E9A2F6400149554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; sourceTree = "<group>"; };
-		412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
-		47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
-		53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-
 		5E80769C1D58CE180002855D /* Downcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downcast.h; sourceTree = "<group>"; };
 		5E80769D1D58CE180002855D /* DowncastTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowncastTabAdapter.h; sourceTree = "<group>"; };
 		5E80769E1D58CE180002855D /* DowncastTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowncastTabAdapter.m; sourceTree = "<group>"; };
@@ -303,6 +296,7 @@
 		967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		AAE87CDD652590663C8C6778 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2B98B07E52EE7B3CD09CBCE /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
 		CD29319363A7987E0697CC1C /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
 		CF40E6EC61850E9CC58BC273 /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -331,7 +325,8 @@
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */,
-				EC287333189368D85BA01946 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */,
+				EC287333189368D85BA01946 /* (null) in Frameworks */,
+				7DE6B957F01A63355BBB05F5 /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,8 +351,8 @@
 				CF40E6EC61850E9CC58BC273 /* Pods-BeardedSpiceControllers.debug.xcconfig */,
 				C2B98B07E52EE7B3CD09CBCE /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */,
 				67F8B36FD15D79A147422151 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
-				2751058D59CCB6F74BE030B7 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */,
 				95702384A41C8807D72C1302 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */,
+				AAE87CDD652590663C8C6778 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -582,8 +577,8 @@
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
 				FBEA65C0F90F2A3E5B08CDA4 /* libPods-BeardedSpiceControllers.a */,
-				45A575D92C57EA77687EB760 /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
 				DC938D7B6B2C85F19728E04D /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */,
+				19DB5C0262B45745C939AEC4 /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -857,7 +852,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
@@ -887,7 +882,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */ = {
@@ -947,7 +942,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1304,7 +1299,7 @@
 		};
 		967933611855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2751058D59CCB6F74BE030B7 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */;
+			baseConfigurationReference = AAE87CDD652590663C8C6778 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

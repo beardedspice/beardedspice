@@ -234,10 +234,6 @@ dispatch_queue_t notificationQueue() {
     return [self volume:@selector(volumeMute)];
 }
 
-- (BSVolumeControlResult)volumeUnmute {
-    return [self volume:@selector(volumeUnmute)];
-}
-
 - (BSVolumeControlResult)volume:(SEL)selector {
 
     BSVolumeControlResult result = BSVolumeControlNotSupported;

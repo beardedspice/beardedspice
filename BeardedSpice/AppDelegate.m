@@ -34,6 +34,7 @@
 
 #import "SPMediaKeyTap.h"
 #import "BSVolumeWindowController.h"
+#import "BSVolumeControlProtocol.h"
 
 /**
  Timeout for command of the user iteraction.
@@ -221,8 +222,6 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 
-#pragma mark -
-
 - (void)activeTab {
     __weak typeof(self) wself = self;
     dispatch_async(workingQueue, ^{
@@ -259,23 +258,72 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)volumeUp{
+    
     __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(workingQueue, ^{
+        
         __strong typeof(wself) sself = self;
-        [sself pressKey:NX_KEYTYPE_SOUND_UP];
+        [sself autoSelectTabWithForceFocused:NO];
+        BSVolumeControlResult result = [sself.activeApp volumeUp];
+        if (result == BSVolumeControlNotSupported) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof(wself) sself = self;
+                [sself pressKey:NX_KEYTYPE_SOUND_UP];
+            });
+        }
+        else {
+            
+            BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+            [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+        }
     });
 }
 
 - (void)volumeDown{
-    __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        __strong typeof(wself) sself = self;
-        [sself pressKey:NX_KEYTYPE_SOUND_DOWN];
-    });
+    
+        __weak typeof(self) wself = self;
+        dispatch_async(workingQueue, ^{
+            
+            __strong typeof(wself) sself = self;
+            [sself autoSelectTabWithForceFocused:NO];
+            BSVolumeControlResult result = [sself.activeApp volumeDown];
+            if (result == BSVolumeControlNotSupported) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(wself) sself = self;
+                    [sself pressKey:NX_KEYTYPE_SOUND_DOWN];
+                });
+            }
+            else {
+                
+                BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+                [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+            }
+        });
 }
 
 - (void)volumeMute{
     
+    __weak typeof(self) wself = self;
+    dispatch_async(workingQueue, ^{
+        
+        __strong typeof(wself) sself = self;
+        [sself autoSelectTabWithForceFocused:NO];
+        BSVolumeControlResult result = [sself.activeApp volumeMute];
+        if (result == BSVolumeControlNotSupported) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof(wself) sself = self;
+                [sself pressKey:NX_KEYTYPE_MUTE];
+            });
+        }
+        else {
+            
+            BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+            [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+        }
+    });
 }
 
 - (void)headphoneUnplug{
@@ -994,6 +1042,34 @@ BOOL accessibilityApiEnabled = NO;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
+- (BSVWType)convertVolumeResult:(BSVolumeControlResult)volumeResult {
+
+    BSVWType result = BSVWUnavailable;
+    
+    switch (volumeResult) {
+            
+            case BSVolumeControlUp:
+            result = BSVWUp;
+            break;
+
+            case BSVolumeControlDown:
+            result = BSVWDown;
+            break;
+            
+            case BSVolumeControlMute:
+            result = BSVWMute;
+            break;
+            
+            case BSVolumeControlUnmute:
+            result = BSVWUnmute;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods

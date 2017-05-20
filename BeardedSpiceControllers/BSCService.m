@@ -292,6 +292,10 @@ static BSCService *bscSingleton;
                 debugString = [@"Sound Down pressed" stringByAppendingString:debugString];
                 [self sendMessagesToConnections:@selector(volumeDown)];
                 break;
+            case NX_KEYTYPE_MUTE:
+                debugString = [@"Sound Mute pressed" stringByAppendingString:debugString];
+                [self sendMessagesToConnections:@selector(volumeMute)];
+                break;
             default:
                 debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
                 break;

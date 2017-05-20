@@ -13,8 +13,10 @@ typedef enum {
     
     BSVolumeControlNotSupported = 0,
     BSVolumeControlUnavailable,
-    BSVolumeControlSuccess
-    
+    BSVolumeControlUp,
+    BSVolumeControlDown,
+    BSVolumeControlMute,
+    BSVolumeControlUnmute
 } BSVolumeControlResult;
 
 @protocol BSVolumeControlProtocol <NSObject>
@@ -22,7 +24,6 @@ typedef enum {
 - (BSVolumeControlResult)volumeUp;
 - (BSVolumeControlResult)volumeDown;
 - (BSVolumeControlResult)volumeMute;
-- (BSVolumeControlResult)volumeUnmute;
 
 @end
 

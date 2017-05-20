@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
+#import "BSVolumeControlProtocol.h"
+
 @class BSTrack;
 @class TabAdapter;
 
@@ -35,7 +37,7 @@ extern NSString *_Nonnull const kBSMediaStrategyErrorDomain;
 #define BSMS_ERROR_JSPARSING    200
 #define BSMS_ERROR_DISPLAYNAME  300
 
-@interface BSMediaStrategy : NSObject
+@interface BSMediaStrategy : NSObject <BSVolumeControlProtocol>
 
 @property (nonatomic, assign, readonly) long strategyVersion;
 @property (nonatomic, strong, readonly) NSString * _Nonnull fileName;

@@ -111,18 +111,8 @@ static BSVolumeWindowController *singletonBSVolumeWindowController;
         
         [self.window orderFront:self];
         
-        _hideTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
-           
-            
-            [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-                
-                context.duration = 1.0f;
-                [[self.window animator] setAlphaValue:0.0f];
-            } completionHandler:^{
-                [self.window orderOut:self];
-                self.window.alphaValue = 1.0f;
-            }];
-        }];
+        _hideTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
+        
     }
 }
 
@@ -145,6 +135,19 @@ static BSVolumeWindowController *singletonBSVolumeWindowController;
     maskImage.resizingMode = NSImageResizingModeStretch;
     
     return maskImage;
+}
+
+- (void)timerFireMethod:(NSTimer *)timer {
+    
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+        
+        context.duration = 1.0f;
+        [[self.window animator] setAlphaValue:0.0f];
+    } completionHandler:^{
+        [self.window orderOut:self];
+        self.window.alphaValue = 1.0f;
+    }];
+
 }
 
 @end

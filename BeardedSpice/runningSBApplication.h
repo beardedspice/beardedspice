@@ -26,4 +26,10 @@
 - (void)makeKeyFrontmostWindow;
 
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Supporting actions in application menubar
+
+- (NSString *)menuBarItemNameForIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)pressMenuBarItemForIndexPath:(NSIndexPath *)indexPath;
+
 @end

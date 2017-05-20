@@ -219,6 +219,51 @@ dispatch_queue_t notificationQueue() {
         }
     }
 }
+    
+#pragma mark - BSVolumeControlProtocol implementation
+
+- (BSVolumeControlResult)volumeUp {
+    return [self volume:@selector(volumeUp)];
+}
+
+- (BSVolumeControlResult)volumeDown {
+    return [self volume:@selector(volumeDown)];
+}
+
+- (BSVolumeControlResult)volumeMute {
+    return [self volume:@selector(volumeMute)];
+}
+
+- (BSVolumeControlResult)volumeUnmute {
+    return [self volume:@selector(volumeUnmute)];
+}
+
+- (BSVolumeControlResult)volume:(SEL)selector {
+
+    BSVolumeControlResult result = BSVolumeControlNotSupported;
+    id object;
+    
+    if ([self isNativeAdapter]) {
+        object = _activeTab;
+    }
+    else {
+        object = [_registry getMediaStrategyForTab:_activeTab];
+    }
+        
+    if ([object conformsToProtocol:@protocol(BSVolumeControlProtocol)]) {
+        NSMethodSignature *sig = [[object class] instanceMethodSignatureForSelector:selector];
+        if (sig) {
+            
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+            [invocation setSelector:selector];
+            [invocation setTarget:object];
+            [invocation invoke];
+            [invocation getReturnValue:&result];
+        }
+    }
+    
+    return result;
+}
 
 #pragma mark - Notification logic
 

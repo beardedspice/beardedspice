@@ -197,6 +197,7 @@
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
+		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
 		655AACA51D3ABFAA00E316EA /* EHCCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCCache.h; sourceTree = "<group>"; };
 		655AACA61D3ABFAA00E316EA /* EHCCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCCache.m; sourceTree = "<group>"; };
 		655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
@@ -579,6 +580,7 @@
 				65FBCE3B1EC0F8F3004EFFC7 /* UI */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
+				653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
 				0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */,

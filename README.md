@@ -149,4 +149,10 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 #### Don't see your favorite site in the list ?
 No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]).
 
-Or, if you're in the mood to try something new, just follow the **[Developer How-To Guide](docs/developers-guide-web.md)** and write your own *media strategy*, integrating a new app or website in BeardedSpice is really easy and requires **NO objective-c experience** and only a little JavaScript basics.
+#### Want to Contribute?
+Please do! Contributions are the lifeblood of the project, and yours helps keep us moving forward.
+
+If you just want to add a new website to the list above, checkout the [app support request list](https://github.com/beardedspice/beardedspice/labels/app%20support). The **[Developer How-To Guide](docs/developers-guide-web.md)** has the information needed to get started (and don't be afraid to ask questions!).
+Websites only need some (easily learned) knowledge of javascript and maybe [webpage delving with devtool](https://zapier.com/blog/inspect-element-tutorial/) (also [Chrome's official documentation](https://developers.google.com/web/tools/chrome-devtools/)). 
+
+Integrating a new native app (aka Chrome, Firefox, Spotify) in BeardedSpice is a little more complicated and requires **NO objective-c experience**. Many [good](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/Tabs/SpotifyTabAdapter.m) [examples](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/Tabs/iTunesTabAdapter.m) exist. However, some apps simply aren't compatible at this time. See the [wiki article](https://github.com/beardedspice/beardedspice/wiki/Native-App-Developers'-Guide) on getting started importing a Native app.

@@ -13,6 +13,7 @@
 #import "VOXTabAdapter.h"
 #import "VLCTabAdapter.h"
 #import "DowncastTabAdapter.h"
+#import "AirfoilSatelliteTabAdapter.h"
 
 @implementation NativeAppTabRegistry
 
@@ -75,7 +76,8 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
         [SpotifyTabAdapter class],
         [VLCTabAdapter class],
         [VOXTabAdapter class],
-        [DowncastTabAdapter class]
+        [DowncastTabAdapter class],
+        [AirfoilSatelliteTabAdapter class]
     ];
 }
 

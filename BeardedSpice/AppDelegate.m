@@ -301,17 +301,16 @@ BOOL accessibilityApiEnabled = NO;
         __strong typeof(wself) sself = wself;
 
         NSUInteger updateCount = [sself.versionManager performSyncUpdateCheck];
-
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
+        
         if (updateCount == 0){
             if (checkFromMenu) {
-                [sself sendUpdateNotificationWithString:NSLocalizedString(@"No new compatibilty updates.", @"Notification Titles")];
+                [sself sendUpdateNotificationWithString:message];
             }
         }
         else
         {
             [sself refreshTabs:nil];
-
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
             [sself sendUpdateNotificationWithString:message];
         }
 
@@ -552,7 +551,7 @@ BOOL accessibilityApiEnabled = NO;
 
             NSMenuItem *item = [statusMenu itemAtIndex:i];
             TabAdapter *tab = [item representedObject];
-            BOOL isEqual = [_activeApp isEqual:tab];
+            BOOL isEqual = [_activeApp hasEqualTabAdapter:tab];
 
             [item setState:(isEqual ? NSOnState : NSOffState)];
         }
@@ -656,6 +655,9 @@ BOOL accessibilityApiEnabled = NO;
     __weak typeof(self) wself = self;
     @autoreleasepool {
 
+        //hold activeTab object
+        __unsafe_unretained TabAdapter *activeTabHolder = self.activeApp.activeTab;
+        //hold tab list
         NSArray *_menuItems = menuItems;
         NSMutableArray *newItems = [NSMutableArray array];
 
@@ -706,6 +708,16 @@ BOOL accessibilityApiEnabled = NO;
                 }
             }
         });
+        
+        //  check activeTab
+        //
+        //  It is because if `repairActiveTab` call cannot change activeTab,
+        //  then we lost active tab and we need reset it.
+        // https://github.com/beardedspice/beardedspice/issues/612
+        if (activeTabHolder == self.activeApp.activeTab) {
+            self.activeApp.activeTab = nil;
+        }
+
     }
 }
 
@@ -793,7 +805,7 @@ BOOL accessibilityApiEnabled = NO;
                 return;
             }
 
-            if (!_activeApp) {
+            if (_activeApp.activeTab == nil) {
                 //try to set active tab to first item of menu
                 TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
                 if (tab)
@@ -900,7 +912,7 @@ BOOL accessibilityApiEnabled = NO;
             TabAdapter *nextTab = [[statusMenu itemAtIndex:1] representedObject];
 
             for (int i = 0; i < size; i++) {
-                if ([wself.activeApp isEqual:tab]) {
+                if ([wself.activeApp hasEqualTabAdapter:tab]) {
                     if (direction == SwithPlayerNext) {
                         [wself.activeApp updateActiveTab:nextTab];
                     } else {

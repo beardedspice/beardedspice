@@ -18,6 +18,8 @@
 	<integer>2</integer>
 	<key>BBCRadio</key>
 	<integer>1</integer>
+	<key>BBCRadioProgrammes</key>
+	<integer>1</integer>
 	<key>BE-AT.TV</key>
 	<integer>1</integer>
 	<key>Beatguide</key>
@@ -42,6 +44,8 @@
 	<integer>2</integer>
 	<key>DigitallyImported</key>
 	<integer>1</integer>
+	<key>Eggheadio</key>
+	<integer>1</integer>
 	<key>EightTracks</key>
 	<integer>1</integer>
 	<key>Fip</key>
@@ -51,6 +55,8 @@
 	<key>FocusMusicFM</key>
 	<integer>1</integer>
 	<key>Gaana</key>
+	<integer>1</integer>
+	<key>GenieMusic</key>
 	<integer>1</integer>
 	<key>GoogleMusic</key>
 	<integer>2</integer>
@@ -131,7 +137,7 @@
 	<key>Qobuz</key>
 	<integer>1</integer>
 	<key>Saavn</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>ShufflerFm</key>
 	<integer>1</integer>
 	<key>Slacker</key>
@@ -143,7 +149,7 @@
 	<key>SoundCloud</key>
 	<integer>2</integer>
 	<key>Spotify</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>Stingray</key>
 	<integer>3</integer>
 	<key>Stitcher</key>
@@ -155,7 +161,7 @@
 	<key>Subsonic</key>
 	<integer>1</integer>
 	<key>Synology</key>
-	<integer>1</integer>
+	<integer>3</integer>
 	<key>TidalHiFi</key>
 	<integer>1</integer>
 	<key>TuneIn</key>
@@ -171,7 +177,7 @@
 	<key>Vimeo</key>
 	<integer>1</integer>
 	<key>Vk</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>WatchaPlay</key>
 	<integer>1</integer>
 	<key>WonderFm</key>

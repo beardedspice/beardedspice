@@ -18,18 +18,20 @@ NSString *const kBSTrackNameProgress = @"progress";
 NSString *const kBSTrackNameFavorited = @"favorited";
 NSString *const kBSTrackNameIdentifier = @"BSTrack Notification";
 
+const NSString *kImageLock = @"kImageLock";
+
 @interface BSTrack ()
 
 @property (nonatomic, strong) NSString *imageURL;
-
-@property (nonatomic, strong) NSString *lastImageUrlString;
-@property (nonatomic, strong) NSImage *lastImage;
 
 - (void)_loadImage;
 
 @end
 
 @implementation BSTrack
+
+static NSString *_lastImageUrlString;
+static NSImage *_lastImage;
 
 - (instancetype)init
 {
@@ -119,19 +121,22 @@ NSString *const kBSTrackNameIdentifier = @"BSTrack Notification";
     if (!urlString)
         return nil;
 
-    if (![urlString isEqualToString:_lastImageUrlString])
-    {
-        _lastImageUrlString = urlString;
-        NSURL *url = [NSURL URLWithString:urlString];
-        if (url)
-        {
-            if (!url.scheme)
-                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+    @synchronized (kImageLock) {
 
-            self.lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+        if (![urlString isEqualToString:_lastImageUrlString])
+        {
+            _lastImageUrlString = urlString;
+            NSURL *url = [NSURL URLWithString:urlString];
+            if (url)
+            {
+                if (!url.scheme)
+                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+                
+                _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+            }
+            else
+            _lastImage = nil;
         }
-        else
-            self.lastImage = nil;
     }
 
     return _lastImage;

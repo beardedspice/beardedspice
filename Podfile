@@ -8,6 +8,7 @@ target 'BeardedSpiceControllers' do
 
     target 'BeardedSpice' do
         pod 'MASPreferences', '= 1.1.4'
+        pod 'FMDB', '~> 2.6.2'
 
         # all pods for tests should ONLY go here
         target 'BeardedSpiceTests' do

@@ -177,14 +177,14 @@
         if (AXUIElementCopyAttributeValue(ref, (CFStringRef)NSAccessibilityMenuBarAttribute, (CFTypeRef *)&menu) == kAXErrorSuccess
             && menu) {
             
-            AXUIElementRef item = CFRetain(menu);
+            item = CFRetain(menu);
             for (NSUInteger i = 0; i < indexPath.length && notFound == NO; i++) {
 
                 //getting submenu if needs it
                 if (i) {
                     
-                    if (AXUIElementCopyAttributeValues(item, (CFStringRef)NSAccessibilityChildrenAttribute, 0, 1, &items) == kAXErrorSuccess
-                        && items) {
+                    AXError error = AXUIElementCopyAttributeValues(item, (CFStringRef)NSAccessibilityChildrenAttribute, 0, 1, &items);
+                    if (error == kAXErrorSuccess && items) {
                         
                         CFRelease(item);
                         item = CFRetain(CFArrayGetValueAtIndex(items, 0));

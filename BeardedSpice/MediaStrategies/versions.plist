@@ -95,7 +95,7 @@
 	<key>NoAdRadio</key>
 	<integer>1</integer>
 	<key>NPR</key>
-    <integer>1</integer>
+	<integer>1</integer>
 	<key>NPROne</key>
 	<integer>1</integer>
 	<key>NoonPacific</key>
@@ -145,7 +145,7 @@
 	<key>Spotify</key>
 	<integer>1</integer>
 	<key>Stingray</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>Stitcher</key>
 	<integer>1</integer>
 	<key>Stripewaves</key>

@@ -4,6 +4,7 @@
 //
 //  Created by Jean-Maxime Couillard on 2016-12-05.
 //  Updated v2 by Jean-Maxime Couillard on 2017-03-20.
+//  Updated v3 by Jean-Maxime Couillard on 2017-05-21.
 //  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
@@ -17,13 +18,15 @@ BSStrategy = {
 	isPlaying: function () {
 		return (document.querySelectorAll("minimized-player .stopped-info").length === 0);
 	},
-	toggle: function () {
-		return document.querySelectorAll('player-controls image-local.button')[0].click();
+    toggle: function () {
+        var buttons = document.querySelectorAll('player-controls image-local.button');
+        return buttons[buttons.length-3].click();
 	},
 	previous: function () {
 	},
     next: function () {
-        return document.querySelectorAll('player-controls image-local.button')[1].click();
+        var buttons = document.querySelectorAll('player-controls image-local.button');
+        return buttons[buttons.length-2].click();
 	},
 	pause: function () {
 	},

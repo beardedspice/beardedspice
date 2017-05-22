@@ -29,6 +29,7 @@ NSString *const BeardedSpiceUsingAppleRemote = @"BeardedSpiceUsingAppleRemote";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 NSString *const BeardedSpiceShowProgress = @"BeardedSpiceShowProgress";
+NSString *const BeardedSpiceCustomVolumeControl = @"BeardedSpiceCustomVolumeControl";
 
 @implementation GeneralPreferencesViewController
 

@@ -163,7 +163,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="toggleShowProgress:" target="-2" id="cAo-Ft-VcP"/>
-                        <binding destination="436" name="value" keyPath="values.BeardedSpiceShowProgress" id="d4V-g9-oem">
+                        <binding destination="436" name="value" keyPath="values.BeardedSpiceCustomVolumeControl" id="sPC-ow-Abt">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>

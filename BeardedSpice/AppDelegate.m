@@ -261,29 +261,40 @@ BOOL accessibilityApiEnabled = NO;
 - (void)volumeUp{
     
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
         
-        __strong typeof(wself) sself = self;
-        [sself autoSelectTabWithForceFocused:NO];
-        BSVolumeControlResult result = [sself.activeApp volumeUp];
-        if (result == BSVolumeControlNotSupported) {
+        dispatch_async(workingQueue, ^{
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                __strong typeof(wself) sself = self;
-                [sself pressKey:NX_KEYTYPE_SOUND_UP];
-            });
-        }
-        else {
-            
-            BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
-            [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
-        }
-    });
+            __strong typeof(wself) sself = self;
+            [sself autoSelectTabWithForceFocused:NO];
+            BSVolumeControlResult result = [sself.activeApp volumeUp];
+            if (result == BSVolumeControlNotSupported) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(wself) sself = self;
+                    [sself pressKey:NX_KEYTYPE_SOUND_UP];
+                });
+            }
+            else {
+                
+                BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+                [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+            }
+        });
+    }
+    else
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(wself) sself = self;
+            [sself pressKey:NX_KEYTYPE_SOUND_UP];
+        });
 }
 
 - (void)volumeDown{
     
-        __weak typeof(self) wself = self;
+    __weak typeof(self) wself = self;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
+        
         dispatch_async(workingQueue, ^{
             
             __strong typeof(wself) sself = self;
@@ -302,29 +313,43 @@ BOOL accessibilityApiEnabled = NO;
                 [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
             }
         });
+    }
+    else
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(wself) sself = self;
+            [sself pressKey:NX_KEYTYPE_SOUND_DOWN];
+        });
 }
 
 - (void)volumeMute{
     
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
         
-        __strong typeof(wself) sself = self;
-        [sself autoSelectTabWithForceFocused:NO];
-        BSVolumeControlResult result = [sself.activeApp volumeMute];
-        if (result == BSVolumeControlNotSupported) {
+        dispatch_async(workingQueue, ^{
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                __strong typeof(wself) sself = self;
-                [sself pressKey:NX_KEYTYPE_MUTE];
-            });
-        }
-        else {
-            
-            BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
-            [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
-        }
-    });
+            __strong typeof(wself) sself = self;
+            [sself autoSelectTabWithForceFocused:NO];
+            BSVolumeControlResult result = [sself.activeApp volumeMute];
+            if (result == BSVolumeControlNotSupported) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(wself) sself = self;
+                    [sself pressKey:NX_KEYTYPE_MUTE];
+                });
+            }
+            else {
+                
+                BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+                [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+            }
+        });
+    }
+    else
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(wself) sself = self;
+            [sself pressKey:NX_KEYTYPE_MUTE];
+        });
 }
 
 - (void)headphoneUnplug{

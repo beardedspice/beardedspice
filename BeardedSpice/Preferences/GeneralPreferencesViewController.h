@@ -27,6 +27,7 @@ extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
 extern NSString *const BeardedSpiceUpdateAtLaunch;
 extern NSString *const BeardedSpiceShowProgress;
+extern NSString *const BeardedSpiceCustomVolumeControl;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController

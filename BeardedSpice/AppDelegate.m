@@ -20,6 +20,7 @@
 #import "BSPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "ShortcutsPreferencesViewController.h"
+#import "BSStrategiesPreferencesViewController.h"
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
 
@@ -79,9 +80,9 @@ BOOL accessibilityApiEnabled = NO;
 
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
@@ -945,7 +946,8 @@ BOOL accessibilityApiEnabled = NO;
     {
         NSViewController *generalViewController = [GeneralPreferencesViewController new];
         NSViewController *shortcutsViewController = [ShortcutsPreferencesViewController new];
-        NSArray *controllers = @[generalViewController, shortcutsViewController];
+        NSViewController *strategiesViewController = [BSStrategiesPreferencesViewController new];
+        NSArray *controllers = @[generalViewController, shortcutsViewController, strategiesViewController];
 
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
@@ -1096,7 +1098,7 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 
-- (void) generalPrefChanged:(NSNotification*) notification{
+- (void) prefChanged:(NSNotification*) notification{
 
     NSString *name = notification.name;
 
@@ -1108,7 +1110,7 @@ BOOL accessibilityApiEnabled = NO;
 
         [self setAppleRemotes];
     }
-    else if ([name isEqualToString:GeneralPreferencesNativeAppChangedNoticiation])
+    else if ([name isEqualToString:BSStrategiesPreferencesNativeAppChangedNoticiation])
         [self refreshKeyTapBlackList];
 }
 

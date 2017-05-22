@@ -24,6 +24,9 @@
 
         if ([object isMemberOfClass:BSMediaStrategy.class]) {
             _isCustom = [object custom];
+            if (_isCustom) {
+                NSLog(@"Cust");
+            }
             _version = [NSString stringWithFormat:@"%ld", [object strategyVersion]];
         } else if ([[object class] instancesRespondToSelector:@selector(isPlaying)] || [[object class] instancesRespondToSelector:@selector(isPlaying:)]) {
             _isCustom = NO;

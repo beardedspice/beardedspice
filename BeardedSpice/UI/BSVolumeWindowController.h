@@ -29,6 +29,6 @@ typedef enum {
 @property (weak) IBOutlet NSLayoutConstraint *maxHeightForText;
 
 
-- (void)showWithType:(BSVWType)type title:(NSString *)title;
+- (void)showWithType:(BSVWType)type title:(NSString *)aTitle;
 
 @end

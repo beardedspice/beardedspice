@@ -74,6 +74,23 @@ dispatch_queue_t notificationQueue() {
     return [_activeTab respondsToSelector:selector];
 }
 
+- (BOOL)isPlaying {
+    
+    if ([self isNativeAdapter]) {
+        
+        NativeAppTabAdapter *native = (NativeAppTabAdapter *)_activeTab;
+        
+        return [native isPlaying];
+    }
+    else if ([self isTabAdapter]) {
+        
+        BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
+        return (strategy && [strategy isPlaying:_activeTab]);
+    }
+    
+    return NO;
+}
+
 #pragma mark - mutators
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab {

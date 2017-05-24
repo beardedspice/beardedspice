@@ -6,6 +6,9 @@
 //  Copyright © 2017 BeardedSpice. All rights reserved.
 //
 
+#import <CoreAudio/CoreAudio.h>
+#import <AudioToolbox/AudioHardwareService.h>
+
 #import "TidalTabAdapter.h"
 #import "runningSBApplication.h"
 #import "NSString+Utils.h"
@@ -18,6 +21,16 @@
 
 #define DB_PATH                 @"TIDAL/Local Storage/https_desktop.tidal.com_0.localstorage"
 #define IMAGE_URL_FORMAT        @"https://resources.wimpmusic.com/images/%@/320x320.jpg"
+
+#define VOLUME_STEP             0.055555556
+
+typedef enum {
+    
+    TAResultSystem = 0,
+    TAResultSystemCustom,
+    TAResultTidal,
+    TAResultUnavailable
+} TAResult;
 
 @implementation TidalTabAdapter{
     
@@ -155,6 +168,102 @@ static FMDatabaseQueue *dbQueue;
 }
 
 //////////////////////////////////////////////////////////////
+#pragma mark BSVolumeControlProtocol Methods
+
+- (BSVolumeControlResult)volumeDown {
+
+    const NSUInteger path[] = {4, 9};
+    NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:path length:2];
+    NSString *audioDeviceUID;
+
+    BSVolumeControlResult result = BSVolumeControlNotSupported;
+    
+    switch ([self testAudioConfiguration:&audioDeviceUID]) {
+        case TAResultTidal:
+            
+            [self.application pressMenuBarItemForIndexPath:indexPath];
+            result = BSVolumeControlDown;
+            break;
+            
+        case TAResultUnavailable:
+            
+            result = BSVolumeControlUnavailable;
+            break;
+            
+        case TAResultSystemCustom:
+            
+            result = [self setVolumeWithSign:-1 device:[self audioDeviceWithUUID:audioDeviceUID]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
+
+- (BSVolumeControlResult)volumeUp {
+    
+    const NSUInteger path[] = {4, 8};
+    NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:path length:2];
+    NSString *audioDeviceUID;
+    
+    BSVolumeControlResult result = BSVolumeControlNotSupported;
+    
+    switch ([self testAudioConfiguration:&audioDeviceUID]) {
+        case TAResultTidal:
+            
+            [self.application pressMenuBarItemForIndexPath:indexPath];
+            result = BSVolumeControlUp;
+            break;
+            
+        case TAResultUnavailable:
+            
+            result = BSVolumeControlUnavailable;
+            break;
+            
+        case TAResultSystemCustom:
+            
+            result = [self setVolumeWithSign:+1 device:[self audioDeviceWithUUID:audioDeviceUID]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
+
+- (BSVolumeControlResult)volumeMute {
+    
+    NSString *audioDeviceUID;
+    
+    BSVolumeControlResult result = BSVolumeControlNotSupported;
+    
+    switch ([self testAudioConfiguration:&audioDeviceUID]) {
+        case TAResultTidal:
+            
+            result = BSVolumeControlUnavailable;
+            break;
+            
+        case TAResultUnavailable:
+            
+            result = BSVolumeControlUnavailable;
+            break;
+            
+        case TAResultSystemCustom:
+            
+            result = [self setMuteWithDevice:[self audioDeviceWithUUID:audioDeviceUID]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
+
+//////////////////////////////////////////////////////////////
 #pragma mark Private Methods
 
 + (void)initDB {
@@ -234,6 +343,234 @@ static FMDatabaseQueue *dbQueue;
     }
     
     return nil;
+}
+
+- (TAResult)testAudioConfiguration:(NSString **)tidalAudioDeviceUID {
+    
+    NSNumber *userId = [TidalTabAdapter userMeta][@"id"];
+    if (! [userId unsignedIntegerValue]) {
+        
+        return  TAResultSystem;
+    }
+    
+    __block NSDictionary *result;
+    
+    //getting selected audio device
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        
+        FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@selectedOutputDevice'", userId]];
+        if ([dbResult next]) {
+            NSData *data = [dbResult dataNoCopyForColumnIndex:1];
+            result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        }
+        [dbResult close];
+    }];
+    
+    NSString *tidalAudioOutputDeviceName = result[@"id"];
+    
+    if ([NSString isNullOrEmpty:tidalAudioOutputDeviceName] || [tidalAudioOutputDeviceName isEqualToString:@"SystemControlled"]) {
+        
+        return TAResultSystem;
+    }
+    
+    //getting audio device settings
+    result = nil;
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        
+        FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@deviceSettings_%@'", userId, tidalAudioOutputDeviceName]];
+        if ([dbResult next]) {
+            NSData *data = [dbResult dataNoCopyForColumnIndex:1];
+            result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        }
+        [dbResult close];
+    }];
+    
+    if ([result[@"mode"] isEqualToString:@"exclusive"]) {
+        
+        // if Tidal has exclusive access
+        if ([result[@"forceVolume"] boolValue]) {
+            
+            // if thare is external volume controller
+            return TAResultUnavailable;
+        }
+        
+        return TAResultTidal;
+    }
+    
+    
+    // checking that Tidal audio output is not equal system default output
+    AudioDeviceID theDefaultOutputDeviceID;
+    UInt32 thePropSize = sizeof(theDefaultOutputDeviceID);
+    
+    AudioObjectPropertyAddress thePropertyAddress = { kAudioHardwarePropertyDefaultOutputDevice, kAudioObjectPropertyScopeGlobal, kAudioObjectPropertyElementMaster };
+    
+    // get the ID of the default output device
+    OSStatus osResult = AudioObjectGetPropertyData(kAudioObjectSystemObject, &thePropertyAddress, 0, NULL, &thePropSize, &theDefaultOutputDeviceID);
+    if (osResult == 0){
+        
+        CFStringRef theDefaultOutputDeviceName;
+        thePropSize = sizeof(theDefaultOutputDeviceName);
+        
+        thePropertyAddress.mSelector = kAudioDevicePropertyDeviceUID;
+        thePropertyAddress.mScope = kAudioObjectPropertyScopeGlobal;
+        thePropertyAddress.mElement = kAudioObjectPropertyElementMaster;
+        
+        // get the name of the default output device
+        osResult = AudioObjectGetPropertyData(theDefaultOutputDeviceID, &thePropertyAddress, 0, NULL, &thePropSize, &theDefaultOutputDeviceName);
+        if (osResult == 0) {
+            
+            NSString *defaultOutputDeviceName = CFBridgingRelease(theDefaultOutputDeviceName);
+            if (! [defaultOutputDeviceName isEqualToString:tidalAudioOutputDeviceName]) {
+                
+                if (tidalAudioDeviceUID) {
+                    *tidalAudioDeviceUID = tidalAudioOutputDeviceName;
+                }
+                return TAResultSystemCustom;
+            }
+        }
+    }
+    
+    return TAResultSystem;
+}
+
+- (BSVolumeControlResult)setVolumeWithSign:(Float32)volumeSign device:(AudioDeviceID)audioDevice {
+    
+    if (volumeSign && audioDevice != kAudioDeviceUnknown) {
+        
+        Float32 theVolume = 0;
+        UInt32 thePropSize = sizeof(theVolume);
+        AudioObjectPropertyAddress thePropertyAddress = { kAudioHardwareServiceDeviceProperty_VirtualMasterVolume, kAudioDevicePropertyScopeOutput, kAudioObjectPropertyElementMaster };
+
+        Boolean settable = false;
+        
+        // see if the device supports volume control, if so, then set the user specified volume
+        OSStatus osResult = AudioObjectIsPropertySettable(audioDevice, &thePropertyAddress, &settable);
+        if (osResult || settable == false) {
+            
+            return BSVolumeControlUnavailable;
+        }
+        
+        osResult = AudioObjectGetPropertyData(audioDevice, &thePropertyAddress, 0, NULL, &thePropSize, &theVolume);
+        if (osResult == 0) {
+            
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (volumeSign < 0) {
+                theVolume -= VOLUME_STEP;
+                if (theVolume < 0) {
+                    theVolume = 0;
+                }
+                result = BSVolumeControlDown;
+            }
+            else {
+                theVolume += VOLUME_STEP;
+                if (theVolume > 1) {
+                    theVolume = 1;
+                }
+                result = BSVolumeControlUp;
+            }
+            osResult = AudioObjectSetPropertyData(audioDevice, &thePropertyAddress, 0, NULL, thePropSize, &theVolume);
+            if (osResult == 0)
+                return result;
+        }
+    }
+    
+    return BSVolumeControlUnavailable;
+}
+
+
+- (BSVolumeControlResult)setMuteWithDevice:(AudioDeviceID)audioDevice {
+    
+    if (audioDevice != kAudioDeviceUnknown) {
+        
+        UInt32 theMute = 0;
+        UInt32 thePropSize = sizeof(theMute);
+        AudioObjectPropertyAddress thePropertyAddress = { kAudioDevicePropertyMute, kAudioDevicePropertyScopeOutput, kAudioObjectPropertyElementMaster };
+        
+        Boolean settable = false;
+        
+        // see if the device supports volume control, if so, then set the user specified volume
+        OSStatus osResult = AudioObjectIsPropertySettable(audioDevice, &thePropertyAddress, &settable);
+        if (osResult || settable == false) {
+            
+            return BSVolumeControlUnavailable;
+        }
+        
+        osResult = AudioObjectGetPropertyData(audioDevice, &thePropertyAddress, 0, NULL, &thePropSize, &theMute);
+        if (osResult == 0) {
+            
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            theMute = ! theMute;
+            if (theMute) {
+                result = BSVolumeControlMute;
+            }
+            else {
+                result = BSVolumeControlUnmute;
+            }
+            
+            osResult = AudioObjectSetPropertyData(audioDevice, &thePropertyAddress, 0, NULL, thePropSize, &theMute);
+            if (osResult == 0)
+                return result;
+        }
+    }
+    
+    return BSVolumeControlUnavailable;
+}
+
+- (AudioDeviceID)audioDeviceWithUUID:(NSString *)audioDeviceUID {
+    
+    // get the device list
+    AudioDeviceID result = kAudioDeviceUnknown;
+    
+    if ([NSString isNullOrEmpty:audioDeviceUID]) {
+        
+        return result;
+    }
+    
+    UInt32 thePropSize;
+    AudioDeviceID *theDeviceList = NULL;
+    UInt32 theNumDevices = 0;
+    
+    AudioObjectPropertyAddress thePropertyAddress = { kAudioHardwarePropertyDevices, kAudioObjectPropertyScopeGlobal, kAudioObjectPropertyElementMaster };
+    OSStatus osResult = AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &thePropertyAddress, 0, NULL, &thePropSize);
+    if (osResult == noErr) {
+        
+        // Find out how many devices are on the system
+        theNumDevices = thePropSize / sizeof(AudioDeviceID);
+        theDeviceList = (AudioDeviceID*)calloc(theNumDevices, sizeof(AudioDeviceID));
+        
+        osResult = AudioObjectGetPropertyData(kAudioObjectSystemObject, &thePropertyAddress, 0, NULL, &thePropSize, theDeviceList);
+        if (osResult == noErr) {
+            
+            CFStringRef theDeviceName;
+            // get the device uid
+            thePropSize = sizeof(CFStringRef);
+            thePropertyAddress.mSelector = kAudioDevicePropertyDeviceUID;
+            thePropertyAddress.mScope = kAudioObjectPropertyScopeGlobal;
+            thePropertyAddress.mElement = kAudioObjectPropertyElementMaster;
+            
+            for (UInt32 i=0; i < theNumDevices; i++) {
+                @autoreleasepool {
+                    
+                    osResult = AudioObjectGetPropertyData(theDeviceList[i], &thePropertyAddress, 0, NULL, &thePropSize, &theDeviceName);
+                    if (osResult == noErr) {
+                        
+                        NSString *deviceName = CFBridgingRelease(theDeviceName);
+                        if ([audioDeviceUID isEqualToString:deviceName]) {
+                            
+                            result = theDeviceList[i];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (theDeviceList)
+            free(theDeviceList);
+        
+    }
+    
+    return result;
 }
 
 @end

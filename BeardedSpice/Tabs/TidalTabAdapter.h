@@ -9,6 +9,6 @@
 #import "NativeAppTabAdapter.h"
 #import "BSVolumeControlProtocol.h"
 
-@interface TidalTabAdapter : NativeAppTabAdapter
+@interface TidalTabAdapter : NativeAppTabAdapter <BSVolumeControlProtocol>
 
 @end

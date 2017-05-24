@@ -49,71 +49,77 @@ static BSVolumeWindowController *singletonBSVolumeWindowController;
     visualEffectView.material = NSVisualEffectMaterialMediumLight;
 }
 
-- (void)showWithType:(BSVWType)type title:(NSString *)title {
+- (void)showWithType:(BSVWType)type title:(NSString *)aTitle {
     
-    if (self.window == nil) { //this needs for load of the window
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        return;
-    }
-    
-    if (title == nil) {
-        title = @"BeardedSpice";
-    }
-    
-    NSSize maxSize = NSMakeSize(self.maxWithForText.constant, self.maxHeightForText.constant);
-    NSFont *testFont = [NSFont fontWithName:BASE_FONT_NAME size:BASE_FONT_SIZE];
-    NSAttributedString *testString = [[NSAttributedString alloc]
-                                      initWithString:title attributes:@{
-                                                                        NSFontAttributeName: testFont
-                                                                        }];
-    
-    CGFloat realFontSize = MIN((maxSize.width * BASE_FONT_SIZE / testString.size.width), (maxSize.height * BASE_FONT_SIZE / testString.size.height));
-    
-    self.textField.font = [NSFont fontWithName:BASE_FONT_NAME size:realFontSize];
-    self.textField.stringValue = title;
-    
-    switch (type) {
+        if (self.window == nil) { //this needs for load of the window
             
-        case BSVWMute:
-            
-            self.imageView.image = [NSImage imageNamed:@"volumeMute"];
-            break;
-            
-        case BSVWUnmute:
-            
-            self.imageView.image = [NSImage imageNamed:@"volumeUnmute"];
-            break;
-            
-        case BSVWUp:
-            
-            self.imageView.image = [NSImage imageNamed:@"volumeUp"];
-            break;
-            
-        case BSVWDown:
-            
-            self.imageView.image = [NSImage imageNamed:@"volumeDown"];
-            break;
-            
-        case BSVWUnavailable:
-        default:
-            
-            self.imageView.image = [NSImage imageNamed:@"volumeUnavailable"];
-            break;
-    }
-    
-    @synchronized (self) {
-
-        [_hideTimer invalidate];
-        [NSAnimationContext beginGrouping];
-        [[NSAnimationContext currentContext] setDuration:0.01];
-        [[self.window animator] setAlphaValue:1];
-        [NSAnimationContext endGrouping];
+            return;
+        }
         
-        [self.window orderFront:self];
+        NSString *title = aTitle;
+        if (title == nil) {
+            title = @"BeardedSpice";
+        }
         
-        _hideTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
+        NSSize maxSize = NSMakeSize(self.maxWithForText.constant, self.maxHeightForText.constant);
+        NSFont *testFont = [NSFont fontWithName:BASE_FONT_NAME size:BASE_FONT_SIZE];
+        NSAttributedString *testString = [[NSAttributedString alloc]
+                                          initWithString:title attributes:@{
+                                                                            NSFontAttributeName: testFont
+                                                                            }];
         
-    }
+        CGFloat realFontSize = MIN((maxSize.width * BASE_FONT_SIZE / testString.size.width), (maxSize.height * BASE_FONT_SIZE / testString.size.height));
+        
+        self.textField.font = [NSFont fontWithName:BASE_FONT_NAME size:realFontSize];
+        self.textField.stringValue = title;
+        
+        switch (type) {
+                
+            case BSVWMute:
+                
+                self.imageView.image = [NSImage imageNamed:@"volumeMute"];
+                break;
+                
+            case BSVWUnmute:
+                
+                self.imageView.image = [NSImage imageNamed:@"volumeUnmute"];
+                break;
+                
+            case BSVWUp:
+                
+                self.imageView.image = [NSImage imageNamed:@"volumeUp"];
+                break;
+                
+            case BSVWDown:
+                
+                self.imageView.image = [NSImage imageNamed:@"volumeDown"];
+                break;
+                
+            case BSVWUnavailable:
+            default:
+                
+                self.imageView.image = [NSImage imageNamed:@"volumeUnavailable"];
+                break;
+        }
+        
+        @synchronized (self) {
+            
+            [_hideTimer invalidate];
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+                
+                context.duration = 0.01f;
+                [[self.window animator] setAlphaValue:1.0f];
+            } completionHandler:^{
+                
+                self.window.alphaValue = 1.0f;
+                [self.window orderFront:self];
+                
+                _hideTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
+            }];
+        }
+    });
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -147,7 +153,6 @@ static BSVolumeWindowController *singletonBSVolumeWindowController;
         [self.window orderOut:self];
         self.window.alphaValue = 1.0f;
     }];
-
 }
 
 @end

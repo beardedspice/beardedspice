@@ -268,8 +268,9 @@ BOOL accessibilityApiEnabled = NO;
             
             __strong typeof(wself) sself = self;
             [sself autoSelectTabWithForceFocused:NO];
-            BSVolumeControlResult result = [sself.activeApp volumeUp];
-            if (result == BSVolumeControlNotSupported) {
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (! [sself.activeApp isPlaying] ||
+                (result = [sself.activeApp volumeUp]) == BSVolumeControlNotSupported) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(wself) sself = self;
@@ -299,8 +300,9 @@ BOOL accessibilityApiEnabled = NO;
             
             __strong typeof(wself) sself = self;
             [sself autoSelectTabWithForceFocused:NO];
-            BSVolumeControlResult result = [sself.activeApp volumeDown];
-            if (result == BSVolumeControlNotSupported) {
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (! [sself.activeApp isPlaying] ||
+                (result = [sself.activeApp volumeDown]) == BSVolumeControlNotSupported) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(wself) sself = self;
@@ -330,8 +332,9 @@ BOOL accessibilityApiEnabled = NO;
             
             __strong typeof(wself) sself = self;
             [sself autoSelectTabWithForceFocused:NO];
-            BSVolumeControlResult result = [sself.activeApp volumeMute];
-            if (result == BSVolumeControlNotSupported) {
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (! [sself.activeApp isPlaying] ||
+                (result = [sself.activeApp volumeMute]) == BSVolumeControlNotSupported) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(wself) sself = self;
@@ -363,11 +366,6 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 /////////////////////////////////////////////////////////////////////////
-
-- (IBAction)TEST:(id)sender {
-    
-    [[BSVolumeWindowController singleton] showWithType:BSVWUp title:@"TIDAL"];
-}
 
 - (IBAction)checkForUpdates:(id)sender
 {

@@ -68,4 +68,6 @@ static inline BOOL alwaysShowNotification() {
 - (BOOL)isTabAdapter;
 - (BOOL)respondsTo:(SEL)selector;
 
+- (BOOL)isPlaying;
+
 @end

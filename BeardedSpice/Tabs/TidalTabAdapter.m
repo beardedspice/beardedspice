@@ -324,11 +324,28 @@ static FMDatabaseQueue *dbQueue;
     if (playQueue.count) {
         
         NSDictionary *trackMeta = playQueue[0];
+        
+        NSString *artist = trackMeta[@"artist"][@"name"];
+        if ([NSString isNullOrEmpty:artist]) {
+            
+            //getting artist from 'artists'
+            for (NSDictionary *item in trackMeta[@"artists"]) {
+                
+                if (artist.length) {
+                    
+                    artist = [artist stringByAppendingFormat:@", %@", item[@"name"]];
+                }
+                else {
+                    artist = item[@"name"];
+                }
+            }
+        }
+        
         NSMutableDictionary *trackInfo = [NSMutableDictionary
                                           dictionaryWithDictionary:@{
                                                                      kBSTrackNameTrack: trackMeta[@"title"] ?: @"",
                                                                      kBSTrackNameAlbum: trackMeta[@"album"][@"title"] ?: @"",
-                                                                     kBSTrackNameArtist: trackMeta[@"artist"][@"name"] ?: @""
+                                                                     kBSTrackNameArtist: artist ?: @""
                                                                      }];
         
         if (loadImage) {

@@ -12,9 +12,9 @@
 #import "runningSBApplication.h"
 
 #define KEY_NAME            @"X_BeardedSpice_UUID"
-#define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})();"
-#define SET_KEY_FORMAT      @"(function(){ window." KEY_NAME @" = '%@';})();"
-#define CHECK_EXEC          @"(function(){ return 1;})();"
+#define GET_KEY_FORMAT      @"(function(){return (window." KEY_NAME @" == undefined ? '': window." KEY_NAME @");})()"
+#define SET_KEY_FORMAT      @"(function(){ window." KEY_NAME @" = '%@';})()"
+#define CHECK_EXEC          @"(function(){ return 1;})()"
 
 @implementation TabAdapter
 

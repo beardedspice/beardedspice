@@ -115,7 +115,7 @@
         if ([NSString isNullOrEmpty:_key]){
 
             _key = [NSString stringWithFormat:@"K:%@", [[NSUUID UUID] UUIDString]];
-            _key = [NSString stringWithFormat:SET_KEY_FORMAT GET_KEY_FORMAT, _key];
+            _key = [NSString stringWithFormat:SET_KEY_FORMAT @";" GET_KEY_FORMAT, _key];
             _key = [self executeJavascript:_key];
         }
         return _key;

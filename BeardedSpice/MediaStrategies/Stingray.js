@@ -36,7 +36,7 @@ BSStrategy = {
 		return {
 			'track': document.querySelector(".track-info-container .title").innerText.trim().split("\n")[0],
 			'album': document.querySelector(".track-info-container .album").innerText.trim().split("\n")[0],
-			'artist': document.querySelector(".track-info-container .artist").innerText.trim().split("\n")[0],
+			'artist': document.querySelector(".track-info-container artist-names").innerText.trim().split("\n")[0],
 			'image': document.querySelector(".album-cover .background").getAttribute("style").match(/(?:url)\((.*?)\)/)[1].replace(/('|")/g, ''),
 		};
 	}

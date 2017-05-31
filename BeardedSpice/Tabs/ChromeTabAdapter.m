@@ -29,7 +29,7 @@
     out.applescriptIsolatedVersion = NO;
     NSInteger version = [[(ChromeApplication *)application.sbApplication version] integerValue];
     NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM, APPID_VIVALDI];
-    if (version < 58 && version > 45 && [googleBundleIds containsObject:application.bundleIdentifier]){
+    if (version > 45 && [googleBundleIds containsObject:application.bundleIdentifier]){
         out.applescriptIsolatedVersion = YES;
     }
 

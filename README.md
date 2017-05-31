@@ -126,7 +126,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Spotify (Web)](https://play.spotify.com)
 - [Stingray](https://webplayer.stingray.com)
 - [STITCHER](http://www.stitcher.com/)
-- [Style Jukebox] (http://play.stylejukebox.com/)
+- [Style Jukebox](http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
 - [TIDAL (Web)](http://listen.tidal.com/)

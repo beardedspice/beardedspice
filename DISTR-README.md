@@ -24,7 +24,7 @@ This procedure creates the archive (release configuration), which will be used f
 ## Preparing for publishing.
 Note: This step uses last archive of the BeardedSpice application.
 
-1. in Project navigator (left side of main window, usually) select and edit file Release-Notes-EN.txt, which is located in the "Scripts" group;
+1. in Project navigator (left side of main window, usually) select and edit file Release-Notes-EN.txt, which is located in the "Scripts" group (EACH LINE OF THE FILE WILL BE CONVERTED TO "LIST ITEM" <LI>);
 2. in Xcode main menu select Product-\>Scheme-\>Create Release, then select Product-\>Build;
 3. inspect folder "publish", which is located in the source root directory. Check ZIP file and release notes files.
 

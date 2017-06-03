@@ -128,7 +128,7 @@
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
-        iTunesTrack *track = [[iTunes currentTrack] get];
+        iTunesTrack *track = [iTunes currentTrack];
         @try {
             if ([track loved])
                 track.loved = NO;
@@ -149,7 +149,7 @@
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
 
-        iTunesTrack *iTrack = [[iTunes currentTrack] get];
+        iTunesTrack *iTrack = [iTunes currentTrack];
         if (iTrack) {
             BSTrack *track = [BSTrack new];
 
@@ -157,8 +157,8 @@
             track.album = iTrack.album;
             track.artist = iTrack.artist;
 
-            NSArray *artworks = [[iTrack artworks] get];
-            iTunesArtwork *art = [[artworks firstObject] get];
+            NSArray *artworks = [iTrack artworks];
+            iTunesArtwork *art = [artworks firstObject];
             track.image = art.data;
 
             @try {

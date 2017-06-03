@@ -18,6 +18,8 @@
 	<integer>2</integer>
 	<key>BBCRadio</key>
 	<integer>1</integer>
+	<key>BBCRadioProgrammes</key>
+	<integer>1</integer>
 	<key>BE-AT.TV</key>
 	<integer>1</integer>
 	<key>Beatguide</key>
@@ -39,7 +41,7 @@
 	<key>CozyCloud</key>
 	<integer>1</integer>
 	<key>Deezer</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>DigitallyImported</key>
 	<integer>1</integer>
 	<key>Eggheadio</key>

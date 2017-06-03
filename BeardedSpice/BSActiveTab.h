@@ -11,7 +11,7 @@
 #import "MediaStrategyRegistry.h";
 
 /// Delay displaying notification after changing favorited status of the current track.
-#define FAVORITED_DELAY         0.3
+#define FAVORITED_DELAY         1.0
 
 /// Delay displaying notification after pressing next/previous track.
 #define CHANGE_TRACK_DELAY      2.0

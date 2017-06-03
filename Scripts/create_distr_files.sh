@@ -95,8 +95,9 @@ Notes=$( sqlite3 "${SCRIPT_RESOURCES}/notes.db" "select version, notes from vers
 IFS=$'\n'
 for note in $Notes; do
 IFS='|' read -r HTML_VERSION HTML_VERSION_NOTES <<< "${note}"
-eval "HTML_VERSIONS_NOTES=\"${HTML_VERSIONS_NOTES}
-$VersionTemplate\""
+eval "versionNotes=\"$VersionTemplate\""
+HTML_VERSIONS_NOTES="${HTML_VERSIONS_NOTES}
+${versionNotes}"
 done
 
 HTML_TITLE="BeardedSpice updated!"

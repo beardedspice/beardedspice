@@ -6,16 +6,16 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 2.2.2</title>
+            <title>Version 2.2.3</title>
             <sparkle:releaseNotesLink>
                 https://htmlpreview.github.io/?https://raw.github.com/beardedspice/beardedspice/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
             <sparkle:releaseNotesLink xml:lang="en">
                 https://htmlpreview.github.io/?https://raw.github.com/beardedspice/beardedspice/distr/publish/beardedspice-rnotes-en.html
             </sparkle:releaseNotesLink>
-            <pubDate>Sat, 20 May 2017 01:03:00 +0000</pubDate>
+            <pubDate>Sat, 03 Jun 2017 12:02:00 +0000</pubDate>
             <sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
-            <enclosure url="https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-2.2.2.zip" sparkle:dsaSignature="MC0CFQCVHBi8dhhcZMvLgzh7Cf28EuXuJwIUIuGBWCSvWZ/CYESVcM5fpTCwElQ=" length="4047186" type="application/octet-stream" sparkle:version="27" sparkle:shortVersionString="2.2.2"/>
+            <enclosure url="https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-2.2.3.zip" sparkle:dsaSignature="MCwCFAV2EBH0RLtrG/SaNIwA1GjPTJhyAhQuavfSVpcX0hbqKcDSYjJEoXJoRA==" length="4048265" type="application/octet-stream" sparkle:version="29" sparkle:shortVersionString="2.2.3"/>
         </item>
     </channel>
 </rss>

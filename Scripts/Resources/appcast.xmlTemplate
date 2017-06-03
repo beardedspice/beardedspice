@@ -14,7 +14,7 @@
                 https://htmlpreview.github.io/?${XML_BASEURL}/${XML_RELEASE_NOTES}-en.html
             </sparkle:releaseNotesLink>
             <pubDate>${XML_RELEASE_TIME}</pubDate>
-            <sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
+            <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
             <enclosure url="${XML_DISTRIBUTE_URL}" sparkle:dsaSignature="${XML_SIGNATURE}" length="${XML_DISTRIB_LENGTH}" type="application/octet-stream" sparkle:version="${XML_DISTRIB_BUILD}" sparkle:shortVersionString="${XML_DISTRIB_VERSION}"/>
         </item>
     </channel>

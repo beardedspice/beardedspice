@@ -1,13 +1,2 @@
-<h3>2.2.2</h3>
-<ul>
-<li>(<a href="https://github.com/beardedspice/beardedspice/commit/5c8ec0699c872a8749bb7b81a131074681e18d38">5c8ec06
-</a>) - <code>Fix for #598, #639, #644 - Chrome 58 no longer needing a version-specific fix.</code> (<a href="https://github.com/1ps0">@1ps0</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/605">#605</a>) - <code>Genie Music</code> (<a href="https://github.com/Pnamu">@Pnamu</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/638">#638</a>, <a href="[#589](https://github.com/beardedspice/beardedspice/pull/589">#589</a>)) - <code>Synology</code> (<a href="https://github.com/jhuebsch">@jhuebsch</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/616">#616</a>) - <code>Stingray</code> (<a href="https://github.com/jmcouillard">@jmcouillard</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/617">#617</a>) - <code>Egghead.io</code> (<a href="https://github.com/filoxo">@filoxo</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/621">#621</a>) - <code>Airfoil</code> - (<a href="https://github.com/Stillness-2">Stillness-2</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/646">#646</a>) - <code>Fix iTunes adapter</code> - (<a href="https://github.com/Stillness-2">Stillness-2</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/596">#596</a>) - <code>Saavn</code> (<a href="https://github.com/mohakshah">@mohakshah</a>)</li>
-<li>(<a href="https://github.com/beardedspice/beardedspice/pull/628">#628</a>) - <code>Pluralize String</code> (<a href="https://github.com/Mauin">@Mauin</a>)</li>
-</ul>
+We roll back changes for supporting Spotify users, which uses the Google Chrome. Because fix for CSP in previous version breaks other strategies.
+List of the other changes <a href="https://github.com/beardedspice/beardedspice/milestone/17?closed=1">here</a>.

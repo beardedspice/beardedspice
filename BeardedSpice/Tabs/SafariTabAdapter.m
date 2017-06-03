@@ -14,6 +14,12 @@
 #define MULTI       1
 #define WAIT_FRONTMOST_DELAY    0.2
 
+@interface SafariTabAdapter ()
+
+@property BOOL applescriptResultAsJSON;
+
+@end
+
 @implementation SafariTabAdapter
 
 + (id)initWithApplication:(runningSBApplication *)application andWindow:(SafariWindow *)window andTab:(SafariTab *)tab
@@ -36,12 +42,28 @@
         [out setWindow:window];
     }
     [out setApplication:application];
+    
+    NSInteger version = [[(SafariApplication *)application.sbApplication version] integerValue];
+    if (version > 9){
+        out.applescriptResultAsJSON = YES;
+    }
     return out;
 }
 
 -(id) executeJavascript:(NSString *) javascript
 {
-    return [(SafariApplication *)self.application.sbApplication doJavaScript:javascript in:self.tab];
+    if (_applescriptResultAsJSON) {
+        
+        javascript = [NSString stringWithFormat:@"JSON.stringify(%@);", javascript];
+    }
+
+    id result = [(SafariApplication *)self.application.sbApplication doJavaScript:javascript in:self.tab];
+    
+    if (_applescriptResultAsJSON && [result isKindOfClass:[NSString class]]) {
+        
+        result = [NSJSONSerialization JSONObjectWithData:[(NSString *)result dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+    }
+    return result;
 }
 
 -(NSString *) title

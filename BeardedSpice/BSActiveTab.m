@@ -187,14 +187,14 @@ dispatch_queue_t notificationQueue() {
         if ([tab respondsToSelector:@selector(next)]) {
             [tab next];
             if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
-                dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
+                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
     } else {
         BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
         if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
             [_activeTab executeJavascript:[strategy next]];
             if (alwaysShowNotification() && ![_activeTab frontmost])
-                dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
+                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
     }
 }

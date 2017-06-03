@@ -126,6 +126,8 @@
 	<integer>1</integer>
 	<key>PlexWeb</key>
 	<integer>3</integer>
+	<key>Pluralsight</key>
+	<integer>1</integer>
 	<key>PocketCasts</key>
 	<integer>1</integer>
 	<key>PoolsideFM</key>

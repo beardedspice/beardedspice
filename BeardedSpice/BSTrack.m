@@ -18,7 +18,7 @@ NSString *const kBSTrackNameProgress = @"progress";
 NSString *const kBSTrackNameFavorited = @"favorited";
 NSString *const kBSTrackNameIdentifier = @"BSTrack Notification";
 
-const NSString *kImageLock = @"kImageLock";
+NSString *const kImageLock = @"kImageLock";
 
 @interface BSTrack ()
 

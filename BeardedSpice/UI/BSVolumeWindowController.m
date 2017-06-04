@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 08.05.17.
-//  Copyright © 2017 BeardedSpice. All rights reserved.
+//  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "BSVolumeWindowController.h"
@@ -15,14 +15,13 @@
     NSTimer *_hideTimer;
 }
 
-
-static BSVolumeWindowController *singletonBSVolumeWindowController;
-
 /////////////////////////////////////////////////////////////////////
 #pragma mark Init and Class methods
 /////////////////////////////////////////////////////////////////////
 
 + (BSVolumeWindowController *)singleton{
+    
+    static BSVolumeWindowController *singletonBSVolumeWindowController;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -32,7 +31,6 @@ static BSVolumeWindowController *singletonBSVolumeWindowController;
     
     return singletonBSVolumeWindowController;
 }
-
 
 - (void)windowDidLoad {
     [super windowDidLoad];

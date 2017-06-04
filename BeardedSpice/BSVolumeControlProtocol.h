@@ -9,15 +9,15 @@
 #ifndef BSVolumeControlProtocol_h
 #define BSVolumeControlProtocol_h
 
-typedef enum {
+typedef NS_ENUM(Byte, BSVolumeControlResult) {
     
-    BSVolumeControlNotSupported = 0,
+    BSVolumeControlNotSupported,
     BSVolumeControlUnavailable,
     BSVolumeControlUp,
     BSVolumeControlDown,
     BSVolumeControlMute,
     BSVolumeControlUnmute
-} BSVolumeControlResult;
+};
 
 @protocol BSVolumeControlProtocol <NSObject>
 

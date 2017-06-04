@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 22.05.17.
-//  Copyright © 2017 BeardedSpice. All rights reserved.
+//  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import <Cocoa/Cocoa.h>

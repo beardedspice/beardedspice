@@ -129,7 +129,6 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Style Jukebox](http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
-- [TIDAL (Web)](http://listen.tidal.com/)
 - [TuneIn](http://tunein.com/)
 - [Twitch TV](http://www.twitch.tv/)
 - [Udemy](https://www.udemy.com/)

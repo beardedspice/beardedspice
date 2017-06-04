@@ -76,6 +76,8 @@
 	<integer>1</integer>
 	<key>KollektFm</key>
 	<integer>1</integer>
+	<key>Laracasts</key>
+	<integer>1</integer>
 	<key>LastFm</key>
 	<integer>1</integer>
 	<key>LeTournedisque</key>

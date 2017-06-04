@@ -43,9 +43,9 @@ BSStrategy = {
 	},
 	trackInfo: function() {
 		return {
-			'track': getElementsByClassName("jw-songName")[0].innerText,
-			'album': getElementsByClassName("jw-songAlbum")[0].innerText,
-			'image': getElementsbyClassName("jw-albumThumb")[0].src
+			'track': document.querySelector(".jw-songName").innerText,
+			'album': document.querySelector(".jw-songAlbum").innerText,
+			'image': document.querySelector(".jw-albumThumb").src
 		}
 	}
 

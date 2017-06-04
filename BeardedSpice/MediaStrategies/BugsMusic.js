@@ -3,36 +3,42 @@
 //  BeardedSpice
 //
 //  Created by Jinseop Kim on 01/03/16.
-//  Copyright © 2016 BeardedSpice. All rights reserved.
+//  Copyright © 2016-2017 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:1,
-  displayName:"Bugs Music",
+  version: 2,
+  displayName: "Bugs Music",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*music.bugs.co.kr/newPlayer*'",
+    format: "%K LIKE[c] '*music.bugs.co.kr/newPlayer*'",
     args: ["URL"]
   },
-  isPlaying: function () { return bugs.player.isPlayingTrack; },
-  toggle: function () { bugs.player.playButtonHandler().call(); },
-  next: function () { bugs.player.nextButtonHandler().call(); },
-  favorite: function (){
-    if (document.querySelector('.btnLikeTrackCancel').style.display == "none") {
-      bugs.player.likeButtonHandler().call();
-    }
-    bugs.player.likeCancelButtonHandler().call();
+  isPlaying: function () {
+    return Boolean(document.querySelector('#pgBasicPlayer .btnStop'));
   },
-  previous: function () { bugs.player.prevButtonHandler().call(); },
+  toggle: function () {
+    document.querySelector('#pgBasicPlayer .btnPlay button, #pgBasicPlayer .btnStop button').click();
+  },
+  next: function () {
+    document.querySelector('#pgBasicPlayer .btnNext button').click();
+  },
+  favorite: function (){
+    document.querySelector('#pgBasicPlayer .btnLikeTrack[style*="display: inline"] button,' +
+                           '#pgBasicPlayer .btnLikeTrackCancel[style*="display: inline"] button').click();
+  },
+  previous: function () {
+    document.querySelector('#pgBasicPlayer .btnPrev button').click();
+  },
   pause:function () {
-    if (bugs.player.isPlayingTrack) {
-      bugs.player.playButtonHandler().call();
-    }
+    document.querySelector('#pgBasicPlayer .btnStop button').click();
   },
   trackInfo: function () {
     return {
-      image:  document.querySelector('.thumbnail > img').getAttribute('src'),
-      track:  bugs.player.getCurrentTrackInfo().track_title,
-      artist: bugs.player.getCurrentTrackInfo().artist_nm,
-    }
+      image:  document.querySelector('#pgBasicPlayer .thumbnail img').src,
+      artist: document.querySelector('#pgBasicPlayer .trackInfo .artist *[title]').getAttribute('title'),
+      album:  document.querySelector('#pgBasicPlayer .trackInfo .albumtitle').getAttribute('title'),
+      track:  document.querySelector('#pgBasicPlayer .trackInfo .tracktitle').getAttribute('title'),
+      favorited: Boolean(document.querySelector('#pgBasicPlayer .btnLikeTrackCancel[style*="display: inline"] button'))
+    };
   }
-}
+};

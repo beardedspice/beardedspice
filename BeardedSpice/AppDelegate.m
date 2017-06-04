@@ -768,8 +768,19 @@ BOOL accessibilityApiEnabled = NO;
     MediaStrategyRegistry *registry = [MediaStrategyRegistry singleton];
     BSMediaStrategy *strategy = [registry getMediaStrategyForTab:tab];
     if (strategy) {
+        // default title value
+        NSString *title = tab.title;
 
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
+        // try to set the current track's title as the menu item's title
+        BSTrack *trackInfo = [strategy trackInfo:tab];
+        if (trackInfo) {
+            NSString *trackTitle = trackInfo.track;
+            if ([trackTitle length] > 0) {
+                title = [NSString stringWithFormat:@"%@ - %@", [strategy displayName], trackTitle];
+            }
+        }
+
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
         if (menuItem) {
             [menuItem setRepresentedObject:tab];
 

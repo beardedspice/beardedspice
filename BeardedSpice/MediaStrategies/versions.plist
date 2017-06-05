@@ -76,17 +76,23 @@
 	<integer>1</integer>
 	<key>KollektFm</key>
 	<integer>1</integer>
+	<key>Laracasts</key>
+	<integer>1</integer>
 	<key>LastFm</key>
 	<integer>1</integer>
 	<key>LeTournedisque</key>
 	<integer>1</integer>
 	<key>ListenersPlaylist</key>
 	<integer>1</integer>
+	<key>ListenMoe</key>
+	<integer>1</integer>
 	<key>ListenOnRepeat</key>
 	<integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
 	<key>Lynda</key>
+	<integer>1</integer>
+	<key>Madsonic</key>
 	<integer>1</integer>
 	<key>MixCloud</key>
 	<integer>3</integer>
@@ -115,7 +121,7 @@
 	<key>Pakartot</key>
 	<integer>1</integer>
 	<key>Pandora</key>
-	<integer>3</integer>
+	<integer>4</integer>
 	<key>PhishIn</key>
 	<integer>1</integer>
 	<key>PhishTracks</key>
@@ -162,8 +168,6 @@
 	<integer>1</integer>
 	<key>Synology</key>
 	<integer>3</integer>
-	<key>TidalHiFi</key>
-	<integer>1</integer>
 	<key>TuneIn</key>
 	<integer>1</integer>
 	<key>TwentyTwoTracks</key>

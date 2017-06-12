@@ -87,6 +87,11 @@ Update the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/
     <integer>1</integer>
 ```
 
+Finally, add it to the list in [`README.md`](https://github.com/beardedspice/beardedspice/blob/master/README.md) in alphabetical order:
+```markdown
+- [Amazon Music](https://www.amazon.com/gp/dmusic/cloudplayer/player)
+```
+
 ## Updating a *Media Strategy*
 
 In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate .js file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.js) has javascript for all five functions as well as partial trackInfo retrieval.

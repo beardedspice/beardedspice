@@ -260,6 +260,22 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
                                }];
 }
 
+#pragma mark - BSVolumeControlProtocol
+
+// At this moment Strategies do not support changing of the sound volume.
+
+- (BSVolumeControlResult)volumeUp {
+    return BSVolumeControlNotSupported;
+}
+- (BSVolumeControlResult)volumeDown {
+    
+    return BSVolumeControlNotSupported;
+}
+- (BSVolumeControlResult)volumeMute {
+    
+    return BSVolumeControlNotSupported;
+}
+
 #pragma mark - Core Functionality
 
 - (NSString * _Nonnull)displayName

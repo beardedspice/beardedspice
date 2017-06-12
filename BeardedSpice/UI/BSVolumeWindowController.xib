@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BSVolumeWindowController">
+            <connections>
+                <outlet property="imageView" destination="toN-NS-Gvx" id="FgS-Ih-Tao"/>
+                <outlet property="maxHeightForText" destination="p9c-tD-u0P" id="NHd-NC-s2G"/>
+                <outlet property="maxWithForText" destination="nWh-Tt-ulh" id="oPB-II-UL5"/>
+                <outlet property="textField" destination="YRN-51-LpM" id="59B-DY-YUU"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="none" tabbingMode="disallowed" id="F0z-JX-Cv5">
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" stationary="YES" ignoresCycle="YES" fullScreenDisallowsTiling="YES"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="913" y="140" width="200" height="200"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <view key="contentView" wantsLayer="YES" alphaValue="0.59999999999999998" id="se5-gp-TjO" customClass="NSVisualEffectView">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toN-NS-Gvx">
+                        <rect key="frame" x="45" y="70" width="110" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="N10-Me-OeE"/>
+                            <constraint firstAttribute="height" constant="90" id="eZ0-hS-TYS"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" image="volumeMute" id="iyi-Ed-MED"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRN-51-LpM">
+                        <rect key="frame" x="20" y="30" width="160" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="156" id="nWh-Tt-ulh"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="p9c-tD-u0P"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="BeardedSpice" placeholderString="" id="eBs-ui-Hif">
+                            <font key="font" size="30" name="HelveticaNeue-Medium"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="toN-NS-Gvx" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="40" id="2xL-Yp-7qW"/>
+                    <constraint firstItem="toN-NS-Gvx" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="7Sp-Au-UPP"/>
+                    <constraint firstAttribute="trailing" secondItem="toN-NS-Gvx" secondAttribute="trailing" constant="45" id="KRp-lg-Wsc"/>
+                    <constraint firstItem="toN-NS-Gvx" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="45" id="XqY-kj-wgH"/>
+                    <constraint firstAttribute="bottom" secondItem="toN-NS-Gvx" secondAttribute="bottom" constant="70" id="dvC-l1-Q4y"/>
+                    <constraint firstAttribute="bottom" secondItem="YRN-51-LpM" secondAttribute="bottom" constant="30" id="i09-3P-zfQ"/>
+                    <constraint firstItem="YRN-51-LpM" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="rJt-Q5-vWb"/>
+                </constraints>
+                <backgroundFilters>
+                    <ciFilter name="CIGaussianBlur">
+                        <configuration>
+                            <null key="inputImage"/>
+                            <real key="inputRadius" value="10"/>
+                        </configuration>
+                    </ciFilter>
+                </backgroundFilters>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="41" y="158"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="volumeMute" width="109" height="103"/>
+    </resources>
+</document>

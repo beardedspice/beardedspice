@@ -6,9 +6,10 @@
 //  Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "TabAdapter.h";
-#import "NativeAppTabAdapter.h";
-#import "MediaStrategyRegistry.h";
+#import "TabAdapter.h"
+#import "NativeAppTabAdapter.h"
+#import "MediaStrategyRegistry.h"
+#import "BSVolumeControlProtocol.h"
 
 /// Delay displaying notification after changing favorited status of the current track.
 #define FAVORITED_DELAY         1.0
@@ -30,7 +31,7 @@ static inline BOOL alwaysShowNotification() {
     return [[[NSUserDefaults standardUserDefaults] objectForKey:@"BeardedSpiceAlwaysShowNotification"/*FIXME*/] boolValue];
 }
 
-@interface BSActiveTab : NSObject
+@interface BSActiveTab : NSObject <BSVolumeControlProtocol>
 
 @property (nonatomic, strong) NSDate *lastActive;
 @property (nonatomic, strong) TabAdapter *activeTab;
@@ -66,5 +67,7 @@ static inline BOOL alwaysShowNotification() {
 - (BOOL)isNativeAdapter;
 - (BOOL)isTabAdapter;
 - (BOOL)respondsTo:(SEL)selector;
+
+- (BOOL)isPlaying;
 
 @end

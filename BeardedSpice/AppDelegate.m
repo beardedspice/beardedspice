@@ -20,6 +20,7 @@
 #import "BSPreferencesWindowController.h"
 #import "GeneralPreferencesViewController.h"
 #import "ShortcutsPreferencesViewController.h"
+#import "BSStrategiesPreferencesViewController.h"
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
 
@@ -31,6 +32,10 @@
 #import "BSCustomStrategyManager.h"
 
 #import "runningSBApplication.h"
+
+#import "SPMediaKeyTap.h"
+#import "BSVolumeWindowController.h"
+#import "BSVolumeControlProtocol.h"
 
 /**
  Timeout for command of the user iteraction.
@@ -75,9 +80,9 @@ BOOL accessibilityApiEnabled = NO;
 
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesNativeAppChangedNoticiation object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generalPrefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
@@ -218,8 +223,6 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 
-#pragma mark -
-
 - (void)activeTab {
     __weak typeof(self) wself = self;
     dispatch_async(workingQueue, ^{
@@ -256,19 +259,100 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)volumeUp{
+    
     __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        __strong typeof(wself) sself = self;
-        [sself pressKey:NX_KEYTYPE_SOUND_UP];
-    });
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
+        
+        dispatch_async(workingQueue, ^{
+            
+            __strong typeof(wself) sself = self;
+            [sself autoSelectTabWithForceFocused:NO];
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (! [sself.activeApp isPlaying] ||
+                (result = [sself.activeApp volumeUp]) == BSVolumeControlNotSupported) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(wself) sself = self;
+                    [sself pressKey:NX_KEYTYPE_SOUND_UP];
+                });
+            }
+            else {
+                
+                BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+                [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+            }
+        });
+    }
+    else
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(wself) sself = self;
+            [sself pressKey:NX_KEYTYPE_SOUND_UP];
+        });
 }
 
 - (void)volumeDown{
+    
     __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        __strong typeof(wself) sself = self;
-        [sself pressKey:NX_KEYTYPE_SOUND_DOWN];
-    });
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
+        
+        dispatch_async(workingQueue, ^{
+            
+            __strong typeof(wself) sself = self;
+            [sself autoSelectTabWithForceFocused:NO];
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (! [sself.activeApp isPlaying] ||
+                (result = [sself.activeApp volumeDown]) == BSVolumeControlNotSupported) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(wself) sself = self;
+                    [sself pressKey:NX_KEYTYPE_SOUND_DOWN];
+                });
+            }
+            else {
+                
+                BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+                [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+            }
+        });
+    }
+    else
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(wself) sself = self;
+            [sself pressKey:NX_KEYTYPE_SOUND_DOWN];
+        });
+}
+
+- (void)volumeMute{
+    
+    __weak typeof(self) wself = self;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
+        
+        dispatch_async(workingQueue, ^{
+            
+            __strong typeof(wself) sself = self;
+            [sself autoSelectTabWithForceFocused:NO];
+            BSVolumeControlResult result = BSVolumeControlNotSupported;
+            if (! [sself.activeApp isPlaying] ||
+                (result = [sself.activeApp volumeMute]) == BSVolumeControlNotSupported) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(wself) sself = self;
+                    [sself pressKey:NX_KEYTYPE_MUTE];
+                });
+            }
+            else {
+                
+                BSVWType vwType = [self convertVolumeResult:(BSVolumeControlResult)result];
+                [[BSVolumeWindowController singleton] showWithType:vwType title:sself.activeApp.displayName];
+            }
+        });
+    }
+    else
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(wself) sself = self;
+            [sself pressKey:NX_KEYTYPE_MUTE];
+        });
 }
 
 - (void)headphoneUnplug{
@@ -406,7 +490,7 @@ BOOL accessibilityApiEnabled = NO;
                                          context:nil
                                          subtype:0x8
                                            data1:(keytype << 16) | (state << 8)
-                                           data2:-1];
+                                           data2:SPPassthroughEventData2Value];
 
     CGEventPost(0, [event CGEvent]);
 }
@@ -885,7 +969,8 @@ BOOL accessibilityApiEnabled = NO;
     {
         NSViewController *generalViewController = [GeneralPreferencesViewController new];
         NSViewController *shortcutsViewController = [ShortcutsPreferencesViewController new];
-        NSArray *controllers = @[generalViewController, shortcutsViewController];
+        NSViewController *strategiesViewController = [BSStrategiesPreferencesViewController new];
+        NSArray *controllers = @[generalViewController, shortcutsViewController, strategiesViewController];
 
         NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
@@ -982,6 +1067,34 @@ BOOL accessibilityApiEnabled = NO;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
+- (BSVWType)convertVolumeResult:(BSVolumeControlResult)volumeResult {
+
+    BSVWType result = BSVWUnavailable;
+    
+    switch (volumeResult) {
+            
+            case BSVolumeControlUp:
+            result = BSVWUp;
+            break;
+
+            case BSVolumeControlDown:
+            result = BSVWDown;
+            break;
+            
+            case BSVolumeControlMute:
+            result = BSVWMute;
+            break;
+            
+            case BSVolumeControlUnmute:
+            result = BSVWUnmute;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
@@ -1008,7 +1121,7 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 
-- (void) generalPrefChanged:(NSNotification*) notification{
+- (void) prefChanged:(NSNotification*) notification{
 
     NSString *name = notification.name;
 
@@ -1020,7 +1133,7 @@ BOOL accessibilityApiEnabled = NO;
 
         [self setAppleRemotes];
     }
-    else if ([name isEqualToString:GeneralPreferencesNativeAppChangedNoticiation])
+    else if ([name isEqualToString:BSStrategiesPreferencesNativeAppChangedNoticiation])
         [self refreshKeyTapBlackList];
 }
 

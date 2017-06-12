@@ -21,7 +21,7 @@ We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look 
 
 Ready to give BeardedSpice a spin? You can download the [latest release here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
 
-*Mac OS X 10.9 or greater required.
+*Mac OS X 10.10 or greater required.
 
 ## Features
 
@@ -60,7 +60,13 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
 - [Downcast](http://downcast.fm/)
-- [Vivaldi](https://vivaldi.com)
+- [TIDAL Desktop](http://tidal.com/ru/download)
+
+### Supported Browsers
+ - [Safari](https://www.apple.com/safari/)
+ - [Google Chrome](https://www.google.com/chrome/browser/desktop/)
+ - [Vivaldi](https://vivaldi.com/)
+
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)

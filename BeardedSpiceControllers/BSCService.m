@@ -284,6 +284,18 @@ static BSCService *bscSingleton;
                 debugString = [@"Rewind pressed" stringByAppendingString:debugString];
                 [self sendMessagesToConnections:@selector(previousTrack)];
                 break;
+            case NX_KEYTYPE_SOUND_UP:
+                debugString = [@"Sound Up pressed" stringByAppendingString:debugString];
+                [self sendMessagesToConnections:@selector(volumeUp)];
+                break;
+            case NX_KEYTYPE_SOUND_DOWN:
+                debugString = [@"Sound Down pressed" stringByAppendingString:debugString];
+                [self sendMessagesToConnections:@selector(volumeDown)];
+                break;
+            case NX_KEYTYPE_MUTE:
+                debugString = [@"Sound Mute pressed" stringByAppendingString:debugString];
+                [self sendMessagesToConnections:@selector(volumeMute)];
+                break;
             default:
                 debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
                 break;

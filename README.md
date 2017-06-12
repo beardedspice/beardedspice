@@ -60,7 +60,13 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
 - [Downcast](http://downcast.fm/)
-- [Vivaldi](https://vivaldi.com)
+- [TIDAL Desktop](http://tidal.com/ru/download)
+
+### Supported Browsers
+ - [Safari](https://www.apple.com/safari/)
+ - [Google Chrome](https://www.google.com/chrome/browser/desktop/)
+ - [Vivaldi](https://vivaldi.com/)
+
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)

@@ -17,6 +17,6 @@
 	<key>BeardedSpiceShowProgress</key>
 	<false/>
 	<key>BeardedSpiceCustomVolumeControl</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

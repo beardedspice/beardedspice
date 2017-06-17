@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -137,7 +137,6 @@
                         </connections>
                     </buttonCell>
                     <connections>
-                        <action selector="toggleShowProgress:" target="-2" id="rB9-SY-fCF"/>
                         <binding destination="436" name="value" keyPath="values.BeardedSpiceShowProgress" id="JsS-mr-MtJ">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
@@ -146,24 +145,14 @@
                         </binding>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="j7Q-v0-HfF">
+                <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hhj-Ic-mcP">
                     <rect key="frame" x="42" y="42" width="417" height="18"/>
-                    <buttonCell key="cell" type="check" title="Use current media controller for the volume control, if applicable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uYG-s7-OBz">
+                    <buttonCell key="cell" type="check" title="Use current media controller for the volume control, if applicable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gBv-Vo-saU">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
-                        <connections>
-                            <binding destination="436" name="value" keyPath="values.BeardedSpiceShowProgress" id="mwX-Vl-DZa">
-                                <dictionary key="options">
-                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                    <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                    <integer key="NSNullPlaceholder" value="0"/>
-                                </dictionary>
-                            </binding>
-                        </connections>
                     </buttonCell>
                     <connections>
-                        <action selector="toggleShowProgress:" target="-2" id="cAo-Ft-VcP"/>
-                        <binding destination="436" name="value" keyPath="values.BeardedSpiceCustomVolumeControl" id="sPC-ow-Abt">
+                        <binding destination="436" name="value" keyPath="values.BeardedSpiceCustomVolumeControl" id="V65-SY-EsF">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>
@@ -177,12 +166,12 @@
                 <constraint firstItem="824" firstAttribute="leading" secondItem="765" secondAttribute="leading" id="834"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="869"/>
                 <constraint firstItem="765" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="873"/>
-                <constraint firstItem="j7Q-v0-HfF" firstAttribute="leading" secondItem="baJ-gx-qRa" secondAttribute="leading" id="0uL-qu-FMA"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="3bJ-tB-9un"/>
+                <constraint firstItem="hhj-Ic-mcP" firstAttribute="top" secondItem="baJ-gx-qRa" secondAttribute="bottom" constant="8" id="440-7N-EB5"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="9Ao-uQ-veh"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="351" secondAttribute="bottom" constant="8" id="A8k-Vc-Or9"/>
-                <constraint firstItem="j7Q-v0-HfF" firstAttribute="top" secondItem="baJ-gx-qRa" secondAttribute="bottom" constant="8" id="Cgb-6Z-P4U"/>
                 <constraint firstItem="824" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Dxt-Mg-jwf"/>
+                <constraint firstItem="hhj-Ic-mcP" firstAttribute="trailing" secondItem="baJ-gx-qRa" secondAttribute="trailing" id="Fc2-Ru-ST6"/>
                 <constraint firstItem="824" firstAttribute="top" secondItem="D1C-WS-HOj" secondAttribute="bottom" constant="8" id="G5T-9d-m7I"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="JhK-r7-GqU"/>
                 <constraint firstItem="765" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Poh-pP-LAp"/>
@@ -192,9 +181,9 @@
                 <constraint firstAttribute="trailing" secondItem="721" secondAttribute="trailing" constant="44" id="dfJ-Fs-TSR"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="8" id="fOR-i9-VAK"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="kqF-Rr-aDU"/>
-                <constraint firstAttribute="bottom" secondItem="j7Q-v0-HfF" secondAttribute="bottom" constant="44" id="nAP-Fo-56A"/>
-                <constraint firstItem="j7Q-v0-HfF" firstAttribute="trailing" secondItem="baJ-gx-qRa" secondAttribute="trailing" id="nPH-gO-dJR"/>
+                <constraint firstAttribute="bottom" secondItem="hhj-Ic-mcP" secondAttribute="bottom" constant="44" id="pl8-fz-nSo"/>
                 <constraint firstItem="765" firstAttribute="top" secondItem="824" secondAttribute="bottom" constant="8" id="sMk-Jv-0fn"/>
+                <constraint firstItem="hhj-Ic-mcP" firstAttribute="leading" secondItem="baJ-gx-qRa" secondAttribute="leading" id="uBR-ZA-evg"/>
             </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="721" id="820"/>

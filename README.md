@@ -94,6 +94,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HotNewHipHop Mixtapes](http://www.hotnewhiphop.com/mixtapes/)
+- [HTTPMS](https://github.com/ironsmile/httpms)
 - [HypeMachine](http://hypem.com)
 - [iHeart Radio](http://www.iheart.com/)
 - [IndieShuffle](http://www.indieshuffle.com)

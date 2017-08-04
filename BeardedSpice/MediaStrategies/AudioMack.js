@@ -6,57 +6,40 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
-  displayName:"AudioMack",
-  accepts: {
+    version:2,
+    displayName:"Audiomack",
+    accepts: {
     method: "predicateOnTab",
     format:"%K LIKE[c] '*audiomack.com*'",
     args: ["URL"]
-  },
-  toggle: function () {
-    var player = document.getElementById('listplayer');
-    var play_button = document.getElementById('play-button');
-    if (player && player.clientHeight) {
-        play_button.click();
-        return;
+    },
+    toggle: function () {
+        window.amPlayer.paused() ? window.amPlayer.play() : window.amPlayer.pause();
+    },
+    isPlaying: function () {
+        return !window.amPlayer.paused();
+    },
+    next: function () {
+        window.amPlayer.next();
+    },
+    previous: function () {
+        window.amPlayer.prev();
+    },
+    pause: function () {
+        window.amPlayer.pause();
+    },
+    favorite: function () {
+        window.amPlayer.favorite();
+    },
+    trackInfo: function () {
+        var info = window.amPlayer.info();
+        return {
+            'artist': info.artist,
+            'album': info.album,
+            'track': info.title,
+            'image': info.image,
+            'progress': info.progress,
+            'favorited': info.favorited
+        }
     }
-    var feed_buttons = document.querySelectorAll('.feed a.play');
-    if (feed_buttons.length) {
-        feed_buttons[0].click();
-        return;
-    }
-    if (play_button) { play_button.click(); }
-  },
-  next: function () {
-    var player = document.getElementById('listplayer');
-    if (player && player.clientHeight) {
-        var next_button = player.querySelector('.next-track');
-        next_button.click();
-        return;
-    }
-    var feed_buttons = document.querySelectorAll('.feed a.play');
-    if (feed_buttons.length) {
-        feed_buttons[0].click();
-        return;
-    }
-  },
-  previous: function () {
-    var player = document.getElementById('listplayer');
-    if (player && player.clientHeight) {
-        var prev_button = player.querySelector('.prev-track');
-        prev_button.click();
-        return;
-    }
-    var feed_buttons = document.querySelectorAll('.feed a.play');
-    if (feed_buttons.length) {
-        feed_buttons[0].click();
-        return;
-    }
-  },
-  pause: function () {
-    var play_button = document.getElementById('play-button');
-    if (play_button.className.indexOf('pause') > 1) {
-        play_button.click();
-    }
-  }
 }

@@ -74,7 +74,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Amazon Music](https://www.amazon.com/gp/dmusic/cloudplayer/player)
 - [Apple Developer](https://developer.apple.com/videos/)
 - [Audible](http://www.audible.com/)
-- [AudioMack](http://www.audiomack.com/)
+- [Audiomack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
 - [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](https://beatguide.me/)

@@ -1,4 +1,5 @@
 PODS:
+  - FastSocket (1.3)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -8,6 +9,7 @@ PODS:
   - VCRURLConnection (0.2.0)
 
 DEPENDENCIES:
+  - FastSocket (= 1.3)
   - FMDB (~> 2.6.2)
   - Kiwi
   - MASPreferences (= 1.1.4)
@@ -15,12 +17,13 @@ DEPENDENCIES:
   - VCRURLConnection
 
 SPEC CHECKSUMS:
+  FastSocket: 0fa2716071517078d67ead1378d34af443bd54c4
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   MASPreferences: 7bdcfe891d7840453cf48f95fa866c3e152ace7a
   MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
   VCRURLConnection: accd771ebd4be11183a3e4d5a4403f180a9a235e
 
-PODFILE CHECKSUM: b95841a52074c51c16773cba95ddcef7b1606d61
+PODFILE CHECKSUM: 05499cd1640853e699efbc1d1b211cde6dfa9bc0
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.0

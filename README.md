@@ -61,6 +61,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [VOX](http://coppertino.com/)
 - [Downcast](http://downcast.fm/)
 - [TIDAL Desktop](http://tidal.com/ru/download)
+- [beaTunes](https://www.beatunes.com)
 
 ### Supported Browsers
  - [Safari](https://www.apple.com/safari/)

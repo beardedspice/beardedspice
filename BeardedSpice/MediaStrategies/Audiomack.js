@@ -1,9 +1,9 @@
 //
-//  AudioMack.plist
+//  Audiomack.plist
 //  BeardedSpice
 //
-//  Created by Sean Coker on 12/11/14.
-//  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Created by Sean Coker on 08/10/17.
+//  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
     version:2,

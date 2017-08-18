@@ -127,6 +127,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Rdio](http://rdio.com)
 - [Saavn](http://www.saavn.com/)
 - [Shuffler.fm](http://shuffler.fm/)
+- [SiriusXM](http://www.siriusxm.com)
 - [Slacker](http://www.slacker.com/)
 - [SomaFM](http://somafm.com)
 - [SoundCloud](https://soundcloud.com)

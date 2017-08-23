@@ -10,7 +10,7 @@ BSStrategy = {
   displayName: "Zing MP3",
   accepts: {
     method: "predicateOnTab",
-    format: "%K LIKE[c] '*mp3.zing.vn/bai-hat*'",
+    format: "%K LIKE[c] '*mp3.zing.vn*'",
     args: ["URL"]
   },
   isPlaying: function () { return document.querySelector('#zp-svg-play') == null; },

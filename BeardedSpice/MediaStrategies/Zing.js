@@ -14,7 +14,7 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function () { return document.querySelector('#zp-svg-play') == null; },
-toggle: function(){ document.querySelector('.paused').click(); },
+  toggle: function(){ document.querySelector('.paused').click(); },
   previous: function(){
     var button_prev = document.querySelector('.zp-button-prev').getAttribute('style');
     if (button_prev === null) {

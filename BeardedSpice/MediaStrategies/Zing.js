@@ -6,7 +6,7 @@
 //  Updated by ToanPVN on 08/23/17.
 //
 BSStrategy = {
-  version: 3,
+  version: 2,
   displayName: "Zing MP3",
   accepts: {
     method: "predicateOnTab",

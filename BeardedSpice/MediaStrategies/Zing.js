@@ -14,14 +14,20 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function () { return document.querySelector('#zp-svg-play') == null; },
-  toggle: function(){ document.querySelector('.paused').click(); },
-  previous: function(){ document.querySelector('.fn-prev').click(); },
-  next: function(){ document.querySelector('.fn-list li:first-child a.thumb').click(); },
+toggle: function(){ document.querySelector('.paused').click(); },
+  previous: function(){
+    var button_prev = document.querySelector('.zp-button-prev').getAttribute('style');
+    if (button_prev.indexOf('none') !== -1) {
+      window.history.back();
+    } else {
+      document.querySelector('.zp-button-prev').click();
+    } 
+  },
+  next: function(){ document.querySelector('.zp-button-next').click(); },
   pause: function(){ 
     if (document.querySelector('#zp-svg-play') == null) {
       document.querySelector('.paused').click();
-    }
-  },
+    }},
   trackInfo: function () {
     return {
         'image': document.querySelector('.pthumb').getAttribute('src'),

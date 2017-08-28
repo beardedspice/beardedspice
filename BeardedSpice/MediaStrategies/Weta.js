@@ -9,7 +9,7 @@ BSStrategy = {
     displayName: "WETA",
     accepts: {
         method: "predicateOnTab",
-        format: "%K LIKE[c] '*weta.org*'",
+        format: "%K LIKE[c] '*weta.org/listen-live*'",
         args: ["URL"]
     },
 
@@ -18,7 +18,12 @@ BSStrategy = {
 		return e.style.display === 'block';
     },
     toggle: function () {
-    	document.querySelector('.jp-pause').click();
+   		var e = document.querySelector('.jp-pause');
+		if(e.style.display === 'block') {
+    		document.querySelector('.jp-pause').click();
+    	} else {
+    		document.querySelector('.jp-play').click();
+    	}
     },
     next: function () {},
     previous: function () {},

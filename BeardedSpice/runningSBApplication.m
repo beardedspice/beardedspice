@@ -117,12 +117,122 @@
 }
 
 /////////////////////////////////////////////////////////////////////////
-#pragma mark Private methods
+#pragma mark Supporting actions in application menubar
+
+- (NSString *)menuBarItemNameForIndexPath:(NSIndexPath *)indexPath {
+    
+    AXUIElementRef menuItem = [self copyMenuBarItemForIndexPath:indexPath];
+    
+    NSString *name;
+    if (menuItem) {
+        
+        CFTypeRef title;
+        name = (AXUIElementCopyAttributeValue(menuItem, (CFStringRef) NSAccessibilityTitleAttribute, (CFTypeRef *)&title) == kAXErrorSuccess ?
+                (NSString *)CFBridgingRelease(title): nil);
+        
+        CFRelease(menuItem);
+    }
+    
+    return name;
+}
+
+- (BOOL)pressMenuBarItemForIndexPath:(NSIndexPath *)indexPath {
+    
+    AXUIElementRef menuItem = [self copyMenuBarItemForIndexPath:indexPath];
+    
+    BOOL result = NO;
+    if (menuItem) {
+        
+        result = (AXUIElementPerformAction(menuItem, (CFStringRef)NSAccessibilityPressAction) == kAXErrorSuccess);
+        
+        CFRelease(menuItem);
+    }
+    
+    return result;
+}
+
 /////////////////////////////////////////////////////////////////////////
+#pragma mark Private methods
 
 - (NSRunningApplication *)runningAppication{
     NSArray *appArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.bundleIdentifier];
     return [appArray firstObject];
+}
+
+- (AXUIElementRef)copyMenuBarItemForIndexPath:(NSIndexPath *)indexPath{
+    
+    if (! indexPath.length) {
+        return nil;
+    }
+
+    AXUIElementRef item = nil;
+    AXUIElementRef ref = AXUIElementCreateApplication(self.processIdentifier);
+    
+    if (ref) {
+        
+        CFIndex count = 0;
+        CFArrayRef items = nil;
+        AXUIElementRef menu = nil;
+        BOOL notFound = NO;
+        if (AXUIElementCopyAttributeValue(ref, (CFStringRef)NSAccessibilityMenuBarAttribute, (CFTypeRef *)&menu) == kAXErrorSuccess
+            && menu) {
+            
+            item = CFRetain(menu);
+            for (NSUInteger i = 0; i < indexPath.length && notFound == NO; i++) {
+
+                //getting submenu if needs it
+                if (i) {
+                    
+                    AXError error = AXUIElementCopyAttributeValues(item, (CFStringRef)NSAccessibilityChildrenAttribute, 0, 1, &items);
+                    if (error == kAXErrorSuccess && items) {
+                        
+                        CFRelease(item);
+                        item = CFRetain(CFArrayGetValueAtIndex(items, 0));
+                        
+                        CFRelease(items);
+                    }
+                    else {
+                        notFound = YES;
+                        break;
+                    }
+                }
+                
+                NSUInteger index = [indexPath indexAtPosition:i];
+                if (AXUIElementGetAttributeValueCount(item, (CFStringRef)NSAccessibilityChildrenAttribute, &count) == kAXErrorSuccess
+                    && count > index ) {
+                    
+                    //getting menu position
+                    if (AXUIElementCopyAttributeValues(item, (CFStringRef)NSAccessibilityChildrenAttribute, index, 1, &items) == kAXErrorSuccess
+                        && items) {
+                        
+                        CFRelease(item);
+                        item = CFRetain(CFArrayGetValueAtIndex(items, 0));
+                        
+                        CFRelease(items);
+                    }
+                    else {
+                        
+                        notFound = YES;
+                    }
+                }
+                else {
+                    
+                    notFound = YES;
+                }
+            }
+
+            if (notFound) {
+                
+                CFRelease(item);
+                item = nil;
+            }
+            CFRelease(menu);
+        }
+        
+        CFRelease(ref);
+    }
+    
+    return item;
 }
 
 @end

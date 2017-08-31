@@ -74,6 +74,23 @@ dispatch_queue_t notificationQueue() {
     return [_activeTab respondsToSelector:selector];
 }
 
+- (BOOL)isPlaying {
+    
+    if ([self isNativeAdapter]) {
+        
+        NativeAppTabAdapter *native = (NativeAppTabAdapter *)_activeTab;
+        
+        return [native isPlaying];
+    }
+    else if ([self isTabAdapter]) {
+        
+        BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
+        return (strategy && [strategy isPlaying:_activeTab]);
+    }
+    
+    return NO;
+}
+
 #pragma mark - mutators
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab {
@@ -170,14 +187,14 @@ dispatch_queue_t notificationQueue() {
         if ([tab respondsToSelector:@selector(next)]) {
             [tab next];
             if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
-                dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
+                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
     } else {
         BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
         if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
             [_activeTab executeJavascript:[strategy next]];
             if (alwaysShowNotification() && ![_activeTab frontmost])
-                dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
+                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
     }
 }
@@ -218,6 +235,47 @@ dispatch_queue_t notificationQueue() {
                 dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
         }
     }
+}
+    
+#pragma mark - BSVolumeControlProtocol implementation
+
+- (BSVolumeControlResult)volumeUp {
+    return [self volume:@selector(volumeUp)];
+}
+
+- (BSVolumeControlResult)volumeDown {
+    return [self volume:@selector(volumeDown)];
+}
+
+- (BSVolumeControlResult)volumeMute {
+    return [self volume:@selector(volumeMute)];
+}
+
+- (BSVolumeControlResult)volume:(SEL)selector {
+
+    BSVolumeControlResult result = BSVolumeControlNotSupported;
+    id object;
+    
+    if ([self isNativeAdapter]) {
+        object = _activeTab;
+    }
+    else {
+        object = [_registry getMediaStrategyForTab:_activeTab];
+    }
+        
+    if ([object conformsToProtocol:@protocol(BSVolumeControlProtocol)]) {
+        NSMethodSignature *sig = [[object class] instanceMethodSignatureForSelector:selector];
+        if (sig) {
+            
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+            [invocation setSelector:selector];
+            [invocation setTarget:object];
+            [invocation invoke];
+            [invocation getReturnValue:&result];
+        }
+    }
+    
+    return result;
 }
 
 #pragma mark - Notification logic

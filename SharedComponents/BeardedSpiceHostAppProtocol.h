@@ -24,6 +24,7 @@
 
 - (void)volumeUp;
 - (void)volumeDown;
+- (void)volumeMute;
 
 - (void)headphoneUnplug;
 

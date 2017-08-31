@@ -21,7 +21,7 @@ We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look 
 
 Ready to give BeardedSpice a spin? You can download the [latest release here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
 
-*Mac OS X 10.9 or greater required.
+*Mac OS X 10.10 or greater required.
 
 ## Features
 
@@ -60,7 +60,13 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
 - [Downcast](http://downcast.fm/)
-- [Vivaldi](https://vivaldi.com)
+- [TIDAL Desktop](http://tidal.com/ru/download)
+
+### Supported Browsers
+ - [Safari](https://www.apple.com/safari/)
+ - [Google Chrome](https://www.google.com/chrome/browser/desktop/)
+ - [Vivaldi](https://vivaldi.com/)
+
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)
@@ -68,7 +74,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Amazon Music](https://www.amazon.com/gp/dmusic/cloudplayer/player)
 - [Apple Developer](https://developer.apple.com/videos/)
 - [Audible](http://www.audible.com/)
-- [AudioMack](http://www.audiomack.com/)
+- [Audiomack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
 - [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](https://beatguide.me/)
@@ -85,6 +91,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)
+- [Gaana](http://gaana.com)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HotNewHipHop Mixtapes](http://www.hotnewhiphop.com/mixtapes/)
@@ -126,10 +133,9 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Spotify (Web)](https://play.spotify.com)
 - [Stingray](https://webplayer.stingray.com)
 - [STITCHER](http://www.stitcher.com/)
-- [Style Jukebox] (http://play.stylejukebox.com/)
+- [Style Jukebox](http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
-- [TIDAL (Web)](http://listen.tidal.com/)
 - [TuneIn](http://tunein.com/)
 - [Twitch TV](http://www.twitch.tv/)
 - [Udemy](https://www.udemy.com/)

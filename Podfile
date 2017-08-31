@@ -1,4 +1,4 @@
-platform :osx, '10.9'
+platform :osx, '10.10'
 project 'BeardedSpice'
 
 source 'https://github.com/CocoaPods/Specs.git'
@@ -8,6 +8,7 @@ target 'BeardedSpiceControllers' do
 
     target 'BeardedSpice' do
         pod 'MASPreferences', '= 1.1.4'
+        pod 'FMDB', '~> 2.6.2'
 
         # all pods for tests should ONLY go here
         target 'BeardedSpiceTests' do

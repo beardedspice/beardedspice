@@ -5,10 +5,12 @@
 //  Created by Jose Falcon on 2013-12-16
 //  Updated by Anthony Whitaker on 2016-12-13
 //  Support for new UI added by Bret Martin on 2017-01-01
+//  Fix pause function in new UI by Andrew Ray on 2017-04-28
+//  Fix Tuner__Controls query by Paul Hoisington on 2017-06-23
 //  Copyright (c) 2013-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-  version: 3,
+  version: 5,
   displayName: "Pandora",
   accepts: {
     method: "predicateOnTab",
@@ -16,7 +18,7 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function () {
-    if (document.querySelector('div.Tuner__Controls') !== null) {
+    if (document.querySelector('.Tuner__Controls') !== null) {
       return
         document
           .querySelector('.Tuner__Control__Play__Button')
@@ -27,7 +29,7 @@ BSStrategy = {
     }
   },
   toggle: function () {
-    if (document.querySelector('div.Tuner__Controls') !== null) {
+    if (document.querySelector('.Tuner__Controls') !== null) {
       document.querySelector('.Tuner__Control__Play__Button').click();
     } else {
       var playButton = document.querySelector('.playButton');
@@ -37,22 +39,26 @@ BSStrategy = {
     }
   },
   next: function () {
-    document.querySelector('div.Tuner__Controls') !== null ?
+    document.querySelector('.Tuner__Controls') !== null ?
     document.querySelector('.Tuner__Control__Skip__Button').click() :
     document.querySelector('.skipButton').click();
   },
   pause: function () {
-    document.querySelector('div.Tuner__Controls') !== null ?
-    document.querySelector('.Tuner__Control__Play__Button').click() :
-    document.querySelector('.pauseButton').click();
+    if(document.querySelector('.Tuner__Controls') !== null) {
+      var playPauseButton = document.querySelector('.Tuner__Control__Play__Button');
+      if (playPauseButton.attributes['data-qa'].value === 'pause_button') {
+        playPauseButton.click()
+      }
+    } else {
+    document.querySelector('.pauseButton').click();}
   },
   favorite: function () {
-    document.querySelector('div.Tuner__Controls') !== null ?
+    document.querySelector('.Tuner__Controls') !== null ?
     document.querySelector('.Tuner__Control__ThumbUp__Button').click() :
     document.querySelector('.thumbUpButton').click();
   },
   trackInfo: function () {
-    if (document.querySelector('div.Tuner__Controls') !== null) {
+    if (document.querySelector('.Tuner__Controls') !== null) {
       return {
         'track': document
                    .querySelector('div.Tuner__Audio__TrackDetail__title')

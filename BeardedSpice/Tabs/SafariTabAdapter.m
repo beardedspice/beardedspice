@@ -56,10 +56,10 @@
         
         javascript = [NSString stringWithFormat:@"JSON.stringify(%@);", javascript];
     }
-    
+
     id result = [(SafariApplication *)self.application.sbApplication doJavaScript:javascript in:self.tab];
     
-    if ([result isKindOfClass:[NSString class]] && _applescriptResultAsJSON) {
+    if (_applescriptResultAsJSON && [result isKindOfClass:[NSString class]]) {
         
         result = [NSJSONSerialization JSONObjectWithData:[(NSString *)result dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
     }

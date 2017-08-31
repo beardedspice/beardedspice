@@ -10,8 +10,8 @@
 	<integer>1</integer>
 	<key>Audible</key>
 	<integer>1</integer>
-	<key>AudioMack</key>
-	<integer>1</integer>
+	<key>Audiomack</key>
+	<integer>2</integer>
 	<key>BandCamp</key>
 	<integer>2</integer>
 	<key>BandCampWhiteLabel</key>
@@ -45,7 +45,7 @@
 	<key>DigitallyImported</key>
 	<integer>1</integer>
 	<key>Eggheadio</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>EightTracks</key>
 	<integer>1</integer>
 	<key>Fip</key>
@@ -59,10 +59,12 @@
 	<key>GenieMusic</key>
 	<integer>1</integer>
 	<key>GoogleMusic</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>GrooveShark</key>
 	<integer>1</integer>
 	<key>HotNewHipHop</key>
+	<integer>1</integer>
+	<key>Hungama</key>
 	<integer>1</integer>
 	<key>HypeMachine</key>
 	<integer>1</integer>
@@ -76,17 +78,23 @@
 	<integer>1</integer>
 	<key>KollektFm</key>
 	<integer>1</integer>
+	<key>Laracasts</key>
+	<integer>1</integer>
 	<key>LastFm</key>
 	<integer>1</integer>
 	<key>LeTournedisque</key>
 	<integer>1</integer>
 	<key>ListenersPlaylist</key>
 	<integer>1</integer>
+	<key>ListenMoe</key>
+	<integer>1</integer>
 	<key>ListenOnRepeat</key>
 	<integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
 	<key>Lynda</key>
+	<integer>1</integer>
+	<key>Madsonic</key>
 	<integer>1</integer>
 	<key>MixCloud</key>
 	<integer>3</integer>
@@ -115,7 +123,7 @@
 	<key>Pakartot</key>
 	<integer>1</integer>
 	<key>Pandora</key>
-	<integer>3</integer>
+	<integer>5</integer>
 	<key>PhishIn</key>
 	<integer>1</integer>
 	<key>PhishTracks</key>
@@ -162,8 +170,6 @@
 	<integer>1</integer>
 	<key>Synology</key>
 	<integer>3</integer>
-	<key>TidalHiFi</key>
-	<integer>1</integer>
 	<key>TuneIn</key>
 	<integer>1</integer>
 	<key>TwentyTwoTracks</key>

@@ -10,8 +10,8 @@
 	<integer>1</integer>
 	<key>Audible</key>
 	<integer>1</integer>
-	<key>AudioMack</key>
-	<integer>1</integer>
+	<key>Audiomack</key>
+	<integer>2</integer>
 	<key>BandCamp</key>
 	<integer>2</integer>
 	<key>BandCampWhiteLabel</key>
@@ -45,7 +45,7 @@
 	<key>DigitallyImported</key>
 	<integer>1</integer>
 	<key>Eggheadio</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>EightTracks</key>
 	<integer>1</integer>
 	<key>Fip</key>
@@ -59,7 +59,7 @@
 	<key>GenieMusic</key>
 	<integer>1</integer>
 	<key>GoogleMusic</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>GrooveShark</key>
 	<integer>1</integer>
 	<key>HotNewHipHop</key>

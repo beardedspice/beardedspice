@@ -20,7 +20,13 @@
 - (BOOL)check;
 
 - (void)activateTab;
+/**
+ Determins if this tab was activated by user before.
+
+ @return YES if user activated this tab before and corresponding app is frontmost still.
+ */
 - (BOOL)isActivated;
+
 - (void)toggleTab;
 - (BOOL)frontmost;
 

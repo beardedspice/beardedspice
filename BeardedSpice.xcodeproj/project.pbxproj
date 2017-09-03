@@ -32,7 +32,12 @@
 		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
 		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
+		6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */; };
+		6507A2FF1F485F8800775D14 /* BSStrategyWebSocketServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */; };
+		6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3011F48824000775D14 /* BSWebTabAdapter.m */; };
+		6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3051F49A4E800775D14 /* BSPredicateToJS.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
+		651F4E3C1F5365C800D7F94F /* BSPredicateToJSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
@@ -189,9 +194,17 @@
 		5E80769C1D58CE180002855D /* Downcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downcast.h; sourceTree = "<group>"; };
 		5E80769D1D58CE180002855D /* DowncastTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowncastTabAdapter.h; sourceTree = "<group>"; };
 		5E80769E1D58CE180002855D /* DowncastTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowncastTabAdapter.m; sourceTree = "<group>"; };
+		6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyWebSocketServer.h; sourceTree = "<group>"; };
+		6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServer.m; sourceTree = "<group>"; };
+		6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServerTest.m; sourceTree = "<group>"; };
+		6507A3001F48824000775D14 /* BSWebTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWebTabAdapter.h; sourceTree = "<group>"; };
+		6507A3011F48824000775D14 /* BSWebTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWebTabAdapter.m; sourceTree = "<group>"; };
+		6507A3041F49A4E800775D14 /* BSPredicateToJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPredicateToJS.h; sourceTree = "<group>"; };
+		6507A3051F49A4E800775D14 /* BSPredicateToJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJS.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
+		651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJSTests.m; sourceTree = "<group>"; };
 		652AD3361CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -421,6 +434,8 @@
 				657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */,
 				654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */,
 				654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */,
+				6507A3001F48824000775D14 /* BSWebTabAdapter.h */,
+				6507A3011F48824000775D14 /* BSWebTabAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -453,6 +468,8 @@
 				656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */,
 				656A002D1C8AD41A00BD29F5 /* NSURL+Utils.h */,
 				656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */,
+				6507A3041F49A4E800775D14 /* BSPredicateToJS.h */,
+				6507A3051F49A4E800775D14 /* BSPredicateToJS.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -624,6 +641,8 @@
 				967933441855173100A49AC7 /* MainMenu.xib */,
 				657EAEA71AAAEB9300D00456 /* runningSBApplication.h */,
 				657EAEA81AAAEB9300D00456 /* runningSBApplication.m */,
+				6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */,
+				6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */,
 				967933471855173100A49AC7 /* Images.xcassets */,
 				967933361855173100A49AC7 /* Supporting Files */,
 			);
@@ -652,6 +671,8 @@
 				0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */,
 				0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */,
 				0B1AF37C1CCE4D4C0021BBEA /* BSTrackTests.m */,
+				6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */,
+				651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */,
 				967933541855173100A49AC7 /* Supporting Files */,
 			);
 			path = BeardedSpiceTests;
@@ -990,6 +1011,7 @@
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
 				65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
+				6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
 				656A003D1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */,
@@ -997,6 +1019,7 @@
 				656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */,
 				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
+				6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */,
 				656A00311C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
 				65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */,
 				0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */,
@@ -1006,6 +1029,7 @@
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
+				6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */,
 				0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
@@ -1024,9 +1048,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6507A2FF1F485F8800775D14 /* BSStrategyWebSocketServerTest.m in Sources */,
 				0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */,
 				0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */,
 				0B33014F1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
+				651F4E3C1F5365C800D7F94F /* BSPredicateToJSTests.m in Sources */,
 				0B1AF3831CCE4D4C0021BBEA /* BSTrackTests.m in Sources */,
 				65D57FCE1D02CD140016F270 /* BSMediaStrategy.m in Sources */,
 				65D57FCD1D02CCB00016F270 /* NSURL+Utils.m in Sources */,

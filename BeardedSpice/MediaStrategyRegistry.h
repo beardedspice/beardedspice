@@ -10,10 +10,14 @@
 @class TabAdapter;
 @class BSStrategyCache;
 
+extern NSString *BSMediaStrategyRegistryChangedNotification;
+
 @interface MediaStrategyRegistry : NSObject
-@property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
 
 + (MediaStrategyRegistry *)singleton;
+
+@property (nonatomic, readonly) BSStrategyCache *strategyCache;
+@property (nonatomic, readonly) NSMutableArray *availableStrategies;
 
 /**
  Resets registry.

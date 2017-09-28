@@ -14,10 +14,12 @@
 
 #define MAX_REGISTERED_CACHE            500
 
+NSString *BSMediaStrategyRegistryChangedNotification = @"BSMediaStrategyRegistryChangedNotification";
+
 @interface MediaStrategyRegistry ()
-@property (nonatomic, strong) NSMutableArray *availableStrategies;
-@property (nonatomic, strong) EHCCache *registeredCache;
-@property (nonatomic, strong) BSStrategyCache *strategyCache;
+@property (nonatomic) NSMutableArray *availableStrategies;
+@property (nonatomic) EHCCache *registeredCache;
+@property (nonatomic) BSStrategyCache *strategyCache;
 @end
 
 @implementation MediaStrategyRegistry {
@@ -68,6 +70,10 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
             [_availableStrategies addObject:strategy];
         }
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+    });
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -77,12 +83,18 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 {
     [_availableStrategies addObject:strategy];
     [self.registeredCache clear];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+    });
 }
 
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
     [self.registeredCache clear];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+    });
 }
 
 - (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {

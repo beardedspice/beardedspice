@@ -77,36 +77,37 @@
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
-- (void)toggle{
+- (BOOL)toggle{
 
     VOXApplication *vox = (VOXApplication *)[self.application sbApplication];
     if (vox) {
         [vox playpause];
     }
+    return YES;
 }
-- (void)pause{
+- (BOOL)pause{
 
     VOXApplication *vox = (VOXApplication *)[self.application sbApplication];
     if (vox) {
         [vox pause];
     }
-
+    return YES;
 }
-- (void)next{
+- (BOOL)next{
 
     VOXApplication *vox = (VOXApplication *)[self.application sbApplication];
     if (vox) {
         [vox next];
     }
-
+    return YES;
 }
-- (void)previous{
+- (BOOL)previous{
 
     VOXApplication *vox = (VOXApplication *)[self.application sbApplication];
     if (vox) {
         [vox previous];
     }
-
+    return YES;
 }
 
 - (BSTrack *)trackInfo{

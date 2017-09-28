@@ -104,6 +104,32 @@
     return [result boolValue];
 }
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Virtual methods
+
+- (BOOL)toggle {
+    return NO;
+}
+- (BOOL)pause {
+    return NO;
+}
+- (BOOL)next {
+    return NO;
+}
+- (BOOL)previous {
+    return NO;
+}
+- (BOOL)favorite {
+    return NO;
+}
+
+- (BSTrack *)trackInfo {
+    return nil;
+}
+- (BOOL)isPlaying {
+    return NO;
+}
+
 //////////////////////////////////////////////////////////////
 #pragma mark Private methods
 //////////////////////////////////////////////////////////////

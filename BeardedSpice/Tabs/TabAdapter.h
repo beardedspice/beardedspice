@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-@class runningSBApplication;
+@class runningSBApplication, BSTrack;
 
 @interface TabAdapter : NSObject {
 
@@ -42,5 +42,17 @@
 - (instancetype)copyStateFrom:(TabAdapter *)tab;
 
 -(BOOL) isEqual:(__autoreleasing id)otherTab;
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Virtual methods
+
+- (BOOL)toggle;
+- (BOOL)pause;
+- (BOOL)next;
+- (BOOL)previous;
+- (BOOL)favorite;
+
+- (BSTrack *)trackInfo;
+- (BOOL)isPlaying;
 
 @end

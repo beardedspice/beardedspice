@@ -20,3 +20,6 @@ target 'BeardedSpiceControllers' do
     end
 end
 
+target 'SafariExtension' do
+    pod 'PocketSocket'
+end

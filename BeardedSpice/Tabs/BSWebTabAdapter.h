@@ -7,22 +7,14 @@
 //
 
 #import "TabAdapter.h"
+#import <PSWebSocket.h>
+@class BSTrack, PSWebSocket, BSMediaStrategy;
 
-@class BSTrack, PSWebSocket;
+@interface BSWebTabAdapter : TabAdapter <PSWebSocketDelegate>
 
-@interface BSWebTabAdapter : TabAdapter
+- (id)initWithBrowserSocket:(PSWebSocket *)tabSocket;
 
-- (id)initWithBrowserSocket:(PSWebSocket *)browserSocket;
-
-@property (nonatomic, readonly) PSWebSocket *browserSocket;
-
-- (void)toggle;
-- (void)pause;
-- (void)next;
-- (void)previous;
-- (void)favorite;
-
-- (BSTrack *)trackInfo;
-- (BOOL)isPlaying;
+@property (nonatomic, readonly) PSWebSocket *tabSocket;
+@property (nonatomic, readonly) BSMediaStrategy *strategy;
 
 @end

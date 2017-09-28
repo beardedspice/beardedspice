@@ -76,29 +76,37 @@
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
-- (void)toggle{
+- (BOOL)toggle{
     DowncastApplication *downcast = self.downcast;
     if (downcast) {
         [downcast playpause];
+        return YES;
     }
+    return NO;
 }
-- (void)pause{
+- (BOOL)pause{
     DowncastApplication *downcast = self.downcast;
     if (downcast) {
         [downcast pause];
+        return YES;
     }
+    return NO;
 }
-- (void)next{
+- (BOOL)next{
     DowncastApplication *downcast = self.downcast;
     if (downcast) {
         [downcast next];
+        return YES;
     }
+    return NO;
 }
-- (void)previous{
+- (BOOL)previous{
     DowncastApplication *downcast = self.downcast;
     if (downcast) {
         [downcast previous];
+        return YES;
     }
+    return NO;
 }
 
 - (BSTrack *)trackInfo{

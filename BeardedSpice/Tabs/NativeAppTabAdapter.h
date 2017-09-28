@@ -28,15 +28,6 @@
  */
 + (NSString *)bundleId; // Required override in subclass.
 
-- (void)toggle;
-- (void)pause;
-- (void)next;
-- (void)previous;
-- (void)favorite;
-
-- (BSTrack *)trackInfo;
-- (BOOL)isPlaying;
-
 /**
     Indicates when BeardedSpice may display notifications.
  */

@@ -29,9 +29,86 @@
 + (NSString *)jsFunctions {
     
     return
-    @"var matchesPredicate = function (str, pattern, flags) {"
-    @"    var expr = new RegExp(pattern , flags);"
+    @"function bsJsFunctions(){"
+    
+    @"this.bsMatchesPredicate = function (str, pattern, flags) {"
+    @"    var expr = new RegExp('^' + pattern + '$' , flags);"
     @"    return (str.search(expr) != -1);"
+    @"};"
+
+    @"this.bsLikePredicate = function (str, pattern, flags) {"
+    
+    @"    var replaced = pattern.replace(/\\./g, '\\\\.');"
+    @"    replaced = replaced.replace(/([^\\\\])\\?/g, '$1.?');"
+    @"    replaced = replaced.replace(/([^\\\\])\\*/g, '$1.*');"
+    @"    replaced = replaced.replace(/^\\?/g, '.?');"
+    @"    replaced = replaced.replace(/^\\*/g, '.*');"
+    @"    var expr = new RegExp('^' + replaced + '$' , flags);"
+    @"    return (str.search(expr) != -1);"
+    @"};"
+
+    
+    @"this.bsBeginsWithPredicate = function (str, pattern, flags) {"
+    @"    var val = str;"
+    @"    var pat = pattern;"
+    
+    @"    if (flags && flags.indexOf('i') != -1) {"
+    @"    "
+    @"        val = val.toLowerCase();"
+    @"        pat = pat.toLowerCase();"
+    @"    }"
+    @"    "
+    @"    return (val.indexOf(pat) == 0);"
+    @"};"
+    
+    @"this.bsEndsWithPredicate = function (str, pattern, flags) {"
+    @"    var val = str;"
+    @"    var pat = pattern;"
+    
+    @"    if (flags && flags.indexOf('i') != -1) {"
+    @"    "
+    @"        val = val.toLowerCase();"
+    @"        pat = pat.toLowerCase();"
+    @"    }"
+    @"    var index = val.indexOf(pat);"
+    @"    return (index != -1 && pat.length == (val.length - index));"
+    @"};"
+
+    
+    @"this.bsContainsPredicate = function (str, pattern, flags) {"
+    @"    var val = str;"
+    @"    var pat = pattern;"
+    
+    @"    if (flags && flags.indexOf('i') != -1) {"
+    @"    "
+    @"        val = val.toLowerCase();"
+    @"        pat = pat.toLowerCase();"
+    @"    }"
+    @"    return (val.indexOf(pat) != -1);"
+    @"};"
+    
+    @"this.bsInPredicate = function (val, arr, flags) {"
+    
+    @"    if (arr && arr.length){"
+    @"        return ! arr.every(function(currentValue, index, array){"
+    
+    @"            if (val == currentValue) {"
+    @"                return false;"
+    @"            }"
+    @"            return true;"
+    @"        });"
+    @"    }"
+    @"    return false;"
+    @"};"
+
+    @"this.bsBetweenPredicate = function (val, arr, flags) {"
+    
+    @"    if (arr && arr.length == 2){"
+    @"        return ! (val > arr[1] || val < arr[0]);"
+    @"    }"
+    @"    return false;"
+    @"};"
+    
     @"}"
     ;
 }
@@ -66,30 +143,35 @@
                 operation = @" != ";
                 break;
             case NSMatchesPredicateOperatorType:
-                operation = @"matchesPredicate(%@, %@, %@)";
+                operation = @"bsMatchesPredicate(%@, %@, %@)";
                 asFunction = YES;
                 break;
             case NSLikePredicateOperatorType:
-                operation = @"likePredicate(%@, %@, %@)";
+                operation = @"bsLikePredicate(%@, %@, %@)";
+                asFunction = YES;
                 break;
             case NSBeginsWithPredicateOperatorType:
-                operation = @"beginWithPredicate(%@, %@, %@)";
+                operation = @"bsBeginsWithPredicate(%@, %@, %@)";
                 asFunction = YES;
                 break;
             case NSEndsWithPredicateOperatorType:
-                operation = @"endWithPredicate(%@, %@, @)";
+                operation = @"bsEndsWithPredicate(%@, %@, %@)";
+                asFunction = YES;
                 break;
             case NSInPredicateOperatorType:
-                operation = @"inPredicate(%@, %@, %@)";
+                operation = @"bsInPredicate(%@, %@, %@)";
+                asFunction = YES;
                 break;
             case NSCustomSelectorPredicateOperatorType: // Not supported
                 return @"false";
                 
             case NSContainsPredicateOperatorType:
-                operation = @"containsPredicate(%@, %@, %@)";
+                operation = @"bsContainsPredicate(%@, %@, %@)";
+                asFunction = YES;
                 break;
             case NSBetweenPredicateOperatorType:
-                operation = @"betweenPredicate(%@, %@, %@)";
+                operation = @"bsBetweenPredicate(%@, %@, %@)";
+                asFunction = YES;
                 break;
 
             default:
@@ -97,9 +179,11 @@
                 break;
         }
         
-        NSMutableString *options = [NSMutableString string];
+//        NSMutableString *options = [NSMutableString string];
+        NSString *options = [NSString new];
         if (predicate.options & NSCaseInsensitivePredicateOption) {
-            [options appendString:@"i"];
+//            [options appendString:@"\"i"];
+            options = @"\"i\"";
         }
 //not supported
 //        if (predicate.options & NSDiacriticInsensitivePredicateOption) {
@@ -170,12 +254,21 @@
     
     @try {
         
+        NSData *data;
         switch (expression.expressionType) {
                 // Expression that always returns the same value
             case NSConstantValueExpressionType:
-                return [expression.constantValue description];
+//                if ([expression.constantValue isKindOfClass:[NSString class]]) {
+//                    NSString *value = [expression.constantValue stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+//                    return [NSString stringWithFormat:@"\"%@\"", value];
+//                }
+                data = [NSJSONSerialization dataWithJSONObject:@[expression.constantValue] options:0 error:nil];
+                if (data.length > 2) {
+                    return [[NSString alloc] initWithBytes:(data.bytes + 1) length:(data.length - 2) encoding:NSUTF8StringEncoding];
+                }
+                return nil;
             case NSEvaluatedObjectExpressionType: // Expression that always returns the parameter object itself
-                return @"false"; //not supported
+                return @"this";
             case NSVariableExpressionType: // Expression that always returns whatever is stored at 'variable' in the bindings dictionary
                 return expression.variable;
             case NSKeyPathExpressionType: // Expression that returns something that can be used as a key path

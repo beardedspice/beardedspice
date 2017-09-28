@@ -37,6 +37,13 @@
 #import "BSVolumeWindowController.h"
 #import "BSVolumeControlProtocol.h"
 
+#import "BSStrategyWebSocketServer.h"
+#import "BSWebTabAdapter.h"
+//TODO: delete this
+#import "BSBrowserExtensionMessages.h"
+#import "BSSharedDefaults.h"
+//------------
+
 /**
  Timeout for command of the user iteraction.
  */
@@ -135,6 +142,12 @@ BOOL accessibilityApiEnabled = NO;
     [self resetStatusMenu];
 }
 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    
+    _webSocketServer = [BSStrategyWebSocketServer singleton];
+    [_webSocketServer start];
+}
+
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
 
     [[BSCustomStrategyManager singleton] importFromPath:filename];
@@ -143,6 +156,13 @@ BOOL accessibilityApiEnabled = NO;
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender{
 
+    if (_webSocketServer.started) {
+        
+        [_webSocketServer stopWithComletion:^{
+            [sender terminate:self];
+        }];
+        return NSTerminateLater;
+    }
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] prepareForClosingConnectionWithCompletion:^{
             [_connectionToService invalidate];
@@ -155,6 +175,7 @@ BOOL accessibilityApiEnabled = NO;
         });
         return NSTerminateLater;
     }
+    
     return NSTerminateNow;
 }
 
@@ -732,6 +753,26 @@ BOOL accessibilityApiEnabled = NO;
     return items;
 }
 
+- (NSArray *)refreshTabsForWebSocketServer {
+    
+    NSMutableArray *items = [NSMutableArray array];
+    for (BSWebTabAdapter *tab in BSStrategyWebSocketServer.singleton.tabs) {
+        
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
+        if (menuItem) {
+            
+            [items addObject:menuItem];
+            [menuItem setRepresentedObject:tab];
+            
+            if ([tab isPlaying])
+                [playingTabs addObject:tab];
+            
+            [_activeApp repairActiveTab:tab];
+        }
+    }
+    return items;
+}
+
 // must be invoked not on main queue
 - (void)refreshTabs:(id) sender
 {
@@ -750,16 +791,18 @@ BOOL accessibilityApiEnabled = NO;
         if (accessibilityApiEnabled) {
 
             BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-            [self refreshApplications:timeout];
+//            [self refreshApplications:timeout];
 
-            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromeApp timeout:timeout]];
-            [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
-            [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
-            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
-            [newItems addObjectsFromArray:[self refreshTabsForChrome:vivaldiApp timeout:timeout]];
-            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
-            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariTPApp timeout:timeout]];
-
+//            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromeApp timeout:timeout]];
+//            [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
+//            [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
+//            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
+//            [newItems addObjectsFromArray:[self refreshTabsForChrome:vivaldiApp timeout:timeout]];
+//            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
+//            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariTPApp timeout:timeout]];
+            
+            [newItems addObjectsFromArray:[self refreshTabsForWebSocketServer]];
+            
             for (runningSBApplication *app in nativeApps) {
 
                 if (timeout.reached) {
@@ -1399,6 +1442,37 @@ BOOL accessibilityApiEnabled = NO;
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setUsingAppleRemoteEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUsingAppleRemote]];
     }
+}
+
+- (IBAction)clickTest:(id)sender {
+    
+    [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
+        NSLog(@"Active window obtained: %@", activeWindow);
+        if (activeWindow) {
+            [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
+                NSLog(@"Active tab obtained: %@", activeTab);
+                [activeTab getActivePageWithCompletionHandler:^(SFSafariPage * _Nullable activePage) {
+                    NSLog(@"Active page obtained: %@", activePage);
+//                    [page dispatchMessageToScriptWithName:@"frontmost"
+//                                                 userInfo:@{@"result": @([activePage isEqual:page])}];
+                }];
+            }];
+        }
+    }];
+
+    /*
+    [SFSafariApplication dispatchMessageWithName:BSExtMessageServerStarted
+                       toExtensionWithIdentifier:BS_SAFARI_EXTENSION_IDENTIFIER
+                                        userInfo:@{BeardedSpiceWebSocketServerPort:[[BSSharedDefaults defaults] objectForKey:BeardedSpiceWebSocketServerPort]}
+                               completionHandler:^(NSError * _Nullable error) {
+                                   if (error) {
+                                       NSLog(@"Error when sending message to Safari extension: %@",[error description]);
+                                   }
+                                   else {
+                                       NSLog(@"Message sent to Safari extension successfully.");
+                                   }
+                               }];
+     */
 }
 
 @end

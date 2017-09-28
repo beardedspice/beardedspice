@@ -87,36 +87,37 @@ static NSImage *_lastTrackImage;
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
-- (void)toggle{
+- (BOOL)toggle{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify playpause];
     }
+    return YES;
 }
-- (void)pause{
+- (BOOL)pause{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify pause];
     }
-
+    return YES;
 }
-- (void)next{
+- (BOOL)next{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify nextTrack];
     }
-
+    return YES;
 }
-- (void)previous{
+- (BOOL)previous{
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
         [Spotify previousTrack];
     }
-
+    return YES;
 }
 
 - (BSTrack *)trackInfo{

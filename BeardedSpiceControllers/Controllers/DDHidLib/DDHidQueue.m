@@ -24,7 +24,7 @@
 
 #import "DDHidQueue.h"
 #import "DDHidElement.h"
-#import "DDHIdEvent.h"
+#import "DDHidEvent.h"
 #import "NSXReturnThrowError.h"
 
 static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,

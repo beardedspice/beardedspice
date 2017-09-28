@@ -113,7 +113,7 @@ static FMDatabaseQueue *dbQueue;
 //////////////////////////////////////////////////////////////
 #pragma mark Player control methods
 
-- (void)toggle{
+- (BOOL)toggle{
     
     const NSUInteger path[] = {4, 0};
     NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:path length:2];
@@ -121,18 +121,20 @@ static FMDatabaseQueue *dbQueue;
     [self.application pressMenuBarItemForIndexPath:indexPath];
     
     _needDisplayNotification = YES;
+    return YES;
 }
 
-- (void)pause{
+- (BOOL)pause{
     
     if ([self isPlaying]) {
         [self toggle];
     }
     
     _needDisplayNotification = YES;
+    return YES;
 }
 
-- (void)next{
+- (BOOL)next{
     
     const NSUInteger path[] = {4, 3};
     NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:path length:2];
@@ -140,8 +142,9 @@ static FMDatabaseQueue *dbQueue;
     [self.application pressMenuBarItemForIndexPath:indexPath];
     
     _needDisplayNotification = NO;
+    return YES;
 }
-- (void)previous{
+- (BOOL)previous{
     
     const NSUInteger path[] = {4, 2};
     NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:path length:2];
@@ -149,6 +152,7 @@ static FMDatabaseQueue *dbQueue;
     [self.application pressMenuBarItemForIndexPath:indexPath];
     
     _needDisplayNotification = NO;
+    return YES;
 }
 
 - (BOOL)isPlaying{

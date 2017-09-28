@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script type="text/javascript">
+
+    const BASE_CONTROL_PORT = 8008;
+    const CONTROL_PORT_POOL = 20;
+
+    const SOCKET_TIMEOUT = 100; //milleseconds
+    const RECONNECT_TIMEOUT = 10000; //milleseconds
+
+    var socket = null;
+    var controlPort = BASE_CONTROL_PORT;
+    var clientsPort = 0;
+    var timeoutObject = null;
+    var tabs = new Set();
+
+    var _clean = function(){
+        if (socket) {
+            delete socket;
+        }
+        socket = null;
+        clientsPort = 0;
+
+        if (timeoutObject) {
+            clearTimeout(timeoutObject);
+        }
+        timeoutObject = null;
+    }
+
+    var _send = function (obj) {
+        if (socket) {
+            socket.send(JSON.stringify(obj));
+        }
+    };
+    var _sendOk = function() { _send({'result':true})};
+
+    var logError = function (ex) {
+        if (typeof console !== 'undefined' && console.error) {
+            console.error('Error in BeardedSpice Control script');
+            console.error(ex);
+        }
+    };
+
+    function reconnect(event) {
+        console.info("(BeardedSpice Control) Attempt to reconnecting.");
+
+        _clean();
+        connect(controlPort);
+    };
+
+    var connectTimeout = function(event) {
+
+        _clean();
+        if (controlPort < (BASE_CONTROL_PORT + CONTROL_PORT_POOL)) {
+            controlPort++;
+            connect(controlPort);
+        }
+        else {
+            controlPort = BASE_CONTROL_PORT;
+            timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
+        }
+    };
+
+    function connect(port) {
+
+        // Create WebSocket connection.
+        var url = 'wss://localhost:'+port;
+
+        if (controlPort == BASE_CONTROL_PORT) {
+            console.info("(BeardedSpice Control) Try connect to '" + url + "' with ports pool: " + CONTROL_PORT_POOL);
+        }
+
+        socket = new WebSocket(url);
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            console.info("(BeardedSpice Control) Socket open.");
+
+            clearTimeout(timeoutObject);
+            timeoutObject = null;
+            _send({'request':'accepters'});
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('(BeardedSpice Control) Message from server ', event.data);
+            try {
+
+                var obj = JSON.parse(event.data);
+                if (obj['accepters']) {
+                        //got accepters
+                        safari.extension.settings.accepters = obj['accepters'];
+                        _send({'request':'port'});
+                    }
+                    else if (obj['port']) {
+                        //got clients port
+                        clientsPort = obj['port'];
+                        _sendOk();
+                        // Send new port to tabs
+                        tabs.forEach(function(tab, val, set){tab.page.dispatchMessage("port", {'result':clientsPort});});
+                    }
+                    else {
+                        console.error('(BeardedSpice Control) response not found.');
+                        throw "(BeardedSpice Control) response not found.";
+                    }
+                } catch (ex) {
+                    logError(ex);
+                    _send({'result':false});
+                    socket.close();
+                }
+            });
+
+        var onSocketDisconnet = function (event) {
+            console.log('(BeardedSpice Control) onSocketDisconnet');
+            if (timeoutObject == null) {
+                timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
+            }
+        };
+
+        socket.addEventListener('close', onSocketDisconnet);
+        socket.addEventListener('error', onSocketDisconnet);
+
+        timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
+    } 
+
+    function respondToMessage(theMessageEvent) {
+        if (theMessageEvent.target.page) {
+            if(theMessageEvent.name === "accepters") {
+                theMessageEvent.target.page.dispatchMessage("accepters", safari.extension.settings.accepters);
+            }
+            else if (theMessageEvent.name === "port") {
+                theMessageEvent.target.addEventListener("close", function(event){tabs.delete(event.target);}, false);
+                theMessageEvent.target.addEventListener("navigate", function(event){tabs.delete(event.target);}, false);
+                tabs.add(theMessageEvent.target);
+
+                theMessageEvent.target.page.dispatchMessage("port", {'result':clientsPort});
+            }
+        }
+    }
+
+    connect(controlPort);
+
+    safari.application.addEventListener("message",respondToMessage,false);
+
+</script>
+</head>
+<body>
+</body>
+</html>

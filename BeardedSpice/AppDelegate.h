@@ -23,6 +23,7 @@
 @class runningSBApplication;
 @class BSStrategyVersionManager;
 @class BSActiveTab;
+@class BSStrategyWebSocketServer;
 
 extern BOOL accessibilityApiEnabled;
 
@@ -56,6 +57,8 @@ extern BOOL accessibilityApiEnabled;
     dispatch_queue_t workingQueue;
 
     NSXPCConnection *_connectionToService;
+    
+    BSStrategyWebSocketServer *_webSocketServer;
 
     BOOL _AXAPIEnabled;
 }
@@ -67,6 +70,9 @@ extern BOOL accessibilityApiEnabled;
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
 - (void)showNotification;
+
+- (IBAction)clickTest:(id)sender;
+
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Windows control methods

@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 19.08.17.
-//  Copyright © 2017 BeardedSpice. All rights reserved.
+//  Copyright (c) 2015-2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import <XCTest/XCTest.h>
@@ -30,14 +30,14 @@
     BSStrategyWebSocketServer *webSocketServer = [BSStrategyWebSocketServer singleton];
     [webSocketServer start];
     
-    XCTAssert(webSocketServer.server);
-    XCTAssert(webSocketServer.port);
+    XCTAssert(webSocketServer.tabsServer);
+    XCTAssert(webSocketServer.tabsPort);
     
-    if (webSocketServer.port) {
-        NSLog(@"Server started on %d port", webSocketServer.port);
+    if (webSocketServer.tabsPort) {
+        NSLog(@"Server started on %d port", webSocketServer.tabsPort);
     }
     
-    [webSocketServer stop];
+    [webSocketServer stopWithComletion:nil];
 }
 
 //- (void)testPerformanceExample {

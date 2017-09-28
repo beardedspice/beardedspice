@@ -84,35 +84,43 @@
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
-- (void)toggle{
+- (BOOL)toggle{
     VLCDocument *doc = [self activeDocument];
     if (doc) {
         [doc play];
+        return YES;
     }
+    return NO;
 }
 
-- (void)pause{
+- (BOOL)pause{
     VLCApplication *vlc = (VLCApplication *)[self.application sbApplication];
     if (vlc && [vlc playing]) {
         VLCDocument *doc = [self activeDocument];
         if (doc) {
             [doc play];
+            return YES;
         }
     }
+    return NO;
 }
 
-- (void)next{
+- (BOOL)next{
     VLCDocument *doc = [self activeDocument];
     if (doc) {
         [doc next];
+        return YES;
     }
+    return NO;
 }
 
-- (void)previous{
+- (BOOL)previous{
     VLCDocument *doc = [self activeDocument];
     if (doc) {
         [doc previous];
+        return YES;
     }
+    return NO;
 }
 
 - (BSTrack *)trackInfo{

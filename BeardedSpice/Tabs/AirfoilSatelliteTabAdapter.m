@@ -116,7 +116,7 @@
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
-- (void)toggle{
+- (BOOL)toggle{
     
     AirfoilSatelliteApplication *app = (AirfoilSatelliteApplication *)[self.application sbApplication];
     if (app) {
@@ -124,8 +124,9 @@
     }
     
     _showNotification = YES;
+    return YES;
 }
-- (void)pause{
+- (BOOL)pause{
     
     AirfoilSatelliteApplication *app = (AirfoilSatelliteApplication *)[self.application sbApplication];
     if (app) {
@@ -135,8 +136,9 @@
     }
     
     _showNotification = YES;
+    return YES;
 }
-- (void)next{
+- (BOOL)next{
     
     AirfoilSatelliteApplication *app = (AirfoilSatelliteApplication *)[self.application sbApplication];
     if (app) {
@@ -144,8 +146,9 @@
     }
     
     _showNotification = NO;
+    return YES;
 }
-- (void)previous{
+- (BOOL)previous{
     
     AirfoilSatelliteApplication *app = (AirfoilSatelliteApplication *)[self.application sbApplication];
     if (app) {
@@ -153,6 +156,7 @@
     }
     
     _showNotification = NO;
+    return YES;
 }
 
 - (BSTrack *)trackInfo{

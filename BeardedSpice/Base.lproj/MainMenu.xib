@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -120,6 +121,12 @@ CQ
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="openPreferences:" target="494" id="7Nz-ng-Mtv"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="TEST" id="Jfu-is-KzO">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="clickTest:" target="494" id="VAy-zq-mw2"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Quit BeardedSpice" id="PLq-0w-RnA">

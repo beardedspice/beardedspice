@@ -94,20 +94,8 @@ dispatch_queue_t notificationQueue() {
 #pragma mark - mutators
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab {
+    
     BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) with tab %@", tab);
-
-    // Prevent switch to tab, which not have strategy.
-    BSMediaStrategy *strategy = nil;
-    if (![tab isKindOfClass:[NativeAppTabAdapter class]]) {
-
-        BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ check strategy", tab);
-        strategy = [_registry getMediaStrategyForTab:tab];
-        if (!strategy) {
-            return NO;
-        }
-    }
-
-    BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ has strategy", tab);
 
     if (![tab isEqual:_activeTab]) {
         BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, _activeTab);
@@ -140,12 +128,9 @@ dispatch_queue_t notificationQueue() {
 - (void)pauseActiveTab {
     if ([self isNativeAdapter]) {
         if ([_activeTab respondsToSelector:@selector(pause)])
-            [(NativeAppTabAdapter *)_activeTab pause];
+            [_activeTab pause];
     } else {
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
-        if (strategy) {
-            [_activeTab executeJavascript:[strategy pause]];
-        }
+        [_activeTab pause];
     }
 
 }
@@ -170,12 +155,10 @@ dispatch_queue_t notificationQueue() {
                 [self showNotification];
         }
     } else {
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
-        if (strategy && ![NSString isNullOrEmpty:[strategy toggle]]) {
-            [_activeTab executeJavascript:[strategy toggle]];
-            if (alwaysShowNotification() && ![_activeTab frontmost]) {
-                [self showNotification];
-            }
+        if ([_activeTab toggle]
+            && alwaysShowNotification()
+            && ![_activeTab frontmost]) {
+            [self showNotification];
         }
     }
 }
@@ -190,12 +173,10 @@ dispatch_queue_t notificationQueue() {
                 dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
     } else {
-        BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
-        if (strategy && ![NSString isNullOrEmpty:[strategy next]]) {
-            [_activeTab executeJavascript:[strategy next]];
-            if (alwaysShowNotification() && ![_activeTab frontmost])
-                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
-        }
+        if ([_activeTab next]
+            &&alwaysShowNotification()
+            && ![_activeTab frontmost])
+            dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     }
 }
 
@@ -209,12 +190,10 @@ dispatch_queue_t notificationQueue() {
                 dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
         }
     } else {
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
-        if (strategy && ![NSString isNullOrEmpty:[strategy previous]]) {
-            [_activeTab executeJavascript:[strategy previous]];
-            if (alwaysShowNotification() && ![_activeTab frontmost])
-                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
-        }
+        if ([_activeTab previous]
+            && alwaysShowNotification()
+            && ![_activeTab frontmost])
+            dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     }
 }
 
@@ -228,12 +207,9 @@ dispatch_queue_t notificationQueue() {
                 [self showNotification];
         }
     } else {
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
-        if (strategy) {
-            [_activeTab executeJavascript:[strategy favorite]];
-            if ([[strategy trackInfo:_activeTab] favorited])
-                dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
-        }
+        if ([_activeTab favorite]
+            && [[_activeTab trackInfo] favorited])
+            dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
     }
 }
     

@@ -91,40 +91,44 @@
 #pragma mark Player control methods
 //////////////////////////////////////////////////////////////
 
-- (void)toggle{
+- (BOOL)toggle{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes playpause];
     }
     iTunesNeedDisplayNotification = YES;
+    return YES;
 }
-- (void)pause{
+- (BOOL)pause{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes pause];
     }
     iTunesNeedDisplayNotification = YES;
+    return YES;
 }
-- (void)next{
+- (BOOL)next{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes nextTrack];
     }
     iTunesNeedDisplayNotification = NO;
+    return YES;
 }
-- (void)previous{
+- (BOOL)previous{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {
         [iTunes previousTrack];
     }
     iTunesNeedDisplayNotification = NO;
+    return YES;
 }
 
-- (void)favorite{
+- (BOOL)favorite{
 
     iTunesApplication *iTunes = (iTunesApplication *)[self.application sbApplication];
     if (iTunes) {

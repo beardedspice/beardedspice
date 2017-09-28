@@ -7,7 +7,6 @@
 debugger;
 
     const SOCKET_TIMEOUT = 100; //milleseconds
-    const RECONNECT_TIMEOUT = 10000; //milleseconds
 
     var socket = null;
     var strategyName = null;
@@ -35,6 +34,7 @@ debugger;
     var _send = function (obj) {
         if (socket) {
             socket.send(JSON.stringify(obj));
+                console.log("(BeardedSpice) Socket send:" + JSON.stringify(obj));
         }
     };
     var _sendOk = function() { _send({'result':true})};
@@ -46,16 +46,23 @@ debugger;
         }
     };
 
+    // Handle message from Global Extension Page
     var handleMessage = function(event) {
         console.log(event.name);
         console.log(event.message);
-        if (event.name == 'accepters') {
+        if (event.name === 'accepters') {
             accept(event.message);
         }
-        else if (event.name == 'port') {
+        else if (event.name === 'port') {
             connect(event.message["result"]);
         }
-        else if (event.name == 'frontmost') {
+        else if (event.name === 'reconnect') {
+            reconnect(event);
+        }
+        else if (event.name === 'frontmost') {
+            _send(event.message);
+        }
+        else if (event.name === 'bundleId') {
             _send(event.message);
         }
     };
@@ -95,10 +102,14 @@ debugger;
     var connectTimeout = function(event) {
 
         _clean();
-        timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
     };
 
     var connect = function(port) {
+
+        if (port == 0) {
+            console.info("(BeardedSpice) Port not specified.");
+            return;
+        }
 
         // Create WebSocket connection.
         var url = 'wss://localhost:'+port;
@@ -115,6 +126,13 @@ debugger;
             socket.send(JSON.stringify({'strategy':strategyName}));
         });
 
+        var onSocketDisconnet = function (event) {
+            console.info('(BeardedSpice) onSocketDisconnet');
+        };
+
+        socket.addEventListener('close', onSocketDisconnet);
+        socket.addEventListener('error', onSocketDisconnet);
+
         // Listen for messages
         socket.addEventListener('message', function (event) {
             console.log('(BeardedSpice) Message from server ', event.data);
@@ -128,7 +146,8 @@ debugger;
                         var title = window.document.title == "" ? window.location.href : window.document.title;
                         _send({'result': title});
                     }
-                    else if (event.data == 'frontmost') {
+                    else if (event.data === 'frontmost'
+                             || event.data === 'bundleId') {
                         //sending request to extension
                         safari.self.tab.dispatchMessage(event.data);
                     }
@@ -184,16 +203,6 @@ debugger;
                 _send({'result':false});
             }
         });
-
-        var onSocketDisconnet = function (event) {
-            console.log('(BeardedSpice) onSocketDisconnet');
-            if (timeoutObject == null) {
-                timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
-            }
-        };
-
-        socket.addEventListener('close', onSocketDisconnet);
-        socket.addEventListener('error', onSocketDisconnet);
 
         timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
     };

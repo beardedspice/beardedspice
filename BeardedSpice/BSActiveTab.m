@@ -84,7 +84,7 @@ dispatch_queue_t notificationQueue() {
     }
     else if ([self isTabAdapter]) {
         
-        BSMediaStrategy *strategy =[_registry getMediaStrategyForTab:_activeTab];
+        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
         return (strategy && [strategy isPlaying:_activeTab]);
     }
     

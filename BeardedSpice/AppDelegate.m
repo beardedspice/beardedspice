@@ -1445,34 +1445,14 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (IBAction)clickTest:(id)sender {
-    
-    [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
-        NSLog(@"Active window obtained: %@", activeWindow);
-        if (activeWindow) {
-            [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                NSLog(@"Active tab obtained: %@", activeTab);
-                [activeTab getActivePageWithCompletionHandler:^(SFSafariPage * _Nullable activePage) {
-                    NSLog(@"Active page obtained: %@", activePage);
-//                    [page dispatchMessageToScriptWithName:@"frontmost"
-//                                                 userInfo:@{@"result": @([activePage isEqual:page])}];
-                }];
-            }];
-        }
-    }];
 
-    /*
-    [SFSafariApplication dispatchMessageWithName:BSExtMessageServerStarted
-                       toExtensionWithIdentifier:BS_SAFARI_EXTENSION_IDENTIFIER
-                                        userInfo:@{BeardedSpiceWebSocketServerPort:[[BSSharedDefaults defaults] objectForKey:BeardedSpiceWebSocketServerPort]}
-                               completionHandler:^(NSError * _Nullable error) {
-                                   if (error) {
-                                       NSLog(@"Error when sending message to Safari extension: %@",[error description]);
-                                   }
-                                   else {
-                                       NSLog(@"Message sent to Safari extension successfully.");
-                                   }
-                               }];
-     */
+//    if (BSStrategyWebSocketServer.singleton.started) {
+//        [BSStrategyWebSocketServer.singleton stopWithComletion:nil];
+//    }
+//    else {
+//        [BSStrategyWebSocketServer.singleton start];
+//    }
+    [BSStrategyWebSocketServer.singleton.controlSocket send:@"{\"test\":true}"];
 }
 
 @end

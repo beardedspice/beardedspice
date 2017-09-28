@@ -182,25 +182,27 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     
     if (server == _controlServer) {
         
-        NSLog(@"Websocket Control server started on port %d.", _controlPort);
+        BS_LOG(LOG_INFO, @"Websocket Control server started on port %d.", _controlPort);
         [self startTabServer];
     }
     if (server == _tabsServer) {
         
-        NSLog(@"Websocket Tab server started on port %d.", _tabsPort);
+        BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
     }
 
     //TODO: change preferences for browser extensions, anonce new port for connection to this server
 }
+
 - (void)server:(PSWebSocketServer *)server didFailWithError:(NSError *)error {
     
-    NSLog(@"(BSStrategyWebSocketServer) Server failed with error: %@", error);
+    BS_LOG(LOG_ERROR, @"(BSStrategyWebSocketServer) Server failed with error: %@", error);
 
     [self setStopServer:server];
 }
+
 - (void)serverDidStop:(PSWebSocketServer *)server {
     
-    NSLog(@"WebSocket server stoped.");
+    BS_LOG(LOG_INFO, @"WebSocket server stoped.");
     
     [self setStopServer:server];
     
@@ -214,22 +216,31 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 
 - (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
 
-    NSLog(@"%s", __FUNCTION__);
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
     
     //tabs server connection
     if (server == _tabsServer) {
         @synchronized (self) {
             
             BSWebTabAdapter *tab = [[BSWebTabAdapter alloc] initWithBrowserSocket:webSocket];
-            [_tabs addObject:tab];
+            if (tab) {
+                [_tabs addObject:tab];
+            }
+            else {
+                BS_LOG(LOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);
+                [webSocket close];
+            }
         }
+    }
+    if (server == _controlServer) {
+        _controlSocket = webSocket;
     }
     
     //TODO: send list of the working stranegy
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    NSLog(@"%s", __FUNCTION__);
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
     
     //control request
     if (server == _controlServer) {
@@ -256,11 +267,11 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
-    NSLog(@"%s", __FUNCTION__);
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
-    NSLog(@"%s", __FUNCTION__);
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
 }
 
 

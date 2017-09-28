@@ -27,7 +27,7 @@
 #define LOG_LEVEL LOG_ERROR
 #endif
 
-#define BS_LOG(x, y, ...) do { if (x >= LOG_LEVEL) { NSLog(y, __VA_ARGS__); } } while(0)
+#define BS_LOG(x, y, ...) do { if (x >= LOG_LEVEL) { NSLog(y, ##__VA_ARGS__); } } while(0)
 
 #pragma mark - Other
 

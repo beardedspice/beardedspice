@@ -8,11 +8,65 @@
 
 #import "runningSBApplication.h"
 #import "EHSystemUtils.h"
+#import "NSString+Utils.h"
 
 #define COMMAND_TIMEOUT         3 // 0.3 second
 #define RAISING_WINDOW_DELAY    0.1 //0.1 second
 
 @implementation runningSBApplication
+
+static NSMutableDictionary *_sharedAppHandler;
+
++ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier {
+    
+    if (! processIdentifier) {
+        return nil;
+    }
+    
+    @synchronized(self) {
+        @autoreleasepool {
+            
+            if (_sharedAppHandler == nil) {
+                _sharedAppHandler = [NSMutableDictionary dictionary];
+            }
+            runningSBApplication *app = _sharedAppHandler[@(processIdentifier)];
+            if (! app) {
+                
+                NSRunningApplication *runningApp = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
+                if (runningApp) {
+                    app = [runningSBApplication new];
+                    app->_bundleIdentifier = runningApp.bundleIdentifier;
+                    app->_processIdentifier = processIdentifier;
+                    _sharedAppHandler[@(processIdentifier)] = app;
+                }
+            }
+            return app;
+        }
+    }
+}
+
++ (instancetype)sharedApplicationForBundleIdentifier:(NSString *)bundleIdentifier {
+    
+    if ([NSString isNullOrEmpty:bundleIdentifier]) {
+        return nil;
+    }
+    
+    @synchronized(self) {
+        @autoreleasepool {
+            
+            if (_sharedAppHandler == nil) {
+                _sharedAppHandler = [NSMutableDictionary dictionary];
+            }
+            runningSBApplication *app = _sharedAppHandler[bundleIdentifier];
+            if (! app) {
+                
+                app = [[runningSBApplication alloc] initWithApplication:nil bundleIdentifier:bundleIdentifier];
+                _sharedAppHandler[bundleIdentifier] = app;
+            }
+            return app;
+        }
+    }
+}
 
 - (instancetype)initWithApplication:(SBApplication *)application bundleIdentifier:(NSString *)bundleIdentifier{
     
@@ -233,6 +287,22 @@
     }
     
     return item;
+}
+
+- (BOOL)isEqual:(id)object{
+
+    if (object == self)
+        return YES;
+    if ([object isKindOfClass:[self class]]
+        && [_bundleIdentifier isEqualToString:[object bundleIdentifier]])
+        return YES;
+
+    return NO;
+}
+
+- (NSUInteger)hash
+{
+    return [_bundleIdentifier hash];
 }
 
 @end

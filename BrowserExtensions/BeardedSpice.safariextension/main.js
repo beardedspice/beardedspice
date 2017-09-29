@@ -6,35 +6,31 @@
 
 debugger;
 
-    const SOCKET_TIMEOUT = 100; //milleseconds
+    // const SOCKET_TIMEOUT = 100; //milleseconds
 
     var socket = null;
     var strategyName = null;
     var strategy = null;
-    var timeoutObject = null;
 
     this.URL = window.location.href;
     this.title = window.document.title == "" ? window.location.href : window.document.title;
 
     var _clean = function(){
-        if (socket) {
-            delete socket;
-        }
         socket = null;
-
-        if (timeoutObject) {
-            clearTimeout(timeoutObject);
-        }
-        timeoutObject = null;
-
         strategyName = null;
         strategy = null;
     }
 
     var _send = function (obj) {
-        if (socket) {
-            socket.send(JSON.stringify(obj));
+        try {
+
+            if (socket) {
+                socket.send(JSON.stringify(obj));
                 console.log("(BeardedSpice) Socket send:" + JSON.stringify(obj));
+            }
+        } catch (ex) {
+            logError(ex);
+            socket.close();
         }
     };
     var _sendOk = function() { _send({'result':true})};
@@ -99,10 +95,13 @@ debugger;
         safari.self.tab.dispatchMessage("accepters");
     };
 
-    var connectTimeout = function(event) {
+    // var connectTimeout = function(event) {
 
-        _clean();
-    };
+    //     console.log("(BeardedSpice) Connection timeout.");
+    //     var _socket = socket;
+    //     _clean();
+    //     _socket.close();
+    // };
 
     var connect = function(port) {
 
@@ -112,7 +111,7 @@ debugger;
         }
 
         // Create WebSocket connection.
-        var url = 'wss://localhost:'+port;
+        var url = 'wss://localhost:' + port;
         console.info("(BeardedSpice) Try connect to '" + url + "'");
 
         socket = new WebSocket(url);
@@ -121,17 +120,21 @@ debugger;
         socket.addEventListener('open', function (event) {
             console.info("(BeardedSpice) Socket open.");
 
-            clearTimeout(timeoutObject);
-            timeoutObject = null;
-            socket.send(JSON.stringify({'strategy':strategyName}));
+            // if (timeoutObject) {
+            //     clearTimeout(timeoutObject);
+            //     timeoutObject = null;
+            // }
+            _send({'strategy':strategyName});
         });
 
         var onSocketDisconnet = function (event) {
             console.info('(BeardedSpice) onSocketDisconnet');
+            //sending request to extension
+            safari.self.tab.dispatchMessage('serverIsAlive');
         };
 
         socket.addEventListener('close', onSocketDisconnet);
-        socket.addEventListener('error', onSocketDisconnet);
+        // socket.addEventListener('error', onSocketDisconnet);
 
         // Listen for messages
         socket.addEventListener('message', function (event) {
@@ -204,7 +207,7 @@ debugger;
             }
         });
 
-        timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
+        // timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
     };
 
     console.info("BeardedSpice Script Injected.");

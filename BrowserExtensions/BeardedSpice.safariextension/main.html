@@ -10,16 +10,15 @@
     const RECONNECT_TIMEOUT = 10000; //milleseconds
 
     var socket = null;
+    var socketConnected = false;
     var controlPort = BASE_CONTROL_PORT;
     var clientsPort = 0;
     var timeoutObject = null;
     var tabs = new Set();
 
     var _clean = function(){
-        if (socket) {
-            delete socket;
-        }
         socket = null;
+        socketConnected = false;
         clientsPort = 0;
 
         if (timeoutObject) {
@@ -40,7 +39,9 @@
             socket.close();
         }
     };
-    var _sendOk = function() { _send({'result':true})};
+    var _sendOk = function() { 
+        _send({'result':true})
+    };
 
     var logError = function (ex) {
         if (typeof console !== 'undefined' && console.error) {
@@ -58,7 +59,9 @@
 
     var connectTimeout = function(event) {
 
+        var _socket = socket;
         _clean();
+        _socket.close();
         if (controlPort < (BASE_CONTROL_PORT + CONTROL_PORT_POOL)) {
             controlPort++;
             connect(controlPort);
@@ -83,9 +86,11 @@
         // Connection opened
         socket.addEventListener('open', function (event) {
             console.info("(BeardedSpice Control) Socket open.");
-
-            clearTimeout(timeoutObject);
-            timeoutObject = null;
+            socketConnected = true;
+            if (timeoutObject) {
+                clearTimeout(timeoutObject);
+                timeoutObject = null;
+            }
             // send accepters request after timeout
             setTimeout(function(){_send({'request':'accepters'});}, SOCKET_TIMEOUT);
         });
@@ -106,7 +111,6 @@
                     clientsPort = obj['port'];
                     _sendOk();
                     // Send new port to tabs
-                    debugger;
                     tabs.forEach(function(tab, val, set){tab.page.dispatchMessage("reconnect", {'result':true});});
                 }
                 else if (obj['test']) {
@@ -125,28 +129,35 @@
 
         var onSocketDisconnet = function (event) {
             console.log('(BeardedSpice Control) onSocketDisconnet');
-            if (timeoutObject == null) {
+            if (socketConnected) {
+                _clean();
                 timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
             }
         };
 
         socket.addEventListener('close', onSocketDisconnet);
-        socket.addEventListener('error', onSocketDisconnet);
+        // socket.addEventListener('error', onSocketDisconnet);
 
         timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
     } 
 
     function respondToMessage(theMessageEvent) {
         if (theMessageEvent.target.page) {
+            console.log('(BeardedSpice Control) respondToMessage event: ' + theMessageEvent.name + ' target: ' + theMessageEvent.target.title );
             //request accepters
             if(theMessageEvent.name === "accepters") {
                 theMessageEvent.target.page.dispatchMessage("accepters", safari.extension.settings.accepters);
             }
             // request port
             else if (theMessageEvent.name === "port") {
-                theMessageEvent.target.addEventListener("close", function(event){tabs.delete(event.target);}, false);
-                theMessageEvent.target.addEventListener("navigate", function(event){tabs.delete(event.target);}, false);
-                debugger;
+                theMessageEvent.target.addEventListener("close", function(event){
+                    tabs.delete(event.target);
+                    console.log('(BeardedSpice Control) Tab removed from tabs onClose: \n' + event.target.title);
+                }, false);
+                theMessageEvent.target.addEventListener("beforeNavigate", function(event){
+                    tabs.delete(event.target);
+                    console.log('(BeardedSpice Control) Tab removed from tabs onbeforeNavigate: \n' + event.target.title);
+                }, false);
                 tabs.add(theMessageEvent.target);
 
                 theMessageEvent.target.page.dispatchMessage("port", {'result':clientsPort});
@@ -158,6 +169,11 @@
             else if (theMessageEvent.name === "bundleId") {
 
                 theMessageEvent.target.page.dispatchMessage("bundleId", {'result':safari.extension.settings.hostBundleId});
+            }
+            else if (theMessageEvent.name === "serverIsAlive") {
+                if (socket && clientsPort) {
+                    theMessageEvent.target.page.dispatchMessage("reconnect", {'result':true});   
+                }
             }
         }
     }

@@ -139,7 +139,7 @@ BOOL accessibilityApiEnabled = NO;
     // check accessibility enabled
     [self checkAccessibilityTrusted];
 
-    [self resetStatusMenu];
+    [self resetStatusMenu:0];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
@@ -641,8 +641,6 @@ BOOL accessibilityApiEnabled = NO;
 - (void)removeAllItems
 {
     SafariTabKeys = [NSMutableSet set];
-
-    menuItems = [NSMutableArray array];
     // reset playingTabs
     playingTabs = [NSMutableArray array];
 
@@ -780,10 +778,6 @@ BOOL accessibilityApiEnabled = NO;
     __weak typeof(self) wself = self;
     @autoreleasepool {
 
-        //hold activeTab object
-        __unsafe_unretained TabAdapter *activeTabHolder = self.activeApp.activeTab;
-        //hold tab list
-        NSArray *_menuItems = menuItems;
         NSMutableArray *newItems = [NSMutableArray array];
 
         [self removeAllItems];
@@ -813,38 +807,15 @@ BOOL accessibilityApiEnabled = NO;
             }
         }
 
-        //
-        NSMutableArray *tabs = [[newItems valueForKey:@"representedObject"] mutableCopy];
-        for (NSMenuItem *item in _menuItems) {
-
-            NSUInteger index = [tabs indexOfObject:item.representedObject];
-            if (index != NSNotFound) {
-                [menuItems addObject:newItems[index]];
-                [newItems removeObjectAtIndex:index];
-                [tabs removeObjectAtIndex:index];
-            }
-        }
-        [menuItems addObjectsFromArray:newItems];
-
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [wself resetStatusMenu];
+            [wself resetStatusMenu:newItems.count];
 
-            if (menuItems.count) {
-                for (NSMenuItem *item in menuItems) {
+            if (newItems.count) {
+                for (NSMenuItem *item in newItems) {
                     [statusMenu insertItem:item atIndex:0];
                 }
             }
         });
-        
-        //  check activeTab
-        //
-        //  It is because if `repairActiveTab` call cannot change activeTab,
-        //  then we lost active tab and we need reset it.
-        // https://github.com/beardedspice/beardedspice/issues/612
-        if (activeTabHolder == self.activeApp.activeTab) {
-            self.activeApp.activeTab = nil;
-        }
-
     }
 }
 
@@ -1066,14 +1037,14 @@ BOOL accessibilityApiEnabled = NO;
     });
 }
 
-- (void)resetStatusMenu{
+- (void)resetStatusMenu:(NSInteger)menuItemCount{
 
     NSInteger count = statusMenu.itemArray.count;
     for (int i = 0; i < (count - statusMenuCount); i++) {
         [statusMenu removeItemAtIndex:0];
     }
 
-    if (!menuItems.count) {
+    if (!menuItemCount) {
         NSMenuItem *item = nil;
         if (accessibilityApiEnabled) {
              item = [statusMenu insertItemWithTitle:NSLocalizedString(@"No applicable tabs open", @"Title on empty menu")

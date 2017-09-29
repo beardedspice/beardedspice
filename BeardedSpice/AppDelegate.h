@@ -45,7 +45,6 @@ extern BOOL accessibilityApiEnabled;
 
     NSMutableArray *nativeApps;
 
-    NSMutableArray *menuItems;
     NSMutableArray *playingTabs;
 
     NativeAppTabRegistry *nativeAppRegistry;

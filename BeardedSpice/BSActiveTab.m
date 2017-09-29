@@ -282,9 +282,7 @@ dispatch_queue_t notificationQueue() {
             track = [(NativeAppTabAdapter *)_activeTab trackInfo];
         }
     } else {
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
-        if (strategy)
-            track = [strategy trackInfo:_activeTab];
+        track = [_activeTab trackInfo];
     }
 
     BOOL noTrack = [NSString isNullOrEmpty:track.track];

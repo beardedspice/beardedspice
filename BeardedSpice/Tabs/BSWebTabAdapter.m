@@ -55,10 +55,10 @@ static uint _findpid(const struct sockaddr *addr);
         NSDictionary *response = [self sendMessage:@"title"];
         result = response[@"result"];
         if (! [result isKindOfClass:[NSString class]]) {
-            result = nil;
+            result = @"";
         }
     } @catch (NSException *exception) {
-        result = nil;
+        result = @"";
     }
     return result;
 }
@@ -205,6 +205,10 @@ static uint _findpid(const struct sockaddr *addr);
 /////////////////////////////////////////////////////////////////////////
 #pragma mark PSWebSocketDelegate delegates
 
+- (void)webSocketDidOpen:(PSWebSocket *)webSocket {
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+}
+
 - (void)webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
     BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
@@ -213,7 +217,7 @@ static uint _findpid(const struct sockaddr *addr);
 }
 - (void)webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    NSLog(@"%s", __FUNCTION__);
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
     NSData *messageData = [message isKindOfClass:[NSString class]] ?
     [message dataUsingEncoding:NSUTF8StringEncoding]
     : message;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:3,
+  version:4,
   displayName:"Mixcloud",
   accepts: {
     method: "predicateOnTab",
@@ -20,7 +20,7 @@ BSStrategy = {
     return {
       'track': document.querySelector('.player-cloudcast-title').text,
       'artist': document.querySelector('.player-cloudcast-author-link').text,
-      'image' : document.querySelector('div.player img.loaded').getAttribute('src')
+      'image' : document.querySelector('.player .player-cloudcast-image img').getAttribute('src')
     }
   }
 }

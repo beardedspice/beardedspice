@@ -97,7 +97,7 @@
 	<key>Madsonic</key>
 	<integer>1</integer>
 	<key>MixCloud</key>
-	<integer>3</integer>
+	<integer>4</integer>
 	<key>MusicForProgramming</key>
 	<integer>1</integer>
 	<key>MusicUnlimited</key>
@@ -155,7 +155,7 @@
 	<key>Songza</key>
 	<integer>1</integer>
 	<key>SoundCloud</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>Spotify</key>
 	<integer>2</integer>
 	<key>Stingray</key>

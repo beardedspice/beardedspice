@@ -146,6 +146,8 @@
 	<integer>1</integer>
 	<key>Saavn</key>
 	<integer>2</integer>
+	<key>SanookMusic</key>
+	<integer>1</integer>
 	<key>ShufflerFm</key>
 	<integer>1</integer>
 	<key>Slacker</key>
@@ -201,8 +203,6 @@
 	<key>Zing</key>
 	<integer>1</integer>
 	<key>Zvooq</key>
-	<integer>1</integer>
-	<key>SanookMusic</key>
 	<integer>1</integer>
 </dict>
 </plist>

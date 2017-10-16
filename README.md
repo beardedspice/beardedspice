@@ -126,6 +126,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Radio Swiss Jazz](http://www.radioswissjazz.ch/)
 - [Rdio](http://rdio.com)
 - [Saavn](http://www.saavn.com/)
+- [Sanook Music](http://music.sanook.com/)
 - [Shuffler.fm](http://shuffler.fm/)
 - [Slacker](http://www.slacker.com/)
 - [SomaFM](http://somafm.com)

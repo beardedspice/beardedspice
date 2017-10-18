@@ -50,6 +50,8 @@
 	<integer>1</integer>
 	<key>Fip</key>
 	<integer>1</integer>
+	<key>FitRadio</key>
+	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
 	<key>FocusMusicFM</key>

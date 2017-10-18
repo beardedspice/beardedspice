@@ -2,28 +2,31 @@
 //  GenieMusic.js
 //  BeardedSpice
 //
-//  Created by Pnamu on 2017. 03. 05
-//  Copyright 짤 2017 BeardedSpice. All rights reserved.
+//  Created by kimtree on 10/18/2017.
+//  Copyright (c) 2015-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 BSStrategy = {
-  version:1,
+  version: 2,
   displayName:"GenieMusic",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*genie.co.kr/player*'",
     args: ["URL"]
   },
-  isPlaying: function () { return document.getElementsByClassName('pause')[0] == undefined; },
-  toggle: function () { document.getElementById('PlayBtnArea').click(); },
-  next: function () { document.getElementsByClassName('control-2')[0].getElementsByClassName('next')[0].click(); },
-  previous: function () { document.getElementsByClassName('control-2')[0].getElementsByClassName('prev')[0].click(); },
-  pause: function () {document.getElementById('PlayBtnArea').click(); },
+  isPlaying: function () { return flowplayer().playing; },
+  toggle: function () { flowplayer().toggle(); },
+  previous: function () { fnPlayPrev(); },
+  next: function () { fnPlayNext(); },
+  pause: function () { flowplayer().pause(); },
+  favorite:  function () { fnPlayerLikeAct(); },
   trackInfo: function () {
     return {
-        image: 'http:' + document.getElementById("AlbumImgArea").getElementsByTagName('img')[0].getAttribute("src"),
-        track: document.getElementById("SongTitleArea").getAttribute("title"),
-        artist: document.getElementById("ArtistNameArea").getElementsByTagName("span")[0].textContent
+        'track': document.getElementById("SongTitleArea").textContent,
+        'album': document.getElementById("AlbumImgArea").getElementsByTagName('img')[0].getAttribute("alt"),
+        'artist': document.getElementById("ArtistNameArea").textContent,
+        'image': 'http:' + document.getElementById("AlbumImgArea").getElementsByTagName('img')[0].getAttribute("src"),
+        'favorited': (document.getElementsByClassName('btn-like')[0].className.indexOf('active') > 0)
     }
   }
 }

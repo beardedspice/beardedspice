@@ -148,6 +148,8 @@
 	<integer>2</integer>
 	<key>ShufflerFm</key>
 	<integer>1</integer>
+	<key>SiriusXM</key>
+	<integer>1</integer>
 	<key>Slacker</key>
 	<integer>1</integer>
 	<key>SomaFm</key>

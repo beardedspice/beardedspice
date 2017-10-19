@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="localizable" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -15,7 +16,7 @@
                 <outlet property="delegate" destination="PLq-0w-RnA" id="5P9-BT-vuQ"/>
             </connections>
         </customObject>
-        <menu title="AMainMenu" systemMenu="main" id="29">
+        <menu title="AMainMenu" systemMenu="main" id="29" propertyAccessControl="localizable">
             <items>
                 <menuItem title="BeardedSpice" id="56">
                     <menu key="submenu" title="BeardedSpice" systemMenu="apple" id="57">
@@ -102,7 +103,7 @@
                 </menuItem>
             </items>
         </menu>
-        <menu title="StatusMenu" id="SbZ-uf-jkn">
+        <menu title="StatusMenu" id="SbZ-uf-jkn" propertyAccessControl="localizable">
             <items>
                 <menuItem isSeparatorItem="YES" tag="1" id="A8i-oy-YAJ">
                     <string key="keyEquivalent" base64-UTF8="YES">

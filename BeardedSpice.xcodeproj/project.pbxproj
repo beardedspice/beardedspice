@@ -106,6 +106,11 @@
 		9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679334E1855173100A49AC7 /* XCTest.framework */; };
 		967933501855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679336418551BCC00A49AC7 /* ScriptingBridge.framework */; };
+		AA59547E1F98AEF700B3A79D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5954801F98AEF700B3A79D /* Localizable.strings */; };
+		AA5954841F98AEF700B3A79D /* BeardedSpice-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5954861F98AEF700B3A79D /* BeardedSpice-InfoPlist.strings */; };
+		AA59548A1F98AEF800B3A79D /* TidalTabAdapterMenuItemNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA59548C1F98AEF800B3A79D /* TidalTabAdapterMenuItemNames.strings */; };
+		AA5954911F98AEF900B3A79D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5954931F98AEF900B3A79D /* InfoPlist.strings */; };
+		AA5954961F98AFD000B3A79D /* BeardedSpiceTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5954981F98AFD000B3A79D /* BeardedSpiceTests-InfoPlist.strings */; };
 		D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +323,15 @@
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA59547F1F98AEF700B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA5954811F98AEF700B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		AA5954851F98AEF700B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = "ko.lproj/BeardedSpice-InfoPlist.strings"; sourceTree = "<group>"; };
+		AA5954871F98AEF700B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GeneralPreferencesView.strings; sourceTree = "<group>"; };
+		AA59548B1F98AEF800B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TidalTabAdapterMenuItemNames.strings; sourceTree = "<group>"; };
+		AA59548D1F98AEF800B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ShortcutsPreferencesView.strings; sourceTree = "<group>"; };
+		AA59548E1F98AEF800B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA5954921F98AEF900B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AA5954971F98AFD000B3A79D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = "ko.lproj/BeardedSpiceTests-InfoPlist.strings"; sourceTree = "<group>"; };
 		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
 		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
 		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
@@ -471,6 +485,7 @@
 		656AFFEB1C8ACDCF00BD29F5 /* BeardedSpiceControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AA5954931F98AEF900B3A79D /* InfoPlist.strings */,
 				656AFFFA1C8AD37E00BD29F5 /* Controllers */,
 				656AFFED1C8ACDCF00BD29F5 /* BeardedSpiceControllers.h */,
 				656AFFEE1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m */,
@@ -633,6 +648,8 @@
 		967933361855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA59548C1F98AEF800B3A79D /* TidalTabAdapterMenuItemNames.strings */,
+				AA5954861F98AEF700B3A79D /* BeardedSpice-InfoPlist.strings */,
 				030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */,
 				967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
 				78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */,
@@ -660,6 +677,8 @@
 		967933541855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA5954981F98AFD000B3A79D /* BeardedSpiceTests-InfoPlist.strings */,
+				AA5954801F98AEF700B3A79D /* Localizable.strings */,
 				967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -785,6 +804,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA5954911F98AEF900B3A79D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +812,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA59548A1F98AEF800B3A79D /* TidalTabAdapterMenuItemNames.strings in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
@@ -800,6 +821,7 @@
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
 				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
+				AA5954841F98AEF700B3A79D /* BeardedSpice-InfoPlist.strings in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
 				65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */,
 				0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */,
@@ -812,6 +834,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D57FCC1D02CC250016F270 /* MediaStrategies in Resources */,
+				AA59547E1F98AEF700B3A79D /* Localizable.strings in Resources */,
+				AA5954961F98AFD000B3A79D /* BeardedSpiceTests-InfoPlist.strings in Resources */,
 				0BE800781CDA4F5B001A4DDF /* versions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,9 +849,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -840,13 +868,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
@@ -870,13 +901,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */ = {
@@ -900,9 +934,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -915,9 +953,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -930,13 +971,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1054,6 +1098,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				652AD3391CC04ABA005396CD /* Base */,
+				AA59548E1F98AEF800B3A79D /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1070,6 +1115,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				652AD3361CC04A7C005396CD /* Base */,
+				AA5954871F98AEF700B3A79D /* ko */,
 			);
 			name = GeneralPreferencesView.xib;
 			sourceTree = "<group>";
@@ -1078,6 +1124,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				652AD3371CC04A7C005396CD /* Base */,
+				AA59548D1F98AEF800B3A79D /* ko */,
 			);
 			name = ShortcutsPreferencesView.xib;
 			sourceTree = "<group>";
@@ -1086,8 +1133,49 @@
 			isa = PBXVariantGroup;
 			children = (
 				652AD3381CC04A7D005396CD /* Base */,
+				AA5954811F98AEF700B3A79D /* ko */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		AA5954801F98AEF700B3A79D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA59547F1F98AEF700B3A79D /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AA5954861F98AEF700B3A79D /* BeardedSpice-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5954851F98AEF700B3A79D /* ko */,
+			);
+			name = "BeardedSpice-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		AA59548C1F98AEF800B3A79D /* TidalTabAdapterMenuItemNames.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA59548B1F98AEF800B3A79D /* ko */,
+			);
+			name = TidalTabAdapterMenuItemNames.strings;
+			sourceTree = "<group>";
+		};
+		AA5954931F98AEF900B3A79D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5954921F98AEF900B3A79D /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AA5954981F98AFD000B3A79D /* BeardedSpiceTests-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5954971F98AFD000B3A79D /* ko */,
+			);
+			name = "BeardedSpiceTests-InfoPlist.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

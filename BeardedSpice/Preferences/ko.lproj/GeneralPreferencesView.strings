@@ -1,0 +1,21 @@
+/* Class = "NSButtonCell"; title = "Show track info on keypress when player is hidden"; ObjectID = "352"; */
+"352.title" = "플레이어가 숨겨져 있을 때 키를 누르면 트랙 정보 표시";
+
+/* Class = "NSButtonCell"; title = "Launch at login"; ObjectID = "722"; */
+"722.title" = "로그인 시 실행";
+
+/* Class = "NSButtonCell"; title = "Pause playback when headphone is removed"; ObjectID = "766"; */
+"766.title" = "이어폰 잭이 제거된 경우 일시정지";
+
+/* Class = "NSButtonCell"; title = "Use Apple Remote for control playback"; ObjectID = "825"; */
+"825.title" = "재생을 제어할 때 애플 리모트 사용";
+
+/* Class = "NSButtonCell"; title = "Check for Compatibility Updates at Launch"; ObjectID = "C81-eE-dH1"; */
+"C81-eE-dH1.title" = "시작 시 업데이트 확인";
+
+/* Class = "NSButtonCell"; title = "Show track progress instead of album"; ObjectID = "IUs-Ty-SYf"; */
+"IUs-Ty-SYf.title" = "앨범 이미지 대신 곡 진행도 표시";
+
+/* Class = "NSButtonCell"; title = "Use current media controller for the volume control, if applicable"; ObjectID = "gBv-Vo-saU"; */
+"gBv-Vo-saU.title" = "가능하면 현재 설정된 미디어 컨트롤러의 볼륨을 조절";
+

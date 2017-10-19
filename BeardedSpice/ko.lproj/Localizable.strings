@@ -1,0 +1,64 @@
+/* Notification Titles */
+"Bearded Spice - Compatibility Updates" = "Bearded Spice - 업데이트";
+
+/* Cancel button */
+"Cancel" = "취소";
+
+/* Menu Titles */
+"Check for Compatibility Updates" = "업데이트 확인";
+
+/* Menu Titles */
+"Checking..." = "확인중...";
+
+/* Toolbar item name for the Media Controllers preference pane */
+"Controllers" = "미디어 컨트롤러";
+
+/* Toolbar item name for the General preference pane */
+"General" = "일반";
+
+/* (BSMediaStrategy) Internal error description. */
+"Internal error occured." = "내부 오류가 발생했습니다.";
+
+/* General preferences - controllers table */
+"Native" = "응용 프로그램";
+
+/* AirfoilSatelliteTabAdapter
+   DowncastTabAdapter
+   iTunesTabAdapter
+   SpotifyTabAdapter
+   TidalTabAdapter */
+"No Track" = "재생 중인 곡 없음";
+
+/* Title on empty menu */
+"No access to control of the keyboard" = "키보드 조작 권한이 없습니다";
+
+/* Title on empty menu */
+"No applicable tabs open" = "사용 가능한 인터넷 탭 없음";
+
+/* Explanation that we need to restart app */
+"Once you enable access in System Preferences, you must restart BeardedSpice." = "시스템 환경 설정을 변경한 후에는 BeardedSpice를 재시작 해야합니다.";
+
+/* Overwrite button */
+"Overwrite" = "덮어쓰기";
+
+/* Common title for Preferences window */
+"Preferences" = "설정";
+
+/* Remove button */
+"Remove" = "지우기";
+
+/* Toolbar item name for the Shortcuts preference pane */
+"Shortcuts" = "단축키";
+
+/* Notification Titles */
+"There were %u compatibility updates." = "%u건의 업데이트가 있습니다.";
+
+/* General preferences - controllers table */
+"Web" = "웹 사이트";
+
+/* Title on empty menu */
+"You must restart BeardedSpice" = "BeardedSpice를 재시작 해야합니다.";
+
+/* Title that we need to restart app */
+"You must restart BeardedSpice." = "BeardedSpice를 재시작 해야합니다.";
+

@@ -1,0 +1,63 @@
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"5.title" = "모두 앞으로 가져오기";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"19.title" = "창";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"23.title" = "최소화";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"24.title" = "창";
+
+/* Class = "NSMenu"; title = "AMainMenu"; ObjectID = "29"; */
+"29.title" = "AMainMenu";
+
+/* Class = "NSMenuItem"; title = "BeardedSpice"; ObjectID = "56"; */
+"56.title" = "BeardedSpice";
+
+/* Class = "NSMenu"; title = "BeardedSpice"; ObjectID = "57"; */
+"57.title" = "BeardedSpice";
+
+/* Class = "NSMenuItem"; title = "About BeardedSpice"; ObjectID = "58"; */
+"58.title" = "BeardedSpice 정보";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
+"73.title" = "닫기";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
+"129.title" = "환경설정";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "서비스";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "서비스";
+
+/* Class = "NSMenuItem"; title = "Hide BeardedSpice"; ObjectID = "134"; */
+"134.title" = "BeardedSpice 숨기기";
+
+/* Class = "NSMenuItem"; title = "Quit BeardedSpice"; ObjectID = "136"; */
+"136.title" = "BeardedSpice 종료";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "다른 앱 숨기기";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "모두 보여주기";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "239"; */
+"239.title" = "확대";
+
+/* Class = "NSMenuItem"; title = "Quit BeardedSpice"; ObjectID = "PLq-0w-RnA"; */
+"PLq-0w-RnA.title" = "BeardedSpice 종료";
+
+/* Class = "NSMenuItem"; title = "Check for Compatibility Updates"; ObjectID = "Qfc-QT-jQd"; */
+"Qfc-QT-jQd.title" = "업데이트 확인";
+
+/* Class = "NSMenu"; title = "StatusMenu"; ObjectID = "SbZ-uf-jkn"; */
+"SbZ-uf-jkn.title" = "StatusMenu";
+
+/* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "pCl-cs-BJx"; */
+"pCl-cs-BJx.title" = "환경설정";
+

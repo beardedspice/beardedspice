@@ -8,7 +8,7 @@
 
 BSStrategy = {
   version: 2,
-  displayName:"GenieMusic",
+  displayName: "GenieMusic",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*genie.co.kr/player*'",
@@ -23,10 +23,10 @@ BSStrategy = {
   trackInfo: function () {
     return {
         'track': document.getElementById("SongTitleArea").textContent,
-        'album': document.getElementById("AlbumImgArea").getElementsByTagName('img')[0].getAttribute("alt"),
+        'album': document.getElementById("AlbumImgArea").getElementsByTagName("img")[0].getAttribute("alt"),
         'artist': document.getElementById("ArtistNameArea").textContent,
-        'image': 'http:' + document.getElementById("AlbumImgArea").getElementsByTagName('img')[0].getAttribute("src"),
-        'favorited': (document.getElementsByClassName('btn-like')[0].className.indexOf('active') > 0)
+        'image': 'http:' + document.getElementById("AlbumImgArea").getElementsByTagName("img")[0].getAttribute("src"),
+        'favorited': (document.getElementsByClassName("btn-like")[0].className.indexOf("active") > 0)
     }
   }
 }

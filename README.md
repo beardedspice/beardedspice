@@ -92,6 +92,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)
 - [Gaana](http://gaana.com)
+- [Genie Music](http://www.genie.co.kr/)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HotNewHipHop Mixtapes](http://www.hotnewhiphop.com/mixtapes/)

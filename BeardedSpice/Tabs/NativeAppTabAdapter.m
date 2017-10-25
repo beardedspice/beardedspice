@@ -15,9 +15,9 @@
 @implementation NativeAppTabAdapter
 
 +(id)tabAdapterWithApplication:(runningSBApplication *)application{
-    
+
     NativeAppTabAdapter *tab = [[self class] new];
-    
+
     tab.application = application;
     return tab;
 }

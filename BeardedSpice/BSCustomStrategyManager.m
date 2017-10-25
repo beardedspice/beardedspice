@@ -77,7 +77,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
             MediaStrategyRegistry *registry = [MediaStrategyRegistry singleton];
             error = [registry.strategyCache updateStrategyWithURL:pathToFile];
             
-            if (error.code == BSSC_ERROR_STARTEGY_NOTFOUND) {
+            if (error.code == BSSC_ERROR_STRATEGY_NOTFOUND) {
                 
                 BSMediaStrategy *newStrategy = [registry.strategyCache addStrategyWithURL:pathToFile];
                 if (newStrategy) {

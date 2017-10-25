@@ -28,7 +28,7 @@
     // https://github.com/beardedspice/beardedspice/issues/257
     out.applescriptIsolatedVersion = NO;
     NSInteger version = [[(ChromeApplication *)application.sbApplication version] integerValue];
-    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM];
+    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM, APPID_VIVALDI];
     if (version > 45 && [googleBundleIds containsObject:application.bundleIdentifier]){
         out.applescriptIsolatedVersion = YES;
     }
@@ -49,9 +49,9 @@
 
         [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];
 
-        NSDictionary *result = [self.tab executeJavascript:@"JSON.parse(document.getElementById('" HACK_NAME @"').innerText)"];
+        NSDictionary *result = [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"') ? JSON.parse(document.getElementById('" HACK_NAME @"').innerText) : {}"];
 
-        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"').remove()"];
+        [self.tab executeJavascript:@"document.getElementById('" HACK_NAME @"') && document.getElementById('" HACK_NAME @"').remove()"];
 
         return result[@"hackResult"];
     }

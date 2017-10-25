@@ -13,6 +13,8 @@
 #import "VOXTabAdapter.h"
 #import "VLCTabAdapter.h"
 #import "DowncastTabAdapter.h"
+#import "AirfoilSatelliteTabAdapter.h"
+#import "TidalTabAdapter.h"
 
 @implementation NativeAppTabRegistry
 
@@ -23,36 +25,36 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
 #pragma mark Initialize
 
 + (NativeAppTabRegistry *)singleton{
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+
         singletonNativeAppTabRegistry = [NativeAppTabRegistry alloc];
         singletonNativeAppTabRegistry = [singletonNativeAppTabRegistry init];
     });
-    
+
     return singletonNativeAppTabRegistry;
-    
+
 }
 
 - (id)init{
-    
+
     if (singletonNativeAppTabRegistry != self) {
         return nil;
     }
     self = [super init];
-    
+
     return self;
 }
 
 - (void)setUserDefaultsKey:(NSString *)defaultsKey{
-    
+
     _availableAppClasses = [NSMutableArray array];
     _availableCache = [NSMutableDictionary dictionary];
-    
+
     NSArray *defaultApps = [NativeAppTabRegistry defaultNativeAppClasses];
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:defaultsKey];
-    
+
     for (Class appClass in defaultApps) {
         NSString *name = [appClass displayName];
         if (name) {
@@ -62,7 +64,7 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
             }
         }
     }
-    
+
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -71,12 +73,13 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
 + (NSArray *)defaultNativeAppClasses {
 
     return @[
-
         [iTunesTabAdapter class],
         [SpotifyTabAdapter class],
         [VLCTabAdapter class],
         [VOXTabAdapter class],
-        [DowncastTabAdapter class]
+        [DowncastTabAdapter class],
+        [AirfoilSatelliteTabAdapter class],
+        [TidalTabAdapter class]
     ];
 }
 

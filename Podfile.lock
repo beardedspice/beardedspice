@@ -1,21 +1,26 @@
 PODS:
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - Kiwi (2.4.0)
   - MASPreferences (1.1.4)
   - MASShortcut (2.3.3)
   - VCRURLConnection (0.2.0)
 
 DEPENDENCIES:
+  - FMDB (~> 2.6.2)
   - Kiwi
   - MASPreferences (= 1.1.4)
   - MASShortcut (~> 2.3.3)
   - VCRURLConnection
 
 SPEC CHECKSUMS:
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   MASPreferences: 7bdcfe891d7840453cf48f95fa866c3e152ace7a
   MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
   VCRURLConnection: accd771ebd4be11183a3e4d5a4403f180a9a235e
 
-PODFILE CHECKSUM: 8cc81dabf4de1b33ff899c97571ab25e98561e61
+PODFILE CHECKSUM: b95841a52074c51c16773cba95ddcef7b1606d61
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

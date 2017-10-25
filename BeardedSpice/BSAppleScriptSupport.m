@@ -8,6 +8,7 @@
 
 
 #import "AppDelegate.h"
+#import "BSActiveTab.h"
 
 @interface BSAppleScriptPlayPauseCommand: NSScriptCommand { } @end
 @interface BSAppleScriptNextCommand: NSScriptCommand { } @end
@@ -27,9 +28,9 @@
     //But at least they'll update -eventually-, so your next call will get something useful
 
     [self menuNeedsUpdate: statusMenu];
-    
+
     //Safe to access activeTab ivar here?
-    return [activeTab title];
+    return [self.activeApp title];
 }
 
 @end

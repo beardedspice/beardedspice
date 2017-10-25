@@ -11,3 +11,23 @@
   #import "NSURL+Utils.h" // FIXME update to reflect namespaced category BSUtils
   #import "NSString+Utils.h"
 #endif
+
+#pragma mark Logging Logic
+
+#define LOG_DEBUG    1
+#define LOG_INFO     2
+#define LOG_ERROR    3
+#define LOG_CRITICAL 4
+
+#ifdef DEBUG
+#define LOG_LEVEL LOG_DEBUG
+#elif BETA
+#define LOG_LEVEL LOG_INFO
+#else // production
+#define LOG_LEVEL LOG_ERROR
+#endif
+
+#define BS_LOG(x, y, ...) do { if (x >= LOG_LEVEL) { NSLog(y, __VA_ARGS__); } } while(0)
+
+#pragma mark - Other
+

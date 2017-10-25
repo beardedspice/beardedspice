@@ -12,6 +12,7 @@
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
 		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
 		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
+		0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */; };
 		0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */; };
 		0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */; };
 		0B1AF3801CCE4D4C0021BBEA /* BSStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3791CCE4D4C0021BBEA /* BSStrategyTests.m */; };
@@ -28,6 +29,7 @@
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
 		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
 		11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
+		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
 		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
@@ -35,6 +37,8 @@
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
+		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
+		654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */; };
 		655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA61D3ABFAA00E316EA /* EHCCache.m */; };
 		655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */; };
 		656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -64,6 +68,7 @@
 		656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFF01C8ACDCF00BD29F5 /* main.m */; };
 		656AFFF51C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */; };
+		657635A81E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
@@ -72,6 +77,10 @@
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
 		65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */; };
 		65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */; };
+		65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B1665C1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m */; };
+		65B1665F1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65B1665D1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib */; };
+		65B166621ED4C82700646F9A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
+		65B166641ED58E3700646F9A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B166631ED58E3700646F9A /* AudioToolbox.framework */; };
 		65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B32B8D1AD99D1600F696B9 /* TabAdapter.m */; };
 		65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */; };
 		65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */ = {isa = PBXBuildFile; fileRef = 65D57FCA1D02CBFE0016F270 /* MediaStrategies */; };
@@ -83,6 +92,8 @@
 		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
+		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
+		65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */; };
 		78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */; };
@@ -151,6 +162,8 @@
 		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSActiveTab.h; sourceTree = "<group>"; };
+		0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSActiveTab.m; sourceTree = "<group>"; };
 		0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyTests.m; sourceTree = "<group>"; };
 		0B1AF3771CCE4D4C0021BBEA /* BSStrategyMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyMockObject.h; sourceTree = "<group>"; };
 		0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyMockObject.m; sourceTree = "<group>"; };
@@ -168,6 +181,7 @@
 		0BF06AE01C9513A800534083 /* BSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrack.m; sourceTree = "<group>"; };
 		19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
 		2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		25D13F6E1E9A2F6400149554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; sourceTree = "<group>"; };
 		412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
 		47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +202,10 @@
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
+		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
+		654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalTabAdapter.h; sourceTree = "<group>"; };
+		654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidalTabAdapter.m; sourceTree = "<group>"; };
+		654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		655AACA51D3ABFAA00E316EA /* EHCCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCCache.h; sourceTree = "<group>"; };
 		655AACA61D3ABFAA00E316EA /* EHCCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCCache.m; sourceTree = "<group>"; };
 		655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
@@ -237,6 +255,9 @@
 		656AFFFB1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeadphoneStatusListener.h; sourceTree = "<group>"; };
 		656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeadphoneStatusListener.m; sourceTree = "<group>"; };
 		656AFFFF1C8AD3C800BD29F5 /* DDHidAppleMikey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleMikey.h; sourceTree = "<group>"; };
+		657635A51E88199900A4FCAD /* AirfoilSatellite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirfoilSatellite.h; sourceTree = "<group>"; };
+		657635A61E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirfoilSatelliteTabAdapter.h; sourceTree = "<group>"; };
+		657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirfoilSatelliteTabAdapter.m; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOXTabAdapter.h; sourceTree = "<group>"; };
@@ -251,6 +272,10 @@
 		65ABBAA81D1FDC5400F882CE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		65ADE6031D169D0C000C29F1 /* EHVerticalCenteredTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHVerticalCenteredTextField.h; sourceTree = "<group>"; };
 		65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHVerticalCenteredTextField.m; sourceTree = "<group>"; };
+		65B1665B1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategiesPreferencesViewController.h; sourceTree = "<group>"; };
+		65B1665C1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategiesPreferencesViewController.m; sourceTree = "<group>"; };
+		65B1665D1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSStrategiesPreferencesViewController.xib; sourceTree = "<group>"; };
+		65B166631ED58E3700646F9A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		65B32B8C1AD99D1600F696B9 /* TabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAdapter.h; sourceTree = "<group>"; };
 		65B32B8D1AD99D1600F696B9 /* TabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabAdapter.m; sourceTree = "<group>"; };
 		65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTabAdapter.m; sourceTree = "<group>"; };
@@ -267,6 +292,9 @@
 		65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPreferencesWindowController.m; sourceTree = "<group>"; };
 		65E567121B775C9300AD2D46 /* BSShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSShortcutView.h; sourceTree = "<group>"; };
 		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
+		65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVolumeWindowController.h; sourceTree = "<group>"; };
+		65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVolumeWindowController.m; sourceTree = "<group>"; };
+		65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSVolumeWindowController.xib; sourceTree = "<group>"; };
 		65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLaunchAtLogin.h; sourceTree = "<group>"; };
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAppleScriptSupport.m; sourceTree = "<group>"; };
@@ -310,6 +338,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65B166641ED58E3700646F9A /* AudioToolbox.framework in Frameworks */,
+				65B166621ED4C82700646F9A /* CoreAudio.framework in Frameworks */,
+				654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */,
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */,
@@ -337,6 +368,9 @@
 				0369231C1862936600E04DDB /* GeneralPreferencesViewController.h */,
 				0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */,
 				65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */,
+				65B1665B1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.h */,
+				65B1665C1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m */,
+				65B1665D1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib */,
 				653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */,
 				653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */,
 				65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */,
@@ -368,6 +402,7 @@
 				6588CF471B358A8300A3CBAD /* VOX.h */,
 				9679336318551A8F00A49AC7 /* Chrome.h */,
 				03F33EE71857E2EE00E8F77E /* Safari.h */,
+				657635A51E88199900A4FCAD /* AirfoilSatellite.h */,
 				65B32B8C1AD99D1600F696B9 /* TabAdapter.h */,
 				65B32B8D1AD99D1600F696B9 /* TabAdapter.m */,
 				65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */,
@@ -382,6 +417,10 @@
 				65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */,
 				6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */,
 				6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */,
+				657635A61E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.h */,
+				657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */,
+				654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */,
+				654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -483,6 +522,16 @@
 			path = DDHidLib;
 			sourceTree = "<group>";
 		};
+		65FBCE3B1EC0F8F3004EFFC7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */,
+				65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */,
+				65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +563,8 @@
 		9679332E1855173100A49AC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65B166631ED58E3700646F9A /* AudioToolbox.framework */,
+				654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */,
 				0BD1B2F21CD21AA900B72A3E /* JavaScriptCore.framework */,
 				65E567071B76104300AD2D46 /* CoreAudio.framework */,
 				03F33ECB1855306A00E8F77E /* Carbon.framework */,
@@ -544,10 +595,14 @@
 				65ABBAA81D1FDC5400F882CE /* Config.xcconfig */,
 				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
 				65D57FCA1D02CBFE0016F270 /* MediaStrategies */,
+				65FBCE3B1EC0F8F3004EFFC7 /* UI */,
 				0369231B1862934000E04DDB /* Preferences */,
 				03F33EE31857E21100E8F77E /* Tabs */,
+				653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */,
 				03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */,
 				03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */,
+				0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */,
+				0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */,
 				0BF06ADB1C9513A800534083 /* BSMediaStrategy.h */,
 				0BF06ADC1C9513A800534083 /* BSMediaStrategy.m */,
 				0BE8FFFA1CDA4F5B001A4DDF /* versions.plist */,
@@ -583,6 +638,7 @@
 				78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */,
 				9679333B1855173100A49AC7 /* main.m */,
 				9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */,
+				25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */,
 				0B355EF51CBEA3350089C2B3 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -739,12 +795,15 @@
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
+				25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */,
 				78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
 				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,
+				65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */,
 				0BE800771CDA4F5B001A4DDF /* versions.plist in Resources */,
+				65B1665F1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,7 +846,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
@@ -817,7 +876,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */ = {
@@ -877,7 +936,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -919,14 +978,17 @@
 			files = (
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0BF06AE51C9513A800534083 /* BSTrack.m in Sources */,
+				654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */,
 				655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,
+				657635A81E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
+				65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
@@ -938,11 +1000,13 @@
 				656A00311C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
 				65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */,
 				0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */,
+				65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */,
 				656A00331C8AD41A00BD29F5 /* NSException+Utils.m in Sources */,
 				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
+				0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
 				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
@@ -992,6 +1056,14 @@
 				652AD3391CC04ABA005396CD /* Base */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25D13F6E1E9A2F6400149554 /* Base */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */ = {
@@ -1096,7 +1168,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1134,7 +1206,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 			};
 			name = Release;

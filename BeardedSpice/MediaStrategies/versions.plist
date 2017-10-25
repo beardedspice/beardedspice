@@ -2,21 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BandCampWhiteLabel</key>
-	<integer>1</integer>
-	<key>StyleJukebox</key>
-	<integer>1</integer>
 	<key>AmazonMusic</key>
+	<integer>1</integer>
+	<key>Anghami</key>
 	<integer>1</integer>
 	<key>AppleDeveloper</key>
 	<integer>1</integer>
 	<key>Audible</key>
 	<integer>1</integer>
-	<key>AudioMack</key>
-	<integer>1</integer>
+	<key>Audiomack</key>
+	<integer>2</integer>
 	<key>BandCamp</key>
-	<integer>1</integer>
+	<integer>2</integer>
+	<key>BandCampWhiteLabel</key>
+	<integer>2</integer>
 	<key>BBCRadio</key>
+	<integer>1</integer>
+	<key>BBCRadioProgrammes</key>
 	<integer>1</integer>
 	<key>BE-AT.TV</key>
 	<integer>1</integer>
@@ -39,10 +41,14 @@
 	<key>CozyCloud</key>
 	<integer>1</integer>
 	<key>Deezer</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>DigitallyImported</key>
 	<integer>1</integer>
+	<key>Eggheadio</key>
+	<integer>2</integer>
 	<key>EightTracks</key>
+	<integer>1</integer>
+	<key>Fip</key>
 	<integer>1</integer>
 	<key>FocusAtWill</key>
 	<integer>1</integer>
@@ -50,11 +56,15 @@
 	<integer>1</integer>
 	<key>Gaana</key>
 	<integer>1</integer>
-	<key>GoogleMusic</key>
+	<key>GenieMusic</key>
 	<integer>2</integer>
+	<key>GoogleMusic</key>
+	<integer>3</integer>
 	<key>GrooveShark</key>
 	<integer>1</integer>
 	<key>HotNewHipHop</key>
+	<integer>1</integer>
+	<key>Hungama</key>
 	<integer>1</integer>
 	<key>HypeMachine</key>
 	<integer>1</integer>
@@ -70,18 +80,26 @@
 	<integer>1</integer>
 	<key>KollektFm</key>
 	<integer>1</integer>
+	<key>Laracasts</key>
+	<integer>1</integer>
 	<key>LastFm</key>
 	<integer>1</integer>
 	<key>LeTournedisque</key>
+	<integer>1</integer>
+	<key>ListenersPlaylist</key>
+	<integer>1</integer>
+	<key>ListenMoe</key>
 	<integer>1</integer>
 	<key>ListenOnRepeat</key>
 	<integer>1</integer>
 	<key>LogitechMediaServer</key>
 	<integer>1</integer>
+	<key>Lynda</key>
+	<integer>1</integer>
+	<key>Madsonic</key>
+	<integer>1</integer>
 	<key>MixCloud</key>
 	<integer>3</integer>
-	<key>MixcloudBeta</key>
-	<integer>1</integer>
 	<key>MusicForProgramming</key>
 	<integer>1</integer>
 	<key>MusicUnlimited</key>
@@ -92,6 +110,10 @@
 	<integer>1</integer>
 	<key>NoAdRadio</key>
 	<integer>1</integer>
+	<key>NPR</key>
+	<integer>1</integer>
+	<key>NPROne</key>
+	<integer>1</integer>
 	<key>NoonPacific</key>
 	<integer>1</integer>
 	<key>NRK</key>
@@ -100,8 +122,14 @@
 	<integer>1</integer>
 	<key>Overcast</key>
 	<integer>1</integer>
+	<key>Pakartot</key>
+	<integer>1</integer>
 	<key>Pandora</key>
-	<integer>2</integer>
+	<integer>5</integer>
+	<key>PhishIn</key>
+	<integer>1</integer>
+	<key>PhishTracks</key>
+	<integer>1</integer>
 	<key>PlexWeb</key>
 	<integer>3</integer>
 	<key>PocketCasts</key>
@@ -119,8 +147,10 @@
 	<key>Qobuz</key>
 	<integer>1</integer>
 	<key>Saavn</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>ShufflerFm</key>
+	<integer>1</integer>
+	<key>SiriusXM</key>
 	<integer>1</integer>
 	<key>Slacker</key>
 	<integer>1</integer>
@@ -131,17 +161,19 @@
 	<key>SoundCloud</key>
 	<integer>2</integer>
 	<key>Spotify</key>
-	<integer>1</integer>
+	<integer>2</integer>
+	<key>Stingray</key>
+	<integer>3</integer>
 	<key>Stitcher</key>
 	<integer>1</integer>
 	<key>Stripewaves</key>
 	<integer>1</integer>
+	<key>StyleJukebox</key>
+	<integer>1</integer>
 	<key>Subsonic</key>
 	<integer>1</integer>
 	<key>Synology</key>
-	<integer>1</integer>
-	<key>TidalHiFi</key>
-	<integer>1</integer>
+	<integer>3</integer>
 	<key>TuneIn</key>
 	<integer>1</integer>
 	<key>TwentyTwoTracks</key>
@@ -155,13 +187,15 @@
 	<key>Vimeo</key>
 	<integer>1</integer>
 	<key>Vk</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>WatchaPlay</key>
 	<integer>1</integer>
 	<key>WonderFm</key>
 	<integer>2</integer>
 	<key>XboxMusic</key>
 	<integer>2</integer>
+	<key>Xiami</key>
+	<integer>1</integer>
 	<key>YandexMusic</key>
 	<integer>2</integer>
 	<key>YandexRadio</key>
@@ -170,11 +204,7 @@
 	<integer>1</integer>
 	<key>Zing</key>
 	<integer>1</integer>
-	<key>Anghami</key>
-	<integer>1</integer>
-	<key>Fip</key>
-	<integer>1</integer>
-	<key>Xiami</key>
+	<key>Zvooq</key>
 	<integer>1</integer>
 </dict>
 </plist>

@@ -1,3 +1,8 @@
+[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
+
+# Common Issues
+
+It's asked that anyone with an issue check the [Wiki Section](https://github.com/beardedspice/beardedspice/wiki) before posting a new issue.
 
 # Users Guide
 
@@ -16,7 +21,7 @@ We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look 
 
 Ready to give BeardedSpice a spin? You can download the [latest release here](https://raw.github.com/beardedspice/beardedspice/distr/publish/releases/BeardedSpice-latest.zip)*, or find a full list of all our [previously released binaries here](https://github.com/beardedspice/beardedspice/releases).
 
-*Mac OS X 10.9 or greater required.
+*Mac OS X 10.10 or greater required.
 
 ## Features
 
@@ -27,6 +32,11 @@ BeardedSpice tries to automatically guess which tab it should control for you. W
 
 ### Automatic Updates
 No more checking for new releases on our website, BeardedSpice will automatically notify you when a new release is available.
+
+### Up to Date Media Strategies
+First, what is a Media Strategy? This is what we call a [template](https://github.com/beardedspice/beardedspice/blob/master/template-explained.js) with custom javascript aimed at a specific website, allowing the BeardedSpice program to control it with the media keys.
+
+Second, the Compatibility Updates option allows you to check for added or changed Media Strategies that were contributed since the last official release.
 
 ### Keyboard Shortcuts
 BeardedSpice comes with a handy list of Keyboard Shortcuts that can be configured under the `Shortcuts` tab of BeardedSpice Preferences (available through the menubar icon). Here is a table of Default Keyboard Shortcuts:
@@ -50,6 +60,13 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [VLC](http://www.videolan.org/vlc/)
 - [VOX](http://coppertino.com/)
 - [Downcast](http://downcast.fm/)
+- [TIDAL Desktop](http://tidal.com/ru/download)
+
+### Supported Browsers
+ - [Safari](https://www.apple.com/safari/)
+ - [Google Chrome](https://www.google.com/chrome/browser/desktop/)
+ - [Vivaldi](https://vivaldi.com/)
+
 
 ### Supported Sites
 - [8Tracks](http://8tracks.com)
@@ -57,7 +74,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Amazon Music](https://www.amazon.com/gp/dmusic/cloudplayer/player)
 - [Apple Developer](https://developer.apple.com/videos/)
 - [Audible](http://www.audible.com/)
-- [AudioMack](http://www.audiomack.com/)
+- [Audiomack](http://www.audiomack.com/)
 - [BandCamp](http://bandcamp.com)
 - [BBC Radio](http://www.bbc.co.uk/radio)
 - [Beatguide](https://beatguide.me/)
@@ -74,6 +91,8 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)
+- [Gaana](http://gaana.com)
+- [Genie Music](http://www.genie.co.kr/)
 - [Google Music](https://play.google.com/music/)
 - [GrooveShark](http://grooveshark.com)
 - [HotNewHipHop Mixtapes](http://www.hotnewhiphop.com/mixtapes/)
@@ -94,10 +113,14 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Netflix](http://www.netflix.com)
 - [NoAdRadio.com](http://www.noadradio.com/)
 - [NoonPacific.com](http://noonpacific.com)
+- [NPR One](http://one.npr.org/)
 - [NRK Radio](https://radio.nrk.no/)
 - [Odnoklassniki](http://ok.ru)
 - [Overcast.fm](https://overcast.fm)
+- [Pakartot](http://www.pakartot.lt)
 - [Pandora](http://www.pandora.com)
+- [Phish.in](http://phish.in)
+- [PhishTracks](http://PhishTracks.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [ProductHunt](https://www.producthunt.com/podcasts/)
@@ -106,15 +129,16 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Rdio](http://rdio.com)
 - [Saavn](http://www.saavn.com/)
 - [Shuffler.fm](http://shuffler.fm/)
+- [SiriusXM](http://www.siriusxm.com)
 - [Slacker](http://www.slacker.com/)
 - [SomaFM](http://somafm.com)
 - [SoundCloud](https://soundcloud.com)
 - [Spotify (Web)](https://play.spotify.com)
+- [Stingray](https://webplayer.stingray.com)
 - [STITCHER](http://www.stitcher.com/)
-- [Style Jukebox] (http://play.stylejukebox.com/)
+- [Style Jukebox](http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
 - [Synology](http://synology.com)
-- [TIDAL (Web)](http://listen.tidal.com/)
 - [TuneIn](http://tunein.com/)
 - [Twitch TV](http://www.twitch.tv/)
 - [Udemy](https://www.udemy.com/)
@@ -129,139 +153,15 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Yandex Radio](https://radio.yandex.ru/)
 - [YouTube](https://www.youtube.com/)
 - [Zing MP3](https://mp3.zing.vn)
+- [Zvooq](http://zvooq.com)
 
 #### Don't see your favorite site in the list ?
-No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]). Or, if you're in the mood to try something new, just follow the [Developers' Guide](#developers-guide) below and write your own *media strategy*, integrating a new app in BeardedSpice is really easy and requires minimal objective-c experience and a little of JavaScript basics.
+No Problem, Just [submit an issue](https://github.com/beardedspice/beardedspice/issues/new?title=[App%20Support]).
 
+#### Want to Contribute?
+Please do! Contributions are the lifeblood of the project, and yours helps keep us moving forward.
 
----
+If you just want to add a new website to the list above, checkout the [app support request list](https://github.com/beardedspice/beardedspice/labels/app%20support). The **[Developer How-To Guide](docs/developers-guide-web.md)** has the information needed to get started (and don't be afraid to ask questions!).
+Websites only need some (easily learned) knowledge of javascript and maybe [webpage delving with devtool](https://zapier.com/blog/inspect-element-tutorial/) (also [Chrome's official documentation](https://developers.google.com/web/tools/chrome-devtools/)). 
 
-#Developers' Guide
-
-## Dependencies
-
-We use [CocoaPods](https://cocoapods.org/) to manage all obj-c/cocoa dependences. cd to the directory containing the workspace, then install them locally using:
-```bash
-sudo gem install cocoapods
-pod setup
-pod install
-```
-
-*Always* use `BeardedSpice.xcworkspace` for development, *NOT* `BeardedSpice.xcodeproject`
-
-BeardedSpice is built with [SPMediaKeyTap](https://github.com/nevyn/SPMediaKeyTap) and works well with other applications listening to media key events.
-
-
-## Writing a *Media Strategy*
-
-Media controllers are written as [strategies](https://github.com/beardedspice/beardedspice/blob/master/template-explained.js). Each strategy defines a collection of Javascript functions to be executed on particular webpages.
-
-```javascript
-//
-//  NewStrategyName.js
-//  BeardedSpice
-//
-//  Created by You on Today's Date.
-//  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
-//
-
-// We put the copyright inside the file to retain consistent syntax coloring.
-
-// Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
-// Normal formatting is supported (can copy/paste with newlines and indentations)
-
-BSStrategy = {
-  version: 1,
-  displayName: "Strategy Name",
-  accepts: {
-    method: "predicateOnTab" /* OR "script" */,
-    /* Use these if "predicateOnTab" */
-    format: "%K LIKE[c] '*[YOUR-URL-DOMAIN-OR-TITLE-HERE]*'",
-    args: ["URL" /* OR "title" */]
-    /* Use "script" if method is "script" */
-    /* script: function () { "javascript that returns a boolean value" } */
-  },
-
-  isPlaying: function () { /* javascript that returns a boolean */ },
-  toggle: function () {  },
-  previous: function () { },
-  next: function () {  },
-  pause: function () { },
-  favorite: function () { /* toggles favorite on/off */},
-  /*
-  - Return a dictionary of namespaced key/values here.
-  All manipulation should be supported in javascript.
-
-  - Namespaced keys currently supported include: track, album, artist, favorited, image (URL)
-  */
-  trackInfo: function () {
-    return {
-        'track': 'the name of the track',
-        'album': 'the name of the current album',
-        'artist': 'the name of the current artist',
-        'image': 'http://www.example.com/some/album/artwork.png',
-        'favorited': 'true/false if the track has been favorited',
-    };
-  }
-}
-// The file must have an empty line at the end.
-
-```
-
-- `accepts` - takes a `Tab` object and returns `YES` if the strategy can control the given tab.
-
-- `displayName` - must return a unique string describing the controller and will be used as the name shown in the Preferences panel. Some other functions return a Javascript function for the particular action.
-
-- `pause` - a special case used when changing the active tab.
-
-- `trackInfo` - [Optional] returns a `BSTrack` object based on the currently accepted 5 keys (see trackInfo in the above xml), which used in notifications for the user.
-
-
-Update the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) to include an instance of your new strategy:
-
-```xml
-    <key>AmazonMusic</key>
-    <integer>1</integer>
-```
-
-## Updating a *Media Strategy*
-
-In the case that a strategy template no longer works with a service, or is missing functionality: All logic for controlling a service should be written in javascript and stored in the appropriate .js file. For example, the [Youtube strategy](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/Youtube.js) has javascript for all five functions as well as partial trackInfo retrieval.
-
-After updating a strategy, update it's version in the `ServiceName.js` you've created, as well as the ServiceName entry in the [`versions.plist`](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/MediaStrategies/versions.plist) file. Updating a version means incrementing the number by 1. All references to the service should have the same version when creating a PR.
-
-```xml
-    <!-- versions.plist -->
-    <key>AmazonMusic</key>
-    <integer>1</integer>
-```
-```js
-    // AmazonMusic.js
-    BSStrategy = {
-      version: 1,
-      ...
-    }
-```
-
-becomes
-
-```
-    <!-- versions.plist -->
-    <key>AmazonMusic</key>
-    <integer>2</integer>
-```
-```js
-    // AmazonMusic.js
-    BSStrategy = {
-      version: 2,
-      ...
-    }
-```
-
-If you find that javascript alone cannot properly control a service, please [create an issue](https://github.com/beardedspice/beardedspice/issues/new?label=%5BApp%20Support%5D) specifying your work branch (as a link), the service in question, and your difficulty as precisely as possible.
-
-
-# About pull requests
-Any progressive improvement is welcome. Also if you are implementing a new strategy, take the trouble to implement all methods with the most modern API for the service, please. PR with a strategy that is not fully implemented for no reason will be rejected.
-
-[![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
+Integrating a new native app (aka Chrome, Firefox, Spotify) in BeardedSpice is a little more complicated and requires **NO objective-c experience**. Many [good](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/Tabs/SpotifyTabAdapter.m) [examples](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/Tabs/iTunesTabAdapter.m) exist. However, some apps simply aren't compatible at this time. See the [wiki article](https://github.com/beardedspice/beardedspice/wiki/Native-App-Developers'-Guide) on getting started importing a Native app.

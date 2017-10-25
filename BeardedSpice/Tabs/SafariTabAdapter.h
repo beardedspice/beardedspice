@@ -10,6 +10,7 @@
 #import "Safari.h"
 
 #define APPID_SAFARI            @"com.apple.Safari"
+#define APPID_SAFARITP          @"com.apple.SafariTechnologyPreview"
 
 @class runningSBApplication;
 

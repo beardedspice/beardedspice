@@ -8,24 +8,30 @@
 
 #import "BSTrack.h"
 
+#import "GeneralPreferencesViewController.h"
+
 NSString *const kBSTrackNameImage = @"image";
 NSString *const kBSTrackNameTrack = @"track";
 NSString *const kBSTrackNameAlbum = @"album";
 NSString *const kBSTrackNameArtist = @"artist";
+NSString *const kBSTrackNameProgress = @"progress";
 NSString *const kBSTrackNameFavorited = @"favorited";
+NSString *const kBSTrackNameIdentifier = @"BSTrack Notification";
+
+NSString *const kImageLock = @"kImageLock";
 
 @interface BSTrack ()
 
 @property (nonatomic, strong) NSString *imageURL;
-
-@property (nonatomic, strong) NSString *lastImageUrlString;
-@property (nonatomic, strong) NSImage *lastImage;
 
 - (void)_loadImage;
 
 @end
 
 @implementation BSTrack
+
+static NSString *_lastImageUrlString;
+static NSImage *_lastImage;
 
 - (instancetype)init
 {
@@ -35,6 +41,7 @@ NSString *const kBSTrackNameFavorited = @"favorited";
         _track = @"";
         _album = @"";
         _artist = @"";
+        _progress = @"";
         _favorited = @0;
         _image = nil;
     }
@@ -49,6 +56,7 @@ NSString *const kBSTrackNameFavorited = @"favorited";
         _track = info[kBSTrackNameTrack] ?: @"";
         _album = info[kBSTrackNameAlbum] ?: @"";
         _artist = info[kBSTrackNameArtist] ?: @"";
+        _progress = info[kBSTrackNameProgress] ?: @"";
         _favorited = info[kBSTrackNameFavorited] ?: @0; // 0 could also be evaluated as @NO
         _image = nil;
         _imageURL = info[kBSTrackNameImage] ?: nil;
@@ -71,9 +79,15 @@ NSString *const kBSTrackNameFavorited = @"favorited";
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
 
+    BOOL isShowProgressActive = [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceShowProgress];
+    if (self.progress.length == 0) {
+        isShowProgressActive = NO;
+    }
+
+    notification.identifier = kBSTrackNameIdentifier;
     notification.title = self.track;
-    notification.subtitle = self.album;
-    notification.informativeText = self.artist;
+    notification.subtitle = isShowProgressActive ? self.artist : self.album;
+    notification.informativeText = isShowProgressActive ? self.progress : self.artist;
 
     if (self.favorited && [self.favorited boolValue]) {
 
@@ -107,19 +121,22 @@ NSString *const kBSTrackNameFavorited = @"favorited";
     if (!urlString)
         return nil;
 
-    if (![urlString isEqualToString:_lastImageUrlString])
-    {
-        _lastImageUrlString = urlString;
-        NSURL *url = [NSURL URLWithString:urlString];
-        if (url)
-        {
-            if (!url.scheme)
-                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+    @synchronized (kImageLock) {
 
-            self.lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+        if (![urlString isEqualToString:_lastImageUrlString])
+        {
+            _lastImageUrlString = urlString;
+            NSURL *url = [NSURL URLWithString:urlString];
+            if (url)
+            {
+                if (!url.scheme)
+                url = [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", urlString]];
+                
+                _lastImage = [[NSImage alloc] initWithContentsOfURL:url];
+            }
+            else
+            _lastImage = nil;
         }
-        else
-            self.lastImage = nil;
     }
 
     return _lastImage;

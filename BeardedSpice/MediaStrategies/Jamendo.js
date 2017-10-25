@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Thomas Bekaert on 09/05/17.
-//  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version:1,

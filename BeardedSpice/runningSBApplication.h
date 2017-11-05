@@ -11,21 +11,21 @@
 
 @interface runningSBApplication : NSObject{
     
-    pid_t _processIdentifier;
 }
 
-+ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier;
+//+ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier;
 + (instancetype)sharedApplicationForBundleIdentifier:(NSString *)bundleIdentifier;
 
 @property SBApplication *sbApplication;
 @property NSString  *bundleIdentifier;
 @property (readonly) pid_t processIdentifier;
 @property (readonly) BOOL frontmost;
+@property BOOL wasActivated;
 
 - (instancetype)initWithApplication:(SBApplication *)application bundleIdentifier:(NSString *)bundleIdentifier;
 
-- (void)activate;
-- (void)hide;
+- (BOOL)activate;
+- (BOOL)hide;
 - (void)makeKeyFrontmostWindow;
 
 

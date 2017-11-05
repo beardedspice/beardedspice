@@ -15,12 +15,16 @@
 #import "BSMediaStrategy.h"
 #import "BSPredicateToJS.h"
 #import "BSSharedDefaults.h"
-#import "BSBrowserExtensionMessages.h"
+#import "MYAnonymousIdentity.h"
+#import "BSSafariExtensionController.h"
+#import "runningSBApplication.h"
 
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.netinet;
 
-#define SAFARI_EXTENSION_DEFAULTS_KEY       @"ExtensionSettings-com.beardedspice.BeardedSpice.SafariExtension-0000000000"
+//#define SAFARI_EXTENSION_DEFAULTS_KEY       @"ExtensionSettings-com.beardedspice.BeardedSpice.SafariExtension-0000000000"
+#define SAFARI_EXTENSION_PAIRING_FORMAT                @"https://localhost:%d/pairing.html?bundleId=%@"
+#define SAFARI_EXTENSION_PAIRING                       @"/resources/pairing.html"
 
 @implementation BSStrategyWebSocketServer{
     
@@ -84,7 +88,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         
         [self loadCertificate];
         
-        _controlPort = [self getFreeListeningPortFrom:8008 poolCount:20];
+        _controlPort = [self getFreeListeningPortFrom:8008 poolCount:10];
         if (_controlPort) {
             _controlServer = [PSWebSocketServer serverWithHost:@"127.0.0.1" port:_controlPort SSLCertificates:_certs];
             _controlServer.delegateQueue = _workQueue;
@@ -129,52 +133,6 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     }
 }
 
-- (BOOL)frontmost:(BSWebTabAdapter *)tab {
-    
-    return NO;
-}
-
-- (BOOL)isActivated:(BSWebTabAdapter *)tab {
-    
-    return NO;
-}
-
-- (void)toggleTab:(BSWebTabAdapter *)tab {
-    
-}
-- (void)activateTab:(BSWebTabAdapter *)tab {
-    
-}
-- (NSString *)title:(BSWebTabAdapter *)tab {
-    
-    return @"No title";
-}
-
-- (void)toggle:(BSWebTabAdapter *)tab {
-    
-}
-- (void)pause:(BSWebTabAdapter *)tab {
-    
-}
-- (void)next:(BSWebTabAdapter *)tab {
-    
-}
-- (void)previous:(BSWebTabAdapter *)tab {
-    
-}
-- (void)favorite:(BSWebTabAdapter *)tab {
-    
-}
-
-- (BSTrack *)trackInfo:(BSWebTabAdapter *)tab {
-    
-    return nil;
-}
-- (BOOL)isPlaying:(BSWebTabAdapter *)tab {
-    
-    return NO;
-}
-
 /////////////////////////////////////////////////////////////////////////
 #pragma mark PS Server delegate
 
@@ -216,13 +174,14 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 
 - (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
 
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
-    
+    BS_LOG(LOG_DEBUG, @"%s. WebSocket [%p]", __FUNCTION__, webSocket);
+
     //tabs server connection
     if (server == _tabsServer) {
         @synchronized (self) {
             
             BSWebTabAdapter *tab = [[BSWebTabAdapter alloc] initWithBrowserSocket:webSocket];
+            BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : @"YES"));
             if (tab) {
                 [_tabs addObject:tab];
             }
@@ -233,15 +192,17 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         }
     }
     if (server == _controlServer) {
-        _controlSocket = webSocket;
+//        _controlSocket = webSocket;
+//        BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : @"YES"));
     }
-    
-    //TODO: send list of the working stranegy
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
-    
+    BS_LOG(LOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
+           ([message isKindOfClass:[NSData class]]
+            ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
+            : message));
+
     //control request
     if (server == _controlServer) {
         NSData *messageData = [message isKindOfClass:[NSString class]] ?
@@ -262,6 +223,10 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                     [webSocket send:@"{\"result\":false}"];
                 }
             }
+            else if ([request isEqualToString:@"hostBundleId"]) {
+                // Sending bundle Id to all supported browsers
+                [self sendPairingToSafari];
+            }
         }
     }
 }
@@ -273,7 +238,29 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     
     BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
 }
+- (NSHTTPURLResponse *)server:(PSWebSocketServer *)server
+   responseOnSimpleGetRequest:(NSURLRequest *)request
+                      address:(NSData *)address
+                        trust:(SecTrustRef)trust
+                 responseBody:(NSData *__autoreleasing *)responseBody {
+    
+    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
 
+    if ([request.HTTPMethod isEqualToString:@"GET"]) {
+        if ([request.URL.path isEqualToString:@"/pairing.html"]) {
+            NSURLComponents *comp = [NSURLComponents componentsWithURL:request.URL resolvingAgainstBaseURL:YES];
+            for (NSURLQueryItem *item in comp.queryItems) {
+                if ([item.name isEqualToString:@"bundleId"]) {
+                    return [self responseForPairingWithBundleId:item.value
+                                                            url:request.URL
+                                                   responseBody:responseBody];
+                }
+            }
+        }
+    }
+    
+    return nil;
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Private methods
@@ -331,7 +318,6 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         
         NSMutableDictionary *result = [NSMutableDictionary new];
         NSMutableDictionary *strategies = [NSMutableDictionary new];
-        result[@"strategies"] = strategies;
         for (BSMediaStrategy *strategy in MediaStrategyRegistry.singleton.availableStrategies) {
             
             NSDictionary *params = strategy.acceptParams;
@@ -357,9 +343,12 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         
         if (strategies.count) {
             
-            result[@"bsJsFunctions"] = [BSPredicateToJS jsFunctions];
+            NSData *data = [NSJSONSerialization dataWithJSONObject:strategies options:0 error:NULL];
+            NSString *stringResult = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            result[@"strategies"] = stringResult;
             
-            NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"accepters": result} options:0 error:NULL];
+            result[@"bsJsFunctions"] = [BSPredicateToJS jsFunctions];
+            data = [NSJSONSerialization dataWithJSONObject:@{@"accepters": result} options:0 error:NULL];
             _enabledStrategiesJson = data ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : nil;
         }
         
@@ -397,7 +386,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+/*
         NSURL *certUrl = [[NSBundle mainBundle] URLForResource:@"certificate" withExtension:@"p12"];
         if (certUrl) {
             
@@ -422,6 +411,14 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                 }
             }
         }
+ */
+        NSError *error = NULL;
+        SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(@"BeardedSpice", 3600 * 24 * 350, &error);
+        if (error || identity == nil) {
+            BS_LOG(LOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
+            return;
+        }
+        _certs = @[(__bridge id)identity];
     });
 }
 - (void)startTabServer {
@@ -462,6 +459,48 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
             _tabsStarted = NO;
         }
     }
+}
+
+- (void)sendPairingToSafari {
+    NSArray *apps = @[APPID_SAFARITP, APPID_SAFARI];
+    for (NSString *item in apps) {
+        runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:item];
+        if (app) {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:SAFARI_EXTENSION_PAIRING_FORMAT, self.controlPort, item]];
+            [[NSWorkspace sharedWorkspace]
+             openURLs:@[url]
+             withAppBundleIdentifier:item
+             options:0
+             additionalEventParamDescriptor:nil
+             launchIdentifiers:nil];
+        }
+    }
+}
+
+- (NSHTTPURLResponse *)responseForPairingWithBundleId:(NSString *)bundleId url:(NSURL *)url responseBody:(NSData **)responseBody{
+    NSURL *pairingUrl = [[NSURL URLForExtensions] URLByAppendingPathComponent:SAFARI_EXTENSION_PAIRING];
+    NSString *pairingContent = [NSString stringWithContentsOfURL:pairingUrl usedEncoding:NULL error:NULL];
+    NSData *body = [NSData data];
+    if (pairingContent) {
+        pairingContent = [pairingContent stringByReplacingOccurrencesOfString:@"${bundleId}" withString:bundleId];
+        body = [pairingContent dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    else {
+        BS_LOG(LOG_ERROR, @"Can't load pairing.html file from app bundle");
+    }
+    
+    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                              statusCode:200
+                                                             HTTPVersion:@"HTTP/1.1"
+                                                            headerFields:@{
+                                                                           @"Content-Type": @"text/html",
+                                                                           @"Content-Length": [NSString stringWithFormat:@"%lu", body.length]
+                                                                           }];
+
+    if (responseBody) {
+        *responseBody = body;
+    }
+    return response;
 }
 
 @end

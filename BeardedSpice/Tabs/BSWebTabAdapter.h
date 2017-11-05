@@ -3,11 +3,11 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 19.08.17.
-//  Copyright © 2017 BeardedSpice. All rights reserved.
+//  Copyright (c) 2015-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "TabAdapter.h"
-#import <PSWebSocket.h>
+#import "PSWebSocket.h"
 @class BSTrack, PSWebSocket, BSMediaStrategy;
 
 @interface BSWebTabAdapter : TabAdapter <PSWebSocketDelegate>

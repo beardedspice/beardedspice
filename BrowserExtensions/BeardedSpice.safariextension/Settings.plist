@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<array/>
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string>8008</string>
+		<key>Key</key>
+		<string>controllerPort</string>
+		<key>Password</key>
+		<false/>
+		<key>Title</key>
+		<string>BeardedSpice Controller Port</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+</array>
 </plist>

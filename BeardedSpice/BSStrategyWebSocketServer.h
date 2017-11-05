@@ -21,7 +21,6 @@
 
 @property (nonatomic, readonly) PSWebSocketServer *controlServer;
 @property (nonatomic,readonly) uint16_t controlPort;
-@property (nonatomic,readonly) PSWebSocket *controlSocket;
 @property (nonatomic, readonly) PSWebSocketServer *tabsServer;
 @property (nonatomic,readonly) uint16_t tabsPort;
 @property (nonatomic, readonly) BOOL started;

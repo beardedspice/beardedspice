@@ -10,8 +10,6 @@
 
 #import "AppDelegate.h"
 
-#import "ChromeTabAdapter.h"
-#import "SafariTabAdapter.h"
 #import "NativeAppTabAdapter.h"
 
 #import "BSSharedDefaults.h"
@@ -47,7 +45,9 @@
 /**
  Timeout for command of the user iteraction.
  */
-#define COMMAND_EXEC_TIMEOUT    10.0
+#define COMMAND_EXEC_TIMEOUT                10.0
+
+#define VOLUME_RELAXING_TIMEOUT             2 //seconds
 
 typedef enum{
 
@@ -84,7 +84,8 @@ BOOL accessibilityApiEnabled = NO;
 
     // Create serial queue for user actions
     workingQueue = dispatch_queue_create("com.beardedspice.working.serial", DISPATCH_QUEUE_SERIAL);
-
+    _volumeButtonLastPressed = [NSDate date];
+    
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
@@ -288,10 +289,10 @@ BOOL accessibilityApiEnabled = NO;
         dispatch_async(workingQueue, ^{
             
             __strong typeof(wself) sself = self;
-            [sself autoSelectTabWithForceFocused:NO];
+            [sself autoSelectTabForVolumeButtons];
             BSVolumeControlResult result = BSVolumeControlNotSupported;
-            if (! [sself.activeApp isPlaying] ||
-                (result = [sself.activeApp volumeUp]) == BSVolumeControlNotSupported) {
+            if ((result = [sself.activeApp volumeUp]) == BSVolumeControlNotSupported
+                ) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(wself) sself = self;
@@ -320,10 +321,11 @@ BOOL accessibilityApiEnabled = NO;
         dispatch_async(workingQueue, ^{
             
             __strong typeof(wself) sself = self;
-            [sself autoSelectTabWithForceFocused:NO];
+            [sself autoSelectTabForVolumeButtons];
             BSVolumeControlResult result = BSVolumeControlNotSupported;
-            if (! [sself.activeApp isPlaying] ||
-                (result = [sself.activeApp volumeDown]) == BSVolumeControlNotSupported) {
+            if (
+                (result = [sself.activeApp volumeDown]) == BSVolumeControlNotSupported
+                ) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(wself) sself = self;
@@ -352,10 +354,11 @@ BOOL accessibilityApiEnabled = NO;
         dispatch_async(workingQueue, ^{
             
             __strong typeof(wself) sself = self;
-            [sself autoSelectTabWithForceFocused:NO];
+            [sself autoSelectTabForVolumeButtons];
             BSVolumeControlResult result = BSVolumeControlNotSupported;
-            if (! [sself.activeApp isPlaying] ||
-                (result = [sself.activeApp volumeMute]) == BSVolumeControlNotSupported) {
+            if (
+                (result = [sself.activeApp volumeMute]) == BSVolumeControlNotSupported
+                ) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(wself) sself = self;
@@ -445,7 +448,6 @@ BOOL accessibilityApiEnabled = NO;
         [sself.activeApp updateActiveTab:[sender representedObject]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             [wself setStatusMenuItemsStatus];
-            [wself.activeApp activateTab];
         });
     });
 }
@@ -520,62 +522,11 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Helper methods
 /////////////////////////////////////////////////////////////////////////
 
-
--(runningSBApplication *)getRunningSBApplicationWithIdentifier:(NSString *)bundleIdentifier
-{
-    NSArray *apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleIdentifier];
-    if ([apps count] > 0) {
-        NSRunningApplication *app = [apps firstObject];
-        NSLog(@"App %@ is running %@", bundleIdentifier, app);
-        return [[runningSBApplication alloc] initWithApplication:[SBApplication applicationWithProcessIdentifier:[app processIdentifier]] bundleIdentifier:bundleIdentifier];
-    }
-    return NULL;
-}
-
 - (void)refreshApplications:(BSTimeout *)timeout {
-
-    if (timeout.reached) {
-        return;
-    }
-
-    chromeApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROME];
-    if (timeout.reached) {
-        return;
-    }
-
-    canaryApp = [self getRunningSBApplicationWithIdentifier:APPID_CANARY];
-    if (timeout.reached) {
-        return;
-    }
-
-    yandexBrowserApp = [self getRunningSBApplicationWithIdentifier:APPID_YANDEX];
-    if (timeout.reached) {
-        return;
-    }
-
-    chromiumApp = [self getRunningSBApplicationWithIdentifier:APPID_CHROMIUM];
-    if (timeout.reached) {
-        return;
-    }
-
-    vivaldiApp = [self getRunningSBApplicationWithIdentifier:APPID_VIVALDI];
-    if (timeout.reached) {
-        return;
-    }
-    safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
-    if (timeout.reached) {
-        return;
-    }
-
-    safariTPApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARITP];
-    if (timeout.reached) {
-        return;
-    }
 
     [nativeApps removeAllObjects];
     for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
-        runningSBApplication *app =
-            [self getRunningSBApplicationWithIdentifier:[nativeApp bundleId]];
+        runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
         if (app) {
             [nativeApps addObject:app];
         }
@@ -585,57 +536,27 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (BOOL)setActiveTabShortcutForChrome:(runningSBApplication *)app {
-    ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
-    // chromeApp.windows[0] is the front most window.
-    ChromeWindow *chromeWindow = chrome.windows[0];
-
-    // use 'get' to force a hard reference.
-    return [_activeApp updateActiveTab:[ChromeTabAdapter initWithApplication:app andWindow:chromeWindow andTab:[chromeWindow activeTab]]];
-}
-
-- (BOOL)setActiveTabShortcutForSafari:(runningSBApplication *)app {
-    SafariApplication *safari = (SafariApplication *)app.sbApplication;
-    // is safari.windows[0] the frontmost?
-    SafariWindow *safariWindow = safari.windows[0];
-
-    // use 'get' to force a hard reference.
-    return [_activeApp updateActiveTab:[SafariTabAdapter initWithApplication:app
-                                                      andWindow:safariWindow
-                                                         andTab:[safariWindow currentTab]]];
-}
-
 - (BOOL)setActiveTabShortcut{
 
-    BOOL result = NO;
-    if (chromeApp.frontmost) {
-        result = [self setActiveTabShortcutForChrome:chromeApp];
-    } else if (canaryApp.frontmost) {
-        result = [self setActiveTabShortcutForChrome:canaryApp];
-    } else if (yandexBrowserApp.frontmost) {
-        result = [self setActiveTabShortcutForChrome:yandexBrowserApp];
-    } else if (chromiumApp.frontmost) {
-        result = [self setActiveTabShortcutForChrome:chromiumApp];
-    }else if (vivaldiApp.frontmost) {
-        result = [self setActiveTabShortcutForChrome:vivaldiApp];
-    } else if (safariApp.frontmost) {
-        result = [self setActiveTabShortcutForSafari:safariApp];
-    } else if (safariTPApp.frontmost) {
-        result = [self setActiveTabShortcutForSafari:safariTPApp];
-    } else {
-
+    @try {
+        for (TabAdapter *tab in BSStrategyWebSocketServer.singleton.tabs) {
+            if (tab.frontmost) {
+                return [_activeApp updateActiveTab:tab];
+            }
+        }
+        
         for (runningSBApplication *app in nativeApps) {
             if (app.frontmost) {
                 NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
                 if (tab) {
-                    result = [_activeApp updateActiveTab:tab];
+                    return [_activeApp updateActiveTab:tab];
                 }
-                break;
             }
         }
+        return NO;
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
-
-    return result;
 }
 
 - (void)removeAllItems
@@ -661,71 +582,6 @@ BOOL accessibilityApiEnabled = NO;
 
         return NO;
     }
-}
-
-
-- (NSArray *)refreshTabsForChrome:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
-
-    if (timeout.reached) {
-        return @[];
-    }
-
-    NSMutableArray *items = [NSMutableArray array];
-    @try {
-
-        NSMenuItem *item = nil;
-        ChromeApplication *chrome = (ChromeApplication *)app.sbApplication;
-        if (chrome) {
-            for (ChromeWindow *chromeWindow in [chrome.windows get]) {
-                for (ChromeTab *chromeTab in [chromeWindow.tabs get]) {
-                    item = [self addChromeStatusMenuItemFor:chromeTab andWindow:chromeWindow andApplication:app];
-                    if (item) {
-                        [items addObject:item];
-                    }
-                    if (timeout.reached) {
-                        return items;
-                    }
-                }
-            }
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
-    }
-
-    return items;
-}
-
-- (NSArray *)refreshTabsForSafari:(runningSBApplication *)app timeout:(BSTimeout *)timeout {
-
-    if (timeout.reached) {
-        return @[];
-    }
-
-    NSMutableArray *items = [NSMutableArray array];
-    @try {
-
-        NSMenuItem *item;
-        SafariApplication *safari = (SafariApplication *)app.sbApplication;
-        if (safari) {
-            for (SafariWindow *safariWindow in [safari.windows get]) {
-                for (SafariTab *safariTab in [safariWindow.tabs get]) {
-                    item = [self addSafariStatusMenuItemFor:safariTab andWindow:safariWindow andApplication:app];
-                    if (item) {
-                        [items addObject:item];
-                    }
-                    if (timeout.reached) {
-                        return items;
-                    }
-                }
-            }
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Error ferreshing tabs for \"%@\": %@", app.bundleIdentifier, exception.description);
-    }
-
-    return items;
 }
 
 - (NSArray *)refreshTabsForNativeApp:(runningSBApplication *)app class:(Class)theClass {
@@ -755,17 +611,22 @@ BOOL accessibilityApiEnabled = NO;
     
     NSMutableArray *items = [NSMutableArray array];
     for (BSWebTabAdapter *tab in BSStrategyWebSocketServer.singleton.tabs) {
-        
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
-        if (menuItem) {
-            
-            [items addObject:menuItem];
-            [menuItem setRepresentedObject:tab];
-            
-            if ([tab isPlaying])
-                [playingTabs addObject:tab];
-            
-            [_activeApp repairActiveTab:tab];
+        @try {
+            if (tab.strategy) {
+                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
+                if (menuItem) {
+                    
+                    [items addObject:menuItem];
+                    [menuItem setRepresentedObject:tab];
+                    
+                    if ([tab isPlaying])
+                        [playingTabs addObject:tab];
+                    
+                    [_activeApp repairActiveTab:tab];
+                }
+            }
+        } @catch (NSException *exception) {
+            BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
         }
     }
     return items;
@@ -785,16 +646,8 @@ BOOL accessibilityApiEnabled = NO;
         if (accessibilityApiEnabled) {
 
             BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-//            [self refreshApplications:timeout];
+            [self refreshApplications:timeout];
 
-//            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromeApp timeout:timeout]];
-//            [newItems addObjectsFromArray:[self refreshTabsForChrome:canaryApp timeout:timeout]];
-//            [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
-//            [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
-//            [newItems addObjectsFromArray:[self refreshTabsForChrome:vivaldiApp timeout:timeout]];
-//            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
-//            [newItems addObjectsFromArray:[self refreshTabsForSafari:safariTPApp timeout:timeout]];
-            
             [newItems addObjectsFromArray:[self refreshTabsForWebSocketServer]];
             
             for (runningSBApplication *app in nativeApps) {
@@ -811,77 +664,12 @@ BOOL accessibilityApiEnabled = NO;
             [wself resetStatusMenu:newItems.count];
 
             if (newItems.count) {
-                for (NSMenuItem *item in newItems) {
+                for (NSMenuItem *item in [newItems reverseObjectEnumerator]) {
                     [statusMenu insertItem:item atIndex:0];
                 }
             }
         });
     }
-}
-
--(NSMenuItem *)addChromeStatusMenuItemFor:(ChromeTab *)chromeTab andWindow:(ChromeWindow*)chromeWindow andApplication:(runningSBApplication *)application
-{
-    TabAdapter *tab = [ChromeTabAdapter initWithApplication:application andWindow:chromeWindow andTab:chromeTab];
-    if (tab)
-        return [self addStatusMenuItemFor:tab];
-
-    return nil;
-}
-
-
--(NSMenuItem *)addSafariStatusMenuItemFor:(SafariTab *)safariTab andWindow:(SafariWindow*)safariWindow andApplication:(runningSBApplication *)application
-{
-    TabAdapter *tab = [SafariTabAdapter initWithApplication:application
-                                              andWindow:safariWindow
-                                                 andTab:safariTab];
-    if (tab) {
-
-        //checking, that tab wasn't included in status menu.
-        //We need it because Safari "pinned" tabs duplicated on each window. (Safari 9)
-
-        NSString *key = tab.key;
-        if ([NSString isNullOrEmpty:key]) {
-            //key was not assigned, we think this is fake pinned tab.
-            return nil;
-        }
-
-        if ([SafariTabKeys containsObject:key]) {
-
-            return nil;
-        }
-        //-------------------------------------------
-
-        NSMenuItem *item = [self addStatusMenuItemFor:tab];
-        if (item) {
-            [SafariTabKeys addObject:key];
-            return item;
-        }
-    }
-
-    return nil;
-}
-
--(NSMenuItem *)addStatusMenuItemFor:(TabAdapter *)tab {
-
-    MediaStrategyRegistry *registry = [MediaStrategyRegistry singleton];
-    BSMediaStrategy *strategy = [registry getMediaStrategyForTab:tab];
-    if (strategy) {
-
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
-        if (menuItem) {
-            [menuItem setRepresentedObject:tab];
-
-            // check playing status
-            if ([strategy respondsToSelector:@selector(isPlaying:)] && [strategy isPlaying:tab])
-                [playingTabs addObject:tab];
-
-            [_activeApp repairActiveTab:tab];
-
-            return menuItem;
-        }
-    }
-
-    return nil;
 }
 
 // Must be invoked in workingQueue
@@ -1018,7 +806,7 @@ BOOL accessibilityApiEnabled = NO;
                         [wself.activeApp updateActiveTab:prevTab];
                     }
 
-                    [wself.activeApp activateTab];
+//                    [wself.activeApp activateTab];
 
                     NSUserNotification *notification = [NSUserNotification new];
                     notification.title = [wself.activeApp displayName];
@@ -1110,6 +898,13 @@ BOOL accessibilityApiEnabled = NO;
     return result;
 }
 
+- (void)autoSelectTabForVolumeButtons {
+    
+    if ([_volumeButtonLastPressed timeIntervalSinceNow] * -1 >= VOLUME_RELAXING_TIMEOUT) {
+        [self autoSelectTabWithForceFocused:NO];
+    }
+    _volumeButtonLastPressed = [NSDate date];
+}
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////
@@ -1423,7 +1218,7 @@ BOOL accessibilityApiEnabled = NO;
 //    else {
 //        [BSStrategyWebSocketServer.singleton start];
 //    }
-    [BSStrategyWebSocketServer.singleton.controlSocket send:@"{\"test\":true}"];
+//    [BSStrategyWebSocketServer.singleton.controlSocket send:@"{\"test\":true}"];
 }
 
 @end

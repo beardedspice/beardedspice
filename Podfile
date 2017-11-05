@@ -9,7 +9,6 @@ target 'BeardedSpiceControllers' do
     target 'BeardedSpice' do
         pod 'MASPreferences', '= 1.1.4'
         pod 'FMDB', '~> 2.6.2'
-        pod 'PocketSocket'
 
         # all pods for tests should ONLY go here
         target 'BeardedSpiceTests' do
@@ -18,8 +17,4 @@ target 'BeardedSpiceControllers' do
             pod 'VCRURLConnection'
         end
     end
-end
-
-target 'SafariExtension' do
-    pod 'PocketSocket'
 end

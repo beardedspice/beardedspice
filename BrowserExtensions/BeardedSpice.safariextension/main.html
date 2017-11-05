@@ -3,18 +3,20 @@
 <head>
     <script type="text/javascript">
 
-        const BASE_CONTROL_PORT = 8008;
-        const CONTROL_PORT_POOL = 20;
+    var BASE_CONTROL_PORT = function() { return parseInt(safari.extension.settings.controllerPort) || 8008;};
 
     const SOCKET_TIMEOUT = 100; //milleseconds
     const RECONNECT_TIMEOUT = 10000; //milleseconds
 
     var socket = null;
     var socketConnected = false;
-    var controlPort = BASE_CONTROL_PORT;
+    var controlPort = BASE_CONTROL_PORT();
     var clientsPort = 0;
     var timeoutObject = null;
     var tabs = new Set();
+    var previousTab = null;
+    var previousTabOnNewWindow = null;
+    var wasActivated = false;
 
     var _clean = function(){
         socket = null;
@@ -62,14 +64,8 @@
         var _socket = socket;
         _clean();
         _socket.close();
-        if (controlPort < (BASE_CONTROL_PORT + CONTROL_PORT_POOL)) {
-            controlPort++;
-            connect(controlPort);
-        }
-        else {
-            controlPort = BASE_CONTROL_PORT;
-            timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
-        }
+        controlPort = BASE_CONTROL_PORT();
+        timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
     };
 
     function connect(port) {
@@ -77,9 +73,7 @@
         // Create WebSocket connection.
         var url = 'wss://localhost:'+port;
 
-        if (controlPort == BASE_CONTROL_PORT) {
-            console.info("(BeardedSpice Control) Try connect to '" + url + "' with ports pool: " + CONTROL_PORT_POOL);
-        }
+        console.info("(BeardedSpice Control) Try connect to '" + url + "' with ports pool: " + controlPort);
 
         socket = new WebSocket(url);
 
@@ -92,7 +86,15 @@
                 timeoutObject = null;
             }
             // send accepters request after timeout
-            setTimeout(function(){_send({'request':'accepters'});}, SOCKET_TIMEOUT);
+            setTimeout(function(){
+                if (!safari.extension.settings.hostBundleId || safari.extension.settings.hostBundleId == "") {
+                    // If bundleId current app is not defined, we attempt to receive from BeardedSpice Controller
+                    console.log('(BeardedSpice Control) Sending pairing request');
+                    _send({"request":"hostBundleId"});
+                }
+                    
+                _send({'request':'accepters'});
+            }, SOCKET_TIMEOUT);
         });
 
         // Listen for messages
@@ -111,7 +113,13 @@
                     clientsPort = obj['port'];
                     _sendOk();
                     // Send new port to tabs
-                    tabs.forEach(function(tab, val, set){tab.page.dispatchMessage("reconnect", {'result':true});});
+                    safari.application.browserWindows.forEach(function(val){
+                        val.tabs.forEach(function(tab){
+                            if (tab.url && tab.url.length && tab.page) {
+                                tab.page.dispatchMessage("reconnect", {'result':true});
+                            }
+                        })
+                    });
                 }
                 else if (obj['test']) {
                     safari.application.activeBrowserWindow.activate();
@@ -142,46 +150,92 @@
     } 
 
     function respondToMessage(theMessageEvent) {
+        var frontmost = function(){
+            return safari.application.activeBrowserWindow.activeTab === theMessageEvent.target;
+        };
+        var activated = function(){
+            return wasActivated && frontmost();
+        };
         if (theMessageEvent.target.page) {
             console.log('(BeardedSpice Control) respondToMessage event: ' + theMessageEvent.name + ' target: ' + theMessageEvent.target.title );
+          try {
+
             //request accepters
-            if(theMessageEvent.name === "accepters") {
-                theMessageEvent.target.page.dispatchMessage("accepters", safari.extension.settings.accepters);
-            }
-            // request port
-            else if (theMessageEvent.name === "port") {
-                theMessageEvent.target.addEventListener("close", function(event){
-                    tabs.delete(event.target);
-                    console.log('(BeardedSpice Control) Tab removed from tabs onClose: \n' + event.target.title);
-                }, false);
-                theMessageEvent.target.addEventListener("beforeNavigate", function(event){
-                    tabs.delete(event.target);
-                    console.log('(BeardedSpice Control) Tab removed from tabs onbeforeNavigate: \n' + event.target.title);
-                }, false);
-                tabs.add(theMessageEvent.target);
+            switch (theMessageEvent.name) {
+                case "accepters":
+                    theMessageEvent.target.page.dispatchMessage("accepters", safari.extension.settings.accepters);
+                    break;
+                case "port":
+                    // request port
+                    theMessageEvent.target.addEventListener("close", function(event){
+                        tabs.delete(event.target);
+                        console.log('(BeardedSpice Control) Tab removed from tabs onClose: \n' + event.target.title);
+                    }, false);
+                    theMessageEvent.target.addEventListener("beforeNavigate", function(event){
+                        tabs.delete(event.target);
+                        console.log('(BeardedSpice Control) Tab removed from tabs onbeforeNavigate: \n' + event.target.title);
+                    }, false);
+                    tabs.add(theMessageEvent.target);
 
-                theMessageEvent.target.page.dispatchMessage("port", {'result':clientsPort});
-            }
-            else if (theMessageEvent.name === "frontmost") {
-                var result = safari.application.activeBrowserWindow.activeTab === theMessageEvent.target;
-                theMessageEvent.target.page.dispatchMessage("frontmost", {'result':result});
-            }
-            else if (theMessageEvent.name === "bundleId") {
+                    theMessageEvent.target.page.dispatchMessage("port", {'result':clientsPort});
+                    break;
+                case "frontmost":
+                    theMessageEvent.target.page.dispatchMessage("frontmost", {'result':frontmost()});
+                    break;
+                case "isActivated":
+                    theMessageEvent.target.page.dispatchMessage("isActivated", {'result':activated()});
+                    break;
+                case "bundleId":
+                    theMessageEvent.target.page.dispatchMessage("bundleId", {'result':safari.extension.settings.hostBundleId});
+                    break;
+                case "serverIsAlive":
+                    if (socket && clientsPort) {
+                        theMessageEvent.target.page.dispatchMessage("reconnect", {'result':true});   
+                    }
+                    break;
+                case "activate":
+                    previousTab = safari.application.activeBrowserWindow.activeTab;
+                    previousTabOnNewWindow = theMessageEvent.target.browserWindow.activeTab;
+                    if (! previousTabOnNewWindow || previousTab === previousTabOnNewWindow ) {
+                        previousTabOnNewWindow = null;
+                    }
+                    theMessageEvent.target.browserWindow.activate();
+                    theMessageEvent.target.activate();
+                    wasActivated = true;
+                    theMessageEvent.target.page.dispatchMessage("activate", {'result':true});  
+                    break;
+                case "hide":
+                    if (activated()) {
 
-                theMessageEvent.target.page.dispatchMessage("bundleId", {'result':safari.extension.settings.hostBundleId});
+                        if (previousTabOnNewWindow) {
+                            previousTabOnNewWindow.activate();
+                        }
+                        if(previousTab) {
+                            previousTab.browserWindow.activate();
+                            previousTab.activate();
+                        }
+                    }
+                    previousTab = null;
+                    wasActivated = false;
+                    theMessageEvent.target.page.dispatchMessage("hide", {'result':true});   
+                    break;
+                case "pairing":
+                    safari.extension.settings.hostBundleId = theMessageEvent.message.bundleId;
+                    theMessageEvent.target.page.dispatchMessage("pairing", {'result':true});
+                    break;
+                default:
+
             }
-            else if (theMessageEvent.name === "serverIsAlive") {
-                if (socket && clientsPort) {
-                    theMessageEvent.target.page.dispatchMessage("reconnect", {'result':true});   
-                }
-            }
+          } catch (ex) {
+              logError(ex);
+              socket.close();
+          }
         }
     }
 
     connect(controlPort);
 
     safari.application.addEventListener("message",respondToMessage,false);
-
 </script>
 </head>
 <body>

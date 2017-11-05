@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 20.08.17.
-//  Copyright © 2017 BeardedSpice. All rights reserved.
+//  Copyright (c) 2015-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "BSPredicateToJS.h"
@@ -268,7 +268,7 @@
                 }
                 return nil;
             case NSEvaluatedObjectExpressionType: // Expression that always returns the parameter object itself
-                return @"this";
+                return @"bsParameters";
             case NSVariableExpressionType: // Expression that always returns whatever is stored at 'variable' in the bindings dictionary
                 return expression.variable;
             case NSKeyPathExpressionType: // Expression that returns something that can be used as a key path
@@ -303,10 +303,10 @@
     
     if ([keyPath hasPrefix:@"self."]) {
         
-        return [NSString stringWithFormat:@"this.%@", [keyPath substringFromIndex:5]];
+        return [NSString stringWithFormat:@"bsParameters.%@", [keyPath substringFromIndex:5]];
     }
     
-    return [NSString stringWithFormat:@"this.%@", keyPath];
+    return [NSString stringWithFormat:@"bsParameters.%@", keyPath];
 }
 
 @end

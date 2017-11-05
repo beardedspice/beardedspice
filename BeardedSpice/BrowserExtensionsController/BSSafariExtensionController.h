@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Safari.h"
+
+#define APPID_SAFARI            @"com.apple.Safari"
+#define APPID_SAFARITP          @"com.apple.SafariTechnologyPreview"
 
 @interface BSSafariExtensionController : NSObject
 

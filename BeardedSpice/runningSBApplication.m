@@ -17,33 +17,34 @@
 
 static NSMutableDictionary *_sharedAppHandler;
 
-+ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier {
-    
-    if (! processIdentifier) {
-        return nil;
-    }
-    
-    @synchronized(self) {
-        @autoreleasepool {
-            
-            if (_sharedAppHandler == nil) {
-                _sharedAppHandler = [NSMutableDictionary dictionary];
-            }
-            runningSBApplication *app = _sharedAppHandler[@(processIdentifier)];
-            if (! app) {
-                
-                NSRunningApplication *runningApp = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-                if (runningApp) {
-                    app = [runningSBApplication new];
-                    app->_bundleIdentifier = runningApp.bundleIdentifier;
-                    app->_processIdentifier = processIdentifier;
-                    _sharedAppHandler[@(processIdentifier)] = app;
-                }
-            }
-            return app;
-        }
-    }
-}
+//+ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier {
+//    
+//    if (! processIdentifier) {
+//        return nil;
+//    }
+//    
+//    @synchronized(self) {
+//        @autoreleasepool {
+//            
+//            if (_sharedAppHandler == nil) {
+//                _sharedAppHandler = [NSMutableDictionary dictionary];
+//            }
+//            runningSBApplication *app = _sharedAppHandler[@(processIdentifier)];
+//            if (! (app && [app runningApplication])) {
+//                
+//                NSRunningApplication *runningApp = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
+//                if (runningApp) {
+//                    app = [runningSBApplication new];
+//                    app->_bundleIdentifier = runningApp.bundleIdentifier;
+//                    app->_processIdentifier = processIdentifier;
+//                    app->_sbApplication = [SBApplication applicationWithProcessIdentifier:processIdentifier];
+//                    _sharedAppHandler[@(processIdentifier)] = app;
+//                }
+//            }
+//            return app;
+//        }
+//    }
+//}
 
 + (instancetype)sharedApplicationForBundleIdentifier:(NSString *)bundleIdentifier {
     
@@ -61,9 +62,20 @@ static NSMutableDictionary *_sharedAppHandler;
             if (! app) {
                 
                 app = [[runningSBApplication alloc] initWithApplication:nil bundleIdentifier:bundleIdentifier];
-                _sharedAppHandler[bundleIdentifier] = app;
+                NSRunningApplication *runningApp = [app runningApplication];
+                if (runningApp) {
+                    app->_sbApplication = [SBApplication applicationWithBundleIdentifier:bundleIdentifier];
+                    _sharedAppHandler[bundleIdentifier] = app;
+                    return app;
+                }
             }
-            return app;
+            else {
+                if ([app runningApplication]) {
+                    return app;
+                }
+                [_sharedAppHandler removeObjectForKey:bundleIdentifier];
+            }
+            return nil;
         }
     }
 }
@@ -75,7 +87,6 @@ static NSMutableDictionary *_sharedAppHandler;
         
         _sbApplication = application;
         _bundleIdentifier = bundleIdentifier;
-        _processIdentifier = 0;
         
         _sbApplication.timeout = COMMAND_TIMEOUT;
     }
@@ -97,26 +108,25 @@ static NSMutableDictionary *_sharedAppHandler;
 
 - (pid_t)processIdentifier{
     
-    if (!_processIdentifier) {
-        
-        _processIdentifier = [[self runningAppication] processIdentifier];
-    }
-    
-    return _processIdentifier;
+    return [[self runningApplication] processIdentifier];
 }
 
-- (void)activate{
+- (BOOL)activate{
     [EHSystemUtils callOnMainQueue:^{
         
-        [[self runningAppication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+        _wasActivated = [[self runningApplication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
     }];
+    return _wasActivated;
 }
 
-- (void)hide{
+- (BOOL)hide{
     [EHSystemUtils callOnMainQueue:^{
-        
-        [[self runningAppication] hide];
+        NSRunningApplication *app = [self runningApplication];
+        _wasActivated = ! [app hide];
+        // because `hide` does not return right status we set result to YES
+        _wasActivated = NO;
     }];
+    return ! _wasActivated;
 }
 
 - (void)makeKeyFrontmostWindow{
@@ -208,8 +218,8 @@ static NSMutableDictionary *_sharedAppHandler;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Private methods
 
-- (NSRunningApplication *)runningAppication{
-    NSArray *appArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.bundleIdentifier];
+- (NSRunningApplication *)runningApplication{
+    NSArray *appArray = self.bundleIdentifier ? [NSRunningApplication runningApplicationsWithBundleIdentifier:self.bundleIdentifier] : nil;
     return [appArray firstObject];
 }
 

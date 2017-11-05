@@ -35,6 +35,11 @@
  Path to the BeardedSpice bundle strategy folder.
  */
 + (NSURL * _Nonnull)URLForBundleStrategies;
+/**
+ Path to the BeardedSpice bundle folder with browser extensions and their
+ resources.
+  */
++ (NSURL *_Nonnull)URLForExtensions;
 
 /**
  */

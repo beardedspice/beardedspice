@@ -145,7 +145,7 @@
             ERROR_TRACE;
         }
     }
-
+    return YES;
 }
 
 - (BSTrack *)trackInfo{

@@ -18,7 +18,6 @@
 /// Delay displaying notification after pressing next/previous track.
 #define CHANGE_TRACK_DELAY      2.0
 
-
 typedef void (^BSVoidBlock)(void);
 
 // underscores because c code
@@ -36,7 +35,6 @@ static inline BOOL alwaysShowNotification() {
 
 @property (nonatomic, strong) NSDate *lastActive;
 @property (nonatomic, strong) TabAdapter *activeTab;
-@property (nonatomic, strong) NSString *activeTabKey;
 @property (nonatomic, weak) MediaStrategyRegistry *registry;
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab;

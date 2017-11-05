@@ -38,33 +38,48 @@
     return [self assignKey];
 }
 
-- (void)activateTab{
+- (BOOL)activateApp{
 
     @autoreleasepool {
 
-        if (![self.application frontmost]) {
+        if ([self.application frontmost] == NO) {
 
-            [self.application activate];
-            _wasActivated = YES;
+            BOOL result = [self.application activate];
+            BS_LOG(LOG_DEBUG, @"[self.application activate] = %d", result);
+            return result;
         }
-        else{
-            _wasActivated = NO;
-        }
+        self.application.wasActivated = NO;
     }
+    return NO;
+}
+
+- (BOOL)deactivateApp {
+    
+    @autoreleasepool {
+        
+        if (self.application.wasActivated && [self.application frontmost]) {
+            BOOL result = ![self.application hide];
+            BS_LOG(LOG_DEBUG, @"![self.application hide] = %d", result);
+            return ! result;
+        }
+        self.application.wasActivated = NO;
+    }
+    
+    return NO;
+}
+
+- (BOOL)activateTab {
+    return YES;
+}
+- (BOOL)deactivateTab {
+    return YES;
 }
 
 - (BOOL)isActivated{
-    return (_wasActivated && [self.application frontmost]);
+    return (self.application.wasActivated && [self.application frontmost]);
 }
 
 - (void)toggleTab{
-
-    if ([self isActivated]){
-        [self.application hide];
-        _wasActivated = NO;
-    }
-    else
-        [self activateTab];
 }
 
 - (BOOL)frontmost{
@@ -73,23 +88,16 @@
 }
 
 
-- (instancetype)copyStateFrom:(TabAdapter *)tab{
-
-    if ([tab isKindOfClass:[self class]]) {
-
-        _wasActivated = tab->_wasActivated;
-    }
-
-    return self;
-}
-
--(BOOL) isEqual:(__autoreleasing id)otherTab{
+- (BOOL)isEqual:(id)object {
 
     @autoreleasepool {
+        if (self == object) {
+            return YES;
+        }
+        if (object == nil || ![object isKindOfClass:[self class]])
+            return NO;
 
-        if (otherTab == nil || ![otherTab isKindOfClass:[self class]]) return NO;
-
-        return [[self key] isEqualToString:[otherTab key]];
+        return [[self key] isEqualToString:[object key]];
     }
 }
 

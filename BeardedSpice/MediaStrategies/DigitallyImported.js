@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"Digitally Imported",
   accepts: {
     method: "predicateOnTab",
@@ -14,10 +14,10 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying:function () {
-    var pause = $('#webplayer-region .controls .ico.icon-pause').get(0);
-    var spinner = $('#webplayer-region .controls .ico.icon-spinner3').get(0);
-    var sponsor = $('#webplayer-region .metadata-container .track-title .sponsor').get(0);
-    return pause ? true : (spinner && sponsor );
+      var pause = $('#webplayer-region .controls .ico.icon-pause').length;
+      var spinner = $('#webplayer-region .controls .ico.icon-spinner3').length;
+      var sponsor = $('#webplayer-region .metadata-container .track-title .sponsor').length;
+      return pause ? true : (spinner && sponsor);
   },
   toggle: function () { return document.querySelectorAll('div.controls a')[0].click() },
   favorite: function () { $('.vote-btn.up').click(); },

@@ -60,6 +60,8 @@ extern BOOL accessibilityApiEnabled;
     BSStrategyWebSocketServer *_webSocketServer;
 
     BOOL _AXAPIEnabled;
+    
+    NSDate *_volumeButtonLastPressed;
 }
 
 @property (nonatomic, strong) BSActiveTab *activeApp;
@@ -68,7 +70,6 @@ extern BOOL accessibilityApiEnabled;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
-- (void)showNotification;
 
 - (IBAction)clickTest:(id)sender;
 

@@ -3,12 +3,12 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 19.08.17.
-//  Copyright © 2017 BeardedSpice. All rights reserved.
+//  Copyright (c) 2015-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "BSWebTabAdapter.h"
 #import "BSStrategyWebSocketServer.h"
-#import <PSWebSocket.h>
+#import "PSWebSocket.h"
 #import "BSTrack.h"
 #import "MediaStrategyRegistry.h"
 #import "BSMediaStrategy.h"
@@ -16,7 +16,8 @@
 #import "runningSBApplication.h"
 #import "netcon-macos.h"
 
-#define RESPONSE_TIMEPUT                    0.1
+#define RESPONSE_TIMEPUT                        0.2
+#define TIMEOUT_WAS_REACHED                     @"TIMEOUT_WAS_REACHED"
 
 static uint _findpid(const struct sockaddr *addr);
 
@@ -44,6 +45,7 @@ static uint _findpid(const struct sockaddr *addr);
         _tabSocket.delegate = self;
         _key = [[NSUUID UUID] UUIDString];
         _actionLock = [NSCondition new];
+        [self sendMessage:@"ready"];
     }
     
     return self;
@@ -51,14 +53,10 @@ static uint _findpid(const struct sockaddr *addr);
 
 - (NSString *)title {
     NSString *result;
-    @try {
-        NSDictionary *response = [self sendMessage:@"title"];
-        result = response[@"result"];
-        if (! [result isKindOfClass:[NSString class]]) {
-            result = @"";
-        }
-    } @catch (NSException *exception) {
-        result = @"";
+    NSDictionary *response = [self sendMessage:@"title"];
+    result = response[@"result"];
+    if (! [result isKindOfClass:[NSString class]]) {
+        result = nil;
     }
     return result;
 }
@@ -67,14 +65,47 @@ static uint _findpid(const struct sockaddr *addr);
     
     return _key;
 }
+- (BOOL)activateApp {
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
+    }
+    
+    return [super activateApp];
+}
 
-- (void)activateTab {
+- (BOOL)deactivateApp {
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
+    }
+    return [super deactivateApp];
+}
+
+- (BOOL)activateTab {
 
     if (self.application == nil) {
         self.application = [self obtainApplication];
     }
     [super activateTab];
     [self sendMessage:@"activate"];
+    return YES;
+}
+
+- (BOOL)deactivateTab {
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
+    }
+    
+    if ([self frontmost]) {
+        if ([self isActivated]) {
+            BOOL result = NO;
+            NSDictionary *response = [self sendMessage:@"hide"];
+            result = [response[@"result"] boolValue];
+            [super deactivateTab];
+            
+            return result;
+        }
+    }
+    return NO;
 }
 
 - (BOOL)isActivated {
@@ -84,110 +115,87 @@ static uint _findpid(const struct sockaddr *addr);
     }
     
     BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"isActivated"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
-    }
+    NSDictionary *response = [self sendMessage:@"isActivated"];
+    result = [response[@"result"] boolValue];
     
-    return [super isActivated] && result;
+    return result || [super isActivated];
 }
 
 - (void)toggleTab {
-    
-    [super toggleTab];
+    BOOL result = [self deactivateTab];
+    if (result) {
+        [self deactivateApp];
+    }
+    if (! result) {
+        [self activateApp];
+        [self activateTab];
+    }
 }
+
 - (BOOL)frontmost {
     
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"frontmost"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
     }
+    
+    BOOL result = NO;
+    NSDictionary *response = [self sendMessage:@"frontmost"];
+    result = [response[@"result"] boolValue];
     return [super frontmost] && result;
 }
 
 - (BOOL)toggle {
     
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"toggle"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
     }
-    return result;
+    
+    NSDictionary *response = [self sendMessage:@"toggle"];
+    return [response[@"result"] boolValue];
 }
 - (BOOL)pause {
     
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"pause"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
     }
-    return result;
+    
+    NSDictionary *response = [self sendMessage:@"pause"];
+    return [response[@"result"] boolValue];
 }
 - (BOOL)next {
-    
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"next"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
+
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
     }
-    return result;
+
+    NSDictionary *response = [self sendMessage:@"next"];
+    return [response[@"result"] boolValue];
 }
 - (BOOL)previous {
     
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"previous"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
+    if (self.application == nil) {
+        self.application = [self obtainApplication];
     }
-    return result;
+
+    NSDictionary *response = [self sendMessage:@"previous"];
+    return [response[@"result"] boolValue];
 }
 - (BOOL)favorite {
     
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"favorite"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
-    }
-    return result;
+    NSDictionary *response = [self sendMessage:@"favorite"];
+    return [response[@"result"] boolValue];
 }
 
 - (BSTrack *)trackInfo {
     
-    BSTrack *result;
-    @try {
-        NSDictionary *response = [self sendMessage:@"trackInfo"];
-        result = [[BSTrack alloc] initWithInfo:response];
-    } @catch (NSException *exception) {
-        result = nil;
-    }
-    return result;
+    NSDictionary *response = [self sendMessage:@"trackInfo"];
+    return [[BSTrack alloc] initWithInfo:response];
 }
 
 - (BOOL)isPlaying {
     
-    BOOL result = NO;
-    @try {
-        NSDictionary *response = [self sendMessage:@"isPlaying"];
-        result = [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        result = NO;
-    }
-    return result;
+    NSDictionary *response = [self sendMessage:@"isPlaying"];
+    return [response[@"result"] boolValue];
 }
 
 ///**
@@ -217,7 +225,11 @@ static uint _findpid(const struct sockaddr *addr);
 }
 - (void)webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BS_LOG(LOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
+           ([message isKindOfClass:[NSData class]]
+            ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
+            : message));
+    
     NSData *messageData = [message isKindOfClass:[NSString class]] ?
     [message dataUsingEncoding:NSUTF8StringEncoding]
     : message;
@@ -251,9 +263,18 @@ static uint _findpid(const struct sockaddr *addr);
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }
 
-//- (void)webSocketDidFlushInput:(PSWebSocket *)webSocket;
-//- (void)webSocketDidFlushOutput:(PSWebSocket *)webSocket;
-//- (BOOL)webSocket:(PSWebSocket *)webSocket evaluateServerTrust:(SecTrustRef)trust;
+- (void)webSocketDidFlushInput:(PSWebSocket *)webSocket {
+    
+//    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+}
+- (void)webSocketDidFlushOutput:(PSWebSocket *)webSocket {
+    
+//    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+}
+- (BOOL)webSocket:(PSWebSocket *)webSocket evaluateServerTrust:(SecTrustRef)trust {
+//    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    return NO;
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Private methods
@@ -265,7 +286,9 @@ static uint _findpid(const struct sockaddr *addr);
         
         [self.tabSocket send:message];
     });
-    [_actionLock waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:RESPONSE_TIMEPUT]];
+    if ([_actionLock waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:RESPONSE_TIMEPUT]] == NO) {
+        [NSException exceptionWithName:TIMEOUT_WAS_REACHED reason:nil userInfo:nil];
+    }
     if (_lastResponse) {
         response = _lastResponse;
         _lastResponse = nil;
@@ -290,73 +313,3 @@ static uint _findpid(const struct sockaddr *addr);
 
 @end
 
-static uint _findpid(const struct sockaddr *addr) {
-    
-    char *buf = NULL, *p, *end;
-    int r;
-    uint pid = 0;
-    size_t len;
-    
-    if (addr->sa_family != AF_INET) {
-        goto end;
-    }
-    
-    len = 16 * 1024;
-    if (NULL == (buf = malloc(len)))
-        goto end;
-    r = net_pcblist(buf, len, 0);
-    if (r == 0)
-        goto end;
-    else if (r < 0) {
-        len = -r;
-        free(buf);
-        if (NULL == (buf = malloc(len)))
-            goto end;
-        r = net_pcblist(buf, len, 0);
-        if (r <= 0)
-            goto end;
-    }
-    len = r;
-    p = buf;
-    end = buf + len;
-    
-    const struct xinpgen *xg = net_pcblist_first(&p, end);
-    if (xg == NULL)
-        goto end;
-    
-    const struct xinpcb_n *inp = NULL;
-    const struct xsocket_n *so = NULL;
-    
-    for (;;) {
-        const struct xgen_n *xn = net_pcblist_next(&p, end);
-        if (xn == NULL)
-            break;
-        
-        switch (xn->xgn_kind) {
-                
-            case XSO_INPCB:
-                inp = (void*)xn;
-                break;
-                
-            case XSO_SOCKET:
-                if (inp == NULL)
-                    break;
-                
-                struct sockaddr_in *src = (struct sockaddr_in *)addr;
-                so = (void*)xn;
-                if (*(uint32_t *)&src->sin_addr == *(uint32_t*)xinp_ip4_local(inp)
-                    && src->sin_port == inp->inp_lport) {
-                    pid = so->so_uid;
-                    goto end;
-                }
-                
-                inp = NULL;
-                so = NULL;
-                break;
-        }
-    }
-    
-end:
-    free(buf);
-    return pid;
-}

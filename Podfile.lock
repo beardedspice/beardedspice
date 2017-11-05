@@ -5,15 +5,6 @@ PODS:
   - Kiwi (2.4.0)
   - MASPreferences (1.1.4)
   - MASShortcut (2.3.3)
-  - PocketSocket (1.0.1):
-    - PocketSocket/Client (= 1.0.1)
-    - PocketSocket/Core (= 1.0.1)
-    - PocketSocket/Server (= 1.0.1)
-  - PocketSocket/Client (1.0.1):
-    - PocketSocket/Core
-  - PocketSocket/Core (1.0.1)
-  - PocketSocket/Server (1.0.1):
-    - PocketSocket/Client
   - VCRURLConnection (0.2.0)
 
 DEPENDENCIES:
@@ -21,7 +12,6 @@ DEPENDENCIES:
   - Kiwi
   - MASPreferences (= 1.1.4)
   - MASShortcut (~> 2.3.3)
-  - PocketSocket
   - VCRURLConnection
 
 SPEC CHECKSUMS:
@@ -29,9 +19,8 @@ SPEC CHECKSUMS:
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   MASPreferences: 7bdcfe891d7840453cf48f95fa866c3e152ace7a
   MASShortcut: 38a76c9ea927de770c0a97ae28b15d18d6268b24
-  PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   VCRURLConnection: accd771ebd4be11183a3e4d5a4403f180a9a235e
 
-PODFILE CHECKSUM: 6f01c356c0accc0ce79563a8025d2ec6bde9a77b
+PODFILE CHECKSUM: d1ab0114cd0a6ef05c15044eb98fdc01e4095ae9
 
 COCOAPODS: 1.2.0

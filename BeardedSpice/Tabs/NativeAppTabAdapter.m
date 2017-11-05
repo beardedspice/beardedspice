@@ -34,7 +34,11 @@
     return YES;
 }
 
-
+- (void)toggleTab {
+    if (! [self deactivateApp]) {
+        [self activateApp];
+    }
+}
 @end
 
 #pragma clang diagnostic pop

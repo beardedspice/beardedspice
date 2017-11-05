@@ -9,6 +9,7 @@
 #import "BSActiveTab.h"
 #import "BSMediaStrategy.h"
 #import "BSTrack.h"
+#import "runningSBApplication.h"
 
 // Create serial queue for notification
 // We need queue because track info may contain image,
@@ -48,22 +49,40 @@ dispatch_queue_t notificationQueue() {
 - (NSString *)displayName {
     if ([self isNativeAdapter]) {
         return [_activeTab.class displayName];
-    } else {
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
+    } else if ([self isWebAdapter]) {
+        BSMediaStrategy *strategy = [self isWebAdapter] ?
+        [(BSWebTabAdapter *)_activeTab strategy]
+        : [_registry getMediaStrategyForTab:_activeTab];
         return strategy.displayName;
     }
+    return nil;
 }
 
 - (NSString *)title {
     if ([self isNativeAdapter]) {
         return [_activeTab.class displayName];
-    } else {
-        return _activeTab.title;
+    } else if ([self isWebAdapter]){
+        NSString *result;
+        @try {
+            result = _activeTab.title;
+        } @catch (NSException *exception) {
+            BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        }
+        if ([NSString isNullOrEmpty:result]) {
+            result = ((BSWebTabAdapter *)_activeTab).strategy.displayName;
+        }
+
+        return result;
     }
+    return NSLocalizedString(@"Unknown", @"Active tab title if we do not know type of the tab.");
 }
 
 - (BOOL)isNativeAdapter {
     return [_activeTab isKindOfClass:NativeAppTabAdapter.class];
+}
+
+- (BOOL)isWebAdapter {
+    return [_activeTab isKindOfClass:BSWebTabAdapter.class];
 }
 
 - (BOOL)isTabAdapter {
@@ -75,141 +94,125 @@ dispatch_queue_t notificationQueue() {
 }
 
 - (BOOL)isPlaying {
-    
-    if ([self isNativeAdapter]) {
-        
-        NativeAppTabAdapter *native = (NativeAppTabAdapter *)_activeTab;
-        
-        return [native isPlaying];
+    @try {
+        return [_activeTab isPlaying];
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
-    else if ([self isTabAdapter]) {
-        
-        BSMediaStrategy *strategy = [_registry getMediaStrategyForTab:_activeTab];
-        return (strategy && [strategy isPlaying:_activeTab]);
-    }
-    
     return NO;
 }
 
 #pragma mark - mutators
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab {
-    
-    BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) with tab %@", tab);
-
-    if (![tab isEqual:_activeTab]) {
-        BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, _activeTab);
-        if (_activeTab) {
-            [self pauseActiveTab];
-            if ([self.activeTab isActivated]) {
-                [self.activeTab toggleTab];
+    @try {
+        BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) with tab %@", tab);
+        
+        if (![tab isEqual:_activeTab]) {
+            BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, _activeTab);
+            if (_activeTab) {
+                [self.activeTab pause];
+                if ([self.activeTab deactivateTab]) {
+                    if (! [self.activeTab.application isEqual:tab.application]) {
+                        [self.activeTab deactivateApp];
+                    }
+                }
             }
+            
+            self.activeTab = tab;
+            BS_LOG(LOG_DEBUG, @"Active tab set to %@", _activeTab);
         }
-
-        self.activeTab = tab;
-        self.activeTabKey = [tab key];
-        BS_LOG(LOG_DEBUG, @"Active tab set to %@", _activeTab);
+        return YES;
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
-    return YES;
+    return NO;
 }
 
 - (void)clearActiveTab {
     //[_activeTab pause]; // FIXME do we need this?
     self.activeTab = nil;
-    self.activeTabKey = nil;
 }
 
+//TODO: delete this?
 - (void)repairActiveTab:(TabAdapter *)tab {
-    if ([_activeTabKey isEqualToString:[tab key]]) {
-        self.activeTab = [tab copyStateFrom:_activeTab];
+    if ([self.activeTab isEqual:tab]) {
+        self.activeTab = tab;
     }
 }
 
 - (void)pauseActiveTab {
-    if ([self isNativeAdapter]) {
-        if ([_activeTab respondsToSelector:@selector(pause)])
-            [_activeTab pause];
-    } else {
+    @try {
         [_activeTab pause];
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
-
 }
 
 - (void)activateTab {
-    [_activeTab activateTab];
+    @try {
+        [_activeTab activateApp];
+        [_activeTab activateTab];
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+    }
 }
 
 - (void)activatePlayingTab {
-    [_activeTab toggleTab];
+    @try {
+        [_activeTab toggleTab];
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+    }
 }
 
 #pragma mark - core media operations
 // TODO lots of repeat code here.
 
 - (void)toggle {
-    if ([self isNativeAdapter]) {
-        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
-        if ([tab respondsToSelector:@selector(toggle)]) {
-            [tab toggle];
-            if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
-                [self showNotification];
-        }
-    } else {
+    @try {
         if ([_activeTab toggle]
             && alwaysShowNotification()
             && ![_activeTab frontmost]) {
             [self showNotification];
         }
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
 }
 
 - (void)next {
     __weak typeof(self) wself = self;
-    if ([self isNativeAdapter]) {
-        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
-        if ([tab respondsToSelector:@selector(next)]) {
-            [tab next];
-            if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
-                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
-        }
-    } else {
+    @try {
         if ([_activeTab next]
             &&alwaysShowNotification()
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
 }
 
 - (void)previous {
     __weak typeof(self) wself = self;
-    if ([self isNativeAdapter]) {
-        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
-        if ([tab respondsToSelector:@selector(previous)]) {
-            [tab previous];
-            if ([tab showNotifications] && alwaysShowNotification() && ![tab frontmost])
-                dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
-        }
-    } else {
+    @try {
         if ([_activeTab previous]
             && alwaysShowNotification()
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
 }
 
 - (void)favorite {
     __weak typeof(self) wself = self;
-    if ([self isNativeAdapter]) {
-        NativeAppTabAdapter *tab = (NativeAppTabAdapter *)_activeTab;
-        if ([tab respondsToSelector:@selector(favorite)]) {
-            [tab favorite];
-            if ([[tab trackInfo] favorited])
-                [self showNotification];
-        }
-    } else {
+    @try {
         if ([_activeTab favorite]
             && [[_activeTab trackInfo] favorited])
             dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
+    } @catch (NSException *exception) {
+        BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
 }
     
@@ -230,24 +233,22 @@ dispatch_queue_t notificationQueue() {
 - (BSVolumeControlResult)volume:(SEL)selector {
 
     BSVolumeControlResult result = BSVolumeControlNotSupported;
-    id object;
     
-    if ([self isNativeAdapter]) {
-        object = _activeTab;
-    }
-    else {
-        object = [_registry getMediaStrategyForTab:_activeTab];
-    }
-        
-    if ([object conformsToProtocol:@protocol(BSVolumeControlProtocol)]) {
-        NSMethodSignature *sig = [[object class] instanceMethodSignatureForSelector:selector];
+    if ([_activeTab conformsToProtocol:@protocol(BSVolumeControlProtocol)]) {
+        NSMethodSignature *sig = [[_activeTab class] instanceMethodSignatureForSelector:selector];
         if (sig) {
-            
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
-            [invocation setSelector:selector];
-            [invocation setTarget:object];
-            [invocation invoke];
-            [invocation getReturnValue:&result];
+            @try {
+                if ([_activeTab isPlaying]) {
+                    
+                    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+                    [invocation setSelector:selector];
+                    [invocation setTarget:_activeTab];
+                    [invocation invoke];
+                    [invocation getReturnValue:&result];
+                }
+            } @catch (NSException *exception) {
+                BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+            }
         }
     }
     

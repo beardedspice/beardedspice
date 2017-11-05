@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>BeardedSpice</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.beardedspice.BeardedSpice.SafariExtension</string>
+	<string>com.beardedspice.SafariExtension</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,6 +26,12 @@
 			<key>End</key>
 			<array>
 				<string>main.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>utils.js</string>
+				<string>init.js</string>
+				<string>shared/eventClient.js</string>
 			</array>
 		</dict>
 	</dict>

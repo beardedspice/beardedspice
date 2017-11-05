@@ -1,0 +1,3 @@
+[submodule "submodules/PocketSocket"]
+	path = submodules/PocketSocket
+	url = https://github.com/beardedspice/PocketSocket.git

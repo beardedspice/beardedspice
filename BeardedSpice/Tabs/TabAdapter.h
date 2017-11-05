@@ -8,10 +8,7 @@
 
 @class runningSBApplication, BSTrack;
 
-@interface TabAdapter : NSObject {
-
-    BOOL _wasActivated;
-}
+@interface TabAdapter : NSObject 
 
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;
@@ -19,29 +16,30 @@
 -(NSString *) key;
 - (BOOL)check;
 
-- (void)activateTab;
+- (BOOL)activateApp;
+- (BOOL)deactivateApp;
+
+- (BOOL)activateTab;
+- (BOOL)deactivateTab;
 /**
  Determins if this tab was activated by user before.
-
- @return YES if user activated this tab before and corresponding app is frontmost still.
+ In this implementation means, that  app was activated.
+ 
+ @return YES if user activated this app before and corresponding app is frontmost still.
  */
 - (BOOL)isActivated;
-
+/**
+ Switches tab to frontmost/backmost.
+ Abstract method, must be implemented in child classes.
+ */
 - (void)toggleTab;
+
+/**
+ Returns YES if app is frontmost, in this implementation.
+*/
 - (BOOL)frontmost;
 
 @property runningSBApplication *application;
-
-/**
-    Copying of the variables, which reflect state of the object.
-
-    @param tab Object from which performed copying.
-
-    @return Returns self.
- */
-- (instancetype)copyStateFrom:(TabAdapter *)tab;
-
--(BOOL) isEqual:(__autoreleasing id)otherTab;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Virtual methods

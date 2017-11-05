@@ -10,8 +10,6 @@
 		0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */; };
 		0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369231D1862936600E04DDB /* GeneralPreferencesViewController.m */; };
 		03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */; };
-		03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */; };
-		03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */; };
 		0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */; };
 		0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */; };
 		0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AF3781CCE4D4C0021BBEA /* BSStrategyMockObject.m */; };
@@ -31,7 +29,6 @@
 		11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
 		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
-		59928E4C0E5F5891F2E28FA7 /* libPods-SafariExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B96393159D20F45215E45F2 /* libPods-SafariExtension.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
 		6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */; };
 		6507A2FF1F485F8800775D14 /* BSStrategyWebSocketServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */; };
@@ -50,8 +47,6 @@
 		655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA61D3ABFAA00E316EA /* EHCCache.m */; };
 		655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */; };
 		655EFA0A1F6B15650014FC72 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
-		655EFA101F6B15650014FC72 /* BSSafariExtensionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 655EFA0F1F6B15650014FC72 /* BSSafariExtensionHandler.m */; };
-		655EFA191F6B15650014FC72 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 655EFA181F6B15650014FC72 /* main.js */; };
 		656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00151C8AD3C800BD29F5 /* DDHidDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00041C8AD3C800BD29F5 /* DDHidDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -80,14 +75,21 @@
 		656AFFF51C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */; };
 		657635A81E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */; };
+		657BE28B1F95576C0051EC8E /* MYAnonymousIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 657BE2891F9553470051EC8E /* MYAnonymousIdentity.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
+		658D643F1FA697A2004D1546 /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D642E1FA69705004D1546 /* PSWebSocket.m */; };
+		658D64401FA697A2004D1546 /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64301FA69705004D1546 /* PSWebSocketBuffer.m */; };
+		658D64411FA697A2004D1546 /* PSWebSocketDeflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64321FA69705004D1546 /* PSWebSocketDeflater.m */; };
+		658D64421FA697A2004D1546 /* PSWebSocketDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64341FA69705004D1546 /* PSWebSocketDriver.m */; };
+		658D64431FA697A2004D1546 /* PSWebSocketInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64361FA69705004D1546 /* PSWebSocketInflater.m */; };
+		658D64441FA697A2004D1546 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64391FA69705004D1546 /* PSWebSocketNetworkThread.m */; };
+		658D64451FA697A2004D1546 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D643B1FA69705004D1546 /* PSWebSocketServer.m */; };
+		658D64461FA697A2004D1546 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
-		65A859C41F65E7ED00C77E1B /* BrowserExtensions in Resources */ = {isa = PBXBuildFile; fileRef = 65A859C31F65E7ED00C77E1B /* BrowserExtensions */; };
-		65A859C51F65E7ED00C77E1B /* BrowserExtensions in Resources */ = {isa = PBXBuildFile; fileRef = 65A859C31F65E7ED00C77E1B /* BrowserExtensions */; };
 		65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */; };
 		65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */; };
 		65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B1665C1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m */; };
@@ -174,10 +176,6 @@
 		03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MediaStrategyRegistry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
-		03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ChromeTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChromeTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SafariTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SafariTabAdapter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSActiveTab.h; sourceTree = "<group>"; };
 		0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSActiveTab.m; sourceTree = "<group>"; };
 		0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyTests.m; sourceTree = "<group>"; };
@@ -240,11 +238,6 @@
 		655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
 		655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
 		655EFA091F6B15650014FC72 /* BSSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BSSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		655EFA0D1F6B15650014FC72 /* SafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariExtension.entitlements; sourceTree = "<group>"; };
-		655EFA0E1F6B15650014FC72 /* BSSafariExtensionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSafariExtensionHandler.h; sourceTree = "<group>"; };
-		655EFA0F1F6B15650014FC72 /* BSSafariExtensionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSafariExtensionHandler.m; sourceTree = "<group>"; };
-		655EFA171F6B15650014FC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		655EFA181F6B15650014FC72 /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleMikey.m; sourceTree = "<group>"; };
 		656A00011C8AD3C800BD29F5 /* DDHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleRemote.h; sourceTree = "<group>"; };
 		656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleRemote.m; sourceTree = "<group>"; };
@@ -293,16 +286,37 @@
 		657635A51E88199900A4FCAD /* AirfoilSatellite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirfoilSatellite.h; sourceTree = "<group>"; };
 		657635A61E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirfoilSatelliteTabAdapter.h; sourceTree = "<group>"; };
 		657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirfoilSatelliteTabAdapter.m; sourceTree = "<group>"; };
+		657BE2891F9553470051EC8E /* MYAnonymousIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYAnonymousIdentity.m; sourceTree = "<group>"; };
+		657BE28A1F9553480051EC8E /* MYAnonymousIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYAnonymousIdentity.h; sourceTree = "<group>"; };
+		657BE28E1F9561980051EC8E /* BeardedSpiceCertTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeardedSpiceCertTemplate.h; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
 		6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOXTabAdapter.h; sourceTree = "<group>"; };
 		6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOXTabAdapter.m; sourceTree = "<group>"; };
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
+		658D64211FA5DF46004D1546 /* BrowserExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BrowserExtensions; sourceTree = "<group>"; };
+		658D642D1FA69705004D1546 /* PSWebSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocket.h; sourceTree = "<group>"; };
+		658D642E1FA69705004D1546 /* PSWebSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocket.m; sourceTree = "<group>"; };
+		658D642F1FA69705004D1546 /* PSWebSocketBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketBuffer.h; sourceTree = "<group>"; };
+		658D64301FA69705004D1546 /* PSWebSocketBuffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketBuffer.m; sourceTree = "<group>"; };
+		658D64311FA69705004D1546 /* PSWebSocketDeflater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketDeflater.h; sourceTree = "<group>"; };
+		658D64321FA69705004D1546 /* PSWebSocketDeflater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketDeflater.m; sourceTree = "<group>"; };
+		658D64331FA69705004D1546 /* PSWebSocketDriver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketDriver.h; sourceTree = "<group>"; };
+		658D64341FA69705004D1546 /* PSWebSocketDriver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketDriver.m; sourceTree = "<group>"; };
+		658D64351FA69705004D1546 /* PSWebSocketInflater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketInflater.h; sourceTree = "<group>"; };
+		658D64361FA69705004D1546 /* PSWebSocketInflater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketInflater.m; sourceTree = "<group>"; };
+		658D64371FA69705004D1546 /* PSWebSocketInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketInternal.h; sourceTree = "<group>"; };
+		658D64381FA69705004D1546 /* PSWebSocketNetworkThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketNetworkThread.h; sourceTree = "<group>"; };
+		658D64391FA69705004D1546 /* PSWebSocketNetworkThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketNetworkThread.m; sourceTree = "<group>"; };
+		658D643A1FA69705004D1546 /* PSWebSocketServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketServer.h; sourceTree = "<group>"; };
+		658D643B1FA69705004D1546 /* PSWebSocketServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketServer.m; sourceTree = "<group>"; };
+		658D643C1FA69705004D1546 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketTypes.h; sourceTree = "<group>"; };
+		658D643D1FA69705004D1546 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
+		658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
 		65A850141C8B065000D54C77 /* BSCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCService.h; sourceTree = "<group>"; };
 		65A850151C8B065000D54C77 /* BSCService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSCShortcutMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCShortcutMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		65A859C31F65E7ED00C77E1B /* BrowserExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BrowserExtensions; sourceTree = SOURCE_ROOT; };
 		65ABBAA41D1EC7D000F882CE /* BSCustomStrategyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCustomStrategyManager.h; sourceTree = "<group>"; };
 		65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCustomStrategyManager.m; sourceTree = "<group>"; };
 		65ABBAA81D1FDC5400F882CE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -338,7 +352,6 @@
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAppleScriptSupport.m; sourceTree = "<group>"; };
 		78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BeardedSpiceSuite.sdef; sourceTree = "<group>"; };
-		7F9D3669226F3E921443A74F /* Pods-SafariExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafariExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafariExtension/Pods-SafariExtension.release.xcconfig"; sourceTree = "<group>"; };
 		7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,7 +371,6 @@
 		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5AD2CAE0AF069E5CE8C20EB /* Pods-SafariExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafariExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafariExtension/Pods-SafariExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
 		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
 		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
@@ -370,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				655EFA0A1F6B15650014FC72 /* Cocoa.framework in Frameworks */,
-				59928E4C0E5F5891F2E28FA7 /* libPods-SafariExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,10 +468,6 @@
 				65B32B8D1AD99D1600F696B9 /* TabAdapter.m */,
 				65C511701AED802B00EBA6A5 /* NativeAppTabAdapter.h */,
 				65C511711AED802B00EBA6A5 /* NativeAppTabAdapter.m */,
-				03F33EEB1857E3C000E8F77E /* ChromeTabAdapter.h */,
-				03F33EEC1857E3C000E8F77E /* ChromeTabAdapter.m */,
-				03F33EEE1857E59B00E8F77E /* SafariTabAdapter.h */,
-				03F33EEF1857E59B00E8F77E /* SafariTabAdapter.m */,
 				651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */,
 				651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */,
 				65C5116B1AED66B700EBA6A5 /* SpotifyTabAdapter.h */,
@@ -486,26 +493,6 @@
 			path = BrowserExtensionsController;
 			sourceTree = "<group>";
 		};
-		655EFA0B1F6B15650014FC72 /* SafariExtension */ = {
-			isa = PBXGroup;
-			children = (
-				655EFA0E1F6B15650014FC72 /* BSSafariExtensionHandler.h */,
-				655EFA0F1F6B15650014FC72 /* BSSafariExtensionHandler.m */,
-				655EFA171F6B15650014FC72 /* Info.plist */,
-				655EFA181F6B15650014FC72 /* main.js */,
-				655EFA0C1F6B15650014FC72 /* Supporting Files */,
-			);
-			path = SafariExtension;
-			sourceTree = "<group>";
-		};
-		655EFA0C1F6B15650014FC72 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				655EFA0D1F6B15650014FC72 /* SafariExtension.entitlements */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		656A001D1C8AD3E200BD29F5 /* SPMediaKeyTap */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,6 +507,9 @@
 		656A00241C8AD41A00BD29F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				657BE28E1F9561980051EC8E /* BeardedSpiceCertTemplate.h */,
+				657BE28A1F9553480051EC8E /* MYAnonymousIdentity.h */,
+				657BE2891F9553470051EC8E /* MYAnonymousIdentity.m */,
 				655AACA51D3ABFAA00E316EA /* EHCCache.h */,
 				655AACA61D3ABFAA00E316EA /* EHCCache.m */,
 				655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */,
@@ -608,6 +598,40 @@
 			path = DDHidLib;
 			sourceTree = "<group>";
 		};
+		658D642A1FA696AF004D1546 /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+				658D642B1FA69705004D1546 /* PocketSocket */,
+			);
+			name = Submodules;
+			sourceTree = "<group>";
+		};
+		658D642B1FA69705004D1546 /* PocketSocket */ = {
+			isa = PBXGroup;
+			children = (
+				658D642D1FA69705004D1546 /* PSWebSocket.h */,
+				658D642E1FA69705004D1546 /* PSWebSocket.m */,
+				658D642F1FA69705004D1546 /* PSWebSocketBuffer.h */,
+				658D64301FA69705004D1546 /* PSWebSocketBuffer.m */,
+				658D64311FA69705004D1546 /* PSWebSocketDeflater.h */,
+				658D64321FA69705004D1546 /* PSWebSocketDeflater.m */,
+				658D64331FA69705004D1546 /* PSWebSocketDriver.h */,
+				658D64341FA69705004D1546 /* PSWebSocketDriver.m */,
+				658D64351FA69705004D1546 /* PSWebSocketInflater.h */,
+				658D64361FA69705004D1546 /* PSWebSocketInflater.m */,
+				658D64371FA69705004D1546 /* PSWebSocketInternal.h */,
+				658D64381FA69705004D1546 /* PSWebSocketNetworkThread.h */,
+				658D64391FA69705004D1546 /* PSWebSocketNetworkThread.m */,
+				658D643A1FA69705004D1546 /* PSWebSocketServer.h */,
+				658D643B1FA69705004D1546 /* PSWebSocketServer.m */,
+				658D643C1FA69705004D1546 /* PSWebSocketTypes.h */,
+				658D643D1FA69705004D1546 /* PSWebSocketUTF8Decoder.h */,
+				658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */,
+			);
+			name = PocketSocket;
+			path = submodules/PocketSocket/PocketSocket;
+			sourceTree = "<group>";
+		};
 		65FBCE3B1EC0F8F3004EFFC7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,12 +645,12 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
+				658D642A1FA696AF004D1546 /* Submodules */,
 				656A003A1C8AFFD400BD29F5 /* SharedComponents */,
 				656A00241C8AD41A00BD29F5 /* Utils */,
 				967933351855173100A49AC7 /* BeardedSpice */,
 				656AFFEB1C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
-				655EFA0B1F6B15650014FC72 /* SafariExtension */,
-				65A859C31F65E7ED00C77E1B /* BrowserExtensions */,
+				658D64211FA5DF46004D1546 /* BrowserExtensions */,
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
@@ -771,8 +795,6 @@
 				412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
 				2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */,
 				2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */,
-				B5AD2CAE0AF069E5CE8C20EB /* Pods-SafariExtension.debug.xcconfig */,
-				7F9D3669226F3E921443A74F /* Pods-SafariExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -784,11 +806,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 655EFA1F1F6B15650014FC72 /* Build configuration list for PBXNativeTarget "BSSafariExtension" */;
 			buildPhases = (
-				E41AF6489D9D8E82E36A713C /* [CP] Check Pods Manifest.lock */,
 				655EFA051F6B15650014FC72 /* Sources */,
 				655EFA061F6B15650014FC72 /* Frameworks */,
 				655EFA071F6B15650014FC72 /* Resources */,
-				F89F7D92E0694CE8B3111142 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -830,6 +850,7 @@
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
 				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
 				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
+				658D64231FA5E7A1004D1546 /* Build and Copy Browser Extensions and it resources */,
 			);
 			buildRules = (
 			);
@@ -933,7 +954,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				655EFA191F6B15650014FC72 /* main.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,7 +961,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A859C51F65E7ED00C77E1B /* BrowserExtensions in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -949,7 +968,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A859C41F65E7ED00C77E1B /* BrowserExtensions in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
 				654A6DC01F7912410028E849 /* certificate.p12 in Resources */,
@@ -1068,6 +1086,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		658D64231FA5E7A1004D1546 /* Build and Copy Browser Extensions and it resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build and Copy Browser Extensions and it resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET=\"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources/BrowserExtensions\"\nSOURCE=\"${SRCROOT}/BrowserExtensions\"\n\nmkdir -pv \"${TARGET}\"\ncp -vRf \"${SOURCE}/resources\" \"${TARGET}/\" || exit 1\n\n";
+		};
 		899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1098,36 +1130,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E41AF6489D9D8E82E36A713C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F89F7D92E0694CE8B3111142 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafariExtension/Pods-SafariExtension-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1135,7 +1137,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				655EFA101F6B15650014FC72 /* BSSafariExtensionHandler.m in Sources */,
 				65FF381C1F6E78D100DD8933 /* BSBrowserExtensionMessages.m in Sources */,
 				65FF38171F6DC4E000DD8933 /* BSSharedDefaults.m in Sources */,
 			);
@@ -1177,6 +1178,7 @@
 			files = (
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				0BF06AE51C9513A800534083 /* BSTrack.m in Sources */,
+				658D64461FA697A2004D1546 /* PSWebSocketUTF8Decoder.m in Sources */,
 				654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */,
 				655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
@@ -1186,17 +1188,20 @@
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,
 				657635A81E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m in Sources */,
+				658D64411FA697A2004D1546 /* PSWebSocketDeflater.m in Sources */,
 				65C511721AED802B00EBA6A5 /* NativeAppTabAdapter.m in Sources */,
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
+				658D64451FA697A2004D1546 /* PSWebSocketServer.m in Sources */,
 				65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,
+				657BE28B1F95576C0051EC8E /* MYAnonymousIdentity.m in Sources */,
 				6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
 				656A003D1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
+				658D64441FA697A2004D1546 /* PSWebSocketNetworkThread.m in Sources */,
 				656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */,
-				03F33EF01857E59B00E8F77E /* SafariTabAdapter.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */,
 				656A00311C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
@@ -1206,13 +1211,16 @@
 				656A00331C8AD41A00BD29F5 /* NSException+Utils.m in Sources */,
 				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
+				658D643F1FA697A2004D1546 /* PSWebSocket.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */,
 				0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */,
+				658D64401FA697A2004D1546 /* PSWebSocketBuffer.m in Sources */,
+				658D64431FA697A2004D1546 /* PSWebSocketInflater.m in Sources */,
+				658D64421FA697A2004D1546 /* PSWebSocketDriver.m in Sources */,
 				6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */,
 				65B32B8E1AD99D1600F696B9 /* TabAdapter.m in Sources */,
-				03F33EED1857E3C000E8F77E /* ChromeTabAdapter.m in Sources */,
 				655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */,
 				5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */,
 				0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
@@ -1301,7 +1309,6 @@
 /* Begin XCBuildConfiguration section */
 		655EFA201F6B15650014FC72 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5AD2CAE0AF069E5CE8C20EB /* Pods-SafariExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1333,7 +1340,6 @@
 		};
 		655EFA211F6B15650014FC72 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F9D3669226F3E921443A74F /* Pods-SafariExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
 				CLANG_ANALYZER_NONNULL = YES;

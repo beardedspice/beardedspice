@@ -473,6 +473,8 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
              options:0
              additionalEventParamDescriptor:nil
              launchIdentifiers:nil];
+            runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:item];
+            [app activate];
         }
     }
 }

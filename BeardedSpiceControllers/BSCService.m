@@ -19,7 +19,9 @@
 
 #import "EHSystemUtils.h"
 #import "NSString+Utils.h"
+#import "EHExecuteBlockDelayed.h"
 
+#define MIKEY_REPEAT_TIMEOUT                0.6  //seconds
 
 @implementation BSCService{
 
@@ -41,6 +43,8 @@
     BOOL _enabled;
 
     EventLoopRef _shortcutThreadRL;
+    
+    EHExecuteBlockDelayed *_miKeyCommandBlock;
 }
 
 static BSCService *bscSingleton;
@@ -308,10 +312,10 @@ static BSCService *bscSingleton;
 
 - (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned)usageId upOrDown:(BOOL)upOrDown
 {
-    if (upOrDown == TRUE) {
 #if DEBUG
-        NSLog(@"Apple Mikey keypress detected: %d", usageId);
+    NSLog(@"Apple Mikey keypress detected: x%X", usageId);
 #endif
+    if (upOrDown == TRUE) {
         switch (usageId) {
             case kHIDUsage_GD_SystemMenu:
                 [self sendMessagesToConnections:@selector(playPauseToggle)];
@@ -323,13 +327,17 @@ static BSCService *bscSingleton;
                 [self sendMessagesToConnections:@selector(previousTrack)];
                 break;
             case kHIDUsage_GD_SystemMenuUp:
+            case kHIDUsage_Csmr_VolumeIncrement:
                 [self sendMessagesToConnections:@selector(volumeUp)];
                 break;
             case kHIDUsage_GD_SystemMenuDown:
+            case kHIDUsage_Csmr_VolumeDecrement:
                 [self sendMessagesToConnections:@selector(volumeDown)];
                 break;
+            case kHIDUsage_Csmr_PlayOrPause:
+                [self catchCommandFromMiKeys];
             default:
-                NSLog(@"Unknown key press seen %d", usageId);
+                NSLog(@"Unknown key press seen x%X", usageId);
         }
     }
 }
@@ -400,6 +408,41 @@ static BSCService *bscSingleton;
     });
 }
 
+- (void)catchCommandFromMiKeys {
+    static NSInteger counter = 0;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _miKeyCommandBlock  = [[EHExecuteBlockDelayed alloc]
+                               initWithTimeout:MIKEY_REPEAT_TIMEOUT
+                               leeway:MIKEY_REPEAT_TIMEOUT
+                               queue:workingQueue
+                               block:^{
+                                   switch (counter) {
+                                       case 1:
+                                           [self sendMessagesToConnections:@selector(playPauseToggle)];
+                                           break;
+                                           
+                                       case 2:
+                                           [self sendMessagesToConnections:@selector(nextTrack)];
+                                           break;
+                                           
+                                       case 3:
+                                           [self sendMessagesToConnections:@selector(previousTrack)];
+                                           break;
+
+                                       default:
+                                           break;
+                                   }
+                                   BS_LOG(LOG_DEBUG, @"%s - Comman Block Running (%ld)", __FUNCTION__, counter);
+                                   counter = 0;
+                               }];
+    });
+    
+    counter++;
+    BS_LOG(LOG_DEBUG, @"%s - counter: %ld", __FUNCTION__, counter);
+    [_miKeyCommandBlock executeOnceAfterCalm];
+}
+
 - (void)refreshMikeys
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -412,7 +455,7 @@ static BSCService *bscSingleton;
                     [_mikeys makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
-                    NSLog(@"Error when stopListenong on Apple Mic: %@", exception);
+                    NSLog(@"Error when stopListening on Apple Mic: %@", exception);
                 }
             }
 
@@ -425,7 +468,7 @@ static BSCService *bscSingleton;
                         @try {
 
                             [item setDelegate:self];
-                            [item setListenInExclusiveMode:NO];
+                            [item setListenInExclusiveMode:YES];
                             [item startListening];
 
                             [_mikeys addObject:item];
@@ -563,22 +606,26 @@ static BSCService *bscSingleton;
 - (void)rcdControl{
 
     if (_enabled) {
+        BS_LOG(LOG_DEBUG, @"rcdControl enabled");
         //checking that rcd is enabled and disabling it
         NSString *cliOutput = NULL;
         if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
             _remoteControlDaemonEnabled = ( [cliOutput contains:@"com.apple.rcd" caseSensitive:YES]);
             if (_remoteControlDaemonEnabled) {
-                _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil] == 0);
+                _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"-w", @"com.apple.rcd.plist"] output:nil] == 0);
+                BS_LOG(LOG_DEBUG, @"rcdControl unload result: %d", _remoteControlDaemonEnabled);
             }
         }
     }
     else{
 
+        BS_LOG(LOG_DEBUG, @"rcdControl disable");
         if (_remoteControlDaemonEnabled) {
-
-            [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
+            BS_LOG(LOG_DEBUG, @"rcdControl load");
+            [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"-w", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
         }
     }
+
 }
 
 #pragma mark - Notifications

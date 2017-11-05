@@ -17,6 +17,9 @@
 @implementation ServiceDelegate
 
 - (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
+
+    BS_LOG(LOG_DEBUG, @"New connection");
+    
     // This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
     
     // Configure the connection.

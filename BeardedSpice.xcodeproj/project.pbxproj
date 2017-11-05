@@ -30,6 +30,7 @@
 		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
 		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
+		650781191FAF43EE00A0902A /* EHExecuteBlockDelayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */; };
 		6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */; };
 		6507A2FF1F485F8800775D14 /* BSStrategyWebSocketServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */; };
 		6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3011F48824000775D14 /* BSWebTabAdapter.m */; };
@@ -204,6 +205,8 @@
 		5E80769C1D58CE180002855D /* Downcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downcast.h; sourceTree = "<group>"; };
 		5E80769D1D58CE180002855D /* DowncastTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowncastTabAdapter.h; sourceTree = "<group>"; };
 		5E80769E1D58CE180002855D /* DowncastTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowncastTabAdapter.m; sourceTree = "<group>"; };
+		650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHExecuteBlockDelayed.m; sourceTree = "<group>"; };
+		650781181FAF43E600A0902A /* EHExecuteBlockDelayed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHExecuteBlockDelayed.h; sourceTree = "<group>"; };
 		6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyWebSocketServer.h; sourceTree = "<group>"; };
 		6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServer.m; sourceTree = "<group>"; };
 		6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServerTest.m; sourceTree = "<group>"; };
@@ -227,7 +230,6 @@
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
 		654A6DBF1F7905C30028E849 /* certificate.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = certificate.p12; sourceTree = "<group>"; };
-		654A6DC21F7CFC7D0028E849 /* netcon-macos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "netcon-macos.h"; sourceTree = "<group>"; };
 		654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalTabAdapter.h; sourceTree = "<group>"; };
 		654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidalTabAdapter.m; sourceTree = "<group>"; };
 		654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -526,7 +528,8 @@
 				656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */,
 				6507A3041F49A4E800775D14 /* BSPredicateToJS.h */,
 				6507A3051F49A4E800775D14 /* BSPredicateToJS.m */,
-				654A6DC21F7CFC7D0028E849 /* netcon-macos.h */,
+				650781181FAF43E600A0902A /* EHExecuteBlockDelayed.h */,
+				650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1167,6 +1170,7 @@
 				656A001B1C8AD3C800BD29F5 /* NSDictionary+DDHidExtras.m in Sources */,
 				656A001A1C8AD3C800BD29F5 /* DDHidUsageTables.m in Sources */,
 				656A00191C8AD3C800BD29F5 /* DDHidUsage.m in Sources */,
+				650781191FAF43EE00A0902A /* EHExecuteBlockDelayed.m in Sources */,
 				656A00171C8AD3C800BD29F5 /* DDHidEvent.m in Sources */,
 				656A00151C8AD3C800BD29F5 /* DDHidDevice.m in Sources */,
 			);
@@ -1434,6 +1438,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"JSC_OBJC_API_ENABLED=1",
@@ -1474,6 +1479,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"JSC_OBJC_API_ENABLED=1",
 					"$(inherited)",
@@ -1505,7 +1511,6 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
@@ -1531,7 +1536,6 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";

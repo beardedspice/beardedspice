@@ -87,6 +87,9 @@
     return self.application.frontmost;
 }
 
+- (BOOL)showNotifications{
+    return YES;
+}
 
 - (BOOL)isEqual:(id)object {
 

@@ -28,9 +28,4 @@
  */
 + (NSString *)bundleId; // Required override in subclass.
 
-/**
-    Indicates when BeardedSpice may display notifications.
- */
-- (BOOL)showNotifications;
-
 @end

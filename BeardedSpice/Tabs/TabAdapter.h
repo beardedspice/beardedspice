@@ -10,6 +10,8 @@
 
 @interface TabAdapter : NSObject 
 
+@property runningSBApplication *application;
+
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;
 -(NSString *) URL;
@@ -36,10 +38,13 @@
 
 /**
  Returns YES if app is frontmost, in this implementation.
-*/
+ */
 - (BOOL)frontmost;
 
-@property runningSBApplication *application;
+/**
+ Indicates when BeardedSpice may display notifications.
+ */
+- (BOOL)showNotifications;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Virtual methods

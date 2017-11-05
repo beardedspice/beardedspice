@@ -172,6 +172,7 @@ dispatch_queue_t notificationQueue() {
 - (void)toggle {
     @try {
         if ([_activeTab toggle]
+            && [_activeTab showNotifications]
             && alwaysShowNotification()
             && ![_activeTab frontmost]) {
             [self showNotification];
@@ -185,7 +186,8 @@ dispatch_queue_t notificationQueue() {
     __weak typeof(self) wself = self;
     @try {
         if ([_activeTab next]
-            &&alwaysShowNotification()
+            && [_activeTab showNotifications]
+            && alwaysShowNotification()
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
@@ -197,6 +199,7 @@ dispatch_queue_t notificationQueue() {
     __weak typeof(self) wself = self;
     @try {
         if ([_activeTab previous]
+            && [_activeTab showNotifications]
             && alwaysShowNotification()
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
@@ -209,6 +212,7 @@ dispatch_queue_t notificationQueue() {
     __weak typeof(self) wself = self;
     @try {
         if ([_activeTab favorite]
+            && [_activeTab showNotifications]
             && [[_activeTab trackInfo] favorited])
             dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {

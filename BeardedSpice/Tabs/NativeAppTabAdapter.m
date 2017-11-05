@@ -30,10 +30,6 @@
     return nil;
 }
 
-- (BOOL)showNotifications{
-    return YES;
-}
-
 - (void)toggleTab {
     if (! [self deactivateApp]) {
         [self activateApp];

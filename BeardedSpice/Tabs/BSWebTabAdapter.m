@@ -14,7 +14,6 @@
 #import "BSMediaStrategy.h"
 #import "BSStrategyCache.h"
 #import "runningSBApplication.h"
-#import "netcon-macos.h"
 
 #define RESPONSE_TIMEPUT                        0.2
 #define TIMEOUT_WAS_REACHED                     @"TIMEOUT_WAS_REACHED"

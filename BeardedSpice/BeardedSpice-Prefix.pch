@@ -29,5 +29,11 @@
 
 #define BS_LOG(x, y, ...) do { if (x >= LOG_LEVEL) { NSLog(y, ##__VA_ARGS__); } } while(0)
 
+#pragma mark - Macros for weak vars
+
+#define ASSIGN_WEAK(A)     __weak __typeof__(A) w##A = A
+#define ASSIGN_STRONG(A)   __typeof__(A) s##A = w##A
+#define USE_STRONG(A)          s##A
+
 #pragma mark - Other
 

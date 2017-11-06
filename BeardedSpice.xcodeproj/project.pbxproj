@@ -916,7 +916,7 @@
 						};
 					};
 					9679332B1855173100A49AC7 = {
-						DevelopmentTeam = 5F2QV47DGC;
+						DevelopmentTeam = N33TQXN8C7;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -1503,9 +1503,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = BeardedSpice/BeardedSpice.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5F2QV47DGC;
+				DEVELOPMENT_TEAM = N33TQXN8C7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

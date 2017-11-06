@@ -38,6 +38,7 @@ static NSData* signData(SecKeyRef privateKey, NSData* inputData);
 static SecCertificateRef addCertToKeychain(NSData* certData, NSString* label,
                                            NSError** outError);
 static SecIdentityRef findIdentity(NSString* label, NSTimeInterval expirationInterval);
+BOOL BSCheckAndSetTrustingForSSL(SecIdentityRef ident);
 
 #if TARGET_OS_IPHONE
 static void removePublicKey(SecKeyRef publicKey);
@@ -59,8 +60,10 @@ SecIdentityRef MYGetOrCreateAnonymousIdentity(NSString* label,
         if (!certData)
             return NULL;
         SecCertificateRef certRef = addCertToKeychain(certData, label, outError);
-        if (!certRef)
+        if (!certRef){
+            MYDeleteAnonymousIdentity(label);
             return NULL;
+        }
 #if TARGET_OS_IPHONE
         removePublicKey(publicKey); // workaround for Radar 18205627
         ident = findIdentity(label, expirationInterval);
@@ -72,6 +75,10 @@ SecIdentityRef MYGetOrCreateAnonymousIdentity(NSString* label,
 #endif
         if (!ident)
             NSLog(@"MYAnonymousIdentity: Can't find identity we just created");
+    }
+    
+    if (! BSCheckAndSetTrustingForSSL(ident)) {
+        return NULL;
     }
     return ident;
 }
@@ -378,6 +385,103 @@ BOOL MYDeleteAnonymousIdentity(NSString* label) {
     return (err == noErr);
 }
 
+CSSM_BOOL compareOids( const CSSM_OID *oid1,
+                      const CSSM_OID *oid2)
+{
+    if((oid1 == NULL) || (oid2 == NULL))
+        return CSSM_FALSE;
+    
+    if(oid1->Length != oid2->Length)
+        return CSSM_FALSE;
+    
+    if(memcmp(oid1->Data, oid2->Data, oid1->Length))
+        return CSSM_FALSE;
+    
+    return CSSM_TRUE;
+}
+
+BOOL BSCheckAndSetTrustingForSSL(SecIdentityRef ident) {
+    
+    BOOL result = NO;
+    
+    if (ident) {
+        
+        //check current state
+        SecCertificateRef certRef;
+        SecIdentityCopyCertificate(ident, &certRef);
+
+            CFArrayRef settings;
+            SecTrustSettingsCopyTrustSettings(certRef, kSecTrustSettingsDomainUser, &settings);
+            if (settings) {
+                
+                for (NSDictionary *item in (__bridge id)settings) {
+                    
+                    SecPolicyRef policy = (__bridge SecPolicyRef) item[(__bridge id)kSecTrustSettingsPolicy];
+                    if (policy) {
+                        CFDictionaryRef policyProps = SecPolicyCopyProperties(policy);
+                        if (policyProps) {
+                            
+                            CFStringRef oid = CFDictionaryGetValue(policyProps, kSecPolicyOid);
+                            if (oid) {
+                                if (CFStringCompare(oid, kSecPolicyAppleSSL, 0) == kCFCompareEqualTo) {
+                                    //we found what we need
+                                    NSNumber *trustVal = item[(__bridge id)kSecTrustSettingsResult];
+                                    if ([trustVal intValue] == kSecTrustSettingsResultTrustAsRoot) {
+                                        result = YES;
+                                    }
+                                }
+                            }
+                            
+                            CFRelease(policyProps);
+                        }
+                    }
+                    if (result) {
+                        break;
+                    }
+                }
+                CFRelease(settings);
+            }
+
+        if (result) {
+            CFRelease(certRef);
+            return YES;
+        }
+        
+        // set trust
+        SecPolicyRef policySSL = SecPolicyCreateSSL(true, NULL);
+        if (policySSL) {
+            NSArray *newSettings = @[
+                         @{
+                             (__bridge id)kSecTrustSettingsResult: @(kSecTrustSettingsResultTrustAsRoot),
+                             (__bridge id)kSecTrustSettingsPolicy: (__bridge id)policySSL,
+                             @"kSecTrustSettingsPolicyName": @"sslServer",
+                             (__bridge id)kSecTrustSettingsAllowedError: @(-2147409654),
+                             (__bridge id)kSecTrustSettingsPolicyString: @"localhost"
+                             }
+                         ,
+                         @{
+                             (__bridge id)kSecTrustSettingsResult: @(kSecTrustSettingsResultTrustAsRoot),
+                             (__bridge id)kSecTrustSettingsPolicy: (__bridge id)policySSL,
+                             @"kSecTrustSettingsPolicyName": @"sslServer",
+                             (__bridge id)kSecTrustSettingsAllowedError: @(-2147408896),
+                             (__bridge id)kSecTrustSettingsPolicyString: @"localhost"
+                             }
+                         ];
+            OSStatus err = SecTrustSettingsSetTrustSettings(certRef, kSecTrustSettingsDomainUser, (__bridge CFArrayRef) newSettings);
+            if (err == errSecSuccess) {
+                result = YES;
+            }
+            else {
+                NSLog(@"ERROR: SecTrustSettingsSetTrustSettings() returned %i", err);
+            }
+
+            CFRelease(policySSL);
+        }
+        CFRelease(certRef);
+    }
+    
+    return result;
+}
 
 /*
  Copyright (c) 2014-15, Jens Alfke <jens@mooseyard.com>. All rights reserved.

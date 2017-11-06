@@ -86,17 +86,18 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
             return;
         }
         
-        [self loadCertificate];
-        
-        _controlPort = [self getFreeListeningPortFrom:8008 poolCount:10];
-        if (_controlPort) {
-            _controlServer = [PSWebSocketServer serverWithHost:@"127.0.0.1" port:_controlPort SSLCertificates:_certs];
-            _controlServer.delegateQueue = _workQueue;
-            _controlServer.delegate = self;
-            [_controlServer start];
-            
-            _controlStarted = YES;
+        if ([self loadCertificate]) {
+            _controlPort = [self getFreeListeningPortFrom:8008 poolCount:10];
+            if (_controlPort) {
+                _controlServer = [PSWebSocketServer serverWithHost:@"127.0.0.1" port:_controlPort SSLCertificates:_certs];
+                _controlServer.delegateQueue = _workQueue;
+                _controlServer.delegate = self;
+                [_controlServer start];
+                
+                _controlStarted = YES;
+            }
         }
+        
     }
 }
 
@@ -164,10 +165,14 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     
     [self setStopServer:server];
     
-    if (_stopCompletion && ! self.started) {
+    if (_stopCompletion && [self stopped]) {
+        ASSIGN_WEAK(_stopCompletion);
         dispatch_async(dispatch_get_main_queue(), ^{
-            _stopCompletion();
-            _stopCompletion = nil;
+            ASSIGN_STRONG(_stopCompletion);
+            if (USE_STRONG(_stopCompletion)) {
+                USE_STRONG(_stopCompletion)();
+                USE_STRONG(_stopCompletion) = nil;
+            }
         });
     }
 }
@@ -262,8 +267,22 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     return nil;
 }
 
+- (void)server:(PSWebSocketServer *)server connectionId:(NSString *)identifier didFailWithError:(NSError *)error {
+    if (error.code == errSSLClosedAbort) {
+        //May be user removed BeardedSpice certificate from default keychain.
+        //restart server
+        [self stopWithComletion:^{
+            [self start];
+        }];
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Private methods
+
+- (BOOL)stopped {
+    return ! (_tabsStarted || _controlStarted);
+}
 
 - (uint16_t)getFreeListeningPortFrom:(uint16_t)port poolCount:(uint16_t)poolCount {
     
@@ -382,44 +401,16 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 //    }
 //}
 
-- (void)loadCertificate {
+- (BOOL)loadCertificate {
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-/*
-        NSURL *certUrl = [[NSBundle mainBundle] URLForResource:@"certificate" withExtension:@"p12"];
-        if (certUrl) {
-            
-            NSData *certData = [NSData dataWithContentsOfURL:certUrl];
-            if (certData) {
-                NSString *dfhfq10Fl5 = @"NbgfGfhjkm";
-                NSDictionary *options = @{ (id)kSecImportExportPassphrase : dfhfq10Fl5 };
-                CFArrayRef rawItems = NULL;
-                OSStatus status = SecPKCS12Import((__bridge CFDataRef)certData,
-                                                  (__bridge CFDictionaryRef)options,
-                                                  &rawItems);
-                
-                NSArray* items = (NSArray*)CFBridgingRelease(rawItems);
-                NSDictionary* firstItem = nil;
-                if ((status == errSecSuccess) && ([items count]>0)) {
-                    firstItem = items[0];
-                    SecIdentityRef identity =
-                    (SecIdentityRef)CFBridgingRetain(firstItem[(id)kSecImportItemIdentity]);
-                    if (identity) {
-                        _certs = @[(__bridge_transfer id)identity];
-                    }
-                }
-            }
-        }
- */
-        NSError *error = NULL;
-        SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(@"BeardedSpice", 3600 * 24 * 350, &error);
-        if (error || identity == nil) {
-            BS_LOG(LOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
-            return;
-        }
-        _certs = @[(__bridge id)identity];
-    });
+    NSError *error = NULL;
+    SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(@"BeardedSpice", 3600 * 24 * 350, &error);
+    if (error || identity == nil) {
+        BS_LOG(LOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
+        return NO;
+    }
+    _certs = @[(__bridge id)identity];
+    return YES;
 }
 - (void)startTabServer {
     

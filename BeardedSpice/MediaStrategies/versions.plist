@@ -57,7 +57,7 @@
 	<key>Gaana</key>
 	<integer>1</integer>
 	<key>GenieMusic</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>GoogleMusic</key>
 	<integer>3</integer>
 	<key>GrooveShark</key>
@@ -149,6 +149,8 @@
 	<key>Saavn</key>
 	<integer>2</integer>
 	<key>ShufflerFm</key>
+	<integer>1</integer>
+	<key>SiriusXM</key>
 	<integer>1</integer>
 	<key>Slacker</key>
 	<integer>1</integer>

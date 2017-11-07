@@ -90,6 +90,9 @@ var handleMessage = function(event) {
     console.log(event.name);
     console.log(event.message);
     if (event.name === 'reconnect') {
+        if (socket) {
+            socket.close();
+        }
         reconnect(event);
         return;
     }
@@ -191,6 +194,9 @@ var accept = function (accepters) {
                         state.set(state.accepted);
                         safari.self.tab.dispatchMessage("port");
                     }
+                    else {
+                        state.set(state.init);
+                    }
                 });
                 if (intervalId) {
                     clearInterval(intervalId);
@@ -206,6 +212,9 @@ var accept = function (accepters) {
             if (strategyName) {
                 state.set(state.accepted);
                 safari.self.tab.dispatchMessage("port");
+            }
+            else {
+                state.set(state.init);
             }
         }
 

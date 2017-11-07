@@ -52,6 +52,17 @@
         }
     };
 
+    var resetAllTabs = function (){
+        console.log("(BeardedSpice Control) Reset all tabs.");
+        safari.application.browserWindows.forEach(function(val){
+            val.tabs.forEach(function(tab){
+                if (tab.url && tab.url.length && tab.page) {
+                    tab.page.dispatchMessage("reconnect", {'result':true});
+                }
+            })
+        });
+    }
+
     function reconnect(event) {
         console.info("(BeardedSpice Control) Attempt to reconnecting.");
 
@@ -113,15 +124,13 @@
                     clientsPort = obj['port'];
                     _sendOk();
                     // Send new port to tabs
-                    safari.application.browserWindows.forEach(function(val){
-                        val.tabs.forEach(function(tab){
-                            if (tab.url && tab.url.length && tab.page) {
-                                tab.page.dispatchMessage("reconnect", {'result':true});
-                            }
-                        })
-                    });
+                    resetAllTabs();
+                }
+                else if (obj['strategiesChanged']) {
+                    _send({'request':'accepters'});
                 }
                 else if (obj['controllerPort']) {
+                    _sendOk();
                     var port = obj['controllerPort'];
                     if (port != "" && parseInt(port)) {
                         safari.extension.settings.controllerPort = port;

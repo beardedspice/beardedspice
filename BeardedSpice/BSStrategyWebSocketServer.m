@@ -463,10 +463,14 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                            object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                                
                                @synchronized (self) {
-                                   _enabledStrategiesJson = nil;
+                                   @autoreleasepool {
+                                       _enabledStrategiesJson = nil;
+                                       NSString *message = @"{\"strategiesChanged\":true}";
+                                       for (PSWebSocket *item in _controlSockets) {
+                                           [item send:message];
+                                       }
+                                   }
                                }
-                               
-                               //TODO: add notification of all clients that strategies was changed
                            }];
             if (observer) {
                 [_observers addObject:observer];

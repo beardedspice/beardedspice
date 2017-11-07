@@ -14,10 +14,11 @@
 #import "MediaStrategyRegistry.h"
 #import "BSMediaStrategy.h"
 #import "BSPredicateToJS.h"
-#import "BSSharedDefaults.h"
+//#import "BSSharedDefaults.h"
 #import "MYAnonymousIdentity.h"
 #import "BSSafariExtensionController.h"
 #import "runningSBApplication.h"
+#import "GeneralPreferencesViewController.h"
 
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.netinet;
@@ -26,13 +27,17 @@
 #define SAFARI_EXTENSION_PAIRING_FORMAT                @"https://localhost:%d/pairing.html?bundleId=%@"
 #define SAFARI_EXTENSION_PAIRING                       @"/resources/pairing.html"
 
+
+NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
+
 @implementation BSStrategyWebSocketServer{
     
     NSString *_enabledStrategiesJson;
-    id _observer;
+    NSMutableArray *_observers;
     dispatch_queue_t _workQueue;
     NSOperationQueue *_oQueue;
     NSMutableArray <BSWebTabAdapter *> *_tabs;
+    NSMutableArray <PSWebSocket *> *_controlSockets;
     void (^_stopCompletion)(void);
     NSArray *_certs;
     BOOL _controlStarted, _tabsStarted;
@@ -65,6 +70,8 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         
         _tabsPort = _controlPort = 0;
         _controlStarted = _tabsStarted = NO;
+        _observers = [NSMutableArray new];
+        _controlSockets = [NSMutableArray new];
         _workQueue = dispatch_queue_create("com.beardedspice.websocket.server", DISPATCH_QUEUE_SERIAL);
     }
     
@@ -87,9 +94,12 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         }
         
         if ([self loadCertificate]) {
-            _controlPort = [self getFreeListeningPortFrom:8008 poolCount:10];
+            NSNumber *port = [[NSUserDefaults standardUserDefaults] valueForKey:BSWebSocketServerPort];
+            _controlPort = [port unsignedShortValue];
             if (_controlPort) {
-                _controlServer = [PSWebSocketServer serverWithHost:@"127.0.0.1" port:_controlPort SSLCertificates:_certs];
+                _controlServer = [PSWebSocketServer serverWithHost:@"127.0.0.1"
+                                                              port:_controlPort
+                                                   SSLCertificates:_certs];
                 _controlServer.delegateQueue = _workQueue;
                 _controlServer.delegate = self;
                 [_controlServer start];
@@ -108,10 +118,11 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         _stopCompletion = completion;
         _tabs = nil;
         
-        if (_observer) {
-            [[NSNotificationCenter defaultCenter] removeObserver:_observer];
-            _observer = nil;
+        for (id item in _observers) {
+            [[NSNotificationCenter defaultCenter] removeObserver:item];
         }
+        [_observers removeAllObjects];
+        
         _oQueue = nil;
         
         [_tabsServer stop];
@@ -147,6 +158,14 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     if (server == _tabsServer) {
         
         BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
+    }
+
+    if (self.started) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:BSWebSocketServerStartedNotification
+             object:self];
+        });
     }
 
     //TODO: change preferences for browser extensions, anonce new port for connection to this server
@@ -197,8 +216,10 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         }
     }
     if (server == _controlServer) {
-//        _controlSocket = webSocket;
-//        BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : @"YES"));
+        @synchronized (self) {
+            [_controlSockets addObject:webSocket];
+            BS_LOG(LOG_DEBUG, @"Control socket [x%p] added.", webSocket);
+        }
     }
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
@@ -238,10 +259,23 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
     BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    if (server == _controlServer) {
+        @synchronized (self) {
+            [_controlSockets removeObject:webSocket];
+            BS_LOG(LOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
+        }
+    }
+
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
     BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    if (server == _controlServer) {
+        @synchronized (self) {
+            [_controlSockets removeObject:webSocket];
+            BS_LOG(LOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
+        }
+    }
 }
 - (NSHTTPURLResponse *)server:(PSWebSocketServer *)server
    responseOnSimpleGetRequest:(NSURLRequest *)request
@@ -424,15 +458,44 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
             
             _oQueue = [NSOperationQueue new];
             _oQueue.underlyingQueue = _tabsServer.delegateQueue;
-            _observer = [[NSNotificationCenter defaultCenter] addObserverForName:BSMediaStrategyRegistryChangedNotification
-                                                                          object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
-                                                                              
-                                                                              @synchronized (self) {
-                                                                                  _enabledStrategiesJson = nil;
-                                                                              }
-                                                                              
-                                                                              //TODO: add notification of all clients that strategies was changed
-                                                                          }];
+            id observer = [[NSNotificationCenter defaultCenter]
+                           addObserverForName:BSMediaStrategyRegistryChangedNotification
+                           object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
+                               
+                               @synchronized (self) {
+                                   _enabledStrategiesJson = nil;
+                               }
+                               
+                               //TODO: add notification of all clients that strategies was changed
+                           }];
+            if (observer) {
+                [_observers addObject:observer];
+            }
+            observer = [[NSNotificationCenter defaultCenter]
+                        addObserverForName:GeneralPreferencesWebSocketServerPortChangedNoticiation
+                        object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
+                            
+                            @synchronized(self){
+                                @autoreleasepool {
+                                    NSNumber *port = [[NSUserDefaults standardUserDefaults]
+                                                      valueForKey:BSWebSocketServerPort];
+                                    if (_controlPort == [port unsignedShortValue]) {
+                                        // new port is equal previous, do nothing
+                                        return;
+                                    }
+                                    NSString *message = [NSString stringWithFormat:@"{\"controllerPort\":\"%@\"}", port];
+                                    for (PSWebSocket *item in _controlSockets) {
+                                        [item send:message];
+                                    }
+                                }
+                            }
+                            [self stopWithComletion:^{
+                                [self start];
+                            }];
+                        }];
+            if (observer) {
+                [_observers addObject:observer];
+            }
             _tabs = [NSMutableArray array];
             
             [_tabsServer start];

@@ -10,6 +10,8 @@
 #import <SafariServices/SafariServices.h>
 #import "PSWebSocketServer.h"
 
+extern NSString *const BSWebSocketServerStartedNotification;
+
 @class BSWebTabAdapter, BSTrack;
 
 @interface BSStrategyWebSocketServer : NSObject <PSWebSocketServerDelegate>

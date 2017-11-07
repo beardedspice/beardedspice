@@ -92,6 +92,7 @@
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
 		65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */; };
+		65AD1ECE1FB242C900851F0B /* EHExecuteBlockDelayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */; };
 		65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */; };
 		65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B1665C1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m */; };
 		65B1665F1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65B1665D1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.xib */; };
@@ -111,8 +112,6 @@
 		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
 		65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */; };
 		65FF38171F6DC4E000DD8933 /* BSSharedDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */; };
-		65FF381B1F6E78D100DD8933 /* BSBrowserExtensionMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF381A1F6E78D100DD8933 /* BSBrowserExtensionMessages.m */; };
-		65FF381C1F6E78D100DD8933 /* BSBrowserExtensionMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF381A1F6E78D100DD8933 /* BSBrowserExtensionMessages.m */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */; };
 		78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */; };
@@ -348,8 +347,6 @@
 		65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVolumeWindowController.m; sourceTree = "<group>"; };
 		65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSVolumeWindowController.xib; sourceTree = "<group>"; };
 		65FF38161F6D716E00DD8933 /* BeardedSpice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeardedSpice.entitlements; sourceTree = "<group>"; };
-		65FF38191F6E78D100DD8933 /* BSBrowserExtensionMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBrowserExtensionMessages.h; sourceTree = "<group>"; };
-		65FF381A1F6E78D100DD8933 /* BSBrowserExtensionMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBrowserExtensionMessages.m; sourceTree = "<group>"; };
 		65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLaunchAtLogin.h; sourceTree = "<group>"; };
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
 		78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAppleScriptSupport.m; sourceTree = "<group>"; };
@@ -541,8 +538,6 @@
 				656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */,
 				656A003F1C8B037A00BD29F5 /* BeardedSpiceControllersProtocol.h */,
 				656A00401C8B037A00BD29F5 /* BeardedSpiceHostAppProtocol.h */,
-				65FF38191F6E78D100DD8933 /* BSBrowserExtensionMessages.h */,
-				65FF381A1F6E78D100DD8933 /* BSBrowserExtensionMessages.m */,
 			);
 			path = SharedComponents;
 			sourceTree = "<group>";
@@ -1140,7 +1135,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65FF381C1F6E78D100DD8933 /* BSBrowserExtensionMessages.m in Sources */,
 				65FF38171F6DC4E000DD8933 /* BSSharedDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1220,6 +1214,7 @@
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */,
 				0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */,
+				65AD1ECE1FB242C900851F0B /* EHExecuteBlockDelayed.m in Sources */,
 				658D64401FA697A2004D1546 /* PSWebSocketBuffer.m in Sources */,
 				658D64431FA697A2004D1546 /* PSWebSocketInflater.m in Sources */,
 				658D64421FA697A2004D1546 /* PSWebSocketDriver.m in Sources */,
@@ -1228,7 +1223,6 @@
 				655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */,
 				5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */,
 				0B33014E1CFA643F0090DB67 /* BSStrategyCache.m in Sources */,
-				65FF381B1F6E78D100DD8933 /* BSBrowserExtensionMessages.m in Sources */,
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */,
 				78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */,

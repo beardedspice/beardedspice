@@ -37,10 +37,6 @@
 
 #import "BSStrategyWebSocketServer.h"
 #import "BSWebTabAdapter.h"
-//TODO: delete this
-#import "BSBrowserExtensionMessages.h"
-#import "BSSharedDefaults.h"
-//------------
 
 /**
  Timeout for command of the user iteraction.
@@ -809,10 +805,12 @@ BOOL accessibilityApiEnabled = NO;
 //                    [wself.activeApp activateTab];
 
                     NSUserNotification *notification = [NSUserNotification new];
+                    notification.identifier = @"BSSwitchPlayerNotification";
                     notification.title = [wself.activeApp displayName];
                     notification.informativeText = [wself.activeApp title];
 
                     NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+                    [notifCenter removeDeliveredNotification:notification];
                     [notifCenter deliverNotification:notification];
 
                     return;
@@ -1208,17 +1206,6 @@ BOOL accessibilityApiEnabled = NO;
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setUsingAppleRemoteEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUsingAppleRemote]];
     }
-}
-
-- (IBAction)clickTest:(id)sender {
-
-//    if (BSStrategyWebSocketServer.singleton.started) {
-//        [BSStrategyWebSocketServer.singleton stopWithComletion:nil];
-//    }
-//    else {
-//        [BSStrategyWebSocketServer.singleton start];
-//    }
-//    [BSStrategyWebSocketServer.singleton.controlSocket send:@"{\"test\":true}"];
 }
 
 @end

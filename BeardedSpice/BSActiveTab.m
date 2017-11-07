@@ -294,9 +294,10 @@ dispatch_queue_t notificationQueue() {
     BOOL noArtist = [NSString isNullOrEmpty:track.artist];
     BOOL noAlbum = [NSString isNullOrEmpty:track.album];
     if (!(noTrack && noArtist && noAlbum)) {
-        // Remove previous notification.
-        [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:[track asNotification]];
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:[track asNotification]];
+        NSUserNotification *noti = [track asNotification];
+        NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [notifCenter removeDeliveredNotification:noti];
+        [notifCenter deliverNotification:noti];
         BS_LOG(LOG_DEBUG, @"Show Notification: %@", track);
     } else if (fallback) {
         [self showDefaultNotification];
@@ -306,10 +307,12 @@ dispatch_queue_t notificationQueue() {
 - (void)showDefaultNotification {
     NSUserNotification *notification = [NSUserNotification new];
 
+    notification.identifier = kBSTrackNameIdentifier;
     notification.title = [self displayName];
     notification.informativeText = @"No track info available";
 
     NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [notifCenter removeDeliveredNotification:notification];
     [notifCenter deliverNotification:notification];
 
     NSLog(@"Showing Default Notification");

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -102,6 +102,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="-23" y="298"/>
         </menu>
         <menu title="StatusMenu" id="SbZ-uf-jkn">
             <items>
@@ -111,6 +112,13 @@ CQ
 </string>
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
+                <menuItem title="About BeardedSpice" id="uWj-A6-IiV">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="orderFrontStandardAboutPanel:" target="-2" id="UTo-6o-a4R"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="8LP-8F-Tgc"/>
                 <menuItem title="Check for Compatibility Updates" tag="256" id="Qfc-QT-jQd" userLabel="Check for Compatibility Updates">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -123,12 +131,7 @@ CQ
                         <action selector="openPreferences:" target="494" id="7Nz-ng-Mtv"/>
                     </connections>
                 </menuItem>
-                <menuItem title="TEST" id="Jfu-is-KzO">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="clickTest:" target="494" id="VAy-zq-mw2"/>
-                    </connections>
-                </menuItem>
+                <menuItem isSeparatorItem="YES" id="C1B-TJ-CVh"/>
                 <menuItem title="Quit BeardedSpice" id="PLq-0w-RnA">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

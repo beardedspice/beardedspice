@@ -12,14 +12,13 @@
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications
-/////////////////////////////////////////////////////////////////////////
 
 extern NSString *const GeneralPreferencesAutoPauseChangedNoticiation;
 extern NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation;
+extern NSString *const GeneralPreferencesWebSocketServerPortChangedNoticiation;;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Defaults Keys
-/////////////////////////////////////////////////////////////////////////
 
 extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
@@ -29,6 +28,8 @@ extern NSString *const BeardedSpiceUpdateAtLaunch;
 extern NSString *const BeardedSpiceShowProgress;
 extern NSString *const BeardedSpiceCustomVolumeControl;
 
+extern NSString *const BSWebSocketServerPort;
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController
 /////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,7 @@ extern NSString *const BeardedSpiceCustomVolumeControl;
 @interface GeneralPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSButton *firstResponderView;
+@property (weak) IBOutlet NSTextField *webSocketPortField;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
@@ -43,4 +45,6 @@ extern NSString *const BeardedSpiceCustomVolumeControl;
 - (IBAction)toggleLaunchAtStartup:(id)sender;
 - (IBAction)toggleAutoPause:(id)sender;
 - (IBAction)toggleUseRemote:(id)sender;
+- (IBAction)portChangedAction:(id)sender;
+
 @end

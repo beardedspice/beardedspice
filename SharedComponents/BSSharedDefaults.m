@@ -18,31 +18,3 @@ NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivateP
 NSString *const BeardedSpicePlayerNextShortcut = @"BeardedSpicePlayerNextShortcut";
 NSString *const BeardedSpicePlayerPreviousShortcut = @"BeardedSpicePlayerPreviousShortcut";
 
-NSString *const BSWebSocketServerPort = @"BSWebSocketServerPort";
-NSString *const BSWebSocketServerStrategyAcceptors = @"BSWebSocketServerStrategyAcceptors";
-
-NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
-
-@implementation BSSharedDefaults
-
-static NSUserDefaults *_sharedUserDefaults;
-
-+ (void)initialize{
-    
-    if (self == [BSSharedDefaults class]) {
-        
-        _sharedUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:BS_APP_GROUP];
-    }
-}
-
-+ (NSUserDefaults *)defaults{
-    
-    return _sharedUserDefaults;
-}
-
-+ (void)synchronizeDefaults{
-    
-    [_sharedUserDefaults synchronize];
-}
-
-@end

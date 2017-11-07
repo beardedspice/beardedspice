@@ -18,10 +18,13 @@
 #import "EHVerticalCenteredTextField.h"
 #import "BSCustomStrategyManager.h"
 #import "AppDelegate.h"
+#import "EHExecuteBlockDelayed.h"
 
+#define EDIT_PORT_TIMEOUT                   3 //seconds
 
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
 NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation = @"GeneralPreferencesUsingAppleRemoteChangedNoticiation";
+NSString *const GeneralPreferencesWebSocketServerPortChangedNoticiation = @"GeneralPreferencesWebSocketServerPortChangedNoticiation";
 
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHeadphonesAutopause";
@@ -30,6 +33,8 @@ NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 NSString *const BeardedSpiceShowProgress = @"BeardedSpiceShowProgress";
 NSString *const BeardedSpiceCustomVolumeControl = @"BeardedSpiceCustomVolumeControl";
+
+NSString *const BSWebSocketServerPort = @"BSWebSocketServerPort";
 
 @implementation GeneralPreferencesViewController
 
@@ -120,6 +125,26 @@ NSString *const BeardedSpiceCustomVolumeControl = @"BeardedSpiceCustomVolumeCont
 
         });
     });
+}
+
+- (void)controlTextDidChange:(NSNotification *)notification {
+
+    static EHExecuteBlockDelayed *sendNotification;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sendNotification = [[EHExecuteBlockDelayed alloc]
+                            initWithTimeout:EDIT_PORT_TIMEOUT
+                            leeway:EDIT_PORT_TIMEOUT
+                            queue:dispatch_get_main_queue()
+                            block:^{
+                                [[NSNotificationCenter defaultCenter]
+                                 postNotificationName:GeneralPreferencesWebSocketServerPortChangedNoticiation
+                                 object:self];
+                            }];
+    });
+    if ([notification.object isEqual:self.webSocketPortField]) {
+        [sendNotification executeOnceAfterCalm];
+    }
 }
 
 @end

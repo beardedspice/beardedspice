@@ -18,22 +18,3 @@ extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
 extern NSString *const BeardedSpicePlayerNextShortcut;
 extern NSString *const BeardedSpicePlayerPreviousShortcut;
 
-extern NSString *const BSWebSocketServerPort;
-extern NSString *const BSWebSocketServerStrategyAcceptors;
-
-extern NSString *const BSWebSocketServerStartedNotification;
-
-@interface BSSharedDefaults : NSObject
-
-/**
- Returns shared user defaults object.
- */
-+ (NSUserDefaults *)defaults;
-
-/**
- Performs flush of the shared user defaults.
- */
-+ (void)synchronizeDefaults;
-
-
-@end

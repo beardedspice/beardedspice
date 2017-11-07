@@ -18,5 +18,7 @@
 	<false/>
 	<key>BeardedSpiceCustomVolumeControl</key>
 	<false/>
+	<key>BSWebSocketServerPort</key>
+	<integer>8008</integer>
 </dict>
 </plist>

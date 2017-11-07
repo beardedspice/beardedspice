@@ -121,8 +121,11 @@
                         })
                     });
                 }
-                else if (obj['test']) {
-                    safari.application.activeBrowserWindow.activate();
+                else if (obj['controllerPort']) {
+                    var port = obj['controllerPort'];
+                    if (port != "" && parseInt(port)) {
+                        safari.extension.settings.controllerPort = port;
+                    }
                 }
                 else {
                     console.error('(BeardedSpice Control) response not found.');
@@ -236,6 +239,13 @@
     connect(controlPort);
 
     safari.application.addEventListener("message",respondToMessage,false);
+    // change preferences value
+    safari.extension.settings.addEventListener("change", function (event){
+        if (event.key == "controllerPort") {
+            controlPort = event.newValue;
+            socket.close();
+        }
+    }, false);
 </script>
 </head>
 <body>

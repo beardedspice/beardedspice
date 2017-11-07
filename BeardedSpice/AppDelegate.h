@@ -71,9 +71,6 @@ extern BOOL accessibilityApiEnabled;
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;
 
-- (IBAction)clickTest:(id)sender;
-
-
 /////////////////////////////////////////////////////////////////////
 #pragma mark Windows control methods
 

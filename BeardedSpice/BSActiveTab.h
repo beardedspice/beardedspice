@@ -38,8 +38,6 @@ static inline BOOL alwaysShowNotification() {
 @property (nonatomic, weak) MediaStrategyRegistry *registry;
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab;
-- (void)clearActiveTab;
-- (void)repairActiveTab:(TabAdapter *)tab;
 - (void)pauseActiveTab;
 
 #pragma mark -

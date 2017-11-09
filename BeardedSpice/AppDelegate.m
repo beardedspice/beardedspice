@@ -37,11 +37,7 @@
 
 #import "BSStrategyWebSocketServer.h"
 #import "BSWebTabAdapter.h"
-
-/**
- Timeout for command of the user iteraction.
- */
-#define COMMAND_EXEC_TIMEOUT                10.0
+#import "BSNativeAppTabsController.h"
 
 #define VOLUME_RELAXING_TIMEOUT             2 //seconds
 
@@ -54,7 +50,29 @@ typedef enum{
 
 BOOL accessibilityApiEnabled = NO;
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    
+    NSUInteger  statusMenuCount;
+    NSStatusItem *statusItem;
+    
+    NSMutableArray *playingTabs;
+
+    NSWindowController *_preferencesWindowController;
+    
+    NSMutableSet    *openedWindows;
+    
+    dispatch_queue_t workingQueue;
+    
+    NSXPCConnection *_connectionToService;
+    
+    BSStrategyWebSocketServer *_webSocketServer;
+    BSNativeAppTabsController *_nativeAppTabsController;
+    
+    BOOL _AXAPIEnabled;
+    
+    NSDate *_volumeButtonLastPressed;
+}
+
 
 
 - (void)dealloc{
@@ -106,12 +124,6 @@ BOOL accessibilityApiEnabled = NO;
     MediaStrategyRegistry *registry = [MediaStrategyRegistry singleton];
     [registry setUserDefaults:BeardedSpiceActiveControllers strategyCache:strategyCache];
 
-    // setup native apps
-    nativeAppRegistry = [NativeAppTabRegistry singleton];
-    [nativeAppRegistry setUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
-
-    nativeApps = [NSMutableArray array];
-
     [self shortcutsBind];
     [self newConnectionToControlService];
 
@@ -143,6 +155,7 @@ BOOL accessibilityApiEnabled = NO;
     
     _webSocketServer = [BSStrategyWebSocketServer singleton];
     [_webSocketServer start];
+    _nativeAppTabsController = BSNativeAppTabsController.singleton;
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
@@ -518,50 +531,24 @@ BOOL accessibilityApiEnabled = NO;
 #pragma mark Helper methods
 /////////////////////////////////////////////////////////////////////////
 
-- (void)refreshApplications:(BSTimeout *)timeout {
-
-    [nativeApps removeAllObjects];
-    for (Class nativeApp in [nativeAppRegistry enabledNativeAppClasses]) {
-        runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
-        if (app) {
-            [nativeApps addObject:app];
-        }
-        if (timeout.reached) {
-            return;
-        }
-    }
-}
-
 - (BOOL)setActiveTabShortcut{
 
     @try {
-        for (TabAdapter *tab in BSStrategyWebSocketServer.singleton.tabs) {
+        NSArray <TabAdapter *> *tabs = _webSocketServer.tabs;
+        tabs = [tabs arrayByAddingObjectsFromArray:_nativeAppTabsController.tabs];
+
+        for (TabAdapter *tab in tabs) {
             if (tab.frontmost) {
                 return [_activeApp updateActiveTab:tab];
             }
         }
-        
-        for (runningSBApplication *app in nativeApps) {
-            if (app.frontmost) {
-                NativeAppTabAdapter *tab = [[nativeAppRegistry classForBundleId:app.bundleIdentifier] tabAdapterWithApplication:app];
-                if (tab) {
-                    return [_activeApp updateActiveTab:tab];
-                }
-            }
-        }
+
         return NO;
     } @catch (NSException *exception) {
         BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
 }
 
-- (void)removeAllItems
-{
-    SafariTabKeys = [NSMutableSet set];
-    // reset playingTabs
-    playingTabs = [NSMutableArray array];
-
-}
 
 -(BOOL)setStatusMenuItemsStatus{
 
@@ -580,85 +567,48 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
-- (NSArray *)refreshTabsForNativeApp:(runningSBApplication *)app class:(Class)theClass {
-
-    NSMutableArray *items = [NSMutableArray array];
-    if (app) {
-        TabAdapter *tab = [theClass tabAdapterWithApplication:app];
-
-        if (tab) {
-            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
-            if (menuItem) {
-
-                [items addObject:menuItem];
-                [menuItem setRepresentedObject:tab];
-
-                if ([tab respondsToSelector:@selector(isPlaying)] && [(NativeAppTabAdapter *)tab isPlaying])
-                    [playingTabs addObject:tab];
-
-                [_activeApp repairActiveTab:tab];
-            }
-        }
-    }
-    return items;
-}
-
-- (NSArray *)refreshTabsForWebSocketServer {
-    
-    NSMutableArray *items = [NSMutableArray array];
-    for (BSWebTabAdapter *tab in BSStrategyWebSocketServer.singleton.tabs) {
-        @try {
-            if (tab.strategy) {
-                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[tab.title trimToLength:40] action:@selector(updateActiveTabFromMenuItem:) keyEquivalent:@""];
-                if (menuItem) {
-                    
-                    [items addObject:menuItem];
-                    [menuItem setRepresentedObject:tab];
-                    
-                    if ([tab isPlaying])
-                        [playingTabs addObject:tab];
-                    
-                    [_activeApp repairActiveTab:tab];
-                }
-            }
-        } @catch (NSException *exception) {
-            BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
-        }
-    }
-    return items;
-}
-
 // must be invoked not on main queue
 - (void)refreshTabs:(id) sender
 {
     NSLog(@"Refreshing tabs...");
     __weak typeof(self) wself = self;
     @autoreleasepool {
-
+        
         NSMutableArray *newItems = [NSMutableArray array];
-
-        [self removeAllItems];
-
+        
+        playingTabs = [NSMutableArray array];
+        
         if (accessibilityApiEnabled) {
-
-            BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-            [self refreshApplications:timeout];
-
-            [newItems addObjectsFromArray:[self refreshTabsForWebSocketServer]];
             
-            for (runningSBApplication *app in nativeApps) {
-
-                if (timeout.reached) {
-                    break;
+            NSArray <TabAdapter *> *tabs = _webSocketServer.tabs;
+            tabs = [tabs arrayByAddingObjectsFromArray:_nativeAppTabsController.tabs];
+            
+            for (TabAdapter *tab in tabs) {
+                @try {
+                    NSMenuItem *menuItem = [[NSMenuItem alloc]
+                                            initWithTitle:[tab.title trimToLength:40]
+                                            action:@selector(updateActiveTabFromMenuItem:)
+                                            keyEquivalent:@""];
+                    if (menuItem) {
+                        
+                        [newItems addObject:menuItem];
+                        [menuItem setRepresentedObject:tab];
+                        
+                        if ([tab isPlaying])
+                            [playingTabs addObject:tab];
+                    }
+                } @catch (NSException *exception) {
+                    BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
                 }
-
-                [newItems addObjectsFromArray:[self refreshTabsForNativeApp:app class:[nativeAppRegistry classForBundleId:app.bundleIdentifier]]];
+            }
+            if (![tabs containsObject:_activeApp.activeTab]) {
+                _activeApp.activeTab = nil;
             }
         }
-
+        
         dispatch_sync(dispatch_get_main_queue(), ^{
             [wself resetStatusMenu:newItems.count];
-
+            
             if (newItems.count) {
                 for (NSMenuItem *item in [newItems reverseObjectEnumerator]) {
                     [statusMenu insertItem:item atIndex:0];
@@ -1182,7 +1132,7 @@ BOOL accessibilityApiEnabled = NO;
 
     NSMutableArray *keyTapBlackList = [NSMutableArray arrayWithCapacity:5];
 
-    for (Class theClass in [nativeAppRegistry enabledNativeAppClasses]) {
+    for (Class theClass in [NativeAppTabRegistry.singleton enabledNativeAppClasses]) {
         [keyTapBlackList addObject:[theClass bundleId]];
     }
     [keyTapBlackList addObject:[[NSBundle mainBundle] bundleIdentifier]];

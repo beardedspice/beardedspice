@@ -7,7 +7,6 @@
 //
 
 #import "BSStrategyWebSocketServer.h"
-#import "BSWebTabAdapter.h"
 #import "BSTrack.h"
 
 #import "NSString+Utils.h"
@@ -130,8 +129,8 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     }
 }
 
-- (NSArray *)tabs {
-    
+- (NSArray <BSWebTabAdapter *> *)tabs {
+
     @synchronized (self) {
         return [_tabs copy];
     }

@@ -3,10 +3,11 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 01.05.15.
-//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
+//  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "NativeAppTabRegistry.h"
+#import "BSStrategiesPreferencesViewController.h"
 
 #import "iTunesTabAdapter.h"
 #import "SpotifyTabAdapter.h"
@@ -15,6 +16,8 @@
 #import "DowncastTabAdapter.h"
 #import "AirfoilSatelliteTabAdapter.h"
 #import "TidalTabAdapter.h"
+
+NSString *BSNativeAppTabRegistryChangedNotification = @"BSNativeAppTabRegistryChangedNotification";
 
 @implementation NativeAppTabRegistry
 
@@ -31,6 +34,8 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
 
         singletonNativeAppTabRegistry = [NativeAppTabRegistry alloc];
         singletonNativeAppTabRegistry = [singletonNativeAppTabRegistry init];
+        
+        [singletonNativeAppTabRegistry setUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
     });
 
     return singletonNativeAppTabRegistry;
@@ -55,15 +60,23 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
     NSArray *defaultApps = [NativeAppTabRegistry defaultNativeAppClasses];
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:defaultsKey];
 
-    for (Class appClass in defaultApps) {
-        NSString *name = [appClass displayName];
-        if (name) {
-            NSNumber *enabled = [defaults objectForKey:name];
-            if (!enabled || [enabled boolValue]) {
-                [self enableNativeAppClass:appClass];
+    @synchronized(self){
+        for (Class appClass in defaultApps) {
+            NSString *name = [appClass displayName];
+            if (name) {
+                NSNumber *enabled = [defaults objectForKey:name];
+                if (!enabled || [enabled boolValue]) {
+                    
+                    [_availableAppClasses addObject:appClass];
+                    _availableCache[[appClass bundleId]] = appClass;
+                }
             }
         }
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:BSNativeAppTabRegistryChangedNotification object:self];
+    });
 
 }
 
@@ -104,6 +117,10 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
         [_availableAppClasses addObject:appClass];
         _availableCache[[appClass bundleId]] = appClass;
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:BSNativeAppTabRegistryChangedNotification object:self];
+    });
 }
 
 - (void)disableNativeAppClass:(Class)appClass{
@@ -113,6 +130,10 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
         [_availableAppClasses removeObject:appClass];
         [_availableCache removeObjectForKey:[appClass bundleId]];
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:BSNativeAppTabRegistryChangedNotification object:self];
+    });
 }
 
 @end

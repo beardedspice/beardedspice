@@ -26,6 +26,5 @@ extern NSString *BSMediaStrategyRegistryChangedNotification;
 
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy;
--(BSMediaStrategy *) getMediaStrategyForTab:(TabAdapter *) tab;
 
 @end

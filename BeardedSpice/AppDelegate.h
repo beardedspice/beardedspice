@@ -28,40 +28,7 @@
 extern BOOL accessibilityApiEnabled;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
-
     IBOutlet NSMenu *statusMenu;
-    NSUInteger  statusMenuCount;
-    NSStatusItem *statusItem;
-
-    runningSBApplication *chromeApp;
-    runningSBApplication *canaryApp;
-    runningSBApplication *yandexBrowserApp;
-    runningSBApplication *chromiumApp;
-    runningSBApplication *vivaldiApp;
-
-    runningSBApplication *safariApp;
-    runningSBApplication *safariTPApp;
-    NSMutableSet *SafariTabKeys;
-
-    NSMutableArray *nativeApps;
-
-    NSMutableArray *playingTabs;
-
-    NativeAppTabRegistry *nativeAppRegistry;
-
-    NSWindowController *_preferencesWindowController;
-
-    NSMutableSet    *openedWindows;
-
-    dispatch_queue_t workingQueue;
-
-    NSXPCConnection *_connectionToService;
-    
-    BSStrategyWebSocketServer *_webSocketServer;
-
-    BOOL _AXAPIEnabled;
-    
-    NSDate *_volumeButtonLastPressed;
 }
 
 @property (nonatomic, strong) BSActiveTab *activeApp;

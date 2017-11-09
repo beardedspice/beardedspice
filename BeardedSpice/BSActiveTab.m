@@ -50,9 +50,7 @@ dispatch_queue_t notificationQueue() {
     if ([self isNativeAdapter]) {
         return [_activeTab.class displayName];
     } else if ([self isWebAdapter]) {
-        BSMediaStrategy *strategy = [self isWebAdapter] ?
-        [(BSWebTabAdapter *)_activeTab strategy]
-        : [_registry getMediaStrategyForTab:_activeTab];
+        BSMediaStrategy *strategy = [(BSWebTabAdapter *)_activeTab strategy];
         return strategy.displayName;
     }
     return nil;
@@ -127,18 +125,6 @@ dispatch_queue_t notificationQueue() {
         BS_LOG(LOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
     }
     return NO;
-}
-
-- (void)clearActiveTab {
-    //[_activeTab pause]; // FIXME do we need this?
-    self.activeTab = nil;
-}
-
-//TODO: delete this?
-- (void)repairActiveTab:(TabAdapter *)tab {
-    if ([self.activeTab isEqual:tab]) {
-        self.activeTab = tab;
-    }
 }
 
 - (void)pauseActiveTab {

@@ -146,18 +146,18 @@
                     <rect key="frame" x="44" y="138" width="409" height="5"/>
                 </box>
                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-N0-1cj">
-                    <rect key="frame" x="44" y="95" width="252" height="24"/>
+                    <rect key="frame" x="44" y="95" width="260" height="24"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rN0-ol-5UR">
-                            <rect key="frame" x="-2" y="4" width="203" height="17"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="BearedSpice Web Contoller Port:" id="w6u-wm-Tox">
+                            <rect key="frame" x="-2" y="3.5" width="211" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="BeardedSpice Web Contoller Port:" id="w6u-wm-Tox">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iEp-Lw-TyH" userLabel="Port">
-                            <rect key="frame" x="207" y="1" width="45" height="22"/>
+                            <rect key="frame" x="215" y="1" width="45" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="SbX-IL-r2S"/>
                             </constraints>

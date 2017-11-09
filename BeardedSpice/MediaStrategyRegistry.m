@@ -18,7 +18,6 @@ NSString *BSMediaStrategyRegistryChangedNotification = @"BSMediaStrategyRegistry
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic) NSMutableArray *availableStrategies;
-@property (nonatomic) EHCCache *registeredCache;
 @property (nonatomic) BSStrategyCache *strategyCache;
 @end
 
@@ -56,7 +55,6 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 - (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
 {
     _strategyCache = cache;
-    _registeredCache = [[EHCCache alloc] initWithCapacity:MAX_REGISTERED_CACHE];
     _availableStrategies = [NSMutableArray new];
 
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
@@ -82,7 +80,6 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 -(void) addMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies addObject:strategy];
-    [self.registeredCache clear];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
     });
@@ -91,41 +88,9 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 -(void) removeMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
-    [self.registeredCache clear];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
     });
-}
-
-- (BSMediaStrategy *)getMediaStrategyForTab:(TabAdapter *)tab {
-    if (tab == nil)
-        return nil;
-
-    NSString *cacheKey = [NSString stringWithFormat:@"%@", [tab URL]];
-    id strat = self.registeredCache[cacheKey];
-
-    /* Return the equivalent of a full scan except we dont repeat calculations */
-    if (strat == [NSNull null])
-        return nil;
-    if (strat)
-        return strat;
-
-    if (tab.check) {
-
-        for (BSMediaStrategy *strategy in _availableStrategies) {
-            BOOL accepted = [strategy accepts:tab];
-
-            /* Store the result of this calculation for future use */
-            if (accepted) {
-                [self.registeredCache addValue:strategy forKey:cacheKey];
-                NSLog(@"%@ is valid for %@", strategy, tab);
-                return strategy;
-            }
-        }
-    }
-    /* Worst case, no compatible registry found */
-    [self.registeredCache addValue:[NSNull null] forKey:cacheKey];
-    return nil;
 }
 
 @end

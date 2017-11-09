@@ -142,6 +142,7 @@ CQ
             <connections>
                 <outlet property="delegate" destination="494" id="6d1-JA-jog"/>
             </connections>
+            <point key="canvasLocation" x="280" y="170"/>
         </menu>
         <customObject id="494" customClass="AppDelegate">
             <connections>

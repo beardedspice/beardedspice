@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <SafariServices/SafariServices.h>
 #import "PSWebSocketServer.h"
+#import "BSWebTabAdapter.h"
 
 extern NSString *const BSWebSocketServerStartedNotification;
 
-@class BSWebTabAdapter, BSTrack;
+@class BSTrack;
 
 @interface BSStrategyWebSocketServer : NSObject <PSWebSocketServerDelegate>
 
@@ -35,7 +36,7 @@ extern NSString *const BSWebSocketServerStartedNotification;
  */
 - (void)stopWithComletion:(void (^)(void))completion;
 
-- (NSArray *)tabs;
+- (NSArray <BSWebTabAdapter *> *)tabs;
 - (void)removeTab:(BSWebTabAdapter *)tab;
 
 @end

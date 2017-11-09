@@ -18,3 +18,7 @@ extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
 extern NSString *const BeardedSpicePlayerNextShortcut;
 extern NSString *const BeardedSpicePlayerPreviousShortcut;
 
+/**
+ Timeout for command of the user iteraction.
+ */
+#define COMMAND_EXEC_TIMEOUT                10.0

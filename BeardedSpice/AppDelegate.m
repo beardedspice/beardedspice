@@ -444,6 +444,11 @@ BOOL accessibilityApiEnabled = NO;
     [self.preferencesWindowController showWindow:self];
 }
 
+- (IBAction)clickAboutFromStatusMenu:(id)sender {
+    [NSApp orderFrontStandardAboutPanel:sender];
+    [self windowWillBeVisible:NSApp.keyWindow];
+}
+
 - (IBAction)exitApp:(id)sender
 {
     [NSApp terminate: nil];

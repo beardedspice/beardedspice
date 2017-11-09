@@ -115,7 +115,7 @@ CQ
                 <menuItem title="About BeardedSpice" id="uWj-A6-IiV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="orderFrontStandardAboutPanel:" target="-2" id="UTo-6o-a4R"/>
+                        <action selector="clickAboutFromStatusMenu:" target="494" id="7ae-JI-6YF"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8LP-8F-Tgc"/>

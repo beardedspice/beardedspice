@@ -279,7 +279,11 @@ static FMDatabaseQueue *dbQueue;
         return;
     }
     
-    dbQueue = [FMDatabaseQueue databaseQueueWithPath:path flags:SQLITE_OPEN_READONLY];
+    dbQueue = [FMDatabaseQueue databaseQueueWithPath:path flags:(SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_SHAREDCACHE)];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+            [db executeUpdate:@"PRAGMA read_uncommitted = True"];
+    }];
+    
     //check db
     NSDictionary *userMeta = [self userMeta];
     if (userMeta[@"id"] == nil) {

@@ -13,6 +13,7 @@ BSStrategy = {
     format:"%K LIKE[c] '*playbeta.pocketcasts.com*'",
     args: ["URL"]
   },
+  isPlaying: function () {return !document.querySelector('audio').paused},
   toggle: function () {document.querySelector('.play_pause_button').click()},
   next: function () {document.querySelector('.skip_forward_button').click()},
   previous: function () {document.querySelector('.skip_back_button').click()},

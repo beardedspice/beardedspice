@@ -174,10 +174,13 @@
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jMA-R1-qrX">
                     <rect key="frame" x="42" y="161" width="264" height="18"/>
-                    <buttonCell key="cell" type="check" title="Enable Browser Extensions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5a5-mP-Dhv">
+                    <buttonCell key="cell" type="check" title="Enable Browser Extensions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5a5-mP-Dhv">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="toggleWebSocketServer:" target="-2" id="I4B-sw-SVv"/>
+                    </connections>
                 </button>
                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-N0-1cj">
                     <rect key="frame" x="312" y="159" width="141" height="24"/>

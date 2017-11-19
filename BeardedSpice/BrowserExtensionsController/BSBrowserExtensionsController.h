@@ -8,17 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "Safari.h"
+#import "BSStrategyWebSocketServer.h"
 
 #define APPID_SAFARI            @"com.apple.Safari"
 #define APPID_SAFARITP          @"com.apple.SafariTechnologyPreview"
 
+extern NSString *const BSExtensionsResources;
+
 /**
- This class should check Safari type browsers, that they had installed BeardedSpice extension.
- If no, it should suggest user to install this extension.
  */
 @interface BSBrowserExtensionsController : NSObject
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public properties and methods
+
++ (BSBrowserExtensionsController *)singleton;
+
+@property (nonatomic, readonly) BSStrategyWebSocketServer *webSocketServer;
+
+- (void)start;
+- (void)firstRunPerform;
+
 
 @end

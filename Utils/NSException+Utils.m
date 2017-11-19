@@ -30,13 +30,13 @@
 
 + (NSException *)appResourceUnavailableException:(NSString *)resourceName{
     
-    NSString *descriprion = @"Application resource available error.";
+    NSString *description = @"Application resource available error.";
     
     if (resourceName) {
         
-        descriprion = [descriprion stringByAppendingFormat:@" Attempt load resource with name: %@.", resourceName];
+        description = [description stringByAppendingFormat:@" Attempt load resource with name: \"%@\".", resourceName];
     }
-    return [NSException exceptionWithName:NSInternalInconsistencyException reason:descriprion userInfo:nil];
+    return [NSException exceptionWithName:NSInternalInconsistencyException reason:description userInfo:nil];
     
 }
 

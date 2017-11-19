@@ -35,7 +35,7 @@
 #import "BSVolumeWindowController.h"
 #import "BSVolumeControlProtocol.h"
 
-#import "BSStrategyWebSocketServer.h"
+#import "BSBrowserExtensionsController.h"
 #import "BSWebTabAdapter.h"
 #import "BSNativeAppTabsController.h"
 
@@ -65,7 +65,6 @@ BOOL accessibilityApiEnabled = NO;
     
     NSXPCConnection *_connectionToService;
     
-    BSStrategyWebSocketServer *_webSocketServer;
     BSNativeAppTabsController *_nativeAppTabsController;
     
     BOOL _AXAPIEnabled;
@@ -153,8 +152,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     
-    _webSocketServer = [BSStrategyWebSocketServer singleton];
-    [_webSocketServer start];
+    [[BSBrowserExtensionsController singleton] start];
     _nativeAppTabsController = BSNativeAppTabsController.singleton;
 }
 
@@ -166,9 +164,10 @@ BOOL accessibilityApiEnabled = NO;
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender{
 
-    if (_webSocketServer.started) {
+    BSStrategyWebSocketServer *server = BSBrowserExtensionsController.singleton.webSocketServer;
+    if (server.started) {
         
-        [_webSocketServer stopWithComletion:^{
+        [server stopWithComletion:^{
             [sender terminate:self];
         }];
         return NSTerminateLater;
@@ -539,7 +538,7 @@ BOOL accessibilityApiEnabled = NO;
 - (BOOL)setActiveTabShortcut{
 
     @try {
-        NSArray <TabAdapter *> *tabs = _webSocketServer.tabs;
+        NSArray <TabAdapter *> *tabs = BSBrowserExtensionsController.singleton.webSocketServer.tabs;
         tabs = [tabs arrayByAddingObjectsFromArray:_nativeAppTabsController.tabs];
 
         for (TabAdapter *tab in tabs) {
@@ -585,7 +584,7 @@ BOOL accessibilityApiEnabled = NO;
         
         if (accessibilityApiEnabled) {
             
-            NSArray <TabAdapter *> *tabs = _webSocketServer.tabs;
+            NSArray <TabAdapter *> *tabs = BSBrowserExtensionsController.singleton.webSocketServer.tabs;
             tabs = [tabs arrayByAddingObjectsFromArray:_nativeAppTabsController.tabs];
             
             for (TabAdapter *tab in tabs) {

@@ -20,11 +20,12 @@
 #import "AppDelegate.h"
 #import "EHExecuteBlockDelayed.h"
 
-#define EDIT_PORT_TIMEOUT                   3 //seconds
+#define RELAXING_TIMEOUT                   3 //seconds
 
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
 NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation = @"GeneralPreferencesUsingAppleRemoteChangedNoticiation";
 NSString *const GeneralPreferencesWebSocketServerPortChangedNoticiation = @"GeneralPreferencesWebSocketServerPortChangedNoticiation";
+NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiation = @"GeneralPreferencesWebSocketServerEnabledChangedNoticiation";
 
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHeadphonesAutopause";
@@ -35,6 +36,7 @@ NSString *const BeardedSpiceShowProgress = @"BeardedSpiceShowProgress";
 NSString *const BeardedSpiceCustomVolumeControl = @"BeardedSpiceCustomVolumeControl";
 
 NSString *const BSWebSocketServerPort = @"BSWebSocketServerPort";
+NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 
 @implementation GeneralPreferencesViewController
 
@@ -110,6 +112,25 @@ NSString *const BSWebSocketServerPort = @"BSWebSocketServerPort";
     });
 }
 
+- (IBAction)toggleWebSocketServer:(id)sender {
+    static EHExecuteBlockDelayed *sendNotification;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sendNotification = [[EHExecuteBlockDelayed alloc]
+                            initWithTimeout:RELAXING_TIMEOUT
+                            leeway:RELAXING_TIMEOUT
+                            queue:dispatch_get_main_queue()
+                            block:^{
+                                [[NSNotificationCenter defaultCenter]
+                                 postNotificationName:GeneralPreferencesWebSocketServerEnabledChangedNoticiation
+                                 object:self];
+                            }];
+    });
+    NSButton *button = sender;
+    [[NSUserDefaults standardUserDefaults] setBool:(button.state == NSOnState) forKey:BSWebSocketServerEnabled];
+    [sendNotification executeOnceAfterCalm];
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Private Methods
 
@@ -133,8 +154,8 @@ NSString *const BSWebSocketServerPort = @"BSWebSocketServerPort";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sendNotification = [[EHExecuteBlockDelayed alloc]
-                            initWithTimeout:EDIT_PORT_TIMEOUT
-                            leeway:EDIT_PORT_TIMEOUT
+                            initWithTimeout:RELAXING_TIMEOUT
+                            leeway:RELAXING_TIMEOUT
                             queue:dispatch_get_main_queue()
                             block:^{
                                 [[NSNotificationCenter defaultCenter]

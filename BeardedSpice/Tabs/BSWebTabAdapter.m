@@ -18,8 +18,6 @@
 #define RESPONSE_TIMEPUT                        0.2
 #define TIMEOUT_WAS_REACHED                     @"TIMEOUT_WAS_REACHED"
 
-static uint _findpid(const struct sockaddr *addr);
-
 @interface PSWebSocket (internal)
 - (NSData *)remoteAddress;
 @end

@@ -37,6 +37,11 @@
 + (NSURL * _Nonnull)URLForBundleStrategies;
 
 /**
+ Application Support URL to the Bearded Spice Safari extension resources.
+ */
++ (NSURL *_Nonnull)URLForSafariExtensionResources;
+
+/**
  */
 + (NSURL * _Nonnull)URLForFileName:(NSString * _Nullable)fileName;
 

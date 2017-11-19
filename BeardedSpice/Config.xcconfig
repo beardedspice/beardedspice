@@ -6,8 +6,14 @@
 //  Copyright © 2016 BeardedSpice. All rights reserved.
 //
 
+//File extension for javascript `strategy` file.
 BS_STRATEGY_EXTENSION = bsstrategy
 
+// Actual version of the Safari extension (CFBundleVersion). Used for checking extensions updates.
+BS_SAFARI_EXTENSION_VERSION = 1
+
+
+
 // Macro definition
-PREPROCESSOR_DEFINITIONS = BS_STRATEGY_EXTENSION=@\"$(BS_STRATEGY_EXTENSION)\"
+PREPROCESSOR_DEFINITIONS = BS_STRATEGY_EXTENSION=@\"$(BS_STRATEGY_EXTENSION)\" BS_SAFARI_EXTENSION_VERSION=@\"$(BS_SAFARI_EXTENSION_VERSION)\"
 GCC_PREPROCESSOR_DEFINITIONS = $(PREPROCESSOR_DEFINITIONS)

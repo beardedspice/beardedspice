@@ -25,7 +25,6 @@
 //#define SAFARI_EXTENSION_DEFAULTS_KEY       @"ExtensionSettings-com.beardedspice.BeardedSpice.SafariExtension-0000000000"
 #define SAFARI_EXTENSION_PAIRING_FORMAT                @"https://localhost:%d/pairing.html?bundleId=%@"
 #define SAFARI_EXTENSION_PAIRING                       @"pairing.html"
-#define EXTENSION_RESOURCE                             @"/resources"
 
 
 NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
@@ -547,7 +546,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 }
 
 - (NSHTTPURLResponse *)responseForPairingWithBundleId:(NSString *)bundleId url:(NSURL *)url responseBody:(NSData **)responseBody{
-    NSURL *pairingUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_PAIRING withExtension:nil subdirectory:@"ExtensionsResources"];
+    NSURL *pairingUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_PAIRING withExtension:nil subdirectory:BSExtensionsResources];
     NSString *pairingContent = [NSString stringWithContentsOfURL:pairingUrl usedEncoding:NULL error:NULL];
     NSData *body = [NSData data];
     if (pairingContent) {
@@ -576,7 +575,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     if (!(url && mime)) {
         return nil;
     }
-    NSURL *pathUrl = [[NSBundle mainBundle] URLForResource:url.path withExtension:nil subdirectory:@"ExtensionsResources"];
+    NSURL *pathUrl = [[NSBundle mainBundle] URLForResource:url.path withExtension:nil subdirectory:BSExtensionsResources];
     NSData *body = [NSData dataWithContentsOfURL:pathUrl];
     if (body) {
         

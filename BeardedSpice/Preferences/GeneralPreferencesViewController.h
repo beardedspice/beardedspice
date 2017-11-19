@@ -16,6 +16,7 @@
 extern NSString *const GeneralPreferencesAutoPauseChangedNoticiation;
 extern NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation;
 extern NSString *const GeneralPreferencesWebSocketServerPortChangedNoticiation;;
+extern NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiation;;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Defaults Keys
@@ -29,6 +30,7 @@ extern NSString *const BeardedSpiceShowProgress;
 extern NSString *const BeardedSpiceCustomVolumeControl;
 
 extern NSString *const BSWebSocketServerPort;
+extern NSString *const BSWebSocketServerEnabled;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - GeneralPreferencesViewController
@@ -45,6 +47,6 @@ extern NSString *const BSWebSocketServerPort;
 - (IBAction)toggleLaunchAtStartup:(id)sender;
 - (IBAction)toggleAutoPause:(id)sender;
 - (IBAction)toggleUseRemote:(id)sender;
-- (IBAction)portChangedAction:(id)sender;
+- (IBAction)toggleWebSocketServer:(id)sender;
 
 @end

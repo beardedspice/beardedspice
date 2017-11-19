@@ -7,6 +7,7 @@
 //
 
 #import "NSURL+Utils.h"
+#import "NSException+Utils.h"
 
 @implementation NSURL (BSUtils)
 
@@ -89,6 +90,22 @@ static inline NSString *appSupportPath() {
           [NSString stringWithFormat:@"%@/BeardedSpice/CustomStrategies/",
                                      appSupportPath()];
       result = [NSURL fileURLWithPath:pathString isDirectory:YES];
+    });
+    return result;
+}
+
++ (NSURL *_Nonnull)URLForSafariExtensionResources {
+    
+    static NSURL *result;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *pathString =
+        [NSString stringWithFormat:@"%@/BeardedSpice/SafariExtensionResources/",
+         appSupportPath()];
+        result = [NSURL fileURLWithPath:pathString isDirectory:YES];
+        if ([result createDirectoriesToURL] == NO) {
+            [[NSException appResourceUnavailableException:result.description] raise];
+        }
     });
     return result;
 }

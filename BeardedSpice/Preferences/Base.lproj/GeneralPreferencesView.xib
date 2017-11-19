@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -17,11 +17,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="497" height="377"/>
+            <rect key="frame" x="0.0" y="0.0" width="497" height="456"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                    <rect key="frame" x="42" y="317" width="413" height="18"/>
+                    <rect key="frame" x="42" y="396" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="722">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -39,7 +39,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="D1C-WS-HOj" userLabel="Check for Updates at Launch">
-                    <rect key="frame" x="42" y="239" width="413" height="18"/>
+                    <rect key="frame" x="42" y="318" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Check for Compatibility Updates at Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C81-eE-dH1">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -62,7 +62,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="824">
-                    <rect key="frame" x="42" y="265" width="413" height="18"/>
+                    <rect key="frame" x="42" y="344" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Use Apple Remote for control playback" bezelStyle="regularSquare" imagePosition="left" inset="2" id="825">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -80,7 +80,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="351">
-                    <rect key="frame" x="42" y="187" width="413" height="18"/>
+                    <rect key="frame" x="42" y="266" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Show track info on keypress when player is hidden" bezelStyle="regularSquare" imagePosition="left" inset="2" id="352">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -104,7 +104,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-gx-qRa">
-                    <rect key="frame" x="42" y="291" width="413" height="18"/>
+                    <rect key="frame" x="42" y="370" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Show track progress instead of album" bezelStyle="regularSquare" imagePosition="left" inset="2" id="IUs-Ty-SYf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -128,7 +128,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hhj-Ic-mcP">
-                    <rect key="frame" x="42" y="161" width="413" height="18"/>
+                    <rect key="frame" x="42" y="240" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Use current media controller for the volume control, if applicable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gBv-Vo-saU">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -143,21 +143,55 @@
                     </connections>
                 </button>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Pr1-bF-Zle">
-                    <rect key="frame" x="44" y="138" width="409" height="5"/>
+                    <rect key="frame" x="44" y="209" width="409" height="5"/>
                 </box>
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WFb-ud-pGn">
+                    <rect key="frame" x="42" y="95" width="413" height="56"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="justified" id="e1N-Xg-eYX">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">Extensions allow you to use BeardedSpice for controlling media players on appropriate sites. Controller port is used to connect the BeardedSpice with browser extensions. Keep in mind that the port number must correspond to the port number in the browser extension settings.</string>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="765">
+                    <rect key="frame" x="42" y="292" width="413" height="18"/>
+                    <buttonCell key="cell" type="check" title="Pause playback when headphone is removed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="766">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleAutoPause:" target="-2" id="814"/>
+                        <binding destination="436" name="value" keyPath="values.BeardedSpiceRemoveHeadphonesAutopause" id="813">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jMA-R1-qrX">
+                    <rect key="frame" x="42" y="161" width="264" height="18"/>
+                    <buttonCell key="cell" type="check" title="Enable Browser Extensions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5a5-mP-Dhv">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-N0-1cj">
-                    <rect key="frame" x="44" y="95" width="260" height="24"/>
+                    <rect key="frame" x="312" y="159" width="141" height="24"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rN0-ol-5UR">
-                            <rect key="frame" x="-2" y="3.5" width="211" height="17"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="BeardedSpice Web Contoller Port:" id="w6u-wm-Tox">
+                            <rect key="frame" x="-2" y="4" width="92" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Contoller Port:" id="w6u-wm-Tox">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iEp-Lw-TyH" userLabel="Port">
-                            <rect key="frame" x="215" y="1" width="45" height="22"/>
+                            <rect key="frame" x="96" y="1" width="45" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="SbX-IL-r2S"/>
                             </constraints>
@@ -192,32 +226,12 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WFb-ud-pGn">
-                    <rect key="frame" x="42" y="44" width="413" height="43"/>
-                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="e1N-Xg-eYX">
-                        <font key="font" metaFont="smallSystem"/>
-                        <string key="title">This port is used to connect the BeardedSpice with browser extensions. Keep in mind that the port number must correspond to the port number in the browser extension settings.</string>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="765">
-                    <rect key="frame" x="42" y="213" width="413" height="18"/>
-                    <buttonCell key="cell" type="check" title="Pause playback when headphone is removed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="766">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JrF-Rb-nGy">
+                    <rect key="frame" x="177" y="37" width="143" height="32"/>
+                    <buttonCell key="cell" type="push" title="Get Extensions..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X3M-O6-lco">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                    <connections>
-                        <action selector="toggleAutoPause:" target="-2" id="814"/>
-                        <binding destination="436" name="value" keyPath="values.BeardedSpiceRemoveHeadphonesAutopause" id="813">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -225,37 +239,42 @@
                 <constraint firstItem="824" firstAttribute="leading" secondItem="765" secondAttribute="leading" id="834"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="869"/>
                 <constraint firstItem="765" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="873"/>
+                <constraint firstAttribute="bottom" secondItem="JrF-Rb-nGy" secondAttribute="bottom" constant="44" id="2YM-Z6-tOl"/>
+                <constraint firstItem="JrF-Rb-nGy" firstAttribute="top" secondItem="WFb-ud-pGn" secondAttribute="bottom" constant="30" id="3Xv-dg-Rtk"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="3bJ-tB-9un"/>
                 <constraint firstItem="824" firstAttribute="top" secondItem="baJ-gx-qRa" secondAttribute="bottom" constant="12" id="3kh-XM-pWL"/>
+                <constraint firstItem="p1d-N0-1cj" firstAttribute="baseline" secondItem="jMA-R1-qrX" secondAttribute="baseline" id="74r-P6-jbO"/>
                 <constraint firstItem="Pr1-bF-Zle" firstAttribute="trailing" secondItem="hhj-Ic-mcP" secondAttribute="trailing" id="7EJ-b7-gs8"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="9Ao-uQ-veh"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="trailing" secondItem="hhj-Ic-mcP" secondAttribute="trailing" id="9cV-rQ-ai8"/>
                 <constraint firstItem="Pr1-bF-Zle" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="9kw-Ti-YTS"/>
-                <constraint firstItem="p1d-N0-1cj" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="CkX-9n-JwN"/>
+                <constraint firstItem="JrF-Rb-nGy" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="BLZ-JQ-6oo"/>
                 <constraint firstItem="824" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Dxt-Mg-jwf"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="trailing" secondItem="baJ-gx-qRa" secondAttribute="trailing" id="Fc2-Ru-ST6"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="JhK-r7-GqU"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="top" secondItem="824" secondAttribute="bottom" constant="12" id="MUF-fH-DxK"/>
                 <constraint firstItem="765" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Poh-pP-LAp"/>
-                <constraint firstItem="p1d-N0-1cj" firstAttribute="top" secondItem="Pr1-bF-Zle" secondAttribute="bottom" constant="21" id="RJc-sf-CEd"/>
+                <constraint firstItem="p1d-N0-1cj" firstAttribute="top" secondItem="Pr1-bF-Zle" secondAttribute="bottom" constant="28" id="RJc-sf-CEd"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="top" secondItem="p1d-N0-1cj" secondAttribute="bottom" constant="8" id="RMu-ip-tWk"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="top" secondItem="351" secondAttribute="bottom" constant="12" id="TeL-2a-Q7O"/>
                 <constraint firstItem="721" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="44" id="TgI-Xp-wa2"/>
                 <constraint firstItem="351" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Tpc-oj-afU"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="12" id="VaT-xE-cCR"/>
                 <constraint firstAttribute="trailing" secondItem="721" secondAttribute="trailing" constant="44" id="dfJ-Fs-TSR"/>
+                <constraint firstItem="jMA-R1-qrX" firstAttribute="leading" secondItem="Pr1-bF-Zle" secondAttribute="leading" id="gGc-z7-1T5"/>
                 <constraint firstItem="351" firstAttribute="top" secondItem="765" secondAttribute="bottom" constant="12" id="gfH-9m-5df"/>
-                <constraint firstItem="Pr1-bF-Zle" firstAttribute="top" secondItem="hhj-Ic-mcP" secondAttribute="bottom" constant="22" id="ieZ-mv-FLd"/>
+                <constraint firstItem="Pr1-bF-Zle" firstAttribute="top" secondItem="hhj-Ic-mcP" secondAttribute="bottom" constant="30" id="ieZ-mv-FLd"/>
                 <constraint firstItem="765" firstAttribute="top" secondItem="D1C-WS-HOj" secondAttribute="bottom" constant="12" id="jej-1g-aRe"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="kqF-Rr-aDU"/>
+                <constraint firstItem="p1d-N0-1cj" firstAttribute="trailing" secondItem="Pr1-bF-Zle" secondAttribute="trailing" id="nf2-bB-xay"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="oao-bM-lRl"/>
-                <constraint firstAttribute="bottom" secondItem="WFb-ud-pGn" secondAttribute="bottom" constant="44" id="tn0-yG-hw8"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="leading" secondItem="baJ-gx-qRa" secondAttribute="leading" id="uBR-ZA-evg"/>
+                <constraint firstItem="p1d-N0-1cj" firstAttribute="leading" secondItem="jMA-R1-qrX" secondAttribute="trailing" constant="8" id="xEC-xm-naT"/>
             </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="721" id="820"/>
             </connections>
-            <point key="canvasLocation" x="84.5" y="188.5"/>
+            <point key="canvasLocation" x="84.5" y="215.5"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="436"/>
     </objects>

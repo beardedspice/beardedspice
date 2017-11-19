@@ -1,4 +1,4 @@
-platform :osx, '10.10'
+platform :osx, '10.11'
 project 'BeardedSpice'
 
 source 'https://github.com/CocoaPods/Specs.git'

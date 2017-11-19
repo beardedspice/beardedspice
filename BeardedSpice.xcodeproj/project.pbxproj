@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,13 +41,11 @@
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
-		654A6DC01F7912410028E849 /* certificate.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 654A6DBF1F7905C30028E849 /* certificate.p12 */; };
 		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
 		654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */; };
-		6557B4901F6ADCA800295997 /* BSSafariExtensionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6557B48F1F6ADCA800295997 /* BSSafariExtensionController.m */; };
+		6557B4901F6ADCA800295997 /* BSBrowserExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */; };
 		655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA61D3ABFAA00E316EA /* EHCCache.m */; };
 		655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */; };
-		655EFA0A1F6B15650014FC72 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00151C8AD3C800BD29F5 /* DDHidDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00041C8AD3C800BD29F5 /* DDHidDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -112,7 +110,6 @@
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
 		65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */; };
-		65FF38171F6DC4E000DD8933 /* BSSharedDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
 		78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */; };
 		78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */; };
@@ -146,6 +143,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		650794E81FB715E800930B70 /* Copy Extensions Resources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ExtensionsResources;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			name = "Copy Extensions Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6564BDB01B74BF9C007030D8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +214,9 @@
 		5E80769E1D58CE180002855D /* DowncastTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowncastTabAdapter.m; sourceTree = "<group>"; };
 		650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHExecuteBlockDelayed.m; sourceTree = "<group>"; };
 		650781181FAF43E600A0902A /* EHExecuteBlockDelayed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHExecuteBlockDelayed.h; sourceTree = "<group>"; };
+		650794EF1FB7737700930B70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/pairing.html; sourceTree = "<group>"; };
+		650794F01FB7737700930B70 /* BeardedSpice.safariextz */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeardedSpice.safariextz; sourceTree = "<group>"; };
+		650794F11FB7737700930B70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/pairing.html; sourceTree = "<group>"; };
 		6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyWebSocketServer.h; sourceTree = "<group>"; };
 		6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServer.m; sourceTree = "<group>"; };
 		6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServerTest.m; sourceTree = "<group>"; };
@@ -229,17 +239,15 @@
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
-		654A6DBF1F7905C30028E849 /* certificate.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = certificate.p12; sourceTree = "<group>"; };
 		654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalTabAdapter.h; sourceTree = "<group>"; };
 		654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidalTabAdapter.m; sourceTree = "<group>"; };
 		654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		6557B48E1F6ADCA800295997 /* BSSafariExtensionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSafariExtensionController.h; sourceTree = "<group>"; };
-		6557B48F1F6ADCA800295997 /* BSSafariExtensionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSafariExtensionController.m; sourceTree = "<group>"; };
+		6557B48E1F6ADCA800295997 /* BSBrowserExtensionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBrowserExtensionsController.h; sourceTree = "<group>"; };
+		6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBrowserExtensionsController.m; sourceTree = "<group>"; };
 		655AACA51D3ABFAA00E316EA /* EHCCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCCache.h; sourceTree = "<group>"; };
 		655AACA61D3ABFAA00E316EA /* EHCCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCCache.m; sourceTree = "<group>"; };
 		655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
 		655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
-		655EFA091F6B15650014FC72 /* BSSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BSSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleMikey.m; sourceTree = "<group>"; };
 		656A00011C8AD3C800BD29F5 /* DDHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleRemote.h; sourceTree = "<group>"; };
 		656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleRemote.m; sourceTree = "<group>"; };
@@ -379,14 +387,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		655EFA061F6B15650014FC72 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				655EFA0A1F6B15650014FC72 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		656AFFE71C8ACDCF00BD29F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -486,11 +486,20 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		650794ED1FB7737600930B70 /* ExtensionsResources */ = {
+			isa = PBXGroup;
+			children = (
+				650794EE1FB7737700930B70 /* pairing.html */,
+				650794F01FB7737700930B70 /* BeardedSpice.safariextz */,
+			);
+			path = ExtensionsResources;
+			sourceTree = "<group>";
+		};
 		6557B48D1F6ADBC800295997 /* BrowserExtensionsController */ = {
 			isa = PBXGroup;
 			children = (
-				6557B48E1F6ADCA800295997 /* BSSafariExtensionController.h */,
-				6557B48F1F6ADCA800295997 /* BSSafariExtensionController.m */,
+				6557B48E1F6ADCA800295997 /* BSBrowserExtensionsController.h */,
+				6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */,
 			);
 			path = BrowserExtensionsController;
 			sourceTree = "<group>";
@@ -669,7 +678,6 @@
 				9679332C1855173100A49AC7 /* BeardedSpice.app */,
 				9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */,
 				656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */,
-				655EFA091F6B15650014FC72 /* BSSafariExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -745,6 +753,7 @@
 				65AD1ED31FB3B4E700851F0B /* BSNativeAppTabsController.m */,
 				6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */,
 				6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */,
+				650794ED1FB7737600930B70 /* ExtensionsResources */,
 				967933471855173100A49AC7 /* Images.xcassets */,
 				967933361855173100A49AC7 /* Supporting Files */,
 			);
@@ -754,7 +763,6 @@
 		967933361855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				654A6DBF1F7905C30028E849 /* certificate.p12 */,
 				030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */,
 				967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
 				78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */,
@@ -805,23 +813,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		655EFA081F6B15650014FC72 /* BSSafariExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 655EFA1F1F6B15650014FC72 /* Build configuration list for PBXNativeTarget "BSSafariExtension" */;
-			buildPhases = (
-				655EFA051F6B15650014FC72 /* Sources */,
-				655EFA061F6B15650014FC72 /* Frameworks */,
-				655EFA071F6B15650014FC72 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BSSafariExtension;
-			productName = SafariExtension;
-			productReference = 655EFA091F6B15650014FC72 /* BSSafariExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */;
@@ -853,7 +844,7 @@
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
 				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
 				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
-				658D64231FA5E7A1004D1546 /* Build and Copy Browser Extensions and it resources */,
+				650794E81FB715E800930B70 /* Copy Extensions Resources */,
 			);
 			buildRules = (
 			);
@@ -896,16 +887,6 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = BeardedSpice;
 				TargetAttributes = {
-					655EFA081F6B15650014FC72 = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5F2QV47DGC;
-						ProvisioningStyle = Manual;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
-							};
-						};
-					};
 					656AFFE91C8ACDCF00BD29F5 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 5F2QV47DGC;
@@ -921,7 +902,7 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -934,11 +915,12 @@
 				};
 			};
 			buildConfigurationList = 967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				ru,
 			);
 			mainGroup = 967933231855173100A49AC7;
 			productRefGroup = 9679332D1855173100A49AC7 /* Products */;
@@ -948,19 +930,11 @@
 				9679332B1855173100A49AC7 /* BeardedSpice */,
 				9679334C1855173100A49AC7 /* BeardedSpiceTests */,
 				656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
-				655EFA081F6B15650014FC72 /* BSSafariExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		655EFA071F6B15650014FC72 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		656AFFE81C8ACDCF00BD29F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -974,7 +948,6 @@
 			files = (
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
-				654A6DC01F7912410028E849 /* certificate.p12 in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
 				25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */,
 				78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */,
@@ -1006,9 +979,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1021,13 +998,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
@@ -1051,13 +1031,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */ = {
@@ -1081,28 +1064,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		658D64231FA5E7A1004D1546 /* Build and Copy Browser Extensions and it resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build and Copy Browser Extensions and it resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "TARGET=\"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources/BrowserExtensions\"\nSOURCE=\"${SRCROOT}/BrowserExtensions\"\n\nmkdir -pv \"${TARGET}\"\ncp -vRf \"${SOURCE}/resources\" \"${TARGET}/\" || exit 1\n\n";
 		};
 		899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1110,9 +1083,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1125,26 +1101,21 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		655EFA051F6B15650014FC72 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				65FF38171F6DC4E000DD8933 /* BSSharedDefaults.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		656AFFE61C8ACDCF00BD29F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1187,7 +1158,7 @@
 				655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */,
 				967933431855173100A49AC7 /* AppDelegate.m in Sources */,
 				65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */,
-				6557B4901F6ADCA800295997 /* BSSafariExtensionController.m in Sources */,
+				6557B4901F6ADCA800295997 /* BSBrowserExtensionsController.m in Sources */,
 				65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */,
 				6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */,
 				D09EFF221C8CD49E00B24DA9 /* VLCTabAdapter.m in Sources */,
@@ -1285,6 +1256,15 @@
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
+		650794EE1FB7737700930B70 /* pairing.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				650794EF1FB7737700930B70 /* Base */,
+				650794F11FB7737700930B70 /* ru */,
+			);
+			name = pairing.html;
+			sourceTree = "<group>";
+		};
 		65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1312,64 +1292,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		655EFA201F6B15650014FC72 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = SafariExtension/SafariExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 5F2QV47DGC;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SafariExtension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_IDENTIFIER)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		655EFA211F6B15650014FC72 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = SafariExtension/SafariExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 5F2QV47DGC;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SafariExtension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_IDENTIFIER)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		656AFFF61C8ACDCF00BD29F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */;
@@ -1596,15 +1518,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		655EFA1F1F6B15650014FC72 /* Build configuration list for PBXNativeTarget "BSSafariExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				655EFA201F6B15650014FC72 /* Debug */,
-				655EFA211F6B15650014FC72 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

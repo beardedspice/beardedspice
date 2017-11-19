@@ -15,7 +15,7 @@
 #import "BSPredicateToJS.h"
 //#import "BSSharedDefaults.h"
 #import "MYAnonymousIdentity.h"
-#import "BSSafariExtensionController.h"
+#import "BSBrowserExtensionsController.h"
 #import "runningSBApplication.h"
 #import "GeneralPreferencesViewController.h"
 
@@ -24,7 +24,8 @@
 
 //#define SAFARI_EXTENSION_DEFAULTS_KEY       @"ExtensionSettings-com.beardedspice.BeardedSpice.SafariExtension-0000000000"
 #define SAFARI_EXTENSION_PAIRING_FORMAT                @"https://localhost:%d/pairing.html?bundleId=%@"
-#define SAFARI_EXTENSION_PAIRING                       @"/resources/pairing.html"
+#define SAFARI_EXTENSION_PAIRING                       @"pairing.html"
+#define EXTENSION_RESOURCE                             @"/resources"
 
 
 NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
@@ -166,8 +167,6 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
              object:self];
         });
     }
-
-    //TODO: change preferences for browser extensions, anonce new port for connection to this server
 }
 
 - (void)server:(PSWebSocketServer *)server didFailWithError:(NSError *)error {
@@ -295,6 +294,17 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                 }
             }
         }
+        else if ([request.URL.path isEqualToString:@"/BeardedSpice.safariextz"]) {
+            return [self responseForFileUrl:request.URL
+                                       mime:@"application/octet-stream"
+                               responseBody:responseBody];
+        }
+        else if ([request.URL.path isEqualToString:@"/safari-ext-update.plist"]) {
+            return [self responseForFileUrl:request.URL
+                                       mime:@"text/xml"
+                               responseBody:responseBody];
+        }
+
     }
     
     return nil;
@@ -537,7 +547,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 }
 
 - (NSHTTPURLResponse *)responseForPairingWithBundleId:(NSString *)bundleId url:(NSURL *)url responseBody:(NSData **)responseBody{
-    NSURL *pairingUrl = [[NSURL URLForExtensions] URLByAppendingPathComponent:SAFARI_EXTENSION_PAIRING];
+    NSURL *pairingUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_PAIRING withExtension:nil subdirectory:@"ExtensionsResources"];
     NSString *pairingContent = [NSString stringWithContentsOfURL:pairingUrl usedEncoding:NULL error:NULL];
     NSData *body = [NSData data];
     if (pairingContent) {
@@ -560,6 +570,34 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         *responseBody = body;
     }
     return response;
+}
+
+- (NSHTTPURLResponse *)responseForFileUrl:(NSURL *)url mime:(NSString *)mime responseBody:(NSData **)responseBody{
+    if (!(url && mime)) {
+        return nil;
+    }
+    NSURL *pathUrl = [[NSBundle mainBundle] URLForResource:url.path withExtension:nil subdirectory:@"ExtensionsResources"];
+    NSData *body = [NSData dataWithContentsOfURL:pathUrl];
+    if (body) {
+        
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                                  statusCode:200
+                                                                 HTTPVersion:@"HTTP/1.1"
+                                                                headerFields:@{
+                                                                               @"Content-Type": mime,
+                                                                               @"Content-Length": [NSString stringWithFormat:@"%lu", body.length]
+                                                                               }];
+        
+        if (responseBody) {
+            *responseBody = body;
+        }
+        return response;
+    }
+    else {
+        BS_LOG(LOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
+    }
+
+    return nil;
 }
 
 @end

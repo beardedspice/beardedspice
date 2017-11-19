@@ -20,5 +20,7 @@
 	<false/>
 	<key>BSWebSocketServerPort</key>
 	<integer>8008</integer>
+	<key>BeardedSpiceFirstRun</key>
+	<true/>
 </dict>
 </plist>

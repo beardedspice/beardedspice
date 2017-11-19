@@ -18,6 +18,8 @@ extern NSString *const BeardedSpiceActivatePlayingTabShortcut;
 extern NSString *const BeardedSpicePlayerNextShortcut;
 extern NSString *const BeardedSpicePlayerPreviousShortcut;
 
+extern NSString *const BeardedSpiceFirstRun;
+
 /**
  Timeout for command of the user iteraction.
  */

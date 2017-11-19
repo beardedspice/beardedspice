@@ -1,5 +1,5 @@
 //
-//  BSSafariExtensionController.h
+//  BSBrowserExtensionsController.h
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 14.09.17.
@@ -16,7 +16,7 @@
  This class should check Safari type browsers, that they had installed BeardedSpice extension.
  If no, it should suggest user to install this extension.
  */
-@interface BSSafariExtensionController : NSObject
+@interface BSBrowserExtensionsController : NSObject
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public properties and methods

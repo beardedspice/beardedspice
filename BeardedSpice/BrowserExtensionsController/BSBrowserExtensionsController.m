@@ -1,40 +1,41 @@
 //
-//  BSSafariExtensionController.m
+//  BSBrowserExtensionsController.m
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 14.09.17.
 //  Copyright © 2017 BeardedSpice. All rights reserved.
 //
 
-#import "BSSafariExtensionController.h"
+#import "BSBrowserExtensionsController.h"
 #import "NSString+Utils.h"
+#import "AppDelegate.h"
 
-@implementation BSSafariExtensionController {
+@implementation BSBrowserExtensionsController {
     
     NSURL *_safariExtensionsPlistUrl;
     NSURL *_safariExtensionPrefPlistUrl;
 }
 
-static BSSafariExtensionController *singletonBSSafariExtensionController;
+static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 
-+ (BSSafariExtensionController *)singleton {
++ (BSBrowserExtensionsController *)singleton {
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        singletonBSSafariExtensionController = [BSSafariExtensionController alloc];
+        singletonBSBrowserExtensionsController = [BSBrowserExtensionsController alloc];
         
         //redefine this for SafariTechPrev
-        singletonBSSafariExtensionController = [singletonBSSafariExtensionController initWithName:@"Safari"];
+        singletonBSBrowserExtensionsController = [singletonBSBrowserExtensionsController initWithName:@"Safari"];
     });
     
-    return singletonBSSafariExtensionController;
+    return singletonBSBrowserExtensionsController;
 }
 
 - (id)init {
     
     
-    if (self != singletonBSSafariExtensionController) {
+    if (self != singletonBSBrowserExtensionsController) {
         [[NSException exceptionWithName:NSGenericException reason:@"Only singleton!" userInfo:nil] raise];
     }
     
@@ -73,7 +74,26 @@ static BSSafariExtensionController *singletonBSSafariExtensionController;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public properties and methods
 
+- (void)firstRunPerform {
+    NSAlert *alert = [NSAlert new];
+    alert.alertStyle = NSWarningAlertStyle;
+    alert.messageText = NSLocalizedString(@"Install Browser Extension", @"Title of the suggestion about installing BeardedSpice extensions for browsers.");
+    alert.informativeText = NSLocalizedString(@"In order to manage the media players on supported sites, it is necessary to install the BeardedSpice browser extension.", @"Informative text of the suggestion about installing BeardedSpice extensions for browsers.");
+    [alert addButtonWithTitle:NSLocalizedString(@"Get Extensions...",
+                                                @"Button title")];
+    
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel",
+                                                @"Button title")];
+    
+    [APPDELEGATE windowWillBeVisible:alert];
+    
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        
+    };
+    
+    [APPDELEGATE removeWindow:alert];
 
+}
 
 - (BOOL)installed {
 

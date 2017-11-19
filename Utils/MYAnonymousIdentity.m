@@ -410,7 +410,7 @@ BOOL BSCheckAndSetTrustingForSSL(SecIdentityRef ident) {
         SecCertificateRef certRef;
         SecIdentityCopyCertificate(ident, &certRef);
 
-            CFArrayRef settings;
+            CFArrayRef settings = NULL;
             SecTrustSettingsCopyTrustSettings(certRef, kSecTrustSettingsDomainUser, &settings);
             if (settings) {
                 

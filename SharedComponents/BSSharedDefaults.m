@@ -18,3 +18,5 @@ NSString *const BeardedSpiceActivatePlayingTabShortcut = @"BeardedSpiceActivateP
 NSString *const BeardedSpicePlayerNextShortcut = @"BeardedSpicePlayerNextShortcut";
 NSString *const BeardedSpicePlayerPreviousShortcut = @"BeardedSpicePlayerPreviousShortcut";
 
+NSString *const BeardedSpiceFirstRun = @"BeardedSpiceFirstRun";
+

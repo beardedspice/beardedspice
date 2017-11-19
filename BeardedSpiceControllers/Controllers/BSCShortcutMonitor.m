@@ -7,8 +7,7 @@
 //
 
 #import "BSCShortcutMonitor.h"
-#import "Shortcut.h"
-#import "MASHotkey.h"
+#import "MASHotKey.h"
 
 @implementation BSCShortcutMonitor{
     

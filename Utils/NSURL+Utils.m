@@ -104,18 +104,6 @@ static inline NSString *appSupportPath() {
     return result;
 }
 
-+ (NSURL *_Nonnull)URLForExtensions {
-    
-    static NSURL *result;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        result = [[NSBundle mainBundle] resourceURL];
-        result = [result URLByAppendingPathComponent:@"BrowserExtensions"];
-    });
-    return result;
-}
-
-
 + (NSURL * _Nonnull)URLForFileName:(NSString *)fileName
 {
     return [self URLForFileName:fileName ofType:@"js"];

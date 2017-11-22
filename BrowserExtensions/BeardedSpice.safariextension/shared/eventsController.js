@@ -1,7 +1,6 @@
 var BSEventResponder = {
   listenRequest: function (callback) { // analogue of chrome.extension.onRequest.addListener
     document.addEventListener("BSEventClient-query", function(event) {
-      //debugger;
       var node = event.target;
       if (!node || node.nodeType != Node.TEXT_NODE)
         return;
@@ -28,11 +27,10 @@ var BSEventResponder = {
 
 BSEventResponder.listenRequest(function(request, sender, callback){
 
-  console.log("(BeardedSpice) BSEventResponder get request.");
-  console.log(request);
-  console.log(sender);
+  // console.log("(BeardedSpice) BSEventResponder get request.");
+  // console.log(request);
+  // console.log(sender);
 
-  //debugger;
   switch (request.name) {
     case "accept":
       if (BSAccepters && BSAccepters.evaluate()) {

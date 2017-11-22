@@ -13,8 +13,10 @@
 #define APPID_SAFARI            @"com.apple.Safari"
 #define APPID_SAFARITP          @"com.apple.SafariTechnologyPreview"
 
-extern NSString *const BSExtensionsResources;
-
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Constants
+extern NSString *const BSSafariExtensionName;
+extern NSString *const BSGetExtensionsPageName;
 /**
  */
 @interface BSBrowserExtensionsController : NSObject
@@ -27,7 +29,7 @@ extern NSString *const BSExtensionsResources;
 @property (nonatomic, readonly) BSStrategyWebSocketServer *webSocketServer;
 
 - (void)start;
-- (void)firstRunPerform;
-
+- (void)firstRunPerformWithCompletion:(dispatch_block_t)completion;
+- (void)openGetExtensions;
 
 @end

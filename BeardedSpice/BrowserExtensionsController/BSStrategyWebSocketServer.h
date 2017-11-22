@@ -11,9 +11,14 @@
 #import "PSWebSocketServer.h"
 #import "BSWebTabAdapter.h"
 
+@class BSTrack;
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Notifications
 extern NSString *const BSWebSocketServerStartedNotification;
 
-@class BSTrack;
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - BSStrategyWebSocketServer
 
 @interface BSStrategyWebSocketServer : NSObject <PSWebSocketServerDelegate>
 

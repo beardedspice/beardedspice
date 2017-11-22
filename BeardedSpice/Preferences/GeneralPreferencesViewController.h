@@ -40,6 +40,7 @@ extern NSString *const BSWebSocketServerEnabled;
 
 @property (weak) IBOutlet NSButton *firstResponderView;
 @property (weak) IBOutlet NSTextField *webSocketPortField;
+@property (weak) IBOutlet NSButton *enableBrowserExtensions;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
@@ -48,5 +49,6 @@ extern NSString *const BSWebSocketServerEnabled;
 - (IBAction)toggleAutoPause:(id)sender;
 - (IBAction)toggleUseRemote:(id)sender;
 - (IBAction)toggleWebSocketServer:(id)sender;
+- (IBAction)clickGetExtensions:(id)sender;
 
 @end

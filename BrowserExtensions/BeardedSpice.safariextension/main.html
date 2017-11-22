@@ -5,11 +5,14 @@
 
     var BASE_CONTROL_PORT = function() { return parseInt(safari.extension.settings.controllerPort) || 8008;};
 
-    const SOCKET_TIMEOUT = 100; //milleseconds
+    //PREVENTS LOG OUTPUT
+    console.log = function(){};
+
+    // const SOCKET_TIMEOUT = 60000; //milleseconds
+    const DELAY_TIMEOUT = 500;     // milleseconds
     const RECONNECT_TIMEOUT = 10000; //milleseconds
 
     var socket = null;
-    var socketConnected = false;
     var controlPort = BASE_CONTROL_PORT();
     var clientsPort = 0;
     var timeoutObject = null;
@@ -20,7 +23,6 @@
 
     var _clean = function(){
         socket = null;
-        socketConnected = false;
         clientsPort = 0;
 
         if (timeoutObject) {
@@ -70,14 +72,14 @@
         connect(controlPort);
     };
 
-    var connectTimeout = function(event) {
+    // var connectTimeout = function(event) {
 
-        var _socket = socket;
-        _clean();
-        _socket.close();
-        controlPort = BASE_CONTROL_PORT();
-        timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
-    };
+    //     var _socket = socket;
+    //     _clean();
+    //     _socket.close();
+    //     controlPort = BASE_CONTROL_PORT();
+    //     timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
+    // };
 
     function connect(port) {
 
@@ -91,7 +93,6 @@
         // Connection opened
         socket.addEventListener('open', function (event) {
             console.info("(BeardedSpice Control) Socket open.");
-            socketConnected = true;
             if (timeoutObject) {
                 clearTimeout(timeoutObject);
                 timeoutObject = null;
@@ -105,7 +106,7 @@
                 }
                     
                 _send({'request':'accepters'});
-            }, SOCKET_TIMEOUT);
+            }, DELAY_TIMEOUT);
         });
 
         // Listen for messages
@@ -149,16 +150,13 @@
 
         var onSocketDisconnet = function (event) {
             console.log('(BeardedSpice Control) onSocketDisconnet');
-            if (socketConnected) {
-                _clean();
-                timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
-            }
+            _clean();
+            timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
         };
 
         socket.addEventListener('close', onSocketDisconnet);
-        // socket.addEventListener('error', onSocketDisconnet);
 
-        timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
+        // timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
     } 
 
     function respondToMessage(theMessageEvent) {

@@ -1,3 +1,5 @@
+//PREVENTS LOG OUTPUT
+console.log = function(){};
 
 var BSUtils = {
 
@@ -46,7 +48,7 @@ var BSUtils = {
         console.log('(BeardedSpice) strategyCommand:');
         console.log(strategy);
         console.log(command);
-        //debugger;
+         
         var okResult = {'result': true};
         try {
 

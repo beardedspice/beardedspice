@@ -19,6 +19,7 @@
 #import "BSCustomStrategyManager.h"
 #import "AppDelegate.h"
 #import "EHExecuteBlockDelayed.h"
+#import "BSBrowserExtensionsController.h"
 
 #define RELAXING_TIMEOUT                   3 //seconds
 
@@ -71,6 +72,7 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 - (void)viewWillAppear{
 
     [self repairLaunchAtLogin];
+    self.enableBrowserExtensions.state = [[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled] ? NSOnState : NSOffState;
 }
 
 - (NSView *)initialKeyView{
@@ -129,6 +131,10 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
     NSButton *button = sender;
     [[NSUserDefaults standardUserDefaults] setBool:(button.state == NSOnState) forKey:BSWebSocketServerEnabled];
     [sendNotification executeOnceAfterCalm];
+}
+
+- (IBAction)clickGetExtensions:(id)sender {
+    [[BSBrowserExtensionsController singleton] openGetExtensions];
 }
 
 /////////////////////////////////////////////////////////////////////////

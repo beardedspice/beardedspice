@@ -22,12 +22,13 @@
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.netinet;
 
-//#define SAFARI_EXTENSION_DEFAULTS_KEY       @"ExtensionSettings-com.beardedspice.BeardedSpice.SafariExtension-0000000000"
 #define SAFARI_EXTENSION_PAIRING_FORMAT                @"https://localhost:%d/pairing.html?bundleId=%@"
 #define SAFARI_EXTENSION_PAIRING                       @"pairing.html"
 
 
+
 NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
+
 
 @implementation BSStrategyWebSocketServer{
     
@@ -149,22 +150,23 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 
 - (void)serverDidStart:(PSWebSocketServer *)server {
     
-    if (server == _controlServer) {
-        
-        BS_LOG(LOG_INFO, @"Websocket Control server started on port %d.", _controlPort);
-        [self startTabServer];
-    }
     if (server == _tabsServer) {
         
         BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
     }
-
+    
     if (self.started) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter]
              postNotificationName:BSWebSocketServerStartedNotification
              object:self];
         });
+    }
+    
+    if (server == _controlServer) {
+        
+        BS_LOG(LOG_INFO, @"Websocket Control server started on port %d.", _controlPort);
+        [self startTabServer];
     }
 }
 
@@ -293,14 +295,14 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                 }
             }
         }
-        else if ([request.URL.path isEqualToString:@"/BeardedSpice.safariextz"]) {
+        else if ([request.URL.path isEqualToString:BSSafariExtensionName]) {
             return [self responseForFileUrl:request.URL
                                        mime:@"application/octet-stream"
                                responseBody:responseBody];
         }
-        else if ([request.URL.path isEqualToString:@"/safari-ext-update.plist"]) {
+        else if ([request.URL.path isEqualToString:BSGetExtensionsPageName]) {
             return [self responseForFileUrl:request.URL
-                                       mime:@"text/xml"
+                                       mime:@"text/html"
                                responseBody:responseBody];
         }
 
@@ -546,7 +548,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 }
 
 - (NSHTTPURLResponse *)responseForPairingWithBundleId:(NSString *)bundleId url:(NSURL *)url responseBody:(NSData **)responseBody{
-    NSURL *pairingUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_PAIRING withExtension:nil subdirectory:BSExtensionsResources];
+    NSURL *pairingUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_PAIRING withExtension:nil];
     NSString *pairingContent = [NSString stringWithContentsOfURL:pairingUrl usedEncoding:NULL error:NULL];
     NSData *body = [NSData data];
     if (pairingContent) {
@@ -575,27 +577,28 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     if (!(url && mime)) {
         return nil;
     }
-    NSURL *pathUrl = [[NSBundle mainBundle] URLForResource:url.path withExtension:nil subdirectory:BSExtensionsResources];
-    NSData *body = [NSData dataWithContentsOfURL:pathUrl];
-    if (body) {
-        
-        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
-                                                                  statusCode:200
-                                                                 HTTPVersion:@"HTTP/1.1"
-                                                                headerFields:@{
-                                                                               @"Content-Type": mime,
-                                                                               @"Content-Length": [NSString stringWithFormat:@"%lu", body.length]
-                                                                               }];
-        
-        if (responseBody) {
-            *responseBody = body;
+    NSString *path = [url.path substringFromIndex:1];
+    NSURL *pathUrl = [[NSBundle mainBundle] URLForResource:path withExtension:nil];
+    if (pathUrl) {
+        NSData *body = [NSData dataWithContentsOfURL:pathUrl];
+        if (body) {
+            
+            NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                                      statusCode:200
+                                                                     HTTPVersion:@"HTTP/1.1"
+                                                                    headerFields:@{
+                                                                                   @"Content-Type": mime,
+                                                                                   @"Content-Length": [NSString stringWithFormat:@"%lu", body.length]
+                                                                                   }];
+            
+            if (responseBody) {
+                *responseBody = body;
+            }
+            return response;
         }
-        return response;
     }
-    else {
-        BS_LOG(LOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
-    }
-
+    
+    BS_LOG(LOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
     return nil;
 }
 

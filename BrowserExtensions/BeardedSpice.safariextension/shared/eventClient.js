@@ -25,7 +25,7 @@ var BSEventClient = {
 
     //callback function example
     callback: function(response) {
-        //debugger;
+         
         // return alert("response: " + (response ? response.toSource() : response));
     }
 }

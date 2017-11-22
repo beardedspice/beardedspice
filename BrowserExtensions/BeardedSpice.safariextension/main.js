@@ -1,10 +1,12 @@
+//PREVENTS LOG OUTPUT
+console.log = function(){};
+
 console.log("(BeardedSpice) Start injection script");
 
 (function(){
 
 if (window != window.top) {
     console.log(window.top);
-    // debugger;
     return;
 }
 console.log("(BeardedSpice) Injection script running on top window");
@@ -14,16 +16,29 @@ if (checkPairingPage != null) {
     console.log("(BeardedSpice) Detected pairing page");
     safari.self.tab.dispatchMessage("pairing", {"bundleId":checkPairingPage.textContent});
     var messageEl = document.querySelector('#message');
+
+    var messagePairing = (document.querySelector('#messagePairing') 
+    && document.querySelector('#messagePairing').textContent) 
+    || "Pairing with BeardedSpice App...";
+
+    var messageSuccess = (document.querySelector('#messageSuccess') 
+    && document.querySelector('#messageSuccess').textContent) 
+    || "BeardedSpice App paired.";
+
+    var messageFailure = (document.querySelector('#messageFailure') 
+    && document.querySelector('#messageFailure').textContent) 
+    || "BeardedSpice App pairing failure.";
+
     if (messageEl != null) {
-        messageEl.textContent = "Pairing with BeardedSpice App...";
+        messageEl.textContent = messagePairing;
         checkPairingPage.textContent = "false";
         var pairingInterval = setInterval(function (){
             clearInterval(pairingInterval);
             if (checkPairingPage.textContent == "true") {
-                messageEl.textContent = "BeardedSpice App paired.";
+                messageEl.textContent = messageSuccess;
             }
             else {
-                messageEl.textContent = "BeardedSpice App pairing failure.";
+                messageEl.textContent = messageFailure;
             }
         }, 3000);
     }
@@ -84,7 +99,7 @@ var bsParameters = {
     'title': window.document.title == "" ? window.location.href : window.document.title
 };
 
-//debugger;
+ 
 // Handle message from Global Extension Page
 var handleMessage = function(event) {
     console.log(event.name);
@@ -163,7 +178,7 @@ var accept = function (accepters) {
     }
 
     console.info("(BeardedSpice) Accepters run.");
- //debugger;
+  
    try {
         var code = accepters.bsJsFunctions
         + "bsJsFunctions();"
@@ -180,7 +195,7 @@ var accept = function (accepters) {
         + "});"
         ;
  
-        //debugger;
+         
         if (noCSP) {
             BSUtils.injectAccepters(code, bsParameters);
             console.log("(BeardedSpice) Accepters run: before delayedFunc.");
@@ -188,7 +203,7 @@ var accept = function (accepters) {
             var delayedFunc = function(){
                 BSEventClient.sendRequest({"name":"accept"}, function(response){
                     console.log("(BeardedSpice) Accepters run: func delayedFunc.");
-                    //debugger;
+                     
                     strategyName = response.strategyName;
                     if (strategyName) {
                         state.set(state.accepted);
@@ -296,7 +311,7 @@ var accept = function (accepters) {
                     if (noCSP) {
                         BSUtils.injectScript(event.data);
                         BSEventClient.sendRequest({"name":"checkStrategy"}, function(response){
-                            //debugger;
+                             
                             if (response.result) {
                                 BSUtils.injectExtScript("utils.js");
                                 state.set(state.ready);
@@ -378,7 +393,7 @@ var accept = function (accepters) {
             if (noCSP) {
                 BSEventClient.sendRequest({"name":"checkAccept"}, function(response){
                     console.log("(BeardedSpice) checkAccept run");
-                    //debugger;
+                     
                     if (response.result){
                         //do nothing
                         return;

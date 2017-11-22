@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Author</key>
+	<string>BeardedSpice</string>
 	<key>Builder Version</key>
-	<string>12604.1.38.1.7</string>
+	<string>13604.3.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>BeardedSpice</string>
 	<key>CFBundleIdentifier</key>
@@ -35,6 +37,8 @@
 			</array>
 		</dict>
 	</dict>
+	<key>Description</key>
+	<string>This extension allow you to use BeardedSpice for controlling media players on appropriate sites.</string>
 	<key>DeveloperIdentifier</key>
 	<string>5F2QV47DGC</string>
 	<key>ExtensionInfoDictionaryVersion</key>
@@ -49,5 +53,7 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Website</key>
+	<string>https://github.com/beardedspice/beardedspice</string>
 </dict>
 </plist>

@@ -13,10 +13,11 @@
 #import "AppDelegate.h"
 #import "GeneralPreferencesViewController.h"
 
-#define SAFARI_EXTENSION_NAME                           @"BeardedSpice.safariextz"
-#define CURRENT_VERSION_MARKER                          @"cerrentExtensionVersion.txt"
 
-NSString *const BSExtensionsResources = @"ExtensionsResources";
+NSString *const BSSafariExtensionName = @"/BeardedSpice.safariextz";
+NSString *const BSGetExtensionsPageName = @"/get-extensions.html";
+
+#define URL_FORMAT                                      @"https://localhost:%d%@"
 
 @implementation BSBrowserExtensionsController {
     NSMutableArray *_observers;
@@ -70,7 +71,6 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 - (void)start {
     dispatch_async(_workQueue, ^{
         if (! _started) {
-            [self initSafariextz];
             _oQueue = [NSOperationQueue new];
             _oQueue.underlyingQueue = _workQueue;
             id observer = [[NSNotificationCenter defaultCenter]
@@ -96,59 +96,65 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
     });
 }
 
-- (void)firstRunPerform {
-    NSAlert *alert = [NSAlert new];
-    alert.alertStyle = NSWarningAlertStyle;
-    alert.messageText = NSLocalizedString(@"Install Browser Extension", @"Title of the suggestion about installing BeardedSpice extensions for browsers.");
-    alert.informativeText = NSLocalizedString(@"In order to manage the media players on supported sites, it is necessary to install the BeardedSpice browser extension.", @"Informative text of the suggestion about installing BeardedSpice extensions for browsers.");
-    [alert addButtonWithTitle:NSLocalizedString(@"Get Extensions...",
-                                                @"Button title")];
+- (void)openGetExtensions {
+    if (_webSocketServer.started == NO) {
+        return;
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:URL_FORMAT, _webSocketServer.controlPort, BSGetExtensionsPageName]];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+- (void)firstRunPerformWithCompletion:(dispatch_block_t)completion {
+
+    ASSIGN_WEAK(self);
+    ASSIGN_WEAK(completion);
     
-    [alert addButtonWithTitle:NSLocalizedString(@"Cancel",
-                                                @"Button title")];
-    
-    [APPDELEGATE windowWillBeVisible:alert];
-    
-    if ([alert runModal] == NSAlertFirstButtonReturn) {
-        
+    __block id observer;
+    dispatch_block_t execBlock = ^() {
+        @autoreleasepool {
+            ASSIGN_STRONG(self);
+            ASSIGN_STRONG(completion);
+            
+            if (observer) {
+                [[NSNotificationCenter defaultCenter] removeObserver:observer];
+                observer = nil;
+            }
+            
+            NSAlert *alert = [NSAlert new];
+            alert.alertStyle = NSWarningAlertStyle;
+            alert.messageText = NSLocalizedString(@"Install Browser Extension", @"Title of the suggestion about installing BeardedSpice extensions for browsers.");
+            alert.informativeText = NSLocalizedString(@"In order to manage the media players on supported sites, it is necessary to install the BeardedSpice browser extension.", @"Informative text of the suggestion about installing BeardedSpice extensions for browsers.");
+            [alert addButtonWithTitle:NSLocalizedString(@"Get Extensions...",
+                                                        @"Button title")];
+            
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel",
+                                                        @"Button title")];
+            
+            [APPDELEGATE windowWillBeVisible:alert];
+            
+            if ([alert runModal] == NSAlertFirstButtonReturn) {
+                [USE_STRONG(self) openGetExtensions];
+            };
+            if (USE_STRONG(completion)) {
+                USE_STRONG(completion)();
+            }
+
+            [APPDELEGATE removeWindow:alert];
+        }
     };
     
-    [APPDELEGATE removeWindow:alert];
-
+    if (_webSocketServer.started == NO) {
+        observer = [[NSNotificationCenter defaultCenter]
+                    addObserverForName:BSWebSocketServerStartedNotification
+                    object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
+                        dispatch_async(dispatch_get_main_queue(), execBlock);
+                    }];
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), execBlock);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods (Private)
-
-- (void)initSafariextz {
-    
-    NSURL *versionUrl = [[NSURL URLForSafariExtensionResources] URLByAppendingPathComponent:CURRENT_VERSION_MARKER];
-    if (versionUrl) {
-        NSString *version = [NSString stringWithContentsOfURL:versionUrl encoding:NSUTF8StringEncoding error:NULL];
-        if ([NSString isNullOrEmpty:version]
-            || ! [version isEqualToString:BS_SAFARI_EXTENSION_VERSION]) {
-            //Condition for copying extension file to resources folder
-            NSURL *safariExtFromUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_NAME withExtension:nil subdirectory:BSExtensionsResources];
-            NSURL *safariExtToUrl = [[NSURL URLForSafariExtensionResources] URLByAppendingPathComponent:SAFARI_EXTENSION_NAME];
-            NSError *error = nil;
-            if ([safariExtToUrl fileExists]) {
-                [[NSFileManager defaultManager] removeItemAtURL:safariExtToUrl error:&error];
-                if (error) {
-                    BS_LOG(LOG_ERROR, @"Error occures when Safari Extension file is removed: %@", error.description);
-                    error = nil;
-                }
-            }
-            if ([[NSFileManager defaultManager] copyItemAtURL:safariExtFromUrl toURL:safariExtToUrl error:&error] == NO) {
-                BS_LOG(LOG_CRITICAL, @"Can't copy Safari Extension file: %@", error.description);
-                [[NSException appResourceUnavailableException:SAFARI_EXTENSION_NAME] raise];
-            }
-            
-            if ([BS_SAFARI_EXTENSION_VERSION writeToURL:versionUrl atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
-                BS_LOG(LOG_CRITICAL, @"Can't save version marker for Safari Extension: %@", error.description);
-                [[NSException appResourceUnavailableException:versionUrl.description] raise];
-            }
-        }
-    }
-}
 
 @end

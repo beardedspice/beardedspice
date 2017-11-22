@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralPreferencesViewController">
             <connections>
+                <outlet property="enableBrowserExtensions" destination="jMA-R1-qrX" id="ZH9-Qc-8DX"/>
                 <outlet property="firstResponderView" destination="721" id="818"/>
                 <outlet property="view" destination="1" id="2"/>
                 <outlet property="webSocketPortField" destination="iEp-Lw-TyH" id="D0C-Op-SoA"/>
@@ -235,6 +236,15 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="clickGetExtensions:" target="-2" id="JWX-i1-GI3"/>
+                        <binding destination="436" name="enabled" keyPath="values.BSWebSocketServerEnabled" id="XKH-2z-aUO">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

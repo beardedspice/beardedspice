@@ -65,6 +65,7 @@ BOOL accessibilityApiEnabled = NO;
     
     NSXPCConnection *_connectionToService;
     
+    BSBrowserExtensionsController *_browserExtensionsController;
     BSNativeAppTabsController *_nativeAppTabsController;
     
     BOOL _AXAPIEnabled;
@@ -152,8 +153,11 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     
-    [[BSBrowserExtensionsController singleton] start];
     _nativeAppTabsController = BSNativeAppTabsController.singleton;
+    _browserExtensionsController = BSBrowserExtensionsController.singleton;
+    [_browserExtensionsController start];
+    
+    [self checkFirstRun];
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
@@ -164,7 +168,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender{
 
-    BSStrategyWebSocketServer *server = BSBrowserExtensionsController.singleton.webSocketServer;
+    BSStrategyWebSocketServer *server = _browserExtensionsController.webSocketServer;
     if (server.started) {
         
         [server stopWithComletion:^{
@@ -186,6 +190,17 @@ BOOL accessibilityApiEnabled = NO;
     }
     
     return NSTerminateNow;
+}
+
+- (void)checkFirstRun {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceFirstRun]) {
+        //when `first run` operations completed
+        dispatch_block_t completion = ^(){[[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];};
+        
+        dispatch_async(workingQueue, ^{
+            [_browserExtensionsController firstRunPerformWithCompletion:completion];
+        });
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -538,7 +553,7 @@ BOOL accessibilityApiEnabled = NO;
 - (BOOL)setActiveTabShortcut{
 
     @try {
-        NSArray <TabAdapter *> *tabs = BSBrowserExtensionsController.singleton.webSocketServer.tabs;
+        NSArray <TabAdapter *> *tabs = _browserExtensionsController.webSocketServer.tabs;
         tabs = [tabs arrayByAddingObjectsFromArray:_nativeAppTabsController.tabs];
 
         for (TabAdapter *tab in tabs) {
@@ -584,8 +599,9 @@ BOOL accessibilityApiEnabled = NO;
         
         if (accessibilityApiEnabled) {
             
-            NSArray <TabAdapter *> *tabs = BSBrowserExtensionsController.singleton.webSocketServer.tabs;
-            tabs = [tabs arrayByAddingObjectsFromArray:_nativeAppTabsController.tabs];
+            NSMutableArray <TabAdapter *> *tabs = [NSMutableArray new];
+            [tabs addObjectsFromArray:_browserExtensionsController.webSocketServer.tabs];
+            [tabs addObjectsFromArray:_nativeAppTabsController.tabs];
             
             for (TabAdapter *tab in tabs) {
                 @try {

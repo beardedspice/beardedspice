@@ -8,7 +8,7 @@
 
 // if DEBUG_STRATEGY set to 1,
 // then BeardedSpice uses strategies only from bundle resources folder.
-DEBUG_STRATEGY = 0
+DEBUG_STRATEGY = 1
 
 
 #include "./Config.xcconfig"

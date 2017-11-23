@@ -24,7 +24,7 @@ BSStrategy = {
     document.querySelector('.control-next').click();
   },
   favorite: function (){
-    document.querySelector('div.player-actions span.icon-love').click();
+    document.querySelector('.player-actions button .svg-icon-love-outline').parentElement.click();
   },
   previous: function () {
     document.querySelector('.control-prev').click();

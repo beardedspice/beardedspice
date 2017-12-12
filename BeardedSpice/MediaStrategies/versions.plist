@@ -4,6 +4,8 @@
 <dict>
 	<key>AmazonMusic</key>
 	<integer>1</integer>
+    <key>AmazonPrimeVideo</key>
+    <integer>1</integer>
 	<key>Anghami</key>
 	<integer>1</integer>
 	<key>AppleDeveloper</key>

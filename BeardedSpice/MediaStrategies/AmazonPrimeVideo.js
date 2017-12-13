@@ -2,14 +2,9 @@
 //  AmazonPrimeVideo.js
 //  BeardedSpice
 //
-//  Created by You on Today's Date.
-//  Copyright (c) 2015-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Created by Marc-Antoine Brodeur on 2017-12-13.
+//  Copyright (c) 2016-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
-
-// We put the copyright inside the plist to retain consistent syntax coloring.
-
-// Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
-// Normal formatting is supported (can copy/paste with newlines and indentations)
 
 BSStrategy = {
   version: 1,

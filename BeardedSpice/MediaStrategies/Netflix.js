@@ -2,6 +2,7 @@
 //  Netflix.plist
 //  BeardedSpice
 //
+//  Updated by Hollister Starrett on 12/19/17.
 //  Created by Max Borghino on 12/06/15.
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
@@ -19,7 +20,7 @@ BSStrategy = {
   },
   isPlaying:function () {
     var v=document.querySelector('video');
-    if (v) {v.paused ? v.play() : v.pause();}
+    return v ? !v.paused : false;
   },
   toggle:function () {
     var v=document.querySelector('video');

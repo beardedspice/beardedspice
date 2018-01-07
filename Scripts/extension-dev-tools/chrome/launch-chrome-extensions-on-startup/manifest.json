@@ -1,0 +1,18 @@
+{
+    "name": "Open chrome://extensions/ on startup",
+    "description": "Open chrome://extensions on start-up of Chrome / on click of button.",
+    "version": "1",
+    "manifest_version": 2,
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "icons": {
+        "48": "icon48.png"
+    },
+    "browser_action": {
+        "default_icon": "icon19.png",
+        "default_title": "Open chrome://extensions/"
+    },
+    "permissions": ["tabs"]
+}

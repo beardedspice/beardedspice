@@ -39,7 +39,6 @@
 		651F4E3C1F5365C800D7F94F /* BSPredicateToJSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */; };
 		65229E861FC40E1500C73281 /* pairing.html in Resources */ = {isa = PBXBuildFile; fileRef = 650794EE1FB7737700930B70 /* pairing.html */; };
 		65229E871FC40E1900C73281 /* get-extensions.html in Resources */ = {isa = PBXBuildFile; fileRef = 65C6ECC91FC2003D00CCC6F1 /* get-extensions.html */; };
-		65229E881FC40E2000C73281 /* BeardedSpice.safariextz in Resources */ = {isa = PBXBuildFile; fileRef = 650794F01FB7737700930B70 /* BeardedSpice.safariextz */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
@@ -208,7 +207,6 @@
 		650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHExecuteBlockDelayed.m; sourceTree = "<group>"; };
 		650781181FAF43E600A0902A /* EHExecuteBlockDelayed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHExecuteBlockDelayed.h; sourceTree = "<group>"; };
 		650794EF1FB7737700930B70 /* Base */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Base; path = Base.lproj/pairing.html; sourceTree = "<group>"; };
-		650794F01FB7737700930B70 /* BeardedSpice.safariextz */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeardedSpice.safariextz; sourceTree = "<group>"; };
 		650794F11FB7737700930B70 /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ru; path = ru.lproj/pairing.html; sourceTree = "<group>"; };
 		6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyWebSocketServer.h; sourceTree = "<group>"; };
 		6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServer.m; sourceTree = "<group>"; };
@@ -217,6 +215,7 @@
 		6507A3011F48824000775D14 /* BSWebTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWebTabAdapter.m; sourceTree = "<group>"; };
 		6507A3041F49A4E800775D14 /* BSPredicateToJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPredicateToJS.h; sourceTree = "<group>"; };
 		6507A3051F49A4E800775D14 /* BSPredicateToJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJS.m; sourceTree = "<group>"; };
+		6507C2472002AAA9003D4B1A /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -484,7 +483,6 @@
 			children = (
 				650794EE1FB7737700930B70 /* pairing.html */,
 				65C6ECC91FC2003D00CCC6F1 /* get-extensions.html */,
-				650794F01FB7737700930B70 /* BeardedSpice.safariextz */,
 			);
 			path = ExtensionsResources;
 			sourceTree = "<group>";
@@ -651,6 +649,7 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
+				6507C2472002AAA9003D4B1A /* Scripts */,
 				658D642A1FA696AF004D1546 /* Submodules */,
 				656A003A1C8AFFD400BD29F5 /* SharedComponents */,
 				656A00241C8AD41A00BD29F5 /* Utils */,
@@ -945,7 +944,6 @@
 				25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */,
 				78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
-				65229E881FC40E2000C73281 /* BeardedSpice.safariextz in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
 				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
 				967933461855173100A49AC7 /* MainMenu.xib in Resources */,

@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script type="text/javascript">
+
+    var BASE_CONTROL_PORT = function() { return parseInt(safari.extension.settings.controllerPort) || 8008;};
+
+    //PREVENTS LOG OUTPUT
+    console.log = function(){};
+
+    // const SOCKET_TIMEOUT = 60000; //milleseconds
+    const DELAY_TIMEOUT = 500;     // milleseconds
+    const RECONNECT_TIMEOUT = 10000; //milleseconds
+
+    var socket = null;
+    var controlPort = BASE_CONTROL_PORT();
+    var clientsPort = 0;
+    var timeoutObject = null;
+    var tabs = new Set();
+    var previousTab = null;
+    var previousTabOnNewWindow = null;
+    var wasActivated = false;
+
+    var _clean = function(){
+        socket = null;
+        clientsPort = 0;
+
+        if (timeoutObject) {
+            clearTimeout(timeoutObject);
+        }
+        timeoutObject = null;
+    }
+
+    var _send = function (obj) {
+        try {
+
+            if (socket) {
+                socket.send(JSON.stringify(obj));
+                console.log("(BeardedSpice Control) Socket send:" + JSON.stringify(obj));
+            }
+        } catch (ex) {
+            logError(ex);
+            socket.close();
+        }
+    };
+    var _sendOk = function() { 
+        _send({'result':true})
+    };
+
+    var logError = function (ex) {
+        if (typeof console !== 'undefined' && console.error) {
+            console.error('Error in BeardedSpice Control script');
+            console.error(ex);
+        }
+    };
+
+    var resetAllTabs = function (){
+        console.log("(BeardedSpice Control) Reset all tabs.");
+        safari.application.browserWindows.forEach(function(val){
+            val.tabs.forEach(function(tab){
+                if (tab.url && tab.url.length && tab.page) {
+                    tab.page.dispatchMessage("reconnect", {'result':true});
+                }
+            })
+        });
+    }
+
+    function reconnect(event) {
+        console.info("(BeardedSpice Control) Attempt to reconnecting.");
+
+        _clean();
+        connect(controlPort);
+    };
+
+    // var connectTimeout = function(event) {
+
+    //     var _socket = socket;
+    //     _clean();
+    //     _socket.close();
+    //     controlPort = BASE_CONTROL_PORT();
+    //     timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
+    // };
+
+    function connect(port) {
+
+        // Create WebSocket connection.
+        var url = 'wss://localhost:'+port;
+
+        console.info("(BeardedSpice Control) Try connect to '" + url + "' with ports pool: " + controlPort);
+
+        socket = new WebSocket(url);
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            console.info("(BeardedSpice Control) Socket open.");
+            if (timeoutObject) {
+                clearTimeout(timeoutObject);
+                timeoutObject = null;
+            }
+            // send accepters request after timeout
+            setTimeout(function(){
+                if (!safari.extension.settings.hostBundleId || safari.extension.settings.hostBundleId == "") {
+                    // If bundleId current app is not defined, we attempt to receive from BeardedSpice Controller
+                    console.log('(BeardedSpice Control) Sending pairing request');
+                    _send({"request":"hostBundleId"});
+                }
+                    
+                _send({'request':'accepters'});
+            }, DELAY_TIMEOUT);
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('(BeardedSpice Control) Message from server ', event.data);
+            try {
+
+                var obj = JSON.parse(event.data);
+                if (obj['accepters']) {
+                        //got accepters
+                        safari.extension.settings.accepters = obj['accepters'];
+                        _send({'request':'port'});
+                }
+                else if (obj['port']) {
+                    //got clients port
+                    clientsPort = obj['port'];
+                    _sendOk();
+                    // Send new port to tabs
+                    resetAllTabs();
+                }
+                else if (obj['strategiesChanged']) {
+                    _send({'request':'accepters'});
+                }
+                else if (obj['controllerPort']) {
+                    _sendOk();
+                    var port = obj['controllerPort'];
+                    if (port != "" && parseInt(port)) {
+                        safari.extension.settings.controllerPort = port;
+                    }
+                }
+                else {
+                    console.error('(BeardedSpice Control) response not found.');
+                    throw "(BeardedSpice Control) response not found.";
+                }
+            } catch (ex) {
+                logError(ex);
+                _send({'result':false});
+                socket.close();
+            }
+        });
+
+        var onSocketDisconnet = function (event) {
+            console.log('(BeardedSpice Control) onSocketDisconnet');
+            _clean();
+            timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
+        };
+
+        socket.addEventListener('close', onSocketDisconnet);
+
+        // timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
+    } 
+
+    function respondToMessage(theMessageEvent) {
+        var frontmost = function(){
+            return safari.application.activeBrowserWindow.activeTab === theMessageEvent.target;
+        };
+        var activated = function(){
+            return wasActivated && frontmost();
+        };
+        if (theMessageEvent.target.page) {
+            console.log('(BeardedSpice Control) respondToMessage event: ' + theMessageEvent.name + ' target: ' + theMessageEvent.target.title );
+          try {
+
+            //request accepters
+            switch (theMessageEvent.name) {
+                case "accepters":
+                    theMessageEvent.target.page.dispatchMessage("accepters", safari.extension.settings.accepters);
+                    break;
+                case "port":
+                    // request port
+                    theMessageEvent.target.addEventListener("close", function(event){
+                        tabs.delete(event.target);
+                        console.log('(BeardedSpice Control) Tab removed from tabs onClose: \n' + event.target.title);
+                    }, false);
+                    theMessageEvent.target.addEventListener("beforeNavigate", function(event){
+                        tabs.delete(event.target);
+                        console.log('(BeardedSpice Control) Tab removed from tabs onbeforeNavigate: \n' + event.target.title);
+                    }, false);
+                    tabs.add(theMessageEvent.target);
+
+                    theMessageEvent.target.page.dispatchMessage("port", {'result':clientsPort});
+                    break;
+                case "frontmost":
+                    theMessageEvent.target.page.dispatchMessage("frontmost", {'result':frontmost()});
+                    break;
+                case "isActivated":
+                    theMessageEvent.target.page.dispatchMessage("isActivated", {'result':activated()});
+                    break;
+                case "bundleId":
+                    theMessageEvent.target.page.dispatchMessage("bundleId", {'result':safari.extension.settings.hostBundleId});
+                    break;
+                case "serverIsAlive":
+                    if (socket && clientsPort) {
+                        theMessageEvent.target.page.dispatchMessage("reconnect", {'result':true});   
+                    }
+                    break;
+                case "activate":
+                    previousTab = safari.application.activeBrowserWindow.activeTab;
+                    previousTabOnNewWindow = theMessageEvent.target.browserWindow.activeTab;
+                    if (! previousTabOnNewWindow || previousTab === previousTabOnNewWindow ) {
+                        previousTabOnNewWindow = null;
+                    }
+                    theMessageEvent.target.browserWindow.activate();
+                    theMessageEvent.target.activate();
+                    wasActivated = true;
+                    theMessageEvent.target.page.dispatchMessage("activate", {'result':true});  
+                    break;
+                case "hide":
+                    if (activated()) {
+
+                        if (previousTabOnNewWindow) {
+                            previousTabOnNewWindow.activate();
+                        }
+                        if(previousTab) {
+                            previousTab.browserWindow.activate();
+                            previousTab.activate();
+                        }
+                    }
+                    previousTab = null;
+                    wasActivated = false;
+                    theMessageEvent.target.page.dispatchMessage("hide", {'result':true});   
+                    break;
+                case "pairing":
+                    safari.extension.settings.hostBundleId = theMessageEvent.message.bundleId;
+                    theMessageEvent.target.page.dispatchMessage("pairing", {'result':true});
+                    break;
+                default:
+
+            }
+          } catch (ex) {
+              logError(ex);
+              socket.close();
+          }
+        }
+    }
+
+    connect(controlPort);
+
+    safari.application.addEventListener("message",respondToMessage,false);
+    // change preferences value
+    safari.extension.settings.addEventListener("change", function (event){
+        if (event.key == "controllerPort") {
+            controlPort = event.newValue;
+            socket.close();
+        }
+    }, false);
+</script>
+</head>
+<body>
+</body>
+</html>

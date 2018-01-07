@@ -1,0 +1,35 @@
+{
+    "manifest_version": 2,
+    
+    "name": "BeardedSpice",
+    "description": "This extension allow you to use BeardedSpice for controlling media players on appropriate sites.",
+    "version": "1.0",
+    "homepage_url": "https://github.com/beardedspice/beardedspice",
+    
+    "icons": {
+        "16": "icon/Icon-16.png",
+        "32": "icon/Icon-32.png",
+        "64": "icon/Icon-64.png",
+        "128": "icon/Icon-128.png"
+    },
+    
+    "content_scripts": [
+                        {
+                        "matches": ["<all_urls>"],
+                        "run_at": "document_start",
+                        "js": ["/shared/utils.js", "init.js", "shared/eventClient.js"]
+                        },
+                        {
+                        "matches": ["<all_urls>"],
+                        "run_at": "document_end",
+                        "js": ["main.js"]
+                        }
+
+                        ],
+    "permissions": [
+                    "tabs",
+                    "<all_urls>",
+                    "activeTab",
+                    "storage"
+                    ]
+}

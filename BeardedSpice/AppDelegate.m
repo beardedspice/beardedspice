@@ -182,8 +182,8 @@ BOOL accessibilityApiEnabled = NO;
             [sender replyToApplicationShouldTerminate:YES];
         }];
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [_connectionToService invalidate];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), workingQueue, ^{
+             [_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         });
         return NSTerminateLater;

@@ -32,13 +32,17 @@ typedef enum {
     TAResultUnavailable
 } TAResult;
 
+@interface TidalTabAdapter()
+@property (class, readonly) FMDatabaseQueue *dbQueue;
+@end
+
 @implementation TidalTabAdapter{
     
     BOOL _needDisplayNotification;
 
 }
 
-static FMDatabaseQueue *dbQueue;
+static FMDatabaseQueue *_dbQueue;
 
 + (void)initialize {
     
@@ -270,6 +274,15 @@ static FMDatabaseQueue *dbQueue;
 //////////////////////////////////////////////////////////////
 #pragma mark Private Methods
 
++ (FMDatabaseQueue *)dbQueue {
+    @synchronized(_dbQueue){
+        if(_dbQueue == nil){
+            [self initDB];
+        }
+    }
+    return _dbQueue;
+}
+
 + (void)initDB {
     
     NSURL *url =  [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
@@ -279,8 +292,8 @@ static FMDatabaseQueue *dbQueue;
         return;
     }
     
-    dbQueue = [FMDatabaseQueue databaseQueueWithPath:path flags:(SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_SHAREDCACHE)];
-    [dbQueue inDatabase:^(FMDatabase *db) {
+    _dbQueue = [FMDatabaseQueue databaseQueueWithPath:path flags:(SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_SHAREDCACHE)];
+    [_dbQueue inDatabase:^(FMDatabase *db) {
             [db executeUpdate:@"PRAGMA read_uncommitted = True"];
     }];
     
@@ -289,14 +302,14 @@ static FMDatabaseQueue *dbQueue;
     if (userMeta[@"id"] == nil) {
         
         //bad DB
-        dbQueue = nil;
+        _dbQueue = nil;
     }
 }
 
 + (NSDictionary *)userMeta {
     
     __block NSDictionary *result;
-    [dbQueue inDatabase:^(FMDatabase *db) {
+    [self.dbQueue inDatabase:^(FMDatabase *db) {
       
         FMResultSet *dbResult = [db executeQuery:@"select * from ItemTable where key like '_TIDAL_%userMeta'"];
         if ([dbResult next]) {
@@ -318,7 +331,7 @@ static FMDatabaseQueue *dbQueue;
     }
     
     __block NSArray *playQueue;
-    [dbQueue inDatabase:^(FMDatabase *db) {
+    [TidalTabAdapter.dbQueue inDatabase:^(FMDatabase *db) {
         
         FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@playqueue'", userId]];
         if ([dbResult next]) {
@@ -381,7 +394,7 @@ static FMDatabaseQueue *dbQueue;
     __block NSDictionary *result;
     
     //getting selected audio device
-    [dbQueue inDatabase:^(FMDatabase *db) {
+    [TidalTabAdapter.dbQueue inDatabase:^(FMDatabase *db) {
         
         FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@selectedOutputDevice'", userId]];
         if ([dbResult next]) {
@@ -400,7 +413,7 @@ static FMDatabaseQueue *dbQueue;
     
     //getting audio device settings
     result = nil;
-    [dbQueue inDatabase:^(FMDatabase *db) {
+    [TidalTabAdapter.dbQueue inDatabase:^(FMDatabase *db) {
         
         FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@deviceSettings_%@'", userId, tidalAudioOutputDeviceName]];
         if ([dbResult next]) {

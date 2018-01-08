@@ -9,9 +9,22 @@
 //File extension for javascript `strategy` file.
 BS_STRATEGY_EXTENSION = bsstrategy
 
-// Actual version of the Safari extension (CFBundleVersion). Used for checking extensions updates.
-BS_SAFARI_EXTENSION_VERSION = 1
+// Path to folder which contains certificates and other user sensitive info for signing Safari extension.
+// This folder must contain files (to see description in ../Scripts/extension-dev-tools/safari/README.md):
+//      AppleIncRootCertificate.cer
+//      AppleWWDRCA.cer
+//      key.pem
+//      safari_extension.cer
+//      developer_id.txt - file contains developer id for key in Info.plist
+BS_SAFARI_EXTENSION_CERTS = $(HOME)/Library/Keychains/SafariBuildExtensionCerts
+BS_SAFARI_DEVELOPER_ID = DEVID //correct value will be defined later from developer_id.txt
 
+// Actual version of the Safari extension. Used for checking extensions updates.
+BS_SAFARI_EXTENSION_VERSION = 1.0.0 //CFBundleShortVersionString
+BS_SAFARI_EXTENSION_BUILD = 1 //CFBundleVersion
+
+// Actual version of the Google Chrome extension. Used for checking extensions updates.
+BS_CHROME_EXTENSION_VERSION = 1.0.0 //version
 
 
 // Macro definition

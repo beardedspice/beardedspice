@@ -128,6 +128,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		65322923200415EB004CE66E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6507C280200381CE003D4B1A;
+			remoteInfo = "Build Extensions";
+		};
 		656AFFF31C8ACDCF00BD29F5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 967933241855173100A49AC7 /* Project object */;
@@ -215,7 +222,42 @@
 		6507A3011F48824000775D14 /* BSWebTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWebTabAdapter.m; sourceTree = "<group>"; };
 		6507A3041F49A4E800775D14 /* BSPredicateToJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPredicateToJS.h; sourceTree = "<group>"; };
 		6507A3051F49A4E800775D14 /* BSPredicateToJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJS.m; sourceTree = "<group>"; };
-		6507C2472002AAA9003D4B1A /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
+		6507C24B2002AD6A003D4B1A /* build-firefox-extension.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-firefox-extension.sh"; sourceTree = "<group>"; };
+		6507C24C2002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6507C24D2002AD6A003D4B1A /* bashrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = bashrc; sourceTree = "<group>"; };
+		6507C24F2002AD6A003D4B1A /* xar */ = {isa = PBXFileReference; lastKnownFileType = file; path = xar; sourceTree = "<group>"; };
+		6507C2502002AD6A003D4B1A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		6507C2512002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6507C2522002AD6A003D4B1A /* build-safari-extension.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-safari-extension.sh"; sourceTree = "<group>"; };
+		6507C2532002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6507C2552002AD6A003D4B1A /* crx.bash */ = {isa = PBXFileReference; lastKnownFileType = text; path = crx.bash; sourceTree = "<group>"; };
+		6507C2572002AD6A003D4B1A /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		6507C2582002AD6A003D4B1A /* icon48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon48.png; sourceTree = "<group>"; };
+		6507C2592002AD6A003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		6507C25A2002AD6A003D4B1A /* icon19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon19.png; sourceTree = "<group>"; };
+		6507C25B2002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6507C25C2002AD6A003D4B1A /* zip2crx.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = zip2crx.sh; sourceTree = "<group>"; };
+		6507C25D2002AD6A003D4B1A /* master_preferences */ = {isa = PBXFileReference; lastKnownFileType = text; path = master_preferences; sourceTree = "<group>"; };
+		6507C25F2002AD6A003D4B1A /* mxpack.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mxpack.py; sourceTree = "<group>"; };
+		6507C2602002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6507C2652002D311003D4B1A /* eventClient.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eventClient.js; sourceTree = "<group>"; };
+		6507C2662002D311003D4B1A /* eventsController.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eventsController.js; sourceTree = "<group>"; };
+		6507C2672002D311003D4B1A /* utils.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = utils.js; sourceTree = "<group>"; };
+		6507C2692002D311003D4B1A /* Icon-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-32.png"; sourceTree = "<group>"; };
+		6507C26A2002D311003D4B1A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		6507C26B2002D311003D4B1A /* Icon-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-64.png"; sourceTree = "<group>"; };
+		6507C26C2002D311003D4B1A /* Icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-128.png"; sourceTree = "<group>"; };
+		6507C26D2002D311003D4B1A /* Icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-16.png"; sourceTree = "<group>"; };
+		6507C26F2002D311003D4B1A /* init.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = init.js; sourceTree = "<group>"; };
+		6507C2702002D311003D4B1A /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		6507C2712002D311003D4B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6507C2722002D311003D4B1A /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		6507C2732002D311003D4B1A /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
+		6507C2752002D311003D4B1A /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		6507C2762002D311003D4B1A /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		6507C2772002D311003D4B1A /* init.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = init.js; sourceTree = "<group>"; };
+		6507C2782002D311003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		6507C288200382A9003D4B1A /* prepare-extensions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "prepare-extensions.sh"; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -224,6 +266,7 @@
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		652AD3391CC04ABA005396CD /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		653229212003A889004CE66E /* build-extensions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-extensions.sh"; sourceTree = "<group>"; };
 		6537DAA61AF396DA002F2391 /* NativeAppTabRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAppTabRegistry.h; sourceTree = "<group>"; };
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };
@@ -296,7 +339,6 @@
 		6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOXTabAdapter.h; sourceTree = "<group>"; };
 		6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOXTabAdapter.m; sourceTree = "<group>"; };
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
-		658D64211FA5DF46004D1546 /* BrowserExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BrowserExtensions; sourceTree = "<group>"; };
 		658D642D1FA69705004D1546 /* PSWebSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocket.h; sourceTree = "<group>"; };
 		658D642E1FA69705004D1546 /* PSWebSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocket.m; sourceTree = "<group>"; };
 		658D642F1FA69705004D1546 /* PSWebSocketBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketBuffer.h; sourceTree = "<group>"; };
@@ -487,6 +529,153 @@
 			path = ExtensionsResources;
 			sourceTree = "<group>";
 		};
+		6507C2482002AD6A003D4B1A /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2492002AD6A003D4B1A /* extension-dev-tools */,
+				6507C2612002AD6A003D4B1A /* Resources */,
+				6507C288200382A9003D4B1A /* prepare-extensions.sh */,
+				653229212003A889004CE66E /* build-extensions.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		6507C2492002AD6A003D4B1A /* extension-dev-tools */ = {
+			isa = PBXGroup;
+			children = (
+				6507C24A2002AD6A003D4B1A /* firefox */,
+				6507C24D2002AD6A003D4B1A /* bashrc */,
+				6507C24E2002AD6A003D4B1A /* safari */,
+				6507C2532002AD6A003D4B1A /* README.md */,
+				6507C2542002AD6A003D4B1A /* chrome */,
+				6507C25E2002AD6A003D4B1A /* maxthon */,
+			);
+			path = "extension-dev-tools";
+			sourceTree = "<group>";
+		};
+		6507C24A2002AD6A003D4B1A /* firefox */ = {
+			isa = PBXGroup;
+			children = (
+				6507C24B2002AD6A003D4B1A /* build-firefox-extension.sh */,
+				6507C24C2002AD6A003D4B1A /* README.md */,
+			);
+			path = firefox;
+			sourceTree = "<group>";
+		};
+		6507C24E2002AD6A003D4B1A /* safari */ = {
+			isa = PBXGroup;
+			children = (
+				6507C24F2002AD6A003D4B1A /* xar */,
+				6507C2502002AD6A003D4B1A /* .gitignore */,
+				6507C2512002AD6A003D4B1A /* README.md */,
+				6507C2522002AD6A003D4B1A /* build-safari-extension.sh */,
+			);
+			path = safari;
+			sourceTree = "<group>";
+		};
+		6507C2542002AD6A003D4B1A /* chrome */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2552002AD6A003D4B1A /* crx.bash */,
+				6507C2562002AD6A003D4B1A /* launch-chrome-extensions-on-startup */,
+				6507C25B2002AD6A003D4B1A /* README.md */,
+				6507C25C2002AD6A003D4B1A /* zip2crx.sh */,
+				6507C25D2002AD6A003D4B1A /* master_preferences */,
+			);
+			path = chrome;
+			sourceTree = "<group>";
+		};
+		6507C2562002AD6A003D4B1A /* launch-chrome-extensions-on-startup */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2572002AD6A003D4B1A /* background.js */,
+				6507C2582002AD6A003D4B1A /* icon48.png */,
+				6507C2592002AD6A003D4B1A /* manifest.json */,
+				6507C25A2002AD6A003D4B1A /* icon19.png */,
+			);
+			path = "launch-chrome-extensions-on-startup";
+			sourceTree = "<group>";
+		};
+		6507C25E2002AD6A003D4B1A /* maxthon */ = {
+			isa = PBXGroup;
+			children = (
+				6507C25F2002AD6A003D4B1A /* mxpack.py */,
+				6507C2602002AD6A003D4B1A /* README.md */,
+			);
+			path = maxthon;
+			sourceTree = "<group>";
+		};
+		6507C2612002AD6A003D4B1A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6507C2622002D311003D4B1A /* BrowserExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2632002D311003D4B1A /* sharedFiles */,
+				6507C26E2002D311003D4B1A /* safari */,
+				6507C2742002D311003D4B1A /* chrome */,
+			);
+			path = BrowserExtensions;
+			sourceTree = SOURCE_ROOT;
+		};
+		6507C2632002D311003D4B1A /* sharedFiles */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2642002D311003D4B1A /* shared */,
+				6507C2682002D311003D4B1A /* icon */,
+			);
+			path = sharedFiles;
+			sourceTree = "<group>";
+		};
+		6507C2642002D311003D4B1A /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2652002D311003D4B1A /* eventClient.js */,
+				6507C2662002D311003D4B1A /* eventsController.js */,
+				6507C2672002D311003D4B1A /* utils.js */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
+		6507C2682002D311003D4B1A /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2692002D311003D4B1A /* Icon-32.png */,
+				6507C26A2002D311003D4B1A /* Icon.png */,
+				6507C26B2002D311003D4B1A /* Icon-64.png */,
+				6507C26C2002D311003D4B1A /* Icon-128.png */,
+				6507C26D2002D311003D4B1A /* Icon-16.png */,
+			);
+			path = icon;
+			sourceTree = "<group>";
+		};
+		6507C26E2002D311003D4B1A /* safari */ = {
+			isa = PBXGroup;
+			children = (
+				6507C26F2002D311003D4B1A /* init.js */,
+				6507C2702002D311003D4B1A /* main.js */,
+				6507C2712002D311003D4B1A /* Info.plist */,
+				6507C2722002D311003D4B1A /* Settings.plist */,
+				6507C2732002D311003D4B1A /* main.html */,
+			);
+			path = safari;
+			sourceTree = "<group>";
+		};
+		6507C2742002D311003D4B1A /* chrome */ = {
+			isa = PBXGroup;
+			children = (
+				6507C2752002D311003D4B1A /* popup.js */,
+				6507C2762002D311003D4B1A /* popup.html */,
+				6507C2772002D311003D4B1A /* init.js */,
+				6507C2782002D311003D4B1A /* manifest.json */,
+			);
+			path = chrome;
+			sourceTree = "<group>";
+		};
 		6557B48D1F6ADBC800295997 /* BrowserExtensionsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,13 +838,13 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
-				6507C2472002AAA9003D4B1A /* Scripts */,
+				6507C2482002AD6A003D4B1A /* Scripts */,
 				658D642A1FA696AF004D1546 /* Submodules */,
 				656A003A1C8AFFD400BD29F5 /* SharedComponents */,
 				656A00241C8AD41A00BD29F5 /* Utils */,
 				967933351855173100A49AC7 /* BeardedSpice */,
+				6507C2622002D311003D4B1A /* BrowserExtensions */,
 				656AFFEB1C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
-				658D64211FA5DF46004D1546 /* BrowserExtensions */,
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
@@ -804,6 +993,37 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		6507C27920037DE5003D4B1A /* Prepare Extensions */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(SRCROOT)/Scripts/prepare-extensions.sh";
+			buildConfigurationList = 6507C27A20037DE5003D4B1A /* Build configuration list for PBXLegacyTarget "Prepare Extensions" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/bash;
+			buildWorkingDirectory = "$(SRCROOT)/BrowserExtensions";
+			dependencies = (
+			);
+			name = "Prepare Extensions";
+			passBuildSettingsInEnvironment = 1;
+			productName = Extensions;
+		};
+		6507C280200381CE003D4B1A /* Build Extensions */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(SRCROOT)/Scripts/build-extensions.sh";
+			buildConfigurationList = 6507C281200381CE003D4B1A /* Build configuration list for PBXLegacyTarget "Build Extensions" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/bash;
+			buildWorkingDirectory = "$(SRCROOT)/BrowserExtensions";
+			dependencies = (
+			);
+			name = "Build Extensions";
+			passBuildSettingsInEnvironment = 1;
+			productName = Extensions;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */ = {
 			isa = PBXNativeTarget;
@@ -833,6 +1053,7 @@
 				967933291855173100A49AC7 /* Frameworks */,
 				9679332A1855173100A49AC7 /* Resources */,
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
+				6532292620041634004CE66E /* Work with Browser Extensions */,
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
 				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
 				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
@@ -840,6 +1061,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				65322924200415EB004CE66E /* PBXTargetDependency */,
 				656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */,
 			);
 			name = BeardedSpice;
@@ -878,6 +1100,13 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = BeardedSpice;
 				TargetAttributes = {
+					6507C27920037DE5003D4B1A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					6507C280200381CE003D4B1A = {
+						ProvisioningStyle = Automatic;
+					};
 					656AFFE91C8ACDCF00BD29F5 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 5F2QV47DGC;
@@ -920,6 +1149,8 @@
 				9679332B1855173100A49AC7 /* BeardedSpice */,
 				9679334C1855173100A49AC7 /* BeardedSpiceTests */,
 				656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
+				6507C27920037DE5003D4B1A /* Prepare Extensions */,
+				6507C280200381CE003D4B1A /* Build Extensions */,
 			);
 		};
 /* End PBXProject section */
@@ -1068,6 +1299,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6532292620041634004CE66E /* Work with Browser Extensions */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Work with Browser Extensions";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "RESOURCES=\"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources/\"\necho \"Copy Safari Extension to app bundle...\"\ncp -v \"${SRCROOT}/BrowserExtensions/build/BeardedSpice.safariextz\" \"${RESOURCES}\" || exit 1\necho \" \"";
 		};
 		899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1219,6 +1464,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		65322924200415EB004CE66E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6507C280200381CE003D4B1A /* Build Extensions */;
+			targetProxy = 65322923200415EB004CE66E /* PBXContainerItemProxy */;
+		};
 		656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */;
@@ -1292,6 +1542,142 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6507C27B20037DE5003D4B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6507C27C20037DE5003D4B1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6507C282200381CE003D4B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6507C283200381CE003D4B1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		656AFFF61C8ACDCF00BD29F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */;
@@ -1506,6 +1892,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6507C27A20037DE5003D4B1A /* Build configuration list for PBXLegacyTarget "Prepare Extensions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6507C27B20037DE5003D4B1A /* Debug */,
+				6507C27C20037DE5003D4B1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6507C281200381CE003D4B1A /* Build configuration list for PBXLegacyTarget "Build Extensions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6507C282200381CE003D4B1A /* Debug */,
+				6507C283200381CE003D4B1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

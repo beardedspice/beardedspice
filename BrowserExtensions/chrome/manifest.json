@@ -3,7 +3,7 @@
     
     "name": "BeardedSpice",
     "description": "This extension allow you to use BeardedSpice for controlling media players on appropriate sites.",
-    "version": "1.0",
+    "version": "${BS_CHROME_EXTENSION_VERSION}",
     "homepage_url": "https://github.com/beardedspice/beardedspice",
     
     "icons": {

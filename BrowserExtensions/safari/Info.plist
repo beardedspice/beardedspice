@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>$BS_SAFARI_EXTENSION_VERSION</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$BS_SAFARI_EXTENSION_BUILD</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -31,7 +31,7 @@
 			</array>
 			<key>Start</key>
 			<array>
-				<string>utils.js</string>
+				<string>shared/utils.js</string>
 				<string>init.js</string>
 				<string>shared/eventClient.js</string>
 			</array>
@@ -40,7 +40,7 @@
 	<key>Description</key>
 	<string>This extension allow you to use BeardedSpice for controlling media players on appropriate sites.</string>
 	<key>DeveloperIdentifier</key>
-	<string>5F2QV47DGC</string>
+	<string>$BS_SAFARI_DEVELOPER_ID</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

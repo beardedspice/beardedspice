@@ -313,7 +313,7 @@ var accept = function (accepters) {
                         BSEventClient.sendRequest({"name":"checkStrategy"}, function(response){
                              
                             if (response.result) {
-                                BSUtils.injectExtScript("utils.js");
+                                BSUtils.injectExtScript("shared/utils.js");
                                 state.set(state.ready);
                                 _sendOk();
                             }

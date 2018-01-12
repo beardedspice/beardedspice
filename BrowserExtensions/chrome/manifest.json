@@ -17,12 +17,12 @@
                         {
                         "matches": ["<all_urls>"],
                         "run_at": "document_start",
-                        "js": ["/shared/utils.js", "init.js", "shared/eventClient.js"]
+                        "js": ["shared/utils.js", "shared/init.js", "shared/eventClient.js"]
                         },
                         {
                         "matches": ["<all_urls>"],
                         "run_at": "document_end",
-                        "js": ["main.js"]
+                        "js": ["shared/main.js"]
                         }
 
                         ],
@@ -31,5 +31,9 @@
                     "<all_urls>",
                     "activeTab",
                     "storage"
-                    ]
+                    ],
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    }
 }

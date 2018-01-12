@@ -1,5 +1,5 @@
 //PREVENTS LOG OUTPUT
-console.log = function(){};
+//console.log = function(){};
 
 console.log("(BeardedSpice) Start injection script");
 
@@ -14,7 +14,7 @@ console.log("(BeardedSpice) Injection script running on top window");
 var checkPairingPage = document.querySelector('#X_BeardedSpice_Browser_BundleId');
 if (checkPairingPage != null) {
     console.log("(BeardedSpice) Detected pairing page");
-    safari.self.tab.dispatchMessage("pairing", {"bundleId":checkPairingPage.textContent});
+    BSUtils.sendMessageToGlobal("pairing", {"bundleId":checkPairingPage.textContent});
     var messageEl = document.querySelector('#message');
 
     var messagePairing = (document.querySelector('#messagePairing') 
@@ -43,7 +43,7 @@ if (checkPairingPage != null) {
         }, 3000);
     }
 
-    safari.self.addEventListener("message", function (event){
+    BSUtils.handleMessageFromGlobal(function (event){
         console.log("(BeardedSpice) Pairing result obtained");
         if (event.name == "pairing" && event.message.result) {
             checkPairingPage.textContent = "true";
@@ -207,7 +207,7 @@ var accept = function (accepters) {
                     strategyName = response.strategyName;
                     if (strategyName) {
                         state.set(state.accepted);
-                        safari.self.tab.dispatchMessage("port");
+                        BSUtils.sendMessageToGlobal("port");
                     }
                     else {
                         state.set(state.init);
@@ -226,7 +226,7 @@ var accept = function (accepters) {
             console.log("(BeardedSpice) Accepters run: on CSP");
             if (strategyName) {
                 state.set(state.accepted);
-                safari.self.tab.dispatchMessage("port");
+                BSUtils.sendMessageToGlobal("port");
             }
             else {
                 state.set(state.init);
@@ -250,7 +250,7 @@ var accept = function (accepters) {
         _clean();
 
         state.set(state.reconnecting);
-        safari.self.tab.dispatchMessage("accepters");
+        BSUtils.sendMessageToGlobal("accepters");
     };
 
     // var connectTimeout = function(event) {
@@ -291,7 +291,7 @@ var accept = function (accepters) {
             state.set(state.disconnected);
 
             //sending request to extension
-            safari.self.tab.dispatchMessage('serverIsAlive');
+            BSUtils.sendMessageToGlobal('serverIsAlive');
         };
 
         socket.addEventListener('close', onSocketDisconnet);
@@ -347,7 +347,7 @@ var accept = function (accepters) {
                             case "hide":
                             case "isActivated":
                                 //sending request to extension
-                                safari.self.tab.dispatchMessage(event.data);
+                                BSUtils.sendMessageToGlobal(event.data);
                                 break;
                             default:
                                 if (noCSP) {
@@ -383,7 +383,7 @@ var accept = function (accepters) {
             }
             _clean();
             //sending request to extension
-            safari.self.tab.dispatchMessage('serverIsAlive');
+            BSUtils.sendMessageToGlobal('serverIsAlive');
 
         }
 
@@ -431,8 +431,8 @@ var accept = function (accepters) {
 
     console.info("BeardedSpice Script Injected.");
 
-    safari.self.addEventListener("message", handleMessage);
+    BSUtils.handleMessageFromGlobal(handleMessage);
 
-    safari.self.tab.dispatchMessage("accepters");
+    BSUtils.sendMessageToGlobal("accepters");
 
 })();

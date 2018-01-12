@@ -1,13 +1,73 @@
 //PREVENTS LOG OUTPUT
-console.log = function(){};
+//console.log = function(){};
 
 var BSUtils = {
+
+    sendMessageToGlobal: function (name, message) {
+        console.log("(BeardedSpice) sendMessageToGlobal (name: " + name + ", message: " + message + ").");
+        if (typeof safari !== "undefined" && safari && safari.self && safari.self.tab) {
+            safari.self.tab.dispatchMessage(name, message);
+        }
+        else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
+            chrome.runtime.sendMessage({"name": name, "message": message});
+        }
+    },
+
+    handleMessageFromGlobal: function (callback) {
+
+        if (typeof safari !== "undefined" && safari && safari.self && safari.self.tab) {
+            safari.self.addEventListener("message", callback);
+        }
+        else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
+            chrome.runtime.onMessage.addListener(
+              function(request, sender) {
+                if (! sender.tab) {
+                    callback(request);
+                }
+                return false;
+              }); 
+        }
+    },
+
+    sendMessageToTab: function (tab, name, message) {
+
+        if (typeof safari !== "undefined" && tab && tab.page) {
+            tab.page.dispatchMessage(name, message);
+        }
+        else if (typeof chrome !== "undefined" && chrome && chrome.tabs && tab && tab.id) {
+            chrome.tabs.sendMessage(tab.id, {"name": name, "message": message});
+        }
+    },
+
+    handleMessageFromTabs: function (callback) {
+
+        if (typeof safari !== "undefined" && safari && safari.application) {
+            safari.application.addEventListener("message",callback,false);
+        }
+        else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
+            chrome.runtime.onMessage.addListener(
+              function(request, sender) {
+                if (sender.tab) {
+                    callback(request);
+                }
+                return false;
+              }); 
+        }
+    },
 
     injectExtScript: function(script) {
         
         var injected = document.createElement("script");
         injected.setAttribute("type", "text/javascript");
-        injected.setAttribute("src", safari.extension.baseURI + script);
+        var src = "";
+        if (typeof safari !== "undefined" && safari && safari.extension) {
+            src = safari.extension.baseURI + script;
+        }
+        else if (typeof chrome !== "undefined" && chrome && chrome.extension) {
+            src = chrome.extension.getURL(script);
+        }
+
+        injected.setAttribute("src", src);
         (document.head || document.documentElement).appendChild(injected);
         console.log('(BeardedSpice) injectExtScript: ' + safari.extension.baseURI + script);
     },

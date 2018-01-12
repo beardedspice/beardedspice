@@ -27,12 +27,12 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>main.js</string>
+				<string>shared/main.js</string>
 			</array>
 			<key>Start</key>
 			<array>
 				<string>shared/utils.js</string>
-				<string>init.js</string>
+				<string>shared/init.js</string>
 				<string>shared/eventClient.js</string>
 			</array>
 		</dict>

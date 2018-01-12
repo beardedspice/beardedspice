@@ -12,6 +12,7 @@ echo "================================================="
 echo " "
 echo "Prepare Safari browser extension..."
 echo "-------------------------------------------------"
+rm -Rf ./build/BeardedSpice.safariextension
 mkdir -pv ./build/BeardedSpice.safariextension
 cp -v ./safari/* ./build/BeardedSpice.safariextension/
 cp -vR ./sharedFiles/shared ./build/BeardedSpice.safariextension/shared
@@ -30,6 +31,21 @@ echo "Developer ID is '${BS_SAFARI_DEVELOPER_ID}'"
 echo "Apply env vars to Info.plist"
 Template=$( cat ./build/BeardedSpice.safariextension/Info.plist | sed "s/\"/\\\\\"/g" )
 eval "echo \"$Template\"" > ./build/BeardedSpice.safariextension/Info.plist || exit 1
+
+echo "Done"
+
+echo " "
+echo "Prepare Google Chrome browser extension..."
+echo "-------------------------------------------------"
+rm -Rf ./build/BeardedSpice.chrome
+mkdir -pv ./build/BeardedSpice.chrome
+cp -v ./chrome/* ./build/BeardedSpice.chrome/
+cp -vR ./sharedFiles/shared ./build/BeardedSpice.chrome/shared
+cp -vR ./sharedFiles/icon ./build/BeardedSpice.chrome/icon
+
+echo "Apply env vars to manifest.json"
+Template=$( cat ./build/BeardedSpice.chrome/manifest.json | sed "s/\"/\\\\\"/g" )
+eval "echo \"$Template\"" > ./build/BeardedSpice.chrome/manifest.json || exit 1
 
 echo "Done"
 

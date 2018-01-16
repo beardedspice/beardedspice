@@ -250,7 +250,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
             }
             else if ([request isEqualToString:@"hostBundleId"]) {
                 // Sending bundle Id to all supported browsers
-                [self sendPairingToSafari];
+                [self sendPairingToSupportedBrowsers];
             }
         }
     }
@@ -529,8 +529,8 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     }
 }
 
-- (void)sendPairingToSafari {
-    NSArray *apps = @[APPID_SAFARITP, APPID_SAFARI];
+- (void)sendPairingToSupportedBrowsers {
+    NSArray *apps = @[APPID_SAFARITP, APPID_SAFARI, APPID_CHROME];
     for (NSString *item in apps) {
         runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:item];
         if (app) {

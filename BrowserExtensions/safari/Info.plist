@@ -19,7 +19,7 @@
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
-		<string>main.html</string>
+		<string>shared/main.html</string>
 	</dict>
 	<key>Content</key>
 	<dict>
@@ -27,7 +27,7 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>shared/main.js</string>
+				<string>shared/content.js</string>
 			</array>
 			<key>Start</key>
 			<array>

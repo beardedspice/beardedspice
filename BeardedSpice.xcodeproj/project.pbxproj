@@ -249,12 +249,10 @@
 		6507C26C2002D311003D4B1A /* Icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-128.png"; sourceTree = "<group>"; };
 		6507C26D2002D311003D4B1A /* Icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-16.png"; sourceTree = "<group>"; };
 		6507C26F2002D311003D4B1A /* init.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = init.js; sourceTree = "<group>"; };
-		6507C2702002D311003D4B1A /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		6507C2702002D311003D4B1A /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		6507C2712002D311003D4B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6507C2722002D311003D4B1A /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		6507C2732002D311003D4B1A /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
-		6507C2752002D311003D4B1A /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
-		6507C2762002D311003D4B1A /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		6507C2782002D311003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		6507C288200382A9003D4B1A /* prepare-extensions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "prepare-extensions.sh"; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
@@ -263,6 +261,8 @@
 		651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJSTests.m; sourceTree = "<group>"; };
 		6527C5362009306F006F502B /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		6527C537200930B1006F502B /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = options.js; sourceTree = "<group>"; };
+		6527C53920093BE5006F502B /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
+		6527C53A200AC914006F502B /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		652AD3361CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -638,8 +638,10 @@
 				6507C2652002D311003D4B1A /* eventClient.js */,
 				6507C2662002D311003D4B1A /* eventsController.js */,
 				6507C2672002D311003D4B1A /* utils.js */,
-				6507C2702002D311003D4B1A /* main.js */,
+				6527C53920093BE5006F502B /* main.html */,
+				6507C2702002D311003D4B1A /* content.js */,
 				6507C26F2002D311003D4B1A /* init.js */,
+				6527C53A200AC914006F502B /* main.js */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -669,8 +671,6 @@
 		6507C2742002D311003D4B1A /* chrome */ = {
 			isa = PBXGroup;
 			children = (
-				6507C2752002D311003D4B1A /* popup.js */,
-				6507C2762002D311003D4B1A /* popup.html */,
 				6507C2782002D311003D4B1A /* manifest.json */,
 				6527C5362009306F006F502B /* options.html */,
 				6527C537200930B1006F502B /* options.js */,

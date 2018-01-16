@@ -455,16 +455,14 @@ BOOL BSCheckAndSetTrustingForSSL(SecIdentityRef ident) {
                              (__bridge id)kSecTrustSettingsResult: @(kSecTrustSettingsResultTrustAsRoot),
                              (__bridge id)kSecTrustSettingsPolicy: (__bridge id)policySSL,
                              @"kSecTrustSettingsPolicyName": @"sslServer",
-                             (__bridge id)kSecTrustSettingsAllowedError: @(-2147409654),
-                             (__bridge id)kSecTrustSettingsPolicyString: @"localhost"
+                             (__bridge id)kSecTrustSettingsAllowedError: @(-2147409654)
                              }
                          ,
                          @{
                              (__bridge id)kSecTrustSettingsResult: @(kSecTrustSettingsResultTrustAsRoot),
                              (__bridge id)kSecTrustSettingsPolicy: (__bridge id)policySSL,
                              @"kSecTrustSettingsPolicyName": @"sslServer",
-                             (__bridge id)kSecTrustSettingsAllowedError: @(-2147408896),
-                             (__bridge id)kSecTrustSettingsPolicyString: @"localhost"
+                             (__bridge id)kSecTrustSettingsAllowedError: @(-2147408896)
                              }
                          ];
             OSStatus err = SecTrustSettingsSetTrustSettings(certRef, kSecTrustSettingsDomainUser, (__bridge CFArrayRef) newSettings);

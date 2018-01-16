@@ -12,6 +12,7 @@
 
 #define APPID_SAFARI            @"com.apple.Safari"
 #define APPID_SAFARITP          @"com.apple.SafariTechnologyPreview"
+#define APPID_CHROME            @"com.google.Chrome"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Constants

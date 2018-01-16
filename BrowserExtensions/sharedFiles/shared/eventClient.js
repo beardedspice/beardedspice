@@ -1,5 +1,5 @@
 var BSEventClient = {
-    sendRequest: function(data, callback) { 
+    sendRequest: function(data, callback) {
 
         var request = document.createTextNode("");
 
@@ -15,17 +15,17 @@ var BSEventClient = {
         (document.head || document.documentElement).appendChild(request);
 
         var event = new CustomEvent("BSEventClient-query", {
-          detail: data,
-          "bubbles":true, 
-          "cancelable":false
+            detail: data,
+            "bubbles": true,
+            "cancelable": false
         });
 
-         request.dispatchEvent(event);
+        request.dispatchEvent(event);
     },
 
     //callback function example
     callback: function(response) {
-         
+
         // return alert("response: " + (response ? response.toSource() : response));
     }
 }

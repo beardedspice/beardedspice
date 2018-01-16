@@ -182,7 +182,6 @@
 		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MediaStrategyRegistry.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MediaStrategyRegistry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		03F33EE71857E2EE00E8F77E /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
 		0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSActiveTab.h; sourceTree = "<group>"; };
 		0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSActiveTab.m; sourceTree = "<group>"; };
 		0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyTests.m; sourceTree = "<group>"; };
@@ -222,24 +221,9 @@
 		6507A3011F48824000775D14 /* BSWebTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWebTabAdapter.m; sourceTree = "<group>"; };
 		6507A3041F49A4E800775D14 /* BSPredicateToJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPredicateToJS.h; sourceTree = "<group>"; };
 		6507A3051F49A4E800775D14 /* BSPredicateToJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJS.m; sourceTree = "<group>"; };
-		6507C24B2002AD6A003D4B1A /* build-firefox-extension.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-firefox-extension.sh"; sourceTree = "<group>"; };
-		6507C24C2002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6507C24D2002AD6A003D4B1A /* bashrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = bashrc; sourceTree = "<group>"; };
 		6507C24F2002AD6A003D4B1A /* xar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = xar; sourceTree = "<group>"; };
-		6507C2502002AD6A003D4B1A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6507C2512002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6507C2522002AD6A003D4B1A /* build-safari-extension.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-safari-extension.sh"; sourceTree = "<group>"; };
-		6507C2532002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6507C2552002AD6A003D4B1A /* crx.bash */ = {isa = PBXFileReference; lastKnownFileType = text; path = crx.bash; sourceTree = "<group>"; };
-		6507C2572002AD6A003D4B1A /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
-		6507C2582002AD6A003D4B1A /* icon48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon48.png; sourceTree = "<group>"; };
-		6507C2592002AD6A003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
-		6507C25A2002AD6A003D4B1A /* icon19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon19.png; sourceTree = "<group>"; };
-		6507C25B2002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6507C25C2002AD6A003D4B1A /* zip2crx.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = zip2crx.sh; sourceTree = "<group>"; };
-		6507C25D2002AD6A003D4B1A /* master_preferences */ = {isa = PBXFileReference; lastKnownFileType = text; path = master_preferences; sourceTree = "<group>"; };
-		6507C25F2002AD6A003D4B1A /* mxpack.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mxpack.py; sourceTree = "<group>"; };
-		6507C2602002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6507C2652002D311003D4B1A /* eventClient.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eventClient.js; sourceTree = "<group>"; };
 		6507C2662002D311003D4B1A /* eventsController.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eventsController.js; sourceTree = "<group>"; };
 		6507C2672002D311003D4B1A /* utils.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = utils.js; sourceTree = "<group>"; };
@@ -413,7 +397,6 @@
 		9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeardedSpiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679334E1855173100A49AC7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
-		9679336318551A8F00A49AC7 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
@@ -498,8 +481,6 @@
 				65C5116C1AED688800EBA6A5 /* Spotify.h */,
 				651967BF1AB3858800B48D3A /* iTunes.h */,
 				6588CF471B358A8300A3CBAD /* VOX.h */,
-				9679336318551A8F00A49AC7 /* Chrome.h */,
-				03F33EE71857E2EE00E8F77E /* Safari.h */,
 				657635A51E88199900A4FCAD /* AirfoilSatellite.h */,
 				65B32B8C1AD99D1600F696B9 /* TabAdapter.h */,
 				65B32B8D1AD99D1600F696B9 /* TabAdapter.m */,
@@ -544,66 +525,19 @@
 		6507C2492002AD6A003D4B1A /* extension-dev-tools */ = {
 			isa = PBXGroup;
 			children = (
-				6507C24A2002AD6A003D4B1A /* firefox */,
-				6507C24D2002AD6A003D4B1A /* bashrc */,
 				6507C24E2002AD6A003D4B1A /* safari */,
-				6507C2532002AD6A003D4B1A /* README.md */,
-				6507C2542002AD6A003D4B1A /* chrome */,
-				6507C25E2002AD6A003D4B1A /* maxthon */,
 			);
 			path = "extension-dev-tools";
-			sourceTree = "<group>";
-		};
-		6507C24A2002AD6A003D4B1A /* firefox */ = {
-			isa = PBXGroup;
-			children = (
-				6507C24B2002AD6A003D4B1A /* build-firefox-extension.sh */,
-				6507C24C2002AD6A003D4B1A /* README.md */,
-			);
-			path = firefox;
 			sourceTree = "<group>";
 		};
 		6507C24E2002AD6A003D4B1A /* safari */ = {
 			isa = PBXGroup;
 			children = (
 				6507C24F2002AD6A003D4B1A /* xar */,
-				6507C2502002AD6A003D4B1A /* .gitignore */,
 				6507C2512002AD6A003D4B1A /* README.md */,
 				6507C2522002AD6A003D4B1A /* build-safari-extension.sh */,
 			);
 			path = safari;
-			sourceTree = "<group>";
-		};
-		6507C2542002AD6A003D4B1A /* chrome */ = {
-			isa = PBXGroup;
-			children = (
-				6507C2552002AD6A003D4B1A /* crx.bash */,
-				6507C2562002AD6A003D4B1A /* launch-chrome-extensions-on-startup */,
-				6507C25B2002AD6A003D4B1A /* README.md */,
-				6507C25C2002AD6A003D4B1A /* zip2crx.sh */,
-				6507C25D2002AD6A003D4B1A /* master_preferences */,
-			);
-			path = chrome;
-			sourceTree = "<group>";
-		};
-		6507C2562002AD6A003D4B1A /* launch-chrome-extensions-on-startup */ = {
-			isa = PBXGroup;
-			children = (
-				6507C2572002AD6A003D4B1A /* background.js */,
-				6507C2582002AD6A003D4B1A /* icon48.png */,
-				6507C2592002AD6A003D4B1A /* manifest.json */,
-				6507C25A2002AD6A003D4B1A /* icon19.png */,
-			);
-			path = "launch-chrome-extensions-on-startup";
-			sourceTree = "<group>";
-		};
-		6507C25E2002AD6A003D4B1A /* maxthon */ = {
-			isa = PBXGroup;
-			children = (
-				6507C25F2002AD6A003D4B1A /* mxpack.py */,
-				6507C2602002AD6A003D4B1A /* README.md */,
-			);
-			path = maxthon;
 			sourceTree = "<group>";
 		};
 		6507C2612002AD6A003D4B1A /* Resources */ = {

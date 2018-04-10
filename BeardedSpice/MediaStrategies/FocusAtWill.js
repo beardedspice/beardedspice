@@ -13,7 +13,7 @@ BSStrategy = {
     format:"%K LIKE[c] '*focusatwill.com*'",
     args: ["URL"]
   },
-  toggle: function () {document.querySelector('a.play').click()},
-  next: function () { document.querySelector('a.next').click() },
-  pause: function () { document.querySelector('a.play').click() }
+  toggle: function () { document.querySelector('button[class*="playButton"]').click() },
+  next: function () { document.querySelector('button[class*="skipButton"]').click() },
+  pause: function () { document.querySelector('button[class*="playButton"]').click() }
 }

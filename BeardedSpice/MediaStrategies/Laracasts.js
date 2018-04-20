@@ -2,13 +2,14 @@
 //  Laracasts.js
 //  BeardedSpice
 //
-//  Created by nVitius on on 05/25/2017.
+//  Created by nVitius on 05/25/2017.
+//  Updated by Carl Evison on 21/04/2018.
 //
 //  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 BSStrategy = {
-  version: 1,
+  version: 2,
   displayName: "Laracasts",
   accepts: {
     method: "predicateOnTab",
@@ -16,12 +17,17 @@ BSStrategy = {
     args: ["URL"]
   },
 
-  isPlaying: function () { return document.querySelector('.vjs-play-control.vjs-playing') !== null; },
-  toggle:    function () {
-    document.querySelector('.vjs-play-control').click();
+  isPlaying: function () {},
+   toggle: function () {
+    var iframe = document.querySelector('iframe');
+    var player = new Vimeo.Player(iframe);
+
+    player.getPaused().then(function(paused) {
+      paused ? player.play() : player.pause()
+    });
   },
-  previous:  function () { /* switch to previous track if any */ },
-  next:      function () { /* switch to next track if any */ },
-  pause:     function () { document.querySelector('.vjs-play-control.vjs-playing').click(); },
-  favorite:  function () { /* toggles favorite on/off */},
+  previous:  function () {},
+  next:      function () {},
+  pause:     function () {},
+  favorite:  function () {},
 }

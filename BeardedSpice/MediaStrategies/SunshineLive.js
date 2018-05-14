@@ -1,15 +1,10 @@
 //
-//  NewStrategyName.js
+//  SunshineLive.js
 //  BeardedSpice
 //
-//  Created by You on Today's Date.
+//  Created by Simon Demming on 14th May 2018.
 //  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
-
-// We put the copyright inside the file to retain consistent syntax coloring.
-
-// Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
-// Normal formatting is supported (can copy/paste with newlines and indentations)
 
 BSStrategy = {
   version: 1,
@@ -48,4 +43,3 @@ BSStrategy = {
     };
   }
 }
-// The file must have an empty line at the end.

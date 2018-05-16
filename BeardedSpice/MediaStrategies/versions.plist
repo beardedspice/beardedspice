@@ -170,6 +170,8 @@
 	<integer>1</integer>
 	<key>Subsonic</key>
 	<integer>1</integer>
+	<key>Sunshine-Live</key>
+	<integer>1</integer>
 	<key>Synology</key>
 	<integer>3</integer>
 	<key>TuneIn</key>

@@ -29,7 +29,7 @@ BSStrategy = {
     var artist = document.querySelector('.header-radio-subtitle').innerText
     return {
         'track': document.querySelector('.header-radio-title').innerText,
-	'artist': artist.replace("de ", ""),
+	    'artist': artist.replace("de ", ""),
         'image': "http:" + document.querySelector('.cover').style['background-image'].slice(5, -2)
     }
   }

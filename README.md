@@ -101,6 +101,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [IndieShuffle](http://www.indieshuffle.com)
 - [Jango](http://www.jango.com/)
 - [Kollekt.FM](https://kollekt.fm/)
+- [Le Règlement](http://lereglement.sale/)
 - [Last.fm](http://www.last.fm/)
 - [Le Tournedisque](http://www.letournedisque.com/)
 - [ListenOnRepeat](http://listenonrepeat.com/)

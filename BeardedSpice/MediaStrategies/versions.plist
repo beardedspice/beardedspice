@@ -82,6 +82,8 @@
 	<integer>1</integer>
 	<key>LastFm</key>
 	<integer>1</integer>
+	<key>LeReglement</key>
+	<integer>1</integer>
 	<key>LeTournedisque</key>
 	<integer>1</integer>
 	<key>ListenersPlaylist</key>

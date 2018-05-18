@@ -8,7 +8,7 @@
 //
 
 BSStrategy = {
-  version: 2,
+  version: 3,
   displayName: "Youtube",
   accepts: {
     method: "predicateOnTab",

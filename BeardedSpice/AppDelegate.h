@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "Chrome.h"
-#import "Safari.h"
 #import "iTunes.h"
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"

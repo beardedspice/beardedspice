@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Safari.h"
 #import "BSStrategyWebSocketServer.h"
 
 #define APPID_SAFARI            @"com.apple.Safari"

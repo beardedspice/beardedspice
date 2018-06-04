@@ -296,29 +296,31 @@ static FMDatabaseQueue *_dbQueue;
     [_dbQueue inDatabase:^(FMDatabase *db) {
             [db executeUpdate:@"PRAGMA read_uncommitted = True"];
     }];
-    
-    //check db
-    NSDictionary *userMeta = [self userMeta];
-    if (userMeta[@"id"] == nil) {
-        
-        //bad DB
-        _dbQueue = nil;
-    }
 }
 
 + (NSDictionary *)userMeta {
     
     __block NSDictionary *result;
-    [self.dbQueue inDatabase:^(FMDatabase *db) {
-      
+    
+    void (^block)(FMDatabase *db) = ^(FMDatabase *db) {
+        
         FMResultSet *dbResult = [db executeQuery:@"select * from ItemTable where key like '_TIDAL_%userMeta'"];
         if ([dbResult next]) {
             NSData *data = [dbResult dataNoCopyForColumnIndex:1];
             result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         }
         [dbResult close];
-    }];
+    };
     
+    [self.dbQueue inDatabase:block];
+    
+    if (result == nil) {
+        //reset DB connection and try again
+        [_dbQueue close];
+        _dbQueue = nil;
+        
+        [self.dbQueue inDatabase:block];
+    }
     return result;
 }
 
@@ -333,7 +335,7 @@ static FMDatabaseQueue *_dbQueue;
     __block NSArray *playQueue;
     [TidalTabAdapter.dbQueue inDatabase:^(FMDatabase *db) {
         
-        FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@playqueue'", userId]];
+        FMResultSet *dbResult = [db executeQuery:[NSString stringWithFormat:@"select * from ItemTable where key = '_TIDAL_%@playqueue_data'", userId]];
         if ([dbResult next]) {
             NSData *data = [dbResult dataNoCopyForColumnIndex:1];
             playQueue = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];

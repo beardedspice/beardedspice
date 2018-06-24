@@ -200,6 +200,8 @@
 	<integer>2</integer>
 	<key>Youtube</key>
 	<integer>3</integer>
+	<key>YoutubeMusic</key>
+	<integer>1</integer>
 	<key>Zing</key>
 	<integer>1</integer>
 	<key>Zvooq</key>

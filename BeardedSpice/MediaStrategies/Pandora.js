@@ -19,8 +19,7 @@ BSStrategy = {
   },
   isPlaying: function () {
     if (document.querySelector('.Tuner__Controls') !== null) {
-      return
-        document
+      return document
           .querySelector('.Tuner__Control__Play__Button')
           .attributes['data-qa']
           .value === 'pause_button';

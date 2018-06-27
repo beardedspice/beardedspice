@@ -40,8 +40,15 @@ BSStrategy = {
   },
   next: function () {
     document.querySelector('.Tuner__Controls') !== null ?
-    document.querySelector('.Tuner__Control__Skip__Button').click() :
+    (document.querySelector('.Tuner__Control__Skip__Button')
+      || document.querySelector('.Tuner__Control__SkipForeward__Button')).click() :
     document.querySelector('.skipButton').click();
+  },
+  previous: function () {
+    document.querySelector('.Tuner__Control__SkipBack__Button')
+      ? document.querySelector('.Tuner__Control__SkipBack__Button').click()
+      : document.querySelector('.Tuner__Control__Replay__Button')
+        && document.querySelector('.Tuner__Control__Replay__Button').click();
   },
   pause: function () {
     if(document.querySelector('.Tuner__Controls') !== null) {
@@ -60,22 +67,23 @@ BSStrategy = {
   trackInfo: function () {
     if (document.querySelector('.Tuner__Controls') !== null) {
       return {
-        'track': document
-                   .querySelector('div.Tuner__Audio__TrackDetail__title')
+        'track': (document.querySelector('.Tuner__Audio__TrackDetail__title')
+                    || document.querySelector('.nowPlayingTopInfo__current__albumName')
+                    || {})
                    .innerText,
-        'artist': document
-                    .querySelector('div.Tuner__Audio__TrackDetail__artist')
+        'artist': (document.querySelector('.Tuner__Audio__TrackDetail__artist')
+                    || document.querySelector('.nowPlayingTopInfo__current__artistName')
+                    || {})
                     .innerText,
-        'album': document
-                   .querySelector('.nowPlayingTopInfo__current__albumName')
+        'album': (document.querySelector('.nowPlayingTopInfo__current__albumName') || {})
                    .innerText,
-        'image': document
-                   .querySelector('[data-qa=album_active_image]')
-                   .style['background-image']
-                   .slice(5, -2),
-        'favorited': document
-                       .querySelector('[data-qa=thumbs_up_button]')
-                       .classList.contains('ThumbUpButton--active')
+        'image': document.querySelector('[data-qa=album_active_image]')
+                  && document.querySelector('[data-qa=album_active_image]')
+                    .style['background-image']
+                    .slice(5, -2),
+        'favorited': document.querySelector('[data-qa=thumbs_up_button]')
+                    && document.querySelector('[data-qa=thumbs_up_button]')
+                        .classList.contains('ThumbUpButton--active')
       };
     } else {
       return {

@@ -7,10 +7,11 @@
 //  Support for new UI added by Bret Martin on 2017-01-01
 //  Fix pause function in new UI by Andrew Ray on 2017-04-28
 //  Fix Tuner__Controls query by Paul Hoisington on 2017-06-23
+//  Minor fixes by Kunal Marwaha on 2018-06-27
 //  Copyright (c) 2013-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-  version: 5,
+  version: 6,
   displayName: "Pandora",
   accepts: {
     method: "predicateOnTab",

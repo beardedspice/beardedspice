@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CastBox</key>
-	<integer>1</integer>
 	<key>AmazonMusic</key>
 	<integer>1</integer>
 	<key>Anghami</key>
@@ -33,6 +31,8 @@
 	<key>BrainFm</key>
 	<integer>1</integer>
 	<key>BugsMusic</key>
+	<integer>1</integer>
+	<key>CastBox</key>
 	<integer>1</integer>
 	<key>Chorus</key>
 	<integer>1</integer>

@@ -4,16 +4,17 @@
 //
 //  Created by Jose Falcon on 12/15/13.
 //  Updated by Alin Panaitiu on 3/2/18.
+//  Updated by Vladislav Gapurov on 07/28/18
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
 BSStrategy = {
-  version: 3,
+  version: 4,
   displayName: "Youtube",
   accepts: {
     method: "predicateOnTab",
-    format: "%K LIKE[c] '*youtube.com/watch*'",
-    args: ["URL"]
+    format: "%K LIKE[c] '*youtube.com/watch*' && !%@ LIKE[c] '*music.youtube.com*'",
+    args: ["URL", "URL"]
   },
   isPlaying: function () { return !document.querySelector('#movie_player video').paused; },
   toggle: function () { document.querySelector('#movie_player .ytp-play-button').click(); },

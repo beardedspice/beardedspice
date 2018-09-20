@@ -1,3 +1,10 @@
+//	
+//  Deezer.plist	
+//  BeardedSpice	
+//	
+//  Created by Greg Woodcock on 06/01/2015.	
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.	
+//
 BSStrategy = {
   version: 4,
   displayName: "Deezer",

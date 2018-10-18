@@ -88,6 +88,8 @@
 	<integer>1</integer>
 	<key>ListenMoe</key>
 	<integer>1</integer>
+	<key>ListenNotes</key>
+	<integer>1</integer>
 	<key>ListenOnRepeat</key>
 	<integer>1</integer>
 	<key>LogitechMediaServer</key>

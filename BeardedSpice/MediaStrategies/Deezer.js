@@ -7,7 +7,7 @@
 //
 
 BSStrategy = {
-  version: 3,
+  version: 4,
   displayName: "Deezer",
   accepts: {
     method: "predicateOnTab",
@@ -15,23 +15,23 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function() {
-    return document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause');
+    return document.querySelector('.player-controls svg-icon-group-btn.is-highlight .svg-icon').classList.contains('svg-icon-pause');
   },
   toggle: function () {
-    document.querySelector('.control-play').click();
+    document.querySelector('.player-controls .svg-icon-group-btn.is-highlight').click();
   },
   next: function () {
-    document.querySelector('.control-next').click();
+    document.querySelector('.player-controls .svg-icon-next').parentElement.click();
   },
   favorite: function (){
-    document.querySelector('div.player-actions span.icon-love').click();
+    document.querySelector('div.player-track .svg-icon-love-outline').parentElement.click();
   },
   previous: function () {
-    document.querySelector('.control-prev').click();
+    document.querySelector('.player-controls .svg-icon-prev').parentElement.click();
   },
   pause: function () {
-    if (document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause')) {
-      document.querySelector('.control-play').click();
+    if (document.querySelector('.player-controls svg-icon-group-btn.is-highlight .svg-icon').classList.contains('svg-icon-pause')) {
+      document.querySelector('.player-controls .svg-icon-group-btn.is-highlight').click();
     }
   },
   trackInfo: function () {

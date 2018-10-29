@@ -36,23 +36,14 @@
     Attempt to determine unplugging headphone from it. 
     And perform action when raises this event.
  */
-@interface BSHeadphoneStatusListener : NSObject{
-    
-    AudioDeviceID _defaultDevice;
-    UInt32        _sourceId;
-    AudioObjectPropertyAddress _sourceAddr;
-    
-    AudioObjectPropertyListenerBlock _listenerBlock;
-    dispatch_queue_t    _listenerQueue;
-    
-    BOOL _enabled;
-}
+@interface BSHeadphoneStatusListener : NSObject
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Init and class methods
 /////////////////////////////////////////////////////////////////////
 
-- (BSHeadphoneStatusListener *)initWithDelegate:(id<BSHeadphoneStatusListenerProtocol>)delegate;
+- (BSHeadphoneStatusListener *)initWithDelegate:(id<BSHeadphoneStatusListenerProtocol>)delegate
+                                  listenerQueue:(dispatch_queue_t)listenerQueue;
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Properties and public methods

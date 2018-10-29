@@ -23,7 +23,7 @@
 - (void)setUsingAppleRemoteEnabled:(BOOL)enabled;
 
 
-- (void)addConnection:(NSXPCConnection *)connection;
+- (BOOL)addConnection:(NSXPCConnection *)connection;
 - (void)removeConnection:(NSXPCConnection *)connection;
 
 @end

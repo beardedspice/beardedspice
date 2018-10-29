@@ -63,7 +63,7 @@ static BSCService *bscSingleton;
 
             workingQueue = dispatch_queue_create("BeardedSpiceControllerService", DISPATCH_QUEUE_SERIAL);
 
-            _hpuListener = [[BSHeadphoneStatusListener alloc] initWithDelegate:self];
+            _hpuListener = [[BSHeadphoneStatusListener alloc] initWithDelegate:self listenerQueue:workingQueue];
             _keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
 
 
@@ -216,19 +216,21 @@ static BSCService *bscSingleton;
 }
 
 
-- (void)addConnection:(NSXPCConnection *)connection{
+- (BOOL)addConnection:(NSXPCConnection *)connection{
     dispatch_sync(dispatch_get_main_queue(), ^{
 
         if (connection) {
-            [_connections addObject:connection];
             if (!_enabled) {
-                _enabled = YES;
                 [self rcdControl];
                 [self refreshShortcutMonitor];
-                [self refreshAllControllers:nil];
+                _enabled = [self refreshAllControllers:nil];
+            }
+            if (_enabled) {
+                [_connections addObject:connection];
             }
         }
     });
+    return _enabled;
 }
 - (void)removeConnection:(NSXPCConnection *)connection{
     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -250,13 +252,14 @@ static BSCService *bscSingleton;
 
 // Performs Pause method
 - (void)headphoneUnplugAction{
-
+    BS_LOG(LOG_DEBUG, @"headphoneUnplugAction");
     [self sendMessagesToConnections:@selector(headphoneUnplug)];
 }
 
 - (void)headphonePlugAction
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        BS_LOG(LOG_DEBUG, @"headphonePlugAction");
         [self refreshMikeys];
     });
 }
@@ -396,16 +399,19 @@ static BSCService *bscSingleton;
 
 #pragma mark - Private Methods
 
-- (void)refreshMediaKeys{
+- (BOOL)refreshMediaKeys{
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    __block BOOL result = YES;
+    [EHSystemUtils callOnMainQueue:^{
         if (_enabled) {
-            [_keyTap startWatchingMediaKeys];
+            result = [_keyTap startWatchingMediaKeys];
         }
         else {
             [_keyTap stopWatchingMediaKeys];
         }
-    });
+    }];
+
+    return result;
 }
 
 - (void)catchCommandFromMiKeys {
@@ -633,11 +639,14 @@ static BSCService *bscSingleton;
 /**
  Method reloads: media keys, apple remote, headphones remote.
  */
-- (void)refreshAllControllers:(NSNotification *)note
+- (BOOL)refreshAllControllers:(NSNotification *)note
 {
     [self refreshMikeys];
-    [self refreshMediaKeys];
+    if ([self refreshMediaKeys] == NO) {
+        return NO;
+    }
     [self setUsingAppleRemoteEnabled:_useAppleRemote];
+    return YES;
 }
 
 @end

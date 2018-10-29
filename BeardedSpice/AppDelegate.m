@@ -669,16 +669,9 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)checkAccessibilityTrusted{
 
-    if (AXIsProcessTrustedWithOptions != NULL) {
-
-        NSDictionary *options = @{CFBridgingRelease(kAXTrustedCheckOptionPrompt): @(YES)};
-        accessibilityApiEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef _Nullable)(options));
-        NSLog(@"AccessibilityApiEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
-    }else{
-
-        accessibilityApiEnabled = AXAPIEnabled();
-        NSLog(@"AXAPIEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
-    }
+    NSDictionary *options = @{CFBridgingRelease(kAXTrustedCheckOptionPrompt): @(YES)};
+    accessibilityApiEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef _Nullable)(options));
+    NSLog(@"AccessibilityApiEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
 
     if (!accessibilityApiEnabled) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -689,7 +682,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)checkAXAPIEnabled{
 
-    _AXAPIEnabled = AXAPIEnabled();
+    _AXAPIEnabled = AXIsProcessTrusted();
     NSLog(@"AXAPIEnabled %@", (_AXAPIEnabled ? @"YES":@"NO"));
     if (_AXAPIEnabled){
         NSAlert * alert = [NSAlert new];

@@ -60,7 +60,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
        _app_switching_ref = NULL;
 }
 
--(void)startWatchingMediaKeys;{
+-(BOOL)startWatchingMediaKeys {
     // Prevent having multiple mediaKeys threads
     [self stopWatchingMediaKeys];
 
@@ -74,7 +74,10 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
                                                           CGEventMaskBit(NX_SYSDEFINED),
                                                           tapEventCallback,
                                                           (__bridge void*)self);
-       assert(_eventPort != NULL);
+        if (_eventPort == NULL) {
+            BS_LOG(LOG_ERROR, @"Can't initialize media key monitor");
+            return NO;
+        }
 
     _eventPortSource = CFMachPortCreateRunLoopSource(kCFAllocatorSystemDefault, _eventPort, 0);
        assert(_eventPortSource != NULL);
@@ -82,9 +85,9 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
        // Let's do this in a separate thread so that a slow app doesn't lag the event tap
        [NSThread detachNewThreadSelector:@selector(eventTapThread) toTarget:self withObject:nil];
     }
+    return YES;
 }
--(void)stopWatchingMediaKeys;
-{
+-(void)stopWatchingMediaKeys {
        // TODO<nevyn>: Shut down thread, remove event tap port and source
 
     @synchronized(self) {

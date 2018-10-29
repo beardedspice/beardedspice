@@ -12,53 +12,67 @@
 #pragma mark - BSHeadphoneUnplugListener
 /////////////////////////////////////////////////////////////////////
 
-@implementation BSHeadphoneStatusListener
+@implementation BSHeadphoneStatusListener {
+
+    AudioDeviceID _defaultDevice;
+    UInt32        _sourceId;
+    AudioObjectPropertyAddress _sourceAddr;
+
+    AudioObjectPropertyListenerBlock _changeDefaultListenerBlock;
+    AudioObjectPropertyListenerBlock _changeSourceListenerBlock;
+    dispatch_queue_t    _listenerQueue;
+
+    BOOL _enabled;
+}
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Init and class methods
 /////////////////////////////////////////////////////////////////////
 
-- (BSHeadphoneStatusListener *)initWithDelegate:(id<BSHeadphoneStatusListenerProtocol>)delegate{
-    
-    if (!delegate) {
+- (BSHeadphoneStatusListener *)initWithDelegate:(id<BSHeadphoneStatusListenerProtocol>)delegate
+                                  listenerQueue:(dispatch_queue_t)listenerQueue {
+
+    if (!(delegate && listenerQueue)) {
         return nil;
     }
     self = [super init];
     if (self) {
         _delegate = delegate;
-        
-        _defaultDevice = _sourceId = 0;
-        UInt32 defaultSize = sizeof(AudioDeviceID);
-        
-        const AudioObjectPropertyAddress defaultAddr = {
-            kAudioHardwarePropertyDefaultOutputDevice,
-            kAudioObjectPropertyScopeGlobal,
-            kAudioObjectPropertyElementMaster
-        };
+        _listenerQueue = listenerQueue;
         
         _sourceAddr.mSelector = kAudioDevicePropertyDataSource;
         _sourceAddr.mScope = kAudioDevicePropertyScopeOutput;
         _sourceAddr.mElement = kAudioObjectPropertyElementMaster;
-        
-        AudioObjectGetPropertyData(kAudioObjectSystemObject, &defaultAddr, 0, NULL, &defaultSize, &_defaultDevice);
-        
-        __weak BSHeadphoneStatusListener *bself = self;
-        _listenerBlock = ^(UInt32 inNumberAddresses,
+
+        ASSIGN_WEAK(self);
+
+        _changeDefaultListenerBlock = ^(UInt32 inNumberAddresses,
                            const AudioObjectPropertyAddress *inAddresses) {
-            
-            UInt32 newSourceId = [bself currentSource:(AudioObjectPropertyAddress *)inAddresses];
-            
-            if (_sourceId != newSourceId) {
-                if (_sourceId == 'hdpn') {
-                    dispatch_async(dispatch_get_current_queue(), ^{
-                        [bself.delegate headphoneUnplugAction];
+            ASSIGN_STRONG(self);
+
+            [USE_STRONG(self) removeCallbackForDevice];
+            if ([USE_STRONG(self) getDefaultDevice]) {
+                [USE_STRONG(self) getCurrentSource];
+                [USE_STRONG(self) addCallbackForDevice];
+            }
+        };
+
+        _changeSourceListenerBlock = ^(UInt32 inNumberAddresses,
+                           const AudioObjectPropertyAddress *inAddresses) {
+            ASSIGN_STRONG(self);
+            UInt32 oldSourceId = USE_STRONG(self)->_sourceId;
+            [USE_STRONG(self) getCurrentSource];
+
+            if (USE_STRONG(self)->_sourceId != oldSourceId) {
+                if (oldSourceId == 'hdpn') {
+                    dispatch_async(USE_STRONG(self)->_listenerQueue, ^{
+                        [USE_STRONG(self).delegate headphoneUnplugAction];
                     });
-                } else if (newSourceId == 'hdpn') {
-                    dispatch_async(dispatch_get_current_queue(), ^{
-                        [bself.delegate headphonePlugAction];
+                } else if (USE_STRONG(self)->_sourceId == 'hdpn') {
+                    dispatch_async(USE_STRONG(self)->_listenerQueue, ^{
+                        [USE_STRONG(self).delegate headphonePlugAction];
                     });
                 }
-                _sourceId = newSourceId;
             }
         };
      
@@ -90,7 +104,6 @@
         if (enabled != _enabled) {
             
             if (enabled) {
-                _sourceId = [self currentSource:&_sourceAddr];
                 if ([self addCallback]) {
                     _enabled = YES;
                 }
@@ -111,37 +124,92 @@
 /////////////////////////////////////////////////////////////////////
 
 - (BOOL)addCallback {
-    _listenerQueue = dispatch_get_current_queue();
 
-    OSStatus result = AudioObjectAddPropertyListenerBlock(
-        _defaultDevice, &_sourceAddr, _listenerQueue, _listenerBlock);
+    [self getDefaultDevice];
+    [self getCurrentSource];
+
+    const AudioObjectPropertyAddress defaultAddr = {
+        kAudioHardwarePropertyDefaultOutputDevice,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMaster
+    };
+
+    __block OSStatus result = 1;
+    ASSIGN_WEAK(self);
+    dispatch_sync(_listenerQueue, ^{
+        ASSIGN_STRONG(self);
+        result = ! [USE_STRONG(self) addCallbackForDevice];
+    });
+    if (result == 0) {
+        result = AudioObjectAddPropertyListenerBlock(kAudioObjectSystemObject, &defaultAddr, _listenerQueue, _changeDefaultListenerBlock);
+    }
 
     return !result;
 }
 
 - (BOOL)removeCallback{
     
-    OSStatus result = 1;
+    const AudioObjectPropertyAddress defaultAddr = {
+        kAudioHardwarePropertyDefaultOutputDevice,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMaster
+    };
+
+    __block OSStatus result = 1;
     if (_listenerQueue) {
         
-         result = AudioObjectRemovePropertyListenerBlock(_defaultDevice, &_sourceAddr, _listenerQueue, _listenerBlock);
-        
-        if (!result) {
-            _listenerQueue = nil;
+         result = AudioObjectRemovePropertyListenerBlock(kAudioObjectSystemObject, &defaultAddr, _listenerQueue, _changeDefaultListenerBlock);
+        if (result == 0) {
+            ASSIGN_WEAK(self);
+            dispatch_sync(_listenerQueue, ^{
+                ASSIGN_STRONG(self);
+                result = ! [USE_STRONG(self) removeCallbackForDevice];
+            });
         }
-        
+    }
+
+    _defaultDevice = _sourceId = 0;
+    
+    return !result;
+}
+
+- (BOOL)addCallbackForDevice {
+
+    if (_defaultDevice) {
+        return ! AudioObjectAddPropertyListenerBlock(_defaultDevice, &_sourceAddr, _listenerQueue, _changeSourceListenerBlock);
+    }
+
+    return NO;
+}
+
+- (BOOL)removeCallbackForDevice{
+
+    OSStatus result = 0;
+    if (_listenerQueue && _defaultDevice) {
+
+        result = AudioObjectRemovePropertyListenerBlock(_defaultDevice, &_sourceAddr, _listenerQueue, _changeSourceListenerBlock);
     }
     return !result;
 }
 
-- (UInt32)currentSource:(AudioObjectPropertyAddress *)sourceAddr{
+- (BOOL)getCurrentSource{
     
-    UInt32 dataSourceId = 0;
-    UInt32 dataSourceIdSize = sizeof(UInt32);
-    AudioObjectGetPropertyData(_defaultDevice, sourceAddr, 0, NULL,
-                               &dataSourceIdSize, &dataSourceId);
-    
-    return dataSourceId;
+    _sourceId = 0;
+    UInt32 dataSourceIdSize = sizeof(_sourceId);
+    return ! AudioObjectGetPropertyData(_defaultDevice, &_sourceAddr, 0, NULL,
+                                          &dataSourceIdSize, &_sourceId);
 }
 
+- (BOOL)getDefaultDevice {
+    _defaultDevice = 0;
+    UInt32 defaultSize = sizeof(AudioDeviceID);
+    const AudioObjectPropertyAddress defaultAddr = {
+        kAudioHardwarePropertyDefaultOutputDevice,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMaster
+    };
+
+    return ! AudioObjectGetPropertyData(kAudioObjectSystemObject, &defaultAddr, 0, NULL, &defaultSize, &_defaultDevice);
+
+}
 @end

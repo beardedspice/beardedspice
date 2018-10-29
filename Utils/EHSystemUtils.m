@@ -114,13 +114,11 @@
 
 + (void)callOnMainQueue:(dispatch_block_t)block{
     
-    dispatch_queue_t currentQueue = dispatch_get_current_queue();
-    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-    if (currentQueue == mainQueue) {
+    if (NSThread.isMainThread) {
         block();
     }
     else{
-        dispatch_sync(mainQueue, block);
+        dispatch_sync(dispatch_get_main_queue(), block);
     }
     
 }

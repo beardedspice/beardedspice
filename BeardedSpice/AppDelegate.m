@@ -178,12 +178,12 @@ BOOL accessibilityApiEnabled = NO;
     }
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] prepareForClosingConnectionWithCompletion:^{
-            [_connectionToService invalidate];
+            [self->_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         }];
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), workingQueue, ^{
-             [_connectionToService invalidate];
+            [self->_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         });
         return NSTerminateLater;
@@ -198,7 +198,7 @@ BOOL accessibilityApiEnabled = NO;
         dispatch_block_t completion = ^(){[[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];};
         
         dispatch_async(workingQueue, ^{
-            [_browserExtensionsController firstRunPerformWithCompletion:completion];
+            [self->_browserExtensionsController firstRunPerformWithCompletion:completion];
         });
     }
 }
@@ -631,7 +631,7 @@ BOOL accessibilityApiEnabled = NO;
             
             if (newItems.count) {
                 for (NSMenuItem *item in [newItems reverseObjectEnumerator]) {
-                    [statusMenu insertItem:item atIndex:0];
+                    [self->statusMenu insertItem:item atIndex:0];
                 }
             }
         });
@@ -748,14 +748,14 @@ BOOL accessibilityApiEnabled = NO;
 
             [wself autoSelectTabWithForceFocused:NO];
 
-            NSUInteger size = statusMenu.itemArray.count - statusMenuCount;
+            NSUInteger size = self->statusMenu.itemArray.count - self->statusMenuCount;
             if (size < 2) {
                 return;
             }
 
-            TabAdapter *tab = [[statusMenu itemAtIndex:0] representedObject];
-            TabAdapter *prevTab = [[statusMenu itemAtIndex:(size - 1)] representedObject];
-            TabAdapter *nextTab = [[statusMenu itemAtIndex:1] representedObject];
+            TabAdapter *tab = [[self->statusMenu itemAtIndex:0] representedObject];
+            TabAdapter *prevTab = [[self->statusMenu itemAtIndex:(size - 1)] representedObject];
+            TabAdapter *nextTab = [[self->statusMenu itemAtIndex:1] representedObject];
 
             for (int i = 0; i < size; i++) {
                 if ([wself.activeApp hasEqualTabAdapter:tab]) {
@@ -780,7 +780,7 @@ BOOL accessibilityApiEnabled = NO;
                 }
                 prevTab = tab;
                 tab = nextTab;
-                nextTab = (i < (size - 2)) ? [[statusMenu itemAtIndex:(i + 2)] representedObject] : [[statusMenu itemAtIndex:0] representedObject];
+                nextTab = (i < (size - 2)) ? [[self->statusMenu itemAtIndex:(i + 2)] representedObject] : [[self->statusMenu itemAtIndex:0] representedObject];
             }
         }
     });
@@ -990,61 +990,6 @@ BOOL accessibilityApiEnabled = NO;
 - (id)valueForUndefinedKey:(NSString *)key{
 
     return nil;
-}
-
-- (void)setBeardedSpicePlayPauseShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayPauseShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpiceNextTrackShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceNextTrackShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpicePreviousTrackShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePreviousTrackShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpiceActiveTabShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceActiveTabShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpiceFavoriteShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceFavoriteShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpiceNotificationShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceNotificationShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpiceActivatePlayingTabShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceActivatePlayingTabShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpicePlayerNextShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayerNextShortcut: shortcut}];
-    }
-}
-- (void)setBeardedSpicePlayerPreviousShortcut:(NSData *)shortcut{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayerPreviousShortcut: shortcut}];
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////

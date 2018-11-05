@@ -95,7 +95,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                   NSAlert *alert = [NSAlert new];
                   NSString *strategyName =
                       [strategy.fileName stringByDeletingPathExtension];
-                  alert.alertStyle = NSInformationalAlertStyle;
+                    alert.alertStyle = NSAlertStyleInformational;
                   alert.informativeText = [strategy description];
                   alert.messageText = [NSString
                       stringWithFormat:
@@ -125,7 +125,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
       NSAlert *alert = [NSAlert new];
       NSString *strategyName =
           [[url lastPathComponent] stringByDeletingPathExtension];
-      alert.alertStyle = NSCriticalAlertStyle;
+        alert.alertStyle = NSAlertStyleCritical;
       alert.informativeText = error.localizedDescription;
       alert.messageText = [NSString
           stringWithFormat:NSLocalizedString(@"Can't import \"%@\" strategy.",
@@ -159,7 +159,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
     if ([pathToFile checkResourceIsReachableAndReturnError:nil]) {
 
         NSAlert *alert = [NSAlert new];
-        alert.alertStyle = NSInformationalAlertStyle;
+        alert.alertStyle = NSAlertStyleInformational;
 //        alert.informativeText = [strategy description];
         alert.messageText = [NSString
             stringWithFormat:NSLocalizedString(
@@ -193,7 +193,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         dispatch_async(dispatch_get_main_queue(), ^{
 
           NSAlert *alert = [NSAlert new];
-          alert.alertStyle = NSCriticalAlertStyle;
+            alert.alertStyle = NSAlertStyleCritical;
           alert.informativeText = error.localizedDescription;
           alert.messageText =
               [NSString stringWithFormat:
@@ -255,7 +255,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
           [self notifyThatChanged];
 
           NSAlert *alert = [NSAlert new];
-          alert.alertStyle = NSInformationalAlertStyle;
+            alert.alertStyle = NSAlertStyleInformational;
           alert.informativeText = [strategy description];
           alert.messageText =
               [NSString stringWithFormat:
@@ -278,7 +278,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
     dispatch_async(dispatch_get_main_queue(), ^{
 
       NSAlert *alert = [NSAlert new];
-      alert.alertStyle = NSCriticalAlertStyle;
+        alert.alertStyle = NSAlertStyleCritical;
       alert.informativeText = error.localizedDescription;
       alert.messageText =
           [NSString stringWithFormat:NSLocalizedString(

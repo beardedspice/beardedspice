@@ -155,7 +155,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
            @"com.jriver.MediaCenter20",
            @"co.rackit.mate",
            @"com.ttitt.b-music",
-           @"com.beardedspice.BeardedSpice", //BeardedSpice
+           BS_BUNDLE_ID, //BeardedSpice
            @"com.plug.Plug",
            @"com.plug.Plug2",
            @"com.netease.163music",

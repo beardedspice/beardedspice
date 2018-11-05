@@ -12,7 +12,7 @@
 
 #import "NativeAppTabAdapter.h"
 
-#import "BSSharedDefaults.h"
+#import "BSSharedResources.h"
 #import "BeardedSpiceControllersProtocol.h"
 
 #import "BSPreferencesWindowController.h"
@@ -533,7 +533,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)keyEvent:(NSUInteger)keytype state:(NSUInteger)state {
-    NSEvent *event = [NSEvent otherEventWithType:NSSystemDefined
+    NSEvent *event = [NSEvent otherEventWithType:NSEventTypeSystemDefined
                                         location:NSZeroPoint
                                    modifierFlags:(state << 2)
                                        timestamp:0
@@ -686,7 +686,7 @@ BOOL accessibilityApiEnabled = NO;
     NSLog(@"AXAPIEnabled %@", (_AXAPIEnabled ? @"YES":@"NO"));
     if (_AXAPIEnabled){
         NSAlert * alert = [NSAlert new];
-        alert.alertStyle = NSCriticalAlertStyle;
+        alert.alertStyle = NSAlertStyleCritical;
         alert.informativeText = NSLocalizedString(@"Once you enable access in System Preferences, you must restart BeardedSpice.", @"Explanation that we need to restart app");
         alert.messageText = NSLocalizedString(@"You must restart BeardedSpice.", @"Title that we need to restart app");
         [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Restart button")];
@@ -1057,7 +1057,7 @@ BOOL accessibilityApiEnabled = NO;
         [_connectionToService invalidate];
         _connectionToService = nil;
     }
-     _connectionToService = [[NSXPCConnection alloc] initWithServiceName:@"com.beardedspice.BeardedSpiceControllers"];
+     _connectionToService = [[NSXPCConnection alloc] initWithServiceName:BS_CONTROLLER_BUNDLE_ID];
      _connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(BeardedSpiceControllersProtocol)];
 
     _connectionToService.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(BeardedSpiceHostAppProtocol)];

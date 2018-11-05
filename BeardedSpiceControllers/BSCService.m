@@ -7,7 +7,7 @@
 //
 
 #import "BSCService.h"
-#import "BSSharedDefaults.h"
+#import "BSSharedResources.h"
 #import "BeardedSpiceHostAppProtocol.h"
 #import "BSCShortcutMonitor.h"
 

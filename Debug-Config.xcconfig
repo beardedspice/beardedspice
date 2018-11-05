@@ -8,11 +8,12 @@
 
 // if DEBUG_STRATEGY set to 1,
 // then BeardedSpice uses strategies only from bundle resources folder.
-DEBUG_STRATEGY = 1
+DEBUG_STRATEGY = 0
 
 
 #include "./Config.xcconfig"
 
 // Macro definition
-GCC_PREPROCESSOR_DEFINITIONS = $(PREPROCESSOR_DEFINITIONS) DEBUG_STRATEGY=$(DEBUG_STRATEGY)
+
+GCC_PREPROCESSOR_DEFINITIONS = DEBUG_STRATEGY=$(DEBUG_STRATEGY) $(PREPROCESSOR_DEFINITIONS)
 

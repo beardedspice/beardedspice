@@ -11,7 +11,7 @@
 #import "NativeAppTabRegistry.h"
 #import "NativeAppTabAdapter.h"
 #import "BSTimeout.h"
-#import "BSSharedDefaults.h"
+#import "BSSharedResources.h"
 
 @implementation BSNativeAppTabsController {
     

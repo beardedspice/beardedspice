@@ -13,7 +13,7 @@
 #import "MediaStrategyRegistry.h"
 #import "BSMediaStrategy.h"
 #import "BSPredicateToJS.h"
-//#import "BSSharedDefaults.h"
+//#import "BSSharedResources.h"
 #import "MYAnonymousIdentity.h"
 #import "BSBrowserExtensionsController.h"
 #import "runningSBApplication.h"

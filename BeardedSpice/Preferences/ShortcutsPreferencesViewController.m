@@ -7,7 +7,7 @@
 //
 
 #import "ShortcutsPreferencesViewController.h"
-#import "BSSharedDefaults.h"
+#import "BSSharedResources.h"
 
 @implementation ShortcutsPreferencesViewController
 

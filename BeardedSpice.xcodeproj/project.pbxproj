@@ -42,12 +42,20 @@
 		6537DAA81AF396DA002F2391 /* NativeAppTabRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
+		65384D9F21874F810029D9E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
+		65384DA321874F810029D9E9 /* SafariExtensionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DA221874F810029D9E9 /* SafariExtensionHandler.m */; };
+		65384DAC21874F810029D9E9 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 65384DAB21874F810029D9E9 /* script.js */; };
+		65384DAE21874F810029D9E9 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */; };
+		65384DB221874F810029D9E9 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65384D9E21874F810029D9E9 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		65384DBB2187BC5C0029D9E9 /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
 		654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */; };
 		6557B4901F6ADCA800295997 /* BSBrowserExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */; };
 		655AACA91D3ABFAA00E316EA /* EHCCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA61D3ABFAA00E316EA /* EHCCache.m */; };
 		655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */; };
+		6566ABE021890719008BEC2F /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
+		6566ABE12189071A008BEC2F /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
 		656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00151C8AD3C800BD29F5 /* DDHidDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00041C8AD3C800BD29F5 /* DDHidDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -69,8 +77,6 @@
 		656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
 		656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
 		656A00381C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
-		656A003D1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */; };
-		656A003E1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */; };
 		656AFFEF1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFEE1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m */; };
 		656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFF01C8ACDCF00BD29F5 /* main.m */; };
 		656AFFF51C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -108,6 +114,9 @@
 		65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */; };
 		65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */; };
 		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
+		65E63AC4218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
+		65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
+		65E63AC721905A5F00C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
@@ -135,6 +144,13 @@
 			remoteGlobalIDString = 6507C280200381CE003D4B1A;
 			remoteInfo = "Build Extensions";
 		};
+		65384DB021874F810029D9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65384D9D21874F810029D9E9;
+			remoteInfo = "Safari Extension";
+		};
 		656AFFF31C8ACDCF00BD29F5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 967933241855173100A49AC7 /* Project object */;
@@ -152,6 +168,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		65384DB621874F810029D9E9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				65384DB221874F810029D9E9 /* Safari Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6564BDB01B74BF9C007030D8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +283,16 @@
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
+		65384D9E21874F810029D9E9 /* Safari Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Safari Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65384DA121874F810029D9E9 /* SafariExtensionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariExtensionHandler.h; sourceTree = "<group>"; };
+		65384DA221874F810029D9E9 /* SafariExtensionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafariExtensionHandler.m; sourceTree = "<group>"; };
+		65384DAA21874F810029D9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65384DAB21874F810029D9E9 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		65384DAF21874F810029D9E9 /* Safari_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Safari_Extension.entitlements; sourceTree = "<group>"; };
+		65384DB8218760980029D9E9 /* BeardedSpice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeardedSpice.entitlements; sourceTree = "<group>"; };
+		65384DB92187BC5C0029D9E9 /* BSSharedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSharedResources.h; sourceTree = "<group>"; };
+		65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSharedResources.m; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
@@ -301,8 +338,6 @@
 		656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		656A002D1C8AD41A00BD29F5 /* NSURL+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Utils.h"; sourceTree = "<group>"; };
 		656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
-		656A003B1C8B01BC00BD29F5 /* BSSharedDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSharedDefaults.h; sourceTree = "<group>"; };
-		656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSharedDefaults.m; sourceTree = "<group>"; };
 		656A003F1C8B037A00BD29F5 /* BeardedSpiceControllersProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeardedSpiceControllersProtocol.h; sourceTree = "<group>"; };
 		656A00401C8B037A00BD29F5 /* BeardedSpiceHostAppProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeardedSpiceHostAppProtocol.h; sourceTree = "<group>"; };
 		656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = BeardedSpiceControllers.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -374,6 +409,8 @@
 		65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPreferencesWindowController.m; sourceTree = "<group>"; };
 		65E567121B775C9300AD2D46 /* BSShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSShortcutView.h; sourceTree = "<group>"; };
 		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
+		65E63AC3218DAB3000C039B7 /* EHFileLocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHFileLocker.m; sourceTree = "<group>"; };
+		65E63AC6218DAB5A00C039B7 /* EHFileLocker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHFileLocker.h; sourceTree = "<group>"; };
 		65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVolumeWindowController.h; sourceTree = "<group>"; };
 		65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVolumeWindowController.m; sourceTree = "<group>"; };
 		65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSVolumeWindowController.xib; sourceTree = "<group>"; };
@@ -405,6 +442,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		65384D9B21874F810029D9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65384D9F21874F810029D9E9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		656AFFE71C8ACDCF00BD29F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,6 +640,7 @@
 		6507C26E2002D311003D4B1A /* safari */ = {
 			isa = PBXGroup;
 			children = (
+				65384DA021874F810029D9E9 /* Safari Extension */,
 				6507C2712002D311003D4B1A /* Info.plist */,
 				6507C2722002D311003D4B1A /* Settings.plist */,
 				6507C2732002D311003D4B1A /* main.html */,
@@ -610,6 +656,19 @@
 				6527C537200930B1006F502B /* options.js */,
 			);
 			path = chrome;
+			sourceTree = "<group>";
+		};
+		65384DA021874F810029D9E9 /* Safari Extension */ = {
+			isa = PBXGroup;
+			children = (
+				65384DA121874F810029D9E9 /* SafariExtensionHandler.h */,
+				65384DA221874F810029D9E9 /* SafariExtensionHandler.m */,
+				65384DAA21874F810029D9E9 /* Info.plist */,
+				65384DAB21874F810029D9E9 /* script.js */,
+				65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */,
+				65384DAF21874F810029D9E9 /* Safari_Extension.entitlements */,
+			);
+			path = "Safari Extension";
 			sourceTree = "<group>";
 		};
 		6557B48D1F6ADBC800295997 /* BrowserExtensionsController */ = {
@@ -658,6 +717,8 @@
 				6507A3051F49A4E800775D14 /* BSPredicateToJS.m */,
 				650781181FAF43E600A0902A /* EHExecuteBlockDelayed.h */,
 				650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */,
+				65E63AC3218DAB3000C039B7 /* EHFileLocker.m */,
+				65E63AC6218DAB5A00C039B7 /* EHFileLocker.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -665,8 +726,8 @@
 		656A003A1C8AFFD400BD29F5 /* SharedComponents */ = {
 			isa = PBXGroup;
 			children = (
-				656A003B1C8B01BC00BD29F5 /* BSSharedDefaults.h */,
-				656A003C1C8B01BC00BD29F5 /* BSSharedDefaults.m */,
+				65384DB92187BC5C0029D9E9 /* BSSharedResources.h */,
+				65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */,
 				656A003F1C8B037A00BD29F5 /* BeardedSpiceControllersProtocol.h */,
 				656A00401C8B037A00BD29F5 /* BeardedSpiceHostAppProtocol.h */,
 			);
@@ -774,6 +835,8 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
+				65ABBAA81D1FDC5400F882CE /* Config.xcconfig */,
+				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
 				6507C2482002AD6A003D4B1A /* Scripts */,
 				658D642A1FA696AF004D1546 /* Submodules */,
 				656A003A1C8AFFD400BD29F5 /* SharedComponents */,
@@ -798,6 +861,7 @@
 				9679332C1855173100A49AC7 /* BeardedSpice.app */,
 				9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */,
 				656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */,
+				65384D9E21874F810029D9E9 /* Safari Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -835,8 +899,7 @@
 		967933351855173100A49AC7 /* BeardedSpice */ = {
 			isa = PBXGroup;
 			children = (
-				65ABBAA81D1FDC5400F882CE /* Config.xcconfig */,
-				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
+				65384DB8218760980029D9E9 /* BeardedSpice.entitlements */,
 				65D57FCA1D02CBFE0016F270 /* MediaStrategies */,
 				65FBCE3B1EC0F8F3004EFFC7 /* UI */,
 				0369231B1862934000E04DDB /* Preferences */,
@@ -961,6 +1024,23 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		65384D9D21874F810029D9E9 /* Safari Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65384DB521874F810029D9E9 /* Build configuration list for PBXNativeTarget "Safari Extension" */;
+			buildPhases = (
+				65384D9A21874F810029D9E9 /* Sources */,
+				65384D9B21874F810029D9E9 /* Frameworks */,
+				65384D9C21874F810029D9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Safari Extension";
+			productName = "Safari Extension";
+			productReference = 65384D9E21874F810029D9E9 /* Safari Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */;
@@ -993,12 +1073,14 @@
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
 				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
 				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
+				65384DB621874F810029D9E9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				65322924200415EB004CE66E /* PBXTargetDependency */,
 				656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */,
+				65384DB121874F810029D9E9 /* PBXTargetDependency */,
 			);
 			name = BeardedSpice;
 			productName = BeardedSpice;
@@ -1033,15 +1115,30 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BS;
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = BeardedSpice;
 				TargetAttributes = {
 					6507C27920037DE5003D4B1A = {
 						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Automatic;
 					};
 					6507C280200381CE003D4B1A = {
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Automatic;
+					};
+					65384D9D21874F810029D9E9 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					656AFFE91C8ACDCF00BD29F5 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1054,17 +1151,20 @@
 						};
 					};
 					9679332B1855173100A49AC7 = {
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
 					9679334C1855173100A49AC7 = {
+						DevelopmentTeam = 5F2QV47DGC;
+						ProvisioningStyle = Manual;
 						TestTargetID = 9679332B1855173100A49AC7;
 					};
 				};
@@ -1087,11 +1187,21 @@
 				656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
 				6507C27920037DE5003D4B1A /* Prepare Extensions */,
 				6507C280200381CE003D4B1A /* Build Extensions */,
+				65384D9D21874F810029D9E9 /* Safari Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		65384D9C21874F810029D9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65384DAE21874F810029D9E9 /* ToolbarItemIcon.pdf in Resources */,
+				65384DAC21874F810029D9E9 /* script.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		656AFFE81C8ACDCF00BD29F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1289,6 +1399,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		65384D9A21874F810029D9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6566ABE021890719008BEC2F /* BSSharedResources.m in Sources */,
+				65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */,
+				65384DA321874F810029D9E9 /* SafariExtensionHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		656AFFE61C8ACDCF00BD29F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1300,9 +1420,10 @@
 				656A00301C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				65A850161C8B065000D54C77 /* BSCService.m in Sources */,
 				656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */,
+				65E63AC721905A5F00C039B7 /* EHFileLocker.m in Sources */,
 				65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */,
+				6566ABE12189071A008BEC2F /* BSSharedResources.m in Sources */,
 				656A00221C8AD3E200BD29F5 /* NSObject+SPInvocationGrabbing.m in Sources */,
-				656A003E1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */,
 				656A001C1C8AD3C800BD29F5 /* NSXReturnThrowError.m in Sources */,
 				656A00161C8AD3C800BD29F5 /* DDHidElement.m in Sources */,
 				656A00341C8AD41A00BD29F5 /* NSException+Utils.m in Sources */,
@@ -1346,17 +1467,18 @@
 				6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
 				656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
-				656A003D1C8B01BC00BD29F5 /* BSSharedDefaults.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
 				658D64441FA697A2004D1546 /* PSWebSocketNetworkThread.m in Sources */,
 				656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */,
 				656A00311C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
+				65384DBB2187BC5C0029D9E9 /* BSSharedResources.m in Sources */,
 				65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */,
 				0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */,
 				65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */,
 				656A00331C8AD41A00BD29F5 /* NSException+Utils.m in Sources */,
+				65E63AC4218DAB3000C039B7 /* EHFileLocker.m in Sources */,
 				65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */,
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				658D643F1FA697A2004D1546 /* PSWebSocket.m in Sources */,
@@ -1404,6 +1526,11 @@
 			isa = PBXTargetDependency;
 			target = 6507C280200381CE003D4B1A /* Build Extensions */;
 			targetProxy = 65322923200415EB004CE66E /* PBXContainerItemProxy */;
+		};
+		65384DB121874F810029D9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65384D9D21874F810029D9E9 /* Safari Extension */;
+			targetProxy = 65384DB021874F810029D9E9 /* PBXContainerItemProxy */;
 		};
 		656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1614,6 +1741,84 @@
 			};
 			name = Release;
 		};
+		65384DB321874F810029D9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "BrowserExtensions/safari/Safari Extension/Safari_Extension.entitlements";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "$(SRCROOT)/BrowserExtensions/safari/Safari Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		65384DB421874F810029D9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "BrowserExtensions/safari/Safari Extension/Safari_Extension.entitlements";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "$(SRCROOT)/BrowserExtensions/safari/Safari Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		656AFFF61C8ACDCF00BD29F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */;
@@ -1628,7 +1833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = BeardedSpiceControllers/Info.plist;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.beardedspice.BeardedSpiceControllers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_CONTROLLER_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1648,7 +1853,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = BeardedSpiceControllers/Info.plist;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.beardedspice.BeardedSpiceControllers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_CONTROLLER_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1671,18 +1876,16 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Roman Sokolov (5F2QV47DGC)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 5F2QV47DGC;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"JSC_OBJC_API_ENABLED=1",
-					"$(inherited)",
-				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1690,7 +1893,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1713,23 +1916,22 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Roman Sokolov (5F2QV47DGC)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5F2QV47DGC;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"JSC_OBJC_API_ENABLED=1",
-					"$(inherited)",
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1741,8 +1943,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = BeardedSpice/BeardedSpice.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1750,7 +1952,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1763,8 +1965,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = BeardedSpice/BeardedSpice.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1772,7 +1974,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beardedspice.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
 				PRODUCT_NAME = BeardedSpice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1842,6 +2044,15 @@
 			buildConfigurations = (
 				6507C282200381CE003D4B1A /* Debug */,
 				6507C283200381CE003D4B1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65384DB521874F810029D9E9 /* Build configuration list for PBXNativeTarget "Safari Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65384DB321874F810029D9E9 /* Debug */,
+				65384DB421874F810029D9E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

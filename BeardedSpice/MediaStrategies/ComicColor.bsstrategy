@@ -1,0 +1,32 @@
+//
+//  ComicColor.plist
+//  BeardedSpice
+//
+//  Created by dutzi on 11/23/18.
+//  Copyright © 2018 BeardedSpice. All rights reserved.
+//
+BSStrategy = {
+  version:1,
+  displayName:"ComicColor",
+  accepts: {
+    method: "predicateOnTab",
+    format:"%K LIKE[c] '*.comiccolor.com*/*'",
+    args: ["URL"]
+  },
+  isPlaying: function () {return !(document.querySelector('video').paused);},
+  toggle: function () {
+    var theVideo = document.querySelector('video');
+    if (theVideo.paused) { theVideo.play(); }
+    else { theVideo.pause() }
+  },
+  next: function () {document.querySelector("video").currentTime += 10},
+  favorite: function () {},
+  previous: function () {document.querySelector("video").currentTime -= 10},
+  pause: function () {document.querySelector('video').pause();},
+  trackInfo: function () {
+    return {
+      'track': document.querySelector('.course-player__top-nav__content').textContent.trim(),
+      'album': 'ComicColor'
+    }
+  }
+}

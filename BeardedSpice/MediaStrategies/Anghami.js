@@ -15,7 +15,7 @@ BSStrategy = {
         args: ["URL"]
     },
     isPlaying: function () {
-        return ($(".p-sub-item.playpause .icon-pause-2").length + $(".p-sub-item.playpause .loader").length) > 0;
+        return ($(".p-sub-item.playpause .icon-pause-2").length + $(".p-sub-item.playpause .buffering").length) > 0;
     },
     toggle: function () {
         $(".p-sub-item.playpause").click();

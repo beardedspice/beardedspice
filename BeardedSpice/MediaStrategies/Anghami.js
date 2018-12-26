@@ -21,16 +21,16 @@ BSStrategy = {
         $(".p-sub-item.playpause").click();
     },
     next: function () {
-        $('.p-sub-item.next').click();
+        $(".p-sub-item.next").click();
     },
     favorite: function () {
         $(".p-item.action.like").click();
     },
     previous: function () {
-        $('.p-sub-item.previous').click();
+        $(".p-sub-item.previous").click();
     },
     pause: function () {
-        $('.p-sub-item.play .icon-pause-2").click();
+        $(".p-sub-item.play .icon-pause-2").click();
     },
     trackInfo: function () {
         return {

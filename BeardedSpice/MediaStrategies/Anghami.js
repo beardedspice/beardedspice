@@ -2,7 +2,8 @@
 //  Anghami.js
 //  BeardedSpice
 //
-//  Created by Raja Baz on 08/24/2016.
+//  Created by Raja Baz on 08/24/2016. 
+//  Updated by Yasser El-Sayed on 26/12/2018.
 //
 
 BSStrategy = {
@@ -14,28 +15,28 @@ BSStrategy = {
         args: ["URL"]
     },
     isPlaying: function () {
-        return ($(".action.play .icon-pause").length + $(".action.play .loader").length) > 0;
+        return ($(".p-sub-item.playpause .icon-pause-2").length + $(".p-sub-item.playpause .loader").length) > 0;
     },
     toggle: function () {
-        $(".action.play").click();
+        $(".p-sub-item.playpause").click();
     },
     next: function () {
-        $('.action.next').click();
+        $('.p-sub-item.next').click();
     },
     favorite: function () {
-        $(".action.extras .icon-like").click();
+        $(".p-item.action.like").click();
     },
     previous: function () {
-        $('.action.previous').click();
+        $('.p-sub-item.previous').click();
     },
     pause: function () {
-        $(".action.play .icon-pause").click();
+        $('.p-sub-item.play .icon-pause-2").click();
     },
     trackInfo: function () {
         return {
-            'track': $("a.track-title").text(),
+            'track': $(".track-title a").text(),
             'artist': $("a.track-artist").text(),
-            'image': $(".cover-art img")[0].src,
+            'image': $(".cover-art img").attr('src'),
         };
     }
 }

@@ -72,6 +72,8 @@
 	<integer>1</integer>
 	<key>IndieShuffle</key>
 	<integer>2</integer>
+	<key>Jamstash</key>
+	<integer>1</integer>
 	<key>Jango</key>
 	<integer>1</integer>
 	<key>KCRW</key>

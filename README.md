@@ -99,6 +99,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [HypeMachine](http://hypem.com)
 - [iHeart Radio](http://www.iheart.com/)
 - [IndieShuffle](http://www.indieshuffle.com)
+- [Jamstash](http://jamstash.com)
 - [Jango](http://www.jango.com/)
 - [Kollekt.FM](https://kollekt.fm/)
 - [Last.fm](http://www.last.fm/)

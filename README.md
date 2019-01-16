@@ -120,6 +120,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Pandora](http://www.pandora.com)
 - [Phish.in](http://phish.in)
 - [PhishTracks](http://PhishTracks.com)
+- [Pluralsight](https://app.pluralsight.com)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [ProductHunt](https://www.producthunt.com/podcasts/)

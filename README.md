@@ -124,6 +124,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [ProductHunt](https://www.producthunt.com/podcasts/)
 - [Qobuz](http://player.qobuz.com/)
+- [Radio Paradise](https://radioparadise.com)
 - [Radio Swiss Jazz](http://www.radioswissjazz.ch/)
 - [Rdio](http://rdio.com)
 - [Saavn](http://www.saavn.com/)

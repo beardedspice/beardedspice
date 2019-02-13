@@ -1,0 +1,33 @@
+/* Class = "NSTextFieldCell"; title = "Previous"; ObjectID = "4FL-Rg-9Di"; */
+"4FL-Rg-9Di.title" = "이전";
+
+/* Class = "NSTextFieldCell"; title = "Next"; ObjectID = "6fZ-cz-2co"; */
+"6fZ-cz-2co.title" = "다음";
+
+/* Class = "NSTextFieldCell"; title = "Players Switching Shortcuts"; ObjectID = "89F-FE-zoQ"; */
+"89F-FE-zoQ.title" = "플레이어 곡 변경 단축키";
+
+/* Class = "NSTextFieldCell"; title = "Show Track Info"; ObjectID = "OUB-Jr-Utn"; */
+"OUB-Jr-Utn.title" = "곡 정보 표시";
+
+/* Class = "NSTextFieldCell"; title = "Next"; ObjectID = "Qgq-E8-3Xc"; */
+"Qgq-E8-3Xc.title" = "다음";
+
+/* Class = "NSTextFieldCell"; title = "Set Active Player Window"; ObjectID = "UwG-2K-f1Y"; */
+"UwG-2K-f1Y.title" = "활성화 된 앱을 미디어 플레이어로 지정";
+
+/* Class = "NSTextFieldCell"; title = "Player Control Shortcuts"; ObjectID = "Vi3-Ol-Vbf"; */
+"Vi3-Ol-Vbf.title" = "플레이어 컨트롤 단축키";
+
+/* Class = "NSTextFieldCell"; title = "Toggle Favorite"; ObjectID = "kMY-K4-O37"; */
+"kMY-K4-O37.title" = "즐겨찾기 토글";
+
+/* Class = "NSTextFieldCell"; title = "Play/Pause"; ObjectID = "qhw-6t-kKW"; */
+"qhw-6t-kKW.title" = "재생/일시정지";
+
+/* Class = "NSTextFieldCell"; title = "Previous"; ObjectID = "tmO-Q9-9y9"; */
+"tmO-Q9-9y9.title" = "이전";
+
+/* Class = "NSTextFieldCell"; title = "Raise Active Player Window"; ObjectID = "w3k-hq-W72"; */
+"w3k-hq-W72.title" = "활성화 된 미디어 플레이어 보기";
+

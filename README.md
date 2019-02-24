@@ -151,6 +151,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Yandex Music](https://music.yandex.ru/)
 - [Yandex Radio](https://radio.yandex.ru/)
 - [YouTube](https://www.youtube.com/)
+- [YouTube Music](https://music.youtube.com/)
 - [Zing MP3](https://mp3.zing.vn)
 - [Zvooq](http://zvooq.com)
 

@@ -5,12 +5,13 @@
 //  Created by Jose Falcon on 12/15/13.
 //  Updated by Alin Panaitiu on 3/2/18.
 //  Updated by Vladislav Gapurov on 07/28/18
+//  Updated by Andreas Willi on 02/24/19
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
 BSStrategy = {
   version: 4,
-  displayName: "Youtube",
+  displayName: "YouTube",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*youtube.com/watch*' && !%@ LIKE[c] '*music.youtube.com*'",

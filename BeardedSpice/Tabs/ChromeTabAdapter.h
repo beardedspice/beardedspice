@@ -14,11 +14,13 @@
 #define APPID_YANDEX            @"ru.yandex.desktop.yandex-browser"
 #define APPID_CHROMIUM          @"org.chromium.Chromium"
 #define APPID_VIVALDI           @"com.vivaldi.Vivaldi"
+#define APPID_BRAVE             @"com.brave.Browser"
+
 
 @class runningSBApplication;
 
 @interface ChromeTabAdapter : TabAdapter {
-    
+
     NSInteger _previousTabId;
     ChromeWindow *_previousTopWindow;
     BOOL _wasWindowActivated;

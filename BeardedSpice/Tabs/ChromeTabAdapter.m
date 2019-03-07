@@ -28,7 +28,7 @@
     // https://github.com/beardedspice/beardedspice/issues/257
     out.applescriptIsolatedVersion = NO;
     NSInteger version = [[(ChromeApplication *)application.sbApplication version] integerValue];
-    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM, APPID_VIVALDI];
+    NSArray *googleBundleIds = @[APPID_CANARY, APPID_CHROME, APPID_CHROMIUM, APPID_VIVALDI, APPID_BRAVE];
     if (version > 45 && [googleBundleIds containsObject:application.bundleIdentifier]){
         out.applescriptIsolatedVersion = YES;
     }

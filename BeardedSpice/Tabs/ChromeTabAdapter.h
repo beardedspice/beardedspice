@@ -20,7 +20,6 @@
 @class runningSBApplication;
 
 @interface ChromeTabAdapter : TabAdapter {
-
     NSInteger _previousTabId;
     ChromeWindow *_previousTopWindow;
     BOOL _wasWindowActivated;

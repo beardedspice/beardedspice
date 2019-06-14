@@ -715,7 +715,6 @@
 				9679332A1855173100A49AC7 /* Resources */,
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
-				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
 				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -736,7 +735,6 @@
 				967933491855173100A49AC7 /* Sources */,
 				9679334A1855173100A49AC7 /* Frameworks */,
 				9679334B1855173100A49AC7 /* Resources */,
-				261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */,
 				189AA939D297EACACE65A248 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -830,13 +828,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
+				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASPreferencesWindow.nib",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		19168B7827BBC96768A4C0E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -845,28 +848,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		444DB68E61F8ED39440C7D99 /* [CP] Check Pods Manifest.lock */ = {
@@ -875,28 +866,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */ = {
@@ -905,13 +884,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
+				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASPreferencesWindow.nib",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */ = {
@@ -920,13 +904,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB9AD96DE64B6D494415BFF9 /* [CP] Check Pods Manifest.lock */ = {
@@ -935,13 +922,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

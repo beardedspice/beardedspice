@@ -46,8 +46,9 @@
 		65384DA321874F810029D9E9 /* SafariExtensionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DA221874F810029D9E9 /* SafariExtensionHandler.m */; };
 		65384DAC21874F810029D9E9 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 65384DAB21874F810029D9E9 /* script.js */; };
 		65384DAE21874F810029D9E9 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */; };
-		65384DB221874F810029D9E9 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65384D9E21874F810029D9E9 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		65384DB221874F810029D9E9 /* BS-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65384D9E21874F810029D9E9 /* BS-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65384DBB2187BC5C0029D9E9 /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
+		6539636723129FCE00590316 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6539636623129FCE00590316 /* shared */; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
 		654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */; };
@@ -117,6 +118,7 @@
 		65E63AC4218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65E63AC721905A5F00C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
+		65E63ACC2190776200C039B7 /* EHLDeferBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63ACB2190776200C039B7 /* EHLDeferBlock.m */; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
@@ -174,7 +176,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				65384DB221874F810029D9E9 /* Safari Extension.appex in Embed App Extensions */,
+				65384DB221874F810029D9E9 /* BS-Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,19 +253,13 @@
 		6507C24F2002AD6A003D4B1A /* xar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = xar; sourceTree = "<group>"; };
 		6507C2512002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6507C2522002AD6A003D4B1A /* build-safari-extension.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-safari-extension.sh"; sourceTree = "<group>"; };
-		6507C2652002D311003D4B1A /* eventClient.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eventClient.js; sourceTree = "<group>"; };
-		6507C2662002D311003D4B1A /* eventsController.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eventsController.js; sourceTree = "<group>"; };
-		6507C2672002D311003D4B1A /* utils.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = utils.js; sourceTree = "<group>"; };
 		6507C2692002D311003D4B1A /* Icon-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-32.png"; sourceTree = "<group>"; };
 		6507C26A2002D311003D4B1A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6507C26B2002D311003D4B1A /* Icon-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-64.png"; sourceTree = "<group>"; };
 		6507C26C2002D311003D4B1A /* Icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-128.png"; sourceTree = "<group>"; };
 		6507C26D2002D311003D4B1A /* Icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-16.png"; sourceTree = "<group>"; };
-		6507C26F2002D311003D4B1A /* init.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = init.js; sourceTree = "<group>"; };
-		6507C2702002D311003D4B1A /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		6507C2712002D311003D4B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6507C2722002D311003D4B1A /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
-		6507C2732002D311003D4B1A /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
 		6507C2782002D311003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		6507C288200382A9003D4B1A /* prepare-extensions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "prepare-extensions.sh"; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
@@ -272,8 +268,6 @@
 		651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJSTests.m; sourceTree = "<group>"; };
 		6527C5362009306F006F502B /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		6527C537200930B1006F502B /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = options.js; sourceTree = "<group>"; };
-		6527C53920093BE5006F502B /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
-		6527C53A200AC914006F502B /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		652AD3361CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -283,7 +277,7 @@
 		6537DAA71AF396DA002F2391 /* NativeAppTabRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAppTabRegistry.m; sourceTree = "<group>"; };
 		6537DAA91AF508DF002F2391 /* MediaControllerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaControllerObject.h; sourceTree = "<group>"; };
 		6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaControllerObject.m; sourceTree = "<group>"; };
-		65384D9E21874F810029D9E9 /* Safari Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Safari Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65384D9E21874F810029D9E9 /* BS-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BS-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65384DA121874F810029D9E9 /* SafariExtensionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariExtensionHandler.h; sourceTree = "<group>"; };
 		65384DA221874F810029D9E9 /* SafariExtensionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafariExtensionHandler.m; sourceTree = "<group>"; };
 		65384DAA21874F810029D9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -293,6 +287,7 @@
 		65384DB8218760980029D9E9 /* BeardedSpice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeardedSpice.entitlements; sourceTree = "<group>"; };
 		65384DB92187BC5C0029D9E9 /* BSSharedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSharedResources.h; sourceTree = "<group>"; };
 		65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSharedResources.m; sourceTree = "<group>"; };
+		6539636623129FCE00590316 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
@@ -411,6 +406,8 @@
 		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
 		65E63AC3218DAB3000C039B7 /* EHFileLocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHFileLocker.m; sourceTree = "<group>"; };
 		65E63AC6218DAB5A00C039B7 /* EHFileLocker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHFileLocker.h; sourceTree = "<group>"; };
+		65E63ACA2190776100C039B7 /* EHLDeferBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHLDeferBlock.h; sourceTree = "<group>"; };
+		65E63ACB2190776200C039B7 /* EHLDeferBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHLDeferBlock.m; sourceTree = "<group>"; };
 		65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVolumeWindowController.h; sourceTree = "<group>"; };
 		65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVolumeWindowController.m; sourceTree = "<group>"; };
 		65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSVolumeWindowController.xib; sourceTree = "<group>"; };
@@ -605,24 +602,10 @@
 		6507C2632002D311003D4B1A /* sharedFiles */ = {
 			isa = PBXGroup;
 			children = (
-				6507C2642002D311003D4B1A /* shared */,
+				6539636623129FCE00590316 /* shared */,
 				6507C2682002D311003D4B1A /* icon */,
 			);
 			path = sharedFiles;
-			sourceTree = "<group>";
-		};
-		6507C2642002D311003D4B1A /* shared */ = {
-			isa = PBXGroup;
-			children = (
-				6507C2652002D311003D4B1A /* eventClient.js */,
-				6507C2662002D311003D4B1A /* eventsController.js */,
-				6507C2672002D311003D4B1A /* utils.js */,
-				6527C53920093BE5006F502B /* main.html */,
-				6507C2702002D311003D4B1A /* content.js */,
-				6507C26F2002D311003D4B1A /* init.js */,
-				6527C53A200AC914006F502B /* main.js */,
-			);
-			path = shared;
 			sourceTree = "<group>";
 		};
 		6507C2682002D311003D4B1A /* icon */ = {
@@ -643,7 +626,6 @@
 				65384DA021874F810029D9E9 /* Safari Extension */,
 				6507C2712002D311003D4B1A /* Info.plist */,
 				6507C2722002D311003D4B1A /* Settings.plist */,
-				6507C2732002D311003D4B1A /* main.html */,
 			);
 			path = safari;
 			sourceTree = "<group>";
@@ -719,6 +701,8 @@
 				650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */,
 				65E63AC3218DAB3000C039B7 /* EHFileLocker.m */,
 				65E63AC6218DAB5A00C039B7 /* EHFileLocker.h */,
+				65E63ACA2190776100C039B7 /* EHLDeferBlock.h */,
+				65E63ACB2190776200C039B7 /* EHLDeferBlock.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -861,7 +845,7 @@
 				9679332C1855173100A49AC7 /* BeardedSpice.app */,
 				9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */,
 				656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */,
-				65384D9E21874F810029D9E9 /* Safari Extension.appex */,
+				65384D9E21874F810029D9E9 /* BS-Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1024,9 +1008,9 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		65384D9D21874F810029D9E9 /* Safari Extension */ = {
+		65384D9D21874F810029D9E9 /* BS-Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65384DB521874F810029D9E9 /* Build configuration list for PBXNativeTarget "Safari Extension" */;
+			buildConfigurationList = 65384DB521874F810029D9E9 /* Build configuration list for PBXNativeTarget "BS-Extension" */;
 			buildPhases = (
 				65384D9A21874F810029D9E9 /* Sources */,
 				65384D9B21874F810029D9E9 /* Frameworks */,
@@ -1036,9 +1020,9 @@
 			);
 			dependencies = (
 			);
-			name = "Safari Extension";
+			name = "BS-Extension";
 			productName = "Safari Extension";
-			productReference = 65384D9E21874F810029D9E9 /* Safari Extension.appex */;
+			productReference = 65384D9E21874F810029D9E9 /* BS-Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */ = {
@@ -1071,7 +1055,6 @@
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
 				6532292620041634004CE66E /* Work with Browser Extensions */,
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
-				49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */,
 				503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */,
 				65384DB621874F810029D9E9 /* Embed App Extensions */,
 			);
@@ -1095,7 +1078,6 @@
 				967933491855173100A49AC7 /* Sources */,
 				9679334A1855173100A49AC7 /* Frameworks */,
 				9679334B1855173100A49AC7 /* Resources */,
-				261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */,
 				189AA939D297EACACE65A248 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1116,7 +1098,7 @@
 			attributes = {
 				CLASSPREFIX = BS;
 				DefaultBuildSystemTypeForWorkspace = Original;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = BeardedSpice;
 				TargetAttributes = {
 					6507C27920037DE5003D4B1A = {
@@ -1130,6 +1112,7 @@
 					};
 					65384D9D21874F810029D9E9 = {
 						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = N33TQXN8C7;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -1151,7 +1134,7 @@
 						};
 					};
 					9679332B1855173100A49AC7 = {
-						DevelopmentTeam = 5F2QV47DGC;
+						DevelopmentTeam = N33TQXN8C7;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -1174,6 +1157,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				Base,
 				ru,
 			);
@@ -1187,7 +1171,7 @@
 				656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
 				6507C27920037DE5003D4B1A /* Prepare Extensions */,
 				6507C280200381CE003D4B1A /* Build Extensions */,
-				65384D9D21874F810029D9E9 /* Safari Extension */,
+				65384D9D21874F810029D9E9 /* BS-Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1198,6 +1182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65384DAE21874F810029D9E9 /* ToolbarItemIcon.pdf in Resources */,
+				6539636723129FCE00590316 /* shared in Resources */,
 				65384DAC21874F810029D9E9 /* script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1248,17 +1233,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASPreferencesWindow.nib",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		19168B7827BBC96768A4C0E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1279,21 +1265,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		261B1E7D9347603186A50C0D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		444DB68E61F8ED39440C7D99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1312,38 +1283,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		49DBE1128D0C0CE893BED11E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		503D914487498C5E5D4B381C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASPreferencesWindow.nib",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6532292620041634004CE66E /* Work with Browser Extensions */ = {
@@ -1366,16 +1323,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/MASShortcut/MASShortcut.bundle,
+				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB9AD96DE64B6D494415BFF9 /* [CP] Check Pods Manifest.lock */ = {
@@ -1406,6 +1363,7 @@
 				6566ABE021890719008BEC2F /* BSSharedResources.m in Sources */,
 				65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */,
 				65384DA321874F810029D9E9 /* SafariExtensionHandler.m in Sources */,
+				65E63ACC2190776200C039B7 /* EHLDeferBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,7 +1487,7 @@
 		};
 		65384DB121874F810029D9E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 65384D9D21874F810029D9E9 /* Safari Extension */;
+			target = 65384D9D21874F810029D9E9 /* BS-Extension */;
 			targetProxy = 65384DB021874F810029D9E9 /* PBXContainerItemProxy */;
 		};
 		656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */ = {
@@ -1762,8 +1720,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "BrowserExtensions/safari/Safari Extension/Safari_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N33TQXN8C7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1803,8 +1762,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "BrowserExtensions/safari/Safari Extension/Safari_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N33TQXN8C7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1906,7 +1866,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1957,7 +1917,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1970,7 +1930,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = BeardedSpice/BeardedSpice.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N33TQXN8C7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1992,7 +1954,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = BeardedSpice/BeardedSpice.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N33TQXN8C7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2074,7 +2038,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65384DB521874F810029D9E9 /* Build configuration list for PBXNativeTarget "Safari Extension" */ = {
+		65384DB521874F810029D9E9 /* Build configuration list for PBXNativeTarget "BS-Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65384DB321874F810029D9E9 /* Debug */,

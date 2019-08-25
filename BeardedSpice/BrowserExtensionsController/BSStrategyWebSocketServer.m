@@ -13,7 +13,7 @@
 #import "MediaStrategyRegistry.h"
 #import "BSMediaStrategy.h"
 #import "BSPredicateToJS.h"
-//#import "BSSharedResources.h"
+#import "BSSharedResources.h"
 #import "MYAnonymousIdentity.h"
 #import "BSBrowserExtensionsController.h"
 #import "runningSBApplication.h"
@@ -153,6 +153,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     if (server == _tabsServer) {
         
         BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
+        [BSSharedResources setTabPort:_tabsPort];
     }
     
     if (self.started) {
@@ -379,45 +380,62 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
             return _enabledStrategiesJson;
         }
         
-        NSMutableDictionary *result = [NSMutableDictionary new];
-        NSMutableDictionary *strategies = [NSMutableDictionary new];
-        for (BSMediaStrategy *strategy in MediaStrategyRegistry.singleton.availableStrategies) {
+        NSDictionary *result = [self enabledStrategyDictionary];
+        if (result) {
             
-            NSDictionary *params = strategy.acceptParams;
-            if ([params[kBSMediaStrategyAcceptMethod] isEqualToString:kBSMediaStrategyAcceptPredicateOnTab]) {
-                
-                NSPredicate *predicate = params[kBSMediaStrategyKeyAccept];
-                
-                NSString *converted = [NSString stringWithFormat:@"function bsAccepter(){ return ( %@ );}", [BSPredicateToJS jsFromPredicate:predicate]];
-                if (! [NSString isNullOrEmpty:converted]) {
-                    
-                    strategies[strategy.fileName] = converted;
-                }
-            }
-            else if ([params[kBSMediaStrategyAcceptMethod] isEqualToString:kBSMediaStrategyAcceptScript]) {
-                
-                NSString *script = params[kBSMediaStrategyKeyAccept];
-                if (! [NSString isNullOrEmpty:script]) {
-                    
-                    strategies[strategy.fileName] = [NSString stringWithFormat:@"function bsAccepter(){ return ( %@ );}",script];
-                }
-            }
-        }
-        
-        if (strategies.count) {
-            
-            NSData *data = [NSJSONSerialization dataWithJSONObject:strategies options:0 error:NULL];
-            NSString *stringResult = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            result[@"strategies"] = stringResult;
-            
-            result[@"bsJsFunctions"] = [BSPredicateToJS jsFunctions];
-            data = [NSJSONSerialization dataWithJSONObject:@{@"accepters": result} options:0 error:NULL];
+            NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"accepters": result} options:0 error:NULL];
             _enabledStrategiesJson = data ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : nil;
         }
         
         return _enabledStrategiesJson;
     }
 }
+/**
+ Constructs dictionary of the accept functions for enabled strategies.
+ 
+ @return dictionary with {bsJsFunctions:function(){}, 'strategies': {strategyName:function(){}, strategyOtherName:function(){}...} }
+ or nil if error occurs.
+ */
+- (NSDictionary *)enabledStrategyDictionary {
+    
+    NSMutableDictionary *result = [NSMutableDictionary new];
+    NSMutableDictionary *strategies = [NSMutableDictionary new];
+    for (BSMediaStrategy *strategy in MediaStrategyRegistry.singleton.availableStrategies) {
+        
+        NSDictionary *params = strategy.acceptParams;
+        if ([params[kBSMediaStrategyAcceptMethod] isEqualToString:kBSMediaStrategyAcceptPredicateOnTab]) {
+            
+            NSPredicate *predicate = params[kBSMediaStrategyKeyAccept];
+            
+            NSString *converted = [NSString stringWithFormat:@"function bsAccepter(){ return ( %@ );}", [BSPredicateToJS jsFromPredicate:predicate]];
+            if (! [NSString isNullOrEmpty:converted]) {
+                
+                strategies[strategy.fileName] = converted;
+            }
+        }
+        else if ([params[kBSMediaStrategyAcceptMethod] isEqualToString:kBSMediaStrategyAcceptScript]) {
+            
+            NSString *script = params[kBSMediaStrategyKeyAccept];
+            if (! [NSString isNullOrEmpty:script]) {
+                
+                strategies[strategy.fileName] = [NSString stringWithFormat:@"function bsAccepter(){ return ( %@ );}",script];
+            }
+        }
+    }
+    
+    if (strategies.count) {
+        
+        NSData *data = [NSJSONSerialization dataWithJSONObject:strategies options:0 error:NULL];
+        NSString *stringResult = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        result[@"strategies"] = stringResult;
+        
+        result[@"bsJsFunctions"] = [BSPredicateToJS jsFunctions];
+        return result;
+    }
+    
+    return nil;
+}
+
 
 //- (void)sendStrategyAccepters {
 //    
@@ -472,11 +490,12 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                            addObserverForName:BSMediaStrategyRegistryChangedNotification
                            object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                                
+                               [self setAcceptersForSafari];
                                @synchronized (self) {
                                    @autoreleasepool {
-                                       _enabledStrategiesJson = nil;
+                                       self->_enabledStrategiesJson = nil;
                                        NSString *message = @"{\"strategiesChanged\":true}";
-                                       for (PSWebSocket *item in _controlSockets) {
+                                       for (PSWebSocket *item in self->_controlSockets) {
                                            [item send:message];
                                        }
                                    }
@@ -493,12 +512,12 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                                 @autoreleasepool {
                                     NSNumber *port = [[NSUserDefaults standardUserDefaults]
                                                       valueForKey:BSWebSocketServerPort];
-                                    if (_controlPort == [port unsignedShortValue]) {
+                                    if (self->_controlPort == [port unsignedShortValue]) {
                                         // new port is equal previous, do nothing
                                         return;
                                     }
                                     NSString *message = [NSString stringWithFormat:@"{\"controllerPort\":\"%@\"}", port];
-                                    for (PSWebSocket *item in _controlSockets) {
+                                    for (PSWebSocket *item in self->_controlSockets) {
                                         [item send:message];
                                     }
                                 }
@@ -525,6 +544,8 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         }
         else if (server == _tabsServer) {
             _tabsStarted = NO;
+            _tabsPort = 0;
+            [BSSharedResources setTabPort:0];
         }
     }
 }
@@ -566,7 +587,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                                                                            @"Content-Type": @"text/html",
                                                                            @"Content-Length": [NSString stringWithFormat:@"%lu", body.length]
                                                                            }];
-
+    
     if (responseBody) {
         *responseBody = body;
     }
@@ -600,6 +621,10 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     
     BS_LOG(LOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
     return nil;
+}
+
+- (void)setAcceptersForSafari {
+    [BSSharedResources setAccepters:[self enabledStrategyDictionary] completion:nil];
 }
 
 @end

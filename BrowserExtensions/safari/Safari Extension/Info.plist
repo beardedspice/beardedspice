@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Safari Extension</string>
+	<string>BeardedSpice</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -32,7 +32,19 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>script.js</string>
+				<string>shared/utils.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>shared/init.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>shared/eventClient.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>shared/content.js</string>
 			</dict>
 		</array>
 		<key>SFSafariWebsiteAccess</key>

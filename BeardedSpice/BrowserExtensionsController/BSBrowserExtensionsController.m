@@ -70,28 +70,28 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 
 - (void)start {
     dispatch_async(_workQueue, ^{
-        if (! _started) {
-            _oQueue = [NSOperationQueue new];
-            _oQueue.underlyingQueue = _workQueue;
+        if (! self->_started) {
+            self->_oQueue = [NSOperationQueue new];
+            self->_oQueue.underlyingQueue = self->_workQueue;
             id observer = [[NSNotificationCenter defaultCenter]
                            addObserverForName:GeneralPreferencesWebSocketServerEnabledChangedNoticiation
-                           object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
+                           object:nil queue:self->_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                                @autoreleasepool {
                                    if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
-                                       [_webSocketServer start];
+                                       [self->_webSocketServer start];
                                    }
                                    else {
-                                       [_webSocketServer stopWithComletion:nil];
+                                       [self->_webSocketServer stopWithComletion:nil];
                                    }
                                }
                            }];
             if (observer) {
-                [_observers addObject:observer];
+                [self->_observers addObject:observer];
             }
             if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
-                [_webSocketServer start];
+                [self->_webSocketServer start];
             }
-            _started = YES;
+            self->_started = YES;
         }
     });
 }
@@ -120,7 +120,7 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
             }
             
             NSAlert *alert = [NSAlert new];
-            alert.alertStyle = NSWarningAlertStyle;
+            alert.alertStyle = NSAlertStyleWarning;
             alert.messageText = NSLocalizedString(@"Install Browser Extension", @"Title of the suggestion about installing BeardedSpice extensions for browsers.");
             alert.informativeText = NSLocalizedString(@"In order to manage the media players on supported sites, it is necessary to install the BeardedSpice browser extension.", @"Informative text of the suggestion about installing BeardedSpice extensions for browsers.");
             [alert addButtonWithTitle:NSLocalizedString(@"Get Extensions...",

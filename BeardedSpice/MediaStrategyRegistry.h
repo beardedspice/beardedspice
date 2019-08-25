@@ -24,7 +24,7 @@ extern NSString *BSMediaStrategyRegistryChangedNotification;
  */
 - (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache;
 
--(void) addMediaStrategy:(BSMediaStrategy *) strategy;
--(void) removeMediaStrategy:(BSMediaStrategy *) strategy;
+-(void) addAvailableMediaStrategy:(BSMediaStrategy *) strategy;
+-(void) removeAvailableMediaStrategy:(BSMediaStrategy *) strategy;
 
 @end

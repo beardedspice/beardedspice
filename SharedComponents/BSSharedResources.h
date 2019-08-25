@@ -75,15 +75,15 @@ extern NSString *const BeardedSpiceFirstRun;
  Saves strategies accepters JSON in shared storage.
  Completion is executed on global concurent queue.
 
- @param jsonString Accepters json, may be nil.
+ @param accepters Accepters dictionary, may be nil.
  @param completion May be nil.
  */
-+ (void)setAcceptersJson:(NSString *)jsonString completion:(void (^)(void))completion;
++ (void)setAccepters:(NSDictionary *)accepters completion:(void (^)(void))completion;
 
 /**
- Gets the strategies accepters JSON from shared storage.
+ Gets the strategies accepters dictionary from shared storage.
  Completion is executed on global concurent queue.
    */
-+ (void)acceptersJsonWithCompletion:(void (^)(NSString *jsonString))completion;
++ (void)acceptersWithCompletion:(void (^)(NSDictionary *accepters))completion;
 
 @end

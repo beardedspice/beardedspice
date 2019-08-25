@@ -114,8 +114,9 @@ var BSUtils = {
 
     sendMessageToGlobal: function(name, message) {
         console.log("(BeardedSpice) sendMessageToGlobal name: %s, message: %o", name, message);
-        if (typeof safari !== "undefined" && safari && safari.self && safari.self.tab) {
-            safari.self.tab.dispatchMessage(name, message);
+        if (typeof safari !== "undefined" && safari && safari.extension) {
+            console.log("(BeardedSpice) BEFORE sendMessageToGlobal name: %s, message: %o", name, message);
+            safari.extension.dispatchMessage(name, message);
         } else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
             chrome.runtime.sendMessage({ "name": name, "message": message });
         }
@@ -123,7 +124,7 @@ var BSUtils = {
 
     handleMessageFromGlobal: function(callback) {
 
-        if (typeof safari !== "undefined" && safari && safari.self && safari.self.tab) {
+        if (typeof safari !== "undefined" && safari && safari.self) {
             safari.self.addEventListener("message", callback);
         } else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
             chrome.runtime.onMessage.addListener(

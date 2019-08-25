@@ -417,9 +417,9 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     if ([obj.representationObject isKindOfClass:[BSMediaStrategy class]]) {
         // Strategy
         if (enabled) {
-            [[MediaStrategyRegistry singleton] addMediaStrategy:obj.representationObject];
+            [[MediaStrategyRegistry singleton] addAvailableMediaStrategy:obj.representationObject];
         } else {
-            [[MediaStrategyRegistry singleton] removeMediaStrategy:obj.representationObject];
+            [[MediaStrategyRegistry singleton] removeAvailableMediaStrategy:obj.representationObject];
         }
         // save user strategies
         [userStrategies setObject:@(enabled) forKey:obj.name];

@@ -115,12 +115,6 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
     return [self.displayName localizedCompare:strategy.displayName];
 }
 
-- (BOOL)testIfImplemented:(NSString * _Nonnull)methodName
-{
-    NSString *value = _scripts[methodName];
-    return (value && value.length);
-}
-
 - (NSError *)_loadFile
 {
     if (!_strategyURL)

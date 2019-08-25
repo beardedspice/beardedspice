@@ -992,6 +992,61 @@ BOOL accessibilityApiEnabled = NO;
     return nil;
 }
 
+- (void)setBeardedSpicePlayPauseShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayPauseShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpiceNextTrackShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceNextTrackShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpicePreviousTrackShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePreviousTrackShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpiceActiveTabShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceActiveTabShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpiceFavoriteShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceFavoriteShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpiceNotificationShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceNotificationShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpiceActivatePlayingTabShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpiceActivatePlayingTabShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpicePlayerNextShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayerNextShortcut: shortcut}];
+    }
+}
+- (void)setBeardedSpicePlayerPreviousShortcut:(id)shortcut{
+
+    if (_connectionToService) {
+        [[_connectionToService remoteObjectProxy] setShortcuts:@{BeardedSpicePlayerPreviousShortcut: shortcut}];
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Controller Service methods
 /////////////////////////////////////////////////////////////////////////

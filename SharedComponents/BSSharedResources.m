@@ -114,8 +114,8 @@ static BSSListenerBlock _onTabPortChangedBlock;
                                block:block];
 }
 
-+ (void)setAcceptersJson:(NSString *)jsonString completion:(void (^)(void))completion {
-    [self saveObject:jsonString key:DATA_KEY_ACCEPTERS completion:^{
++ (void)setAccepters:(NSDictionary *)accepters completion:(void (^)(void))completion {
+    [self saveObject:accepters key:DATA_KEY_ACCEPTERS completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), (CFStringRef)NOTIFICATION_ACCEPTERS, NULL, NULL, YES);
         });
@@ -125,8 +125,8 @@ static BSSListenerBlock _onTabPortChangedBlock;
     }];
 }
 
-+ (void)acceptersJsonWithCompletion:(void (^)(NSString *jsonString))completion {
-    [self loadObjectWithKey:DATA_KEY_ACCEPTERS class:[NSString class] completion:completion];
++ (void)acceptersWithCompletion:(void (^)(NSDictionary *accepters))completion {
+    [self loadObjectWithKey:DATA_KEY_ACCEPTERS class:[NSDictionary class] completion:completion];
 }
 
 /////////////////////////////////////////////////////////////////////

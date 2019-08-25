@@ -163,7 +163,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
         BSMediaStrategy *newStrategy = [self.strategyCache addStrategyWithURL:pathToFile];
         if (newStrategy) {
             
-            [[MediaStrategyRegistry singleton] addMediaStrategy:newStrategy];
+            [[MediaStrategyRegistry singleton] addAvailableMediaStrategy:newStrategy];
             return YES;
         }
     };

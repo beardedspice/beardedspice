@@ -77,7 +77,7 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 /////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 
--(void) addMediaStrategy:(BSMediaStrategy *) strategy
+-(void) addAvailableMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies addObject:strategy];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -85,7 +85,7 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     });
 }
 
--(void) removeMediaStrategy:(BSMediaStrategy *) strategy
+-(void) removeAvailableMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
     dispatch_async(dispatch_get_main_queue(), ^{

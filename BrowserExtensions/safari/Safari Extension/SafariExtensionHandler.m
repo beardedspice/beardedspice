@@ -13,6 +13,10 @@
 
 #define SAFARI_PAGES            @"SafariPages"
 
+@interface SFSafariWindow(internal)
+- (void)activateWithCompletionHandler:(void (^)(void))completionHandler;
+@end
+
 @implementation SafariExtensionHandler {
     BOOL _wasActivated;
     SFSafariTab *_previousTab;
@@ -54,81 +58,116 @@
     [page getPagePropertiesWithCompletionHandler:^(SFSafariPageProperties *properties) {
         NSLog(@"(BeardedSpice Control) received a message (%@) from a script injected into (%@) with userInfo (%@)", messageName, properties.url, userInfo);
         if (properties.url) {
-            if ([messageName isEqualToString:@"accepters"]) {
-                //request accepters
-                [BSSharedResources acceptersWithCompletion:^(NSDictionary *accepters) {
-                    [page dispatchMessageToScriptWithName:@"accepters" userInfo:accepters ?: @{}];
-                }];
-            }
-            else if ([messageName isEqualToString:@"port"]) {
-                // request port
-                [page dispatchMessageToScriptWithName:@"port" userInfo:@{@"result": @(BSSharedResources.tabPort)}];
-            }
-            else if ([messageName isEqualToString:@"frontmost"]) {
-                [page dispatchMessageToScriptWithName:@"frontmost" userInfo:@{@"result": @(properties.active)}];
-            }
-            else if ([messageName isEqualToString:@"isActivated"]) {
-                [page dispatchMessageToScriptWithName:@"isActivated" userInfo:@{@"result": @(properties.active && self->_wasActivated)}];
-            }
-            else if ([messageName isEqualToString:@"bundleId"]) {
-                [SFSafariApplication getHostApplicationWithCompletionHandler:^(NSRunningApplication * _Nonnull hostApplication) {
-                    [page dispatchMessageToScriptWithName:@"bundleId" userInfo:@{@"result": hostApplication.bundleIdentifier}];
-                }];
-            }
-            else if ([messageName isEqualToString:@"serverIsAlive"]) {
-                BOOL running = ([NSRunningApplication runningApplicationsWithBundleIdentifier:BS_BUNDLE_ID].count > 0);
-                if (running && BSSharedResources.tabPort) {
-                    [page dispatchMessageToScriptWithName:@"reconnect" userInfo:@{@"result": @(YES)}];
+            @autoreleasepool {
+                if ([messageName isEqualToString:@"accepters"]) {
+                    //request accepters
+                    [BSSharedResources acceptersWithCompletion:^(NSDictionary *accepters) {
+                        [page dispatchMessageToScriptWithName:@"accepters" userInfo:accepters ?: @{}];
+                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, accepters);
+                    }];
                 }
-            }
-            else if ([messageName isEqualToString:@"activate"]) {
-                [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
-                    [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                        self->_previousTab = activeTab;
-                        [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
-                            [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
-                                [window getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                                    self->_previousTabOnNewWindow = activeTab;
-                                    if ([self->_previousTabOnNewWindow isEqual:self->_previousTab]) {
-                                        self->_previousTabOnNewWindow = nil;
-                                    }
-                                    [tab activateWithCompletionHandler:^{
-                                        self->_wasActivated = YES;
-                                        [page dispatchMessageToScriptWithName:@"activate" userInfo:@{@"result": @(YES)}];
+                else if ([messageName isEqualToString:@"port"]) {
+                    // request port
+                    NSDictionary *response = @{@"result": @(BSSharedResources.tabPort)};
+                    [page dispatchMessageToScriptWithName:@"port" userInfo:response];
+                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                }
+                else if ([messageName isEqualToString:@"frontmost"]) {
+                    [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
+                        [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
+                            [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
+                                if ([activeWindow isEqual:window]) {
+                                    // window active
+                                    [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
+                                        NSDictionary *response = @{@"result": @([activeTab isEqual:tab])};
+                                        [page dispatchMessageToScriptWithName:@"frontmost" userInfo:response];
+                                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                    }];
+                                }
+                                else {
+                                    NSDictionary *response = @{@"result": @(NO)};
+                                    [page dispatchMessageToScriptWithName:@"frontmost" userInfo:response];
+                                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                }
+                            }];
+                        }];
+                    }];
+                }
+                else if ([messageName isEqualToString:@"isActivated"]) {
+                    NSDictionary *response = @{@"result": @(properties.active && self->_wasActivated)};
+                    [page dispatchMessageToScriptWithName:@"isActivated" userInfo:response];
+                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                }
+                else if ([messageName isEqualToString:@"bundleId"]) {
+                    [SFSafariApplication getHostApplicationWithCompletionHandler:^(NSRunningApplication * _Nonnull hostApplication) {
+                        NSDictionary *response = @{@"result": hostApplication.bundleIdentifier};
+                        [page dispatchMessageToScriptWithName:@"bundleId" userInfo:@{@"result": hostApplication.bundleIdentifier}];
+                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    }];
+                }
+                else if ([messageName isEqualToString:@"serverIsAlive"]) {
+                    BOOL running = ([NSRunningApplication runningApplicationsWithBundleIdentifier:BS_BUNDLE_ID].count > 0);
+                    if (running && BSSharedResources.tabPort) {
+                        NSDictionary *response = @{@"result": @(YES)};
+                        [page dispatchMessageToScriptWithName:@"reconnect" userInfo:response];
+                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    }
+                }
+                else if ([messageName isEqualToString:@"activate"]) {
+                    [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
+                        [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
+                            self->_previousTab = activeTab;
+                            [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
+                                [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
+                                    [window getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
+                                        self->_previousTabOnNewWindow = activeTab;
+                                        if ([self->_previousTabOnNewWindow isEqual:self->_previousTab]) {
+                                            self->_previousTabOnNewWindow = nil;
+                                        }
+                                        [window activateWithCompletionHandler:^{
+                                            [tab activateWithCompletionHandler:^{
+                                                self->_wasActivated = YES;
+                                                NSDictionary *response = @{@"result": @(YES)};
+                                                [page dispatchMessageToScriptWithName:@"activate" userInfo:response];
+                                                NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                            }];
+                                        }];
                                     }];
                                 }];
                             }];
                         }];
                     }];
-                }];
-            }
-            else if ([messageName isEqualToString:@"hide"]) {
-                if (properties.active && self->_wasActivated) {
-                    void (^activatePreviousTab)(void) = ^void(void) {
-                        if (self->_previousTab) {
-                            [self->_previousTab activateWithCompletionHandler:^{
-                                [page dispatchMessageToScriptWithName:@"hide" userInfo:@{@"result": @(YES)}];
+                }
+                else if ([messageName isEqualToString:@"hide"]) {
+                    if (properties.active && self->_wasActivated) {
+                        void (^activatePreviousTab)(void) = ^void(void) {
+                            if (self->_previousTab) {
+                                [self->_previousTab activateWithCompletionHandler:^{
+                                    NSDictionary *response = @{@"result": @(YES)};
+                                    [page dispatchMessageToScriptWithName:@"hide" userInfo:response];
+                                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                }];
+                                self->_previousTab = nil;
+                                self->_wasActivated = NO;
+                            }
+                        };
+                        if (self->_previousTabOnNewWindow) {
+                            [self->_previousTabOnNewWindow activateWithCompletionHandler:^{
+                                activatePreviousTab();
                             }];
-                            self->_previousTab = nil;
-                            self->_wasActivated = NO;
+                            self->_previousTabOnNewWindow = nil;
                         }
-                    };
-                    if (self->_previousTabOnNewWindow) {
-                        [self->_previousTabOnNewWindow activateWithCompletionHandler:^{
+                        else {
                             activatePreviousTab();
-                        }];
-                        self->_previousTabOnNewWindow = nil;
-                    }
-                    else {
-                        activatePreviousTab();
+                        }
                     }
                 }
+                //                    else if ([messageName isEqualToString:@"pairing"]) {
+                //                        BSUtils.storageSet("hostBundleId", theMessageEvent.message.bundleId, () => {
+                //                            BSUtils.sendMessageToTab(theMessageEvent.target, "pairing", { 'result': true });
+                //                        });
+                //                        }
             }
-//                    else if ([messageName isEqualToString:@"pairing"]) {
-//                        BSUtils.storageSet("hostBundleId", theMessageEvent.message.bundleId, () => {
-//                            BSUtils.sendMessageToTab(theMessageEvent.target, "pairing", { 'result': true });
-//                        });
-//                        }
         }
     }];
 }

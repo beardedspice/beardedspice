@@ -153,6 +153,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     if (server == _tabsServer) {
         
         BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
+        [self setAcceptersForSafari];
         [BSSharedResources setTabPort:_tabsPort];
     }
     
@@ -490,6 +491,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                            addObserverForName:BSMediaStrategyRegistryChangedNotification
                            object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                                
+                               [self removeTabsWithInvalidStrategy];
                                [self setAcceptersForSafari];
                                @synchronized (self) {
                                    @autoreleasepool {
@@ -625,6 +627,16 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 
 - (void)setAcceptersForSafari {
     [BSSharedResources setAccepters:[self enabledStrategyDictionary] completion:nil];
+}
+
+- (void)removeTabsWithInvalidStrategy {
+    
+    NSArray *validStrategies = MediaStrategyRegistry.singleton.availableStrategies;
+    for (BSWebTabAdapter *tab in self.tabs) {
+        if (! [validStrategies containsObject:tab.strategy] ) {
+            [tab.tabSocket close];
+        }
+    }
 }
 
 @end

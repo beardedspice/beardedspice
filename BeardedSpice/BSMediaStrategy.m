@@ -378,4 +378,19 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
             self.fileName, self.displayName, self.strategyVersion];
 }
 
+- (BOOL)isEqual:(id)object {
+    if (object == self) {
+        return YES;
+    }
+    if (self.fileName.hash == ((BSMediaStrategy *)object).fileName.hash
+        && [self.fileName isEqualToString:((BSMediaStrategy *)object).fileName]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return self.fileName.hash;
+}
+
 @end

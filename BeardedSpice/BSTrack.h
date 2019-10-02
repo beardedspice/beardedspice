@@ -21,6 +21,7 @@ extern NSString *const kBSTrackNameIdentifier;
 @property (nonatomic, strong) NSString *progress;
 
 @property (nonatomic, strong) NSImage *image;
+
 @property (nonatomic, strong) NSNumber *favorited;
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *trackData;
@@ -31,6 +32,8 @@ extern NSString *const kBSTrackNameIdentifier;
 	@return A fully initialized and validated BSTrack object with all avalailable values, placeholders otherwise.
  */
 - (instancetype)initWithInfo:(NSDictionary *)info;
+
+- (void)setImageWithUrlString:(NSString *)urlString;
 
 - (NSUserNotification *)asNotification;
 

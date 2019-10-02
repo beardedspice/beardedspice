@@ -20,14 +20,6 @@ NSString *const kBSTrackNameIdentifier = @"BSTrack Notification";
 
 NSString *const kImageLock = @"kImageLock";
 
-@interface BSTrack ()
-
-@property (nonatomic, strong) NSString *imageURL;
-
-- (void)_loadImage;
-
-@end
-
 @implementation BSTrack
 
 static NSString *_lastImageUrlString;
@@ -59,20 +51,16 @@ static NSImage *_lastImage;
         _progress = info[kBSTrackNameProgress] ?: @"";
         _favorited = info[kBSTrackNameFavorited] ?: @0; // 0 could also be evaluated as @NO
         _image = nil;
-        _imageURL = info[kBSTrackNameImage] ?: nil;
 
-        [self _loadImage];
+        [self imageByUrlString:info[kBSTrackNameImage]];
     }
     return self;
 }
 
 // TODO - Add image caching and async loading so this doesn't become a network bottleneck.
-- (void)_loadImage
+- (void)setImageWithUrlString:(NSString *)urlString
 {
-    if (!_imageURL)
-        return;
-
-    self.image = [self imageByUrlString:_imageURL];
+    self.image = [self imageByUrlString:urlString];
 }
 
 - (NSUserNotification *)asNotification
@@ -118,7 +106,7 @@ static NSImage *_lastImage;
 // TODO make this thread and cache safe. PINCache for osx?
 - (NSImage *)imageByUrlString:(NSString *)urlString
 {
-    if (!urlString)
+    if (!urlString.length)
         return nil;
 
     @synchronized (kImageLock) {

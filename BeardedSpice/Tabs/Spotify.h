@@ -6,7 +6,7 @@
 #import <ScriptingBridge/ScriptingBridge.h>
 
 
-@class SpotifyApplication, SpotifyTrack;
+@class SpotifyApplication, SpotifyTrack, SpotifyApplication;
 
 enum SpotifyEPlS {
 	SpotifyEPlSStopped = 'kPSS',
@@ -55,7 +55,8 @@ typedef enum SpotifyEPlS SpotifyEPlS;
 @property (readonly) NSInteger popularity;  // How popular is this track? 0-100
 - (NSString *) id;  // The ID of the item.
 @property (copy, readonly) NSString *name;  // The name of the track.
-@property (copy, readonly) NSImage *artwork;  // The track's album cover.
+@property (copy, readonly) NSString *artworkUrl;  // The URL of the track%apos;s album cover.
+@property (copy, readonly) NSImage *artwork;  // The property is deprecated and will never be set. Use the 'artwork url' instead.
 @property (copy, readonly) NSString *albumArtist;  // That album artist of the track.
 @property (copy) NSString *spotifyUrl;  // The URL of the track.
 

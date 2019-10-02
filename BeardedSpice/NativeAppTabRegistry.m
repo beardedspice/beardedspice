@@ -16,6 +16,7 @@
 #import "DowncastTabAdapter.h"
 #import "AirfoilSatelliteTabAdapter.h"
 #import "TidalTabAdapter.h"
+#import "DeezerTabAdapter.h"
 
 NSString *BSNativeAppTabRegistryChangedNotification = @"BSNativeAppTabRegistryChangedNotification";
 
@@ -92,7 +93,8 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
         [VOXTabAdapter class],
         [DowncastTabAdapter class],
         [AirfoilSatelliteTabAdapter class],
-        [TidalTabAdapter class]
+        [TidalTabAdapter class],
+        [DeezerTabAdapter class]
     ];
 }
 

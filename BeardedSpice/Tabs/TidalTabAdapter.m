@@ -167,7 +167,7 @@ static FMDatabaseQueue *_dbQueue;
     NSString *menuItemName = [self.application menuBarItemNameForIndexPath:indexPath];
     
     return [menuItemName isEqualToString:
-            NSLocalizedStringFromTable(@"Pause", @"TidalTabAdapterMenuItemNames", @"Menu iItem Pause")];
+            NSLocalizedStringFromTable(@"Pause", @"TidalTabAdapterMenuItemNames", @"Menu Item Pause")];
 }
 
 - (BSTrack *)trackInfo {

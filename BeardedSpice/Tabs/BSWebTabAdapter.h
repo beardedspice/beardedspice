@@ -17,4 +17,11 @@
 @property (nonatomic, readonly) PSWebSocket *tabSocket;
 @property (nonatomic, readonly) BSMediaStrategy *strategy;
 
+/**
+ Notifies controller through `receiver` (current tab) that global settings was changed.
+
+ @return YES on success
+ */
+- (BOOL)notifyThatGlobalSettingsChanged;
+
 @end

@@ -131,7 +131,7 @@ static NSImage *_lastTrackImage;
         track.track = iTrack.name;
         track.album = iTrack.album;
         track.artist = iTrack.artist;
-        track.image = [self imageForId:iTrack.id];
+        [track setImageWithUrlString:iTrack.artworkUrl];
 
         return track;
     }
@@ -162,65 +162,5 @@ static NSImage *_lastTrackImage;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods
-/////////////////////////////////////////////////////////////////////////
-- (NSImage *)imageForId:(NSString *)trackId {
-
-    if ([_lastTrackId isEqualToString:trackId]) {
-        return _lastTrackImage;
-    }
-
-    _lastTrackId = trackId;
-    _lastTrackImage = nil;
-
-    NSString *realId = [[trackId componentsSeparatedByString:@":"] lastObject];
-    if (realId) {
-        NSURL *infoUrl = [NSURL
-            URLWithString:[NSString stringWithFormat:URL_INFO_FORMAT, realId]];
-        if (infoUrl) {
-            NSData *infoData = [infoUrl getDataWithTimeout:GET_INFO_TIMEOUT];
-            if (infoData) {
-                id dict = [NSJSONSerialization JSONObjectWithData:infoData
-                                                          options:0
-                                                            error:NULL];
-                if (dict) {
-                    if ([dict isKindOfClass:[NSDictionary class]]) {
-                        NSUInteger width = 0, delta = NSUIntegerMax,
-                                   newDelta = NSUIntegerMax;
-
-                        NSString *imageUrl;
-                        for (NSDictionary *imageInfo in
-                                 dict[@"album"][@"images"]) {
-                            // using NSUinteger for width gives us strange method to approximate
-                            width = [imageInfo[@"width"] unsignedIntegerValue];
-                            newDelta = (width - IMAGE_OPTIMAL_WIDTH);
-                            if (width && newDelta < delta) {
-                                delta = newDelta;
-                                imageUrl = imageInfo[@"url"];
-                            }
-                        }
-
-                        if (imageUrl) {
-
-                            NSURL *url = [NSURL URLWithString:imageUrl];
-                            if (url) {
-                                if (!url.scheme) {
-                                    url = [NSURL
-                                        URLWithString:
-                                            [NSString
-                                                stringWithFormat:@"http:%@",
-                                                                 imageUrl]];
-                                }
-                                _lastTrackImage =
-                                    [[NSImage alloc] initWithContentsOfURL:url];
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return _lastTrackImage;
-}
 
 @end

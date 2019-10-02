@@ -155,6 +155,9 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
         [self setAcceptersForSafari];
         [BSSharedResources setTabPort:_tabsPort];
+        [SFSafariApplication dispatchMessageWithName:@"reconnect"
+                           toExtensionWithIdentifier:BS_SAFARI_EXTENSION_BUNDLE_ID
+                                            userInfo:nil completionHandler:nil];
     }
     
     if (self.started) {

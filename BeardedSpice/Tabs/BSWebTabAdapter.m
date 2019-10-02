@@ -195,6 +195,12 @@
     return [response[@"result"] boolValue];
 }
 
+- (BOOL)notifyThatGlobalSettingsChanged {
+    
+    NSDictionary *response = [self sendMessage:@"settingsChanged"];
+    return [response[@"result"] boolValue];
+}
+
 ///**
 // Copying of the variables, which reflect state of the object.
 // 

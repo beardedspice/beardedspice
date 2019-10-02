@@ -11,6 +11,17 @@ console.log("(BeardedSpice) Start injection script");
     }
     console.log("(BeardedSpice) Injection script running on top window");
 
+    var checkInjectAlready = document.querySelector('#X_BeardedSpice_InjectAlready');
+    if (checkInjectAlready != null) {
+        console.log("(BeardedSpice) Script already injected!");
+         return;
+    }
+ 
+    var injected = document.createElement("div");
+    injected.setAttribute("id", "X_BeardedSpice_InjectAlready");
+    injected.setAttribute("style", "display: none");
+    (document.body || document.documentElement).appendChild(injected);
+ 
     var checkPairingPage = document.querySelector('#X_BeardedSpice_Browser_BundleId');
     if (checkPairingPage != null) {
         console.log("(BeardedSpice) Detected pairing page");
@@ -59,6 +70,7 @@ console.log("(BeardedSpice) Start injection script");
 
     var checkInjected = document.querySelector('#BSCheckCSPDiv');
     var noCSP = checkInjected != null;
+    var bundleId = null;
 
     try {
 
@@ -123,8 +135,9 @@ console.log("(BeardedSpice) Start injection script");
                 break;
             case state.inCommand.val:
                 switch (event.name) {
-                    case 'frontmost':
                     case 'bundleId':
+                        bundleId = event.message;
+                    case 'frontmost':
                     case 'activate':
                     case 'hide':
                     case "isActivated":
@@ -293,7 +306,8 @@ console.log("(BeardedSpice) Start injection script");
         // Listen for messages
         socket.addEventListener('message', function(event) {
             console.log('(BeardedSpice) Message from server ', event.data);
-
+            console.log('(BeardedSpice) State: ' + state.current.str);
+                                
             switch (state.current.val) {
                 case state.connecting.val:
                     if (event.data == "ready") {
@@ -334,8 +348,13 @@ console.log("(BeardedSpice) Start injection script");
                     try {
                         state.set(state.inCommand);
                         switch (event.data) {
-                            case "frontmost":
                             case "bundleId":
+                                if (bundleId != null) { // if we hold localy bundleId, return it 
+                                    _send(bundleId);
+                                    state.set(state.ready);
+                                    break;
+                                }
+                            case "frontmost":
                             case "activate":
                             case "hide":
                             case "isActivated":

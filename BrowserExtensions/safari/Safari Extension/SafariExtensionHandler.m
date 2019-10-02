@@ -12,19 +12,30 @@
 #import "EHLDeferBlock.h"
 
 #define SAFARI_PAGES            @"SafariPages"
+#define KEY_PTAB                @"previousTab"
+#define KEY_PTAB_NW             @"previousTabOnNewWindow"
 
-@interface SFSafariWindow(internal)
-- (void)activateWithCompletionHandler:(void (^)(void))completionHandler;
-@end
+@implementation SafariExtensionHandler
 
-@implementation SafariExtensionHandler {
-    BOOL _wasActivated;
-    SFSafariTab *_previousTab;
-    SFSafariTab *_previousTabOnNewWindow;
+static NSString *_bundleId;
+static id _lock;
+static BOOL _wasActivated;
+static SFSafariTab *_previousTab;
+static SFSafariTab *_previousTabOnNewWindow;
+
++ (void)initialize {
+    if (self == [SafariExtensionHandler class]) {
+        _lock = [self class];
+        [SFSafariApplication getHostApplicationWithCompletionHandler:^(NSRunningApplication * _Nonnull hostApplication) {
+            _bundleId = hostApplication.bundleIdentifier ?: BS_DEFAULT_SAFARI_BUBDLE_ID;
+            BS_LOG(LOG_DEBUG, @"(BeardedSpice Control) BundleId: %@", _bundleId);
+        }];
+        [self restoreSettings];
+    }
 }
 
 + (void)resetAllTabs {
-    NSLog(@"Reset all tabs invoked.");
+    BS_LOG(LOG_DEBUG,@"Reset all tabs invoked.");
     [SFSafariApplication getAllWindowsWithCompletionHandler:^(NSArray<SFSafariWindow *> * _Nonnull windows) {
         for (SFSafariWindow *window in windows) {
             [window getAllTabsWithCompletionHandler:^(NSArray<SFSafariTab *> * _Nonnull tabs) {
@@ -48,117 +59,153 @@
     return self;
 }
 
+//- (void)beginRequestWithExtensionContext:(NSExtensionContext *)context {
+//    if (!_bundleId.length) {
+//        _bundleId = BS_DEFAULT_SAFARI_BUBDLE_ID;
+//        BS_LOG(LOG_DEBUG, @"(BeardedSpice Control) Safari Bundleid!!!");
+//    }
+//}
+
 - (void)messageReceivedFromContainingAppWithName:(NSString *)messageName
                                         userInfo:(NSDictionary<NSString *,id> *)userInfo {
-    NSLog(@"(BeardedSpice Control) received a message (%@) from app with userInfo (%@)", messageName, userInfo);
-    [SafariExtensionHandler resetAllTabs];
+    BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) received a message (%@) from app with userInfo (%@)", messageName, userInfo);
+    if ([messageName isEqualToString:@"reconnect"]) {
+        [SafariExtensionHandler resetAllTabs];
+    }
 }
 - (void)messageReceivedWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary *)userInfo {
     // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
     [page getPagePropertiesWithCompletionHandler:^(SFSafariPageProperties *properties) {
-        NSLog(@"(BeardedSpice Control) received a message (%@) from a script injected into (%@) with userInfo (%@)", messageName, properties.url, userInfo);
+        BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) received a message (%@) from a script injected into (%@) (page state: %@) with userInfo (%@)", messageName, properties.url, (properties.active ? @"active" : @"disactive"), userInfo);
         if (properties.url) {
             @autoreleasepool {
                 if ([messageName isEqualToString:@"accepters"]) {
                     //request accepters
                     [BSSharedResources acceptersWithCompletion:^(NSDictionary *accepters) {
                         [page dispatchMessageToScriptWithName:@"accepters" userInfo:accepters ?: @{}];
-                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, accepters);
+                        BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", messageName, accepters);
                     }];
                 }
                 else if ([messageName isEqualToString:@"port"]) {
                     // request port
                     NSDictionary *response = @{@"result": @(BSSharedResources.tabPort)};
                     [page dispatchMessageToScriptWithName:@"port" userInfo:response];
-                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", messageName, response);
                 }
                 else if ([messageName isEqualToString:@"frontmost"]) {
-                    [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
-                        [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
-                            [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
-                                if ([activeWindow isEqual:window]) {
+                    [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
+
+                        if (activeWindow == nil) {
+                            [self send:page result:NO of:@"frontmost"];
+                        }
+
+                        [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
+
+                            if (tab == nil) {
+                                [self send:page result:NO of:@"frontmost"];
+                            }
+
+                            [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
+                                if (window == nil || [activeWindow isEqual:window]) {
                                     // window active
                                     [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                                        NSDictionary *response = @{@"result": @([activeTab isEqual:tab])};
-                                        [page dispatchMessageToScriptWithName:@"frontmost" userInfo:response];
-                                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                        [self send:page result:[activeTab isEqual:tab] of:@"frontmost"];
                                     }];
                                 }
                                 else {
-                                    NSDictionary *response = @{@"result": @(NO)};
-                                    [page dispatchMessageToScriptWithName:@"frontmost" userInfo:response];
-                                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                    [self send:page result:NO of:@"frontmost"];
                                 }
                             }];
                         }];
                     }];
                 }
                 else if ([messageName isEqualToString:@"isActivated"]) {
-                    NSDictionary *response = @{@"result": @(properties.active && self->_wasActivated)};
-                    [page dispatchMessageToScriptWithName:@"isActivated" userInfo:response];
-                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    @synchronized (_lock) {
+                        BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) response on '%@': act-%d, wasAct-%d", messageName, properties.active, _wasActivated);
+                        
+                        [self send:page result:(properties.active && _wasActivated) of:@"isActivated"];
+                    }
                 }
                 else if ([messageName isEqualToString:@"bundleId"]) {
-                    [SFSafariApplication getHostApplicationWithCompletionHandler:^(NSRunningApplication * _Nonnull hostApplication) {
-                        NSDictionary *response = @{@"result": hostApplication.bundleIdentifier};
-                        [page dispatchMessageToScriptWithName:@"bundleId" userInfo:@{@"result": hostApplication.bundleIdentifier}];
-                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
-                    }];
+                    NSDictionary *response = @{@"result": _bundleId};
+                    [page dispatchMessageToScriptWithName:@"bundleId" userInfo:response];
+                    BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", messageName, response);
                 }
                 else if ([messageName isEqualToString:@"serverIsAlive"]) {
                     BOOL running = ([NSRunningApplication runningApplicationsWithBundleIdentifier:BS_BUNDLE_ID].count > 0);
                     if (running && BSSharedResources.tabPort) {
-                        NSDictionary *response = @{@"result": @(YES)};
-                        [page dispatchMessageToScriptWithName:@"reconnect" userInfo:response];
-                        NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                        [self send:page result:YES of:@"reconnect"];
                     }
                 }
                 else if ([messageName isEqualToString:@"activate"]) {
                     [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
+                        if (activeWindow == nil) {
+                            [self send:page result:NO of:@"activate"];
+                        }
+
+                        BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) SFSafariApplication getActiveWindowWithCompletionHandler: %@", activeWindow);
                         [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                            self->_previousTab = activeTab;
-                            [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
-                                [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
-                                    [window getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                                        self->_previousTabOnNewWindow = activeTab;
-                                        if ([self->_previousTabOnNewWindow isEqual:self->_previousTab]) {
-                                            self->_previousTabOnNewWindow = nil;
+                            BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) activeWindow getActiveTabWithCompletionHandler: %@", activeTab);
+                                [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
+                                    if (tab == nil) {
+                                        [self send:page result:NO of:@"activate"];
+                                    }
+
+                                    BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) page getContainingTabWithCompletionHandler: %@", tab);
+                                    [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
+                                        if (window == nil) {
+                                            window = activeWindow;
                                         }
-                                        [window activateWithCompletionHandler:^{
+                                        BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) tab getContainingWindowWithCompletionHandler: %@", window);
+                                        [window getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTabOnNewWindow) {
+                                            BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) window getActiveTabWithCompletionHandler: %@", activeTabOnNewWindow);
+                                            @synchronized (_lock) {
+                                                _previousTab = activeTab;
+                                                _previousTabOnNewWindow = activeTabOnNewWindow;
+                                                if ([_previousTabOnNewWindow isEqual:_previousTab]) {
+                                                    _previousTabOnNewWindow = nil;
+                                                }
+                                                [SafariExtensionHandler saveSettings];
+                                            }
                                             [tab activateWithCompletionHandler:^{
-                                                self->_wasActivated = YES;
-                                                NSDictionary *response = @{@"result": @(YES)};
-                                                [page dispatchMessageToScriptWithName:@"activate" userInfo:response];
-                                                NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                                                @synchronized (_lock) {
+                                                    _wasActivated = YES;
+                                                }
+                                                [self send:page result:YES of:@"activate"];
                                             }];
                                         }];
                                     }];
                                 }];
-                            }];
                         }];
                     }];
                 }
                 else if ([messageName isEqualToString:@"hide"]) {
-                    if (properties.active && self->_wasActivated) {
-                        void (^activatePreviousTab)(void) = ^void(void) {
-                            if (self->_previousTab) {
-                                [self->_previousTab activateWithCompletionHandler:^{
-                                    NSDictionary *response = @{@"result": @(YES)};
-                                    [page dispatchMessageToScriptWithName:@"hide" userInfo:response];
-                                    NSLog(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    @synchronized (_lock) {
+                        if (properties.active && _wasActivated) {
+                            void (^activatePreviousTab)(void) = ^void(void) {
+                                @synchronized (_lock) {
+                                    if (_previousTab) {
+                                        [_previousTab activateWithCompletionHandler:^{
+                                            [self send:page result:YES of:@"hide"];
+                                        }];
+                                        _previousTab = nil;
+                                        _wasActivated = NO;
+                                    }
+                                }
+                            };
+                            if (_previousTabOnNewWindow) {
+                                [_previousTabOnNewWindow activateWithCompletionHandler:^{
+                                    activatePreviousTab();
                                 }];
-                                self->_previousTab = nil;
-                                self->_wasActivated = NO;
+                                _previousTabOnNewWindow = nil;
                             }
-                        };
-                        if (self->_previousTabOnNewWindow) {
-                            [self->_previousTabOnNewWindow activateWithCompletionHandler:^{
+                            else {
                                 activatePreviousTab();
-                            }];
-                            self->_previousTabOnNewWindow = nil;
+                            }
+                            [SafariExtensionHandler saveSettings];
                         }
                         else {
-                            activatePreviousTab();
+                            [self send:page result:NO of:@"hide"];
                         }
                     }
                 }
@@ -174,7 +221,7 @@
 
 - (void)toolbarItemClickedInWindow:(SFSafariWindow *)window {
     // This method will be called when your toolbar item is clicked.
-    NSLog(@"The extension's toolbar item was clicked");
+    BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) The extension's toolbar item was clicked");
 }
 
 - (void)validateToolbarItemInWindow:(SFSafariWindow *)window validationHandler:(void (^)(BOOL enabled, NSString *badgeText))validationHandler {
@@ -189,11 +236,50 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods
 
-//- (BOOL)setMainAppRunning {
-//    @synchronized(self) {
-//        _mainAppReady = ([NSRunningApplication runningApplicationsWithBundleIdentifier:BS_BUNDLE_ID].count > 0);
-//        return _mainAppReady;
-//    }
-//}
++ (void)restoreSettings {
+    if (! _bundleId.length) {
+        return;
+    }
+    NSString *key = [@"BSSettings_" stringByAppendingString:_bundleId];
+    NSDictionary *settings = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    
+    NSData *tab = settings[KEY_PTAB];
+    if (tab) {
+        _previousTab = [NSKeyedUnarchiver unarchivedObjectOfClass:[SFSafariTab class]
+                                                         fromData:tab
+                                                            error:NULL];
+    }
+    tab = settings[KEY_PTAB_NW];
+    if (tab) {
+        _previousTabOnNewWindow = [NSKeyedUnarchiver unarchivedObjectOfClass:[SFSafariTab class]
+                                                                    fromData:tab
+                                                                       error:NULL];
+    }
+}
+
++ (void)saveSettings {
+    
+    if (! _bundleId.length) {
+        return;
+    }
+    NSString *key = [@"BSSettings_" stringByAppendingString:_bundleId];
+    NSData *previousTab = [NSKeyedArchiver archivedDataWithRootObject:_previousTab
+                                                requiringSecureCoding:YES
+                                                                error:NULL] ?: [NSData data];
+    NSData *previousTabOnNewWindow = [NSKeyedArchiver archivedDataWithRootObject:_previousTabOnNewWindow
+                                                           requiringSecureCoding:YES
+                                                                           error:NULL] ?: [NSData data];
+    
+    NSDictionary *settings = @{
+                               KEY_PTAB: previousTab,
+                               KEY_PTAB_NW: previousTabOnNewWindow
+                               };
+    [[NSUserDefaults standardUserDefaults] setObject:settings forKey:key];
+}
+- (void)send:(SFSafariPage *)page result:(BOOL)result of:(NSString *)of {
+    NSDictionary *response = @{@"result": @(result)};
+    [page dispatchMessageToScriptWithName:of userInfo:response];
+    BS_LOG(LOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", of, response);
+}
 
 @end

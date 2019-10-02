@@ -122,9 +122,9 @@ static NSMutableDictionary *_sharedAppHandler;
 - (BOOL)hide{
     [EHSystemUtils callOnMainQueue:^{
         NSRunningApplication *app = [self runningApplication];
-        _wasActivated = ! [app hide];
+        self->_wasActivated = ! [app hide];
         // because `hide` does not return right status we set result to YES
-        _wasActivated = NO;
+        self->_wasActivated = NO;
     }];
     return ! _wasActivated;
 }
@@ -208,10 +208,10 @@ static NSMutableDictionary *_sharedAppHandler;
     if (menuItem) {
         
         result = (AXUIElementPerformAction(menuItem, (CFStringRef)NSAccessibilityPressAction) == kAXErrorSuccess);
-        
         CFRelease(menuItem);
     }
-    
+    BS_LOG(LOG_DEBUG, @"(pressMenuBarItemForIndexPath) Result: %@", (result ? @"YES" : @"NO"));
+
     return result;
 }
 

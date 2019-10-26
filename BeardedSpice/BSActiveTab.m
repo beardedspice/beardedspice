@@ -107,9 +107,13 @@ dispatch_queue_t notificationQueue() {
         BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) with tab %@", tab);
         
         if (![tab isEqual:_activeTab]) {
+            BOOL needsActivated = NO;
             BS_LOG(LOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, _activeTab);
             if (_activeTab) {
                 [self.activeTab pause];
+                if ([self.activeTab frontmost]) {
+                    needsActivated = YES;
+                }
                 if ([self.activeTab deactivateTab]) {
                     if (! [self.activeTab.application isEqual:tab.application]) {
                         [self.activeTab deactivateApp];
@@ -118,6 +122,10 @@ dispatch_queue_t notificationQueue() {
             }
             
             self.activeTab = tab;
+            if (needsActivated) {
+                BS_LOG(LOG_DEBUG, @"Needs Activated %@", _activeTab);
+                [self activateTab];
+            }
             BS_LOG(LOG_DEBUG, @"Active tab set to %@", _activeTab);
         }
         return YES;

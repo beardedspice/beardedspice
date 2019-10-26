@@ -10,6 +10,7 @@
 #import <SafariServices/SafariServices.h>
 #import "PSWebSocketServer.h"
 #import "BSWebTabAdapter.h"
+#import "BSWebTabSafariAdapter.h"
 
 @class BSTrack;
 

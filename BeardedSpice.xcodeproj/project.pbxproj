@@ -58,6 +58,7 @@
 		655AACAA1D3ABFAA00E316EA /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */; };
 		6566ABE021890719008BEC2F /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
 		6566ABE12189071A008BEC2F /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
+		6568C4E72353B64100558DC6 /* BSWebTabSafariAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6568C4E62353B64100558DC6 /* BSWebTabSafariAdapter.m */; };
 		656A00131C8AD3C800BD29F5 /* DDHidAppleMikey.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00141C8AD3C800BD29F5 /* DDHidAppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		656A00151C8AD3C800BD29F5 /* DDHidDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A00041C8AD3C800BD29F5 /* DDHidDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -303,6 +304,8 @@
 		655AACA61D3ABFAA00E316EA /* EHCCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCCache.m; sourceTree = "<group>"; };
 		655AACA71D3ABFAA00E316EA /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
 		655AACA81D3ABFAA00E316EA /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
+		6568C4E52353B64100558DC6 /* BSWebTabSafariAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSWebTabSafariAdapter.h; sourceTree = "<group>"; };
+		6568C4E62353B64100558DC6 /* BSWebTabSafariAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebTabSafariAdapter.m; sourceTree = "<group>"; };
 		656A00001C8AD3C800BD29F5 /* DDHidAppleMikey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleMikey.m; sourceTree = "<group>"; };
 		656A00011C8AD3C800BD29F5 /* DDHidAppleRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidAppleRemote.h; sourceTree = "<group>"; };
 		656A00021C8AD3C800BD29F5 /* DDHidAppleRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHidAppleRemote.m; sourceTree = "<group>"; };
@@ -545,6 +548,8 @@
 				65063FEA233DE94E0015F558 /* DeezerTabAdapter.m */,
 				6507A3001F48824000775D14 /* BSWebTabAdapter.h */,
 				6507A3011F48824000775D14 /* BSWebTabAdapter.m */,
+				6568C4E52353B64100558DC6 /* BSWebTabSafariAdapter.h */,
+				6568C4E62353B64100558DC6 /* BSWebTabSafariAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -1441,6 +1446,7 @@
 				6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */,
 				656A00311C8AD41A00BD29F5 /* EHSystemUtils.m in Sources */,
 				65384DBB2187BC5C0029D9E9 /* BSSharedResources.m in Sources */,
+				6568C4E72353B64100558DC6 /* BSWebTabSafariAdapter.m in Sources */,
 				65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */,
 				0BF06AE11C9513A800534083 /* BSMediaStrategy.m in Sources */,
 				65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */,

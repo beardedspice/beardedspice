@@ -152,21 +152,25 @@ static NSMutableDictionary *_sharedAppHandler;
                             
                             CFStringRef role;
                             err = AXUIElementCopyAttributeValue(window, CFSTR("AXRole"), (CFTypeRef *)&role);
-                            if (err == kAXErrorSuccess &&
-                                role &&
-                                CFStringCompare(role, CFSTR("AXWindow"), 0) == kCFCompareEqualTo) {
+                            if (err == kAXErrorSuccess && role){
                                 
-                                CFRelease(role);
+                                if (CFStringCompare(role, CFSTR("AXWindow"), 0) == kCFCompareEqualTo) {
                                 
-                                err = AXUIElementCopyAttributeValue(window, CFSTR("AXSubrole"), (CFTypeRef *)&role);
-                                if (err == kAXErrorSuccess &&
-                                    role &&
-                                    CFStringCompare(role, CFSTR("AXStandardWindow"), 0) == kCFCompareEqualTo) {
-                                    
-                                    CFRelease(role);
-                                    AXUIElementPerformAction(window, CFSTR("AXRaise"));
-                                    break;
+                                    CFStringRef subrole;
+                                    err = AXUIElementCopyAttributeValue(window, CFSTR("AXSubrole"), (CFTypeRef *)&subrole);
+                                    if (err == kAXErrorSuccess && subrole) {
+                                        
+                                        if (CFStringCompare(subrole, CFSTR("AXStandardWindow"), 0) == kCFCompareEqualTo) {
+                                            AXUIElementPerformAction(window, CFSTR("AXRaise"));
+                                            CFRelease(subrole);
+                                            CFRelease(role);
+                                            break;
+                                        }
+                                        
+                                        CFRelease(subrole);
+                                    }
                                 }
+                                CFRelease(role);
                             }
                         }
                         

@@ -12,13 +12,15 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 
-@implementation NativeAppTabAdapter
+@implementation NativeAppTabAdapter {
+    runningSBApplication *_application;
+}
 
 +(id)tabAdapterWithApplication:(runningSBApplication *)application{
 
     NativeAppTabAdapter *tab = [[self class] new];
 
-    tab.application = application;
+    tab->_application = application;
     return tab;
 }
 
@@ -30,11 +32,16 @@
     return nil;
 }
 
+- (runningSBApplication *)application {
+    return _application;
+}
+
 - (void)toggleTab {
     if (! [self deactivateApp]) {
         [self activateApp];
     }
 }
+
 @end
 
 #pragma clang diagnostic pop

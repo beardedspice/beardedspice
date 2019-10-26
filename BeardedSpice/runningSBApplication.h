@@ -28,7 +28,6 @@
 - (BOOL)hide;
 - (void)makeKeyFrontmostWindow;
 
-
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Supporting actions in application menubar
 

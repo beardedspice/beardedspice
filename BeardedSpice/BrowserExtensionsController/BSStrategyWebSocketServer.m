@@ -29,7 +29,6 @@
 
 NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
 
-
 @implementation BSStrategyWebSocketServer{
     
     NSString *_enabledStrategiesJson;
@@ -44,6 +43,8 @@ NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStarte
 }
 
 static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
+static NSArray *tabClasses;
+
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Initialize
@@ -55,6 +56,7 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         
         singletonBSStrategyWebSocketServer = [BSStrategyWebSocketServer alloc];
         singletonBSStrategyWebSocketServer = [singletonBSStrategyWebSocketServer init];
+        tabClasses = @[[BSWebTabSafariAdapter class], [BSWebTabAdapter class]]; //The order is important
     });
     
     return singletonBSStrategyWebSocketServer;
@@ -155,9 +157,6 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
         BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
         [self setAcceptersForSafari];
         [BSSharedResources setTabPort:_tabsPort];
-        [SFSafariApplication dispatchMessageWithName:@"reconnect"
-                           toExtensionWithIdentifier:BS_SAFARI_EXTENSION_BUNDLE_ID
-                                            userInfo:nil completionHandler:nil];
     }
     
     if (self.started) {
@@ -204,20 +203,33 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
 
     BS_LOG(LOG_DEBUG, @"%s. WebSocket [%p]", __FUNCTION__, webSocket);
 
+    static dispatch_queue_t openSocketQueue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        openSocketQueue = dispatch_queue_create("com.beardedspice.websocket.open", DISPATCH_QUEUE_SERIAL);
+    });
+    
     //tabs server connection
     if (server == _tabsServer) {
-        @synchronized (self) {
-            
-            BSWebTabAdapter *tab = [[BSWebTabAdapter alloc] initWithBrowserSocket:webSocket];
-            BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : @"YES"));
-            if (tab) {
-                [_tabs addObject:tab];
+        dispatch_async(openSocketQueue, ^{
+            @synchronized (self) {
+                id tab;
+                for (id item in tabClasses) {
+                    tab = [item adapterForSocket:webSocket];
+                    if (tab) {
+                        break;
+                    }
+                }
+                BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : tab));
+                if (tab) {
+                    [_tabs addObject:tab];
+                }
+                else {
+                    BS_LOG(LOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);
+                    [webSocket close];
+                }
             }
-            else {
-                BS_LOG(LOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);
-                [webSocket close];
-            }
-        }
+        });
     }
     if (server == _controlServer) {
         @synchronized (self) {
@@ -494,15 +506,24 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
                            addObserverForName:BSMediaStrategyRegistryChangedNotification
                            object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                                
-                               [self removeTabsWithInvalidStrategy];
                                [self setAcceptersForSafari];
                                @synchronized (self) {
                                    @autoreleasepool {
                                        self->_enabledStrategiesJson = nil;
-                                       NSString *message = @"{\"strategiesChanged\":true}";
-                                       for (PSWebSocket *item in self->_controlSockets) {
-                                           [item send:message];
+                                       // notify only one tab for application
+                                       NSMutableSet *bundleIds = [NSMutableSet set];
+                                       for (BSWebTabAdapter *item in self->_tabs) {
+                                           NSString *bundleId = item.application.bundleIdentifier;
+                                           if (bundleId) {
+                                               if ([bundleIds containsObject:bundleId]) {
+                                                   continue;
+                                               }
+                                               if ([item notifyThatGlobalSettingsChanged]) {
+                                                   [bundleIds addObject:bundleId];
+                                               }
+                                           }
                                        }
+                                       [self notifyBSWebAppsThatGlobalSettingsChangedExcluding:bundleIds];
                                    }
                                }
                            }];
@@ -632,14 +653,13 @@ static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
     [BSSharedResources setAccepters:[self enabledStrategyDictionary] completion:nil];
 }
 
-- (void)removeTabsWithInvalidStrategy {
+- (void)notifyBSWebAppsThatGlobalSettingsChangedExcluding:(NSSet *)excludeBundleIds {
     
-    NSArray *validStrategies = MediaStrategyRegistry.singleton.availableStrategies;
-    for (BSWebTabAdapter *tab in self.tabs) {
-        if (! [validStrategies containsObject:tab.strategy] ) {
-            [tab.tabSocket close];
-        }
+    if (![excludeBundleIds containsObject:BS_DEFAULT_SAFARI_BUBDLE_ID]
+        && [NSRunningApplication runningApplicationsWithBundleIdentifier:BS_DEFAULT_SAFARI_BUBDLE_ID].count > 0) {
+        [SFSafariApplication dispatchMessageWithName:@"settingsChanged"
+                           toExtensionWithIdentifier:BS_SAFARI_EXTENSION_BUNDLE_ID
+                                            userInfo:nil completionHandler:nil];
     }
 }
-
 @end

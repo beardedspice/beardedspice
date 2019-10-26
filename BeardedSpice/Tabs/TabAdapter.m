@@ -72,7 +72,14 @@
     return YES;
 }
 - (BOOL)deactivateTab {
-    return YES;
+    @autoreleasepool {
+        
+        if (self.application.wasActivated && [self.application frontmost]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (BOOL)isActivated{

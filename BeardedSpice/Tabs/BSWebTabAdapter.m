@@ -27,6 +27,19 @@
     NSString *_key;
     NSCondition *_actionLock;
     NSDictionary *_lastResponse;
+    runningSBApplication *_application;
+}
+
++ (instancetype)adapterForSocket:(PSWebSocket *)tabSocket {
+    
+    BSWebTabAdapter *object = [[self alloc] initWithBrowserSocket:tabSocket];
+    if (object) {
+        if ([object suitableForSocket]) {
+             [object sendMessage:@"ready"];
+            return object;
+        }
+    }
+    return nil;
 }
 
 - (id)initWithBrowserSocket:(PSWebSocket *)tabSocket {
@@ -42,11 +55,54 @@
         _tabSocket.delegate = self;
         _key = [[NSUUID UUID] UUIDString];
         _actionLock = [NSCondition new];
-        [self sendMessage:@"ready"];
     }
     
     return self;
 }
+
+- (BOOL)suitableForSocket{
+    return YES;
+}
+
+- (BOOL)notifyThatGlobalSettingsChanged {
+    
+    NSDictionary *response = [self sendMessage:@"settingsChanged"];
+    return [response[@"result"] boolValue];
+}
+
+
+- (id)sendMessage:(id)message {
+    id response;
+    [_actionLock lock];
+    dispatch_async(BSStrategyWebSocketServer.singleton.tabsServer.delegateQueue, ^{
+        
+        [self.tabSocket send:message];
+    });
+    if ([_actionLock waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:RESPONSE_TIMEPUT]] == NO) {
+        [NSException exceptionWithName:TIMEOUT_WAS_REACHED reason:nil userInfo:nil];
+    }
+    if (_lastResponse) {
+        response = _lastResponse;
+        _lastResponse = nil;
+    }
+    [_actionLock unlock];
+    return response;
+}
+
+
+#pragma mark TabAdapter override
+
+- (runningSBApplication *)application {
+    if (_application == nil) {
+        @synchronized (self) {
+            if (_application == nil) {
+                _application = [self obtainApplication];
+            }
+        }
+    }
+    return _application;
+}
+
 
 - (NSString *)title {
     NSString *result;
@@ -63,34 +119,22 @@
     return _key;
 }
 - (BOOL)activateApp {
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
     
     return [super activateApp];
 }
 
 - (BOOL)deactivateApp {
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
     return [super deactivateApp];
 }
 
 - (BOOL)activateTab {
 
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
     [super activateTab];
     [self sendMessage:@"activate"];
     return YES;
 }
 
 - (BOOL)deactivateTab {
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
     
     if ([self frontmost]) {
         if ([self isActivated]) {
@@ -106,10 +150,6 @@
 }
 
 - (BOOL)isActivated {
-    
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
     
     BOOL result = NO;
     NSDictionary *response = [self sendMessage:@"isActivated"];
@@ -131,49 +171,30 @@
 
 - (BOOL)frontmost {
     
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
-    
     BOOL result = NO;
     NSDictionary *response = [self sendMessage:@"frontmost"];
     result = [response[@"result"] boolValue];
+    BS_LOG(LOG_DEBUG, @"Frontmost result: %d, %d", [super frontmost], result);
     return [super frontmost] && result;
 }
 
 - (BOOL)toggle {
-    
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
     
     NSDictionary *response = [self sendMessage:@"toggle"];
     return [response[@"result"] boolValue];
 }
 - (BOOL)pause {
     
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
-    
     NSDictionary *response = [self sendMessage:@"pause"];
     return [response[@"result"] boolValue];
 }
 - (BOOL)next {
-
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
 
     NSDictionary *response = [self sendMessage:@"next"];
     return [response[@"result"] boolValue];
 }
 - (BOOL)previous {
     
-    if (self.application == nil) {
-        self.application = [self obtainApplication];
-    }
-
     NSDictionary *response = [self sendMessage:@"previous"];
     return [response[@"result"] boolValue];
 }
@@ -195,25 +216,10 @@
     return [response[@"result"] boolValue];
 }
 
-- (BOOL)notifyThatGlobalSettingsChanged {
-    
-    NSDictionary *response = [self sendMessage:@"settingsChanged"];
-    return [response[@"result"] boolValue];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<BSWebTabAdapter:%p> bundleId: %@, title: %@", self, self.application.bundleIdentifier, self.title];
 }
 
-///**
-// Copying of the variables, which reflect state of the object.
-// 
-// @param tab Object from which performed copying.
-// 
-// @return Returns self.
-// */
-//- (instancetype)copyStateFrom:(TabAdapter *)tab;
-//
-//-(BOOL) isEqual:(__autoreleasing id)otherTab;
-//
-
-/////////////////////////////////////////////////////////////////////////
 #pragma mark PSWebSocketDelegate delegates
 
 - (void)webSocketDidOpen:(PSWebSocket *)webSocket {
@@ -226,6 +232,7 @@
     
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }
+
 - (void)webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
     BS_LOG(LOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
@@ -281,24 +288,6 @@
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Private methods
-
-- (id)sendMessage:(id)message {
-    id response;
-    [_actionLock lock];
-    dispatch_async(BSStrategyWebSocketServer.singleton.tabsServer.delegateQueue, ^{
-        
-        [self.tabSocket send:message];
-    });
-    if ([_actionLock waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:RESPONSE_TIMEPUT]] == NO) {
-        [NSException exceptionWithName:TIMEOUT_WAS_REACHED reason:nil userInfo:nil];
-    }
-    if (_lastResponse) {
-        response = _lastResponse;
-        _lastResponse = nil;
-    }
-    [_actionLock unlock];
-    return response;
-}
 
 - (runningSBApplication *)obtainApplication {
     NSString *result;

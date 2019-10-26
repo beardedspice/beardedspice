@@ -7,6 +7,7 @@ console.log("(BeardedSpice) Start injection script");
 
     if (window != window.top) {
         console.log(window.top);
+        console.log("(BeardedSpice) Injection script stopped, because iframe");
         return;
     }
     console.log("(BeardedSpice) Injection script running on top window");
@@ -96,8 +97,20 @@ console.log("(BeardedSpice) Start injection script");
         disconnected: { val: 7, str: "disconnected" },
         set: function(st) {
             this.current = st;
+            if (this.inCommandIntervalId) {
+                clearInterval(this.inCommandIntervalId);
+                this.inCommandIntervalId = null;
+            }
+            if (st.val == state.inCommand.val) {
+                    console.log("(BeardedSpice) inCommand timeout ran");
+                this.inCommandIntervalId = setInterval(() => {
+                    console.log("(BeardedSpice) inCommand timeout reached");
+                    state.set(state.ready);
+                }, 2000);
+            }
             console.log("(BeardedSpice) Set State to \"" + this.current.str + "\"");
-        }
+        },
+        inCommandIntervalId: null
     }
 
     var socket = null;
@@ -114,18 +127,39 @@ console.log("(BeardedSpice) Start injection script");
     var handleMessage = function(event) {
         console.log(event.name);
         console.log(event.message);
-        if (event.name === 'reconnect') {
-            if (socket) {
-                socket.close();
+        if (event.name === 'serverIsAlive' 
+            || event.name === 'reconnect') {
+            
+            if (handleMessage.intervalId) {
+                clearInterval(handleMessage.intervalId);
+                console.log("Cleared interval: " +handleMessage.intervalId);
+                handleMessage.intervalId = null
             }
-            reconnect(event);
-            return;
-        }
-        switch (state.current.val) {
+            if (event.message["result"]) {
+                if (socket) {
+                    socket.close();
+                }
+                reconnect(event);
+                return;
+            }
+            else {
+               handleMessage.intervalId = setInterval(function() {
+                   BSUtils.sendMessageToGlobal('serverIsAlive');
+               },
+               10000);
+           }
+       }
+       switch (state.current.val) {
             case state.init.val:
             case state.reconnecting.val:
                 if (event.name === 'accepters') {
                     accept(event.message);
+                }
+                break;
+            case state.connecting.val:
+                if (event.name === 'bundleId') {
+                    bundleId = event.message;
+                    _send(event.message);
                 }
                 break;
             case state.accepted.val:
@@ -274,8 +308,18 @@ console.log("(BeardedSpice) Start injection script");
             return;
         }
 
+        var onSocketDisconnet = function(event) {
+            console.info('(BeardedSpice) onSocketDisconnet');
+
+            state.set(state.disconnected);
+
+            //sending request to extension
+            BSUtils.sendMessageToGlobal('serverIsAlive');
+        };
+
         if (port == 0) {
             console.info("(BeardedSpice) Port not specified.");
+            onSocketDisconnet();
             return;
         }
 
@@ -292,15 +336,6 @@ console.log("(BeardedSpice) Start injection script");
             console.info("(BeardedSpice) Socket open.");
         });
 
-        var onSocketDisconnet = function(event) {
-            console.info('(BeardedSpice) onSocketDisconnet');
-
-            state.set(state.disconnected);
-
-            //sending request to extension
-            BSUtils.sendMessageToGlobal('serverIsAlive');
-        };
-
         socket.addEventListener('close', onSocketDisconnet);
 
         // Listen for messages
@@ -310,6 +345,15 @@ console.log("(BeardedSpice) Start injection script");
                                 
             switch (state.current.val) {
                 case state.connecting.val:
+                    if (event.data == "bundleId") {
+                        if (bundleId != null) { // if we hold localy bundleId, return it
+                            _send(bundleId);
+                            break;
+                        }
+                        //sending request to extension
+                        BSUtils.sendMessageToGlobal(event.data);
+                        break;
+                    }
                     if (event.data == "ready") {
                         _send({ 'strategy': strategyName });
                         state.set(state.strategyRequested);
@@ -348,6 +392,12 @@ console.log("(BeardedSpice) Start injection script");
                     try {
                         state.set(state.inCommand);
                         switch (event.data) {
+                            case "settingsChanged":
+                                //sending request to extension and are not waiting of a response
+                                _send({'result': true});
+                                BSUtils.sendMessageToGlobal(event.data);
+                                state.set(state.ready);
+                                break;
                             case "bundleId":
                                 if (bundleId != null) { // if we hold localy bundleId, return it 
                                     _send(bundleId);

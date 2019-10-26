@@ -746,7 +746,7 @@ BOOL accessibilityApiEnabled = NO;
     dispatch_async(workingQueue, ^{
         @autoreleasepool {
 
-            [wself autoSelectTabWithForceFocused:NO];
+            [wself autoSelectTabWithForceFocused:YES];
 
             NSUInteger size = self->statusMenu.itemArray.count - self->statusMenuCount;
             if (size < 2) {

@@ -1,5 +1,11 @@
 //PREVENTS LOG OUTPUT
 //console.log = function(){};
+(function(){
+    var _privateLog = console.log;
+    console.log = function () {
+        _privateLog.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
+    }
+})();
 
 var BSUtils = {
 
@@ -115,7 +121,6 @@ var BSUtils = {
     sendMessageToGlobal: function(name, message) {
         console.log("(BeardedSpice) sendMessageToGlobal name: %s, message: %o", name, message);
         if (typeof safari !== "undefined" && safari && safari.extension) {
-            console.log("(BeardedSpice) BEFORE sendMessageToGlobal name: %s, message: %o", name, message);
             safari.extension.dispatchMessage(name, message);
         } else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
             chrome.runtime.sendMessage({ "name": name, "message": message });

@@ -10,7 +10,7 @@
 
 @interface TabAdapter : NSObject 
 
-@property runningSBApplication *application;
+@property (readonly) runningSBApplication *application;
 
 -(id) executeJavascript:(NSString *) javascript;
 -(NSString *) title;

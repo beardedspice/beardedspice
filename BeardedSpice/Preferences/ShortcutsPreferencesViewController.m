@@ -33,7 +33,7 @@
     [self.playerPreviousShortcut setAssociatedUserDefaultsKey:BeardedSpicePlayerPreviousShortcut];
 }
 
-- (NSString *)identifier
+- (NSString *)viewIdentifier
 {
     return @"ShortcutsPreferences";
 }
@@ -45,7 +45,7 @@
 
 - (NSString *)toolbarItemLabel
 {
-    return NSLocalizedString(@"Shortcuts", @"Toolbar item name for the Shortcuts preference pane");
+    return BSLocalizedString(@"Shortcuts", @"Toolbar item name for the Shortcuts preference pane");
 }
 
 - (NSView *)initialKeyView{

@@ -424,7 +424,7 @@ BOOL accessibilityApiEnabled = NO;
 
     statusMenu.autoenablesItems = NO;
     item.enabled = NO;
-    item.title = NSLocalizedString(@"Checking...", @"Menu Titles");
+    item.title = BSLocalizedString(@"Checking...", @"Menu Titles");
 
     BOOL checkFromMenu = (sender != self);
     __weak typeof(self) wself = self;
@@ -432,7 +432,7 @@ BOOL accessibilityApiEnabled = NO;
         __strong typeof(wself) sself = wself;
 
         NSUInteger updateCount = [sself.versionManager performSyncUpdateCheck];
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
+        NSString *message = [NSString stringWithFormat:BSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
         
         if (updateCount == 0){
             if (checkFromMenu) {
@@ -446,7 +446,7 @@ BOOL accessibilityApiEnabled = NO;
         }
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            item.title = NSLocalizedString(@"Check for Compatibility Updates", @"Menu Titles");
+            item.title = BSLocalizedString(@"Check for Compatibility Updates", @"Menu Titles");
             item.enabled = YES;
         });
     });
@@ -687,9 +687,9 @@ BOOL accessibilityApiEnabled = NO;
     if (_AXAPIEnabled){
         NSAlert * alert = [NSAlert new];
         alert.alertStyle = NSAlertStyleCritical;
-        alert.informativeText = NSLocalizedString(@"Once you enable access in System Preferences, you must restart BeardedSpice.", @"Explanation that we need to restart app");
-        alert.messageText = NSLocalizedString(@"You must restart BeardedSpice.", @"Title that we need to restart app");
-        [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Restart button")];
+        alert.informativeText = BSLocalizedString(@"Once you enable access in System Preferences, you must restart BeardedSpice.", @"Explanation that we need to restart app");
+        alert.messageText = BSLocalizedString(@"You must restart BeardedSpice.", @"Title that we need to restart app");
+        [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Restart button")];
 
         [self windowWillBeVisible:alert];
 
@@ -733,7 +733,7 @@ BOOL accessibilityApiEnabled = NO;
         NSViewController *strategiesViewController = [BSStrategiesPreferencesViewController new];
         NSArray *controllers = @[generalViewController, shortcutsViewController, strategiesViewController];
 
-        NSString *title = NSLocalizedString(@"Preferences", @"Common title for Preferences window");
+        NSString *title = BSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
     }
     return _preferencesWindowController;
@@ -796,21 +796,21 @@ BOOL accessibilityApiEnabled = NO;
     if (!menuItemCount) {
         NSMenuItem *item = nil;
         if (accessibilityApiEnabled) {
-             item = [statusMenu insertItemWithTitle:NSLocalizedString(@"No applicable tabs open", @"Title on empty menu")
+             item = [statusMenu insertItemWithTitle:BSLocalizedString(@"No applicable tabs open", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
                                                        atIndex:0];
         }
         else if (_AXAPIEnabled){
 
-            item = [statusMenu insertItemWithTitle:NSLocalizedString(@"You must restart BeardedSpice", @"Title on empty menu")
+            item = [statusMenu insertItemWithTitle:BSLocalizedString(@"You must restart BeardedSpice", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
                                                        atIndex:0];
         }
         else{
 
-            item = [statusMenu insertItemWithTitle:NSLocalizedString(@"No access to control of the keyboard", @"Title on empty menu")
+            item = [statusMenu insertItemWithTitle:BSLocalizedString(@"No access to control of the keyboard", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
                                                        atIndex:0];
@@ -825,7 +825,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)sendUpdateNotificationWithString:(NSString *)message
 {
     NSUserNotification *notification = [NSUserNotification new];
-    notification.title = NSLocalizedString(@"Bearded Spice - Compatibility Updates", @"Notification Titles");
+    notification.title = BSLocalizedString(@"Beardie - Compatibility Updates", @"Notification Titles");
     notification.subtitle = message;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }

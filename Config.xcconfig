@@ -6,8 +6,9 @@
 //  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-BS_VERSION = 3.0.1
-BS_BUILD = 41
+BS_COPYRIGHT = Copyright © 2019 Beardie. All rights reserved.
+BS_VERSION = 3.0.2
+BS_BUILD = 51
 
 BS_GROUP = $(DEVELOPMENT_TEAM).com.calm-apps.mac.beardie
 

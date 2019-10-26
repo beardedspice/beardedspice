@@ -99,12 +99,12 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                   alert.informativeText = [strategy description];
                   alert.messageText = [NSString
                       stringWithFormat:
-                          NSLocalizedString(
+                          BSLocalizedString(
                               @"Strategy \"%@\" imported successfuly.",
                               @"(BSCustomStrategyManager) Title on message, "
                               @"when strategy import error occured."),
                           strategyName];
-                  [alert addButtonWithTitle:NSLocalizedString(@"Ok",
+                  [alert addButtonWithTitle:BSLocalizedString(@"Ok",
                                                               @"Ok button")];
 
                   [APPDELEGATE windowWillBeVisible:alert];
@@ -128,12 +128,12 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         alert.alertStyle = NSAlertStyleCritical;
       alert.informativeText = error.localizedDescription;
       alert.messageText = [NSString
-          stringWithFormat:NSLocalizedString(@"Can't import \"%@\" strategy.",
+          stringWithFormat:BSLocalizedString(@"Can't import \"%@\" strategy.",
                                              @"(BSCustomStrategyManager) Title "
                                              @"on message, when strategy "
                                              @"import error occured."),
                            strategyName];
-      [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Ok button")];
+      [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
 
       [APPDELEGATE windowWillBeVisible:alert];
 
@@ -162,15 +162,15 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         alert.alertStyle = NSAlertStyleInformational;
 //        alert.informativeText = [strategy description];
         alert.messageText = [NSString
-            stringWithFormat:NSLocalizedString(
+            stringWithFormat:BSLocalizedString(
                                  @"File \"%@\" exists.\nDo you want overwrite?",
                                  @"(BSCustomStrategyManager) Title on message, "
                                  @"when file exists."),
                              fileName];
         [alert
-            addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button")];
+            addButtonWithTitle:BSLocalizedString(@"Cancel", @"Cancel button")];
 
-        [alert addButtonWithTitle:NSLocalizedString(@"Overwrite",
+        [alert addButtonWithTitle:BSLocalizedString(@"Overwrite",
                                                     @"Overwrite button")];
         [APPDELEGATE windowWillBeVisible:alert];
 
@@ -197,12 +197,12 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
           alert.informativeText = error.localizedDescription;
           alert.messageText =
               [NSString stringWithFormat:
-                            NSLocalizedString(
+                            BSLocalizedString(
                                 @"Can't export \"%@\" strategy.",
                                 @"(BSCustomStrategyManager) Title on message, "
                                 @"when strategy export error occured."),
                             strategy.displayName];
-          [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Ok button")];
+          [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
 
           [APPDELEGATE windowWillBeVisible:alert];
 
@@ -259,12 +259,12 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
           alert.informativeText = [strategy description];
           alert.messageText =
               [NSString stringWithFormat:
-                            NSLocalizedString(
+                            BSLocalizedString(
                                 @"Strategy \"%@\" removed successfuly.",
                                 @"(BSCustomStrategyManager) Title on message, "
                                 @"when strategy import error occured."),
                             strategy.displayName];
-          [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Ok button")];
+          [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
 
           [APPDELEGATE windowWillBeVisible:alert];
 
@@ -281,13 +281,13 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         alert.alertStyle = NSAlertStyleCritical;
       alert.informativeText = error.localizedDescription;
       alert.messageText =
-          [NSString stringWithFormat:NSLocalizedString(
+          [NSString stringWithFormat:BSLocalizedString(
                                          @"Can't remove \"%@\" strategy.",
                                          @"(BSCustomStrategyManager) Title "
                                          @"on message, when strategy remove "
                                          @"error occured."),
                                      strategy.displayName];
-      [alert addButtonWithTitle:NSLocalizedString(@"Ok", @"Ok button")];
+      [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
 
       [APPDELEGATE windowWillBeVisible:alert];
 

@@ -47,7 +47,7 @@
         }
         
         if ([NSString isNullOrEmpty:title]) {
-            title = NSLocalizedString(@"No Track", @"DowncastTabAdapter");
+            title = BSLocalizedString(@"No Track", @"DowncastTabAdapter");
         }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_DOWNCAST];

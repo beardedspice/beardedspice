@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,12 +35,12 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" image="volumeMute" id="iyi-Ed-MED"/>
                     </imageView>
                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YRN-51-LpM">
-                        <rect key="frame" x="20" y="30" width="160" height="37"/>
+                        <rect key="frame" x="43" y="30" width="115" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="156" id="nWh-Tt-ulh"/>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="p9c-tD-u0P"/>
                         </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="BeardedSpice" placeholderString="" id="eBs-ui-Hif">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Beardie" placeholderString="" id="eBs-ui-Hif">
                             <font key="font" size="30" name="HelveticaNeue-Medium"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

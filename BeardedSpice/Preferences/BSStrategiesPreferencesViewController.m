@@ -39,7 +39,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     self = [super initWithNibName:@"BSStrategiesPreferencesViewController" bundle:nil];
     if (self) {
         
-        _toolTipForCustomStrategy = NSLocalizedString(
+        _toolTipForCustomStrategy = BSLocalizedString(
                                                       @"This strategy is user custom defined.",
                                                       @"(GeneralPreferencesViewController) In preferences, strategies "
                                                       @"list. ToolTip for row, which meens that this strategy is user "
@@ -58,7 +58,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     
 }
 
-- (NSString *)identifier
+- (NSString *)viewIdentifier
 {
     return @"BSStrategiesPreferencesViewController";
 }
@@ -70,7 +70,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 
 - (NSString *)toolbarItemLabel
 {
-    return NSLocalizedString(@"Controllers", @"Toolbar item name for the Media Controllers preference pane");
+    return BSLocalizedString(@"Controllers", @"Toolbar item name for the Media Controllers preference pane");
 }
 
 - (NSView *)initialKeyView{
@@ -103,12 +103,12 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                 openPanel.canChooseDirectories = YES;
                 openPanel.canCreateDirectories = YES;
                 openPanel.allowsMultipleSelection = NO;
-                openPanel.title = NSLocalizedString(
+                openPanel.title = BSLocalizedString(
                                                     @"BeardedSpice - Choose a folder for exporting",
                                                     @"(GeneralPreferencesViewController) In "
                                                     @"preferences, strategies list. Title of the "
                                                     @"panel for choosing of the export folder.");
-                openPanel.prompt = NSLocalizedString(
+                openPanel.prompt = BSLocalizedString(
                                                      @"Export", @"(GeneralPreferencesViewController) In "
                                                      @"preferences, strategies list. 'Choose folder for "
                                                      @"exporting' panel. Export button title.");
@@ -152,11 +152,11 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
             openPanel.canCreateDirectories = NO;
             openPanel.allowsMultipleSelection = NO;
             openPanel.title =
-            NSLocalizedString(@"BeardedSpice - Choose a file for importing",
+            BSLocalizedString(@"BeardedSpice - Choose a file for importing",
                               @"(GeneralPreferencesViewController) In "
                               @"preferences, strategies list. Title of the "
                               @"panel for choosing of the importing file.");
-            openPanel.prompt = NSLocalizedString(
+            openPanel.prompt = BSLocalizedString(
                                                  @"Import", @"(GeneralPreferencesViewController) In "
                                                  @"preferences, strategies list. 'Choose folder for "
                                                  @"importing' panel. Import button title.");
@@ -193,15 +193,15 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                 alert.informativeText = strategy.description;
                 alert.messageText = [NSString
                                      stringWithFormat:
-                                     NSLocalizedString(
+                                     BSLocalizedString(
                                                        @"Are you realy want remove \"%@\" strategy?",
                                                        @"(GeneralPreferencesViewController) In preferences, "
                                                        @"strategies list."
                                                        @"Title of the question about remove."),
                                      strategy.displayName];
-                [alert addButtonWithTitle:NSLocalizedString(@"Cancel",
+                [alert addButtonWithTitle:BSLocalizedString(@"Cancel",
                                                             @"Cancel button")];
-                [alert addButtonWithTitle:NSLocalizedString(@"Remove",
+                [alert addButtonWithTitle:BSLocalizedString(@"Remove",
                                                             @"Remove button")];
                 
                 [APPDELEGATE windowWillBeVisible:alert];
@@ -332,7 +332,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                                                     }];
     if (![NSString isNullOrEmpty:obj.version]) {
         NSString *vString = [NSString
-                             stringWithFormat:NSLocalizedString(@"  v.%@",
+                             stringWithFormat:BSLocalizedString(@"  v.%@",
                                                                 @"(GeneralPreferencesViewController) In preferences, strategies list."
                                                                 @" Output format for name column "
                                                                 @"of the strategy list."),
@@ -456,7 +456,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
         
         MediaControllerObject *obj = [MediaControllerObject new];
         obj.isGroup = YES;
-        obj.name = NSLocalizedString(@"Native", @"General preferences - controllers table");
+        obj.name = BSLocalizedString(@"Native", @"General preferences - controllers table");
         [mediaControllers addObject:obj];
         for (Class theClass in theArray) {
             [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:theClass]];
@@ -470,7 +470,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     if (theArray.count) {
         MediaControllerObject *obj = [MediaControllerObject new];
         obj.isGroup = YES;
-        obj.name = NSLocalizedString(@"Web", @"General preferences - controllers table");
+        obj.name = BSLocalizedString(@"Web", @"General preferences - controllers table");
         [mediaControllers addObject:obj];
         for (BSMediaStrategy *strategy in theArray) {
             [mediaControllers addObject:[[MediaControllerObject alloc] initWithObject:strategy]];

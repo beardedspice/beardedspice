@@ -132,7 +132,7 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
     context.exceptionHandler = ^(JSContext __attribute__((unused)) * context,
                                  JSValue * exception) {
       NSString *descr = [NSString
-          stringWithFormat:NSLocalizedString(
+          stringWithFormat:BSLocalizedString(
                                @"Error occured when parsing javascript: %@",
                                @"(BSMediaStrategy) Parsing javascript error "
                                @"description."),
@@ -182,7 +182,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
             errorWithDomain:kBSMediaStrategyErrorDomain
                        code:BSMS_ERROR_DISPLAYNAME
                    userInfo:@{
-                       NSLocalizedDescriptionKey : NSLocalizedString(
+                       NSLocalizedDescriptionKey : BSLocalizedString(
                            @"Error occured when checking strategy: display "
                            @"name of the strategy don't found.",
                            @"(BSMediaStrategy) Not found displayName error "
@@ -250,7 +250,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
                                code:BSMS_ERROR_INTERNAL
                            userInfo:@{
                                NSLocalizedDescriptionKey :
-                                   NSLocalizedString(@"Internal error occured.", @"(BSMediaStrategy) Internal error description.")
+                                   BSLocalizedString(@"Internal error occured.", @"(BSMediaStrategy) Internal error description.")
                                }];
 }
 
@@ -372,7 +372,7 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
 
     return [NSString
         stringWithFormat:
-            NSLocalizedString(
+            BSLocalizedString(
                 @"Strategy with file name: \"%@\"\nDisplay name: \"%@\"\nVersion: %d",
                 @"(BSMediaStrategy) Format of the media strategy description"),
             self.fileName, self.displayName, self.strategyVersion];

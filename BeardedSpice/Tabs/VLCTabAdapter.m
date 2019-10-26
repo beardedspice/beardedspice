@@ -37,7 +37,7 @@
             title = vlc.nameOfCurrentItem;
 
         if ([NSString isNullOrEmpty:title]) {
-            title = NSLocalizedString(@"No Track", @"SpotifyTabAdapter");
+            title = BSLocalizedString(@"No Track", @"SpotifyTabAdapter");
         }
 
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME];

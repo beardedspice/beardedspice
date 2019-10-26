@@ -84,7 +84,7 @@
 //        }
 //
 //        if ([NSString isNullOrEmpty:title]) {
-//            title = NSLocalizedString(@"No Track", @"TidalTabAdapter");
+//            title = BSLocalizedString(@"No Track", @"TidalTabAdapter");
 //        }
 //
 //        return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_DEEZER];

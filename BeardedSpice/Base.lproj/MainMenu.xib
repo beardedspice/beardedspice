@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -16,12 +16,12 @@
                 <outlet property="delegate" destination="PLq-0w-RnA" id="5P9-BT-vuQ"/>
             </connections>
         </customObject>
-        <menu title="AMainMenu" systemMenu="main" id="29">
+        <menu systemMenu="main" id="29">
             <items>
-                <menuItem title="BeardedSpice" id="56">
-                    <menu key="submenu" title="BeardedSpice" systemMenu="apple" id="57">
+                <menuItem title="Beardie" id="56">
+                    <menu key="submenu" title="Beardie" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About BeardedSpice" id="58">
+                            <menuItem title="About Beardie" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
@@ -44,7 +44,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide BeardedSpice" keyEquivalent="h" id="134">
+                            <menuItem title="Hide Beardie" keyEquivalent="h" id="134">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -69,7 +69,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="j6V-3i-UGo"/>
-                            <menuItem title="Quit BeardedSpice" keyEquivalent="q" id="136">
+                            <menuItem title="Quit Beardie" keyEquivalent="q" id="136">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
                                 </connections>
@@ -112,7 +112,7 @@ CQ
 </string>
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
-                <menuItem title="About BeardedSpice" id="uWj-A6-IiV">
+                <menuItem title="About Beardie" id="uWj-A6-IiV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="clickAboutFromStatusMenu:" target="494" id="7ae-JI-6YF"/>
@@ -132,7 +132,7 @@ CQ
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="C1B-TJ-CVh"/>
-                <menuItem title="Quit BeardedSpice" id="PLq-0w-RnA">
+                <menuItem title="Quit Beardie" id="PLq-0w-RnA">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="exitApp:" target="494" id="gbU-LE-9g5"/>

@@ -4,17 +4,17 @@ project 'Beardie'
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'BeardieControllers' do
-    pod 'MASShortcut', '~> 2.3.3'
+    pod 'MASShortcut', '~> 2.4.0'
 
     target 'Beardie' do
-        pod 'MASPreferences', '= 1.1.4'
-        pod 'FMDB', '~> 2.6.2'
+        pod 'MASPreferences', '~> 1.3'
+        pod 'FMDB' , '~> 2.7.5'
 
         # all pods for tests should ONLY go here
         target 'BeardieTests' do
-            pod 'Kiwi'
+            pod 'Kiwi', '~> 3.0.0'
             # pod 'OCMock'
-            pod 'VCRURLConnection'
+            pod 'VCRURLConnection', '~> 0.2.5'
         end
     end
 end

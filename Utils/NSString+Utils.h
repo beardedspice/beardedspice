@@ -45,3 +45,7 @@
 - (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder;
 
 @end
+
+#pragma mark - Public Fuctions
+
+NSString* _Nonnull BSLocalizedString(NSString* _Nonnull key, NSString* _Nullable comment);

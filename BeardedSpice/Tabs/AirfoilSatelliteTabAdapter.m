@@ -87,7 +87,7 @@
         }
         
         if ([NSString isNullOrEmpty:title]) {
-            title = NSLocalizedString(@"No Track", @"AirfoilSatelliteTabAdapter");
+            title = BSLocalizedString(@"No Track", @"AirfoilSatelliteTabAdapter");
         }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_AIRFOILSTLT];

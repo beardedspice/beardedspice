@@ -32,68 +32,68 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K < %@", @"val", @(1)];
     NSString *converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"this.val < 1"]);
+    XCTAssertTrue([converted isEqualToString:@"bsParameters.val < 1"]);
     
     predicate = [NSPredicate predicateWithFormat:@"self.val <= %@", @(1.1)];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"this.val <= 1.1"]);
+    XCTAssertTrue([converted isEqualToString:@"bsParameters.val <= 1.1000000000000001"]);
     
     predicate = [NSPredicate predicateWithFormat:@"val > 1"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"this.val > 1"]);
+    XCTAssertTrue([converted isEqualToString:@"bsParameters.val > 1"]);
 
     predicate = [NSPredicate predicateWithFormat:@"SELF >= 1"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"this >= 1"]);
+    XCTAssertTrue([converted isEqualToString:@"bsParameters >= 1"]);
 
     predicate = [NSPredicate predicateWithFormat:@"obj.title == 'value'"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"this.obj.title == \"value\""]);
+    XCTAssertTrue([converted isEqualToString:@"bsParameters.obj.title == \"value\""]);
     
     predicate = [NSPredicate predicateWithFormat:@"obj.title != %@", @"value"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"this.obj.title != \"value\""]);
+    XCTAssertTrue([converted isEqualToString:@"bsParameters.obj.title != \"value\""]);
     
     predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @".+\\sopa.*"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
     XCTAssertTrue([predicate evaluateWithObject:@"zsdasdfas asdfasdfasdg opa tipa"]);
-    XCTAssertTrue([converted isEqualToString:@"bsMatchesPredicate(this, \".+\\\\sopa.*\", )"]);
+    XCTAssertTrue([converted isEqualToString:@"bsMatchesPredicate(bsParameters, \".+\\\\sopa.*\", )"]);
     
     predicate = [NSPredicate predicateWithFormat:@"obj.title LIKE[c] %@", @"?opa*"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"bsLikePredicate(this.obj.title, \"?opa*\", \"i\")"]);
+    XCTAssertTrue([converted isEqualToString:@"bsLikePredicate(bsParameters.obj.title, \"?opa*\", \"i\")"]);
 
     predicate = [NSPredicate predicateWithFormat:@"obj.title BEGINSWITH[cd] %@", @"opa"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"bsBeginsWithPredicate(this.obj.title, \"opa\", \"i\")"]);
+    XCTAssertTrue([converted isEqualToString:@"bsBeginsWithPredicate(bsParameters.obj.title, \"opa\", \"i\")"]);
     
     predicate = [NSPredicate predicateWithFormat:@"obj.title ENDSWITH[cd] %@", @"opa"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"bsEndsWithPredicate(this.obj.title, \"opa\", \"i\")"]);
+    XCTAssertTrue([converted isEqualToString:@"bsEndsWithPredicate(bsParameters.obj.title, \"opa\", \"i\")"]);
     
     predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS 'tipa'", @"opa"];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"bsContainsPredicate(this.opa, \"tipa\", )"]);
+    XCTAssertTrue([converted isEqualToString:@"bsContainsPredicate(bsParameters.opa, \"tipa\", )"]);
 
     predicate = [NSPredicate predicateWithFormat:@"obj.title IN %@", @[@"opa", @"tipa"]];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"bsInPredicate(this.obj.title, [\"opa\",\"tipa\"], )"]);
+    XCTAssertTrue([converted isEqualToString:@"bsInPredicate(bsParameters.obj.title, [\"opa\",\"tipa\"], )"]);
 
     predicate = [NSPredicate predicateWithFormat:@"val BETWEEN %@", @[@1 , @10]];
     converted = [BSPredicateToJS jsFromPredicate:predicate];
     
-    XCTAssertTrue([converted isEqualToString:@"bsBetweenPredicate(this.val, [1,10], )"]);
+    XCTAssertTrue([converted isEqualToString:@"bsBetweenPredicate(bsParameters.val, [1,10], )"]);
 }
 
 - (void)testCompoundConvertion {
@@ -101,7 +101,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"((title CONTAINS[c] %@) AND opa == TRUE AND tipa == FALSE) OR (title == 'tipa' AND (opa > 1 OR %K < 1))", @"opa", @"tipa"];
     NSString *converted = [BSPredicateToJS jsFromPredicate:predicate];
 
-    XCTAssertTrue([converted isEqualToString:@"( ( bsContainsPredicate(this.title, \"opa\", \"i\") ) && ( this.opa == true ) && ( this.tipa == false ) ) || ( ( this.title == \"tipa\" ) && ( ( this.opa > 1 ) || ( this.tipa < 1 ) ) )"]);
+    XCTAssertTrue([converted isEqualToString:@"( ( bsContainsPredicate(bsParameters.title, \"opa\", \"i\") ) && ( bsParameters.opa == true ) && ( bsParameters.tipa == false ) ) || ( ( bsParameters.title == \"tipa\" ) && ( ( bsParameters.opa > 1 ) || ( bsParameters.tipa < 1 ) ) )"]);
 }
 
 - (void)testPrintJSFunctions {

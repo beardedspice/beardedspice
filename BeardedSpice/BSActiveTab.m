@@ -72,7 +72,7 @@ dispatch_queue_t notificationQueue() {
 
         return result;
     }
-    return NSLocalizedString(@"Unknown", @"Active tab title if we do not know type of the tab.");
+    return BSLocalizedString(@"Unknown", @"Active tab title if we do not know type of the tab.");
 }
 
 - (BOOL)isNativeAdapter {

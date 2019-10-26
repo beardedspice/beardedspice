@@ -61,7 +61,7 @@
         }
 
         if ([NSString isNullOrEmpty:title]) {
-            title = NSLocalizedString(@"No Track", @"iTunesTabAdapter");
+            title = BSLocalizedString(@"No Track", @"iTunesTabAdapter");
         }
 
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_ITUNES];

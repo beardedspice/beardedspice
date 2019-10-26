@@ -54,7 +54,7 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 
 }
 
-- (NSString *)identifier
+- (NSString *)viewIdentifier
 {
     return @"GeneralPreferences";
 }
@@ -66,7 +66,7 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 
 - (NSString *)toolbarItemLabel
 {
-    return NSLocalizedString(@"General", @"Toolbar item name for the General preference pane");
+    return BSLocalizedString(@"General", @"Toolbar item name for the General preference pane");
 }
 
 - (void)viewWillAppear{

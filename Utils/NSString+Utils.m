@@ -77,3 +77,19 @@
 
 
 @end
+
+NSString* BSLocalizedString(NSString* key, NSString* comment) {
+    NSString* localizedString = NSLocalizedString(key, @"");
+
+    if ([localizedString isEqualToString:key]) {
+        static NSBundle * languageBundle;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            NSString * path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+            languageBundle = [NSBundle bundleWithPath:path];
+        });
+
+        localizedString = [languageBundle localizedStringForKey:key value:nil table:nil] ?: @"";
+    }
+    return localizedString;
+}

@@ -78,7 +78,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
-	<string>BeardedSpiceSuite.sdef</string>
+	<string>BeardieSuite.sdef</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

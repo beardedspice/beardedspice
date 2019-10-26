@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Chloe Stars on 8/16/16.
-//  Copyright © 2016 BeardedSpice. All rights reserved.
+//  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version:1,

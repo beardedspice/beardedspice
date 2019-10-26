@@ -4,7 +4,7 @@
 //
 //  Created by Coder-256 on 10/3/15.
 //  Updated by nelsonjchen on 11/24/16.
-//  Copyright © 2016 BeardedSpice. All rights reserved.
+//  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version:2,

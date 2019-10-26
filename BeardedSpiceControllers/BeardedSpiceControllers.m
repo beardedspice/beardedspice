@@ -3,7 +3,7 @@
 //  BeardedSpiceControllers
 //
 //  Created by Roman Sokolov on 05.03.16.
-//  Copyright © 2016 BeardedSpice. All rights reserved.
+//  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "BeardedSpiceControllers.h"

@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 05.03.2018.
-//  Copyright (c) 2018 BeardedSpice. All rights reserved.
+//  Copyright (c) 2018  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 #import "EHLDeferBlock.h"

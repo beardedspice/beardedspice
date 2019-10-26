@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9679332B1855173100A49AC7"
-               BuildableName = "BeardedSpice.app"
-               BlueprintName = "BeardedSpice"
-               ReferencedContainer = "container:BeardedSpice.xcodeproj">
+               BuildableName = "Beardie.app"
+               BlueprintName = "Beardie"
+               ReferencedContainer = "container:Beardie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9679334C1855173100A49AC7"
-               BuildableName = "BeardedSpiceTests.xctest"
-               BlueprintName = "BeardedSpiceTests"
-               ReferencedContainer = "container:BeardedSpice.xcodeproj">
+               BuildableName = "BeardieTests.xctest"
+               BlueprintName = "BeardieTests"
+               ReferencedContainer = "container:Beardie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,29 +41,27 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9679332B1855173100A49AC7"
+            BuildableName = "Beardie.app"
+            BlueprintName = "Beardie"
+            ReferencedContainer = "container:Beardie.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9679334C1855173100A49AC7"
-               BuildableName = "BeardedSpiceTests.xctest"
-               BlueprintName = "BeardedSpiceTests"
-               ReferencedContainer = "container:BeardedSpice.xcodeproj">
+               BuildableName = "BeardieTests.xctest"
+               BlueprintName = "BeardieTests"
+               ReferencedContainer = "container:Beardie.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9679332B1855173100A49AC7"
-            BuildableName = "BeardedSpice.app"
-            BlueprintName = "BeardedSpice"
-            ReferencedContainer = "container:BeardedSpice.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -80,13 +78,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9679332B1855173100A49AC7"
-            BuildableName = "BeardedSpice.app"
-            BlueprintName = "BeardedSpice"
-            ReferencedContainer = "container:BeardedSpice.xcodeproj">
+            BuildableName = "Beardie.app"
+            BlueprintName = "Beardie"
+            ReferencedContainer = "container:Beardie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -99,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9679332B1855173100A49AC7"
-            BuildableName = "BeardedSpice.app"
-            BlueprintName = "BeardedSpice"
-            ReferencedContainer = "container:BeardedSpice.xcodeproj">
+            BuildableName = "Beardie.app"
+            BlueprintName = "Beardie"
+            ReferencedContainer = "container:Beardie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

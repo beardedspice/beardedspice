@@ -26,9 +26,7 @@
 		0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */; };
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
 		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
-		11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */; };
 		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
-		57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
 		65063FEB233DE94E0015F558 /* DeezerTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65063FEA233DE94E0015F558 /* DeezerTabAdapter.m */; };
 		650781191FAF43EE00A0902A /* EHExecuteBlockDelayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */; };
@@ -82,7 +80,7 @@
 		656A00381C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */; };
 		656AFFEF1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFEE1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m */; };
 		656AFFF11C8ACDCF00BD29F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFF01C8ACDCF00BD29F5 /* main.m */; };
-		656AFFF51C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		656AFFF51C8ACDCF00BD29F5 /* BeardieControllers.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 656AFFEA1C8ACDCF00BD29F5 /* BeardieControllers.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		656AFFFD1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 656AFFFC1C8AD3B400BD29F5 /* BSHeadphoneStatusListener.m */; };
 		657635A81E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657635A71E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m */; };
 		657BE28B1F95576C0051EC8E /* MYAnonymousIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 657BE2891F9553470051EC8E /* MYAnonymousIdentity.m */; };
@@ -126,9 +124,11 @@
 		65FBCE3F1EC0F98A004EFFC7 /* BSVolumeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */; };
 		65FBCE401EC0F98A004EFFC7 /* BSVolumeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */; };
 		65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */; };
+		6B0F0B891B2D4A5D78DEB29D /* libPods-BeardieControllers-Beardie-BeardieTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B907FBC93C9D4E5CC63E48B4 /* libPods-BeardieControllers-Beardie-BeardieTests.a */; };
 		78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */; };
-		78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */; };
-		7D8A002D0E49A89BB9CB53DD /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */; };
+		78D9F8121D808FD70081E4EE /* BeardieSuite.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 78D9F8111D808FD70081E4EE /* BeardieSuite.sdef */; };
+		841F369760A8B505DA5D73DE /* libPods-BeardieControllers-Beardie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58757B923D6F627B78E111BF /* libPods-BeardieControllers-Beardie.a */; };
+		84D8DF77A2382EE0BE549ED6 /* libPods-BeardieControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34560D2CEDE291D3BEF2D40E /* libPods-BeardieControllers.a */; };
 		967933301855173100A49AC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		9679333C1855173100A49AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9679333B1855173100A49AC7 /* main.m */; };
 		967933431855173100A49AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 967933421855173100A49AC7 /* AppDelegate.m */; };
@@ -199,7 +199,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
 			dstSubfolderSpec = 16;
 			files = (
-				656AFFF51C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc in Embed XPC Services */,
+				656AFFF51C8ACDCF00BD29F5 /* BeardieControllers.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +213,7 @@
 		03A34920185EA43900C4A62B /* MediaStrategyRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MediaStrategyRegistry.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		03A34921185EA43900C4A62B /* MediaStrategyRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MediaStrategyRegistry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		03F33ECB1855306A00E8F77E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		0A2BBE04075FBA8B7DACC625 /* Pods-BeardieControllers-Beardie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers-Beardie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers-Beardie/Pods-BeardieControllers-Beardie.debug.xcconfig"; sourceTree = "<group>"; };
 		0B064FFC1DC6A85A00CD5F35 /* BSActiveTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSActiveTab.h; sourceTree = "<group>"; };
 		0B064FFD1DC6A85A00CD5F35 /* BSActiveTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSActiveTab.m; sourceTree = "<group>"; };
 		0B1AF3761CCE4D4C0021BBEA /* BSMediaStrategyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMediaStrategyTests.m; sourceTree = "<group>"; };
@@ -235,9 +236,11 @@
 		2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		25D13F6E1E9A2F6400149554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig"; sourceTree = "<group>"; };
+		34560D2CEDE291D3BEF2D40E /* libPods-BeardieControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardieControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig"; sourceTree = "<group>"; };
 		47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig"; sourceTree = "<group>"; };
-		53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C83D9EB34AEB54EAC17BD2C /* Pods-BeardieControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers/Pods-BeardieControllers.debug.xcconfig"; sourceTree = "<group>"; };
+		58757B923D6F627B78E111BF /* libPods-BeardieControllers-Beardie.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardieControllers-Beardie.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E80769C1D58CE180002855D /* Downcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downcast.h; sourceTree = "<group>"; };
 		5E80769D1D58CE180002855D /* DowncastTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowncastTabAdapter.h; sourceTree = "<group>"; };
 		5E80769E1D58CE180002855D /* DowncastTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowncastTabAdapter.m; sourceTree = "<group>"; };
@@ -254,9 +257,6 @@
 		6507A3011F48824000775D14 /* BSWebTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWebTabAdapter.m; sourceTree = "<group>"; };
 		6507A3041F49A4E800775D14 /* BSPredicateToJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPredicateToJS.h; sourceTree = "<group>"; };
 		6507A3051F49A4E800775D14 /* BSPredicateToJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJS.m; sourceTree = "<group>"; };
-		6507C24F2002AD6A003D4B1A /* xar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = xar; sourceTree = "<group>"; };
-		6507C2512002AD6A003D4B1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6507C2522002AD6A003D4B1A /* build-safari-extension.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-safari-extension.sh"; sourceTree = "<group>"; };
 		6507C2692002D311003D4B1A /* Icon-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-32.png"; sourceTree = "<group>"; };
 		6507C26A2002D311003D4B1A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6507C26B2002D311003D4B1A /* Icon-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-64.png"; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 		656A002E1C8AD41A00BD29F5 /* NSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Utils.m"; sourceTree = "<group>"; };
 		656A003F1C8B037A00BD29F5 /* BeardedSpiceControllersProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeardedSpiceControllersProtocol.h; sourceTree = "<group>"; };
 		656A00401C8B037A00BD29F5 /* BeardedSpiceHostAppProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeardedSpiceHostAppProtocol.h; sourceTree = "<group>"; };
-		656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = BeardedSpiceControllers.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		656AFFEA1C8ACDCF00BD29F5 /* BeardieControllers.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = BeardieControllers.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		656AFFED1C8ACDCF00BD29F5 /* BeardedSpiceControllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeardedSpiceControllers.h; sourceTree = "<group>"; };
 		656AFFEE1C8ACDCF00BD29F5 /* BeardedSpiceControllers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeardedSpiceControllers.m; sourceTree = "<group>"; };
 		656AFFF01C8ACDCF00BD29F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -419,29 +419,32 @@
 		65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSVolumeWindowController.xib; sourceTree = "<group>"; };
 		65FF756A1B36CEDF00D81CA5 /* BSLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLaunchAtLogin.h; sourceTree = "<group>"; };
 		65FF756B1B36CEDF00D81CA5 /* BSLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLaunchAtLogin.m; sourceTree = "<group>"; };
+		6C1401D055755AE35F395038 /* Pods-BeardieControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers/Pods-BeardieControllers.release.xcconfig"; sourceTree = "<group>"; };
 		78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAppleScriptSupport.m; sourceTree = "<group>"; };
-		78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BeardedSpiceSuite.sdef; sourceTree = "<group>"; };
-		7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78D9F8111D808FD70081E4EE /* BeardieSuite.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BeardieSuite.sdef; sourceTree = "<group>"; };
+		8DCCE0EAA511B629B4FCBAED /* Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers-Beardie-BeardieTests/Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig"; sourceTree = "<group>"; };
 		91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
-		9679332C1855173100A49AC7 /* BeardedSpice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardedSpice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9679332C1855173100A49AC7 /* Beardie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beardie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679332F1855173100A49AC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		967933321855173100A49AC7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		967933331855173100A49AC7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		967933341855173100A49AC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		967933371855173100A49AC7 /* BeardedSpice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpice-Info.plist"; sourceTree = "<group>"; };
+		967933371855173100A49AC7 /* Beardie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beardie-Info.plist"; sourceTree = "<group>"; };
 		9679333B1855173100A49AC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeardedSpice-Prefix.pch"; sourceTree = "<group>"; };
+		9679333D1855173100A49AC7 /* Beardie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beardie-Prefix.pch"; sourceTree = "<group>"; };
 		967933411855173100A49AC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		967933421855173100A49AC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		967933471855173100A49AC7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeardedSpiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9679334D1855173100A49AC7 /* BeardieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeardieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9679334E1855173100A49AC7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardedSpiceTests-Info.plist"; sourceTree = "<group>"; };
+		967933551855173100A49AC7 /* BeardieTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeardieTests-Info.plist"; sourceTree = "<group>"; };
 		9679336418551BCC00A49AC7 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
-		A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardedSpiceControllers-BeardedSpice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B907FBC93C9D4E5CC63E48B4 /* libPods-BeardieControllers-Beardie-BeardieTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeardieControllers-Beardie-BeardieTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09EFF1F1C8CD49E00B24DA9 /* VLCTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCTabAdapter.m; sourceTree = "<group>"; };
 		D09EFF201C8CD49E00B24DA9 /* VLCTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCTabAdapter.h; sourceTree = "<group>"; };
 		D09EFF211C8CD49E00B24DA9 /* VLC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLC.h; sourceTree = "<group>"; };
+		EE9BD98F3E034DB0F54DC759 /* Pods-BeardieControllers-Beardie-BeardieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers-Beardie-BeardieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers-Beardie-BeardieTests/Pods-BeardieControllers-Beardie-BeardieTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA3068D823D7D4075316314B /* Pods-BeardieControllers-Beardie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers-Beardie.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers-Beardie/Pods-BeardieControllers-Beardie.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,7 +462,7 @@
 			files = (
 				65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */,
 				65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */,
-				57EC5B34F4AD4F87F5D44625 /* libPods-BeardedSpiceControllers.a in Frameworks */,
+				84D8DF77A2382EE0BE549ED6 /* libPods-BeardieControllers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +476,7 @@
 				9679336518551BCC00A49AC7 /* ScriptingBridge.framework in Frameworks */,
 				967933301855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				0BD1B2F31CD21AA900B72A3E /* JavaScriptCore.framework in Frameworks */,
-				7D8A002D0E49A89BB9CB53DD /* libPods-BeardedSpiceControllers-BeardedSpice.a in Frameworks */,
+				841F369760A8B505DA5D73DE /* libPods-BeardieControllers-Beardie.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +487,7 @@
 				0BD1B2F41CD21AB100B72A3E /* JavaScriptCore.framework in Frameworks */,
 				967933501855173100A49AC7 /* Cocoa.framework in Frameworks */,
 				9679334F1855173100A49AC7 /* XCTest.framework in Frameworks */,
-				11A36C1600CD983E3627C87A /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a in Frameworks */,
+				6B0F0B891B2D4A5D78DEB29D /* libPods-BeardieControllers-Beardie-BeardieTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,19 +580,8 @@
 		6507C2492002AD6A003D4B1A /* extension-dev-tools */ = {
 			isa = PBXGroup;
 			children = (
-				6507C24E2002AD6A003D4B1A /* safari */,
 			);
 			path = "extension-dev-tools";
-			sourceTree = "<group>";
-		};
-		6507C24E2002AD6A003D4B1A /* safari */ = {
-			isa = PBXGroup;
-			children = (
-				6507C24F2002AD6A003D4B1A /* xar */,
-				6507C2512002AD6A003D4B1A /* README.md */,
-				6507C2522002AD6A003D4B1A /* build-safari-extension.sh */,
-			);
-			path = safari;
 			sourceTree = "<group>";
 		};
 		6507C2612002AD6A003D4B1A /* Resources */ = {
@@ -852,9 +844,9 @@
 		9679332D1855173100A49AC7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9679332C1855173100A49AC7 /* BeardedSpice.app */,
-				9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */,
-				656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */,
+				9679332C1855173100A49AC7 /* Beardie.app */,
+				9679334D1855173100A49AC7 /* BeardieTests.xctest */,
+				656AFFEA1C8ACDCF00BD29F5 /* BeardieControllers.xpc */,
 				65384D9E21874F810029D9E9 /* BS-Extension.appex */,
 			);
 			name = Products;
@@ -872,10 +864,10 @@
 				9679332F1855173100A49AC7 /* Cocoa.framework */,
 				9679334E1855173100A49AC7 /* XCTest.framework */,
 				967933311855173100A49AC7 /* Other Frameworks */,
-				7FAD2F3C92017C9093D70503 /* libPods-BeardedSpiceControllers.a */,
-				A13F7ACE82D7C5DF91641532 /* libPods-BeardedSpiceControllers-BeardedSpice.a */,
-				53666B3CA02A56F052042196 /* libPods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.a */,
 				0B96393159D20F45215E45F2 /* libPods-SafariExtension.a */,
+				34560D2CEDE291D3BEF2D40E /* libPods-BeardieControllers.a */,
+				58757B923D6F627B78E111BF /* libPods-BeardieControllers-Beardie.a */,
+				B907FBC93C9D4E5CC63E48B4 /* libPods-BeardieControllers-Beardie-BeardieTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -938,10 +930,10 @@
 			isa = PBXGroup;
 			children = (
 				030123391868B1F90080115F /* BeardedSpiceUserDefaults.plist */,
-				967933371855173100A49AC7 /* BeardedSpice-Info.plist */,
-				78D9F8111D808FD70081E4EE /* BeardedSpiceSuite.sdef */,
+				967933371855173100A49AC7 /* Beardie-Info.plist */,
+				78D9F8111D808FD70081E4EE /* BeardieSuite.sdef */,
 				9679333B1855173100A49AC7 /* main.m */,
-				9679333D1855173100A49AC7 /* BeardedSpice-Prefix.pch */,
+				9679333D1855173100A49AC7 /* Beardie-Prefix.pch */,
 				25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */,
 				0B355EF51CBEA3350089C2B3 /* Localizable.strings */,
 			);
@@ -966,7 +958,7 @@
 		967933541855173100A49AC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				967933551855173100A49AC7 /* BeardedSpiceTests-Info.plist */,
+				967933551855173100A49AC7 /* BeardieTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -980,6 +972,12 @@
 				412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */,
 				2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */,
 				2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */,
+				4C83D9EB34AEB54EAC17BD2C /* Pods-BeardieControllers.debug.xcconfig */,
+				6C1401D055755AE35F395038 /* Pods-BeardieControllers.release.xcconfig */,
+				0A2BBE04075FBA8B7DACC625 /* Pods-BeardieControllers-Beardie.debug.xcconfig */,
+				FA3068D823D7D4075316314B /* Pods-BeardieControllers-Beardie.release.xcconfig */,
+				EE9BD98F3E034DB0F54DC759 /* Pods-BeardieControllers-Beardie-BeardieTests.debug.xcconfig */,
+				8DCCE0EAA511B629B4FCBAED /* Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1035,9 +1033,9 @@
 			productReference = 65384D9E21874F810029D9E9 /* BS-Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */ = {
+		656AFFE91C8ACDCF00BD29F5 /* BeardieControllers */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */;
+			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardieControllers" */;
 			buildPhases = (
 				19168B7827BBC96768A4C0E7 /* [CP] Check Pods Manifest.lock */,
 				656AFFE61C8ACDCF00BD29F5 /* Sources */,
@@ -1049,14 +1047,14 @@
 			);
 			dependencies = (
 			);
-			name = BeardedSpiceControllers;
+			name = BeardieControllers;
 			productName = BeardedSpiceControllers;
-			productReference = 656AFFEA1C8ACDCF00BD29F5 /* BeardedSpiceControllers.xpc */;
+			productReference = 656AFFEA1C8ACDCF00BD29F5 /* BeardieControllers.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
-		9679332B1855173100A49AC7 /* BeardedSpice */ = {
+		9679332B1855173100A49AC7 /* Beardie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */;
+			buildConfigurationList = 9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "Beardie" */;
 			buildPhases = (
 				444DB68E61F8ED39440C7D99 /* [CP] Check Pods Manifest.lock */,
 				967933281855173100A49AC7 /* Sources */,
@@ -1075,14 +1073,14 @@
 				656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */,
 				65384DB121874F810029D9E9 /* PBXTargetDependency */,
 			);
-			name = BeardedSpice;
+			name = Beardie;
 			productName = BeardedSpice;
-			productReference = 9679332C1855173100A49AC7 /* BeardedSpice.app */;
+			productReference = 9679332C1855173100A49AC7 /* Beardie.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9679334C1855173100A49AC7 /* BeardedSpiceTests */ = {
+		9679334C1855173100A49AC7 /* BeardieTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */;
+			buildConfigurationList = 967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardieTests" */;
 			buildPhases = (
 				AB9AD96DE64B6D494415BFF9 /* [CP] Check Pods Manifest.lock */,
 				967933491855173100A49AC7 /* Sources */,
@@ -1095,9 +1093,9 @@
 			dependencies = (
 				967933521855173100A49AC7 /* PBXTargetDependency */,
 			);
-			name = BeardedSpiceTests;
+			name = BeardieTests;
 			productName = BeardedSpiceTests;
-			productReference = 9679334D1855173100A49AC7 /* BeardedSpiceTests.xctest */;
+			productReference = 9679334D1855173100A49AC7 /* BeardieTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1109,7 +1107,7 @@
 				CLASSPREFIX = BS;
 				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 1030;
-				ORGANIZATIONNAME = BeardedSpice;
+				ORGANIZATIONNAME = "Roman Sokolov";
 				TargetAttributes = {
 					6507C27920037DE5003D4B1A = {
 						CreatedOnToolsVersion = 9.2;
@@ -1165,7 +1163,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */;
+			buildConfigurationList = 967933271855173100A49AC7 /* Build configuration list for PBXProject "Beardie" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1179,9 +1177,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9679332B1855173100A49AC7 /* BeardedSpice */,
-				9679334C1855173100A49AC7 /* BeardedSpiceTests */,
-				656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
+				9679332B1855173100A49AC7 /* Beardie */,
+				9679334C1855173100A49AC7 /* BeardieTests */,
+				656AFFE91C8ACDCF00BD29F5 /* BeardieControllers */,
 				6507C27920037DE5003D4B1A /* Prepare Extensions */,
 				6507C280200381CE003D4B1A /* Build Extensions */,
 				65384D9D21874F810029D9E9 /* BS-Extension */,
@@ -1217,7 +1215,7 @@
 				65229E871FC40E1900C73281 /* get-extensions.html in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
 				25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */,
-				78D9F8121D808FD70081E4EE /* BeardedSpiceSuite.sdef in Resources */,
+				78D9F8121D808FD70081E4EE /* BeardieSuite.sdef in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
 				65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */,
 				65D57FCB1D02CBFE0016F270 /* MediaStrategies in Resources */,
@@ -1246,7 +1244,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BeardieControllers-Beardie-BeardieTests/Pods-BeardieControllers-Beardie-BeardieTests-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
@@ -1257,7 +1255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardieControllers-Beardie-BeardieTests/Pods-BeardieControllers-Beardie-BeardieTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		19168B7827BBC96768A4C0E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1271,7 +1269,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BeardieControllers-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1289,7 +1287,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BeardieControllers-Beardie-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1302,7 +1300,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BeardieControllers-Beardie/Pods-BeardieControllers-Beardie-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 				"${PODS_ROOT}/MASPreferences/Framework/en.lproj/MASPreferencesWindow.xib",
 			);
@@ -1313,7 +1311,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice/Pods-BeardedSpiceControllers-BeardedSpice-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardieControllers-Beardie/Pods-BeardieControllers-Beardie-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6532292620041634004CE66E /* Work with Browser Extensions */ = {
@@ -1337,7 +1335,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BeardieControllers/Pods-BeardieControllers-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1346,7 +1344,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeardieControllers/Pods-BeardieControllers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB9AD96DE64B6D494415BFF9 /* [CP] Check Pods Manifest.lock */ = {
@@ -1360,7 +1358,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BeardieControllers-Beardie-BeardieTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1508,12 +1506,12 @@
 		};
 		656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 656AFFE91C8ACDCF00BD29F5 /* BeardedSpiceControllers */;
+			target = 656AFFE91C8ACDCF00BD29F5 /* BeardieControllers */;
 			targetProxy = 656AFFF31C8ACDCF00BD29F5 /* PBXContainerItemProxy */;
 		};
 		967933521855173100A49AC7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9679332B1855173100A49AC7 /* BeardedSpice */;
+			target = 9679332B1855173100A49AC7 /* Beardie */;
 			targetProxy = 967933511855173100A49AC7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1793,7 +1791,7 @@
 		};
 		656AFFF61C8ACDCF00BD29F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */;
+			baseConfigurationReference = 4C83D9EB34AEB54EAC17BD2C /* Pods-BeardieControllers.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1812,7 +1810,7 @@
 		};
 		656AFFF71C8ACDCF00BD29F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */;
+			baseConfigurationReference = 6C1401D055755AE35F395038 /* Pods-BeardieControllers.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1869,7 +1867,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
+				GCC_PREFIX_HEADER = "BeardedSpice/Beardie-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1922,7 +1920,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
+				GCC_PREFIX_HEADER = "BeardedSpice/Beardie-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1936,7 +1934,7 @@
 		};
 		9679335E1855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47E7DF3674629C3865366CA8 /* Pods-BeardedSpiceControllers-BeardedSpice.debug.xcconfig */;
+			baseConfigurationReference = 0A2BBE04075FBA8B7DACC625 /* Pods-BeardieControllers-Beardie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1948,17 +1946,17 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				INFOPLIST_FILE = "BeardedSpice/Beardie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
-				PRODUCT_NAME = BeardedSpice;
+				PRODUCT_NAME = Beardie;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		9679335F1855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 412BD1821FB849B7F1BABF75 /* Pods-BeardedSpiceControllers-BeardedSpice.release.xcconfig */;
+			baseConfigurationReference = FA3068D823D7D4075316314B /* Pods-BeardieControllers-Beardie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1970,17 +1968,17 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "BeardedSpice/BeardedSpice-Info.plist";
+				INFOPLIST_FILE = "BeardedSpice/Beardie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
-				PRODUCT_NAME = BeardedSpice;
+				PRODUCT_NAME = Beardie;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		967933611855173100A49AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */;
+			baseConfigurationReference = EE9BD98F3E034DB0F54DC759 /* Pods-BeardieControllers-Beardie-BeardieTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1992,11 +1990,11 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
+				GCC_PREFIX_HEADER = "BeardedSpice/Beardie-Prefix.pch";
+				INFOPLIST_FILE = "BeardedSpiceTests/BeardieTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = BeardedSpiceTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				PRODUCT_NAME = BeardieTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Beardie.app/Contents/MacOS/Beardie";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2004,7 +2002,7 @@
 		};
 		967933621855173100A49AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A913DB70FE33880FAD92004 /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.release.xcconfig */;
+			baseConfigurationReference = 8DCCE0EAA511B629B4FCBAED /* Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2016,11 +2014,11 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeardedSpice/BeardedSpice-Prefix.pch";
-				INFOPLIST_FILE = "BeardedSpiceTests/BeardedSpiceTests-Info.plist";
+				GCC_PREFIX_HEADER = "BeardedSpice/Beardie-Prefix.pch";
+				INFOPLIST_FILE = "BeardedSpiceTests/BeardieTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "foo.bar.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = BeardedSpiceTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeardedSpice.app/Contents/MacOS/BeardedSpice";
+				PRODUCT_NAME = BeardieTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Beardie.app/Contents/MacOS/Beardie";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -2055,7 +2053,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardedSpiceControllers" */ = {
+		656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardieControllers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				656AFFF61C8ACDCF00BD29F5 /* Debug */,
@@ -2064,7 +2062,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		967933271855173100A49AC7 /* Build configuration list for PBXProject "BeardedSpice" */ = {
+		967933271855173100A49AC7 /* Build configuration list for PBXProject "Beardie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9679335B1855173100A49AC7 /* Debug */,
@@ -2073,7 +2071,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpice" */ = {
+		9679335D1855173100A49AC7 /* Build configuration list for PBXNativeTarget "Beardie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9679335E1855173100A49AC7 /* Debug */,
@@ -2082,7 +2080,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardedSpiceTests" */ = {
+		967933601855173100A49AC7 /* Build configuration list for PBXNativeTarget "BeardieTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				967933611855173100A49AC7 /* Debug */,

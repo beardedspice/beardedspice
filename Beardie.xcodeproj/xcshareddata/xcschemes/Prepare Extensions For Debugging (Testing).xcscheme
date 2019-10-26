@@ -17,7 +17,7 @@
                BlueprintIdentifier = "6507C27920037DE5003D4B1A"
                BuildableName = "Prepare Extensions"
                BlueprintName = "Prepare Extensions"
-               ReferencedContainer = "container:BeardedSpice.xcodeproj">
+               ReferencedContainer = "container:Beardie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,8 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -48,11 +46,9 @@
             BlueprintIdentifier = "6507C27920037DE5003D4B1A"
             BuildableName = "Prepare Extensions"
             BlueprintName = "Prepare Extensions"
-            ReferencedContainer = "container:BeardedSpice.xcodeproj">
+            ReferencedContainer = "container:Beardie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -66,7 +62,7 @@
             BlueprintIdentifier = "6507C27920037DE5003D4B1A"
             BuildableName = "Prepare Extensions"
             BlueprintName = "Prepare Extensions"
-            ReferencedContainer = "container:BeardedSpice.xcodeproj">
+            ReferencedContainer = "container:Beardie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

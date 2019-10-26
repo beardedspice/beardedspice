@@ -3,16 +3,16 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 26.06.16.
-//  Copyright © 2016 BeardedSpice. All rights reserved.
+//  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 BS_VERSION = 3.0.1
 BS_BUILD = 41
 
-BS_GROUP = $(DEVELOPMENT_TEAM).com.beardedspice
+BS_GROUP = $(DEVELOPMENT_TEAM).com.calm-apps.mac.beardie
 
 
-BS_BUNDLE_ID                    = com.beardedspice.BeardedSpice
+BS_BUNDLE_ID                    = com.calm-apps.mac.beardie
 BS_CONTROLLER_BUNDLE_ID         = $(BS_BUNDLE_ID).controllers
 
 BS_SAFARI_EXTENSION_BUNDLE_ID   = $(BS_BUNDLE_ID).safari.extension

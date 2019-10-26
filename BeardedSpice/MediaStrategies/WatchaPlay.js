@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by KimJongMin on 2016. 3. 1..
-//  Copyright © 2016년 BeardedSpice. All rights reserved.
+//  Copyright © 2016년  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 // strategy/site notes
 // - favorite, not implemented on this site

@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Stanislav Sidelnikov on 09/11/15.
-//  Copyright © 2015 BeardedSpice. All rights reserved.
+//  Copyright © 2015  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version:1,

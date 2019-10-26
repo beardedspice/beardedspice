@@ -1,17 +1,17 @@
 platform :osx, '10.14'
-project 'BeardedSpice'
+project 'Beardie'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'BeardedSpiceControllers' do
+target 'BeardieControllers' do
     pod 'MASShortcut', '~> 2.3.3'
 
-    target 'BeardedSpice' do
+    target 'Beardie' do
         pod 'MASPreferences', '= 1.1.4'
         pod 'FMDB', '~> 2.6.2'
 
         # all pods for tests should ONLY go here
-        target 'BeardedSpiceTests' do
+        target 'BeardieTests' do
             pod 'Kiwi'
             # pod 'OCMock'
             pod 'VCRURLConnection'

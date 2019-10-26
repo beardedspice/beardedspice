@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:README.md">
+      location = "group:/Users/still/Documents/dev/beardie/README_UNDERCONSTUCTION.md">
    </FileRef>
    <FileRef
       location = "group:/Users/still/Documents/dev/beardie/Beardie.xcodeproj">

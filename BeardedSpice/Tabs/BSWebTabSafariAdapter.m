@@ -80,46 +80,36 @@ static NSSet *_safariBundleIds;
     
     AXUIElementRef ref = AXUIElementCreateApplication(self.application.processIdentifier);
     AXUIElementRef result = NULL;
-    BS_LOG(LOG_DEBUG, @"tipa 1");
     if (ref) {
-        BS_LOG(LOG_DEBUG, @"tipa 2");
 
         CFIndex count = 0;
         CFArrayRef windowArray = NULL;
         AXError err = AXUIElementGetAttributeValueCount(ref, CFSTR("AXWindows"), &count);
         if (err == kAXErrorSuccess && count) {
-            BS_LOG(LOG_DEBUG, @"tipa 3");
 
             err = AXUIElementCopyAttributeValues(ref, CFSTR("AXWindows"), 0, count, &windowArray);
             if (err == kAXErrorSuccess && windowArray) {
-                BS_LOG(LOG_DEBUG, @"tipa 4");
 
                 for ( CFIndex i = 0; i < count; i++){
                     
                     AXUIElementRef window = CFArrayGetValueAtIndex(windowArray, i);
                     if (window) {
-                        BS_LOG(LOG_DEBUG, @"tipa 5");
 
                         CFStringRef role;
                         err = AXUIElementCopyAttributeValue(window, CFSTR("AXRole"), (CFTypeRef *)&role);
                         if (err == kAXErrorSuccess && role){
-                            BS_LOG(LOG_DEBUG, @"tipa 6");
 
                             if (CFStringCompare(role, CFSTR("AXWindow"), 0) == kCFCompareEqualTo) {
-                                BS_LOG(LOG_DEBUG, @"tipa 7");
 
                                 CFStringRef subrole;
                                 err = AXUIElementCopyAttributeValue(window, CFSTR("AXSubrole"), (CFTypeRef *)&subrole);
                                 if (err == kAXErrorSuccess && subrole) {
-                                    BS_LOG(LOG_DEBUG, @"tipa 8 %@", subrole);
                                     
                                     CFStringRef identifier;
                                     err = AXUIElementCopyAttributeValue(window, CFSTR("AXIdentifier"), (CFTypeRef *)&identifier);
                                     if (err == kAXErrorSuccess && identifier) {
-                                        BS_LOG(LOG_DEBUG, @"tipa 10 %@", identifier);
                                         
                                         if (CFStringCompare(identifier, (__bridge CFStringRef)windowId, 0) == kCFCompareEqualTo) {
-                                            BS_LOG(LOG_DEBUG, @"tipa 11");
                                             result = window;
                                             CFRetain(result);
                                             
@@ -131,7 +121,6 @@ static NSSet *_safariBundleIds;
                                         
                                         CFRelease(identifier);
                                     }
-                                    //                                    }
                                     
                                     CFRelease(subrole);
                                 }

@@ -9,8 +9,6 @@
 BS_VERSION = 3.0.1
 BS_BUILD = 41
 
-BS_DEVELOPER_ID = DEV_ID
-
 BS_GROUP = $(DEVELOPMENT_TEAM).com.beardedspice
 
 

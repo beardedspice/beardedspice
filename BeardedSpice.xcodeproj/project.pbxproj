@@ -1113,16 +1113,16 @@
 				TargetAttributes = {
 					6507C27920037DE5003D4B1A = {
 						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = TC3Q7MAJXF;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Automatic;
 					};
 					6507C280200381CE003D4B1A = {
-						DevelopmentTeam = TC3Q7MAJXF;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Automatic;
 					};
 					65384D9D21874F810029D9E9 = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = TC3Q7MAJXF;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -1135,7 +1135,7 @@
 					};
 					656AFFE91C8ACDCF00BD29F5 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = TC3Q7MAJXF;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -1144,7 +1144,7 @@
 						};
 					};
 					9679332B1855173100A49AC7 = {
-						DevelopmentTeam = TC3Q7MAJXF;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -1159,7 +1159,7 @@
 						};
 					};
 					9679334C1855173100A49AC7 = {
-						DevelopmentTeam = TC3Q7MAJXF;
+						DevelopmentTeam = 5F2QV47DGC;
 						ProvisioningStyle = Manual;
 						TestTargetID = 9679332B1855173100A49AC7;
 					};
@@ -1328,7 +1328,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "RESOURCES=\"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Resources/\"\necho \"Copy Safari Extension to app bundle...\"\ncp -v \"${SRCROOT}/BrowserExtensions/build/BeardedSpice.safariextz\" \"${RESOURCES}\" || exit 1\necho \" \"";
+			shellScript = "
+";
 		};
 		899723E2D1D7C2A165079678 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1856,10 +1857,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Adguard Software Limited (TC3Q7MAJXF)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Roman Sokolov (5F2QV47DGC)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = TC3Q7MAJXF;
+				DEVELOPMENT_TEAM = 5F2QV47DGC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1910,11 +1911,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Adguard Software Limited (TC3Q7MAJXF)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Roman Sokolov (5F2QV47DGC)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TC3Q7MAJXF;
+				DEVELOPMENT_TEAM = 5F2QV47DGC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

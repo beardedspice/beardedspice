@@ -4,6 +4,7 @@
 //
 //  Created by Vladimir Burdukov on 3/14/14.
 //  Updated by Ivan Tsyganov     on 2/13/18.
+//  Updated by Arseny Mitin      on 11/18/18.
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 
 BSStrategy = {
@@ -19,8 +20,9 @@ BSStrategy = {
   next: function () {externalAPI.next();},
   favorite: function () {externalAPI.toggleLike();},
   previous: function () {externalAPI.prev();},
-  pause: function () {if (externalAPI.isPlaying()) externalAPI.togglePause();},
-
+  pause: function () {
+    if (self.isPlaying()){externalAPI.togglePause();}
+  },
   trackInfo: function () {
     return {
       track:  externalAPI.getCurrentTrack().title,

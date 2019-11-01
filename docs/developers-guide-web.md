@@ -25,7 +25,7 @@ Media controllers are written as [strategies](https://github.com/beardedspice/be
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2016 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2015-2019 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 // We put the copyright inside the file to retain consistent syntax coloring.
@@ -42,22 +42,26 @@ BSStrategy = {
     format: "%K LIKE[c] '*[YOUR-URL-DOMAIN-OR-TITLE-HERE]*'",
     args: ["URL" /* OR "title" */]
     /* Use "script" if method is "script" */
-    /* script: function () { "javascript that returns a boolean value" } */
+    /* [ex] script: "some javascript here that returns a boolean value" */
   },
 
-  isPlaying: function () { /* javascript that returns a boolean */ },
-  toggle: function () {  },
-  previous: function () { },
-  next: function () {  },
-  pause: function () { },
-  favorite: function () { /* toggles favorite on/off */},
+  /*
+  Elements marked as //OPTIONAL 
+  'MUST' be removed if website does not support corresponding action 
+  */
+  pause:     function () { /* pause site playing */ },
+  isPlaying: function () { /* javascript that returns a boolean */ }, //OPTIONAL
+  toggle:    function () { /* toggle site playing */ },               //OPTIONAL
+  previous:  function () { /* switch to previous track if any */ },   //OPTIONAL
+  next:      function () { /* switch to next track if any */ },       //OPTIONAL
+  favorite:  function () { /* toggles favorite on/off */},            //OPTIONAL
   /*
   - Return a dictionary of namespaced key/values here.
   All manipulation should be supported in javascript.
 
   - Namespaced keys currently supported include: track, album, artist, favorited, image (URL)
   */
-  trackInfo: function () {
+  trackInfo: function () {                                            //OPTIONAL
     return {
         'track': 'the name of the track',
         'album': 'the name of the current album',

@@ -482,7 +482,7 @@ static NSArray *tabClasses;
 - (BOOL)loadCertificate {
     
     NSError *error = NULL;
-    SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(@"BeardedSpice", 3600 * 24 * 350, &error);
+    SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(BS_NAME, 3600 * 24 * 350, &error);
     if (error || identity == nil) {
         BS_LOG(LOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
         return NO;

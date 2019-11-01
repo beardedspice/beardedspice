@@ -7,7 +7,7 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 
 BSStrategy = {
-  version:3,
+  version:4,
   displayName:"YandexMusic",
   accepts: {
     method: "predicateOnTab",
@@ -19,8 +19,8 @@ BSStrategy = {
   next: function () {externalAPI.next();},
   favorite: function () {externalAPI.toggleLike();},
   previous: function () {externalAPI.prev();},
-  pause: function () {externalAPI.togglePause();},
-  
+  pause: function () {if (externalAPI.isPlaying()) externalAPI.togglePause();},
+
   trackInfo: function () {
     return {
       track:  externalAPI.getCurrentTrack().title,

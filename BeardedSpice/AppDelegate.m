@@ -825,7 +825,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)sendUpdateNotificationWithString:(NSString *)message
 {
     NSUserNotification *notification = [NSUserNotification new];
-    notification.title = BSLocalizedString(@"Beardie - Compatibility Updates", @"Notification Titles");
+    notification.title = BSLocalizedString(@"Compatibility Updates", @"Notification Titles");
     notification.subtitle = message;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }

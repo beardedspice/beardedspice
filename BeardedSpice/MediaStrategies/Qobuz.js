@@ -3,7 +3,7 @@
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 15.10.16.
-//  Copyright (c) 2016 BeardedSpice. All rights reserved
+//  Copyright (c) 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
   version:1,

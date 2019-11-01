@@ -7,7 +7,7 @@
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 
 BSStrategy = {
-  version:3,
+  version:4,
   displayName:"YandexRadio",
   accepts: {
     method: "predicateOnTab",
@@ -19,7 +19,7 @@ BSStrategy = {
   next: function () {externalAPI.next();},
   favorite: function () {externalAPI.toggleLike();},
   previous: function () {},
-  pause: function () {externalAPI.togglePause();},
+  pause: function () {if (externalAPI.isPlaying()) externalAPI.togglePause();},
   
   trackInfo: function () {
     return {

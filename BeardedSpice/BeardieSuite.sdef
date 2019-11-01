@@ -4,7 +4,7 @@
 
     <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
 
-	<suite name="Bearded Spice Suite" code="BSss">
+	<suite name="Beardie Suite" code="BSss">
 
 			<class name="application" code="capp" inherits="application" description="The application's top-level scripting object.">
 				<cocoa class="NSApplication"/>

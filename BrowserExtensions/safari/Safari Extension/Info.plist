@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>BeardedSpice</string>
+	<string>$(BS_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -58,7 +58,7 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2018 BeardedSpice. All rights reserved.</string>
+	<string>$(BS_COPYRIGHT)</string>
 	<key>NSHumanReadableDescription</key>
 	<string>This is a Safari Extension. You should tell us what your extension does here.</string>
 </dict>

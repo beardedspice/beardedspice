@@ -50,9 +50,7 @@ static NSImage *_lastImage;
         _artist = info[kBSTrackNameArtist] ?: @"";
         _progress = info[kBSTrackNameProgress] ?: @"";
         _favorited = info[kBSTrackNameFavorited] ?: @0; // 0 could also be evaluated as @NO
-        _image = nil;
-
-        [self imageByUrlString:info[kBSTrackNameImage]];
+        _image = [self imageByUrlString:info[kBSTrackNameImage]];
     }
     return self;
 }

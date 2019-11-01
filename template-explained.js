@@ -3,10 +3,10 @@
 //  BeardedSpice
 //
 //  Created by You on Today's Date.
-//  Copyright (c) 2015-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2015-2019 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-// We put the copyright inside the plist to retain consistent syntax coloring.
+// We put the copyright inside the file to retain consistent syntax coloring.
 
 // Use a syntax checker to ensure validity. One is provided by nodejs (`node -c filename.js`)
 // Normal formatting is supported (can copy/paste with newlines and indentations)
@@ -23,7 +23,10 @@ BSStrategy = {
     /* [ex] script: "some javascript here that returns a boolean value" */
   },
 
-/*  Elements marked as //OPTIONAL 'MUST' be removed if website does not support corresponding action */
+  /*
+  Elements marked as //OPTIONAL 
+  'MUST' be removed if website does not support corresponding action 
+  */
   pause:     function () { /* pause site playing */ },
   isPlaying: function () { /* javascript that returns a boolean */ }, //OPTIONAL
   toggle:    function () { /* toggle site playing */ },               //OPTIONAL

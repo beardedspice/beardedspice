@@ -37,7 +37,7 @@
 
     [self.window setBackgroundColor:[NSColor clearColor]];
     [self.window setOpaque:NO];
-    [self.window setStyleMask:NSBorderlessWindowMask];
+    [self.window setStyleMask:NSWindowStyleMaskBorderless];
     self.window.ignoresMouseEvents = YES;
     self.window.level = NSFloatingWindowLevel;
     
@@ -104,7 +104,7 @@
         
         @synchronized (self) {
             
-            [_hideTimer invalidate];
+            [self->_hideTimer invalidate];
             [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
                 
                 context.duration = 0.01f;
@@ -114,7 +114,7 @@
                 self.window.alphaValue = 1.0f;
                 [self.window orderFront:self];
                 
-                _hideTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
+                self->_hideTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
             }];
         }
     });

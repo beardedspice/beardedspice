@@ -115,7 +115,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                 
                 [openPanel beginWithCompletionHandler:^(NSInteger result) {
                     
-                    if (result == NSFileHandlingPanelOKButton) {
+                    if (result == NSModalResponseOK) {
                         
                         // export to file
                         NSURL *fileURL = openPanel.URL;

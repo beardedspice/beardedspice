@@ -579,7 +579,7 @@ BOOL accessibilityApiEnabled = NO;
             TabAdapter *tab = [item representedObject];
             BOOL isEqual = [_activeApp hasEqualTabAdapter:tab];
 
-            [item setState:(isEqual ? NSOnState : NSOffState)];
+            [item setState:(isEqual ? NSControlStateValueOn : NSControlStateValueOff)];
         }
 
         return NO;

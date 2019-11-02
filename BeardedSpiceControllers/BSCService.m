@@ -128,10 +128,10 @@ static BSCService *bscSingleton;
                 [shortcuts enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                     MASShortcut *shortcut = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
                     if (shortcut) {
-                        [_shortcuts setObject:shortcut forKey:key];
+                        [self->_shortcuts setObject:shortcut forKey:key];
                     }
                     else{
-                        [_shortcuts removeObjectForKey:key];
+                        [self->_shortcuts removeObjectForKey:key];
                     }
                 }];
                 [self refreshShortcutMonitor];
@@ -143,7 +143,7 @@ static BSCService *bscSingleton;
 - (void)setMediaKeysSupportedApps:(NSArray <NSString *>*)bundleIds{
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        _keyTap.blackListBundleIdentifiers = [bundleIds copy];
+        self->_keyTap.blackListBundleIdentifiers = [bundleIds copy];
         NSLog(@"Refresh Key Tab Black List.");
     });
 }
@@ -151,7 +151,7 @@ static BSCService *bscSingleton;
 - (void)setPhoneUnplugActionEnabled:(BOOL)enabled{
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        _hpuListener.enabled = enabled;
+        self->_hpuListener.enabled = enabled;
     });
 }
 
@@ -161,14 +161,14 @@ static BSCService *bscSingleton;
     dispatch_async(dispatch_get_main_queue(), ^{
         @autoreleasepool {
 
-            _useAppleRemote = enabled;
+            self->_useAppleRemote = enabled;
 
             NSLog(@"Reset Apple Remote");
 
-            if (_enabled && _useAppleRemote) {
+            if (self->_enabled && _useAppleRemote) {
 
                 @try {
-                    [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+                    [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
                     NSLog(@"Error when stopListenong on Apple Remotes: %@", exception);
@@ -178,7 +178,7 @@ static BSCService *bscSingleton;
                 @try {
 
                     NSArray *appleRemotes = [DDHidAppleRemote allRemotes];
-                    _appleRemotes = [NSMutableArray arrayWithCapacity:appleRemotes.count];
+                    self->_appleRemotes = [NSMutableArray arrayWithCapacity:appleRemotes.count];
                     for (DDHidAppleRemote *item in appleRemotes) {
 
                         @try {
@@ -187,7 +187,7 @@ static BSCService *bscSingleton;
                             [item setListenInExclusiveMode:YES];
                             [item startListening];
 
-                            [_appleRemotes addObject:item];
+                            [self->_appleRemotes addObject:item];
 #if DEBUG
                             NSLog(@"Apple Remote added - %@", item);
 #endif
@@ -204,12 +204,12 @@ static BSCService *bscSingleton;
             } else {
 
                 @try {
-                    [_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
+                    [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
                     NSLog(@"Error when stopListenong on Apple Remotes: %@", exception);
                 }
-                _appleRemotes = nil;
+                self->_appleRemotes = nil;
             }
         }
     });
@@ -403,11 +403,11 @@ static BSCService *bscSingleton;
 
     __block BOOL result = YES;
     [EHSystemUtils callOnMainQueue:^{
-        if (_enabled) {
-            result = [_keyTap startWatchingMediaKeys];
+        if (self->_enabled) {
+            result = [self->_keyTap startWatchingMediaKeys];
         }
         else {
-            [_keyTap stopWatchingMediaKeys];
+            [self->_keyTap stopWatchingMediaKeys];
         }
     }];
 
@@ -456,19 +456,19 @@ static BSCService *bscSingleton;
 
             NSLog(@"Reset Mikeys");
 
-            if (_mikeys != nil) {
+            if (self->_mikeys != nil) {
                 @try {
-                    [_mikeys makeObjectsPerformSelector:@selector(stopListening)];
+                    [self->_mikeys makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
                     NSLog(@"Error when stopListening on Apple Mic: %@", exception);
                 }
             }
 
-            if (_enabled) {
+            if (self->_enabled) {
                 @try {
                     NSArray *mikeys = [DDHidAppleMikey allMikeys];
-                    _mikeys = [NSMutableArray arrayWithCapacity:mikeys.count];
+                    self->_mikeys = [NSMutableArray arrayWithCapacity:mikeys.count];
                     for (DDHidAppleMikey *item in mikeys) {
 
                         @try {
@@ -477,7 +477,7 @@ static BSCService *bscSingleton;
                             [item setListenInExclusiveMode:YES];
                             [item startListening];
 
-                            [_mikeys addObject:item];
+                            [self->_mikeys addObject:item];
 #if DEBUG
                             NSLog(@"Apple Mic added - %@", item);
 #endif
@@ -502,9 +502,9 @@ static BSCService *bscSingleton;
         @autoreleasepool {
 
             [[BSCShortcutMonitor sharedMonitor] unregisterAllShortcuts];
-            if (_enabled) {
+            if (self->_enabled) {
 
-                MASShortcut *shortcut = _shortcuts[BeardedSpicePlayPauseShortcut];
+                MASShortcut *shortcut = self->_shortcuts[BeardedSpicePlayPauseShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -512,7 +512,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpiceNextTrackShortcut];
+                shortcut = self->_shortcuts[BeardedSpiceNextTrackShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -520,7 +520,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpicePreviousTrackShortcut];
+                shortcut = self->_shortcuts[BeardedSpicePreviousTrackShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -528,7 +528,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpiceActiveTabShortcut];
+                shortcut = self->_shortcuts[BeardedSpiceActiveTabShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -538,7 +538,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpiceFavoriteShortcut];
+                shortcut = self->_shortcuts[BeardedSpiceFavoriteShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -546,7 +546,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpiceNotificationShortcut];
+                shortcut = self->_shortcuts[BeardedSpiceNotificationShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -556,7 +556,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpiceActivatePlayingTabShortcut];
+                shortcut = self->_shortcuts[BeardedSpiceActivatePlayingTabShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
                         
@@ -566,7 +566,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpicePlayerNextShortcut];
+                shortcut = self->_shortcuts[BeardedSpicePlayerNextShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -576,7 +576,7 @@ static BSCService *bscSingleton;
                     }];
                 }
 
-                shortcut = _shortcuts[BeardedSpicePlayerPreviousShortcut];
+                shortcut = self->_shortcuts[BeardedSpicePlayerPreviousShortcut];
                 if (shortcut){
                     [[BSCShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
 
@@ -596,7 +596,7 @@ static BSCService *bscSingleton;
     dispatch_async(workingQueue, ^{
         @autoreleasepool {
 
-            for (NSXPCConnection *conn in _connections) {
+            for (NSXPCConnection *conn in self->_connections) {
 
                 id<BeardedSpiceHostAppProtocol, NSObject> obj = [conn remoteObjectProxy];
 

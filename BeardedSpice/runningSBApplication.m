@@ -114,7 +114,7 @@ static NSMutableDictionary *_sharedAppHandler;
 - (BOOL)activate{
     [EHSystemUtils callOnMainQueue:^{
         
-        _wasActivated = [[self runningApplication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
+        self->_wasActivated = [[self runningApplication] activateWithOptions:(NSApplicationActivateIgnoringOtherApps | NSApplicationActivateAllWindows)];
     }];
     return _wasActivated;
 }

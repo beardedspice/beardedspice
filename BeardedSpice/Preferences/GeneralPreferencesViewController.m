@@ -72,7 +72,7 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 - (void)viewWillAppear{
 
     [self repairLaunchAtLogin];
-    self.enableBrowserExtensions.state = [[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled] ? NSOnState : NSOffState;
+    self.enableBrowserExtensions.state = [[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled] ? NSControlStateValueOn : NSControlStateValueOff;
 }
 
 - (NSView *)initialKeyView{
@@ -129,7 +129,7 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
                             }];
     });
     NSButton *button = sender;
-    [[NSUserDefaults standardUserDefaults] setBool:(button.state == NSOnState) forKey:BSWebSocketServerEnabled];
+    [[NSUserDefaults standardUserDefaults] setBool:(button.state == NSControlStateValueOn) forKey:BSWebSocketServerEnabled];
     [sendNotification executeOnceAfterCalm];
 }
 

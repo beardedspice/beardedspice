@@ -81,12 +81,6 @@ extern NSString *_Nonnull const kBSMediaStrategyErrorDomain;
 - (NSComparisonResult)compare:(BSMediaStrategy * _Nonnull)strategy;
 
 /**
-    @param methodName the name of the method to check if is implemented by this strategy
-    @return A Boolean indicating if this strategy has implemented the provided method name
- */
-- (BOOL)testIfImplemented:(NSString * _Nonnull)methodName;
-
-/**
     @return A Boolean saying if this tab is in the playback state.
  */
 - (BOOL)isPlaying:(TabAdapter * _Nonnull)tab;

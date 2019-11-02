@@ -140,7 +140,7 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
       err = [NSError errorWithDomain:kBSMediaStrategyErrorDomain
                                 code:BSMS_ERROR_JSPARSING
                             userInfo:@{NSLocalizedDescriptionKey : descr}];
-      NSLog(@"JS Error with Strategy (%@): %@", _fileName, exception);
+        NSLog(@"JS Error with Strategy (%@): %@", self->_fileName, exception);
     };
 
     JSValue *strategyData = [context evaluateScript:_strategyJsBody];

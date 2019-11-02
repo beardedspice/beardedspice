@@ -118,7 +118,7 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
                 }
             }
             @synchronized(self) {
-                _tabs = [tabs copy];
+                self->_tabs = [tabs copy];
             }
         }
     });

@@ -222,7 +222,7 @@ static NSArray *tabClasses;
                 }
                 BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : tab));
                 if (tab) {
-                    [_tabs addObject:tab];
+                    [self->_tabs addObject:tab];
                 }
                 else {
                     BS_LOG(LOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);

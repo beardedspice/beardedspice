@@ -165,7 +165,7 @@ static BSCService *bscSingleton;
 
             NSLog(@"Reset Apple Remote");
 
-            if (self->_enabled && _useAppleRemote) {
+            if (self->_enabled && self->_useAppleRemote) {
 
                 @try {
                     [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];

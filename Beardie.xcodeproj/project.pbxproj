@@ -43,8 +43,6 @@
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
 		65384D9F21874F810029D9E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679332F1855173100A49AC7 /* Cocoa.framework */; };
 		65384DA321874F810029D9E9 /* SafariExtensionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DA221874F810029D9E9 /* SafariExtensionHandler.m */; };
-		65384DAC21874F810029D9E9 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 65384DAB21874F810029D9E9 /* script.js */; };
-		65384DAE21874F810029D9E9 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */; };
 		65384DB221874F810029D9E9 /* BS-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65384D9E21874F810029D9E9 /* BS-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65384DBB2187BC5C0029D9E9 /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
 		6539636723129FCE00590316 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6539636623129FCE00590316 /* shared */; };
@@ -261,8 +259,6 @@
 		6507C26B2002D311003D4B1A /* Icon-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-64.png"; sourceTree = "<group>"; };
 		6507C26C2002D311003D4B1A /* Icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-128.png"; sourceTree = "<group>"; };
 		6507C26D2002D311003D4B1A /* Icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-16.png"; sourceTree = "<group>"; };
-		6507C2712002D311003D4B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6507C2722002D311003D4B1A /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		6507C2782002D311003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		6507C288200382A9003D4B1A /* prepare-extensions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "prepare-extensions.sh"; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
@@ -283,8 +279,6 @@
 		65384DA121874F810029D9E9 /* SafariExtensionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariExtensionHandler.h; sourceTree = "<group>"; };
 		65384DA221874F810029D9E9 /* SafariExtensionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafariExtensionHandler.m; sourceTree = "<group>"; };
 		65384DAA21874F810029D9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65384DAB21874F810029D9E9 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		65384DAF21874F810029D9E9 /* Safari_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Safari_Extension.entitlements; sourceTree = "<group>"; };
 		65384DB8218760980029D9E9 /* BeardedSpice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeardedSpice.entitlements; sourceTree = "<group>"; };
 		65384DB92187BC5C0029D9E9 /* BSSharedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSharedResources.h; sourceTree = "<group>"; };
@@ -628,8 +622,6 @@
 			isa = PBXGroup;
 			children = (
 				65384DA021874F810029D9E9 /* Safari Extension */,
-				6507C2712002D311003D4B1A /* Info.plist */,
-				6507C2722002D311003D4B1A /* Settings.plist */,
 			);
 			path = safari;
 			sourceTree = "<group>";
@@ -650,8 +642,6 @@
 				65384DA121874F810029D9E9 /* SafariExtensionHandler.h */,
 				65384DA221874F810029D9E9 /* SafariExtensionHandler.m */,
 				65384DAA21874F810029D9E9 /* Info.plist */,
-				65384DAB21874F810029D9E9 /* script.js */,
-				65384DAD21874F810029D9E9 /* ToolbarItemIcon.pdf */,
 				65384DAF21874F810029D9E9 /* Safari_Extension.entitlements */,
 			);
 			path = "Safari Extension";
@@ -994,7 +984,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /bin/bash;
-			buildWorkingDirectory = "$(SRCROOT)/BrowserExtensions";
+			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 			);
 			name = "Prepare Extensions";
@@ -1008,7 +998,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /bin/bash;
-			buildWorkingDirectory = "$(SRCROOT)/BrowserExtensions";
+			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 			);
 			name = "Build Extensions";
@@ -1167,10 +1157,9 @@
 			};
 			buildConfigurationList = 967933271855173100A49AC7 /* Build configuration list for PBXProject "Beardie" */;
 			compatibilityVersion = "Xcode 6.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				Base,
 				ru,
 				en,
@@ -1195,9 +1184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65384DAE21874F810029D9E9 /* ToolbarItemIcon.pdf in Resources */,
 				6539636723129FCE00590316 /* shared in Resources */,
-				65384DAC21874F810029D9E9 /* script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

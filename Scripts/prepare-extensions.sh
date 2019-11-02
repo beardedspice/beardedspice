@@ -10,18 +10,25 @@ echo "================================================="
 echo "Prepare browser extensions..."
 echo "================================================="
 
+EXTENSIONS="${SRCROOT}/BrowserExtensions"
+EXTENSIONS_BUILD="${SRCROOT}/build/extensions"
+EXTENSION_CHROME="${EXTENSIONS_BUILD}/Beardie.chrome"
+
+rm -Rf "${EXTENSIONS_BUILD}"
+mkdir -pv "${EXTENSIONS_BUILD}"
+
 echo " "
 echo "Prepare Google Chrome browser extension..."
 echo "-------------------------------------------------"
-rm -Rf ./build/BeardedSpice.chrome
-mkdir -pv ./build/BeardedSpice.chrome
-cp -v ./chrome/* ./build/BeardedSpice.chrome/
-cp -vR ./sharedFiles/shared ./build/BeardedSpice.chrome/shared
-cp -vR ./sharedFiles/icon ./build/BeardedSpice.chrome/icon
+rm -Rf "${EXTENSION_CHROME}"
+mkdir -pv "${EXTENSION_CHROME}"
+cp -vR "${EXTENSIONS}/chrome/" "${EXTENSION_CHROME}/" || exit 1
+cp -vR "${EXTENSIONS}/sharedFiles/shared" "${EXTENSION_CHROME}/shared"
+cp -vR "${EXTENSIONS}/sharedFiles/icon" "${EXTENSION_CHROME}/icon"
 
 echo "Apply env vars to manifest.json"
-Template=$( cat ./build/BeardedSpice.chrome/manifest.json | sed "s/\"/\\\\\"/g" )
-eval "echo \"$Template\"" > ./build/BeardedSpice.chrome/manifest.json || exit 1
+Template=$( cat "${EXTENSION_CHROME}/manifest.json" | sed "s/\"/\\\\\"/g" )
+eval "echo \"$Template\"" > "${EXTENSION_CHROME}/manifest.json" || exit 1
 
 echo "Done"
 
@@ -30,11 +37,10 @@ echo " "
 echo "-------------------------------------------------"
 echo "Reveal in Finder"
 echo "-------------------------------------------------"
-ABSOLUTE_PATH=$(cd ./build; pwd)
 APPLESCRIPTFOROPENFOLDER="
 tell application \"Finder\"
 activate
-reveal (\"${ABSOLUTE_PATH}/\" as POSIX file)
+reveal (\"${EXTENSIONS_BUILD}/\" as POSIX file)
 end tell
 "
 

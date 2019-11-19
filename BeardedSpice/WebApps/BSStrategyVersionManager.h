@@ -16,7 +16,7 @@ extern NSString *BSVMStrategyChangedNotification;
 /**
   Load currently saved version index
   At specified time, download a copy of the remote version index from the git repo
-  Save the new index and download updated plists if any exist
+  Save the new index and download updated JS if any exist
   At query time, if a strategy is being or will be used, reload the cached strategy object.
  */
 @interface BSStrategyVersionManager : NSObject

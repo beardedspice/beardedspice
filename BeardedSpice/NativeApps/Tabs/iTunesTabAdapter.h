@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 #import "iTunes.h"
 
 @class runningSBApplication, Track;
 
-@interface iTunesTabAdapter : NativeAppTabAdapter{
+@interface iTunesTabAdapter : BSNativeAppTabAdapter{
     
     BOOL iTunesNeedDisplayNotification;
 }

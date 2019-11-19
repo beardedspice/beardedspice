@@ -38,7 +38,7 @@ dispatch_queue_t notificationQueue() {
 
 - (BOOL)hasEqualTabAdapter:(id)tabAdapter {
     if ([tabAdapter isKindOfClass:TabAdapter.class] ||
-        [tabAdapter isKindOfClass:NativeAppTabAdapter.class])
+        [tabAdapter isKindOfClass:BSNativeAppTabAdapter.class])
         return [_activeTab isEqual:tabAdapter];
 
     return NO;
@@ -76,7 +76,7 @@ dispatch_queue_t notificationQueue() {
 }
 
 - (BOOL)isNativeAdapter {
-    return [_activeTab isKindOfClass:NativeAppTabAdapter.class];
+    return [_activeTab isKindOfClass:BSNativeAppTabAdapter.class];
 }
 
 - (BOOL)isWebAdapter {
@@ -278,7 +278,7 @@ dispatch_queue_t notificationQueue() {
     BSTrack *track = nil;
     if ([self isNativeAdapter]) {
         if ([_activeTab respondsToSelector:@selector(trackInfo)]) {
-            track = [(NativeAppTabAdapter *)_activeTab trackInfo];
+            track = [(BSNativeAppTabAdapter *)_activeTab trackInfo];
         }
     } else {
         track = [_activeTab trackInfo];
@@ -303,7 +303,7 @@ dispatch_queue_t notificationQueue() {
 
     notification.identifier = kBSTrackNameIdentifier;
     notification.title = [self displayName];
-    notification.informativeText = @"No track info available";
+    notification.informativeText = @"no-track-title info available";
 
     NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
     [notifCenter removeDeliveredNotification:notification];

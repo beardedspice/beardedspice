@@ -8,7 +8,7 @@
 
 #import "GeneralPreferencesViewController.h"
 #import "MediaStrategyRegistry.h"
-#import "NativeAppTabRegistry.h"
+#import "NativeAppTabsRegistry.h"
 #import "MediaControllerObject.h"
 #import "BSLaunchAtLogin.h"
 #import "BSMediaStrategyEnableButton.h"

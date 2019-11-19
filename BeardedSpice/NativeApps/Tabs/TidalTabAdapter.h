@@ -6,9 +6,9 @@
 //  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 #import "BSVolumeControlProtocol.h"
 
-@interface TidalTabAdapter : NativeAppTabAdapter <BSVolumeControlProtocol>
+@interface TidalTabAdapter : BSNativeAppTabAdapter <BSVolumeControlProtocol>
 
 @end

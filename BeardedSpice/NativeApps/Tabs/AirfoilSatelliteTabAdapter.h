@@ -6,8 +6,8 @@
 //  Copyright (c) 2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 
-@interface AirfoilSatelliteTabAdapter : NativeAppTabAdapter
+@interface AirfoilSatelliteTabAdapter : BSNativeAppTabAdapter
 
 @end

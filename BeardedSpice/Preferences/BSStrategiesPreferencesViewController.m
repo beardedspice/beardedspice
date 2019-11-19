@@ -8,7 +8,7 @@
 
 #import "BSStrategiesPreferencesViewController.h"
 #import "MediaStrategyRegistry.h"
-#import "NativeAppTabRegistry.h"
+#import "NativeAppTabsRegistry.h"
 #import "MediaControllerObject.h"
 #import "BSMediaStrategyEnableButton.h"
 #import "BSMediaStrategy.h"
@@ -429,9 +429,9 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     } else {
         // Native
         if (enabled) {
-            [[NativeAppTabRegistry singleton] enableNativeAppClass:obj.representationObject];
+            [[NativeAppTabsRegistry singleton] enableNativeAppClass:obj.representationObject];
         } else {
-            [[NativeAppTabRegistry singleton] disableNativeAppClass:obj.representationObject];
+            [[NativeAppTabsRegistry singleton] disableNativeAppClass:obj.representationObject];
         }
         // save user strategies
         [userNativeApps setObject:@(enabled) forKey:obj.name];
@@ -451,7 +451,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     
     NSMutableArray *mediaControllers = [NSMutableArray array];
     
-    NSArray *theArray = [NativeAppTabRegistry defaultNativeAppClasses];
+    NSArray *theArray = [NativeAppTabsRegistry defaultNativeAppClasses];
     if (theArray.count) {
         
         MediaControllerObject *obj = [MediaControllerObject new];

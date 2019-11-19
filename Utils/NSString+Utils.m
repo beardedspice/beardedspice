@@ -89,7 +89,7 @@ NSString* BSLocalizedString(NSString* key, NSString* comment) {
             languageBundle = [NSBundle bundleWithPath:path];
         });
 
-        localizedString = [languageBundle localizedStringForKey:key value:nil table:nil] ?: @"";
+        localizedString = [languageBundle localizedStringForKey:key value:@"" table:nil] ?: @"";
     }
     return localizedString;
 }

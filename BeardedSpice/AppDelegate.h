@@ -11,7 +11,7 @@
 #import "iTunes.h"
 #import "TabAdapter.h"
 #import "MediaStrategyRegistry.h"
-#import "NativeAppTabRegistry.h"
+#import "NativeAppTabsRegistry.h"
 #import "BeardedSpiceHostAppProtocol.h"
 
 #import "BSMediaStrategy.h"

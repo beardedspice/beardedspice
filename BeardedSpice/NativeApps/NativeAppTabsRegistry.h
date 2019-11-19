@@ -1,5 +1,5 @@
 //
-//  NativeAppTabRegistry.h
+//  NativeAppTabsRegistry.h
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 01.05.15.
@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 
-extern NSString *BSNativeAppTabRegistryChangedNotification;
+extern NSString *BSNativeAppTabsRegistryChangedNotification;
 
-@interface NativeAppTabRegistry : NSObject{
+@interface NativeAppTabsRegistry : NSObject{
     
     NSMutableArray *_availableAppClasses;
     NSMutableDictionary *_availableCache;
 }
 
-+ (NativeAppTabRegistry *)singleton;
++ (NativeAppTabsRegistry *)singleton;
 - (void)setUserDefaultsKey:(NSString *)defaultsKey;
 
 + (NSArray *)defaultNativeAppClasses;

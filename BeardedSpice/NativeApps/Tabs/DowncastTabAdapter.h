@@ -6,8 +6,8 @@
 //  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 
-@interface DowncastTabAdapter : NativeAppTabAdapter
+@interface DowncastTabAdapter : BSNativeAppTabAdapter
 
 @end

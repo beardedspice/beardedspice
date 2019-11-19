@@ -15,10 +15,6 @@
 
 #define APPID_SPOTIFY           @"com.spotify.client"
 #define APPNAME_SPOTIFY         @"Spotify"
-#define URL_INFO_FORMAT         @"https://api.spotify.com/v1/tracks/%@"
-#define GET_INFO_TIMEOUT        1.0
-#define IMAGE_OPTIMAL_WIDTH     128
-
 
 @implementation SpotifyTabAdapter
 
@@ -26,8 +22,12 @@ static NSString *_lastTrackId;
 static NSImage *_lastTrackImage;
 
 + (NSString *)displayName{
-
-    return APPNAME_SPOTIFY;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME_SPOTIFY;
 }
 
 + (NSString *)bundleId{
@@ -57,7 +57,7 @@ static NSImage *_lastTrackImage;
         }
 
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"No Track", @"SpotifyTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"SpotifyTabAdapter");
         }
 
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_SPOTIFY];
@@ -66,13 +66,13 @@ static NSImage *_lastTrackImage;
 
 - (NSString *)URL{
 
-    return @"Spotify";
+    return APPID_SPOTIFY;
 }
 
 // We have only one window.
 - (NSString *)key{
 
-    return @"A:SPOTIFY";
+    return @"A:" APPID_SPOTIFY;
 }
 
 // We have only one window.

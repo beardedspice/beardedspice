@@ -15,7 +15,7 @@ DEPENDENCIES:
   - VCRURLConnection (~> 0.2.5)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FMDB
     - Kiwi
     - MASPreferences
@@ -31,4 +31,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 4ce641865acd3805a8915188d579d36e37863f14
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

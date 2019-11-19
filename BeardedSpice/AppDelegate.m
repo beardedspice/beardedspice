@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 
 #import "BSSharedResources.h"
 #import "BeardedSpiceControllersProtocol.h"
@@ -1145,7 +1145,7 @@ BOOL accessibilityApiEnabled = NO;
 
     NSMutableArray *keyTapBlackList = [NSMutableArray arrayWithCapacity:5];
 
-    for (Class theClass in [NativeAppTabRegistry.singleton enabledNativeAppClasses]) {
+    for (Class theClass in [NativeAppTabsRegistry.singleton enabledNativeAppClasses]) {
         [keyTapBlackList addObject:[theClass bundleId]];
     }
     [keyTapBlackList addObject:[[NSBundle mainBundle] bundleIdentifier]];

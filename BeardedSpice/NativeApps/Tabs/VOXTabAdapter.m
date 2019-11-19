@@ -19,8 +19,12 @@
 @implementation VOXTabAdapter
 
 + (NSString *)displayName{
-
-    return APPNAME_VOX;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME_VOX;
 }
 
 + (NSString *)bundleId{
@@ -48,7 +52,7 @@
         }
 
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"No Track", @"SpotifyTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"SpotifyTabAdapter");
         }
 
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_VOX];
@@ -56,13 +60,13 @@
 }
 - (NSString *)URL{
 
-    return @"VOX";
+    return APPID_VOX;
 }
 
 // We have only one window.
 - (NSString *)key{
 
-    return @"A:VOX";
+    return @"A:" APPID_VOX;
 }
 
 // We have only one window.

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 
-@interface VLCTabAdapter : NativeAppTabAdapter
+@interface VLCTabAdapter : BSNativeAppTabAdapter
 
 @end

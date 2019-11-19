@@ -16,8 +16,8 @@
 //#import "FMDB.h"
 //#import "sqlite3.h"
 
-#define APPNAME_DEEZER           @"DEEZER"
-#define APPID_TIDAL             @"com.deezer.deezer-desktop"
+#define APPNAME           @"DEEZER"
+#define APPID             @"com.deezer.deezer-desktop"
 
 //#define DB_PATH                 @"TIDAL/Local Storage/https_desktop.tidal.com_0.localstorage"
 //#define IMAGE_URL_FORMAT        @"https://resources.wimpmusic.com/images/%@/320x320.jpg"
@@ -53,54 +53,32 @@
 //}
 //
 + (NSString *)displayName{
-    
-    return APPNAME_DEEZER;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME;
 }
 
 + (NSString *)bundleId{
     
-    return APPID_TIDAL;
+    return APPID;
 }
 
 - (NSString *)title {
-
-    
-//    @autoreleasepool {
-//
-//        BSTrack *currentTrack = [self trackInfoInternalWithLoadImage:NO];
-//
-//        NSString *title;
-//        if (currentTrack) {
-//
-//            if (![NSString isNullOrEmpty:currentTrack.track])
-//            title = currentTrack.track;
-//
-//            if (![NSString isNullOrEmpty:currentTrack.artist]) {
-//
-//                if (title) title = [title stringByAppendingFormat:@" - %@", currentTrack.artist];
-//                else
-//                title = currentTrack.artist;
-//            }
-//        }
-//
-//        if ([NSString isNullOrEmpty:title]) {
-//            title = BSLocalizedString(@"No Track", @"TidalTabAdapter");
-//        }
-//
-//        return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_DEEZER];
-//    }
-    return APPNAME_DEEZER;
+    return DeezerTabAdapter.displayName;
 }
 
 - (NSString *)URL{
     
-    return APPNAME_DEEZER;
+    return APPID;
 }
 
 // We have only one window.
 - (NSString *)key{
     
-    return @"A:" APPNAME_DEEZER;
+    return @"A:" APPID;
 }
 
 // We have only one window.

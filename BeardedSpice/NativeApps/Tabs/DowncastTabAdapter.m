@@ -19,8 +19,12 @@
 @implementation DowncastTabAdapter
 
 + (NSString *)displayName{
-    
-    return APPNAME_DOWNCAST;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME_DOWNCAST;
 }
 
 + (NSString *)bundleId{
@@ -47,7 +51,7 @@
         }
         
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"No Track", @"DowncastTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"DowncastTabAdapter");
         }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_DOWNCAST];
@@ -55,13 +59,13 @@
 }
 - (NSString *)URL{
     
-    return @"Downcast";
+    return APPID_DOWNCAST;
 }
 
 // We have only one window.
 - (NSString *)key{
     
-    return @"A:Downcast";
+    return @"A:" APPID_DOWNCAST;
 }
 
 // We have only one window.

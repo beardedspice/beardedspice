@@ -58,8 +58,12 @@
 }
 
 + (NSString *)displayName{
-    
-    return APPNAME_AIRFOILSTLT;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME_AIRFOILSTLT;
 }
 
 + (NSString *)bundleId{
@@ -87,10 +91,10 @@
         }
         
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"No Track", @"AirfoilSatelliteTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"AirfoilSatelliteTabAdapter");
         }
         
-        return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_AIRFOILSTLT];
+        return [NSString stringWithFormat:@"%@ (%@)", title, AirfoilSatelliteTabAdapter.displayName];
     }
 }
 - (NSString *)URL{

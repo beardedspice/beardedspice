@@ -1,12 +1,12 @@
 //
-//  NativeAppTabRegistry.m
+//  NativeAppTabsRegistry.m
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 01.05.15.
 //  Copyright (c) 2015 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "NativeAppTabRegistry.h"
+#import "NativeAppTabsRegistry.h"
 #import "BSStrategiesPreferencesViewController.h"
 
 #import "iTunesTabAdapter.h"
@@ -17,35 +17,37 @@
 #import "AirfoilSatelliteTabAdapter.h"
 #import "TidalTabAdapter.h"
 #import "DeezerTabAdapter.h"
+#import "BSMusicTabAdapter.h"
+#import "BSTVTabAdapter.h"
 
-NSString *BSNativeAppTabRegistryChangedNotification = @"BSNativeAppTabRegistryChangedNotification";
+NSString *BSNativeAppTabsRegistryChangedNotification = @"BSNativeAppTabsRegistryChangedNotification";
 
-@implementation NativeAppTabRegistry
+@implementation NativeAppTabsRegistry
 
 
-static NativeAppTabRegistry *singletonNativeAppTabRegistry;
+static NativeAppTabsRegistry *singletonNativeAppTabsRegistry;
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Initialize
 
-+ (NativeAppTabRegistry *)singleton{
++ (NativeAppTabsRegistry *)singleton{
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
 
-        singletonNativeAppTabRegistry = [NativeAppTabRegistry alloc];
-        singletonNativeAppTabRegistry = [singletonNativeAppTabRegistry init];
+        singletonNativeAppTabsRegistry = [NativeAppTabsRegistry alloc];
+        singletonNativeAppTabsRegistry = [singletonNativeAppTabsRegistry init];
         
-        [singletonNativeAppTabRegistry setUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
+        [singletonNativeAppTabsRegistry setUserDefaultsKey:BeardedSpiceActiveNativeAppControllers];
     });
 
-    return singletonNativeAppTabRegistry;
+    return singletonNativeAppTabsRegistry;
 
 }
 
 - (id)init{
 
-    if (singletonNativeAppTabRegistry != self) {
+    if (singletonNativeAppTabsRegistry != self) {
         return nil;
     }
     self = [super init];
@@ -58,7 +60,7 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
     _availableAppClasses = [NSMutableArray array];
     _availableCache = [NSMutableDictionary dictionary];
 
-    NSArray *defaultApps = [NativeAppTabRegistry defaultNativeAppClasses];
+    NSArray *defaultApps = [NativeAppTabsRegistry defaultNativeAppClasses];
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:defaultsKey];
 
     @synchronized(self){
@@ -76,7 +78,7 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]
-         postNotificationName:BSNativeAppTabRegistryChangedNotification object:self];
+         postNotificationName:BSNativeAppTabsRegistryChangedNotification object:self];
     });
 
 }
@@ -93,8 +95,9 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
         [VOXTabAdapter class],
         [DowncastTabAdapter class],
         [AirfoilSatelliteTabAdapter class],
-        [TidalTabAdapter class],
-        [DeezerTabAdapter class]
+        [DeezerTabAdapter class],
+        [BSMusicTabAdapter class],
+        [BSTVTabAdapter class]
     ];
 }
 
@@ -121,7 +124,7 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]
-         postNotificationName:BSNativeAppTabRegistryChangedNotification object:self];
+         postNotificationName:BSNativeAppTabsRegistryChangedNotification object:self];
     });
 }
 
@@ -134,7 +137,7 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]
-         postNotificationName:BSNativeAppTabRegistryChangedNotification object:self];
+         postNotificationName:BSNativeAppTabsRegistryChangedNotification object:self];
     });
 }
 

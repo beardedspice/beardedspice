@@ -30,8 +30,12 @@
 }
 
 + (NSString *)displayName{
-
-    return APPNAME_ITUNES;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME_ITUNES;
 }
 
 + (NSString *)bundleId{
@@ -61,7 +65,7 @@
         }
 
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"No Track", @"iTunesTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"iTunesTabAdapter");
         }
 
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_ITUNES];
@@ -70,13 +74,13 @@
 
 - (NSString *)URL{
 
-    return @"iTunes";
+    return APPID_ITUNES;
 }
 
 // We have only one window.
 - (NSString *)key{
 
-    return @"A:ITUNES";
+    return @"A:" APPID_ITUNES;
 }
 
 // We have only one window.

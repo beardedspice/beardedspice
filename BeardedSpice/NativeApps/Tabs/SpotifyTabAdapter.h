@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 #import "Spotify.h"
 
 @class runningSBApplication, Track;
 
-@interface SpotifyTabAdapter : NativeAppTabAdapter{
+@interface SpotifyTabAdapter : BSNativeAppTabAdapter{
     
 }
 

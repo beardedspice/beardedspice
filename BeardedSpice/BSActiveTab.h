@@ -7,7 +7,7 @@
 //
 
 #import "TabAdapter.h"
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 #import "BSWebTabAdapter.h"
 #import "MediaStrategyRegistry.h"
 #import "BSVolumeControlProtocol.h"

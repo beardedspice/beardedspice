@@ -1,5 +1,5 @@
 //
-//  NativeAppTabAdapter.h
+//  BSNativeAppTabAdapter.h
 //  BeardedSpice
 //
 //  Created by Roman Sokolov on 26.04.15.
@@ -10,7 +10,7 @@
 
 @class BSTrack;
 
-@interface NativeAppTabAdapter : TabAdapter
+@interface BSNativeAppTabAdapter : TabAdapter
 
 +(id)tabAdapterWithApplication:(runningSBApplication *)application;
 

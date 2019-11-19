@@ -8,14 +8,14 @@
 
 #import "BSNativeAppTabsController.h"
 #import "runningSBApplication.h"
-#import "NativeAppTabRegistry.h"
-#import "NativeAppTabAdapter.h"
+#import "NativeAppTabsRegistry.h"
+#import "BSNativeAppTabAdapter.h"
 #import "BSTimeout.h"
 #import "BSSharedResources.h"
 
 @implementation BSNativeAppTabsController {
     
-    NSArray <NativeAppTabAdapter *> *_tabs;
+    NSArray <BSNativeAppTabAdapter *> *_tabs;
     dispatch_queue_t _workQueue;
     NSOperationQueue *_oQueue;
     id _observer;
@@ -57,7 +57,7 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
         _oQueue = [NSOperationQueue new];
         _oQueue.underlyingQueue = _workQueue;
         _observer = [[NSNotificationCenter defaultCenter]
-                     addObserverForName:BSNativeAppTabRegistryChangedNotification
+                     addObserverForName:BSNativeAppTabsRegistryChangedNotification
                      object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                          [self fillCache];
                      }];
@@ -80,7 +80,7 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public properties and methods
 
-- (NSArray <NativeAppTabAdapter *> *)tabs {
+- (NSArray <BSNativeAppTabAdapter *> *)tabs {
     @synchronized (self) {
         return [_tabs copy];
     }
@@ -105,10 +105,10 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
         @autoreleasepool {
             NSMutableArray *tabs = [NSMutableArray new];
             BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-            for (Class nativeApp in [[NativeAppTabRegistry singleton] enabledNativeAppClasses]) {
+            for (Class nativeApp in [[NativeAppTabsRegistry singleton] enabledNativeAppClasses]) {
                 runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
                 if (app) {
-                    NativeAppTabAdapter *tab = [nativeApp tabAdapterWithApplication:app];
+                    BSNativeAppTabAdapter *tab = [nativeApp tabAdapterWithApplication:app];
                     if (tab) {
                         [tabs addObject:tab];
                     }

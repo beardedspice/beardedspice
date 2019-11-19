@@ -53,8 +53,12 @@ static FMDatabaseQueue *_dbQueue;
 }
 
 + (NSString *)displayName{
-    
-    return APPNAME_TIDAL;
+    static NSString *name;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        name = [super displayName];
+    });
+    return name ?: APPNAME_TIDAL;
 }
 
 + (NSString *)bundleId{
@@ -83,7 +87,7 @@ static FMDatabaseQueue *_dbQueue;
         }
         
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"No Track", @"TidalTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"TidalTabAdapter");
         }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, APPNAME_TIDAL];
@@ -92,13 +96,13 @@ static FMDatabaseQueue *_dbQueue;
 
 - (NSString *)URL{
     
-    return APPNAME_TIDAL;
+    return APPID_TIDAL;
 }
 
 // We have only one window.
 - (NSString *)key{
     
-    return @"A:" APPNAME_TIDAL;
+    return @"A:" APPID_TIDAL;
 }
 
 // We have only one window.

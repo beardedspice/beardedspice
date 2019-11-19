@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeAppTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
 
 @interface BSNativeAppTabsController : NSObject
 
@@ -16,6 +16,6 @@
 
 + (BSNativeAppTabsController *)singleton;
 
-- (NSArray <NativeAppTabAdapter *> *)tabs;
+- (NSArray <BSNativeAppTabAdapter *> *)tabs;
 
 @end

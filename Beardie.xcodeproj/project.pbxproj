@@ -396,6 +396,7 @@
 		658D643C1FA69705004D1546 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketTypes.h; sourceTree = "<group>"; };
 		658D643D1FA69705004D1546 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
 		658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
+		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
 		65A850141C8B065000D54C77 /* BSCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCService.h; sourceTree = "<group>"; };
 		65A850151C8B065000D54C77 /* BSCService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSCShortcutMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -789,6 +790,7 @@
 				6506A714237604A800DAC132 /* Music.h */,
 				657C77322379D22900A55EFE /* BSMusicTabAdapter.h */,
 				657C77332379D22900A55EFE /* BSMusicTabAdapter.m */,
+				659B52C2238460A2005B73AB /* TV.h */,
 				65F294A4237C3F34008C1D71 /* BSTVTabAdapter.h */,
 				65F294A5237C3F34008C1D71 /* BSTVTabAdapter.m */,
 				654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */,

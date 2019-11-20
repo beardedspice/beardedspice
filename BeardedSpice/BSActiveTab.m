@@ -7,6 +7,7 @@
 //
 
 #import "BSActiveTab.h"
+#import "NSString+Utils.h"
 #import "BSMediaStrategy.h"
 #import "BSTrack.h"
 #import "runningSBApplication.h"
@@ -303,7 +304,7 @@ dispatch_queue_t notificationQueue() {
 
     notification.identifier = kBSTrackNameIdentifier;
     notification.title = [self displayName];
-    notification.informativeText = @"no-track-title info available";
+    notification.informativeText = BSLocalizedString(@"no-track-title", @"No tack title for tabs menu and default notification ");
 
     NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
     [notifCenter removeDeliveredNotification:notification];

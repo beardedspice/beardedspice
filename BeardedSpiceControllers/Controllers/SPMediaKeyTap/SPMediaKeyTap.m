@@ -137,6 +137,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
            @"org.videolan.vlc",
            @"com.apple.Aperture",
            @"com.plexsquared.Plex",
+           @"tv.plex.plexamp",
            @"com.soundcloud.desktop",
            @"org.niltsh.MPlayerX",
            @"com.ilabs.PandorasHelper",

@@ -91,7 +91,7 @@
         }
         
         if ([NSString isNullOrEmpty:title]) {
-            title = BSLocalizedString(@"no-track-title", @"AirfoilSatelliteTabAdapter");
+            title = BSLocalizedString(@"no-track-title", @"No tack title for tabs menu and default notification ");
         }
         
         return [NSString stringWithFormat:@"%@ (%@)", title, AirfoilSatelliteTabAdapter.displayName];

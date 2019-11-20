@@ -114,6 +114,7 @@
 		65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65E63AC721905A5F00C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65E63ACC2190776200C039B7 /* EHLDeferBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63ACB2190776200C039B7 /* EHLDeferBlock.m */; };
+		65E6475A2385FFA000C6DC21 /* AmazonMusicTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E647582385FFA000C6DC21 /* AmazonMusicTabAdapter.m */; };
 		65E6E0552370AC7A009C9448 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6E0542370AC7A009C9448 /* main.swift */; };
 		65E6E05F237224E1009C9448 /* beardie-nm-connector in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65E6E0522370AC7A009C9448 /* beardie-nm-connector */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
@@ -433,6 +434,8 @@
 		65E63AC6218DAB5A00C039B7 /* EHFileLocker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHFileLocker.h; sourceTree = "<group>"; };
 		65E63ACA2190776100C039B7 /* EHLDeferBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHLDeferBlock.h; sourceTree = "<group>"; };
 		65E63ACB2190776200C039B7 /* EHLDeferBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHLDeferBlock.m; sourceTree = "<group>"; };
+		65E647582385FFA000C6DC21 /* AmazonMusicTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonMusicTabAdapter.m; sourceTree = "<group>"; };
+		65E647592385FFA000C6DC21 /* AmazonMusicTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonMusicTabAdapter.h; sourceTree = "<group>"; };
 		65E6E0522370AC7A009C9448 /* beardie-nm-connector */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "beardie-nm-connector"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E6E0542370AC7A009C9448 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		65E6E05923721DDC009C9448 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
@@ -797,6 +800,8 @@
 				654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */,
 				65063FEC233DE9660015F558 /* DeezerTabAdapter.h */,
 				65063FEA233DE94E0015F558 /* DeezerTabAdapter.m */,
+				65E647592385FFA000C6DC21 /* AmazonMusicTabAdapter.h */,
+				65E647582385FFA000C6DC21 /* AmazonMusicTabAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -1478,6 +1483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
+				65E6475A2385FFA000C6DC21 /* AmazonMusicTabAdapter.m in Sources */,
 				0BF06AE51C9513A800534083 /* BSTrack.m in Sources */,
 				658D64461FA697A2004D1546 /* PSWebSocketUTF8Decoder.m in Sources */,
 				654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */,

@@ -38,8 +38,6 @@
 
 @implementation DeezerTabAdapter{
     
-    BOOL _needDisplayNotification;
-
 }
 
 //static FMDatabaseQueue *_dbQueue;
@@ -91,7 +89,7 @@
 
 - (BOOL)showNotifications {
     
-    return _needDisplayNotification;
+    return NO;
 }
 
 //////////////////////////////////////////////////////////////
@@ -104,7 +102,6 @@
     
     [self.application pressMenuBarItemForIndexPath:indexPath];
     
-    _needDisplayNotification = YES;
     return YES;
 }
 
@@ -114,7 +111,6 @@
         [self toggle];
     }
     
-    _needDisplayNotification = YES;
     return YES;
 }
 
@@ -125,7 +121,6 @@
     
     [self.application pressMenuBarItemForIndexPath:indexPath];
     
-    _needDisplayNotification = NO;
     return YES;
 }
 - (BOOL)previous{
@@ -135,7 +130,6 @@
     
     [self.application pressMenuBarItemForIndexPath:indexPath];
     
-    _needDisplayNotification = NO;
     return YES;
 }
 

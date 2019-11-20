@@ -107,7 +107,15 @@ static NSImage *_lastTrackImage;
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
-        [Spotify nextTrack];
+        SpotifyTrack *track = Spotify.currentTrack;
+        NSString *uri = track.spotifyUrl;
+        if ([uri hasPrefix:@"spotify:episode:"]) {
+            double position = Spotify.playerPosition + 15;
+            Spotify.playerPosition = position > track.duration ? track.duration : position;
+        }
+        else {
+            [Spotify nextTrack];
+        }
     }
     return YES;
 }
@@ -115,7 +123,15 @@ static NSImage *_lastTrackImage;
 
     SpotifyApplication *Spotify = (SpotifyApplication *)[self.application sbApplication];
     if (Spotify) {
-        [Spotify previousTrack];
+        SpotifyTrack *track = Spotify.currentTrack;
+        NSString *uri = track.spotifyUrl;
+        if ([uri hasPrefix:@"spotify:episode:"]) {
+            double position = Spotify.playerPosition - 15;
+            Spotify.playerPosition = position < 0 ? 0.0 : position;
+        }
+        else {
+            [Spotify previousTrack];
+        }
     }
     return YES;
 }
@@ -130,13 +146,27 @@ static NSImage *_lastTrackImage;
 
         track.track = iTrack.name;
         track.album = iTrack.album;
-        track.artist = iTrack.artist;
+        NSString *uri = iTrack.spotifyUrl;
+        if ([uri hasPrefix:@"spotify:episode:"]) {
+            track.artist = [self timeFormSeconds:Spotify.playerPosition];
+        }
+        else {
+            track.artist = iTrack.artist;
+        }
         [track setImageWithUrlString:iTrack.artworkUrl];
-
+        
         return track;
     }
 
     return nil;
+}
+
+- (NSString *)timeFormSeconds:(double)seconds {
+    NSUInteger hours = (seconds / 3600);
+    NSUInteger mins = (NSUInteger)(seconds / 60) % 60;
+    NSUInteger secs = (NSUInteger)(seconds) % 60;
+    return hours ? [NSString stringWithFormat:@"%lu:%.2lu:%.2lu", hours, mins, secs] :
+    [NSString stringWithFormat:@"%.2lu:%.2lu", mins, secs];
 }
 
 - (BOOL)isPlaying{

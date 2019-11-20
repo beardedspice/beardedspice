@@ -19,6 +19,7 @@
 #import "DeezerTabAdapter.h"
 #import "BSMusicTabAdapter.h"
 #import "BSTVTabAdapter.h"
+#import "AmazonMusicTabAdapter.h"
 
 NSString *BSNativeAppTabsRegistryChangedNotification = @"BSNativeAppTabsRegistryChangedNotification";
 
@@ -97,7 +98,8 @@ static NativeAppTabsRegistry *singletonNativeAppTabsRegistry;
         [AirfoilSatelliteTabAdapter class],
         [DeezerTabAdapter class],
         [BSMusicTabAdapter class],
-        [BSTVTabAdapter class]
+        [BSTVTabAdapter class],
+        [AmazonMusicTabAdapter class]
     ];
 }
 

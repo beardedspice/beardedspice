@@ -14,6 +14,14 @@ DEPENDENCIES:
   - MASShortcut (~> 2.3.3)
   - VCRURLConnection
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+    - Kiwi
+    - MASPreferences
+    - MASShortcut
+    - VCRURLConnection
+
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
@@ -23,4 +31,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b95841a52074c51c16773cba95ddcef7b1606d61
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.6.1

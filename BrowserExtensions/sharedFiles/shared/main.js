@@ -2,10 +2,9 @@
 //    console.log = function(){};
 
 const DELAY_TIMEOUT = 500; // milleseconds
-const RECONNECT_TIMEOUT = 10000; //milleseconds
+const RECONNECT_NATIVE_TIMEOUT = 10000; //milleseconds
 
-var socket = null;
-var controlPort = 8008;
+var nativePort = null;
 var clientsPort = 0;
 var timeoutObject = null;
 var previousTab = null;
@@ -21,22 +20,6 @@ var _clean = function() {
     }
     timeoutObject = null;
 }
-
-var _send = function(obj) {
-    try {
-
-        if (socket) {
-            socket.send(JSON.stringify(obj));
-            console.log("(BeardedSpice Control) Socket send:" + JSON.stringify(obj));
-        }
-    } catch (ex) {
-        logError(ex);
-        socket.close();
-    }
-};
-var _sendOk = function() {
-    _send({ 'result': true })
-};
 
 var logError = function(ex) {
     if (typeof console !== 'undefined' && console.error) {
@@ -56,7 +39,7 @@ function reconnect(event) {
     console.info("(BeardedSpice Control) Attempt to reconnecting.");
 
     _clean();
-    connect(controlPort);
+    connectToNative();
 };
 
 function connect(port) {
@@ -127,12 +110,32 @@ function connect(port) {
     var onSocketDisconnet = function(event) {
         console.log('(BeardedSpice Control) onSocketDisconnet');
         _clean();
-        timeoutObject = setTimeout(reconnect, RECONNECT_TIMEOUT);
+        timeoutObject = setTimeout(reconnect, RECONNECT_NATIVE_TIMEOUT);
     };
 
     socket.addEventListener('close', onSocketDisconnet);
 
     // timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
+}
+
+function connectToNative() {
+    if (typeof chrome !== "undefined" && chrome && chrome.storage) {
+        //CHROME
+        BSUtils.storageGet("nativeMesssageAppId", value => {
+            debugger;
+            nativePort = chrome.runtime.connectNative(value);
+            nativePort.onMessage.addListener(function(msg) {
+            console.log("Received: %o", msg);
+            debugger;
+            });
+            port.onDisconnect.addListener(function() {
+                console.log('(BeardedSpice Control) onSocketDisconnet');
+                _clean();
+                timeoutObject = setTimeout(reconnect, RECONNECT_NATIVE_TIMEOUT);
+            });
+            port.postMessage({ "name": "bundleId" });
+            });
+    }
 }
 
 function respondToMessage(theMessageEvent) {
@@ -225,27 +228,5 @@ function respondToMessage(theMessageEvent) {
 
 BSUtils.handleMessageFromTabs(respondToMessage);
 
-// Global events listeners
-if (typeof safari !== "undefined" && safari && safari.extension && safari.extension.settings) {
-    // change preferences value
-    safari.extension.settings.addEventListener("change", function(event) {
-        if (event.key == "controllerPort") {
-            controlPort = event.newValue;
-            socket.close();
-        }
-    }, false);
-} else if (typeof chrome !== "undefined" && chrome && chrome.storage) {
-    // change preferences value
-    chrome.storage.onChanged.addListener(function(changes, namespace) {
-        if (namespace == "local" && changes.controllerPort) {
-            controlPort = changes.controllerPort.newValue;
-            socket.close();
-        }
-    }, false);
-}
-
-// Start connection to BeardedSpice app
-BSUtils.storageGet("controllerPort", value => {
-    controlPort = parseInt(value) || 8008;
-    connect(controlPort);
-});
+// Start connection to Beardie app
+connectToNative();

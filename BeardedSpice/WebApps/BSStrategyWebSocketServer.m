@@ -154,7 +154,7 @@ static NSArray *tabClasses;
     
     if (server == _tabsServer) {
         
-        BS_LOG(LOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
+        BSLog(BSLOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
         [self setAcceptersForSafari];
         [BSSharedResources setTabPort:_tabsPort];
     }
@@ -169,21 +169,21 @@ static NSArray *tabClasses;
     
     if (server == _controlServer) {
         
-        BS_LOG(LOG_INFO, @"Websocket Control server started on port %d.", _controlPort);
+        BSLog(BSLOG_INFO, @"Websocket Control server started on port %d.", _controlPort);
         [self startTabServer];
     }
 }
 
 - (void)server:(PSWebSocketServer *)server didFailWithError:(NSError *)error {
     
-    BS_LOG(LOG_ERROR, @"(BSStrategyWebSocketServer) Server failed with error: %@", error);
+    BSLog(BSLOG_ERROR, @"(BSStrategyWebSocketServer) Server failed with error: %@", error);
 
     [self setStopServer:server];
 }
 
 - (void)serverDidStop:(PSWebSocketServer *)server {
     
-    BS_LOG(LOG_INFO, @"WebSocket server stoped.");
+    BSLog(BSLOG_INFO, @"WebSocket server stoped.");
     
     [self setStopServer:server];
     
@@ -201,7 +201,7 @@ static NSArray *tabClasses;
 
 - (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
 
-    BS_LOG(LOG_DEBUG, @"%s. WebSocket [%p]", __FUNCTION__, webSocket);
+    BSLog(BSLOG_DEBUG, @"%s. WebSocket [%p]", __FUNCTION__, webSocket);
 
     static dispatch_queue_t openSocketQueue;
     static dispatch_once_t onceToken;
@@ -220,12 +220,12 @@ static NSArray *tabClasses;
                         break;
                     }
                 }
-                BS_LOG(LOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : tab));
+                BSLog(BSLOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : tab));
                 if (tab) {
                     [self->_tabs addObject:tab];
                 }
                 else {
-                    BS_LOG(LOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);
+                    BSLog(BSLOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);
                     [webSocket close];
                 }
             }
@@ -234,13 +234,13 @@ static NSArray *tabClasses;
     if (server == _controlServer) {
         @synchronized (self) {
             [_controlSockets addObject:webSocket];
-            BS_LOG(LOG_DEBUG, @"Control socket [x%p] added.", webSocket);
+            BSLog(BSLOG_DEBUG, @"Control socket [x%p] added.", webSocket);
         }
     }
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BS_LOG(LOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
+    BSLog(BSLOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
            ([message isKindOfClass:[NSData class]]
             ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
             : message));
@@ -274,22 +274,22 @@ static NSArray *tabClasses;
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
     if (server == _controlServer) {
         @synchronized (self) {
             [_controlSockets removeObject:webSocket];
-            BS_LOG(LOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
+            BSLog(BSLOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
         }
     }
 
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
     if (server == _controlServer) {
         @synchronized (self) {
             [_controlSockets removeObject:webSocket];
-            BS_LOG(LOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
+            BSLog(BSLOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
         }
     }
 }
@@ -299,7 +299,7 @@ static NSArray *tabClasses;
                         trust:(SecTrustRef)trust
                  responseBody:(NSData *__autoreleasing *)responseBody {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
 
     if ([request.HTTPMethod isEqualToString:@"GET"]) {
         if ([request.URL.path isEqualToString:@"/pairing.html"]) {
@@ -484,7 +484,7 @@ static NSArray *tabClasses;
     NSError *error = NULL;
     SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(BS_NAME, 3600 * 24 * 350, &error);
     if (error || identity == nil) {
-        BS_LOG(LOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
+        BSLog(BSLOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
         return NO;
     }
     _certs = @[(__bridge id)identity];
@@ -603,7 +603,7 @@ static NSArray *tabClasses;
         body = [pairingContent dataUsingEncoding:NSUTF8StringEncoding];
     }
     else {
-        BS_LOG(LOG_ERROR, @"Can't load pairing.html file from app bundle");
+        BSLog(BSLOG_ERROR, @"Can't load pairing.html file from app bundle");
     }
     
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
@@ -645,7 +645,7 @@ static NSArray *tabClasses;
         }
     }
     
-    BS_LOG(LOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
+    BSLog(BSLOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
     return nil;
 }
 

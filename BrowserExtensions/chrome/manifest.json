@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
 
-    "name": "BeardedSpice",
-    "description": "This extension allow you to use BeardedSpice for controlling media players on appropriate sites.",
+    "name": "Beardie",
+    "description": "This extension allow you to use Beardie for controlling media players on appropriate sites.",
     "version": "${BS_CHROME_EXTENSION_VERSION}",
-    "homepage_url": "https://github.com/beardedspice/beardedspice",
+    "homepage_url": "${BS_HOMEPAGE}",
 
     "icons":
     {
@@ -29,11 +29,12 @@
     ],
     "background":
     {
-        "page": "shared/main.html",
+        "page": "main.html",
         "persistent": true
     },
     "permissions": [
         "tabs",
+        "nativeMessaging",
         "<all_urls>",
         "activeTab",
         "storage",
@@ -43,10 +44,5 @@
     "web_accessible_resources": [
         "shared/*eventsController.js",
         "/shared/utils.js"
-    ],
-    "options_ui":
-    {
-        "page": "options.html",
-        "chrome_style": true
-    }
+    ]
 }

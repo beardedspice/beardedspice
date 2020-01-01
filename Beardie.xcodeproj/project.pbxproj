@@ -82,6 +82,9 @@
 		657C77342379D22900A55EFE /* BSMusicTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C77332379D22900A55EFE /* BSMusicTabAdapter.m */; };
 		657C77382379E31D00A55EFE /* BSNativeAppTabsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD1ED31FB3B4E700851F0B /* BSNativeAppTabsController.m */; };
 		657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EAEA81AAAEB9300D00456 /* runningSBApplication.m */; };
+		6581E819239F8DCF005C1D55 /* BSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6581E818239F8DCF005C1D55 /* BSLog.swift */; };
+		6583E9EC23A6DDE700A9C91A /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
+		6583E9EE23A6DF8E00A9C91A /* BSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6581E818239F8DCF005C1D55 /* BSLog.swift */; };
 		6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */; };
 		658D643F1FA697A2004D1546 /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D642E1FA69705004D1546 /* PSWebSocket.m */; };
 		658D64401FA697A2004D1546 /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64301FA69705004D1546 /* PSWebSocketBuffer.m */; };
@@ -91,10 +94,13 @@
 		658D64441FA697A2004D1546 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D64391FA69705004D1546 /* PSWebSocketNetworkThread.m */; };
 		658D64451FA697A2004D1546 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D643B1FA69705004D1546 /* PSWebSocketServer.m */; };
 		658D64461FA697A2004D1546 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */; };
+		6590426523BACC2300890457 /* Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6590426423BACC2300890457 /* Processing.swift */; };
+		65A57BC0239D846B0013476E /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
+		65AA828D239C349A000442A2 /* NativeMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA828C239C349A000442A2 /* NativeMessaging.swift */; };
 		65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */; };
 		65AD1ECE1FB242C900851F0B /* EHExecuteBlockDelayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */; };
 		65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */; };
@@ -160,6 +166,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 656AFFE91C8ACDCF00BD29F5;
 			remoteInfo = BeardedSpiceControllers;
+		};
+		65AA8293239D7EE0000442A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA828F239D7E2F000442A2;
+			remoteInfo = "prepare-build";
+		};
+		65AA8295239D7EEA000442A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA828F239D7E2F000442A2;
+			remoteInfo = "prepare-build";
+		};
+		65AA8297239D7F03000442A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA828F239D7E2F000442A2;
+			remoteInfo = "prepare-build";
+		};
+		65AA8299239D7F09000442A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA828F239D7E2F000442A2;
+			remoteInfo = "prepare-build";
 		};
 		65E6E05C23722470009C9448 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -376,6 +410,8 @@
 		657C77332379D22900A55EFE /* BSMusicTabAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMusicTabAdapter.m; sourceTree = "<group>"; };
 		657EAEA71AAAEB9300D00456 /* runningSBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runningSBApplication.h; sourceTree = "<group>"; };
 		657EAEA81AAAEB9300D00456 /* runningSBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runningSBApplication.m; sourceTree = "<group>"; };
+		6581E818239F8DCF005C1D55 /* BSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSLog.swift; sourceTree = "<group>"; };
+		6583E9ED23A6DF2400A9C91A /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		6588CF441B3584A700A3CBAD /* VOXTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOXTabAdapter.h; sourceTree = "<group>"; };
 		6588CF451B3584A700A3CBAD /* VOXTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOXTabAdapter.m; sourceTree = "<group>"; };
 		6588CF471B358A8300A3CBAD /* VOX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOX.h; sourceTree = "<group>"; };
@@ -397,11 +433,15 @@
 		658D643C1FA69705004D1546 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketTypes.h; sourceTree = "<group>"; };
 		658D643D1FA69705004D1546 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
 		658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
+		6590426423BACC2300890457 /* Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processing.swift; sourceTree = "<group>"; };
 		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
+		65A57BC1239DA9F30013476E /* BSLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSLog.h; sourceTree = "<group>"; };
 		65A850141C8B065000D54C77 /* BSCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCService.h; sourceTree = "<group>"; };
 		65A850151C8B065000D54C77 /* BSCService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSCShortcutMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCShortcutMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65AA828C239C349A000442A2 /* NativeMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeMessaging.swift; sourceTree = "<group>"; };
+		65AA829B239D8194000442A2 /* ConfigConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigConstants.h; sourceTree = "<group>"; };
 		65ABBAA41D1EC7D000F882CE /* BSCustomStrategyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCustomStrategyManager.h; sourceTree = "<group>"; };
 		65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCustomStrategyManager.m; sourceTree = "<group>"; };
 		65ABBAA81D1FDC5400F882CE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -634,6 +674,7 @@
 				650794ED1FB7737600930B70 /* ExtensionsResources */,
 				6557B48E1F6ADCA800295997 /* BSBrowserExtensionsController.h */,
 				6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */,
+				65AA828C239C349A000442A2 /* NativeMessaging.swift */,
 			);
 			path = BrowserExtensionsController;
 			sourceTree = "<group>";
@@ -866,6 +907,8 @@
 			isa = PBXGroup;
 			children = (
 				65E6E0542370AC7A009C9448 /* main.swift */,
+				6583E9ED23A6DF2400A9C91A /* Bridging-Header.h */,
+				6590426423BACC2300890457 /* Processing.swift */,
 			);
 			path = "beardie-nm-connector";
 			sourceTree = "<group>";
@@ -883,6 +926,9 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
+				6581E818239F8DCF005C1D55 /* BSLog.swift */,
+				65A57BC1239DA9F30013476E /* BSLog.h */,
+				65AA829B239D8194000442A2 /* ConfigConstants.h */,
 				65ABBAA81D1FDC5400F882CE /* Config.xcconfig */,
 				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
 				65E6E05923721DDC009C9448 /* Scripts */,
@@ -1065,6 +1111,20 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = Extensions;
 		};
+		65AA828F239D7E2F000442A2 /* prepare-build */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(SRCROOT)/Scripts/prepare-build.sh $(ACTION)";
+			buildConfigurationList = 65AA8290239D7E2F000442A2 /* Build configuration list for PBXLegacyTarget "prepare-build" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/bash;
+			buildWorkingDirectory = "$(SRCROOT)";
+			dependencies = (
+			);
+			name = "prepare-build";
+			passBuildSettingsInEnvironment = 1;
+			productName = "prepare-build";
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -1079,6 +1139,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				65AA8298239D7F03000442A2 /* PBXTargetDependency */,
 			);
 			name = "BS-Extension";
 			productName = "Safari Extension";
@@ -1098,6 +1159,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				65AA8296239D7EEA000442A2 /* PBXTargetDependency */,
 			);
 			name = BeardieControllers;
 			productName = BeardedSpiceControllers;
@@ -1115,6 +1177,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				65AA829A239D7F09000442A2 /* PBXTargetDependency */,
 			);
 			name = "beardie-nm-connector";
 			productName = "beardie-nm-connector";
@@ -1138,6 +1201,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				65AA8294239D7EE0000442A2 /* PBXTargetDependency */,
 				65E6E05D23722470009C9448 /* PBXTargetDependency */,
 				65322924200415EB004CE66E /* PBXTargetDependency */,
 				656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */,
@@ -1212,6 +1276,11 @@
 							};
 						};
 					};
+					65AA828F239D7E2F000442A2 = {
+						CreatedOnToolsVersion = 11.2.1;
+						DevelopmentTeam = 5F2QV47DGC;
+						ProvisioningStyle = Automatic;
+					};
 					65E6E0512370AC7A009C9448 = {
 						CreatedOnToolsVersion = 11.1;
 						DevelopmentTeam = 5F2QV47DGC;
@@ -1261,6 +1330,7 @@
 				6507C280200381CE003D4B1A /* Build Extensions */,
 				65384D9D21874F810029D9E9 /* BS-Extension */,
 				65E6E0512370AC7A009C9448 /* beardie-nm-connector */,
+				65AA828F239D7E2F000442A2 /* prepare-build */,
 			);
 		};
 /* End PBXProject section */
@@ -1474,7 +1544,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A57BC0239D846B0013476E /* EHFileLocker.m in Sources */,
+				6583E9EE23A6DF8E00A9C91A /* BSLog.swift in Sources */,
+				6583E9EC23A6DDE700A9C91A /* BSSharedResources.m in Sources */,
 				65E6E0552370AC7A009C9448 /* main.swift in Sources */,
+				6590426523BACC2300890457 /* Processing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1497,6 +1571,7 @@
 				657635A81E8819E300A4FCAD /* AirfoilSatelliteTabAdapter.m in Sources */,
 				65063FEB233DE94E0015F558 /* DeezerTabAdapter.m in Sources */,
 				658D64411FA697A2004D1546 /* PSWebSocketDeflater.m in Sources */,
+				6581E819239F8DCF005C1D55 /* BSLog.swift in Sources */,
 				65C511721AED802B00EBA6A5 /* BSNativeAppTabAdapter.m in Sources */,
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
 				658D64451FA697A2004D1546 /* PSWebSocketServer.m in Sources */,
@@ -1509,6 +1584,7 @@
 				657C77382379E31D00A55EFE /* BSNativeAppTabsController.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
 				658D64441FA697A2004D1546 /* PSWebSocketNetworkThread.m in Sources */,
+				65AA828D239C349A000442A2 /* NativeMessaging.swift in Sources */,
 				656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */,
@@ -1576,6 +1652,26 @@
 			isa = PBXTargetDependency;
 			target = 656AFFE91C8ACDCF00BD29F5 /* BeardieControllers */;
 			targetProxy = 656AFFF31C8ACDCF00BD29F5 /* PBXContainerItemProxy */;
+		};
+		65AA8294239D7EE0000442A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AA828F239D7E2F000442A2 /* prepare-build */;
+			targetProxy = 65AA8293239D7EE0000442A2 /* PBXContainerItemProxy */;
+		};
+		65AA8296239D7EEA000442A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AA828F239D7E2F000442A2 /* prepare-build */;
+			targetProxy = 65AA8295239D7EEA000442A2 /* PBXContainerItemProxy */;
+		};
+		65AA8298239D7F03000442A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AA828F239D7E2F000442A2 /* prepare-build */;
+			targetProxy = 65AA8297239D7F03000442A2 /* PBXContainerItemProxy */;
+		};
+		65AA829A239D7F09000442A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AA828F239D7E2F000442A2 /* prepare-build */;
+			targetProxy = 65AA8299239D7F09000442A2 /* PBXContainerItemProxy */;
 		};
 		65E6E05D23722470009C9448 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1902,6 +1998,58 @@
 			};
 			name = Release;
 		};
+		65AA8291239D7E2F000442A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5F2QV47DGC;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		65AA8292239D7E2F000442A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5F2QV47DGC;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		65E6E0572370AC7A009C9448 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1921,9 +2069,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
+				PRODUCT_NAME = "$(BS_NATIVE_MESSAGING_CONNECTOR_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "beardie-nm-connector/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1944,8 +2093,9 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
+				PRODUCT_NAME = "$(BS_NATIVE_MESSAGING_CONNECTOR_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "beardie-nm-connector/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1992,6 +2142,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/Beardie-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2046,6 +2197,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeardedSpice/Beardie-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2071,7 +2223,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "BeardedSpice/Beardie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
@@ -2096,7 +2247,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "BeardedSpice/Beardie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
@@ -2111,6 +2261,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE9BD98F3E034DB0F54DC759 /* Pods-BeardieControllers-Beardie-BeardieTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -2135,6 +2286,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DCCE0EAA511B629B4FCBAED /* Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -2189,6 +2341,15 @@
 			buildConfigurations = (
 				656AFFF61C8ACDCF00BD29F5 /* Debug */,
 				656AFFF71C8ACDCF00BD29F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65AA8290239D7E2F000442A2 /* Build configuration list for PBXLegacyTarget "prepare-build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65AA8291239D7E2F000442A2 /* Debug */,
+				65AA8292239D7E2F000442A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

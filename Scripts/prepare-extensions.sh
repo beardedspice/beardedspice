@@ -30,6 +30,10 @@ echo "Apply env vars to manifest.json"
 Template=$( cat "${EXTENSION_CHROME}/manifest.json" | sed "s/\"/\\\\\"/g" )
 eval "echo \"$Template\"" > "${EXTENSION_CHROME}/manifest.json" || exit 1
 
+echo "Apply env vars to constants.js"
+Template=$( cat "${EXTENSION_CHROME}/constants.js" | sed "s/\"/\\\\\"/g" )
+eval "echo \"$Template\"" > "${EXTENSION_CHROME}/constants.js" || exit 1
+
 echo "Done"
 
 if [ ! "$1" == "build" ]; then

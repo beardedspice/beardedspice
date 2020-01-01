@@ -12,7 +12,7 @@
 #import "BSTrack.h"
 #import "NSString+Utils.h"
 
-#define ERROR_TRACE                         BS_LOG(LOG_ERROR, @"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
+#define ERROR_TRACE                         BSLog(BSLOG_ERROR, @"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
 
 #define APPID                  @"com.apple.Music"
 #define APPNAME                @"Music"

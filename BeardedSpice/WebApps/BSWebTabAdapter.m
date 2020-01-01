@@ -174,7 +174,7 @@
     BOOL result = NO;
     NSDictionary *response = [self sendMessage:@"frontmost"];
     result = [response[@"result"] boolValue];
-    BS_LOG(LOG_DEBUG, @"Frontmost result: %d, %d", [super frontmost], result);
+    BSLog(BSLOG_DEBUG, @"Frontmost result: %d, %d", [super frontmost], result);
     return [super frontmost] && result;
 }
 
@@ -223,19 +223,19 @@
 #pragma mark PSWebSocketDelegate delegates
 
 - (void)webSocketDidOpen:(PSWebSocket *)webSocket {
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
 }
 
 - (void)webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
     
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }
 
 - (void)webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BS_LOG(LOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
+    BSLog(BSLOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
            ([message isKindOfClass:[NSData class]]
             ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
             : message));
@@ -257,7 +257,7 @@
                 [self sendMessage:_strategy.strategyJsBody];
             }
             else {
-                BS_LOG(LOG_ERROR, @"Bad strategy: %@",strategyName);
+                BSLog(BSLOG_ERROR, @"Bad strategy: %@",strategyName);
             }
             return;
         }
@@ -268,21 +268,21 @@
 }
 - (void)webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
-    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
 
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }
 
 - (void)webSocketDidFlushInput:(PSWebSocket *)webSocket {
     
-//    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+//    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
 }
 - (void)webSocketDidFlushOutput:(PSWebSocket *)webSocket {
     
-//    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+//    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
 }
 - (BOOL)webSocket:(PSWebSocket *)webSocket evaluateServerTrust:(SecTrustRef)trust {
-//    BS_LOG(LOG_DEBUG, @"%s", __FUNCTION__);
+//    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
     return NO;
 }
 

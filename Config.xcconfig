@@ -6,31 +6,38 @@
 //  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
+XC_PREFIX_FOR_CONSTANTS = BS_
+XC_CONSTANT_HEADER_FILE = $(SRCROOT)/ConfigConstants.h
+XC_SPL = /
+
 BS_NAME = Beardie
 BS_COPYRIGHT = Copyright © 2019 Beardie. All rights reserved.
 BS_VERSION = 3.0.2
 BS_BUILD = 51
+BS_HOMEPAGE = https:$(XC_SPL)/github.com/Stillness-2/beardie
 
-BS_GROUP = $(DEVELOPMENT_TEAM).com.calm-apps.mac.beardie
+BS_BUNDLE_ID                                = com.calm_apps.mac.beardie
+BS_CONTROLLER_BUNDLE_ID                     = $(BS_BUNDLE_ID).controllers
 
+BS_GROUP                                    = $(DEVELOPMENT_TEAM).$(BS_BUNDLE_ID)
 
-BS_BUNDLE_ID                    = com.calm-apps.mac.beardie
-BS_CONTROLLER_BUNDLE_ID         = $(BS_BUNDLE_ID).controllers
-BS_NATIVE_MESSAGING_CONNECTOR   = $(BS_BUNDLE_ID).nm.connector
+BS_NATIVE_MESSAGING_CONNECTOR_NAME          = beardie-nm-connector
+BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID     = $(BS_BUNDLE_ID).nm.connector
 
-BS_SAFARI_EXTENSION_BUNDLE_ID   = $(BS_BUNDLE_ID).safari.extension
+BS_SAFARI_EXTENSION_BUNDLE_ID               = $(BS_BUNDLE_ID).safari.extension
 
 //File extension for javascript `strategy` file.
-BS_STRATEGY_EXTENSION = bsstrategy
+BS_STRATEGY_EXTENSION                       = bsstrategy
 
 
-BS_DEFAULT_SAFARI_BUBDLE_ID     = com.apple.Safari
-BS_SAFARI_TECHPREVIEW_ID        = com.apple.SafariTechnologyPreview
+BS_DEFAULT_SAFARI_BUBDLE_ID                 = com.apple.Safari
+BS_SAFARI_TECHPREVIEW_ID                    = com.apple.SafariTechnologyPreview
+BS_DEFAULT_CHROME_BUNDLE_ID                 = com.google.Chrome
 
 // Actual version of the Google Chrome extension. Used for checking extensions updates.
-BS_CHROME_EXTENSION_VERSION = 1.0.0 //version
+BS_CHROME_EXTENSION_VERSION                 = 1.0.1 //version
 
 
 // Macro definition
-PREPROCESSOR_DEFINITIONS = $(inherited) JSC_OBJC_API_ENABLED=1 BS_BUNDLE_ID=@\"$(BS_BUNDLE_ID)\" BS_CONTROLLER_BUNDLE_ID=@\"$(BS_CONTROLLER_BUNDLE_ID)\" BS_SAFARI_EXTENSION_BUNDLE_ID=@\"$(BS_SAFARI_EXTENSION_BUNDLE_ID)\" BS_STRATEGY_EXTENSION=@\"$(BS_STRATEGY_EXTENSION)\" BS_GROUP=@\"$(BS_GROUP)\" BS_DEFAULT_SAFARI_BUBDLE_ID=@\"$(BS_DEFAULT_SAFARI_BUBDLE_ID)\" BS_SAFARI_TECHPREVIEW_ID=@\"$(BS_SAFARI_TECHPREVIEW_ID)\" BS_NAME=@\"$(BS_NAME)\"
+PREPROCESSOR_DEFINITIONS = $(inherited) JSC_OBJC_API_ENABLED=1
 GCC_PREPROCESSOR_DEFINITIONS = $(PREPROCESSOR_DEFINITIONS)

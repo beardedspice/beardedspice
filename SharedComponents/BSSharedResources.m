@@ -229,7 +229,7 @@ static BSSListenerBlock _onTabPortChangedBlock;
                     NSError *err;
                     data  = [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:YES error:&err];
                     if (err) {
-                        BS_LOG(LOG_ERROR, @"Converting error %@ to archive: %@", obj, err);
+                        BSLog(BSLOG_ERROR, @"Converting error %@ to archive: %@", obj, err);
                     }
                 } else {
                     data  = [NSKeyedArchiver archivedDataWithRootObject:obj];
@@ -258,7 +258,7 @@ static BSSListenerBlock _onTabPortChangedBlock;
                     NSError *err;
                     result = [NSKeyedUnarchiver unarchivedObjectOfClass:aClass fromData:data error:&err];
                     if (err) {
-                        BS_LOG(LOG_ERROR, @"Converting error object from archive: %@", err);
+                        BSLog(BSLOG_ERROR, @"Converting error object from archive: %@", err);
                     }
                 }
                 else {

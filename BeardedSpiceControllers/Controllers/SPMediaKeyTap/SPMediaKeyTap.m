@@ -75,7 +75,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
                                                           tapEventCallback,
                                                           (__bridge void*)self);
         if (_eventPort == NULL) {
-            BS_LOG(LOG_ERROR, @"Can't initialize media key monitor");
+            BSLog(BSLOG_ERROR, @"Can't initialize media key monitor");
             return NO;
         }
 

@@ -252,14 +252,14 @@ static BSCService *bscSingleton;
 
 // Performs Pause method
 - (void)headphoneUnplugAction{
-    BS_LOG(LOG_DEBUG, @"headphoneUnplugAction");
+    BSLog(BSLOG_DEBUG, @"headphoneUnplugAction");
     [self sendMessagesToConnections:@selector(headphoneUnplug)];
 }
 
 - (void)headphonePlugAction
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BS_LOG(LOG_DEBUG, @"headphonePlugAction");
+        BSLog(BSLOG_DEBUG, @"headphonePlugAction");
         [self refreshMikeys];
     });
 }
@@ -439,13 +439,13 @@ static BSCService *bscSingleton;
                                        default:
                                            break;
                                    }
-                                   BS_LOG(LOG_DEBUG, @"%s - Comman Block Running (%ld)", __FUNCTION__, counter);
+                                   BSLog(BSLOG_DEBUG, @"%s - Comman Block Running (%ld)", __FUNCTION__, counter);
                                    counter = 0;
                                }];
     });
     
     counter++;
-    BS_LOG(LOG_DEBUG, @"%s - counter: %ld", __FUNCTION__, counter);
+    BSLog(BSLOG_DEBUG, @"%s - counter: %ld", __FUNCTION__, counter);
     [_miKeyCommandBlock executeOnceAfterCalm];
 }
 
@@ -612,22 +612,22 @@ static BSCService *bscSingleton;
 - (void)rcdControl{
 
     if (_enabled) {
-        BS_LOG(LOG_DEBUG, @"rcdControl enabled");
+        BSLog(BSLOG_DEBUG, @"rcdControl enabled");
         //checking that rcd is enabled and disabling it
         NSString *cliOutput = NULL;
         if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
             _remoteControlDaemonEnabled = ( [cliOutput contains:@"com.apple.rcd" caseSensitive:YES]);
             if (_remoteControlDaemonEnabled) {
                 _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"-w", @"com.apple.rcd.plist"] output:nil] == 0);
-                BS_LOG(LOG_DEBUG, @"rcdControl unload result: %d", _remoteControlDaemonEnabled);
+                BSLog(BSLOG_DEBUG, @"rcdControl unload result: %d", _remoteControlDaemonEnabled);
             }
         }
     }
     else{
 
-        BS_LOG(LOG_DEBUG, @"rcdControl disable");
+        BSLog(BSLOG_DEBUG, @"rcdControl disable");
         if (_remoteControlDaemonEnabled) {
-            BS_LOG(LOG_DEBUG, @"rcdControl load");
+            BSLog(BSLOG_DEBUG, @"rcdControl load");
             [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"-w", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
         }
     }

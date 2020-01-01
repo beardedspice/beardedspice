@@ -12,6 +12,7 @@
 #import "NSException+Utils.h"
 #import "AppDelegate.h"
 #import "GeneralPreferencesViewController.h"
+#import <Beardie-Swift.h>
 
 
 NSString *const BSSafariExtensionName = @"/BeardedSpice.safariextz";
@@ -78,9 +79,11 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
                            object:nil queue:self->_oQueue usingBlock:^(NSNotification * _Nonnull note) {
                                @autoreleasepool {
                                    if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
+                                       [self installNativeMessagingComponents];
                                        [self->_webSocketServer start];
                                    }
                                    else {
+                                       [self uninstallNativeMessagingComponents];
                                        [self->_webSocketServer stopWithComletion:nil];
                                    }
                                }
@@ -89,6 +92,7 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
                 [self->_observers addObject:observer];
             }
             if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
+                [self installNativeMessagingComponents];
                 [self->_webSocketServer start];
             }
             self->_started = YES;
@@ -157,4 +161,14 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Helper methods (Private)
 
+/// Update manifests for native messaging app and so on
+/// for supported browsers
+- (void)installNativeMessagingComponents {
+    BOOL result = [ChromeNativeMessaging updateManifest];
+}
+/// Remove manifests for native messaging app and so on
+/// for supported browsers
+- (void)uninstallNativeMessagingComponents {
+    BOOL result = [ChromeNativeMessaging removeManifest];
+}
 @end

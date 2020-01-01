@@ -65,7 +65,7 @@ static NSSet *_safariBundleIds;
         if (windowId) {
             AXUIElementRef window = [self AXWindowByIdentifier:windowId];
             if (window) {
-                BS_LOG(LOG_DEBUG, @"Window obtained: %p", window);
+                BSLog(BSLOG_DEBUG, @"Window obtained: %p", window);
                 AXUIElementPerformAction(window, CFSTR("AXRaise"));
                 CFRelease(window);
                 return YES;

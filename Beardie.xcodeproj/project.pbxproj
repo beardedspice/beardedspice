@@ -434,6 +434,7 @@
 		658D643D1FA69705004D1546 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
 		658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
 		6590426423BACC2300890457 /* Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processing.swift; sourceTree = "<group>"; };
+		6590428823BF3BB400890457 /* NM_Connector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NM_Connector.entitlements; sourceTree = "<group>"; };
 		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
 		65A57BC1239DA9F30013476E /* BSLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSLog.h; sourceTree = "<group>"; };
 		65A850141C8B065000D54C77 /* BSCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCService.h; sourceTree = "<group>"; };
@@ -906,6 +907,7 @@
 		65E6E0532370AC7A009C9448 /* beardie-nm-connector */ = {
 			isa = PBXGroup;
 			children = (
+				6590428823BF3BB400890457 /* NM_Connector.entitlements */,
 				65E6E0542370AC7A009C9448 /* main.swift */,
 				6583E9ED23A6DF2400A9C91A /* Bridging-Header.h */,
 				6590426423BACC2300890457 /* Processing.swift */,
@@ -2059,6 +2061,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/beardie-nm-connector/NM_Connector.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2087,6 +2090,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/beardie-nm-connector/NM_Connector.entitlements";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;

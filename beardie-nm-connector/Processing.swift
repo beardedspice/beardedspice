@@ -19,7 +19,11 @@ struct MessageProcessing {
     
     /// Method for processing messages
     static func process(_ message: ExchangeDictionary, replay: @escaping (ExchangeDictionary)->Void) {
-        if let name = message["name"] as? String {
+        let id = message["id"] as? String
+        guard id != nil else {
+            return
+        }
+        if let name = message["msg"] as? String {
             if let cmd = messageName[name] {
                 workQueue.async {
                     cmd(message, replay)
@@ -38,6 +42,10 @@ extension MessageProcessing {
         "port": portCmd,
         "serverIsAlive": serverIsAliveCmd
     ]
+
+    private static func responseDictionary(_ message: ExchangeDictionary, response: Any) -> ExchangeDictionary {
+        return ["msg": message["msg"]!, "id": message["id"]!, "body": response]
+    }
 }
 
 // MARK: Message commands implementations
@@ -51,24 +59,24 @@ extension MessageProcessing {
     
     private static let bundleIdCmd: RequestFunc = { (message, response) in
         BSLog(BSLOG_DEBUG, "Bundle id connected app: \(bundleId)")
-        response(["bundleId": bundleId])
+        response(responseDictionary(message, response: bundleId))
     }
     
     private static let acceptersCmd: RequestFunc = { (message, response) in
         BSSharedResources.accepters { (accepters) in
             BSLog(BSLOG_DEBUG, "Accepters requested, dict count: \(String(describing: accepters?.count))")
-            response(["accepters": accepters ?? [:]])
+            response(responseDictionary(message, response: accepters ?? [:]))
         }
     }
     
     private static let portCmd: RequestFunc = { (message, response) in
         BSLog(BSLOG_DEBUG, "Port requested, value: \(BSSharedResources.tabPort)")
-        response(["port": BSSharedResources.tabPort])
+        response(responseDictionary(message, response: BSSharedResources.tabPort))
     }
 
     private static let serverIsAliveCmd: RequestFunc = { (message, response) in
         let running = (NSRunningApplication.runningApplications(withBundleIdentifier: BS_BUNDLE_ID).count > 0) && BSSharedResources.tabPort > 0;
         BSLog(BSLOG_DEBUG, "serverIsAlive requested, value: \(running)")
-        response(["serverIsAlive": running])
+        response(responseDictionary(message, response: running))
     }
 }

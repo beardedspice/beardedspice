@@ -5,15 +5,28 @@ const DELAY_TIMEOUT = 500; // milleseconds
 const RECONNECT_NATIVE_TIMEOUT = 10000; //milleseconds
 
 var nativePort = null;
-var clientsPort = 0;
 var timeoutObject = null;
 var previousTab = null;
 var previousTabOnNewWindow = null;
 var wasActivated = false;
 
+
+var callbackTargets = {};
+var targetsCounter = 0;
+function idForTarget(target){
+    targetsCounter = targetsCounter == Number.MAX_SAFE_INTEGER ? 0 : targetsCounter++;
+    var id = targetsCounter.toString();
+    callbackTargets[id] = target;
+    return id;
+}
+
 var _clean = function() {
-    socket = null;
-    clientsPort = 0;
+    if (nativePort) {
+        nativePort.disconnect();
+    }
+    nativePort = null;
+    targetsCounter = 0;
+    callbackTargets = {};
 
     if (timeoutObject) {
         clearTimeout(timeoutObject);
@@ -35,88 +48,13 @@ var resetAllTabs = function() {
     });
 };
 
-function reconnect(event) {
+function reconnectToNative(event) {
     console.info("(BeardedSpice Control) Attempt to reconnecting.");
 
     _clean();
     connectToNative();
 };
 
-function connect(port) {
-
-    // Create WebSocket connection.
-    var url = 'wss://localhost:' + port;
-
-    console.info("(BeardedSpice Control) Try connect to '" + url + "' with ports pool: " + controlPort);
-
-    socket = new WebSocket(url);
-
-    // Connection opened
-    socket.addEventListener('open', function(event) {
-        console.info("(BeardedSpice Control) Socket open.");
-        if (timeoutObject) {
-            clearTimeout(timeoutObject);
-            timeoutObject = null;
-        }
-        // send accepters request after timeout
-        setTimeout(function() {
-            BSUtils.storageGet("hostBundleId", value => {
-                if (!value || value == "") {
-                    // If bundleId current app is not defined, we attempt to receive from BeardedSpice Controller
-                    console.log('(BeardedSpice Control) Sending pairing request');
-                    _send({ "request": "hostBundleId" });
-                }
-                _send({ 'request': 'accepters' });
-            });
-        }, DELAY_TIMEOUT);
-    });
-
-    // Listen for messages
-    socket.addEventListener('message', function(event) {
-        console.log('(BeardedSpice Control) Message from server ', event.data);
-        try {
-
-            var obj = JSON.parse(event.data);
-            if (obj['accepters']) {
-                //got accepters
-                BSUtils.storageSet("accepters", obj['accepters'], () => {
-                    _send({ 'request': 'port' });
-                });
-            } else if (obj['port']) {
-                //got clients port
-                clientsPort = obj['port'];
-                _sendOk();
-                // Send new port to tabs
-                resetAllTabs();
-            } else if (obj['strategiesChanged']) {
-                _send({ 'request': 'accepters' });
-            } else if (obj['controllerPort']) {
-                _sendOk();
-                var port = obj['controllerPort'];
-                if (port != "" && parseInt(port)) {
-                    BSUtils.storageSet("controllerPort", port);
-                }
-            } else {
-                console.error('(BeardedSpice Control) response not found.');
-                throw "(BeardedSpice Control) response not found.";
-            }
-        } catch (ex) {
-            logError(ex);
-            _send({ 'result': false });
-            socket.close();
-        }
-    });
-
-    var onSocketDisconnet = function(event) {
-        console.log('(BeardedSpice Control) onSocketDisconnet');
-        _clean();
-        timeoutObject = setTimeout(reconnect, RECONNECT_NATIVE_TIMEOUT);
-    };
-
-    socket.addEventListener('close', onSocketDisconnet);
-
-    // timeoutObject = setTimeout(connectTimeout, SOCKET_TIMEOUT);
-}
 
 function connectToNative() {
     if (typeof chrome !== "undefined" && chrome && chrome.storage) {
@@ -124,18 +62,45 @@ function connectToNative() {
         BSUtils.storageGet("nativeMesssageAppId", value => {
             debugger;
             nativePort = chrome.runtime.connectNative(value);
-            nativePort.onMessage.addListener(function(msg) {
-            console.log("Received: %o", msg);
-            debugger;
-            });
-            port.onDisconnect.addListener(function() {
+            nativePort.onMessage.addListener(respondToNativeMessage);
+            nativePort.onDisconnect.addListener(function() {
                 console.log('(BeardedSpice Control) onSocketDisconnet');
                 _clean();
-                timeoutObject = setTimeout(reconnect, RECONNECT_NATIVE_TIMEOUT);
+                timeoutObject = setTimeout(reconnectToNative, RECONNECT_NATIVE_TIMEOUT);
             });
-            port.postMessage({ "name": "bundleId" });
             });
     }
+}
+
+function respondToNativeMessage(msg){
+    console.log('(BeardedSpice Control) received from native: %o', msg);
+    debugger;
+    var targetId = msg["id"];
+    if (targetId.length > 0) {
+        var target = callbackTargets[targetId];
+        if (target) {
+            switch (msg["msg"]) {
+                case "bundleId":
+                    BSUtils.sendMessageToTab(target, "bundleId", { 'result': msg["body"]});
+                    break;
+            
+                case "accepters":
+                    BSUtils.sendMessageToTab(target, "accepters", msg["body"]);
+                    break;
+                case "port":
+                    BSUtils.sendMessageToTab(target, "port", { 'result': msg["body"]});
+                    break;
+                case "serverIsAlive":
+                    if (msg["body"] === true) {
+                        BSUtils.sendMessageToTab(target, "reconnect", { 'result': true });
+                    }
+                    break;
+                default:
+                    break;
+            }
+            delete callbackTargets[targetId];
+        }
+    } 
 }
 
 function respondToMessage(theMessageEvent) {
@@ -151,13 +116,11 @@ function respondToMessage(theMessageEvent) {
             //request accepters
             switch (theMessageEvent.name) {
                 case "accepters":
-                    BSUtils.storageGet("accepters", value => {
-                        BSUtils.sendMessageToTab(theMessageEvent.target, "accepters", value);
-                    });
+                    nativePort.postMessage({'msg':'accepters', 'id': idForTarget(theMessageEvent.target)});
                     break;
                 case "port":
                     // request port
-                    BSUtils.sendMessageToTab(theMessageEvent.target, "port", { 'result': clientsPort });
+                    nativePort.postMessage({'msg':'port', 'id': idForTarget(theMessageEvent.target)});
                     break;
                 case "frontmost":
                     BSUtils.frontmostTab(theMessageEvent.target, val => {
@@ -170,14 +133,10 @@ function respondToMessage(theMessageEvent) {
                     });
                     break;
                 case "bundleId":
-                    BSUtils.storageGet("hostBundleId", value => {
-                        BSUtils.sendMessageToTab(theMessageEvent.target, "bundleId", { 'result': value });
-                    });
+                    nativePort.postMessage({'msg':'bundleId', 'id': idForTarget(theMessageEvent.target)});
                     break;
                 case "serverIsAlive":
-                    if (socket && clientsPort) {
-                        BSUtils.sendMessageToTab(theMessageEvent.target, "reconnect", { 'result': true });
-                    }
+                    nativePort.postMessage({'msg':'serverIsAlive', 'id': idForTarget(theMessageEvent.target)});
                     break;
                 case "activate":
                     BSUtils.getActiveTab(tab => {

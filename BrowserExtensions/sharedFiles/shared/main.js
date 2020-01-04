@@ -60,7 +60,6 @@ function connectToNative() {
     if (typeof chrome !== "undefined" && chrome && chrome.storage) {
         //CHROME
         BSUtils.storageGet("nativeMesssageAppId", value => {
-            debugger;
             nativePort = chrome.runtime.connectNative(value);
             nativePort.onMessage.addListener(respondToNativeMessage);
             nativePort.onDisconnect.addListener(function() {
@@ -74,7 +73,6 @@ function connectToNative() {
 
 function respondToNativeMessage(msg){
     console.log('(BeardedSpice Control) received from native: %o', msg);
-    debugger;
     var targetId = msg["id"];
     if (targetId.length > 0) {
         var target = callbackTargets[targetId];
@@ -91,9 +89,7 @@ function respondToNativeMessage(msg){
                     BSUtils.sendMessageToTab(target, "port", { 'result': msg["body"]});
                     break;
                 case "serverIsAlive":
-                    if (msg["body"] === true) {
-                        BSUtils.sendMessageToTab(target, "reconnect", { 'result': true });
-                    }
+                    BSUtils.sendMessageToTab(target, "reconnect", { 'result': msg["body"] });
                     break;
                 default:
                     break;

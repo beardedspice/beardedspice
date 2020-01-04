@@ -34,6 +34,8 @@ echo "Apply env vars to constants.js"
 Template=$( cat "${EXTENSION_CHROME}/constants.js" | sed "s/\"/\\\\\"/g" )
 eval "echo \"$Template\"" > "${EXTENSION_CHROME}/constants.js" || exit 1
 
+/usr/bin/ditto -c -k "$EXTENSION_CHROME" "${EXTENSION_CHROME}.zip"
+
 echo "Done"
 
 if [ ! "$1" == "build" ]; then

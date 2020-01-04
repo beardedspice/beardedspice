@@ -3,13 +3,14 @@
 
     "name": "Beardie",
     "description": "This extension allow you to use Beardie for controlling media players on appropriate sites.",
-    "version": "${BS_CHROME_EXTENSION_VERSION}",
+    "version": "${BS_VERSION}.${BS_BUILD}",
     "homepage_url": "${BS_HOMEPAGE}",
 
     "icons":
     {
         "16": "icon/Icon-16.png",
         "32": "icon/Icon-32.png",
+        "48": "icon/Icon-48.png",
         "64": "icon/Icon-64.png",
         "128": "icon/Icon-128.png"
     },
@@ -38,8 +39,7 @@
         "<all_urls>",
         "activeTab",
         "storage",
-        "unlimitedStorage",
-        "wss://localhost:*/*"
+        "unlimitedStorage"
     ],
     "web_accessible_resources": [
         "shared/*eventsController.js",

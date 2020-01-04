@@ -435,6 +435,7 @@
 		658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
 		6590426423BACC2300890457 /* Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processing.swift; sourceTree = "<group>"; };
 		6590428823BF3BB400890457 /* NM_Connector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NM_Connector.entitlements; sourceTree = "<group>"; };
+		6590428923BF853300890457 /* Icon-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-48.png"; sourceTree = "<group>"; };
 		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
 		65A57BC1239DA9F30013476E /* BSLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSLog.h; sourceTree = "<group>"; };
 		65A850141C8B065000D54C77 /* BSCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCService.h; sourceTree = "<group>"; };
@@ -632,6 +633,7 @@
 			isa = PBXGroup;
 			children = (
 				6507C2692002D311003D4B1A /* Icon-32.png */,
+				6590428923BF853300890457 /* Icon-48.png */,
 				6507C26A2002D311003D4B1A /* Icon.png */,
 				6507C26B2002D311003D4B1A /* Icon-64.png */,
 				6507C26C2002D311003D4B1A /* Icon-128.png */,

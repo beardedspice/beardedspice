@@ -100,8 +100,6 @@ BOOL accessibilityApiEnabled = NO;
     workingQueue = dispatch_queue_create("com.beardedspice.working.serial", DISPATCH_QUEUE_SERIAL);
     _volumeButtonLastPressed = [NSDate date];
     
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(interfaceThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
@@ -136,11 +134,10 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)awakeFromNib
 {
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:24.0];
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:26.0];
     [statusItem setMenu:statusMenu];
-
-    [self interfaceThemeChanged:nil];
-    [statusItem setHighlightMode:YES];
+    
+    statusItem.button.image = [NSImage imageNamed:@"wave"];
 
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
@@ -905,27 +902,6 @@ BOOL accessibilityApiEnabled = NO;
     }
     else if ([name isEqualToString:BSStrategiesPreferencesNativeAppChangedNoticiation])
         [self refreshKeyTapBlackList];
-}
-
--(void)interfaceThemeChanged:(NSNotification *)notif
-{
-    @autoreleasepool {
-
-        NSDictionary *dict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
-        id style = [dict objectForKey:@"AppleInterfaceStyle"];
-        BOOL isDarkMode = ( style && [style isKindOfClass:[NSString class]] && NSOrderedSame == [style caseInsensitiveCompare:@"dark"] );
-
-        if (statusItem) {
-            if (isDarkMode) {
-                [statusItem setImage:[NSImage imageNamed:@"icon20x19-alt"]];
-                [statusItem setAlternateImage:[NSImage imageNamed:@"icon20x19-alt"]];
-            }
-            else{
-                [statusItem setImage:[NSImage imageNamed:@"icon20x19"]];
-                [statusItem setAlternateImage:[NSImage imageNamed:@"icon20x19-alt"]];
-            }
-        }
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////

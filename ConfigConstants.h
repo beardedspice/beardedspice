@@ -1,6 +1,6 @@
 #define BS_NAME    @"Beardie"
 #define BS_GROUP    @"5F2QV47DGC.com.calm_apps.mac.beardie"
-#define BS_BUILD    @"51"
+#define BS_BUILD    @"52"
 #define BS_SAFARI_TECHPREVIEW_ID    @"com.apple.SafariTechnologyPreview"
 #define BS_VERSION    @"3.0.2"
 #define BS_DEFAULT_CHROME_BUNDLE_ID    @"com.google.Chrome"

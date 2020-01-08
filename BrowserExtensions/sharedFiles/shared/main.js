@@ -89,7 +89,7 @@ function respondToNativeMessage(msg){
                     BSUtils.sendMessageToTab(target, "port", { 'result': msg["body"]});
                     break;
                 case "serverIsAlive":
-                    BSUtils.sendMessageToTab(target, "reconnect", { 'result': msg["body"] });
+                    BSUtils.sendMessageToTab(target, "serverIsAlive", { 'result': msg["body"] });
                     break;
                 default:
                     break;
@@ -111,6 +111,9 @@ function respondToMessage(theMessageEvent) {
 
             //request accepters
             switch (theMessageEvent.name) {
+                case "settingsChanged":
+                    resetAllTabs();
+                    break;
                 case "accepters":
                     nativePort.postMessage({'msg':'accepters', 'id': idForTarget(theMessageEvent.target)});
                     break;

@@ -136,15 +136,17 @@ console.log("(BeardedSpice) Start injection script");
                 handleMessage.intervalId = null
             }
             if (event.message["result"]) {
-                if (socket) {
-                    socket.close();
+                if (event.name === 'reconnect') {
+                    reconnect(event);
                 }
-                reconnect(event);
+                else {
+                    serverIsAlive(event);
+                }
                 return;
             }
             else {
                handleMessage.intervalId = setInterval(function() {
-                   BSUtils.sendMessageToGlobal('serverIsAlive');
+                   BSUtils.sendMessageToGlobal(event.name);
                },
                10000);
            }
@@ -260,7 +262,6 @@ console.log("(BeardedSpice) Start injection script");
                         clearInterval(intervalId);
                     }
                 }
-                console.log("(BeardedSpice) Accepters run: before setTimeout");
                 intervalId = setInterval(delayedFunc, 1000);
                 console.log("(BeardedSpice) Accepters run: after setTimeout");
             } else {
@@ -280,6 +281,12 @@ console.log("(BeardedSpice) Start injection script");
 
     };
 
+    var serverIsAlive = function(event) {
+        console.info("(BeardedSpice) Attempt to connecting on new port.");
+        state.set(state.accepted);
+        BSUtils.sendMessageToGlobal("port");
+    };
+
     var reconnect = function(event) {
 
         if (state.current.val === state.reconnecting.val) {
@@ -288,9 +295,12 @@ console.log("(BeardedSpice) Start injection script");
 
         console.info("(BeardedSpice) Attempt to reconnecting.");
 
+        state.set(state.reconnecting);
+        if (socket) {
+            socket.close();
+        }
         _clean();
 
-        state.set(state.reconnecting);
         BSUtils.sendMessageToGlobal("accepters");
     };
 
@@ -311,6 +321,9 @@ console.log("(BeardedSpice) Start injection script");
         var onSocketDisconnet = function(event) {
             console.info('(BeardedSpice) onSocketDisconnet');
 
+            if (state.current.val === state.reconnecting.val) {
+                return;
+            }
             state.set(state.disconnected);
 
             //sending request to extension
@@ -437,29 +450,20 @@ console.log("(BeardedSpice) Start injection script");
 
         bsParameters.URL = window.location.href;
 
-        var _reset = function() {
-            if (socket) {
-                socket.close();
-            }
-            _clean();
-            //sending request to extension
-            BSUtils.sendMessageToGlobal('serverIsAlive');
-
-        }
-
         if (strategyName) {
             //strategy was loaded
             //check strategy validity
             if (noCSP) {
                 BSEventClient.sendRequest({ "name": "checkAccept" }, function(response) {
-                    console.log("(BeardedSpice) checkAccept run");
+                    console.log("(BeardedSpice) checkAccept run: %o", response);
 
-                    if (response.result) {
+                    if (response["result"]) {
                         //do nothing
                         return;
                     }
-                    _reset();
+                    reconnect();
                 });
+                return;
             } else {
                 if (strategyAccepterFunc()) {
                     //do nothing
@@ -467,7 +471,7 @@ console.log("(BeardedSpice) Start injection script");
                 }
             }
         }
-        _reset();
+        reconnect();
     }
 
     window.addEventListener("popstate", function(event) {

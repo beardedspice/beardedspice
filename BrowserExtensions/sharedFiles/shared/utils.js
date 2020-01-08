@@ -4,7 +4,15 @@
     var _privateLog = console.log;
     console.log = function () {
         _privateLog.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
-    }
+    };
+    var _privateError = console.error;
+    console.error = function () {
+        _privateError.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
+    };
+    var _privateInfo = console.info;
+    console.info = function () {
+        _privateInfo.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
+    };
 })();
 
 var BSUtils = {

@@ -523,7 +523,6 @@ static NSArray *tabClasses;
                                                }
                                            }
                                        }
-                                       [self notifyBSWebAppsThatGlobalSettingsChangedExcluding:bundleIds];
                                    }
                                }
                            }];
@@ -653,13 +652,4 @@ static NSArray *tabClasses;
     [BSSharedResources setAccepters:[self enabledStrategyDictionary] completion:nil];
 }
 
-- (void)notifyBSWebAppsThatGlobalSettingsChangedExcluding:(NSSet *)excludeBundleIds {
-    
-    if (![excludeBundleIds containsObject:BS_DEFAULT_SAFARI_BUBDLE_ID]
-        && [NSRunningApplication runningApplicationsWithBundleIdentifier:BS_DEFAULT_SAFARI_BUBDLE_ID].count > 0) {
-        [SFSafariApplication dispatchMessageWithName:@"settingsChanged"
-                           toExtensionWithIdentifier:BS_SAFARI_EXTENSION_BUNDLE_ID
-                                            userInfo:nil completionHandler:nil];
-    }
-}
 @end

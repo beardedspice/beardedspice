@@ -39,7 +39,6 @@ NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStarte
     NSMutableArray <PSWebSocket *> *_controlSockets;
     void (^_stopCompletion)(void);
     NSArray *_certs;
-    BOOL _controlStarted, _tabsStarted;
 }
 
 static BSStrategyWebSocketServer *singletonBSStrategyWebSocketServer;
@@ -70,8 +69,8 @@ static NSArray *tabClasses;
     self = [super init];
     if (self) {
         
-        _tabsPort = _controlPort = 0;
-        _controlStarted = _tabsStarted = NO;
+        _tabsPort = 0;
+        _started = NO;
         _observers = [NSMutableArray new];
         _controlSockets = [NSMutableArray new];
         _workQueue = dispatch_queue_create("com.beardedspice.websocket.server", DISPATCH_QUEUE_SERIAL);
@@ -83,10 +82,6 @@ static NSArray *tabClasses;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public properties and methods
 
-- (BOOL)started {
-    return _controlStarted && _tabsStarted;
-}
-
 - (void)start {
     
     @synchronized (self) {
@@ -96,18 +91,7 @@ static NSArray *tabClasses;
         }
         
         if ([self loadCertificate]) {
-            NSNumber *port = [[NSUserDefaults standardUserDefaults] valueForKey:BSWebSocketServerPort];
-            _controlPort = [port unsignedShortValue];
-            if (_controlPort) {
-                _controlServer = [PSWebSocketServer serverWithHost:@"127.0.0.1"
-                                                              port:_controlPort
-                                                   SSLCertificates:_certs];
-                _controlServer.delegateQueue = _workQueue;
-                _controlServer.delegate = self;
-                [_controlServer start];
-                
-                _controlStarted = YES;
-            }
+            [self startTabServer];
         }
         
     }
@@ -128,7 +112,6 @@ static NSArray *tabClasses;
         _oQueue = nil;
         
         [_tabsServer stop];
-        [_controlServer stop];
     }
 }
 
@@ -165,12 +148,6 @@ static NSArray *tabClasses;
              postNotificationName:BSWebSocketServerStartedNotification
              object:self];
         });
-    }
-    
-    if (server == _controlServer) {
-        
-        BSLog(BSLOG_INFO, @"Websocket Control server started on port %d.", _controlPort);
-        [self startTabServer];
     }
 }
 
@@ -231,12 +208,6 @@ static NSArray *tabClasses;
             }
         });
     }
-    if (server == _controlServer) {
-        @synchronized (self) {
-            [_controlSockets addObject:webSocket];
-            BSLog(BSLOG_DEBUG, @"Control socket [x%p] added.", webSocket);
-        }
-    }
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
@@ -244,54 +215,14 @@ static NSArray *tabClasses;
            ([message isKindOfClass:[NSData class]]
             ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
             : message));
-
-    //control request
-    if (server == _controlServer) {
-        NSData *messageData = [message isKindOfClass:[NSString class]] ?
-        [message dataUsingEncoding:NSUTF8StringEncoding]
-        : message;
-        
-        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:messageData options:0 error:NULL];
-        if (response) {
-            NSString *request = response[@"request"];
-            if ([request isEqualToString:@"accepters"]) {
-                [webSocket send:[self enabledStrategy]];
-            }
-            else if ([request isEqualToString:@"port"]) {
-                if (_tabsStarted) {
-                    [webSocket send:[NSString stringWithFormat:@"{\"port\":%d}", _tabsPort]];
-                }
-                else {
-                    [webSocket send:@"{\"result\":false}"];
-                }
-            }
-            else if ([request isEqualToString:@"hostBundleId"]) {
-                // Sending bundle Id to all supported browsers
-                [self sendPairingToSupportedBrowsers];
-            }
-        }
-    }
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
     BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
-    if (server == _controlServer) {
-        @synchronized (self) {
-            [_controlSockets removeObject:webSocket];
-            BSLog(BSLOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
-        }
-    }
-
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
     BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
-    if (server == _controlServer) {
-        @synchronized (self) {
-            [_controlSockets removeObject:webSocket];
-            BSLog(BSLOG_DEBUG, @"Control socket [x%p] removed.", webSocket);
-        }
-    }
 }
 - (NSHTTPURLResponse *)server:(PSWebSocketServer *)server
    responseOnSimpleGetRequest:(NSURLRequest *)request
@@ -302,27 +233,6 @@ static NSArray *tabClasses;
     BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
 
     if ([request.HTTPMethod isEqualToString:@"GET"]) {
-        if ([request.URL.path isEqualToString:@"/pairing.html"]) {
-            NSURLComponents *comp = [NSURLComponents componentsWithURL:request.URL resolvingAgainstBaseURL:YES];
-            for (NSURLQueryItem *item in comp.queryItems) {
-                if ([item.name isEqualToString:@"bundleId"]) {
-                    return [self responseForPairingWithBundleId:item.value
-                                                            url:request.URL
-                                                   responseBody:responseBody];
-                }
-            }
-        }
-        else if ([request.URL.path isEqualToString:BSSafariExtensionName]) {
-            return [self responseForFileUrl:request.URL
-                                       mime:@"application/octet-stream"
-                               responseBody:responseBody];
-        }
-        else if ([request.URL.path isEqualToString:BSGetExtensionsPageName]) {
-            return [self responseForFileUrl:request.URL
-                                       mime:@"text/html"
-                               responseBody:responseBody];
-        }
-
     }
     
     return nil;
@@ -342,7 +252,7 @@ static NSArray *tabClasses;
 #pragma mark Private methods
 
 - (BOOL)stopped {
-    return ! (_tabsStarted || _controlStarted);
+    return ! _started;
 }
 
 - (uint16_t)getFreeListeningPortFrom:(uint16_t)port poolCount:(uint16_t)poolCount {
@@ -529,94 +439,22 @@ static NSArray *tabClasses;
             if (observer) {
                 [_observers addObject:observer];
             }
-            observer = [[NSNotificationCenter defaultCenter]
-                        addObserverForName:GeneralPreferencesWebSocketServerPortChangedNoticiation
-                        object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
-                            
-                            @synchronized(self){
-                                @autoreleasepool {
-                                    NSNumber *port = [[NSUserDefaults standardUserDefaults]
-                                                      valueForKey:BSWebSocketServerPort];
-                                    if (self->_controlPort == [port unsignedShortValue]) {
-                                        // new port is equal previous, do nothing
-                                        return;
-                                    }
-                                    NSString *message = [NSString stringWithFormat:@"{\"controllerPort\":\"%@\"}", port];
-                                    for (PSWebSocket *item in self->_controlSockets) {
-                                        [item send:message];
-                                    }
-                                }
-                            }
-                            [self stopWithComletion:^{
-                                [self start];
-                            }];
-                        }];
-            if (observer) {
-                [_observers addObject:observer];
-            }
             _tabs = [NSMutableArray array];
             
             [_tabsServer start];
-            _tabsStarted = YES;
+            _started = YES;
         }
     }
 }
 
 - (void)setStopServer:(PSWebSocketServer *)server {
     @synchronized (self) {
-        if (server == _controlServer) {
-            _controlStarted = NO;
-        }
-        else if (server == _tabsServer) {
-            _tabsStarted = NO;
+        if (server == _tabsServer) {
+            _started = NO;
             _tabsPort = 0;
             [BSSharedResources setTabPort:0];
         }
     }
-}
-
-- (void)sendPairingToSupportedBrowsers {
-    NSArray *apps = @[APPID_SAFARITP, APPID_SAFARI, APPID_CHROME];
-    for (NSString *item in apps) {
-        runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:item];
-        if (app) {
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:SAFARI_EXTENSION_PAIRING_FORMAT, self.controlPort, item]];
-            [[NSWorkspace sharedWorkspace]
-             openURLs:@[url]
-             withAppBundleIdentifier:item
-             options:0
-             additionalEventParamDescriptor:nil
-             launchIdentifiers:nil];
-            runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:item];
-            [app activate];
-        }
-    }
-}
-
-- (NSHTTPURLResponse *)responseForPairingWithBundleId:(NSString *)bundleId url:(NSURL *)url responseBody:(NSData **)responseBody{
-    NSURL *pairingUrl = [[NSBundle mainBundle] URLForResource:SAFARI_EXTENSION_PAIRING withExtension:nil];
-    NSString *pairingContent = [NSString stringWithContentsOfURL:pairingUrl usedEncoding:NULL error:NULL];
-    NSData *body = [NSData data];
-    if (pairingContent) {
-        pairingContent = [pairingContent stringByReplacingOccurrencesOfString:@"${bundleId}" withString:bundleId];
-        body = [pairingContent dataUsingEncoding:NSUTF8StringEncoding];
-    }
-    else {
-        BSLog(BSLOG_ERROR, @"Can't load pairing.html file from app bundle");
-    }
-    
-    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
-                                                              statusCode:200
-                                                             HTTPVersion:@"HTTP/1.1"
-                                                            headerFields:@{
-                                                                           @"Content-Type": @"text/html",
-                                                                           @"Content-Length": [NSString stringWithFormat:@"%lu", body.length]
-                                                                           }];
-    
-    if (responseBody) {
-        *responseBody = body;
-    }
-    return response;
 }
 
 - (NSHTTPURLResponse *)responseForFileUrl:(NSURL *)url mime:(NSString *)mime responseBody:(NSData **)responseBody{

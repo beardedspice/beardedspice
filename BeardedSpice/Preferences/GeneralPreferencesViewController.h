@@ -15,7 +15,6 @@
 
 extern NSString *const GeneralPreferencesAutoPauseChangedNoticiation;
 extern NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation;
-extern NSString *const GeneralPreferencesWebSocketServerPortChangedNoticiation;;
 extern NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiation;;
 
 /////////////////////////////////////////////////////////////////////////
@@ -29,7 +28,6 @@ extern NSString *const BeardedSpiceUpdateAtLaunch;
 extern NSString *const BeardedSpiceShowProgress;
 extern NSString *const BeardedSpiceCustomVolumeControl;
 
-extern NSString *const BSWebSocketServerPort;
 extern NSString *const BSWebSocketServerEnabled;
 
 /////////////////////////////////////////////////////////////////////////

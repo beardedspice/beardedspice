@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralPreferencesViewController">
@@ -12,7 +11,6 @@
                 <outlet property="enableBrowserExtensions" destination="jMA-R1-qrX" id="ZH9-Qc-8DX"/>
                 <outlet property="firstResponderView" destination="721" id="818"/>
                 <outlet property="view" destination="1" id="2"/>
-                <outlet property="webSocketPortField" destination="iEp-Lw-TyH" id="D0C-Op-SoA"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -149,7 +147,7 @@
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WFb-ud-pGn">
                     <rect key="frame" x="42" y="95" width="413" height="56"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="justified" id="e1N-Xg-eYX">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="menu" size="11"/>
                         <string key="title">Extensions allow you to use BeardedSpice for controlling media players on appropriate sites. Controller port is used to connect the BeardedSpice with browser extensions. Keep in mind that the port number must correspond to the port number in the browser extension settings.</string>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -174,7 +172,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jMA-R1-qrX">
-                    <rect key="frame" x="42" y="161" width="264" height="18"/>
+                    <rect key="frame" x="42" y="161" width="413" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable Browser Extensions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5a5-mP-Dhv">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -183,53 +181,6 @@
                         <action selector="toggleWebSocketServer:" target="-2" id="I4B-sw-SVv"/>
                     </connections>
                 </button>
-                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-N0-1cj">
-                    <rect key="frame" x="312" y="159" width="141" height="24"/>
-                    <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rN0-ol-5UR">
-                            <rect key="frame" x="-2" y="4" width="92" height="17"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Contoller Port:" id="w6u-wm-Tox">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iEp-Lw-TyH" userLabel="Port">
-                            <rect key="frame" x="96" y="1" width="45" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="SbX-IL-r2S"/>
-                            </constraints>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="EBT-1x-WTd">
-                                <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="5Q9-JD-DNh">
-                                    <real key="minimum" value="1024"/>
-                                    <real key="maximum" value="49151"/>
-                                </numberFormatter>
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <binding destination="436" name="value" keyPath="values.BSWebSocketServerPort" id="YTf-7k-Wsx">
-                                    <dictionary key="options">
-                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                    </dictionary>
-                                </binding>
-                                <outlet property="delegate" destination="-2" id="gb8-r9-f35"/>
-                            </connections>
-                        </textField>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="24" id="gLm-sr-IF1"/>
-                    </constraints>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
-                </stackView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JrF-Rb-nGy">
                     <rect key="frame" x="177" y="37" width="143" height="32"/>
                     <buttonCell key="cell" type="push" title="Get Extensions..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X3M-O6-lco">
@@ -256,33 +207,31 @@
                 <constraint firstItem="JrF-Rb-nGy" firstAttribute="top" secondItem="WFb-ud-pGn" secondAttribute="bottom" constant="30" id="3Xv-dg-Rtk"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="3bJ-tB-9un"/>
                 <constraint firstItem="824" firstAttribute="top" secondItem="baJ-gx-qRa" secondAttribute="bottom" constant="12" id="3kh-XM-pWL"/>
-                <constraint firstItem="p1d-N0-1cj" firstAttribute="baseline" secondItem="jMA-R1-qrX" secondAttribute="baseline" id="74r-P6-jbO"/>
                 <constraint firstItem="Pr1-bF-Zle" firstAttribute="trailing" secondItem="hhj-Ic-mcP" secondAttribute="trailing" id="7EJ-b7-gs8"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="9Ao-uQ-veh"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="trailing" secondItem="hhj-Ic-mcP" secondAttribute="trailing" id="9cV-rQ-ai8"/>
                 <constraint firstItem="Pr1-bF-Zle" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="9kw-Ti-YTS"/>
                 <constraint firstItem="JrF-Rb-nGy" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="BLZ-JQ-6oo"/>
+                <constraint firstItem="jMA-R1-qrX" firstAttribute="trailing" secondItem="Pr1-bF-Zle" secondAttribute="trailing" id="Bua-Ub-pex"/>
                 <constraint firstItem="824" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Dxt-Mg-jwf"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="trailing" secondItem="baJ-gx-qRa" secondAttribute="trailing" id="Fc2-Ru-ST6"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="JhK-r7-GqU"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="top" secondItem="824" secondAttribute="bottom" constant="12" id="MUF-fH-DxK"/>
                 <constraint firstItem="765" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Poh-pP-LAp"/>
-                <constraint firstItem="p1d-N0-1cj" firstAttribute="top" secondItem="Pr1-bF-Zle" secondAttribute="bottom" constant="28" id="RJc-sf-CEd"/>
-                <constraint firstItem="WFb-ud-pGn" firstAttribute="top" secondItem="p1d-N0-1cj" secondAttribute="bottom" constant="8" id="RMu-ip-tWk"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="top" secondItem="351" secondAttribute="bottom" constant="12" id="TeL-2a-Q7O"/>
                 <constraint firstItem="721" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="44" id="TgI-Xp-wa2"/>
                 <constraint firstItem="351" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Tpc-oj-afU"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="12" id="VaT-xE-cCR"/>
+                <constraint firstItem="jMA-R1-qrX" firstAttribute="top" secondItem="Pr1-bF-Zle" secondAttribute="bottom" constant="34" id="bOj-cd-NCr"/>
+                <constraint firstItem="WFb-ud-pGn" firstAttribute="top" secondItem="jMA-R1-qrX" secondAttribute="bottom" constant="12" id="bhG-eT-MrQ"/>
                 <constraint firstAttribute="trailing" secondItem="721" secondAttribute="trailing" constant="44" id="dfJ-Fs-TSR"/>
                 <constraint firstItem="jMA-R1-qrX" firstAttribute="leading" secondItem="Pr1-bF-Zle" secondAttribute="leading" id="gGc-z7-1T5"/>
                 <constraint firstItem="351" firstAttribute="top" secondItem="765" secondAttribute="bottom" constant="12" id="gfH-9m-5df"/>
                 <constraint firstItem="Pr1-bF-Zle" firstAttribute="top" secondItem="hhj-Ic-mcP" secondAttribute="bottom" constant="30" id="ieZ-mv-FLd"/>
                 <constraint firstItem="765" firstAttribute="top" secondItem="D1C-WS-HOj" secondAttribute="bottom" constant="12" id="jej-1g-aRe"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="kqF-Rr-aDU"/>
-                <constraint firstItem="p1d-N0-1cj" firstAttribute="trailing" secondItem="Pr1-bF-Zle" secondAttribute="trailing" id="nf2-bB-xay"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="oao-bM-lRl"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="leading" secondItem="baJ-gx-qRa" secondAttribute="leading" id="uBR-ZA-evg"/>
-                <constraint firstItem="p1d-N0-1cj" firstAttribute="leading" secondItem="jMA-R1-qrX" secondAttribute="trailing" constant="8" id="xEC-xm-naT"/>
             </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="721" id="820"/>

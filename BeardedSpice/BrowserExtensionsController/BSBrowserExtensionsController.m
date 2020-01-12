@@ -15,11 +15,6 @@
 #import <Beardie-Swift.h>
 
 
-NSString *const BSSafariExtensionName = @"/BeardedSpice.safariextz";
-NSString *const BSGetExtensionsPageName = @"/get-extensions.html";
-
-#define URL_FORMAT                                      @"https://localhost:%d%@"
-
 @implementation BSBrowserExtensionsController {
     NSMutableArray *_observers;
     dispatch_queue_t _workQueue;
@@ -101,11 +96,6 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 }
 
 - (void)openGetExtensions {
-    if (_webSocketServer.started == NO) {
-        return;
-    }
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:URL_FORMAT, _webSocketServer.controlPort, BSGetExtensionsPageName]];
-    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 - (void)firstRunPerformWithCompletion:(dispatch_block_t)completion {
 

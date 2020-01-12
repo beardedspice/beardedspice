@@ -25,7 +25,6 @@
 
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
 NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation = @"GeneralPreferencesUsingAppleRemoteChangedNoticiation";
-NSString *const GeneralPreferencesWebSocketServerPortChangedNoticiation = @"GeneralPreferencesWebSocketServerPortChangedNoticiation";
 NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiation = @"GeneralPreferencesWebSocketServerEnabledChangedNoticiation";
 
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
@@ -36,7 +35,6 @@ NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 NSString *const BeardedSpiceShowProgress = @"BeardedSpiceShowProgress";
 NSString *const BeardedSpiceCustomVolumeControl = @"BeardedSpiceCustomVolumeControl";
 
-NSString *const BSWebSocketServerPort = @"BSWebSocketServerPort";
 NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 
 @implementation GeneralPreferencesViewController
@@ -152,26 +150,6 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 
         });
     });
-}
-
-- (void)controlTextDidChange:(NSNotification *)notification {
-
-    static EHExecuteBlockDelayed *sendNotification;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sendNotification = [[EHExecuteBlockDelayed alloc]
-                            initWithTimeout:RELAXING_TIMEOUT
-                            leeway:RELAXING_TIMEOUT
-                            queue:dispatch_get_main_queue()
-                            block:^{
-                                [[NSNotificationCenter defaultCenter]
-                                 postNotificationName:GeneralPreferencesWebSocketServerPortChangedNoticiation
-                                 object:self];
-                            }];
-    });
-    if ([notification.object isEqual:self.webSocketPortField]) {
-        [sendNotification executeOnceAfterCalm];
-    }
 }
 
 @end

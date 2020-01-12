@@ -135,7 +135,7 @@ BOOL accessibilityApiEnabled = NO;
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:26.0];
     [statusItem setMenu:statusMenu];
     
-    statusItem.button.image = [NSImage imageNamed:@"wave"];
+    statusItem.button.image = [NSImage imageNamed:@"beardie"];
 
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;

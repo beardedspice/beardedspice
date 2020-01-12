@@ -15,12 +15,14 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="497" height="456"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="538" height="428"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                    <rect key="frame" x="42" y="396" width="413" height="18"/>
+                    <rect key="frame" x="42" y="368" width="454" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="450" id="Rh1-k5-frK"/>
+                    </constraints>
                     <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="722">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -38,7 +40,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="D1C-WS-HOj" userLabel="Check for Updates at Launch">
-                    <rect key="frame" x="42" y="318" width="413" height="18"/>
+                    <rect key="frame" x="42" y="290" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Check for Compatibility Updates at Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C81-eE-dH1">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -61,7 +63,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="824">
-                    <rect key="frame" x="42" y="344" width="413" height="18"/>
+                    <rect key="frame" x="42" y="316" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Use Apple Remote for control playback" bezelStyle="regularSquare" imagePosition="left" inset="2" id="825">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -79,7 +81,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="351">
-                    <rect key="frame" x="42" y="266" width="413" height="18"/>
+                    <rect key="frame" x="42" y="238" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Show track info on keypress when player is hidden" bezelStyle="regularSquare" imagePosition="left" inset="2" id="352">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -103,7 +105,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-gx-qRa">
-                    <rect key="frame" x="42" y="370" width="413" height="18"/>
+                    <rect key="frame" x="42" y="342" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Show track progress instead of album" bezelStyle="regularSquare" imagePosition="left" inset="2" id="IUs-Ty-SYf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -127,7 +129,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hhj-Ic-mcP">
-                    <rect key="frame" x="42" y="240" width="413" height="18"/>
+                    <rect key="frame" x="42" y="212" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Use current media controller for the volume control, if applicable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gBv-Vo-saU">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -142,19 +144,18 @@
                     </connections>
                 </button>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Pr1-bF-Zle">
-                    <rect key="frame" x="44" y="209" width="409" height="5"/>
+                    <rect key="frame" x="44" y="181" width="450" height="5"/>
                 </box>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WFb-ud-pGn">
-                    <rect key="frame" x="42" y="95" width="413" height="56"/>
-                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="justified" id="e1N-Xg-eYX">
-                        <font key="font" metaFont="menu" size="11"/>
-                        <string key="title">Extensions allow you to use BeardedSpice for controlling media players on appropriate sites. Controller port is used to connect the BeardedSpice with browser extensions. Keep in mind that the port number must correspond to the port number in the browser extension settings.</string>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                    <rect key="frame" x="42" y="95" width="454" height="28"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Extensions allow you to use Beardie for controlling media players on appropriate sites. " id="e1N-Xg-eYX">
+                        <font key="font" metaFont="message" size="11"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="765">
-                    <rect key="frame" x="42" y="292" width="413" height="18"/>
+                    <rect key="frame" x="42" y="264" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Pause playback when headphone is removed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="766">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -172,7 +173,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jMA-R1-qrX">
-                    <rect key="frame" x="42" y="161" width="413" height="18"/>
+                    <rect key="frame" x="42" y="133" width="454" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable Browser Extensions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5a5-mP-Dhv">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -182,7 +183,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JrF-Rb-nGy">
-                    <rect key="frame" x="177" y="37" width="143" height="32"/>
+                    <rect key="frame" x="198" y="37" width="143" height="32"/>
                     <buttonCell key="cell" type="push" title="Get Extensions..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X3M-O6-lco">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

@@ -32,10 +32,12 @@
 		6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3011F48824000775D14 /* BSWebTabAdapter.m */; };
 		6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3051F49A4E800775D14 /* BSPredicateToJS.m */; };
 		6508891D23CB388400914FA1 /* BSWebTabChromeAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508891C23CB388400914FA1 /* BSWebTabChromeAdapter.m */; };
+		6508892223CB8D8400914FA1 /* GetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6508892023CB8D8400914FA1 /* GetExtensions.swift */; };
+		6508892323CB8D8400914FA1 /* GetExtensions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6508892123CB8D8400914FA1 /* GetExtensions.xib */; };
+		6508892523CB9B4000914FA1 /* safari.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6508892423CB9B4000914FA1 /* safari.icns */; };
+		6508892723CB9D1F00914FA1 /* chrome.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6508892623CB9D1F00914FA1 /* chrome.icns */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651F4E3C1F5365C800D7F94F /* BSPredicateToJSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */; };
-		65229E861FC40E1500C73281 /* pairing.html in Resources */ = {isa = PBXBuildFile; fileRef = 650794EE1FB7737700930B70 /* pairing.html */; };
-		65229E871FC40E1900C73281 /* get-extensions.html in Resources */ = {isa = PBXBuildFile; fileRef = 65C6ECC91FC2003D00CCC6F1 /* get-extensions.html */; };
 		6537DAA81AF396DA002F2391 /* NativeAppTabsRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAA71AF396DA002F2391 /* NativeAppTabsRegistry.m */; };
 		6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537DAAA1AF508DF002F2391 /* MediaControllerObject.m */; };
 		6537DAAD1AF6E666002F2391 /* SpotifyTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C511691AED66A700EBA6A5 /* SpotifyTabAdapter.m */; };
@@ -308,8 +310,6 @@
 		6506A715237607F300DAC132 /* Beardie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beardie-Bridging-Header.h"; sourceTree = "<group>"; };
 		650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHExecuteBlockDelayed.m; sourceTree = "<group>"; };
 		650781181FAF43E600A0902A /* EHExecuteBlockDelayed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHExecuteBlockDelayed.h; sourceTree = "<group>"; };
-		650794EF1FB7737700930B70 /* Base */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Base; path = Base.lproj/pairing.html; sourceTree = "<group>"; };
-		650794F11FB7737700930B70 /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ru; path = ru.lproj/pairing.html; sourceTree = "<group>"; };
 		6507A2FB1F483F3A00775D14 /* BSStrategyWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStrategyWebSocketServer.h; sourceTree = "<group>"; };
 		6507A2FC1F483F3A00775D14 /* BSStrategyWebSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServer.m; sourceTree = "<group>"; };
 		6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStrategyWebSocketServerTest.m; sourceTree = "<group>"; };
@@ -325,6 +325,10 @@
 		6507C2782002D311003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		6508891B23CB388400914FA1 /* BSWebTabChromeAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSWebTabChromeAdapter.h; sourceTree = "<group>"; };
 		6508891C23CB388400914FA1 /* BSWebTabChromeAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebTabChromeAdapter.m; sourceTree = "<group>"; };
+		6508892023CB8D8400914FA1 /* GetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExtensions.swift; sourceTree = "<group>"; };
+		6508892123CB8D8400914FA1 /* GetExtensions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetExtensions.xib; sourceTree = "<group>"; };
+		6508892423CB9B4000914FA1 /* safari.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = safari.icns; sourceTree = "<group>"; };
+		6508892623CB9D1F00914FA1 /* chrome.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = chrome.icns; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -465,7 +469,6 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* BSNativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* BSNativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNativeAppTabAdapter.m; sourceTree = "<group>"; };
-		65C6ECC81FC2003D00CCC6F1 /* Base */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Base; path = "Base.lproj/get-extensions.html"; sourceTree = "<group>"; };
 		65D57FCA1D02CBFE0016F270 /* MediaStrategies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MediaStrategies; sourceTree = "<group>"; };
 		65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-Config.xcconfig"; sourceTree = "<group>"; };
 		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -485,8 +488,6 @@
 		65E6E0542370AC7A009C9448 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		65E6E05923721DDC009C9448 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		65E6E05B237221B6009C9448 /* BeardieCertTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeardieCertTemplate.h; sourceTree = "<group>"; };
-		65EF97722364F7A7000CC845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/pairing.html; sourceTree = "<group>"; };
-		65EF97732364F7A7000CC845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = "en.lproj/get-extensions.html"; sourceTree = "<group>"; };
 		65EF97742364F7A7000CC845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		65EF97752364F7A7000CC845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65F294A4237C3F34008C1D71 /* BSTVTabAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTVTabAdapter.h; sourceTree = "<group>"; };
@@ -604,13 +605,13 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
-		650794ED1FB7737600930B70 /* ExtensionsResources */ = {
+		650794ED1FB7737600930B70 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				650794EE1FB7737700930B70 /* pairing.html */,
-				65C6ECC91FC2003D00CCC6F1 /* get-extensions.html */,
+				6508892423CB9B4000914FA1 /* safari.icns */,
+				6508892623CB9D1F00914FA1 /* chrome.icns */,
 			);
-			path = ExtensionsResources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		6507C2622002D311003D4B1A /* BrowserExtensions */ = {
@@ -677,10 +678,12 @@
 		6557B48D1F6ADBC800295997 /* BrowserExtensionsController */ = {
 			isa = PBXGroup;
 			children = (
-				650794ED1FB7737600930B70 /* ExtensionsResources */,
+				650794ED1FB7737600930B70 /* Resources */,
 				6557B48E1F6ADCA800295997 /* BSBrowserExtensionsController.h */,
 				6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */,
 				65AA828C239C349A000442A2 /* NativeMessaging.swift */,
+				6508892023CB8D8400914FA1 /* GetExtensions.swift */,
+				6508892123CB8D8400914FA1 /* GetExtensions.xib */,
 			);
 			path = BrowserExtensionsController;
 			sourceTree = "<group>";
@@ -1364,11 +1367,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6508892723CB9D1F00914FA1 /* chrome.icns in Resources */,
 				967933481855173100A49AC7 /* Images.xcassets in Resources */,
-				65229E861FC40E1500C73281 /* pairing.html in Resources */,
 				65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */,
-				65229E871FC40E1900C73281 /* get-extensions.html in Resources */,
+				6508892323CB8D8400914FA1 /* GetExtensions.xib in Resources */,
 				0B355EF71CBEA3350089C2B3 /* Localizable.strings in Resources */,
+				6508892523CB9B4000914FA1 /* safari.icns in Resources */,
 				25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */,
 				78D9F8121D808FD70081E4EE /* BeardieSuite.sdef in Resources */,
 				0301233A1868B1F90080115F /* BeardedSpiceUserDefaults.plist in Resources */,
@@ -1627,6 +1631,7 @@
 				656A002F1C8AD41A00BD29F5 /* BSTimeout.m in Sources */,
 				0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */,
 				78D9F8101D808FCD0081E4EE /* BSAppleScriptSupport.m in Sources */,
+				6508892223CB8D8400914FA1 /* GetExtensions.swift in Sources */,
 				6537DAAB1AF508DF002F2391 /* MediaControllerObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1710,25 +1715,6 @@
 				65EF97742364F7A7000CC845 /* en */,
 			);
 			name = Localizable.stringsdict;
-			sourceTree = "<group>";
-		};
-		650794EE1FB7737700930B70 /* pairing.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				650794EF1FB7737700930B70 /* Base */,
-				650794F11FB7737700930B70 /* ru */,
-				65EF97722364F7A7000CC845 /* en */,
-			);
-			name = pairing.html;
-			sourceTree = "<group>";
-		};
-		65C6ECC91FC2003D00CCC6F1 /* get-extensions.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65C6ECC81FC2003D00CCC6F1 /* Base */,
-				65EF97732364F7A7000CC845 /* en */,
-			);
-			name = "get-extensions.html";
 			sourceTree = "<group>";
 		};
 		65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */ = {

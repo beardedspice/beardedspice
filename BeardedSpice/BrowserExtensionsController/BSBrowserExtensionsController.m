@@ -12,6 +12,7 @@
 #import "NSException+Utils.h"
 #import "AppDelegate.h"
 #import "GeneralPreferencesViewController.h"
+#import "BSPreferencesWindowController.h"
 #import <Beardie-Swift.h>
 
 
@@ -96,6 +97,15 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 }
 
 - (void)openGetExtensions {
+    AppDelegate *app = (AppDelegate *)NSApp.delegate;
+    BSPreferencesWindowController *windowController = (BSPreferencesWindowController *)app.preferencesWindowController;
+    [app openPreferences:self];
+    [windowController selectControllerAtIndex:0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GetExtensions *dialog = [[GetExtensions alloc] initWithWindowNibName:@"GetExtensions"];
+        [dialog beginSheetForWindow:windowController.window];
+    });
+
 }
 - (void)firstRunPerformWithCompletion:(dispatch_block_t)completion {
 

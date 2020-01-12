@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GetExtensions" customModule="Beardie" customModuleProvider="target">
+            <connections>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES"/>
+            <rect key="contentRect" x="196" y="240" width="530" height="481"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="530" height="471"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEW-oc-gpm">
+                        <rect key="frame" x="40" y="281" width="128" height="128"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="128" id="ase-f8-dlt"/>
+                            <constraint firstAttribute="height" constant="128" id="dR0-i2-LkP"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="safari" id="iKj-Ea-hhz"/>
+                    </imageView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Pr-cI-vlH">
+                        <rect key="frame" x="40" y="97" width="128" height="128"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="128" id="eNW-wa-3OT"/>
+                            <constraint firstAttribute="height" constant="128" id="kYB-Ux-6Ge"/>
+                        </constraints>
+                        <shadow key="shadow" blurRadius="2">
+                            <size key="offset" width="0.0" height="-1"/>
+                            <color key="color" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        </shadow>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="chrome" id="xES-pU-MTF"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Dv9-rk-Cga">
+                        <rect key="frame" x="38" y="435" width="454" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="450" id="dgX-cf-qzk"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Get Extensions" id="nt8-N9-UAR">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fM7-u5-mR1">
+                        <rect key="frame" x="297" y="291" width="199" height="32"/>
+                        <buttonCell key="cell" type="push" title="Open Safari Preferences..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3mX-C0-0tV">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clickOpenSafariPrefs:" target="-2" id="9LI-y4-XOR"/>
+                            <outlet property="nextKeyView" destination="ZQg-Qf-vgT" id="EOQ-il-fR7"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-Qf-vgT">
+                        <rect key="frame" x="297" y="93" width="199" height="32"/>
+                        <buttonCell key="cell" type="push" title="Open Extension Page..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bt8-A0-VpM">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clickOpenChromeExtensionUrl:" target="-2" id="Wfy-99-Omt"/>
+                            <outlet property="nextKeyView" destination="snx-LT-ICh" id="svP-Qy-xpl"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-FD-5ce">
+                        <rect key="frame" x="184" y="141" width="308" height="70"/>
+                        <textFieldCell key="cell" controlSize="small" alignment="left" id="4et-NY-iVu">
+                            <font key="font" metaFont="message" size="11"/>
+                            <string key="title">The extension for Chrome-like browsers should install automatically. But if this did not happen or you removed it from the browser, then try to install the extension manually. The button below to go to the extension page in the google web store. </string>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="l9e-Aj-cAK">
+                        <rect key="frame" x="184" y="339" width="308" height="56"/>
+                        <textFieldCell key="cell" controlSize="small" id="Zjr-W3-gYt">
+                            <font key="font" metaFont="message" size="11"/>
+                            <string key="title">The Safari extension is delivered and installed in place with the app. But you must manually enable the extension in your browser settings. The button below opens those settings.</string>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snx-LT-ICh">
+                        <rect key="frame" x="424" y="13" width="92" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="6La-9A-sEX"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="81J-8W-khs">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clickClose:" target="-2" id="fXK-Pk-NQA"/>
+                            <outlet property="nextKeyView" destination="fM7-u5-mR1" id="pyS-p4-FQq"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="snx-LT-ICh" secondAttribute="trailing" constant="20" id="06i-WV-sRe"/>
+                    <constraint firstItem="8Pr-cI-vlH" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="40" id="7Y8-gK-5mx"/>
+                    <constraint firstItem="ZQg-Qf-vgT" firstAttribute="leading" secondItem="fM7-u5-mR1" secondAttribute="leading" id="8xy-rU-hGU"/>
+                    <constraint firstItem="l9e-Aj-cAK" firstAttribute="leading" secondItem="DEW-oc-gpm" secondAttribute="trailing" constant="18" id="Awn-Vq-w6J"/>
+                    <constraint firstItem="Dv9-rk-Cga" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="BTN-ld-SZ7"/>
+                    <constraint firstItem="snx-LT-ICh" firstAttribute="top" secondItem="8Pr-cI-vlH" secondAttribute="bottom" constant="56" id="Bpf-jK-qcx"/>
+                    <constraint firstItem="RUy-FD-5ce" firstAttribute="leading" secondItem="8Pr-cI-vlH" secondAttribute="trailing" constant="18" id="FBp-TT-cCC"/>
+                    <constraint firstItem="ZQg-Qf-vgT" firstAttribute="trailing" secondItem="Dv9-rk-Cga" secondAttribute="trailing" id="LIp-qg-Gc6"/>
+                    <constraint firstItem="RUy-FD-5ce" firstAttribute="trailing" secondItem="Dv9-rk-Cga" secondAttribute="trailing" id="NHb-ez-j0q"/>
+                    <constraint firstItem="Dv9-rk-Cga" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="40" id="PEP-yP-ZXH"/>
+                    <constraint firstItem="l9e-Aj-cAK" firstAttribute="trailing" secondItem="Dv9-rk-Cga" secondAttribute="trailing" id="PZt-gG-8ck"/>
+                    <constraint firstItem="DEW-oc-gpm" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="40" id="XWp-r3-8yE"/>
+                    <constraint firstItem="8Pr-cI-vlH" firstAttribute="top" secondItem="DEW-oc-gpm" secondAttribute="bottom" constant="56" id="agk-tu-sYY"/>
+                    <constraint firstItem="RUy-FD-5ce" firstAttribute="top" secondItem="8Pr-cI-vlH" secondAttribute="top" constant="14" id="gU2-TM-fgN"/>
+                    <constraint firstItem="fM7-u5-mR1" firstAttribute="top" secondItem="l9e-Aj-cAK" secondAttribute="bottom" constant="20" id="jE7-nW-rya"/>
+                    <constraint firstAttribute="bottom" secondItem="snx-LT-ICh" secondAttribute="bottom" constant="20" id="k0b-Yb-lIc"/>
+                    <constraint firstItem="l9e-Aj-cAK" firstAttribute="top" secondItem="DEW-oc-gpm" secondAttribute="top" constant="14" id="oJh-69-YWY"/>
+                    <constraint firstItem="fM7-u5-mR1" firstAttribute="trailing" secondItem="Dv9-rk-Cga" secondAttribute="trailing" id="pYr-Di-b2w"/>
+                    <constraint firstItem="ZQg-Qf-vgT" firstAttribute="top" secondItem="RUy-FD-5ce" secondAttribute="bottom" constant="20" id="tmk-yP-5jq"/>
+                    <constraint firstAttribute="trailing" secondItem="Dv9-rk-Cga" secondAttribute="trailing" constant="40" id="vhf-u0-xcY"/>
+                    <constraint firstItem="DEW-oc-gpm" firstAttribute="top" secondItem="Dv9-rk-Cga" secondAttribute="bottom" constant="26" id="xXi-d9-J2e"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+                <outlet property="initialFirstResponder" destination="snx-LT-ICh" id="2GZ-9a-cMh"/>
+            </connections>
+            <point key="canvasLocation" x="319" y="129.5"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="chrome" width="512" height="512"/>
+        <image name="safari" width="512" height="512"/>
+    </resources>
+</document>

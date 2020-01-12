@@ -1,6 +1,9 @@
 //PREVENTS LOG OUTPUT
 //console.log = function(){};
 (function(){
+    if (typeof BSUtils !== "undefined" && BSUtils) {
+        return;
+    }
     var _privateLog = console.log;
     console.log = function () {
         _privateLog.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
@@ -123,6 +126,14 @@ var BSUtils = {
             val[name] = value;
             console.log("(BeardedSpice) storageSet dict: %O", val);
             chrome.storage.local.set( val, callback);
+        }
+    },
+
+    isStandalone: function(){
+        if (typeof safari !== "undefined" && safari ) {
+            return (window.navigator.standalone === true);
+        } else if (typeof chrome !== "undefined" && chrome) {
+            return (window.matchMedia('(display-mode: standalone)').matches);
         }
     },
 

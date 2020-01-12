@@ -367,6 +367,10 @@ console.log("(BeardedSpice) Start injection script");
                         BSUtils.sendMessageToGlobal(event.data);
                         break;
                     }
+                    if (event.data == "standalone") {
+                        _send({"standalone": BSUtils.isStandalone()});
+                        break;    
+                    }
                     if (event.data == "ready") {
                         _send({ 'strategy': strategyName });
                         state.set(state.strategyRequested);

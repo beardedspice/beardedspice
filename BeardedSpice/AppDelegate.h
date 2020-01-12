@@ -29,6 +29,7 @@ extern BOOL accessibilityApiEnabled;
     IBOutlet NSMenu *statusMenu;
 }
 
+@property (nonatomic, readonly) dispatch_queue_t workingQueue;
 @property (nonatomic, strong) BSActiveTab *activeApp;
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 @property (nonatomic, strong) BSStrategyVersionManager *versionManager;

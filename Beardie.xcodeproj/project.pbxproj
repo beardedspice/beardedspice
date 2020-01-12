@@ -31,6 +31,7 @@
 		6507A2FF1F485F8800775D14 /* BSStrategyWebSocketServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A2FE1F485F8800775D14 /* BSStrategyWebSocketServerTest.m */; };
 		6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3011F48824000775D14 /* BSWebTabAdapter.m */; };
 		6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6507A3051F49A4E800775D14 /* BSPredicateToJS.m */; };
+		6508891D23CB388400914FA1 /* BSWebTabChromeAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508891C23CB388400914FA1 /* BSWebTabChromeAdapter.m */; };
 		651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */; };
 		651F4E3C1F5365C800D7F94F /* BSPredicateToJSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */; };
 		65229E861FC40E1500C73281 /* pairing.html in Resources */ = {isa = PBXBuildFile; fileRef = 650794EE1FB7737700930B70 /* pairing.html */; };
@@ -322,6 +323,8 @@
 		6507C26C2002D311003D4B1A /* Icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-128.png"; sourceTree = "<group>"; };
 		6507C26D2002D311003D4B1A /* Icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-16.png"; sourceTree = "<group>"; };
 		6507C2782002D311003D4B1A /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		6508891B23CB388400914FA1 /* BSWebTabChromeAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSWebTabChromeAdapter.h; sourceTree = "<group>"; };
+		6508891C23CB388400914FA1 /* BSWebTabChromeAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebTabChromeAdapter.m; sourceTree = "<group>"; };
 		651967BF1AB3858800B48D3A /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
@@ -687,6 +690,8 @@
 			children = (
 				6568C4E52353B64100558DC6 /* BSWebTabSafariAdapter.h */,
 				6568C4E62353B64100558DC6 /* BSWebTabSafariAdapter.m */,
+				6508891B23CB388400914FA1 /* BSWebTabChromeAdapter.h */,
+				6508891C23CB388400914FA1 /* BSWebTabChromeAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -1605,6 +1610,7 @@
 				657EAEA91AAAEB9300D00456 /* runningSBApplication.m in Sources */,
 				658D643F1FA697A2004D1546 /* PSWebSocket.m in Sources */,
 				03A34922185EA43900C4A62B /* MediaStrategyRegistry.m in Sources */,
+				6508891D23CB388400914FA1 /* BSWebTabChromeAdapter.m in Sources */,
 				65FF756C1B36CEDF00D81CA5 /* BSLaunchAtLogin.m in Sources */,
 				6507A2FD1F483F3B00775D14 /* BSStrategyWebSocketServer.m in Sources */,
 				0B064FFE1DC6A85A00CD5F35 /* BSActiveTab.m in Sources */,

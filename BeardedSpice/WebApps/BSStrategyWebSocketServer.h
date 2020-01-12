@@ -11,6 +11,7 @@
 #import "PSWebSocketServer.h"
 #import "BSWebTabAdapter.h"
 #import "BSWebTabSafariAdapter.h"
+#import "BSWebTabChromeAdapter.h"
 
 @class BSTrack;
 

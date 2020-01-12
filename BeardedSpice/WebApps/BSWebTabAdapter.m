@@ -35,7 +35,8 @@
     BSWebTabAdapter *object = [[self alloc] initWithBrowserSocket:tabSocket];
     if (object) {
         if ([object suitableForSocket]) {
-             [object sendMessage:@"ready"];
+            object->_standalone = [object obtainStandalone];
+            [object sendMessage:@"ready"];
             return object;
         }
     }
@@ -301,6 +302,19 @@
         result = nil;
     }
     return [runningSBApplication sharedApplicationForBundleIdentifier:result];
+}
+
+- (BOOL)obtainStandalone {
+    BOOL result = NO;
+    @try {
+        NSDictionary *response = [self sendMessage:@"standalone"];
+        id val = response[@"standalone"];
+        if ([val isKindOfClass:[NSNumber class]]) {
+            result = [val boolValue];
+        }
+    }
+    @finally{}
+    return result;
 }
 
 @end

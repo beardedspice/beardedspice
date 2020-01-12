@@ -61,8 +61,6 @@ BOOL accessibilityApiEnabled = NO;
     
     NSMutableSet    *openedWindows;
     
-    dispatch_queue_t workingQueue;
-    
     NSXPCConnection *_connectionToService;
     
     BSBrowserExtensionsController *_browserExtensionsController;
@@ -97,7 +95,7 @@ BOOL accessibilityApiEnabled = NO;
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
 
     // Create serial queue for user actions
-    workingQueue = dispatch_queue_create("com.beardedspice.working.serial", DISPATCH_QUEUE_SERIAL);
+    _workingQueue = dispatch_queue_create("com.beardedspice.working.serial", DISPATCH_QUEUE_SERIAL);
     _volumeButtonLastPressed = [NSDate date];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
@@ -179,7 +177,7 @@ BOOL accessibilityApiEnabled = NO;
             [sender replyToApplicationShouldTerminate:YES];
         }];
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), workingQueue, ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), _workingQueue, ^{
             [self->_connectionToService invalidate];
             [sender replyToApplicationShouldTerminate:YES];
         });
@@ -194,7 +192,7 @@ BOOL accessibilityApiEnabled = NO;
         //when `first run` operations completed
         dispatch_block_t completion = ^(){[[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];};
         
-        dispatch_async(workingQueue, ^{
+        dispatch_async(_workingQueue, ^{
             [self->_browserExtensionsController firstRunPerformWithCompletion:completion];
         });
     }
@@ -206,7 +204,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)menuNeedsUpdate:(NSMenu *)menu{
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         [wself autoSelectTabWithForceFocused:NO];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -232,7 +230,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)playPauseToggle {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:YES];
         [sself.activeApp toggle];
@@ -240,7 +238,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 - (void)nextTrack {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:NO];
         [sself.activeApp next];
@@ -249,7 +247,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)previousTrack {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:NO];
         [sself.activeApp previous];
@@ -258,7 +256,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)favorite {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:NO];
         [sself.activeApp favorite];
@@ -267,7 +265,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)activeTab {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself refreshTabs:self];
         [sself setActiveTabShortcut];
@@ -276,7 +274,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)notification{
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:NO];
         [sself.activeApp showNotificationUsingFallback:YES];
@@ -285,7 +283,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)activatePlayingTab{
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:NO];
         [sself.activeApp activatePlayingTab];
@@ -306,7 +304,7 @@ BOOL accessibilityApiEnabled = NO;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
         
-        dispatch_async(workingQueue, ^{
+        dispatch_async(_workingQueue, ^{
             
             __strong typeof(wself) sself = self;
             [sself autoSelectTabForVolumeButtons];
@@ -338,7 +336,7 @@ BOOL accessibilityApiEnabled = NO;
     __weak typeof(self) wself = self;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
         
-        dispatch_async(workingQueue, ^{
+        dispatch_async(_workingQueue, ^{
             
             __strong typeof(wself) sself = self;
             [sself autoSelectTabForVolumeButtons];
@@ -371,7 +369,7 @@ BOOL accessibilityApiEnabled = NO;
     __weak typeof(self) wself = self;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceCustomVolumeControl]) {
         
-        dispatch_async(workingQueue, ^{
+        dispatch_async(_workingQueue, ^{
             
             __strong typeof(wself) sself = self;
             [sself autoSelectTabForVolumeButtons];
@@ -401,7 +399,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)headphoneUnplug{
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself.activeApp pauseActiveTab];
     });
@@ -468,7 +466,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)updateActiveTabFromMenuItem:(id) sender
 {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself.activeApp updateActiveTab:[sender representedObject]];
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -740,7 +738,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
 
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         @autoreleasepool {
 
             [wself autoSelectTabWithForceFocused:YES];
@@ -875,7 +873,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)receiveSleepNote:(NSNotification *)note
 {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         [wself.activeApp pauseActiveTab];
     });
 }
@@ -883,7 +881,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void) switchUserHandler:(NSNotification*) notification
 {
     __weak typeof(self) wself = self;
-    dispatch_async(workingQueue, ^{
+    dispatch_async(_workingQueue, ^{
         [wself.activeApp pauseActiveTab];
     });
 }

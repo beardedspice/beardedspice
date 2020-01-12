@@ -22,6 +22,8 @@
 /// This method must be overwritten in child class
 - (BOOL)suitableForSocket;
 
+/// YES if tab is standalone PWA
+@property (nonatomic, readonly) BOOL standalone;
 @property (nonatomic, readonly) PSWebSocket *tabSocket;
 @property (nonatomic, readonly) BSMediaStrategy *strategy;
 

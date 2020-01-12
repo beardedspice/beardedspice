@@ -55,7 +55,7 @@ static NSArray *tabClasses;
         
         singletonBSStrategyWebSocketServer = [BSStrategyWebSocketServer alloc];
         singletonBSStrategyWebSocketServer = [singletonBSStrategyWebSocketServer init];
-        tabClasses = @[[BSWebTabSafariAdapter class], [BSWebTabAdapter class]]; //The order is important
+        tabClasses = @[[BSWebTabSafariAdapter class], [BSWebTabChromeAdapter class], [BSWebTabAdapter class]]; //The order is important
     });
     
     return singletonBSStrategyWebSocketServer;

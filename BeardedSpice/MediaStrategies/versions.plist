@@ -200,8 +200,10 @@
 	<integer>4</integer>
 	<key>YandexRadio</key>
 	<integer>4</integer>
-	<key>Youtube</key>
-	<integer>3</integer>
+	<key>YouTube</key>
+	<integer>4</integer>
+	<key>YouTubeMusic</key>
+	<integer>1</integer>
 	<key>Zing</key>
 	<integer>1</integer>
 	<key>Zvooq</key>

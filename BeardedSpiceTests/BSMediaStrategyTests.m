@@ -30,11 +30,11 @@ describe(@"Create an empty strategy", ^{
 });
 */
 
-describe(@"Load the Youtube strategy", ^{
+describe(@"Load the YouTube strategy", ^{
     let(path, ^{ return [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"]; });
 
     it(@"will load the strategy properly", ^{
-        NSString *youtubeName = @"Youtube";
+        NSString *youtubeName = @"YouTube";
         NSString *fileName = [NSString stringWithFormat:@"%@.js", youtubeName];
         NSURL *fileURL = [[NSURL alloc] initWithString:fileName relativeToURL:path];
         BSMediaStrategy *strategy = [BSMediaStrategy mediaStrategyWithURL:fileURL error:nil];
@@ -43,8 +43,8 @@ describe(@"Load the Youtube strategy", ^{
         [[strategy.scripts shouldNot] beNil];
         [[theValue(strategy.strategyVersion) shouldNot] equal:theValue(0)];
 
-        [[strategy.displayName should] equal:@"Youtube"]; // pasted from js
-        [[strategy.fileName should] equal:@"Youtube.js"];
+        [[strategy.displayName should] equal:@"YouTube"]; // pasted from js
+        [[strategy.fileName should] equal:@"YouTube.js"];
         [[strategy.displayName shouldNot] equal:strategy.fileName];
 
         [[strategy.toggle shouldNot] beNil];

@@ -38,6 +38,8 @@ First, what is a Media Strategy? This is what we call a [template](https://githu
 
 Second, the Compatibility Updates option allows you to check for added or changed Media Strategies that were contributed since the last official release.
 
+You can also exchange strategies between users in the form of files with the extension `bsstrategy`. In the application *Preferences*, in the *Controllers* section there are corresponding *Export/Import* buttons. There is a [repository with untested strategies](https://github.com/beardedspice/BS-Strategies).
+
 ### Keyboard Shortcuts
 BeardedSpice comes with a handy list of Keyboard Shortcuts that can be configured under the `Shortcuts` tab of BeardedSpice Preferences (available through the menubar icon). Here is a table of Default Keyboard Shortcuts:
 
@@ -120,6 +122,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Pandora](http://www.pandora.com)
 - [Phish.in](http://phish.in)
 - [PhishTracks](http://PhishTracks.com)
+- [PinchyDon](https://pinchyandfriends.com/)
 - [Plex Web](https://app.plex.tv)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [ProductHunt](https://www.producthunt.com/podcasts/)
@@ -165,3 +168,7 @@ If you just want to add a new website to the list above, checkout the [app suppo
 Websites only need some (easily learned) knowledge of javascript and maybe [webpage delving with devtool](https://zapier.com/blog/inspect-element-tutorial/) (also [Chrome's official documentation](https://developers.google.com/web/tools/chrome-devtools/)). 
 
 Integrating a new native app (aka Chrome, Firefox, Spotify) in BeardedSpice is a little more complicated and requires **NO objective-c experience**. Many [good](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/Tabs/SpotifyTabAdapter.m) [examples](https://github.com/beardedspice/beardedspice/blob/master/BeardedSpice/Tabs/iTunesTabAdapter.m) exist. However, some apps simply aren't compatible at this time. See the [wiki article](https://github.com/beardedspice/beardedspice/wiki/Native-App-Developers'-Guide) on getting started importing a Native app.
+
+## Unsupported BeardedSpice Strategies
+
+**[Unsupported BeardedSpice Strategies repository](https://github.com/beardedspice/BS-Strategies)**

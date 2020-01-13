@@ -128,6 +128,8 @@
 	<integer>1</integer>
 	<key>PhishTracks</key>
 	<integer>1</integer>
+	<key>PinchyDon</key>
+	<integer>1</integer>
 	<key>PlexWeb</key>
 	<integer>3</integer>
 	<key>PocketCasts</key>
@@ -195,9 +197,9 @@
 	<key>Xiami</key>
 	<integer>1</integer>
 	<key>YandexMusic</key>
-	<integer>3</integer>
+	<integer>4</integer>
 	<key>YandexRadio</key>
-	<integer>3</integer>
+	<integer>4</integer>
 	<key>YouTube</key>
 	<integer>4</integer>
 	<key>YouTubeMusic</key>

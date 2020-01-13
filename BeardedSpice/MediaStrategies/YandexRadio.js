@@ -4,10 +4,11 @@
 //
 //  Created by Leonid Ponomarev 15.06.15
 //  Updated by Ivan Tsyganov    13.02.18
+//  Updated by Arseny Mitin     18.11.18
 //  Copyright (c) 2014 Tyler Rhodes / Jose Falcon. All rights reserved.
 
 BSStrategy = {
-  version:3,
+  version:4,
   displayName:"YandexRadio",
   accepts: {
     method: "predicateOnTab",
@@ -19,8 +20,9 @@ BSStrategy = {
   next: function () {externalAPI.next();},
   favorite: function () {externalAPI.toggleLike();},
   previous: function () {},
-  pause: function () {externalAPI.togglePause();},
-  
+  pause: function () {
+    if (self.isPlaying()){externalAPI.togglePause();}
+  },
   trackInfo: function () {
     return {
       track:  externalAPI.getCurrentTrack().title,

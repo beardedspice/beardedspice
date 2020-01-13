@@ -11,5 +11,6 @@
 #define BS_NATIVE_MESSAGING_CONNECTOR_NAME    @"beardie-nm-connector"
 #define BS_SAFARI_EXTENSION_BUNDLE_ID    @"com.calm_apps.mac.beardie.safari.extension"
 #define BS_COPYRIGHT    @"Copyright © 2019 Beardie. All rights reserved."
+#define BS_CHROME_EXTENSION_ID    @"kcbddjdbhggfejihipchloknandfnkgb"
 #define BS_BUNDLE_ID    @"com.calm_apps.mac.beardie"
 #define BS_DEFAULT_SAFARI_BUBDLE_ID    @"com.apple.Safari"

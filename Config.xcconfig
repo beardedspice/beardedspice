@@ -25,6 +25,7 @@ BS_NATIVE_MESSAGING_CONNECTOR_NAME          = beardie-nm-connector
 BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID     = $(BS_BUNDLE_ID).nm.connector
 
 BS_SAFARI_EXTENSION_BUNDLE_ID               = $(BS_BUNDLE_ID).safari.extension
+BS_CHROME_EXTENSION_ID                      = kcbddjdbhggfejihipchloknandfnkgb
 
 //File extension for javascript `strategy` file.
 BS_STRATEGY_EXTENSION                       = bsstrategy

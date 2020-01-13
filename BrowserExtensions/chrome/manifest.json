@@ -2,6 +2,7 @@
     "manifest_version": 2,
 
     "name": "Beardie",
+    "short_name": "Beardie",
     "description": "This extension allow you to use Beardie for controlling media players on appropriate sites.",
     "version": "${BS_VERSION}.${BS_BUILD}",
     "homepage_url": "${BS_HOMEPAGE}",

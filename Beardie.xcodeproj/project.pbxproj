@@ -103,7 +103,7 @@
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
-		65AA828D239C349A000442A2 /* NativeMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA828C239C349A000442A2 /* NativeMessaging.swift */; };
+		65AA828D239C349A000442A2 /* ExtensionsMaintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA828C239C349A000442A2 /* ExtensionsMaintenance.swift */; };
 		65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */; };
 		65AD1ECE1FB242C900851F0B /* EHExecuteBlockDelayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */; };
 		65ADE6051D169D0C000C29F1 /* EHVerticalCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE6041D169D0C000C29F1 /* EHVerticalCenteredTextField.m */; };
@@ -449,7 +449,7 @@
 		65A850151C8B065000D54C77 /* BSCService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSCShortcutMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCShortcutMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		65AA828C239C349A000442A2 /* NativeMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeMessaging.swift; sourceTree = "<group>"; };
+		65AA828C239C349A000442A2 /* ExtensionsMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsMaintenance.swift; sourceTree = "<group>"; };
 		65AA829B239D8194000442A2 /* ConfigConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigConstants.h; sourceTree = "<group>"; };
 		65ABBAA41D1EC7D000F882CE /* BSCustomStrategyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCustomStrategyManager.h; sourceTree = "<group>"; };
 		65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCustomStrategyManager.m; sourceTree = "<group>"; };
@@ -681,7 +681,7 @@
 				650794ED1FB7737600930B70 /* Resources */,
 				6557B48E1F6ADCA800295997 /* BSBrowserExtensionsController.h */,
 				6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */,
-				65AA828C239C349A000442A2 /* NativeMessaging.swift */,
+				65AA828C239C349A000442A2 /* ExtensionsMaintenance.swift */,
 				6508892023CB8D8400914FA1 /* GetExtensions.swift */,
 				6508892123CB8D8400914FA1 /* GetExtensions.xib */,
 			);
@@ -1597,7 +1597,7 @@
 				657C77382379E31D00A55EFE /* BSNativeAppTabsController.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
 				658D64441FA697A2004D1546 /* PSWebSocketNetworkThread.m in Sources */,
-				65AA828D239C349A000442A2 /* NativeMessaging.swift in Sources */,
+				65AA828D239C349A000442A2 /* ExtensionsMaintenance.swift in Sources */,
 				656A00371C8AD41A00BD29F5 /* NSURL+Utils.m in Sources */,
 				6588CF461B3584A700A3CBAD /* VOXTabAdapter.m in Sources */,
 				6507A3021F48824000775D14 /* BSWebTabAdapter.m in Sources */,

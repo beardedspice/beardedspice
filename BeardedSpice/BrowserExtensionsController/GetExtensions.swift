@@ -7,10 +7,13 @@
 //
 
 import Cocoa
+import SafariServices
 
 class GetExtensions: NSWindowController {
 
     // MARK: Private properties
+    private static let CHROME_WEB_STORE_URL_FORMAT = "https://chrome.google.com/webstore/detail/%@/"
+    
     private unowned(unsafe) var parentWindowForSheet: NSWindow? = nil
     private var selfHolder: GetExtensions?
 
@@ -48,9 +51,26 @@ class GetExtensions: NSWindowController {
     // MARK: Actions
     
     @IBAction func clickOpenSafariPrefs(_ sender: Any) {
+        SFSafariApplication.showPreferencesForExtension(withIdentifier: BS_SAFARI_EXTENSION_BUNDLE_ID) { (error) in
+            BSLog(BSLOG_INFO, "Open Safari preferences result: \(String(describing: error))")
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.clickClose(sender)
+                }
+            }
+        }
     }
     
     @IBAction func clickOpenChromeExtensionUrl(_ sender: Any) {
+        if let url = URL(string: String(format: GetExtensions.CHROME_WEB_STORE_URL_FORMAT, BS_CHROME_EXTENSION_ID)) {
+            let result = NSWorkspace.shared.open(url)
+            BSLog(BSLOG_INFO, "Open url to Chrome Web Store result: \(result)")
+            if result {
+                DispatchQueue.main.async {
+                    self.clickClose(sender)
+                }
+            }
+        }
     }
     
     @IBAction func clickClose(_ sender: Any) {

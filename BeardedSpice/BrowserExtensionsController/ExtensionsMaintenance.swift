@@ -1,5 +1,5 @@
 //
-//  ChromeNativeMessaging.swift
+//  ExtensionsMaintenance.swift
 //  Beardie
 //
 //  Created by Roman Sokolov on 07.12.2019.
@@ -34,7 +34,7 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
         "path": "\(nmPath)",
         "type": "stdio",
         "allowed_origins": [
-        "chrome-extension://kfecbffboepnaccakdfaionjkemmmljp/"
+        "chrome-extension://\(BS_CHROME_EXTENSION_ID)/"
         ]
         }
         """
@@ -64,6 +64,50 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
         }
         remove(chromePath)
         remove(chromiumPath)
+        return result
+    }
+}
+
+// MARK: - ChromeExtensionMaintenance
+
+class ChromeExtensionMaintenance : NSObject {
+    
+    static private let chromePath = NSString(string: "~/Library/Application Support/Google/Chrome/External Extensions/\(BS_CHROME_EXTENSION_ID).json").expandingTildeInPath
+    
+    @objc
+    static func install() -> Bool {
+        let content = """
+        {
+        "external_update_url": "https://clients2.google.com/service/update2/crx"
+        }
+        """
+        var result = true
+        let write: (String)->Void = { (aPath: String) in
+            do {
+                let folder = (aPath as NSString).deletingLastPathComponent
+                try FileManager.default.createDirectory(atPath: folder, withIntermediateDirectories: true)
+                try content.write(toFile: aPath, atomically: true, encoding: .utf8)
+            } catch  {
+                BSLog(BSLOG_ERROR, "Can't save extension file for \"\(aPath)\": \(error)")
+                result = false;
+            }
+        }
+        write(chromePath)
+        return result
+    }
+    
+    @objc
+    static func uninstall() -> Bool {
+        var result = true
+        let remove: (String)->Void = { (aPath: String) in
+            do {
+                try FileManager.default.removeItem(atPath: aPath)
+            } catch  {
+                BSLog(BSLOG_ERROR, "Can't remove extension file for \"\(aPath)\": \(error)")
+                result = false;
+            }
+        }
+        remove(chromePath)
         return result
     }
 }

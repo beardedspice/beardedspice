@@ -37,12 +37,48 @@ static NSData* getPublicKeyData(SecKeyRef publicKey);
 static NSData* signData(SecKeyRef privateKey, NSData* inputData);
 static SecCertificateRef addCertToKeychain(NSData* certData, NSString* label,
                                            NSError** outError);
-static SecIdentityRef findIdentity(NSString* label, NSTimeInterval expirationInterval);
 BOOL BSCheckAndSetTrustingForSSL(SecIdentityRef ident);
 
 #if TARGET_OS_IPHONE
 static void removePublicKey(SecKeyRef publicKey);
 #endif
+
+
+// Looks up an identity (cert + private key) by the cert's label.
+SecIdentityRef findIdentity(NSString* label, NSTimeInterval expirationInterval) {
+    SecIdentityRef identity;
+#if TARGET_OS_IPHONE
+    NSDictionary* query = @{(__bridge id)kSecClass:     (__bridge id)kSecClassIdentity,
+                            (__bridge id)kSecAttrLabel: label,
+                            (__bridge id)kSecReturnRef: @YES};
+    CFTypeRef ref = NULL;
+    OSStatus err = SecItemCopyMatching((__bridge CFDictionaryRef)query, &ref);
+    if (err) {
+        AssertEq(err, errSecItemNotFound); // other err indicates query dict is malformed
+        return NULL;
+    }
+    identity = (SecIdentityRef)ref;
+#else
+    identity = SecIdentityCopyPreferred((__bridge CFStringRef)label, NULL, NULL);
+#endif
+
+    if (identity) {
+        // Check that the cert hasn't expired yet:
+        SecCertificateRef cert;
+        if (SecIdentityCopyCertificate(identity, &cert) == noErr) {
+            if (!checkCertValid(cert, expirationInterval)) {
+                NSLog(@"SSL identity labeled \"%@\" has expired", label);
+                identity = NULL;
+                MYDeleteAnonymousIdentity(label);
+            }
+            CFRelease(cert);
+        } else {
+            CFRelease(identity);
+            identity = NULL;
+        }
+    }
+    return identity;
+}
 
 
 SecIdentityRef MYGetOrCreateAnonymousIdentity(NSString* label,
@@ -71,7 +107,6 @@ SecIdentityRef MYGetOrCreateAnonymousIdentity(NSString* label,
             checkErr(errSecItemNotFound, outError);
 #else
         if (checkErr(SecIdentityCreateWithCertificate(NULL, certRef, &ident), outError))
-            CFAutorelease(ident);
 #endif
         if (!ident)
             NSLog(@"MYAnonymousIdentity: Can't find identity we just created");
@@ -283,43 +318,6 @@ static SecCertificateRef addCertToKeychain(NSData* certData, NSString* label,
 #endif
     checkErr(err, outError);
     return certRef;
-}
-
-
-// Looks up an identity (cert + private key) by the cert's label.
-static SecIdentityRef findIdentity(NSString* label, NSTimeInterval expirationInterval) {
-    SecIdentityRef identity;
-#if TARGET_OS_IPHONE
-    NSDictionary* query = @{(__bridge id)kSecClass:     (__bridge id)kSecClassIdentity,
-                            (__bridge id)kSecAttrLabel: label,
-                            (__bridge id)kSecReturnRef: @YES};
-    CFTypeRef ref = NULL;
-    OSStatus err = SecItemCopyMatching((__bridge CFDictionaryRef)query, &ref);
-    if (err) {
-        AssertEq(err, errSecItemNotFound); // other err indicates query dict is malformed
-        return NULL;
-    }
-    identity = (SecIdentityRef)ref;
-#else
-    identity = SecIdentityCopyPreferred((__bridge CFStringRef)label, NULL, NULL);
-#endif
-
-    if (identity) {
-        // Check that the cert hasn't expired yet:
-        CFAutorelease(identity);
-        SecCertificateRef cert;
-        if (SecIdentityCopyCertificate(identity, &cert) == noErr) {
-            if (!checkCertValid(cert, expirationInterval)) {
-                NSLog(@"SSL identity labeled \"%@\" has expired", label);
-                identity = NULL;
-                MYDeleteAnonymousIdentity(label);
-            }
-            CFRelease(cert);
-        } else {
-            identity = NULL;
-        }
-    }
-    return identity;
 }
 
 

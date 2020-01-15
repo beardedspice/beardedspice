@@ -30,7 +30,7 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
         let manifest = """
         {
         "name": "\(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)",
-        "description": "My Application",
+        "description": "Beardie connector",
         "path": "\(nmPath)",
         "type": "stdio",
         "allowed_origins": [

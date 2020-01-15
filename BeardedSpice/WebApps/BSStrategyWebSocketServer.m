@@ -242,9 +242,11 @@ static NSArray *tabClasses;
     if (error.code == errSSLClosedAbort) {
         //May be user removed BeardedSpice certificate from default keychain.
         //restart server
-        [self stopWithComletion:^{
-            [self start];
-        }];
+        if ([self checkCertificate] == NO) {
+            [self stopWithComletion:^{
+                [self start];
+            }];
+        }
     }
 }
 
@@ -397,13 +399,42 @@ static NSArray *tabClasses;
         BSLog(BSLOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
         return NO;
     }
-    _certs = @[(__bridge id)identity];
+    _certs = @[(__bridge_transfer id)identity];
     return YES;
+}
+
+- (BOOL)checkCertificate {
+    
+    SecIdentityRef identity = findIdentity(BS_NAME, 3600 * 24 * 350);
+    if (identity == nil) {
+        return NO;
+    }
+    BOOL result = NO;
+    SecCertificateRef cert = NULL;
+    if (SecIdentityCopyCertificate(identity, &cert) == errSecSuccess) {
+        
+        SecIdentityRef currentIdentity =(__bridge SecIdentityRef)_certs[0];
+        SecCertificateRef currentCert = NULL;
+        if (SecIdentityCopyCertificate(currentIdentity, &currentCert) == errSecSuccess) {
+            NSData *iData = MYGetCertificateDigest(cert);
+            NSData *ciData = MYGetCertificateDigest(currentCert);
+            result = iData && [ciData isEqualToData:iData];
+            
+            CFRelease(currentCert);
+        }
+        
+        CFRelease(cert);
+    }
+    
+    CFRelease(identity);
+    
+    return result;
 }
 - (void)startTabServer {
     
     @synchronized (self) {
         
+        _tabs = [NSMutableArray array];
         _tabsPort = [self getFreeListeningPortFrom:0 poolCount:0];
         if (_tabsPort) {
             _tabsServer = [PSWebSocketServer serverWithHost:@"127.0.0.1" port:_tabsPort SSLCertificates:_certs];
@@ -439,7 +470,6 @@ static NSArray *tabClasses;
             if (observer) {
                 [_observers addObject:observer];
             }
-            _tabs = [NSMutableArray array];
             
             [_tabsServer start];
             _started = YES;

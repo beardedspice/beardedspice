@@ -333,8 +333,6 @@
 		651967C01AB3A0B200B48D3A /* iTunesTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iTunesTabAdapter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		651967C11AB3A0B200B48D3A /* iTunesTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTabAdapter.m; sourceTree = "<group>"; };
 		651F4E3B1F5365C800D7F94F /* BSPredicateToJSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPredicateToJSTests.m; sourceTree = "<group>"; };
-		6527C5362009306F006F502B /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
-		6527C537200930B1006F502B /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = options.js; sourceTree = "<group>"; };
 		652AD3361CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3371CC04A7C005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShortcutsPreferencesView.xib; sourceTree = "<group>"; };
 		652AD3381CC04A7D005396CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -443,6 +441,8 @@
 		6590426423BACC2300890457 /* Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processing.swift; sourceTree = "<group>"; };
 		6590428823BF3BB400890457 /* NM_Connector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NM_Connector.entitlements; sourceTree = "<group>"; };
 		6590428923BF853300890457 /* Icon-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-48.png"; sourceTree = "<group>"; };
+		659AA53F23CE63F200853B7B /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
+		659AA54023CE63FC00853B7B /* constants.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = constants.js; sourceTree = "<group>"; };
 		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
 		65A57BC1239DA9F30013476E /* BSLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSLog.h; sourceTree = "<group>"; };
 		65A850141C8B065000D54C77 /* BSCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCService.h; sourceTree = "<group>"; };
@@ -657,9 +657,9 @@
 		6507C2742002D311003D4B1A /* chrome */ = {
 			isa = PBXGroup;
 			children = (
+				659AA54023CE63FC00853B7B /* constants.js */,
+				659AA53F23CE63F200853B7B /* main.html */,
 				6507C2782002D311003D4B1A /* manifest.json */,
-				6527C5362009306F006F502B /* options.html */,
-				6527C537200930B1006F502B /* options.js */,
 			);
 			path = chrome;
 			sourceTree = "<group>";

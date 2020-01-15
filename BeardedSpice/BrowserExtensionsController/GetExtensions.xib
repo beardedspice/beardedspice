@@ -64,7 +64,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-Qf-vgT">
-                        <rect key="frame" x="297" y="93" width="199" height="32"/>
+                        <rect key="frame" x="297" y="79" width="199" height="32"/>
                         <buttonCell key="cell" type="push" title="Open Extension Page..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bt8-A0-VpM">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -75,10 +75,10 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-FD-5ce">
-                        <rect key="frame" x="184" y="141" width="308" height="70"/>
+                        <rect key="frame" x="184" y="127" width="308" height="84"/>
                         <textFieldCell key="cell" controlSize="small" alignment="left" id="4et-NY-iVu">
                             <font key="font" metaFont="menu" size="11"/>
-                            <string key="title">The extension for Chrome-like browsers should install automatically. But if this did not happen or you removed it from the browser, then try to install the extension manually. The button below to go to the extension page in the google web store. </string>
+                            <string key="title">The Chrome extension should install automatically after Goggle Chrome restarting. But if this did not happen or you removed it from the browser, then try to install the extension manually. The button below opens the extension page in the Google Web Store, in your default browser.</string>
                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>

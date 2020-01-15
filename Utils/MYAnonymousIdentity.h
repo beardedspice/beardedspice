@@ -34,4 +34,7 @@ BOOL MYDeleteAnonymousIdentity(NSString* label);
     then make an SSL connection to you and verify your identity by comparing cert digests. */
 NSData* MYGetCertificateDigest(SecCertificateRef cert);
 
+/// Looks up an identity (cert + private key) by the cert's label.
+SecIdentityRef findIdentity(NSString* label, NSTimeInterval expirationInterval);
+
 #define kMYAnonymousIdentityDefaultExpirationInterval (60*60*24*365.0)

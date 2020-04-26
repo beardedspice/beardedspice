@@ -1253,7 +1253,7 @@
 				CLASSPREFIX = BS;
 				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Roman Sokolov";
 				TargetAttributes = {
 					6507C27920037DE5003D4B1A = {
@@ -2068,6 +2068,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
 				PRODUCT_NAME = "$(BS_NATIVE_MESSAGING_CONNECTOR_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "beardie-nm-connector/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2093,6 +2094,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
 				PRODUCT_NAME = "$(BS_NATIVE_MESSAGING_CONNECTOR_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "beardie-nm-connector/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
@@ -2128,10 +2130,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Roman Sokolov (5F2QV47DGC)";
+				CODE_SIGN_IDENTITY = "$(BS_SIGN)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 5F2QV47DGC;
+				DEVELOPMENT_TEAM = "$(BS_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2184,11 +2186,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Roman Sokolov (5F2QV47DGC)";
+				CODE_SIGN_IDENTITY = "$(BS_SIGN)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 5F2QV47DGC;
+				DEVELOPMENT_TEAM = "$(BS_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2205,6 +2207,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -2223,6 +2226,7 @@
 				);
 				INFOPLIST_FILE = "BeardedSpice/Beardie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MARKETING_VERSION = 3.0.;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
 				PRODUCT_NAME = Beardie;
 				SWIFT_OBJC_BRIDGING_HEADER = "BeardedSpice/Beardie-Bridging-Header.h";
@@ -2247,6 +2251,7 @@
 				);
 				INFOPLIST_FILE = "BeardedSpice/Beardie-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MARKETING_VERSION = 3.0.;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_BUNDLE_ID)";
 				PRODUCT_NAME = Beardie;
 				SWIFT_OBJC_BRIDGING_HEADER = "BeardedSpice/Beardie-Bridging-Header.h";

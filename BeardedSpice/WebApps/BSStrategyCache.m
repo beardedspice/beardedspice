@@ -147,7 +147,8 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
         NSError *err = [self updateStrategyWithURL:filePath];
         if (err.code == BSSC_ERROR_STRATEGY_NOTFOUND) {
             [self addStrategyWithURL:filePath];
-        };
+        }
+        
     }
     return YES;
 }

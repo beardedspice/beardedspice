@@ -188,9 +188,9 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)checkFirstRun {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceFirstRun]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardieBrowserExtensionsFirstRun]) {
         //when `first run` operations completed
-        dispatch_block_t completion = ^(){[[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];};
+        dispatch_block_t completion = ^(){[[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardieBrowserExtensionsFirstRun];};
         
         dispatch_async(_workingQueue, ^{
             [self->_browserExtensionsController firstRunPerformWithCompletion:completion];

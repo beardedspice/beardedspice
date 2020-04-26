@@ -37,7 +37,7 @@ NSString *const kBSMediaStrategyAcceptValueTitle     = @"title";
 
 //---
 NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain";
-
+NSString * _Nonnull const kBSMediaStrategyObjectKey = @"kBSMediaStrategyObjectKey";
 
 @interface BSMediaStrategy ()
 
@@ -155,8 +155,21 @@ NSString *const kBSMediaStrategyErrorDomain     = @"kBSMediaStrategyErrorDomain"
     NSError *error;
     BSMediaStrategy *newStrategy = [BSMediaStrategy mediaStrategyWithURL:strategyURL error:&error];
     if (newStrategy) {
-        [self copyStateFrom:newStrategy];
-        return nil;
+        if (newStrategy.strategyVersion < self.strategyVersion) {
+            NSString *descr = [NSString
+                               stringWithFormat:BSLocalizedString( @"strategy-reload-old-version-error", @""), newStrategy.displayName];
+            error = [NSError errorWithDomain:kBSMediaStrategyErrorDomain
+                                      code:BSMS_ERROR_VERSION
+                                  userInfo:@{
+                                      NSLocalizedDescriptionKey: descr,
+                                      kBSMediaStrategyObjectKey: newStrategy
+                                  }];
+            BSLog(BSLOG_ERROR, @"%@", descr);
+        }
+        else {
+            [self copyStateFrom:newStrategy];
+            return nil;
+        }
     }
     return error;
 }

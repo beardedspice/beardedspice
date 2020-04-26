@@ -163,7 +163,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
             
             [openPanel  beginWithCompletionHandler:^(NSInteger result) {
                 
-                if (result == NSFileHandlingPanelOKButton) {
+                if (result == NSModalResponseOK) {
                     
                     NSURL *fileURL = openPanel.URL;
                     [[NSUserDefaults standardUserDefaults]
@@ -189,7 +189,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
             if (strategy) {
                 
                 NSAlert *alert = [NSAlert new];
-                alert.alertStyle = NSInformationalAlertStyle;
+                alert.alertStyle = NSAlertStyleInformational;
                 alert.informativeText = strategy.description;
                 alert.messageText = [NSString
                                      stringWithFormat:
@@ -257,7 +257,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
             
             // this allows the cell to be reused.
             result.identifier = @"GroupView";
-            result.alignment = NSCenterTextAlignment;
+            result.alignment = NSTextAlignmentCenter;
             result.selectable = NO;
             result.editable = NO;
             result.bordered = NO;
@@ -295,7 +295,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     BSMediaStrategyEnableButton* result = [[BSMediaStrategyEnableButton alloc] initWithTableView:tableView];
     
     // make it a checkbox
-    [result setButtonType:NSSwitchButton];
+    [result setButtonType:NSButtonTypeSwitch];
     //        result.refusesFirstResponder = YES;
     
     // check the user defaults
@@ -308,9 +308,9 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
         enabled = userNativeApps[obj.name];
     }
     if (!enabled || [enabled boolValue]) {
-        [result setState:NSOnState];
+        [result setState:NSControlStateValueOn];
     } else {
-        [result setState:NSOffState];
+        [result setState:NSControlStateValueOff];
     }
     
     //    [result setTitle:@""];
@@ -408,7 +408,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     }
     
     BOOL enabled;
-    if ([sender state] == NSOnState) {
+    if ([sender state] == NSControlStateValueOn) {
         enabled = YES;
     } else {
         enabled = NO;

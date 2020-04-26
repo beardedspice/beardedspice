@@ -15,12 +15,6 @@
 - (BOOL)createDirectoriesToURL;
 
 /**
- Downloads data from that URL.
- @return NSData object, which contains requested data, or nil on failure.
- */
-- (NSData * _Nullable)getDataWithTimeout:(NSTimeInterval)timeout;
-
-/**
  Application Support path to the Bearded Spice official strategy folder.
  */
 + (NSURL * _Nonnull)URLForSavedStrategies;
@@ -35,11 +29,6 @@
  Path to the BeardedSpice bundle strategy folder.
  */
 + (NSURL * _Nonnull)URLForBundleStrategies;
-
-/**
- Application Support URL to the Bearded Spice Safari extension resources.
- */
-+ (NSURL *_Nonnull)URLForSafariExtensionResources;
 
 /**
  */

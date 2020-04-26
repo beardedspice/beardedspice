@@ -93,16 +93,12 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
         {
             
             long version = 0;
-            // This is because we don't need update custom strategy,
-            // because it may have version number smoller than version of the strategy from backend server.
+            // we think that even custom strategy must be reloaded if new version arrived from backend server
             BSMediaStrategy *strategy = [self mediaStrategy:key];
-            if (strategy.custom) {
-                continue;
-            }
             version = strategy.strategyVersion;
             
             long newVersion = [newVersions[key] longValue];
-            if (version >= newVersion) // greater than? wat.
+            if (version >= newVersion) // greater than
                 continue;
             
             foundNewVersions++;

@@ -6,17 +6,19 @@
 //  Copyright © 2016  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
+#include "./.devconfig.xcconfig"
+
 XC_PREFIX_FOR_CONSTANTS = BS_
 XC_CONSTANT_HEADER_FILE = $(SRCROOT)/ConfigConstants.h
 XC_SPL = /
 
 BS_NAME = Beardie
 BS_COPYRIGHT = Copyright © 2019 Beardie. All rights reserved.
-BS_VERSION = 3.0.2
-BS_BUILD = 54
+BS_VERSION = 3.0.3
+BS_BUILD = 56
 BS_HOMEPAGE = https:$(XC_SPL)/github.com/Stillness-2/beardie
 
-BS_BUNDLE_ID                                = com.calm_apps.mac.beardie
+BS_BUNDLE_ID                                = com.calm-apps.mac.beardie
 BS_CONTROLLER_BUNDLE_ID                     = $(BS_BUNDLE_ID).controllers
 
 BS_GROUP                                    = $(DEVELOPMENT_TEAM).$(BS_BUNDLE_ID)

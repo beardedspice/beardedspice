@@ -33,6 +33,7 @@ NSString *const BeardedSpicePlayerNextShortcut = @"BeardedSpicePlayerNextShortcu
 NSString *const BeardedSpicePlayerPreviousShortcut = @"BeardedSpicePlayerPreviousShortcut";
 
 NSString *const BeardedSpiceFirstRun = @"BeardedSpiceFirstRun";
+NSString *const BeardieBrowserExtensionsFirstRun = @"BeardieBrowserExtensionsFirstRun";
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark - BSSharedResources
@@ -225,14 +226,10 @@ static BSSListenerBlock _onTabPortChangedBlock;
             }
             else {
                 NSData *data;
-                if (@available(macOS 10.13, *)) {
-                    NSError *err;
-                    data  = [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:YES error:&err];
-                    if (err) {
-                        BSLog(BSLOG_ERROR, @"Converting error %@ to archive: %@", obj, err);
-                    }
-                } else {
-                    data  = [NSKeyedArchiver archivedDataWithRootObject:obj];
+                NSError *err;
+                data  = [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:YES error:&err];
+                if (err) {
+                    BSLog(BSLOG_ERROR, @"Converting error %@ to archive: %@", obj, err);
                 }
                 if (!data) {
                     data = [NSData data];
@@ -254,15 +251,10 @@ static BSSListenerBlock _onTabPortChangedBlock;
             NSData *data = [self loadDataFromFileRelativePath:key];
             id result = nil;
             if (data.length) {
-                if (@available(macOS 10.13, *)) {
-                    NSError *err;
-                    result = [NSKeyedUnarchiver unarchivedObjectOfClass:aClass fromData:data error:&err];
-                    if (err) {
-                        BSLog(BSLOG_ERROR, @"Converting error object from archive: %@", err);
-                    }
-                }
-                else {
-                    result = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                NSError *err;
+                result = [NSKeyedUnarchiver unarchivedObjectOfClass:aClass fromData:data error:&err];
+                if (err) {
+                    BSLog(BSLOG_ERROR, @"Converting error object from archive: %@", err);
                 }
             }
             if (completion) {

@@ -3,7 +3,7 @@
 
     "name": "Beardie",
     "short_name": "Beardie",
-    "description": "Beardie is the application for Mac for controlling various media players through keyboard shotcuts, and little more. This extension allow you to use Beardie for controlling media players on appropriate sites.",
+    "description": "This is companion extension for Beardie App. Extension allow you to use Beardie for controlling media players on appropriate sites.",
     "version": "${BS_VERSION}.${BS_BUILD}",
     "homepage_url": "${BS_HOMEPAGE}",
 

@@ -24,6 +24,7 @@ extern NSString *const BeardedSpicePlayerNextShortcut;
 extern NSString *const BeardedSpicePlayerPreviousShortcut;
 
 extern NSString *const BeardedSpiceFirstRun;
+extern NSString *const BeardieBrowserExtensionsFirstRun;
 
 /**
  Timeout for command of the user iteraction.

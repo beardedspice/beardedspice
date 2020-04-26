@@ -8,7 +8,7 @@ target 'BeardieControllers' do
 
     target 'Beardie' do
         pod 'MASPreferences', '~> 1.3'
-        pod 'FMDB' , '~> 2.7.5'
+        pod 'FMDB'
 
         # all pods for tests should ONLY go here
         target 'BeardieTests' do

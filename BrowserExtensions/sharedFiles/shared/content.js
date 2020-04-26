@@ -407,6 +407,17 @@ console.log("(BeardedSpice) Start injection script");
                     //Main Command Loop
                 case state.ready.val:
                     try {
+                        try {
+                            var obj = JSON.parse(event.data);
+                            if (obj.realBundleId != null) {
+                                bundleId = obj.realBundleId;
+                                console.log("(BeardedSpice) Real Bundle ID set on: %s", bundleId);
+                                _sendOk();
+                                break;
+                            }
+                        } catch (ex) { 
+                            console.log("(BeardedSpice) try simple command");
+                        }
                         state.set(state.inCommand);
                         switch (event.data) {
                             case "settingsChanged":

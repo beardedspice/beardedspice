@@ -165,12 +165,12 @@ static NSArray *tabClasses;
     [self setStopServer:server];
     
     if (_stopCompletion && [self stopped]) {
-        ASSIGN_WEAK(_stopCompletion);
+        ASSIGN_WEAK(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            ASSIGN_STRONG(_stopCompletion);
-            if (USE_STRONG(_stopCompletion)) {
-                USE_STRONG(_stopCompletion)();
-                USE_STRONG(_stopCompletion) = nil;
+            ASSIGN_STRONG(self);
+            if (USE_STRONG(self)->_stopCompletion) {
+                USE_STRONG(self)->_stopCompletion();
+                USE_STRONG(self)->_stopCompletion = nil;
             }
         });
     }

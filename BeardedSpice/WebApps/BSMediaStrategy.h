@@ -36,6 +36,9 @@ extern NSString *_Nonnull const kBSMediaStrategyErrorDomain;
 #define BSMS_ERROR_INTERNAL     100
 #define BSMS_ERROR_JSPARSING    200
 #define BSMS_ERROR_DISPLAYNAME  300
+#define BSMS_ERROR_VERSION      400
+
+extern NSString * _Nonnull const kBSMediaStrategyObjectKey;
 
 @interface BSMediaStrategy : NSObject <BSVolumeControlProtocol>
 
@@ -62,6 +65,7 @@ extern NSString *_Nonnull const kBSMediaStrategyErrorDomain;
 /**
  A method for reloading the strategy from file, updating all future uses of this
  object to be with the most up-to-date plan of attack.
+ If new strategy has older version, then error occurs.
  @param strategyURL
  @return Returns nil on success.
  */

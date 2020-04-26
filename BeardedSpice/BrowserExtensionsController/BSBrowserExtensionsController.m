@@ -128,13 +128,11 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
             
             NSAlert *alert = [NSAlert new];
             alert.alertStyle = NSAlertStyleWarning;
-            alert.messageText = BSLocalizedString(@"Install Browser Extension", @"Title of the suggestion about installing BeardedSpice extensions for browsers.");
-            alert.informativeText = BSLocalizedString(@"In order to manage the media players on supported sites, it is necessary to install the BeardedSpice browser extension.", @"Informative text of the suggestion about installing BeardedSpice extensions for browsers.");
-            [alert addButtonWithTitle:BSLocalizedString(@"Get Extensions...",
-                                                        @"Button title")];
+            alert.messageText = BSLocalizedString(@"install-enable-extension-title", @"Title of the suggestion about installing BeardedSpice extensions for browsers.");
+            alert.informativeText = BSLocalizedString(@"install-enable-extension-text", @"Informative text of the suggestion about installing BeardedSpice extensions for browsers.");
+            [alert addButtonWithTitle:BSLocalizedString(@"install-enable-extension-button-title", @"Button title")];
             
-            [alert addButtonWithTitle:BSLocalizedString(@"Cancel",
-                                                        @"Button title")];
+            [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"Button title")];
             
             [APPDELEGATE windowWillBeVisible:alert];
             

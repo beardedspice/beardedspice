@@ -11,56 +11,6 @@
 
 @implementation NSURL (BSUtils)
 
-/**
-    Downloads data from that URL.
-    @return NSData object, which contains requested data, or nil on failure.
- */
-- (NSData * _Nullable)getDataWithTimeout:(NSTimeInterval)timeout {
-
-    @autoreleasepool {
-
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                initWithURL:self
-                cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-            timeoutInterval:timeout];
-
-        if (!request)
-            return nil;
-
-        [request setHTTPMethod:@"GET"];
-
-        NSURLResponse *response;
-        NSError *error;
-
-        NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                             returningResponse:&response
-                                                         error:&error];
-
-        // here we check for any returned NSError from the server, "and" we also
-        // check for any http response errors
-        if (error != nil)
-            NSLog(@"(NSURL+Utils) Error loading data from \"%@\":%@",
-                  [self absoluteString], [error localizedDescription]);
-
-        else {
-            // check for any response errors
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-            UInt16 statusCode = [httpResponse statusCode] / 100;
-
-            if (statusCode == 2)
-                return data;
-
-            else {
-
-                NSLog(@"(NSURL+Utils) Http Error when loading data from "
-                      @"\"%@\". Http Status:%li",
-                      [self absoluteString], [httpResponse statusCode]);
-            }
-        }
-
-        return nil;
-    }
-}
 
 #pragma mark - File Paths and Operations
 
@@ -90,22 +40,6 @@ static inline NSString *appSupportPath() {
           [NSString stringWithFormat:@"%@/BeardedSpice/CustomStrategies/",
                                      appSupportPath()];
       result = [NSURL fileURLWithPath:pathString isDirectory:YES];
-    });
-    return result;
-}
-
-+ (NSURL *_Nonnull)URLForSafariExtensionResources {
-    
-    static NSURL *result;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString *pathString =
-        [NSString stringWithFormat:@"%@/BeardedSpice/SafariExtensionResources/",
-         appSupportPath()];
-        result = [NSURL fileURLWithPath:pathString isDirectory:YES];
-        if ([result createDirectoriesToURL] == NO) {
-            [[NSException appResourceUnavailableException:result.description] raise];
-        }
     });
     return result;
 }
@@ -146,7 +80,7 @@ static inline NSString *appSupportPath() {
 - (BOOL)fileExists
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    return [fileManager fileExistsAtPath:[self path] isDirectory:NO];
+    return [fileManager fileExistsAtPath:[self path] isDirectory:NULL];
 }
 
 @end

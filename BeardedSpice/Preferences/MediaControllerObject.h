@@ -16,6 +16,6 @@
 @property NSString *name;
 @property BOOL isCustom;
 @property NSString *version;
-@property id representationObject;
+@property id<NSObject> representationObject;
 
 @end

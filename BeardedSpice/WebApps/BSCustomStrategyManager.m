@@ -14,6 +14,10 @@
 #import "BSStrategyCache.h"
 
 NSString *BSCStrategyChangedNotification = @"BSCStrategyChangedNotification";
+NSString *const BSCStrategyErrorDomain = @"BSCStrategyErrorDomain";
+
+#define STRATEGY_FOLDER_NAME                    @"Strategies"
+#define STRATEGY_FOLDER_NAME_COUNTER_MAX        9999
 
 @implementation BSCustomStrategyManager
 
@@ -48,14 +52,13 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
 /////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
 
-- (BOOL)importFromPath:(NSString *)path{
-    
-    return [self importFromUrl:[NSURL fileURLWithPath:path]];
-}
-
-- (BOOL)importFromUrl:(NSURL *)url{
+- (BOOL)importFromUrl:(NSURL *)url
+           completion:(void (^)(BSMediaStrategy *strategy, NSError *error))completion {
     
     if (!url) {
+        if (completion) {
+            completion(nil, nil);
+        }
         return NO;
     }
     
@@ -70,7 +73,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         [strategy.strategyJsBody writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
         if (error)
         {
-            NSLog(@"Error saving strategy %@: %@", strategy, [error localizedDescription]);
+            BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy, [error localizedDescription]);
         }
         else{
             
@@ -86,69 +89,25 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                     error = nil;
                 }
             };
-
-            if (!error) {
-                // Good
-                dispatch_async(dispatch_get_main_queue(), ^{
-
-                  [self notifyThatChanged];
-                  NSAlert *alert = [NSAlert new];
-                  NSString *strategyName =
-                      [strategy.fileName stringByDeletingPathExtension];
-                    alert.alertStyle = NSAlertStyleInformational;
-                  alert.informativeText = [strategy description];
-                  alert.messageText = [NSString
-                      stringWithFormat:
-                          BSLocalizedString(
-                              @"Strategy \"%@\" imported successfuly.",
-                              @"(BSCustomStrategyManager) Title on message, "
-                              @"when strategy import error occured."),
-                          strategyName];
-                  [alert addButtonWithTitle:BSLocalizedString(@"Ok",
-                                                              @"Ok button")];
-
-                  [APPDELEGATE windowWillBeVisible:alert];
-
-                  [alert runModal];
-
-                  [APPDELEGATE removeWindow:alert];
-                });
-                return YES;
-            }
         }
-        
-
     }
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-
-      NSAlert *alert = [NSAlert new];
-      NSString *strategyName =
-          [[url lastPathComponent] stringByDeletingPathExtension];
-        alert.alertStyle = NSAlertStyleCritical;
-      alert.informativeText = error.localizedDescription;
-      alert.messageText = [NSString
-          stringWithFormat:BSLocalizedString(@"Can't import \"%@\" strategy.",
-                                             @"(BSCustomStrategyManager) Title "
-                                             @"on message, when strategy "
-                                             @"import error occured."),
-                           strategyName];
-      [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
-
-      [APPDELEGATE windowWillBeVisible:alert];
-
-      [alert runModal];
-
-      [APPDELEGATE removeWindow:alert];
-    });
-
-    return NO;
+    
+    if (completion) {
+        completion(strategy, error);
+    }
+    return (error == nil);
 }
 
-- (BOOL)exportStrategy:(BSMediaStrategy *)strategy toFolder:(NSURL *)folderURL{
+- (void)exportStrategy:(BSMediaStrategy *)strategy
+              toFolder:(NSURL *)folderURL
+             overwrite:(BOOL(^)(NSURL *pathToFile))overwrite
+            completion:(void (^)(NSError *error))completion {
 
     if (!(strategy && folderURL)) {
-        return NO;
+        if (completion) {
+            completion(nil);
+        }
+        return;
     }
 
     NSError *error = nil;
@@ -157,29 +116,12 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
     NSURL *pathToFile = [folderURL URLByAppendingPathComponent:fileName];
 
     if ([pathToFile checkResourceIsReachableAndReturnError:nil]) {
-
-        NSAlert *alert = [NSAlert new];
-        alert.alertStyle = NSAlertStyleInformational;
-//        alert.informativeText = [strategy description];
-        alert.messageText = [NSString
-            stringWithFormat:BSLocalizedString(
-                                 @"File \"%@\" exists.\nDo you want overwrite?",
-                                 @"(BSCustomStrategyManager) Title on message, "
-                                 @"when file exists."),
-                             fileName];
-        [alert
-            addButtonWithTitle:BSLocalizedString(@"Cancel", @"Cancel button")];
-
-        [alert addButtonWithTitle:BSLocalizedString(@"Overwrite",
-                                                    @"Overwrite button")];
-        [APPDELEGATE windowWillBeVisible:alert];
-
-        NSInteger result = [alert runModal];
-
-        [APPDELEGATE removeWindow:alert];
-        if (result == NSAlertFirstButtonReturn) {
-            return NO;
-        };
+        if (overwrite == nil || overwrite(pathToFile) == NO) {
+            if (completion) {
+                completion(nil);
+            }
+            return;
+        }
     }
 
     [strategy.strategyJsBody writeToURL:pathToFile
@@ -188,47 +130,33 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                                   error:&error];
     
     if (error) {
-        NSLog(@"Error saving strategy %@: %@", strategy,
+        BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy,
               [error localizedDescription]);
-        dispatch_async(dispatch_get_main_queue(), ^{
-
-          NSAlert *alert = [NSAlert new];
-            alert.alertStyle = NSAlertStyleCritical;
-          alert.informativeText = error.localizedDescription;
-          alert.messageText =
-              [NSString stringWithFormat:
-                            BSLocalizedString(
-                                @"Can't export \"%@\" strategy.",
-                                @"(BSCustomStrategyManager) Title on message, "
-                                @"when strategy export error occured."),
-                            strategy.displayName];
-          [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
-
-          [APPDELEGATE windowWillBeVisible:alert];
-
-          [alert runModal];
-
-          [APPDELEGATE removeWindow:alert];
-        });
-
-        return NO;
     }
-
-    [[NSWorkspace sharedWorkspace]
-        activateFileViewerSelectingURLs:@[ pathToFile ]];
-    return YES;
+    else {
+        [[NSWorkspace sharedWorkspace]
+            activateFileViewerSelectingURLs:@[ pathToFile ]];
+    }
+    if (completion) {
+        completion(error);
+    }
 }
 
-- (BOOL)removeStrategy:(BSMediaStrategy *)strategy{
+- (BOOL)removeStrategy:(BSMediaStrategy *)strategy
+            completion:(void (^)(BSMediaStrategy *replacedStrategy, NSError *error))completion{
     
     if (!strategy.custom) {
+        if (completion) {
+            completion(nil, nil);
+        }
         return NO;
     }
     NSError *error = nil;
+    BSMediaStrategy *newStrategy;
     [[NSFileManager defaultManager] removeItemAtURL:strategy.strategyURL error:&error];
     if (error)
     {
-        NSLog(@"Error removing strategy %@: %@", strategy, [error localizedDescription]);
+        BSLog(BSLOG_ERROR, @"Error removing strategy %@: %@", strategy, [error localizedDescription]);
     }
     else{
         
@@ -238,7 +166,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         [cache removeStrategyFromCache:strategy.fileName];
 
         NSURL *alternativeURL = [[NSURL URLForSavedStrategies] URLByAppendingPathComponent:strategy.fileName];
-        BSMediaStrategy *newStrategy = [cache addStrategyWithURL:alternativeURL];
+        newStrategy = [cache addStrategyWithURL:alternativeURL];
         if (!newStrategy) {
             alternativeURL = [[NSURL URLForBundleStrategies] URLByAppendingPathComponent:strategy.fileName];
             newStrategy = [cache addStrategyWithURL:alternativeURL];
@@ -250,53 +178,161 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         }
         
         // Good
-        dispatch_async(dispatch_get_main_queue(), ^{
-
-          [self notifyThatChanged];
-
-          NSAlert *alert = [NSAlert new];
-            alert.alertStyle = NSAlertStyleInformational;
-          alert.informativeText = [strategy description];
-          alert.messageText =
-              [NSString stringWithFormat:
-                            BSLocalizedString(
-                                @"Strategy \"%@\" removed successfuly.",
-                                @"(BSCustomStrategyManager) Title on message, "
-                                @"when strategy import error occured."),
-                            strategy.displayName];
-          [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
-
-          [APPDELEGATE windowWillBeVisible:alert];
-
-          [alert runModal];
-
-          [APPDELEGATE removeWindow:alert];
-        });
-        return YES;
+//          [self notifyThatChanged];
     }
+    if (completion) {
+        completion(newStrategy, error);
+    }
+    return (error == nil);
+}
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+- (void)updateCustomStrategiesFromUnsupportedRepoWithCompletion:(void (^)(NSArray<NSString *> *updatedNames, NSError *error))completion {
+    ASSIGN_WEAK(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        NSURL *url = [NSURL URLWithString:BS_UNSUPPORTED_STRATEGY_JSON_URL];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        if (!data.length) {
+            NSError *error = [NSError errorWithDomain:BSCStrategyErrorDomain
+                                                 code:BSCS_ERROR_MANIFEST_DOWNLOAD
+                                             userInfo:@{}];
+            if (completion) {
+                completion(nil, error);
+            }
+            return;
+        }
+        NSError *err;
+        NSDictionary<NSString *, NSDictionary *> *manifest = [NSJSONSerialization JSONObjectWithData:data
+                                                                                             options:0
+                                                                                               error:&err];
+        if (manifest == nil) {
+            if (completion) {
+                completion(nil, err);
+            }
+            return;
+        }
+        NSMutableArray<NSString *> *updatedNames = [NSMutableArray new];
+        dispatch_group_t group = dispatch_group_create();
+        if (group) {
+            
+            BSStrategyCache *cache = MediaStrategyRegistry.singleton.strategyCache;
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
+            for (NSString *key in manifest)
+            {
+                
+                long version = 0;
+                // we think that even custom strategy must be reloaded if new version arrived from backend server
+                
+                BSMediaStrategy *strategy = [cache strategyForFileName:[key stringByAppendingPathExtension:@"js"]];
+                version = strategy.strategyVersion;
+                
+                long newVersion = [manifest[key][@"version"] longValue];
+                if (version >= newVersion) // greater than
+                    continue;
+                
+                dispatch_group_async(group, queue, ^{
+                    
+                    ASSIGN_STRONG(self);
+                    NSURL *newStrategyUrl = [NSURL URLWithString:[NSString stringWithFormat:BS_UNSUPPORTED_STRATEGY_URL_FORMAT, key]];
+                    if (newStrategyUrl) {
+                        if ([USE_STRONG(self) importFromUrl:newStrategyUrl completion:nil]) {
+                            [updatedNames addObject:manifest[key][@"name"]];
+                        }
+                    }
+                });
+                
+            }
+            
+            dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            if (updatedNames.count) {
+                [self notifyThatChanged];
+            }
+        }
+        else{
+            BSLog(BSLOG_ERROR, @"Error of creating of the queue group!");
+        }
 
-      NSAlert *alert = [NSAlert new];
-        alert.alertStyle = NSAlertStyleCritical;
-      alert.informativeText = error.localizedDescription;
-      alert.messageText =
-          [NSString stringWithFormat:BSLocalizedString(
-                                         @"Can't remove \"%@\" strategy.",
-                                         @"(BSCustomStrategyManager) Title "
-                                         @"on message, when strategy remove "
-                                         @"error occured."),
-                                     strategy.displayName];
-      [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+        if (completion) {
+            completion(updatedNames, nil);
+        }
 
-      [APPDELEGATE windowWillBeVisible:alert];
-
-      [alert runModal];
-
-      [APPDELEGATE removeWindow:alert];
     });
+}
 
-    return NO;
+- (void)downloadCustomStrategiesFromUnsupportedRepoTo:(NSURL *)targetUrl completion:(void (^)(NSURL *folderUrl, NSError *error))completion {
+    ASSIGN_WEAK(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        ASSIGN_STRONG(self);
+        NSURL *saveUrl = [USE_STRONG(self) createExportFolder:targetUrl];
+        if (saveUrl == nil ) {
+            NSError *error = [NSError errorWithDomain:BSCStrategyErrorDomain
+                                                 code:BSCS_ERROR_CREATE_SAVING_FOLDER
+                                             userInfo:@{}];
+            if (completion) {
+                completion(nil, error);
+            }
+            return;
+        }
+        
+        NSURL *url = [NSURL URLWithString:BS_UNSUPPORTED_STRATEGY_JSON_URL];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        if (!data.length) {
+            NSError *error = [NSError errorWithDomain:BSCStrategyErrorDomain
+                                                 code:BSCS_ERROR_MANIFEST_DOWNLOAD
+                                             userInfo:@{}];
+            if (completion) {
+                completion(nil, error);
+            }
+            return;
+        }
+        NSError *err;
+        NSDictionary<NSString *, NSDictionary *> *manifest = [NSJSONSerialization JSONObjectWithData:data
+                                                                                             options:0
+                                                                                               error:&err];
+        if (manifest == nil) {
+            if (completion) {
+                completion(nil, err);
+            }
+            return;
+        }
+        dispatch_group_t group = dispatch_group_create();
+        if (group) {
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
+            for (NSString *key in manifest)
+            {
+                
+                dispatch_group_async(group, queue, ^{
+                    
+                    NSURL *newStrategyUrl = [NSURL URLWithString:[NSString stringWithFormat:BS_UNSUPPORTED_STRATEGY_URL_FORMAT, key]];
+                    if (newStrategyUrl) {
+                        NSError *error;
+                        BSMediaStrategy *strategy = [BSMediaStrategy mediaStrategyWithURL:newStrategyUrl error:&error];
+                        if (strategy) {
+                            
+                            error = nil; // reset the local error
+                            
+                            NSURL *pathToFile = [saveUrl URLByAppendingPathComponent:[strategy.strategyURL lastPathComponent]];
+                            [strategy.strategyJsBody writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                            if (error) {
+                                BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy, [error localizedDescription]);
+                            }
+                        }
+                    }
+                });
+            }
+            
+            dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+        }
+        else{
+            BSLog(BSLOG_ERROR, @"Error of creating of the queue group!");
+        }
+        
+        if (completion) {
+            completion(saveUrl, nil);
+        }
+    });
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -309,6 +345,27 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
          postNotificationName:BSCStrategyChangedNotification
          object:self];
     });
+}
+
+- (NSURL *)createExportFolder:(NSURL *)folderUrl {
+    NSFileManager *fm = NSFileManager.defaultManager;
+    NSString *basePath = [folderUrl.path stringByAppendingPathComponent:STRATEGY_FOLDER_NAME];
+    NSUInteger counter = 0;
+    NSError *err;
+    NSString *newPath = basePath;
+    while (![fm createDirectoryAtPath:newPath
+         withIntermediateDirectories:NO
+                          attributes:nil
+                               error:&err] && counter < STRATEGY_FOLDER_NAME_COUNTER_MAX) {
+        counter++;
+        newPath = [NSString stringWithFormat:@"%@-%lu", basePath, (unsigned long)counter];
+    }
+    if (err) {
+        BSLog(BSLOG_ERROR, @"Error creating folder for downloading of a strategies: %@", err);
+        return  nil;
+    }
+    
+    return [NSURL fileURLWithPath:newPath];
 }
 
 @end

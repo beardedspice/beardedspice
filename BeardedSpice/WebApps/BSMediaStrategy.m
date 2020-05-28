@@ -395,6 +395,9 @@ static inline NSString *js_string_for_key(NSString *key, JSValue *node)
     if (object == self) {
         return YES;
     }
+    if ([object isKindOfClass:[self class]] == NO) {
+        return NO;
+    }
     if (self.fileName.hash == ((BSMediaStrategy *)object).fileName.hash
         && [self.fileName isEqualToString:((BSMediaStrategy *)object).fileName]) {
         return YES;

@@ -23,6 +23,12 @@
 @class BSActiveTab;
 @class BSStrategyWebSocketServer;
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Defaults Keys
+extern NSString *const InUpdatingStrategiesState;
+
+/////////////////////////////////////////////////////////////////////////
+
 extern BOOL accessibilityApiEnabled;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSMenuDelegate, BeardedSpiceHostAppProtocol> {
@@ -33,6 +39,7 @@ extern BOOL accessibilityApiEnabled;
 @property (nonatomic, strong) BSActiveTab *activeApp;
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 @property (nonatomic, strong) BSStrategyVersionManager *versionManager;
+@property (nonatomic) BOOL inUpdatingStrategiesState;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)openPreferences:(id)sender;

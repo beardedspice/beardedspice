@@ -75,6 +75,76 @@
     return [sb stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
+- (NSAttributedString *)attributedStringFromTemplateInsertingLink:(NSArray <NSURL *> *)links
+                                                        alignment:(NSTextAlignment)alignment
+                                                             font:(NSFont *)font
+                                                            color:(NSColor *)color {
+    
+    if (self.length == 0){
+        return nil;
+    }
+    
+    NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+    [style setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]];
+    style.alignment = alignment;
+    NSFont *resultFont = font ?:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeSmall]];
+    NSMutableAttributedString *resultDescr = [[NSMutableAttributedString alloc]
+                                              initWithString:self
+                                              attributes:@{
+                                                  NSForegroundColorAttributeName: color ?: [NSColor disabledControlTextColor],
+                                                  NSFontAttributeName: resultFont,
+                                                  NSParagraphStyleAttributeName: style
+                                              }];
+    
+    if (links.count) {
+        
+        NSRegularExpression *expr = [NSRegularExpression regularExpressionWithPattern:@"(\\[[^\\]]+\\])(\\[\\d+\\])?" options:0 error:NULL];
+        __block NSUInteger compensator = 0;
+        [expr enumerateMatchesInString:self
+                               options:0
+                                 range:NSMakeRange(0, self.length)
+                            usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            
+            NSRange range = result.range;
+            range.location -= compensator;
+            
+            NSUInteger linkIndex = 0;
+            if (result.numberOfRanges == 3) {
+                NSRange numberRange = [result rangeAtIndex:2];
+                if (numberRange.location != NSNotFound) {
+                    compensator += numberRange.length;
+                    numberRange.location++;
+                    numberRange.length -= 2;
+                    
+                    linkIndex = [[self substringWithRange:numberRange] integerValue] - 1;
+                }
+            }
+            linkIndex = MIN(linkIndex, links.count - 1);
+            NSRange linkRange = [result rangeAtIndex:1];
+            //without brackets
+            linkRange.location++;
+            linkRange.length -= 2;
+            
+            NSAttributedString *attrLinkString = [[NSAttributedString alloc]
+                                                  initWithString:[self substringWithRange:linkRange]
+                                                  attributes:@{
+//                                                           NSForegroundColorAttributeName: color ?: [NSColor disabledControlTextColor],
+//                                                           NSFontAttributeName: resultFont,
+                                                      NSParagraphStyleAttributeName: style,
+                                                      NSLinkAttributeName: [links[linkIndex] absoluteString]
+                                                  }];
+            if (attrLinkString) {
+                [resultDescr replaceCharactersInRange:range withAttributedString:attrLinkString];
+                compensator += 2;
+            }
+        }];
+        
+        // reset style
+        [resultDescr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, resultDescr.length)];
+    }
+    
+    return [resultDescr copy];
+}
 
 @end
 

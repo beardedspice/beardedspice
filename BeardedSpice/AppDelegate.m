@@ -41,12 +41,14 @@
 
 #define VOLUME_RELAXING_TIMEOUT             2 //seconds
 
+NSString *const InUpdatingStrategiesState = @"InUpdatingStrategiesState";
+
 typedef enum{
 
-    SwithPlayerNext = 1,
-    SwithPlayerPrevious
+    SwitchPlayerNext = 1,
+    SwitchPlayerPrevious
 
-} SwithPlayerDirectionType;
+} SwitchPlayerDirectionType;
 
 BOOL accessibilityApiEnabled = NO;
 
@@ -123,6 +125,8 @@ BOOL accessibilityApiEnabled = NO;
     [self shortcutsBind];
     [self newConnectionToControlService];
 
+    self.inUpdatingStrategiesState = NO;
+    
 #if !DEBUG_STRATEGY
     /* Check for strategy updates from the master github repo */
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUpdateAtLaunch])
@@ -157,7 +161,10 @@ BOOL accessibilityApiEnabled = NO;
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
 
-    [[BSCustomStrategyManager singleton] importFromPath:filename];
+    [self openPreferences:self];
+    MASPreferencesWindowController *prefWin = (MASPreferencesWindowController *)(self.preferencesWindowController);
+    [prefWin selectControllerWithIdentifier:StrategiesPreferencesViewController];
+    [(BSStrategiesPreferencesViewController *)prefWin.selectedViewController importStrategyWithPath:filename];
     return YES;
 }
 
@@ -223,7 +230,15 @@ BOOL accessibilityApiEnabled = NO;
     }
 }
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Public properties and methods
 
+- (BOOL)inUpdatingStrategiesState {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:InUpdatingStrategiesState];
+}
+- (void)setInUpdatingStrategiesState:(BOOL)inUpdatingStrategiesState {
+    [[NSUserDefaults standardUserDefaults] setBool:inUpdatingStrategiesState forKey:InUpdatingStrategiesState];
+}
 /////////////////////////////////////////////////////////////////////////
 #pragma mark BeardedSpiceHostAppProtocol methods
 /////////////////////////////////////////////////////////////////////////
@@ -291,11 +306,11 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (void)playerNext{
-    [self switchPlayerWithDirection:SwithPlayerNext];
+    [self switchPlayerWithDirection:SwitchPlayerNext];
 }
 
 - (void)playerPrevious{
-    [self switchPlayerWithDirection:SwithPlayerPrevious];
+    [self switchPlayerWithDirection:SwitchPlayerPrevious];
 }
 
 - (void)volumeUp{
@@ -417,8 +432,8 @@ BOOL accessibilityApiEnabled = NO;
     if (!item)
         return;
 
+    self.inUpdatingStrategiesState = YES;
     statusMenu.autoenablesItems = NO;
-    item.enabled = NO;
     item.title = BSLocalizedString(@"Checking...", @"Menu Titles");
 
     BOOL checkFromMenu = (sender != self);
@@ -442,7 +457,7 @@ BOOL accessibilityApiEnabled = NO;
 
         dispatch_sync(dispatch_get_main_queue(), ^{
             item.title = BSLocalizedString(@"Check for Compatibility Updates", @"Menu Titles");
-            item.enabled = YES;
+            self.inUpdatingStrategiesState = NO;
         });
     });
 }
@@ -735,7 +750,7 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 
-- (void)switchPlayerWithDirection:(SwithPlayerDirectionType)direction {
+- (void)switchPlayerWithDirection:(SwitchPlayerDirectionType)direction {
 
     __weak typeof(self) wself = self;
     dispatch_async(_workingQueue, ^{
@@ -754,7 +769,7 @@ BOOL accessibilityApiEnabled = NO;
 
             for (int i = 0; i < size; i++) {
                 if ([wself.activeApp hasEqualTabAdapter:tab]) {
-                    if (direction == SwithPlayerNext) {
+                    if (direction == SwitchPlayerNext) {
                         [wself.activeApp updateActiveTab:nextTab];
                     } else {
                         [wself.activeApp updateActiveTab:prevTab];

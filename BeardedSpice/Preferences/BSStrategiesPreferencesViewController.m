@@ -23,6 +23,8 @@ NSString *const BSStrategiesPreferencesNativeAppChangedNoticiation = @"BSStrateg
 NSString *const BeardedSpiceActiveControllers = @"BeardedSpiceActiveControllers";
 NSString *const BeardedSpiceActiveNativeAppControllers = @"BeardedSpiceActiveNativeAppControllers";
 NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExportLastDirectory";
+NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesViewController";
+
 
 @interface BSStrategiesPreferencesViewController ()
 
@@ -58,9 +60,23 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     
 }
 
+- (void)viewDidLoad {
+    // sets links
+    NSAttributedString *linkString = [self.unsupportedPrefixTextField.stringValue
+                                      attributedStringFromTemplateInsertingLink:@[[NSURL URLWithString:BS_UNSUPPORTED_STRATEGY_REPO_URL]]
+                                      alignment:self.unsupportedPrefixTextField.alignment
+                                      font:self.unsupportedPrefixTextField.font
+                                      color:self.unsupportedPrefixTextField.textColor];
+    if (linkString) {
+        self.unsupportedPrefixTextField.selectable = YES;
+        self.unsupportedPrefixTextField.allowsEditingTextAttributes = YES;
+        [self.unsupportedPrefixTextField setAttributedStringValue:linkString];
+    }
+}
+
 - (NSString *)viewIdentifier
 {
-    return @"BSStrategiesPreferencesViewController";
+    return StrategiesPreferencesViewController;
 }
 
 - (NSImage *)toolbarItemImage
@@ -79,8 +95,20 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
 }
 
 /////////////////////////////////////////////////////////////////////////
-#pragma mark Actions
+#pragma mark Public methods and properties
+
+- (void)importStrategyWithPath:(NSString *)strategyPath {
+    
+    NSURL *strategyUrl = [NSURL fileURLWithPath:strategyPath];
+    if (strategyUrl) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self importStrategyWithUrl:strategyUrl];
+        });
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////
+#pragma mark Actions
 
 - (IBAction)clickExport:(id)sender {
     
@@ -113,7 +141,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                                                      @"preferences, strategies list. 'Choose folder for "
                                                      @"exporting' panel. Export button title.");
                 
-                [openPanel beginWithCompletionHandler:^(NSInteger result) {
+                [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
                     
                     if (result == NSModalResponseOK) {
                         
@@ -123,8 +151,64 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                          setObject:[fileURL path]
                          forKey:BeardedSpiceImportExportLastDirectory];
                         
-                        [[BSCustomStrategyManager singleton] exportStrategy:strategy
-                                                                   toFolder:fileURL];
+                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+                            NSCondition *lk = [NSCondition new];
+                            [[BSCustomStrategyManager singleton] exportStrategy:strategy
+                                                                       toFolder:fileURL
+                                                                      overwrite:^BOOL(NSURL *pathToFile) {
+                                [lk lock];
+                                __block BOOL result = YES;
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    NSAlert *alert = [NSAlert new];
+                                    alert.alertStyle = NSAlertStyleInformational;
+                                    alert.messageText = [NSString
+                                                         stringWithFormat:BSLocalizedString(
+                                                                                            @"File \"%@\" exists.\nDo you want overwrite?",
+                                                                                            @"(BSCustomStrategyManager) Title on message, "
+                                                                                            @"when file exists."),
+                                                         [pathToFile lastPathComponent]];
+                                    [alert
+                                     addButtonWithTitle:BSLocalizedString(@"Cancel", @"Cancel button")];
+                                    
+                                    [alert addButtonWithTitle:BSLocalizedString(@"Overwrite",
+                                                                                @"Overwrite button")];
+                                    [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+                                        [lk lock];
+                                        if (returnCode == NSAlertFirstButtonReturn) {
+                                            result = NO;
+                                        };
+                                        [lk broadcast];
+                                        [lk unlock];
+                                    }];
+                                    
+                                });
+                                [lk wait];
+                                [lk unlock];
+                                return result;
+                                
+                            }
+                                                                     completion:^(NSError *error) {
+                                if (error) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        
+                                        NSAlert *alert = [NSAlert new];
+                                        alert.alertStyle = NSAlertStyleCritical;
+                                        alert.informativeText = error.localizedDescription;
+                                        alert.messageText =
+                                        [NSString stringWithFormat:
+                                         BSLocalizedString(
+                                                           @"Can't export \"%@\" strategy.",
+                                                           @"(BSCustomStrategyManager) Title on message, "
+                                                           @"when strategy export error occured."),
+                                         strategy.displayName];
+                                        [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                                        
+                                        [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+                                        
+                                    });
+                                }
+                            }];
+                        });
                     }
                     
                     self.importExportPanelOpened = NO;
@@ -161,7 +245,7 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                                                  @"preferences, strategies list. 'Choose folder for "
                                                  @"importing' panel. Import button title.");
             
-            [openPanel  beginWithCompletionHandler:^(NSInteger result) {
+            [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
                 
                 if (result == NSModalResponseOK) {
                     
@@ -170,13 +254,44 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                      setObject:[openPanel.directoryURL path]
                      forKey:BeardedSpiceImportExportLastDirectory];
                     
-                    [[BSCustomStrategyManager singleton] importFromUrl:fileURL];
-                    
+                    [self importStrategyWithUrl:fileURL];
                 }
                 self.importExportPanelOpened = NO;
             }];
         }
     });
+}
+
+- (IBAction)clickDownload:(id)sender {
+    
+}
+
+- (IBAction)clickUpdate:(id)sender {
+    NSAlert *alert = [NSAlert new];
+    alert.alertStyle = NSAlertStyleWarning;
+    alert.informativeText = BSLocalizedString(@"preferences-strategies-unsupported-update-alert-text", @"");
+    alert.messageText = BSLocalizedString(@"preferences-strategies-unsupported-update-alert-title", @"");
+    [alert addButtonWithTitle:BSLocalizedString(@"Cancel",
+                                                @"Cancel button")];
+    [alert addButtonWithTitle:BSLocalizedString(@"button-title-update",@"")];
+    
+    [alert beginSheetModalForWindow:self.view.window
+                  completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertSecondButtonReturn) {
+            [APPDELEGATE setInUpdatingStrategiesState:YES];
+            self.customUpdateButton.title = BSLocalizedString(@"preferences-strategies-unsupported-update-button-title-in-action", @"");
+            [[BSCustomStrategyManager singleton] updateCustomStrategiesFromUnsupportedRepoWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.customUpdateButton.title = BSLocalizedString(@"preferences-strategies-unsupported-update-button-title", @"");
+                    NSUserNotification *notification = [NSUserNotification new];
+                    notification.title = BSLocalizedString(@"Compatibility Updates", @"");
+                    notification.subtitle = [NSString stringWithFormat:BSLocalizedString(@"update-custom-strategy", @""), updatedNames.count];
+                    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                    [APPDELEGATE setInUpdatingStrategiesState:NO];
+                });
+            }];
+        }
+    }];
 }
 
 - (IBAction)clickRemove:(id)sender {
@@ -204,13 +319,50 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
                 [alert addButtonWithTitle:BSLocalizedString(@"Remove",
                                                             @"Remove button")];
                 
-                [APPDELEGATE windowWillBeVisible:alert];
-                
-                if ([alert runModal] == NSAlertSecondButtonReturn) {
-                    [[BSCustomStrategyManager singleton] removeStrategy:strategy];
-                };
-                
-                [APPDELEGATE removeWindow:alert];
+                [alert beginSheetModalForWindow:self.view.window
+                              completionHandler:^(NSModalResponse returnCode) {
+                    if (returnCode == NSAlertSecondButtonReturn) {
+                        [[BSCustomStrategyManager singleton] removeStrategy:strategy
+                                                                 completion:^(BSMediaStrategy *replacedStrategy, NSError *error) {
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                NSAlert *alert = [NSAlert new];
+                                if (error) {
+                                    alert.alertStyle = NSAlertStyleCritical;
+                                    alert.informativeText = error.localizedDescription;
+                                    alert.messageText =
+                                    [NSString stringWithFormat:
+                                     BSLocalizedString(
+                                                       @"Can't remove \"%@\" strategy.",
+                                                       @"(BSCustomStrategyManager) Title "
+                                                       @"on message, when strategy remove "
+                                                       @"error occured."),
+                                     strategy.displayName];
+                                }
+                                else {
+                                    
+                                    [self updateStrategiesView];
+
+                                    alert.alertStyle = NSAlertStyleInformational;
+                                    alert.informativeText = [strategy description];
+                                    alert.messageText =
+                                    [NSString stringWithFormat:
+                                     BSLocalizedString(
+                                                       @"Strategy \"%@\" removed successfuly.",
+                                                       @"(BSCustomStrategyManager) Title on message, "
+                                                       @"when strategy import error occured."),
+                                     strategy.displayName];
+                                }
+                                [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                                
+                                [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+                                    [self selectStrategy:replacedStrategy];
+                                }];
+                            });
+                        }];
+                    }
+                }];
             }
         }
     });
@@ -480,10 +632,14 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     mediaControllerObjects = [mediaControllers copy];
 }
 
-- (void)strategyChangedNotify:(NSNotification*) notification{
-    
+- (void)updateStrategiesView {
     [self loadMediaControllerObjects];
     [self.strategiesView reloadData];
+}
+
+- (void)strategyChangedNotify:(NSNotification*) notification{
+    
+    [self updateStrategiesView];
 }
 
 - (NSURL *)importExportDirectoryForCustomStrategy {
@@ -524,6 +680,70 @@ NSString *const BeardedSpiceImportExportLastDirectory = @"BeardedSpiceImportExpo
     }
     
     return nil;
+}
+
+- (void)importStrategyWithUrl:(NSURL *)fileURL {
+    [[BSCustomStrategyManager singleton] importFromUrl:fileURL completion:^(BSMediaStrategy *strategy, NSError *error) {
+        
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSAlert *alert = [NSAlert new];
+                NSString *strategyName =
+                [[fileURL lastPathComponent] stringByDeletingPathExtension];
+                alert.alertStyle = NSAlertStyleCritical;
+                alert.informativeText = error.localizedDescription;
+                alert.messageText = [NSString
+                                     stringWithFormat:BSLocalizedString(@"Can't import \"%@\" strategy.",
+                                                                        @"(BSCustomStrategyManager) Title "
+                                                                        @"on message, when strategy "
+                                                                        @"import error occured."),
+                                     strategyName];
+                [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                
+                [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+            });
+            return;
+        }
+        
+        if (strategy) {
+            [self updateStrategiesView];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSAlert *alert = [NSAlert new];
+                NSString *strategyName =
+                [strategy.fileName stringByDeletingPathExtension];
+                alert.alertStyle = NSAlertStyleInformational;
+                alert.informativeText = [strategy description];
+                alert.messageText = [NSString
+                                     stringWithFormat:
+                                     BSLocalizedString(
+                                                       @"Strategy \"%@\" imported successfuly.",
+                                                       @"(BSCustomStrategyManager) Title on message, "
+                                                       @"when strategy import error occured."),
+                                     strategyName];
+                [alert addButtonWithTitle:BSLocalizedString(@"Ok",
+                                                            @"Ok button")];
+                [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+                    [self selectStrategy:strategy];
+                }];
+            });
+        }
+    }];
+}
+
+- (void)selectStrategy:(BSMediaStrategy *)strategy {
+    if (strategy == nil) {
+        return;
+    }
+    
+    MediaControllerObject *obj = [[MediaControllerObject alloc] initWithObject:strategy];
+    NSUInteger index = [mediaControllerObjects indexOfObject:obj];
+    if (index != NSNotFound) {
+        [self.view.window makeFirstResponder:self.strategiesView];
+        [self.strategiesView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+        [self.strategiesView scrollRowToVisible:index];
+    }
 }
 
 @end

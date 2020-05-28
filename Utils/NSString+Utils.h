@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
 
-@import Foundation;
+@import Cocoa;
 
 // FIXME change filename to match namespacing of category
 @interface NSString (BSUtils)
@@ -43,6 +43,18 @@
  " symbol replaced on \".
  */
 - (NSString *_Nonnull)stringForSubstitutionInJavascriptPlaceholder;
+
+///  Returns attributed string from instance, which can be template,
+///  where text in square brackets is replaced on text with link.
+///  Instance can be template string, like: 'Some text. [Here] you [can][1] get [addition][2] info.'
+/// @param links Urls for text in square beckets. Like this: @[(URL for: 'Here', 'can'), (URL for 'addition')]
+/// @param alignment Text alignment. Default value is `NSTextAlignmentLeft` (it is 0).
+/// @param font Text font, may be nil. Default value is `systemFont` `NSControlSizeSmall`.
+/// @param color Foregraund color, may be nil. Default value is 'disabledControlTextColor'.
+- (NSAttributedString *_Nullable)attributedStringFromTemplateInsertingLink:(NSArray <NSURL *> *_Nullable)links
+                                                        alignment:(NSTextAlignment)alignment
+                                                             font:(NSFont *_Nullable)font
+                                                            color:(NSColor *_Nullable)color;
 
 @end
 

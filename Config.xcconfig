@@ -17,6 +17,8 @@ BS_COPYRIGHT = Copyright © 2019 Beardie. All rights reserved.
 BS_VERSION = 3.0.3
 BS_BUILD = 56
 BS_HOMEPAGE = https:$(XC_SPL)/github.com/Stillness-2/beardie
+BS_UNSUPPORTED_STRATEGY_REPO_URL = https:$(XC_SPL)/github.com/beardedspice/BS-Strategies
+
 
 BS_BUNDLE_ID                                = com.calm-apps.mac.beardie
 BS_CONTROLLER_BUNDLE_ID                     = $(BS_BUNDLE_ID).controllers
@@ -24,13 +26,17 @@ BS_CONTROLLER_BUNDLE_ID                     = $(BS_BUNDLE_ID).controllers
 BS_GROUP                                    = $(DEVELOPMENT_TEAM).$(BS_BUNDLE_ID)
 
 BS_NATIVE_MESSAGING_CONNECTOR_NAME          = beardie-nm-connector
-BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID     = $(BS_BUNDLE_ID).nm.connector
+BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID     = com.calm_apps.mac.beardie.nm.connector
 
 BS_SAFARI_EXTENSION_BUNDLE_ID               = $(BS_BUNDLE_ID).safari.extension
 BS_CHROME_EXTENSION_ID                      = kcbddjdbhggfejihipchloknandfnkgb
 
 //File extension for javascript `strategy` file.
 BS_STRATEGY_EXTENSION                       = bsstrategy
+
+//Backend services
+BS_UNSUPPORTED_STRATEGY_JSON_URL = https:$(XC_SPL)/raw.githubusercontent.com/beardedspice/BS-Strategies/master/manifest.json
+BS_UNSUPPORTED_STRATEGY_URL_FORMAT = https:$(XC_SPL)/raw.githubusercontent.com/beardedspice/BS-Strategies/master/%@.$(BS_STRATEGY_EXTENSION)
 
 
 BS_DEFAULT_SAFARI_BUBDLE_ID                 = com.apple.Safari

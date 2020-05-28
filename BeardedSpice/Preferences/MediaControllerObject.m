@@ -43,4 +43,23 @@
     return [self initWithObject:nil];
 }
 
+- (BOOL)isEqual:(id)object {
+    if (object == self) {
+        return YES;
+    }
+    if ([object isKindOfClass:[self class]] == NO) {
+        return NO;
+    }
+    if (self.representationObject.hash == ((MediaControllerObject *)object).representationObject.hash
+        && [self.representationObject isEqual:((MediaControllerObject *)object).representationObject]) {
+        return YES;
+    }
+    return NO;
+
+}
+
+- (NSUInteger)hash {
+    return self.representationObject.hash;
+}
+
 @end

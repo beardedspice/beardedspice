@@ -26,6 +26,8 @@ extern NSString *const BeardedSpiceImportExportLastDirectory;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - BSStrategiesPreferencesViewController
 
+extern NSString *const StrategiesPreferencesViewController;
+
 @interface BSStrategiesPreferencesViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 {
     // array of MediaControllerObject used to drive the view
@@ -47,11 +49,24 @@ extern NSString *const BeardedSpiceImportExportLastDirectory;
 
 
 /////////////////////////////////////////////////////////////////////////
+#pragma mark Outlets
+
+@property (weak) IBOutlet NSTextField *unsupportedPrefixTextField;
+@property (weak) IBOutlet NSButton *customUpdateButton;
+@property (weak) IBOutlet NSButton *customDownloadButton;
+
+/////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
 
 - (IBAction)clickExport:(id)sender;
 - (IBAction)clickImport:(id)sender;
 - (IBAction)clickRemove:(id)sender;
+- (IBAction)clickUpdate:(id)sender;
+- (IBAction)clickDownload:(id)sender;
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark Public methods ans properties
+
+- (void)importStrategyWithPath:(NSString *)strategyPath;
 
 @end

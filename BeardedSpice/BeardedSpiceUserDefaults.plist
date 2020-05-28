@@ -21,11 +21,11 @@
 	<key>BeardedSpiceActivatePlayingTabShortcut</key>
 	<data>YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldLZXlDb2RlViRjbGFzc11Nb2RpZmllckZsYWdzEH2AAhIADAAA0hQVFhdaJGNsYXNzbmFtZVgkY2xhc3Nlc1tNQVNTaG9ydGN1dKIYGVtNQVNTaG9ydGN1dFhOU09iamVjdAgRGiQpMjdJTFFTV11kbHOBg4WKj5qjr7K+AAAAAAAAAQEAAAAAAAAAGgAAAAAAAAAAAAAAAAAAAMc=</data>
 	<key>BeardedSpiceAlwaysShowNotification</key>
-	<false/>
+	<true/>
 	<key>BeardedSpiceRemoveHeadphonesAutopause</key>
 	<true/>
 	<key>BeardedSpiceShowProgress</key>
-	<false/>
+	<true/>
 	<key>BeardedSpiceCustomVolumeControl</key>
 	<false/>
 	<key>BeardedSpiceFirstRun</key>

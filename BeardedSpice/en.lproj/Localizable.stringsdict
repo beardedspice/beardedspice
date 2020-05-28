@@ -20,5 +20,23 @@
 			<string>There were %u compatibility updates.</string>
 		</dict>
 	</dict>
+	<key>update-custom-strategy</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@num@</string>
+		<key>num</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>No new updates for custom strategies.</string>
+			<key>one</key>
+			<string>One custom strategy was updated.</string>
+			<key>other</key>
+			<string>%u custom strategies was updated.</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

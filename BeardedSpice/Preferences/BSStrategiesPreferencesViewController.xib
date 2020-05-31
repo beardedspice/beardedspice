@@ -12,6 +12,7 @@
                 <outlet property="customDownloadButton" destination="0qD-Zm-cZB" id="dzA-bm-1gt"/>
                 <outlet property="customUpdateButton" destination="T8N-QI-74V" id="hwq-sC-i3B"/>
                 <outlet property="firstResponderView" destination="GEG-vL-atM" id="5uY-o9-lb5"/>
+                <outlet property="searchField" destination="i4J-Ni-CcF" id="gdL-dV-pRR"/>
                 <outlet property="strategiesView" destination="GEG-vL-atM" id="0MV-6G-jMU"/>
                 <outlet property="unsupportedPrefixTextField" destination="ZBN-kw-Mtm" id="pYz-Tk-jgK"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -97,7 +98,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="clickExport:" target="-2" id="sRD-Yo-sTd"/>
-                        <binding destination="5i6-vh-4jl" name="enabled3" keyPath="values.InUpdatingStrategiesState" previousBinding="6Il-fJ-xjh" id="7gY-mf-Fch">
+                        <binding destination="5i6-vh-4jl" name="enabled2" keyPath="values.InUpdatingStrategiesState" previousBinding="ohl-it-00T" id="fjL-g6-tGc">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                 <integer key="NSNoSelectionPlaceholder" value="1"/>
@@ -106,16 +107,7 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="enabled2" keyPath="self.importExportPanelOpened" previousBinding="d53-L2-H7P" id="6Il-fJ-xjh">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowExport" id="d53-L2-H7P">
+                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowExport" id="ohl-it-00T">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>
@@ -132,19 +124,11 @@
                     </buttonCell>
                     <connections>
                         <action selector="clickImport:" target="-2" id="XJD-ds-54U"/>
-                        <binding destination="5i6-vh-4jl" name="enabled2" keyPath="values.InUpdatingStrategiesState" previousBinding="lKb-rJ-9nJ" id="owa-zz-hsp">
+                        <binding destination="5i6-vh-4jl" name="enabled" keyPath="values.InUpdatingStrategiesState" id="0Af-I9-d4Q">
                             <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                 <integer key="NSNoSelectionPlaceholder" value="1"/>
                                 <integer key="NSNotApplicablePlaceholder" value="1"/>
                                 <integer key="NSNullPlaceholder" value="1"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.importExportPanelOpened" id="lKb-rJ-9nJ">
-                            <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
@@ -159,7 +143,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="clickRemove:" target="-2" id="cUw-3g-6Dh"/>
-                        <binding destination="5i6-vh-4jl" name="enabled3" keyPath="values.InUpdatingStrategiesState" previousBinding="tBD-DP-dkp" id="ouw-ga-BwB">
+                        <binding destination="5i6-vh-4jl" name="enabled2" keyPath="values.InUpdatingStrategiesState" previousBinding="j54-2v-8n1" id="8g4-p7-6Pw">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                 <integer key="NSNoSelectionPlaceholder" value="1"/>
@@ -168,16 +152,7 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="enabled2" keyPath="self.importExportPanelOpened" previousBinding="4WO-Bl-Blr" id="tBD-DP-dkp">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowRemove" id="4WO-Bl-Blr">
+                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowRemove" id="j54-2v-8n1">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>
@@ -198,6 +173,9 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <action selector="clickSearchField:" target="-2" id="Uka-1U-Yrl"/>
+                                </connections>
                             </searchField>
                         </subviews>
                         <constraints>

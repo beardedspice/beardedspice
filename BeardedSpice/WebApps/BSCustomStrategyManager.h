@@ -33,7 +33,7 @@ extern NSString *const BSCStrategyErrorDomain;
 - (void)exportStrategy:(BSMediaStrategy *)strategy
               toFolder:(NSURL *)folderURL
              overwrite:(BOOL(^)(NSURL *pathToFile))overwrite
-            completion:(void (^)(NSError *error))completion;
+            completion:(void (^)(NSURL *pathToFile, NSError *error))completion;
 
 - (BOOL)removeStrategy:(BSMediaStrategy *)strategy
             completion:(void (^)(BSMediaStrategy *replacedStrategy, NSError *error))completion;

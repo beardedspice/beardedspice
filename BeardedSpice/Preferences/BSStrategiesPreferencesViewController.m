@@ -30,11 +30,12 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
 
 @property BOOL selectedRowAllowExport;
 @property BOOL selectedRowAllowRemove;
-@property BOOL importExportPanelOpened;
 
 @end
 
-@implementation BSStrategiesPreferencesViewController
+@implementation BSStrategiesPreferencesViewController {
+   NSArray <MediaControllerObject *> *_mediaControllerObjectsCache;
+}
 
 - (id)init{
     
@@ -47,7 +48,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                                       @"list. ToolTip for row, which meens that this strategy is user "
                                                       @"defined.");
         
-        self.importExportPanelOpened = self.selectedRowAllowExport = self.selectedRowAllowRemove = NO;
+        self.selectedRowAllowExport = self.selectedRowAllowRemove = NO;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(strategyChangedNotify:) name: BSVMStrategyChangedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(strategyChangedNotify:) name: BSCStrategyChangedNotification object:nil];
@@ -112,14 +113,10 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
 
 - (IBAction)clickExport:(id)sender {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
         @autoreleasepool {
             
             BSMediaStrategy *strategy = [self strategyFromTableSelection];
             if (strategy) {
-                
-                self.importExportPanelOpened = YES;
                 
                 NSOpenPanel *openPanel = [NSOpenPanel openPanel];
                 
@@ -131,15 +128,8 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                 openPanel.canChooseDirectories = YES;
                 openPanel.canCreateDirectories = YES;
                 openPanel.allowsMultipleSelection = NO;
-                openPanel.title = BSLocalizedString(
-                                                    @"BeardedSpice - Choose a folder for exporting",
-                                                    @"(GeneralPreferencesViewController) In "
-                                                    @"preferences, strategies list. Title of the "
-                                                    @"panel for choosing of the export folder.");
-                openPanel.prompt = BSLocalizedString(
-                                                     @"Export", @"(GeneralPreferencesViewController) In "
-                                                     @"preferences, strategies list. 'Choose folder for "
-                                                     @"exporting' panel. Export button title.");
+                openPanel.title = BSLocalizedString(@"preferences-strategies-export-select-folder-title",@"");
+                openPanel.prompt = BSLocalizedString(@"preferences-strategies-export-select-folder-button-title", @"");
                 
                 [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
                     
@@ -187,7 +177,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                 return result;
                                 
                             }
-                                                                     completion:^(NSError *error) {
+                                                                     completion:^(NSURL *pathToFile, NSError *error) {
                                 if (error) {
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         
@@ -207,91 +197,141 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                         
                                     });
                                 }
+                                else if (pathToFile) {
+                                    [[NSWorkspace sharedWorkspace]
+                                     activateFileViewerSelectingURLs:@[ pathToFile ]];
+                                }
                             }];
                         });
                     }
-                    
-                    self.importExportPanelOpened = NO;
                 }];
             }
         }
-    });
 }
 
 - (IBAction)clickImport:(id)sender {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    @autoreleasepool {
         
-        @autoreleasepool {
+        NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+        
+        openPanel.directoryURL =
+        [self importExportDirectoryForCustomStrategy];
+        openPanel.allowedFileTypes = @[ @"js", BS_STRATEGY_EXTENSION ];
+        openPanel.allowsOtherFileTypes = NO;
+        openPanel.canChooseFiles = YES;
+        openPanel.canChooseDirectories = NO;
+        openPanel.canCreateDirectories = NO;
+        openPanel.allowsMultipleSelection = NO;
+        openPanel.title =
+        BSLocalizedString(@"BeardedSpice - Choose a file for importing",
+                          @"(GeneralPreferencesViewController) In "
+                          @"preferences, strategies list. Title of the "
+                          @"panel for choosing of the importing file.");
+        openPanel.prompt = BSLocalizedString(
+                                             @"Import", @"(GeneralPreferencesViewController) In "
+                                             @"preferences, strategies list. 'Choose folder for "
+                                             @"importing' panel. Import button title.");
+        
+        [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
             
-            self.importExportPanelOpened = YES;
-            NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-            
-            openPanel.directoryURL =
-            [self importExportDirectoryForCustomStrategy];
-            openPanel.allowedFileTypes = @[ @"js", BS_STRATEGY_EXTENSION ];
-            openPanel.allowsOtherFileTypes = NO;
-            openPanel.canChooseFiles = YES;
-            openPanel.canChooseDirectories = NO;
-            openPanel.canCreateDirectories = NO;
-            openPanel.allowsMultipleSelection = NO;
-            openPanel.title =
-            BSLocalizedString(@"BeardedSpice - Choose a file for importing",
-                              @"(GeneralPreferencesViewController) In "
-                              @"preferences, strategies list. Title of the "
-                              @"panel for choosing of the importing file.");
-            openPanel.prompt = BSLocalizedString(
-                                                 @"Import", @"(GeneralPreferencesViewController) In "
-                                                 @"preferences, strategies list. 'Choose folder for "
-                                                 @"importing' panel. Import button title.");
-            
-            [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
+            if (result == NSModalResponseOK) {
                 
-                if (result == NSModalResponseOK) {
-                    
-                    NSURL *fileURL = openPanel.URL;
-                    [[NSUserDefaults standardUserDefaults]
-                     setObject:[openPanel.directoryURL path]
-                     forKey:BeardedSpiceImportExportLastDirectory];
-                    
-                    [self importStrategyWithUrl:fileURL];
-                }
-                self.importExportPanelOpened = NO;
-            }];
-        }
-    });
+                NSURL *fileURL = openPanel.URL;
+                [[NSUserDefaults standardUserDefaults]
+                 setObject:[openPanel.directoryURL path]
+                 forKey:BeardedSpiceImportExportLastDirectory];
+                
+                [self importStrategyWithUrl:fileURL];
+            }
+        }];
+    }
+}
+
+- (IBAction)clickSearchField:(id)sender {
+    [self applySearchField];
+    [self.strategiesView reloadData];
 }
 
 - (IBAction)clickDownload:(id)sender {
-    
+    @autoreleasepool {
+        
+        NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+        
+        openPanel.directoryURL =
+        [self importExportDirectoryForCustomStrategy];
+        openPanel.allowedFileTypes = nil;
+        openPanel.allowsOtherFileTypes = NO;
+        openPanel.canChooseFiles = NO;
+        openPanel.canChooseDirectories = YES;
+        openPanel.canCreateDirectories = YES;
+        openPanel.allowsMultipleSelection = NO;
+        openPanel.title = BSLocalizedString(@"preferences-strategies-unsupported-download-select-folder-title", @"");
+        openPanel.prompt = BSLocalizedString(@"preferences-strategies-unsupported-download-select-folder-button-title", @"");
+        
+        [openPanel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
+            
+            if (result == NSModalResponseOK) {
+                
+                // download to folder
+                NSURL *folderUrl = openPanel.URL;
+                [[NSUserDefaults standardUserDefaults]
+                 setObject:[folderUrl path]
+                 forKey:BeardedSpiceImportExportLastDirectory];
+                
+                [[BSCustomStrategyManager singleton] downloadCustomStrategiesFromUnsupportedRepoTo:folderUrl
+                                                                                        completion:^(NSURL *savedUrl, NSError *error) {
+                    if (error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            NSAlert *alert = [NSAlert new];
+                            alert.alertStyle = NSAlertStyleCritical;
+                            alert.informativeText = error.localizedDescription;
+                            alert.messageText = BSLocalizedString(@"preferences-strategies-unsupported-download-error-alert-message-text", @"");
+                            [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                            
+                            [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+                            
+                        });
+                    }
+                    else if (savedUrl) {
+                        [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:savedUrl.path];
+                    }
+                    
+                }];
+            }
+        }];
+    }
 }
 
 - (IBAction)clickUpdate:(id)sender {
-    NSAlert *alert = [NSAlert new];
-    alert.alertStyle = NSAlertStyleWarning;
-    alert.informativeText = BSLocalizedString(@"preferences-strategies-unsupported-update-alert-text", @"");
-    alert.messageText = BSLocalizedString(@"preferences-strategies-unsupported-update-alert-title", @"");
-    [alert addButtonWithTitle:BSLocalizedString(@"Cancel",
-                                                @"Cancel button")];
-    [alert addButtonWithTitle:BSLocalizedString(@"button-title-update",@"")];
-    
-    [alert beginSheetModalForWindow:self.view.window
-                  completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSAlertSecondButtonReturn) {
-            [APPDELEGATE setInUpdatingStrategiesState:YES];
-            self.customUpdateButton.title = BSLocalizedString(@"preferences-strategies-unsupported-update-button-title-in-action", @"");
-            [[BSCustomStrategyManager singleton] updateCustomStrategiesFromUnsupportedRepoWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.customUpdateButton.title = BSLocalizedString(@"preferences-strategies-unsupported-update-button-title", @"");
-                    NSUserNotification *notification = [NSUserNotification new];
-                    notification.title = BSLocalizedString(@"Compatibility Updates", @"");
-                    notification.subtitle = [NSString stringWithFormat:BSLocalizedString(@"update-custom-strategy", @""), updatedNames.count];
-                    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-                    [APPDELEGATE setInUpdatingStrategiesState:NO];
-                });
-            }];
-        }
-    }];
+    @autoreleasepool {
+        NSAlert *alert = [NSAlert new];
+        alert.alertStyle = NSAlertStyleWarning;
+        alert.informativeText = BSLocalizedString(@"preferences-strategies-unsupported-update-alert-text", @"");
+        alert.messageText = BSLocalizedString(@"preferences-strategies-unsupported-update-alert-title", @"");
+        [alert addButtonWithTitle:BSLocalizedString(@"Cancel",
+                                                    @"Cancel button")];
+        [alert addButtonWithTitle:BSLocalizedString(@"button-title-update",@"")];
+        
+        [alert beginSheetModalForWindow:self.view.window
+                      completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSAlertSecondButtonReturn) {
+                [APPDELEGATE setInUpdatingStrategiesState:YES];
+                self.customUpdateButton.title = BSLocalizedString(@"preferences-strategies-unsupported-update-button-title-in-action", @"");
+                [[BSCustomStrategyManager singleton] updateCustomStrategiesFromUnsupportedRepoWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.customUpdateButton.title = BSLocalizedString(@"preferences-strategies-unsupported-update-button-title", @"");
+                        NSUserNotification *notification = [NSUserNotification new];
+                        notification.title = BSLocalizedString(@"Compatibility Updates", @"");
+                        notification.subtitle = [NSString stringWithFormat:BSLocalizedString(@"update-custom-strategy", @""), updatedNames.count];
+                        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                        [APPDELEGATE setInUpdatingStrategiesState:NO];
+                    });
+                }];
+            }
+        }];
+    }
 }
 
 - (IBAction)clickRemove:(id)sender {
@@ -322,6 +362,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                 [alert beginSheetModalForWindow:self.view.window
                               completionHandler:^(NSModalResponse returnCode) {
                     if (returnCode == NSAlertSecondButtonReturn) {
+                        [APPDELEGATE setInUpdatingStrategiesState:YES];
                         [[BSCustomStrategyManager singleton] removeStrategy:strategy
                                                                  completion:^(BSMediaStrategy *replacedStrategy, NSError *error) {
                             
@@ -358,6 +399,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                 
                                 [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
                                     [self selectStrategy:replacedStrategy];
+                                    [APPDELEGATE setInUpdatingStrategiesState:NO];
                                 }];
                             });
                         }];
@@ -629,16 +671,34 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
         }
         userStrategies = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:BeardedSpiceActiveControllers]];
     }
-    mediaControllerObjects = [mediaControllers copy];
+    
+    mediaControllerObjects = _mediaControllerObjectsCache = [mediaControllers copy];
+}
+
+- (void)applySearchField {
+    if (self.searchField.stringValue.length) {
+        NSPredicate *filter;
+        if ([self.searchField.stringValue isEqualToString:@"custom"]) {
+            filter = [NSPredicate predicateWithFormat:@"isCustom == YES"];
+        }
+        else {
+            filter = [NSPredicate predicateWithFormat:@"isGroup == YES OR name contains[cd] %@", self.searchField.stringValue];
+        }
+        mediaControllerObjects = [_mediaControllerObjectsCache filteredArrayUsingPredicate:filter];
+    }
+    else {
+        mediaControllerObjects = _mediaControllerObjectsCache;
+    }
 }
 
 - (void)updateStrategiesView {
     [self loadMediaControllerObjects];
+    [self applySearchField];
     [self.strategiesView reloadData];
 }
 
 - (void)strategyChangedNotify:(NSNotification*) notification{
-    
+    self.searchField.stringValue = @"";
     [self updateStrategiesView];
 }
 
@@ -683,6 +743,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
 }
 
 - (void)importStrategyWithUrl:(NSURL *)fileURL {
+    [APPDELEGATE setInUpdatingStrategiesState:YES];
     [[BSCustomStrategyManager singleton] importFromUrl:fileURL completion:^(BSMediaStrategy *strategy, NSError *error) {
         
         if (error) {
@@ -702,11 +763,13 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                 [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
                 
                 [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+                [APPDELEGATE setInUpdatingStrategiesState:NO];
             });
             return;
         }
         
         if (strategy) {
+            self.searchField.stringValue = @"";
             [self updateStrategiesView];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -726,6 +789,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                                             @"Ok button")];
                 [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
                     [self selectStrategy:strategy];
+                    [APPDELEGATE setInUpdatingStrategiesState:NO];
                 }];
             });
         }

@@ -7,11 +7,11 @@
 //
 BSStrategy = {
   version:1,
-  displayName:"Flat.FM",
+  displayName:"Flat.FM Flat.Audio",
   accepts: {
     method: "predicateOnTab",
-    format:"%K LIKE[c] '*/flat.fm/*'",
-    args: ["URL"]
+    format:"%K LIKE[c] '*/flat.fm/*' OR %K LIKE[c] '*/flat.audio/*'",
+    args: ["URL", "URL"]
   },
   seek: function(offset) {
     let hmsToSeconds = function (str) {

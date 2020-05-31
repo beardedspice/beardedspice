@@ -101,11 +101,11 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
 - (void)exportStrategy:(BSMediaStrategy *)strategy
               toFolder:(NSURL *)folderURL
              overwrite:(BOOL(^)(NSURL *pathToFile))overwrite
-            completion:(void (^)(NSError *error))completion {
+            completion:(void (^)(NSURL *pathToFile, NSError *error))completion {
 
     if (!(strategy && folderURL)) {
         if (completion) {
-            completion(nil);
+            completion(nil, nil);
         }
         return;
     }
@@ -118,7 +118,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
     if ([pathToFile checkResourceIsReachableAndReturnError:nil]) {
         if (overwrite == nil || overwrite(pathToFile) == NO) {
             if (completion) {
-                completion(nil);
+                completion(nil, nil);
             }
             return;
         }
@@ -133,12 +133,9 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy,
               [error localizedDescription]);
     }
-    else {
-        [[NSWorkspace sharedWorkspace]
-            activateFileViewerSelectingURLs:@[ pathToFile ]];
-    }
+    
     if (completion) {
-        completion(error);
+        completion(pathToFile, error);
     }
 }
 
@@ -359,6 +356,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                                error:&err] && counter < STRATEGY_FOLDER_NAME_COUNTER_MAX) {
         counter++;
         newPath = [NSString stringWithFormat:@"%@-%lu", basePath, (unsigned long)counter];
+        err = nil;
     }
     if (err) {
         BSLog(BSLOG_ERROR, @"Error creating folder for downloading of a strategies: %@", err);

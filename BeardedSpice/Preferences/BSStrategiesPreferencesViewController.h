@@ -45,7 +45,6 @@ extern NSString *const StrategiesPreferencesViewController;
 
 @property (readonly) BOOL selectedRowAllowExport;
 @property (readonly) BOOL selectedRowAllowRemove;
-@property (readonly) BOOL importExportPanelOpened;
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -54,6 +53,7 @@ extern NSString *const StrategiesPreferencesViewController;
 @property (weak) IBOutlet NSTextField *unsupportedPrefixTextField;
 @property (weak) IBOutlet NSButton *customUpdateButton;
 @property (weak) IBOutlet NSButton *customDownloadButton;
+@property (weak) IBOutlet NSSearchField *searchField;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Actions
@@ -63,6 +63,7 @@ extern NSString *const StrategiesPreferencesViewController;
 - (IBAction)clickRemove:(id)sender;
 - (IBAction)clickUpdate:(id)sender;
 - (IBAction)clickDownload:(id)sender;
+- (IBAction)clickSearchField:(id)sender;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public methods ans properties

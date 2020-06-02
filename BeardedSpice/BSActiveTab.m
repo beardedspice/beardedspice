@@ -65,7 +65,7 @@ dispatch_queue_t notificationQueue() {
         @try {
             result = _activeTab.title;
         } @catch (NSException *exception) {
-            BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+            BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
         }
         if ([NSString isNullOrEmpty:result]) {
             result = ((BSWebTabAdapter *)_activeTab).strategy.displayName;
@@ -96,7 +96,7 @@ dispatch_queue_t notificationQueue() {
     @try {
         return [_activeTab isPlaying];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
     return NO;
 }
@@ -131,7 +131,7 @@ dispatch_queue_t notificationQueue() {
         }
         return YES;
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
     return NO;
 }
@@ -140,7 +140,7 @@ dispatch_queue_t notificationQueue() {
     @try {
         [_activeTab pause];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -149,7 +149,7 @@ dispatch_queue_t notificationQueue() {
         [_activeTab activateApp];
         [_activeTab activateTab];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -157,7 +157,7 @@ dispatch_queue_t notificationQueue() {
     @try {
         [_activeTab toggleTab];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -173,7 +173,7 @@ dispatch_queue_t notificationQueue() {
             [self showNotification];
         }
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -186,7 +186,7 @@ dispatch_queue_t notificationQueue() {
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -199,7 +199,7 @@ dispatch_queue_t notificationQueue() {
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -211,7 +211,7 @@ dispatch_queue_t notificationQueue() {
             && [[_activeTab trackInfo] favorited])
             dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
     
@@ -246,7 +246,7 @@ dispatch_queue_t notificationQueue() {
                     [invocation getReturnValue:&result];
                 }
             } @catch (NSException *exception) {
-                BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+                BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
             }
         }
     }

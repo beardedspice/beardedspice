@@ -24,6 +24,6 @@
 #define LOG_LEVEL BSLOG_ERROR
 #endif
 
-#define BSLog(x, y, ...) do { if (x >= LOG_LEVEL) { NSLog(y, ##__VA_ARGS__); } } while(0)
+#define BSLog(x, frmt, ...) do { if (x >= LOG_LEVEL) { NSLog(@"(%s %s) " frmt, __FILE__, __FUNCTION__, ##__VA_ARGS__); } } while(0)
 
 #endif /* BSLog_h */

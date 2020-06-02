@@ -15,7 +15,7 @@
 #import "BSStrategyCache.h"
 #import "runningSBApplication.h"
 
-#define RESPONSE_TIMEPUT                        0.2
+#define RESPONSE_TIMEPUT                        2.0
 #define TIMEOUT_WAS_REACHED                     @"TIMEOUT_WAS_REACHED"
 
 @interface PSWebSocket (internal)
@@ -28,17 +28,22 @@
     NSCondition *_actionLock;
     NSDictionary *_lastResponse;
     runningSBApplication *_application;
+    dispatch_queue_t _delegateQueue;
 }
 
 + (instancetype)adapterForSocket:(PSWebSocket *)tabSocket {
     
     BSWebTabAdapter *object = [[self alloc] initWithBrowserSocket:tabSocket];
-    if (object) {
-        if ([object suitableForSocket]) {
-            object->_standalone = [object obtainStandalone];
-            [object sendMessage:@"ready"];
-            return object;
+    @try {
+        if (object) {
+            if ([object suitableForSocket]) {
+                object->_standalone = [object obtainStandalone];
+                [object sendMessage:@"ready"];
+                return object;
+            }
         }
+    } @catch (NSException *exception) {
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
     return nil;
 }
@@ -51,9 +56,10 @@
     
     self = [super init];
     if (self) {
-     
+        _delegateQueue = dispatch_queue_create("com.beardie.tab.websocket", DISPATCH_QUEUE_SERIAL);
         _tabSocket = tabSocket;
         _tabSocket.delegate = self;
+        _tabSocket.delegateQueue = _delegateQueue;
         _key = [[NSUUID UUID] UUIDString];
         _actionLock = [NSCondition new];
     }
@@ -80,7 +86,8 @@
         [self.tabSocket send:message];
     });
     if ([_actionLock waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:RESPONSE_TIMEPUT]] == NO) {
-        [NSException exceptionWithName:TIMEOUT_WAS_REACHED reason:nil userInfo:nil];
+        [[NSException exceptionWithName:TIMEOUT_WAS_REACHED reason:nil userInfo:nil] raise];
+        _lastResponse = nil;
     }
     if (_lastResponse) {
         response = _lastResponse;
@@ -120,11 +127,12 @@
     return _key;
 }
 - (BOOL)activateApp {
-    
+    BSLog(BSLOG_DEBUG, @"Begin");
     return [super activateApp];
 }
 
 - (BOOL)deactivateApp {
+    BSLog(BSLOG_DEBUG, @"Begin");
     return [super deactivateApp];
 }
 
@@ -160,11 +168,14 @@
 }
 
 - (void)toggleTab {
+    BSLog(BSLOG_DEBUG, @"Begin");
     BOOL result = [self deactivateTab];
     if (result) {
         [self deactivateApp];
     }
     if (! result) {
+        BSLog(BSLOG_DEBUG, @"Need activate");
+
         [self activateApp];
         [self activateTab];
     }
@@ -236,7 +247,7 @@
 
 - (void)webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BSLog(BSLOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
+    BSLog(BSLOG_DEBUG, @"\nWebSocket [%p]. Message: %@", webSocket,
            ([message isKindOfClass:[NSData class]]
             ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
             : message));
@@ -251,15 +262,23 @@
         //Check if this is strategy request
         NSString *strategyName = _lastResponse[@"strategy"];
         if (strategyName) {
-            //getting current strategy
-            _strategy = MediaStrategyRegistry.singleton.strategyCache.cache[strategyName];
-            //sending to client
-            if (_strategy.strategyJsBody) {
-                [self sendMessage:_strategy.strategyJsBody];
-            }
-            else {
-                BSLog(BSLOG_ERROR, @"Bad strategy: %@",strategyName);
-            }
+            ASSIGN_WEAK(self);
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+                ASSIGN_STRONG(self);
+                @try {
+                    //getting current strategy
+                    USE_STRONG(self)->_strategy = MediaStrategyRegistry.singleton.strategyCache.cache[strategyName];
+                    //sending to client
+                    if (USE_STRONG(self)->_strategy.strategyJsBody) {
+                        [USE_STRONG(self) sendMessage:USE_STRONG(self)->_strategy.strategyJsBody];
+                    }
+                    else {
+                        BSLog(BSLOG_ERROR, @"Bad strategy: %@",strategyName);
+                    }
+                } @catch (NSException *exception) {
+                    BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+                }
+            });
             return;
         }
     }
@@ -269,7 +288,7 @@
 }
 - (void)webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
-    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+    BSLog(BSLOG_DEBUG, @"WebSocket [%p]", webSocket);
 
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }

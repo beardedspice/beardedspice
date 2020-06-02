@@ -574,7 +574,7 @@ BOOL accessibilityApiEnabled = NO;
 
         return NO;
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
     }
 }
 
@@ -628,7 +628,7 @@ BOOL accessibilityApiEnabled = NO;
                             [playingTabs addObject:tab];
                     }
                 } @catch (NSException *exception) {
-                    BSLog(BSLOG_ERROR, @"(%s) Exception occured: %@", __FUNCTION__, exception);
+                    BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
                 }
             }
             if (![tabs containsObject:_activeApp.activeTab]) {

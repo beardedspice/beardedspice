@@ -214,7 +214,7 @@ static NSMutableDictionary *_sharedAppHandler;
         result = (AXUIElementPerformAction(menuItem, (CFStringRef)NSAccessibilityPressAction) == kAXErrorSuccess);
         CFRelease(menuItem);
     }
-    BSLog(BSLOG_DEBUG, @"(pressMenuBarItemForIndexPath) Result: %@", (result ? @"YES" : @"NO"));
+    DDLogDebug(@"(pressMenuBarItemForIndexPath) Result: %@", (result ? @"YES" : @"NO"));
 
     return result;
 }

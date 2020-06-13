@@ -75,7 +75,7 @@
         NSEnumerator *e = [[vlc windows] objectEnumerator];
         id o;
         while ((o = [e nextObject]) && doc == NULL) {
-            NSLog(@"VLC window %@: %lu: %@", o, [o index], [o name]);
+            DDLogDebug(@"VLC window %@: %lu: %@", o, [o index], [o name]);
             if ([[o name] isEqualToString: [vlc nameOfCurrentItem]]) {
                 doc = [[[vlc windows] objectAtIndex: [o index]] document];
             }

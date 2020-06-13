@@ -77,7 +77,7 @@ NSString * _Nonnull const kBSMediaStrategyObjectKey = @"kBSMediaStrategyObjectKe
     // We don't need strategy, which is not loaded.
     NSError *err = [strategy _loadFile];
     if (err) {
-        NSLog(@"Failed to load strategy with URL: %@", strategyURL);
+        DDLogError(@"Failed to load strategy with URL: %@", strategyURL);
         if (error) {
             *error = err;
         }
@@ -140,7 +140,7 @@ NSString * _Nonnull const kBSMediaStrategyObjectKey = @"kBSMediaStrategyObjectKe
       err = [NSError errorWithDomain:kBSMediaStrategyErrorDomain
                                 code:BSMS_ERROR_JSPARSING
                             userInfo:@{NSLocalizedDescriptionKey : descr}];
-        NSLog(@"JS Error with Strategy (%@): %@", self->_fileName, exception);
+        DDLogError(@"JS Error with Strategy (%@): %@", self->_fileName, exception);
     };
 
     JSValue *strategyData = [context evaluateScript:_strategyJsBody];
@@ -164,7 +164,7 @@ NSString * _Nonnull const kBSMediaStrategyObjectKey = @"kBSMediaStrategyObjectKe
                                       NSLocalizedDescriptionKey: descr,
                                       kBSMediaStrategyObjectKey: newStrategy
                                   }];
-            BSLog(BSLOG_ERROR, @"%@", descr);
+            DDLogError(@"%@", descr);
         }
         else {
             [self copyStateFrom:newStrategy];

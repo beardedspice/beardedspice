@@ -176,7 +176,7 @@ return retVal;
                    toDeviceList: devices];
             }
             @catch (NSException *exception) {
-                NSLog(@"(DDHidDevice) Error adding Hid device - %u, class - %@: %@", hidDevice, NSStringFromClass(hidClass), [exception description]);
+                DDLogError(@"(DDHidDevice) Error adding Hid device - %u, class - %@: %@", hidDevice, NSStringFromClass(hidClass), [exception description]);
             }
         }
         
@@ -532,7 +532,7 @@ return retVal;
     
 #if DEBUG
     if (![mProperties isKindOfClass:[NSDictionary class]]) {
-        NSLog(@"Hid device Properties is not a dictionary: %@ self: %@", mProperties, self);
+        DDLogError(@"Hid device Properties is not a dictionary: %@ self: %@", mProperties, self);
     }
 #endif
     

@@ -10,6 +10,7 @@
 #import "BSPredicateToJS.h"
 #import "BSStrategyCache.h"
 #import "BSMediaStrategy.h"
+#import "BSSharedResources.h"
 
 @interface BSPredicateToJSTests : XCTestCase
 
@@ -106,7 +107,7 @@
 
 - (void)testPrintJSFunctions {
     
-    NSLog(@"JS Functions:\n%@", [BSPredicateToJS jsFunctions]);
+    DDLogDebug(@"JS Functions:\n%@", [BSPredicateToJS jsFunctions]);
 }
 
 - (void)testPrintJSConditions {
@@ -122,7 +123,7 @@
             
             NSString *converted = [BSPredicateToJS jsFromPredicate:predicate];
             
-            NSLog(@"Strategy: %@\n%@\n", strategy.displayName, converted);
+            DDLogDebug(@"Strategy: %@\n%@\n", strategy.displayName, converted);
         }
     }
 }

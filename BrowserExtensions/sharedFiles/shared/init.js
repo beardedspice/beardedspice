@@ -3,6 +3,7 @@ if (checkInjectAlready != null) {
     console.log("(BeardedSpice eventsController) Script already injected!");
 }
 else {
+    BSUtils.injectExtScript("shared/utils.js");
     BSUtils.injectExtScript("shared/eventsController.js");
 }
 

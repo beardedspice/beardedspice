@@ -148,62 +148,62 @@
 #pragma mark - WebFrameLoadDelegate
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame
 {
-    NSLog(@"!!!!!!!!!");
+    DDLogDebug(@"!!!!!!!!!");
 }
 - (void)webView:(WebView *)sender didCommitLoadForFrame:(WebFrame *)frame
 {
-    NSLog(@":((((((");
+    DDLogDebug(@":((((((");
 }
 - (void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame
 {
-    NSLog(@":((((((");
+    DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender didCancelClientRedirectForFrame:(WebFrame *)frame
 {
-    NSLog(@":((((((");
+    DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender willPerformClientRedirectToURL:(NSURL *)URL delay:(NSTimeInterval)seconds fireDate:(NSDate *)date forFrame:(WebFrame *)frame
 {
-NSLog(@":((((((");
+DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender didReceiveServerRedirectForProvisionalLoadForFrame:(WebFrame *)frame
 {
-NSLog(@":((((((");
+DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame
 {
-NSLog(@":((((((");
+DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender didReceiveIcon:(NSImage *)image forFrame:(WebFrame *)frame
 {
-NSLog(@":((((((");
+DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender didChangeLocationWithinPageForFrame:(WebFrame *)frame
 {
-NSLog(@":((((((");
+DDLogDebug(@":((((((");
 }
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-    NSLog(@"------------------------- did finish loading for frame....");
+    DDLogDebug(@"------------------------- did finish loading for frame....");
     self.finishedLoading = YES;
 }
 
 - (void)webView:(WebView *)sender didFailProvisionalLoadWithError:(NSError *)error forFrame:(WebFrame *)frame
 {
-    NSLog(@"------------------------- webview failed to (provisionally) load strategy %@: %@", _strategyName, [error localizedDescription]);
+    DDLogDebug(@"------------------------- webview failed to (provisionally) load strategy %@: %@", _strategyName, [error localizedDescription]);
     // FIXME add XCAssert here for failure
 }
 
 - (void)webView:(WebView *)sender didFailLoadWithError:(NSError *)error forFrame:(WebFrame *)frame
 {
-    NSLog(@"------------------------- webview failed to load strategy %@: %@", _strategyName, [error localizedDescription]);
+    DDLogDebug(@"------------------------- webview failed to load strategy %@: %@", _strategyName, [error localizedDescription]);
     // FIXME add XCAssert here for failure
 }
 

@@ -6,6 +6,5 @@
 //  Copyright © 2019 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "BSLog.h"
 #import "ConfigConstants.h"
 #import "BSSharedResources.h"

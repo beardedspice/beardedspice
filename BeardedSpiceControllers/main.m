@@ -10,6 +10,7 @@
 #import "BeardedSpiceControllers.h"
 #import "BeardedSpiceHostAppProtocol.h"
 #import "BSCService.h"
+#import "BSSharedResources.h"
 
 @interface ServiceDelegate : NSObject <NSXPCListenerDelegate>
 @end
@@ -18,7 +19,7 @@
 
 - (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
 
-    BSLog(BSLOG_DEBUG, @"New connection");
+    DDLogDebug(@"New connection");
     
     // This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
     
@@ -61,20 +62,25 @@
 
 int main(int argc, const char *argv[])
 {
-    // Create the delegate for the service.
-    ServiceDelegate *delegate = [ServiceDelegate new];
-    
-    // Set up the one NSXPCListener for this service. It will handle all incoming connections.
-    NSXPCListener *listener = [NSXPCListener serviceListener];
-    listener.delegate = delegate;
-    
-    NSProcessInfo *procInfo = [NSProcessInfo processInfo];
-    [procInfo disableAutomaticTermination:@"Need for keyboard hotkeys"];
-    
-    // Touch to BSCService
-    [BSCService singleton];
-    
-    // Resuming the serviceListener starts this service. This method does not return.
-    [listener resume];
-    return 0;
+    @autoreleasepool {
+        
+        [BSSharedResources initLoggerFor:BS_CONTROLLER_BUNDLE_ID];
+        
+        // Create the delegate for the service.
+        ServiceDelegate *delegate = [ServiceDelegate new];
+        
+        // Set up the one NSXPCListener for this service. It will handle all incoming connections.
+        NSXPCListener *listener = [NSXPCListener serviceListener];
+        listener.delegate = delegate;
+        
+        NSProcessInfo *procInfo = [NSProcessInfo processInfo];
+        [procInfo disableAutomaticTermination:@"Need for keyboard hotkeys"];
+        
+        // Touch to BSCService
+        [BSCService singleton];
+        
+        // Resuming the serviceListener starts this service. This method does not return.
+        [listener resume];
+        return 0;
+    }
 }

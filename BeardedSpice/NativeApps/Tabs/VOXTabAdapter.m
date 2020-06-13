@@ -129,7 +129,7 @@
         NSURL *url = [NSURL URLWithString:vox.trackUrl];
 
         if (url) {
-            NSLog(@"URL: %@", url);
+            DDLogDebug(@"URL: %@", url);
         }
 
         return track;

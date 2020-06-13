@@ -49,7 +49,7 @@ static NSSet *_chromeBundleIds;
             if (_application == nil) {
                 if (_realBundleId.length) {
                     _application = [runningSBApplication sharedApplicationForBundleIdentifier:_realBundleId];
-                    BSLog(BSLOG_INFO, @"New application object from bundleid \"%@\" creating result: %@", _realBundleId, _application ? @"YES" : @"NO");
+                    DDLogInfo(@"New application object from bundleid \"%@\" creating result: %@", _realBundleId, _application ? @"YES" : @"NO");
                 }
                 else {
                     _application = [self obtainApplication];
@@ -64,12 +64,12 @@ static NSSet *_chromeBundleIds;
 
     if (self.standalone) {
         if (_realBundleId.length) {
-            BSLog(BSLOG_DEBUG, @"Standalone activate tab.");
+            DDLogDebug(@"Standalone activate tab.");
             return YES;
         }
         else {
             
-            BSLog(BSLOG_DEBUG, @"Standalone initial activate tab.");
+            DDLogDebug(@"Standalone initial activate tab.");
             // delaying activation tab
             dispatch_async(dispatch_get_main_queue(), ^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
@@ -85,7 +85,7 @@ static NSSet *_chromeBundleIds;
         }
     }
     else {
-        BSLog(BSLOG_DEBUG, @"Ordinary activate tab.");
+        DDLogDebug(@"Ordinary activate tab.");
         [self sendMessage:@"activate"];
     }
     return YES;

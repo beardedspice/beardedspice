@@ -43,7 +43,7 @@ static SFSafariTab *_previousTabOnNewWindow;
 }
 
 + (void)resetAllTabs {
-    BSLog(BSLOG_DEBUG,@"Reset all tabs invoked.");
+    DDLogDebug(@"Reset all tabs invoked.");
     [SFSafariApplication getAllWindowsWithCompletionHandler:^(NSArray<SFSafariWindow *> * _Nonnull windows) {
         for (SFSafariWindow *window in windows) {
             [window getAllTabsWithCompletionHandler:^(NSArray<SFSafariTab *> * _Nonnull tabs) {
@@ -64,11 +64,11 @@ static SFSafariTab *_previousTabOnNewWindow;
 /// Finds window for tab
 /// @param completion Called on main thread
 - (void)findWindowForTab:(SFSafariTab *)tab completion:(void (^)(SFSafariWindow *window))completion {
-    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) Find window for tab.");
+    DDLogDebug(@"(BeardedSpice Control) Find window for tab.");
     __block SFSafariWindow *foundedWindow;
     [SFSafariApplication getAllWindowsWithCompletionHandler:^(NSArray<SFSafariWindow *> * _Nonnull windows) {
         EHLDeferBlock *defer = [EHLDeferBlock deferWithCounterValue:windows.count queue:dispatch_get_main_queue() block:^{
-            BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) Find window for tab result: %@", [[foundedWindow _uuid] UUIDString]);
+            DDLogDebug(@"(BeardedSpice Control) Find window for tab result: %@", [[foundedWindow _uuid] UUIDString]);
             completion(foundedWindow);
         }];
         for (SFSafariWindow *window in windows) {
@@ -90,13 +90,14 @@ static SFSafariTab *_previousTabOnNewWindow;
 - (instancetype)init {
     self = [super init];
     if (self) {
+        [BSSharedResources initLoggerFor:BS_SAFARI_EXTENSION_BUNDLE_ID];
     }
     return self;
 }
 
 - (void)messageReceivedFromContainingAppWithName:(NSString *)messageName
                                         userInfo:(NSDictionary<NSString *,id> *)userInfo {
-    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) received a message (%@) from app with userInfo (%@)", messageName, userInfo);
+    DDLogDebug(@"(BeardedSpice Control) received a message (%@) from app with userInfo (%@)", messageName, userInfo);
     if ([messageName isEqualToString:@"settingsChanged"]) {
         [SafariExtensionHandler resetAllTabs];
     }
@@ -112,7 +113,7 @@ static SFSafariTab *_previousTabOnNewWindow;
                 if (!_bundleId.length) {
                 // if this thread defined bundleId
                     _bundleId = hostApplication.bundleIdentifier;
-                    BSLog(BSLOG_DEBUG, @"(BeardedSpice Control) BundleId: %@", _bundleId);
+                    DDLogDebug(@"(BeardedSpice Control) BundleId: %@", _bundleId);
                     [SafariExtensionHandler restoreSettings];
                 }
             }
@@ -124,7 +125,7 @@ static SFSafariTab *_previousTabOnNewWindow;
 
 - (void)toolbarItemClickedInWindow:(SFSafariWindow *)window {
     // This method will be called when your toolbar item is clicked.
-    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) The extension's toolbar item was clicked");
+    DDLogDebug(@"(BeardedSpice Control) The extension's toolbar item was clicked");
 }
 
 - (void)validateToolbarItemInWindow:(SFSafariWindow *)window validationHandler:(void (^)(BOOL enabled, NSString *badgeText))validationHandler {
@@ -142,7 +143,7 @@ static SFSafariTab *_previousTabOnNewWindow;
 - (void)processMessageWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary *)userInfo {
 
     [page getPagePropertiesWithCompletionHandler:^(SFSafariPageProperties *properties) {
-        BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) received a message (%@) from a script injected into (%@) (page state: %@) with userInfo (%@)", messageName, properties.url, (properties.active ? @"active" : @"disactive"), userInfo);
+        DDLogDebug(@"(BeardedSpice Control) received a message (%@) from a script injected into (%@) (page state: %@) with userInfo (%@)", messageName, properties.url, (properties.active ? @"active" : @"disactive"), userInfo);
         if (properties.url) {
             @autoreleasepool {
                 
@@ -153,14 +154,14 @@ static SFSafariTab *_previousTabOnNewWindow;
                     //request accepters
                     [BSSharedResources acceptersWithCompletion:^(NSDictionary *accepters) {
                         [page dispatchMessageToScriptWithName:@"accepters" userInfo:accepters ?: @{}];
-                        BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", messageName, accepters);
+                        DDLogDebug(@"(BeardedSpice Control) response on '%@': %@", messageName, accepters);
                     }];
                 }
                 else if ([messageName isEqualToString:@"port"]) {
                     // request port
                     NSDictionary *response = @{@"result": @(BSSharedResources.tabPort)};
                     [page dispatchMessageToScriptWithName:@"port" userInfo:response];
-                    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    DDLogDebug(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
                 }
                 else if ([messageName isEqualToString:@"frontmost"]) {
                     [SFSafariApplication getActiveWindowWithCompletionHandler:^(SFSafariWindow * _Nullable activeWindow) {
@@ -191,7 +192,7 @@ static SFSafariTab *_previousTabOnNewWindow;
                 }
                 else if ([messageName isEqualToString:@"isActivated"]) {
                     @synchronized (_lock) {
-                        BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': act-%d, wasAct-%d", messageName, properties.active, _wasActivated);
+                        DDLogDebug(@"(BeardedSpice Control) response on '%@': act-%d, wasAct-%d", messageName, properties.active, _wasActivated);
                         
                         [self send:page result:(properties.active && _wasActivated) of:@"isActivated"];
                     }
@@ -199,7 +200,7 @@ static SFSafariTab *_previousTabOnNewWindow;
                 else if ([messageName isEqualToString:@"bundleId"]) {
                     NSDictionary *response = @{@"result": _bundleId ?: BS_DEFAULT_SAFARI_BUBDLE_ID};
                     [page dispatchMessageToScriptWithName:@"bundleId" userInfo:response];
-                    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", messageName, response);
+                    DDLogDebug(@"(BeardedSpice Control) response on '%@': %@", messageName, response);
                 }
                 else if ([messageName isEqualToString:@"serverIsAlive"]) {
                     BOOL running = ([NSRunningApplication runningApplicationsWithBundleIdentifier:BS_BUNDLE_ID].count > 0);
@@ -211,15 +212,15 @@ static SFSafariTab *_previousTabOnNewWindow;
                             [self send:page result:NO of:@"activate"];
                         }
 
-                        BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) SFSafariApplication getActiveWindowWithCompletionHandler: %@", [[activeWindow _uuid] UUIDString]);
+                        DDLogDebug(@"(BeardedSpice Control) SFSafariApplication getActiveWindowWithCompletionHandler: %@", [[activeWindow _uuid] UUIDString]);
                         [activeWindow getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTab) {
-                            BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) activeWindow getActiveTabWithCompletionHandler: %@", [[activeTab _uuid] UUIDString]);
+                            DDLogDebug(@"(BeardedSpice Control) activeWindow getActiveTabWithCompletionHandler: %@", [[activeTab _uuid] UUIDString]);
                                 [page getContainingTabWithCompletionHandler:^(SFSafariTab * _Nonnull tab) {
                                     if (tab == nil) {
                                         [self send:page result:NO of:@"activate"];
                                     }
 
-                                    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) page getContainingTabWithCompletionHandler: %@", [[tab _uuid] UUIDString]);
+                                    DDLogDebug(@"(BeardedSpice Control) page getContainingTabWithCompletionHandler: %@", [[tab _uuid] UUIDString]);
                                     [tab getContainingWindowWithCompletionHandler:^(SFSafariWindow * _Nullable window) {
                                         if (window == nil) {
                                             [self findWindowForTab:tab completion:^(SFSafariWindow *window) {
@@ -260,7 +261,7 @@ static SFSafariTab *_previousTabOnNewWindow;
                                                     @"windowIdForMakeFrontmost": uuid
                                                 };
                                                 [page dispatchMessageToScriptWithName:@"hide" userInfo:response];
-                                                BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", @"hide", response);
+                                                DDLogDebug(@"(BeardedSpice Control) response on '%@': %@", @"hide", response);
                                             }
                                             [self send:page result:YES of:@"hide"];
                                         }];
@@ -353,7 +354,7 @@ static SFSafariTab *_previousTabOnNewWindow;
 - (void)send:(SFSafariPage *)page result:(BOOL)result of:(NSString *)of {
     NSDictionary *response = @{@"result": @(result)};
     [page dispatchMessageToScriptWithName:of userInfo:response];
-    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", of, response);
+    DDLogDebug(@"(BeardedSpice Control) response on '%@': %@", of, response);
 }
 
 - (void)activateTabContinueWithPage:(SFSafariPage *)page
@@ -362,9 +363,9 @@ static SFSafariTab *_previousTabOnNewWindow;
                           activeTab:(SFSafariTab *)activeTab
                        activeWindow:(SFSafariWindow *)activeWindow {
     
-    BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) tab getContainingWindowWithCompletionHandler: %@", [[window _uuid] UUIDString]);
+    DDLogDebug(@"(BeardedSpice Control) tab getContainingWindowWithCompletionHandler: %@", [[window _uuid] UUIDString]);
     [window getActiveTabWithCompletionHandler:^(SFSafariTab * _Nullable activeTabOnNewWindow) {
-        BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) window getActiveTabWithCompletionHandler: %@", [[activeTabOnNewWindow _uuid] UUIDString]);
+        DDLogDebug(@"(BeardedSpice Control) window getActiveTabWithCompletionHandler: %@", [[activeTabOnNewWindow _uuid] UUIDString]);
         @synchronized (_lock) {
             _previousTab = activeTab;
             _previousWindow = activeWindow;
@@ -388,7 +389,7 @@ static SFSafariTab *_previousTabOnNewWindow;
                     @"windowIdForMakeFrontmost": uuid
                 };
                 [page dispatchMessageToScriptWithName:@"activate" userInfo:response];
-                BSLog(BSLOG_DEBUG,@"(BeardedSpice Control) response on '%@': %@", @"activate", response);
+                DDLogDebug(@"(BeardedSpice Control) response on '%@': %@", @"activate", response);
             }
             else {
                 [self send:page result:YES of:@"activate"];

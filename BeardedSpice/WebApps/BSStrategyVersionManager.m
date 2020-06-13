@@ -119,7 +119,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
         }
     }
     else{
-        NSLog(@"Error of creating of the queue group!");
+        DDLogError(@"Error of creating of the queue group!");
     }
 
     return foundNewVersions;
@@ -133,7 +133,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
     BSMediaStrategy *newVersions = [BSMediaStrategy mediaStrategyWithURL:pathURL error:nil];
     if (!newVersions)
     {
-        NSLog(@"Error downloading strategy \"%@\"", mediaStrategy);
+        DDLogError(@"Error downloading strategy \"%@\"", mediaStrategy);
         return NO;
     }
 
@@ -142,7 +142,7 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
     BOOL success = [newVersions.strategyJsBody writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error)
     {
-        NSLog(@"Error saving strategy %@: %@", mediaStrategy, [error localizedDescription]);
+        DDLogError(@"Error saving strategy %@: %@", mediaStrategy, [error localizedDescription]);
         return NO;
     }
 

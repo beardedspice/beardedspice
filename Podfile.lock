@@ -1,4 +1,9 @@
 PODS:
+  - CocoaLumberjack (3.6.1):
+    - CocoaLumberjack/Core (= 3.6.1)
+  - CocoaLumberjack/Core (3.6.1)
+  - CocoaLumberjack/Swift (3.6.1):
+    - CocoaLumberjack/Core
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -8,6 +13,8 @@ PODS:
   - VCRURLConnection (0.2.5)
 
 DEPENDENCIES:
+  - CocoaLumberjack
+  - CocoaLumberjack/Swift
   - FMDB
   - Kiwi (~> 3.0.0)
   - MASPreferences (~> 1.3)
@@ -16,6 +23,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CocoaLumberjack
     - FMDB
     - Kiwi
     - MASPreferences
@@ -23,12 +31,13 @@ SPEC REPOS:
     - VCRURLConnection
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
   MASPreferences: c08b8622dd17b47da87669e741efd7c92e970e8c
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   VCRURLConnection: 63be6f26a2f8222677294fc43a1d855e817cfd4e
 
-PODFILE CHECKSUM: 93dda92cb127af3aca4b650b55205ea2e3306434
+PODFILE CHECKSUM: 75ef40aa62bba9d8a39dad8362dd5d31a170e138
 
 COCOAPODS: 1.8.4

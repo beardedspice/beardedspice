@@ -122,7 +122,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 - (CGEventRef)handleEvent:(CGEventRef)event type:(CGEventType)type{
     
     if(type == kCGEventTapDisabledByTimeout) {
-        NSLog(@"Shortcuts event tap was disabled by timeout");
+        DDLogInfo(@"Shortcuts event tap was disabled by timeout");
         @synchronized(self){
             if (_eventPort) {
                 CGEventTapEnable(_eventPort, TRUE);
@@ -141,7 +141,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
         shortcut = [MASShortcut shortcutWithEvent:nsEvent];
     }
     @catch (NSException * e) {
-        NSLog(@"Strange CGEventType: %d: %@", type, e);
+        DDLogWarn(@"Strange CGEventType: %d: %@", type, e);
         assert(0);
         return event;
     }

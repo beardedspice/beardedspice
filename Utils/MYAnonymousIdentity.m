@@ -67,7 +67,7 @@ SecIdentityRef findIdentity(NSString* label, NSTimeInterval expirationInterval) 
         SecCertificateRef cert;
         if (SecIdentityCopyCertificate(identity, &cert) == noErr) {
             if (!checkCertValid(cert, expirationInterval)) {
-                NSLog(@"SSL identity labeled \"%@\" has expired", label);
+                DDLogError(@"SSL identity labeled \"%@\" has expired", label);
                 identity = NULL;
                 MYDeleteAnonymousIdentity(label);
             }
@@ -88,7 +88,7 @@ SecIdentityRef MYGetOrCreateAnonymousIdentity(NSString* label,
     NSCParameterAssert(label);
     SecIdentityRef ident = findIdentity(label, expirationInterval);
     if (!ident) {
-        NSLog(@"Generating new anonymous self-signed SSL identity labeled \"%@\"...", label);
+        DDLogInfo(@"Generating new anonymous self-signed SSL identity labeled \"%@\"...", label);
         SecKeyRef publicKey, privateKey;
         if (!generateRSAKeyPair(kKeySizeInBits, YES, label, &publicKey, &privateKey, outError))
             return NULL;
@@ -109,7 +109,7 @@ SecIdentityRef MYGetOrCreateAnonymousIdentity(NSString* label,
         if (checkErr(SecIdentityCreateWithCertificate(NULL, certRef, &ident), outError))
 #endif
         if (!ident)
-            NSLog(@"MYAnonymousIdentity: Can't find identity we just created");
+            DDLogError(@"MYAnonymousIdentity: Can't find identity we just created");
     }
     
     if (! BSCheckAndSetTrustingForSSL(ident)) {
@@ -176,7 +176,7 @@ static NSData* generateAnonymousCert(SecKeyRef publicKey, SecKeyRef privateKey,
 
     // Write the serial number:
     if (SecRandomCopyBytes(kSecRandomDefault, kSerialLength, &buf[kSerialOffset]) != 0) {
-        NSLog(@"SecRandomCopyBytes() failed");
+        DDLogError(@"SecRandomCopyBytes() failed");
         return nil;
     }
     buf[kSerialOffset] &= 0x7F; // non-negative
@@ -195,7 +195,7 @@ static NSData* generateAnonymousCert(SecKeyRef publicKey, SecKeyRef privateKey,
     // Copy the public key:
     NSData* keyData = getPublicKeyData(publicKey);
     if (keyData.length != kPublicKeyLength) {
-        NSLog(@"ERROR: keyData.length (%lu) != kPublicKeyLength (%i)", keyData.length, kPublicKeyLength);
+        DDLogError(@"ERROR: keyData.length (%lu) != kPublicKeyLength (%i)", keyData.length, kPublicKeyLength);
         return nil;
     }
     memcpy(&buf[kPublicKeyOffset], keyData.bytes, kPublicKeyLength);
@@ -204,7 +204,7 @@ static NSData* generateAnonymousCert(SecKeyRef publicKey, SecKeyRef privateKey,
     NSData* csr = [data subdataWithRange: NSMakeRange(kCSROffset, kCSRLength)];
     NSData* sig = signData(privateKey, csr);
     if (sig.length != kSignatureLength) {
-        NSLog(@"ERROR: sig.length (%lu) != kSignatureLength (%i)", sig.length, kSignatureLength);
+        DDLogError(@"ERROR: sig.length (%lu) != kSignatureLength (%i)", sig.length, kSignatureLength);
         return nil;
     }
     [data appendData: sig];
@@ -242,7 +242,7 @@ static void removePublicKey(SecKeyRef publicKey) {
     NSDictionary* query = @{(__bridge id)kSecValueRef: (__bridge id)publicKey};
     OSStatus err = SecItemDelete((__bridge CFDictionaryRef)query);
     if (err)
-        NSLog(@"Couldn't delete public key: err %d", (int)err);
+        DDLogError(@"Couldn't delete public key: err %d", (int)err);
 }
 #endif
 
@@ -259,7 +259,7 @@ static NSData* signData(SecKeyRef privateKey, NSData* inputData) {
                                  digest, sizeof(digest),
                                  sigBuf, &sigLen);
     if(err) {
-        NSLog(@"SecKeyRawSign failed: %ld", (long)err);
+        DDLogError(@"SecKeyRawSign failed: %ld", (long)err);
         return nil;
     }
     return [NSData dataWithBytes: sigBuf length: sigLen];
@@ -298,7 +298,7 @@ static SecCertificateRef addCertToKeychain(NSData* certData, NSString* label,
     CFTypeRef result;
     OSStatus err = SecItemAdd((__bridge CFDictionaryRef)attrs, &result);
     if (err != noErr) {
-        NSLog(@"ERROR: SecItemAdd() returned %i", err);
+        DDLogError(@"ERROR: SecItemAdd() returned %i", err);
     }
 
 #if !TARGET_OS_IPHONE
@@ -379,7 +379,7 @@ BOOL MYDeleteAnonymousIdentity(NSString* label) {
                             (__bridge id)kSecAttrLabel: label};
     OSStatus err = SecItemDelete((__bridge CFDictionaryRef)attrs);
     if (err != noErr && err != errSecItemNotFound)
-        NSLog(@"Unexpected error %d deleting identity from keychain", (int)err);
+        DDLogError(@"Unexpected error %d deleting identity from keychain", (int)err);
     return (err == noErr);
 }
 
@@ -468,7 +468,7 @@ BOOL BSCheckAndSetTrustingForSSL(SecIdentityRef ident) {
                 result = YES;
             }
             else {
-                NSLog(@"ERROR: SecTrustSettingsSetTrustSettings() returned %i", err);
+                DDLogError(@"ERROR: SecTrustSettingsSetTrustSettings() returned %i", err);
             }
 
             CFRelease(policySSL);

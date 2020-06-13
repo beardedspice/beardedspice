@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CocoaLumberjack
 
 // MARK: - Protocols
 /// Native messaging controller protocol
@@ -43,7 +44,7 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
             do {
                 try manifest.write(toFile: aPath, atomically: true, encoding: .utf8)
             } catch  {
-                BSLog(BSLOG_ERROR, "Can't save manifest for \"\(aPath)\": \(error)")
+                DDLogError("Can't save manifest for \"\(aPath)\": \(error)")
                 result = false;
             }
         }
@@ -58,7 +59,7 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
             do {
                 try FileManager.default.removeItem(atPath: aPath)
             } catch  {
-                BSLog(BSLOG_ERROR, "Can't remove manifest for \"\(aPath)\": \(error)")
+                DDLogError("Can't remove manifest for \"\(aPath)\": \(error)")
                 result = false;
             }
         }
@@ -88,7 +89,7 @@ class ChromeExtensionMaintenance : NSObject {
                 try FileManager.default.createDirectory(atPath: folder, withIntermediateDirectories: true)
                 try content.write(toFile: aPath, atomically: true, encoding: .utf8)
             } catch  {
-                BSLog(BSLOG_ERROR, "Can't save extension file for \"\(aPath)\": \(error)")
+                DDLogError("Can't save extension file for \"\(aPath)\": \(error)")
                 result = false;
             }
         }
@@ -103,7 +104,7 @@ class ChromeExtensionMaintenance : NSObject {
             do {
                 try FileManager.default.removeItem(atPath: aPath)
             } catch  {
-                BSLog(BSLOG_ERROR, "Can't remove extension file for \"\(aPath)\": \(error)")
+                DDLogError("Can't remove extension file for \"\(aPath)\": \(error)")
                 result = false;
             }
         }

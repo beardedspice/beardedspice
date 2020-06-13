@@ -3,7 +3,6 @@
 //
 
 #import "ConfigConstants.h"
-#import "BSLog.h"
 #import "NSString+Utils.h"
 #import "BSNativeAppTabAdapter.h"
 #import "runningSBApplication.h"

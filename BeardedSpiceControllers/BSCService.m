@@ -144,7 +144,7 @@ static BSCService *bscSingleton;
     dispatch_async(dispatch_get_main_queue(), ^{
 
         self->_keyTap.blackListBundleIdentifiers = [bundleIds copy];
-        NSLog(@"Refresh Key Tab Black List.");
+        DDLogDebug(@"Refresh Key Tab Black List.");
     });
 }
 
@@ -163,7 +163,7 @@ static BSCService *bscSingleton;
 
             self->_useAppleRemote = enabled;
 
-            NSLog(@"Reset Apple Remote");
+            DDLogDebug(@"Reset Apple Remote");
 
             if (self->_enabled && self->_useAppleRemote) {
 
@@ -171,7 +171,7 @@ static BSCService *bscSingleton;
                     [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
-                    NSLog(@"Error when stopListenong on Apple Remotes: %@", exception);
+                    DDLogError(@"Error when stopListenong on Apple Remotes: %@", exception);
                 }
 
 
@@ -189,17 +189,17 @@ static BSCService *bscSingleton;
 
                             [self->_appleRemotes addObject:item];
 #if DEBUG
-                            NSLog(@"Apple Remote added - %@", item);
+                            DDLogDebug(@"Apple Remote added - %@", item);
 #endif
                         }
                         @catch (NSException *exception) {
 
-                            NSLog(@"Error when startListening on Apple Remote: %@, exception: %@", item, exception);
+                            DDLogError(@"Error when startListening on Apple Remote: %@, exception: %@", item, exception);
                         }
                     }
                 }
                 @catch (NSException *exception) {
-                    NSLog(@"Error of the obtaining Apple Remotes divices: %@", [exception description]);
+                    DDLogError(@"Error of the obtaining Apple Remotes divices: %@", [exception description]);
                 }
             } else {
 
@@ -207,7 +207,7 @@ static BSCService *bscSingleton;
                     [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
-                    NSLog(@"Error when stopListenong on Apple Remotes: %@", exception);
+                    DDLogError(@"Error when stopListenong on Apple Remotes: %@", exception);
                 }
                 self->_appleRemotes = nil;
             }
@@ -252,14 +252,14 @@ static BSCService *bscSingleton;
 
 // Performs Pause method
 - (void)headphoneUnplugAction{
-    BSLog(BSLOG_DEBUG, @"headphoneUnplugAction");
+    DDLogDebug(@"headphoneUnplugAction");
     [self sendMessagesToConnections:@selector(headphoneUnplug)];
 }
 
 - (void)headphonePlugAction
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BSLog(BSLOG_DEBUG, @"headphonePlugAction");
+        DDLogDebug(@"headphonePlugAction");
         [self refreshMikeys];
     });
 }
@@ -309,14 +309,14 @@ static BSCService *bscSingleton;
                 // More cases defined in hidsystem/ev_keymap.h
         }
 
-        NSLog(@"%@", debugString);
+        DDLogDebug(@"%@", debugString);
     }
 }
 
 - (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned)usageId upOrDown:(BOOL)upOrDown
 {
 #if DEBUG
-    NSLog(@"Apple Mikey keypress detected: x%X", usageId);
+    DDLogDebug(@"Apple Mikey keypress detected: x%X", usageId);
 #endif
     if (upOrDown == TRUE) {
         switch (usageId) {
@@ -340,7 +340,7 @@ static BSCService *bscSingleton;
             case kHIDUsage_Csmr_PlayOrPause:
                 [self catchCommandFromMiKeys];
             default:
-                NSLog(@"Unknown key press seen x%X", usageId);
+                DDLogDebug(@"Unknown key press seen x%X", usageId);
         }
     }
 }
@@ -353,46 +353,46 @@ static BSCService *bscSingleton;
         switch (buttonIdentifier) {
             case kDDHidRemoteButtonVolume_Plus:
                 [self sendMessagesToConnections:@selector(volumeUp)];
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Plus");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Plus");
                 break;
             case kDDHidRemoteButtonVolume_Minus:
                 [self sendMessagesToConnections:@selector(volumeDown)];
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Minus");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Minus");
                 break;
             case kDDHidRemoteButtonMenu:
                 [self sendMessagesToConnections:@selector(playerNext)];
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu");
                 break;
             case kDDHidRemoteButtonPlay:
             case kDDHidRemoteButtonPlayPause:
                 [self sendMessagesToConnections:@selector(playPauseToggle)];
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay");
                 break;
             case kDDHidRemoteButtonRight:
                 [self sendMessagesToConnections:@selector(nextTrack)];
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonRight");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonRight");
                 break;
             case kDDHidRemoteButtonLeft:
                 [self sendMessagesToConnections:@selector(previousTrack)];
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft");
                 break;
             case kDDHidRemoteButtonRight_Hold:
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonRight_Hold");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonRight_Hold");
                 break;
             case kDDHidRemoteButtonMenu_Hold:
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu_Hold");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu_Hold");
                 break;
             case kDDHidRemoteButtonLeft_Hold:
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft_Hold");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft_Hold");
                 break;
             case kDDHidRemoteButtonPlay_Sleep:
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay_Sleep");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay_Sleep");
                 break;
             case kDDHidRemoteControl_Switched:
-                NSLog(@"Apple Remote keypress detected: kDDHidRemoteControl_Switched");
+                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteControl_Switched");
                 break;
             default:
-                NSLog(@"Apple Remote keypress detected: Unknown key press seen %d", buttonIdentifier);
+                DDLogDebug(@"Apple Remote keypress detected: Unknown key press seen %d", buttonIdentifier);
         }
     }
 }
@@ -439,13 +439,13 @@ static BSCService *bscSingleton;
                                        default:
                                            break;
                                    }
-                                   BSLog(BSLOG_DEBUG, @"%s - Comman Block Running (%ld)", __FUNCTION__, counter);
+                                   DDLogDebug(@"%s - Comman Block Running (%ld)", __FUNCTION__, counter);
                                    counter = 0;
                                }];
     });
     
     counter++;
-    BSLog(BSLOG_DEBUG, @"%s - counter: %ld", __FUNCTION__, counter);
+    DDLogDebug(@"%s - counter: %ld", __FUNCTION__, counter);
     [_miKeyCommandBlock executeOnceAfterCalm];
 }
 
@@ -454,14 +454,14 @@ static BSCService *bscSingleton;
     dispatch_async(dispatch_get_main_queue(), ^{
         @autoreleasepool {
 
-            NSLog(@"Reset Mikeys");
+            DDLogDebug(@"Reset Mikeys");
 
             if (self->_mikeys != nil) {
                 @try {
                     [self->_mikeys makeObjectsPerformSelector:@selector(stopListening)];
                 }
                 @catch (NSException *exception) {
-                    NSLog(@"Error when stopListening on Apple Mic: %@", exception);
+                    DDLogError(@"Error when stopListening on Apple Mic: %@", exception);
                 }
             }
 
@@ -479,17 +479,17 @@ static BSCService *bscSingleton;
 
                             [self->_mikeys addObject:item];
 #if DEBUG
-                            NSLog(@"Apple Mic added - %@", item);
+                            DDLogDebug(@"Apple Mic added - %@", item);
 #endif
                         }
                         @catch (NSException *exception) {
 
-                            NSLog(@"Error when startListening on Apple Mic: %@, exception: %@", item, exception);
+                            DDLogError(@"Error when startListening on Apple Mic: %@, exception: %@", item, exception);
                         }
                     }
                 }
                 @catch (NSException *exception) {
-                    NSLog(@"Error of the obtaining Apple Mic divices: %@", [exception description]);
+                    DDLogError(@"Error of the obtaining Apple Mic divices: %@", [exception description]);
                 }
             }
         }
@@ -612,22 +612,22 @@ static BSCService *bscSingleton;
 - (void)rcdControl{
 
     if (_enabled) {
-        BSLog(BSLOG_DEBUG, @"rcdControl enabled");
+        DDLogDebug(@"rcdControl enabled");
         //checking that rcd is enabled and disabling it
         NSString *cliOutput = NULL;
         if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
             _remoteControlDaemonEnabled = ( [cliOutput contains:@"com.apple.rcd" caseSensitive:YES]);
             if (_remoteControlDaemonEnabled) {
                 _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"-w", @"com.apple.rcd.plist"] output:nil] == 0);
-                BSLog(BSLOG_DEBUG, @"rcdControl unload result: %d", _remoteControlDaemonEnabled);
+                DDLogDebug(@"rcdControl unload result: %d", _remoteControlDaemonEnabled);
             }
         }
     }
     else{
 
-        BSLog(BSLOG_DEBUG, @"rcdControl disable");
+        DDLogDebug(@"rcdControl disable");
         if (_remoteControlDaemonEnabled) {
-            BSLog(BSLOG_DEBUG, @"rcdControl load");
+            DDLogDebug(@"rcdControl load");
             [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"-w", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
         }
     }

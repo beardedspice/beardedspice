@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CocoaLumberjack
 
 struct Main {
     /// Prevents instantiating
@@ -29,24 +30,24 @@ struct Main {
                 let len = Int(lenData.withUnsafeBytes { $0.load(as: UInt32.self) })
                 let requestData = fl.readData(ofLength: len)
                 if requestData.count == len {
-                    BSLog(BSLOG_DEBUG, "Message received \(len)bytes length.")
+                    DDLogDebug("Message received \(len)bytes length.")
                     do {
                         if let message = try JSONSerialization.jsonObject(with: requestData) as? ExchangeDictionary {
                             // Call request processing
                             MessageProcessing.process(message) { (response) in
                                 DispatchQueue.main.async {
-                                    BSLog(BSLOG_DEBUG, "Response sending (count: \(response.count))")
+                                    DDLogDebug("Response sending (count: \(response.count))")
                                     _ = send(response)
                                 }
                             }
                         }
                     } catch {
-                       BSLog(BSLOG_ERROR, "Can't convert browser message to dictionary: \(error)")
+                       DDLogError("Can't convert browser message to dictionary: \(error)")
                     }
                     
                 }
                 else {
-                    BSLog(BSLOG_ERROR, "Message from browser invalid. Must be \(len)bytes length, but received \(requestData.count)bytes.")
+                    DDLogError("Message from browser invalid. Must be \(len)bytes length, but received \(requestData.count)bytes.")
                 }
             }
         }
@@ -66,13 +67,15 @@ struct Main {
                 FileHandle.standardOutput.write(data)
             }
         } catch {
-            BSLog(BSLOG_ERROR, "Can't convert object to JSON data: \(object)")
+            DDLogError("Can't convert object to JSON data: \(object)")
             return false
         }
         return true
     }
     
 }
+
+BSSharedResources.initLogger(for: BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)
 
 // MARK: MAIN
 Main.listen()

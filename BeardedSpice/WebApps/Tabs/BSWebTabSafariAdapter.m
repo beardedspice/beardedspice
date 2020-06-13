@@ -32,7 +32,7 @@ static NSSet *_safariBundleIds;
 }
 
 - (BOOL)activateTab {
-    BSLog(BSLOG_DEBUG, @"Begin");
+    DDLogDebug(@"Begin");
     NSDictionary *response = [self sendMessage:@"activate"];
     
     return [response[@"result"] boolValue]
@@ -40,11 +40,11 @@ static NSSet *_safariBundleIds;
 }
 
 - (BOOL)deactivateTab {
-    BSLog(BSLOG_DEBUG, @"Begin");
+    DDLogDebug(@"Begin");
     if ([self frontmost]) {
-        BSLog(BSLOG_DEBUG, @"frontmost");
+        DDLogDebug(@"frontmost");
         if ([self isActivated]) {
-            BSLog(BSLOG_DEBUG, @"activated");
+            DDLogDebug(@"activated");
             NSDictionary *response = [self sendMessage:@"hide"];
             return [response[@"result"] boolValue]
             && [self windowMakefrontmostIfNeedFromResponse:response];
@@ -53,22 +53,17 @@ static NSSet *_safariBundleIds;
     return NO;
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<BSWebTabSafariAdapter:%p> bundleId: %@, title: %@", self, self.application.bundleIdentifier, self.title];
-}
-
-
 #pragma mark Private methods
 
 - (BOOL)windowMakefrontmostIfNeedFromResponse:(__unsafe_unretained NSDictionary *)response {
-    BSLog(BSLOG_DEBUG, @"Begin");
+    DDLogDebug(@"Begin");
     if (response && [response isKindOfClass:[NSDictionary class]]) {
         NSString *windowId = response[@"windowIdForMakeFrontmost"];
         
         if (windowId) {
             AXUIElementRef window = [self AXWindowByIdentifier:windowId];
             if (window) {
-                BSLog(BSLOG_DEBUG, @"Window obtained: %p", window);
+                DDLogDebug(@"Window obtained: %p", window);
                 AXUIElementPerformAction(window, CFSTR("AXRaise"));
                 CFRelease(window);
                 return YES;

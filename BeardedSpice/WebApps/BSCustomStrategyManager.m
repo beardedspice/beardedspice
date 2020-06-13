@@ -73,7 +73,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         [strategy.strategyJsBody writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
         if (error)
         {
-            BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy, [error localizedDescription]);
+            DDLogError(@"Error saving strategy %@: %@", strategy, [error localizedDescription]);
         }
         else{
             
@@ -130,7 +130,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                                   error:&error];
     
     if (error) {
-        BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy,
+        DDLogError(@"Error saving strategy %@: %@", strategy,
               [error localizedDescription]);
     }
     
@@ -153,7 +153,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
     [[NSFileManager defaultManager] removeItemAtURL:strategy.strategyURL error:&error];
     if (error)
     {
-        BSLog(BSLOG_ERROR, @"Error removing strategy %@: %@", strategy, [error localizedDescription]);
+        DDLogError(@"Error removing strategy %@: %@", strategy, [error localizedDescription]);
     }
     else{
         
@@ -246,7 +246,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
             }
         }
         else{
-            BSLog(BSLOG_ERROR, @"Error of creating of the queue group!");
+            DDLogError(@"Error of creating of the queue group!");
         }
 
         if (completion) {
@@ -313,7 +313,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                             NSURL *pathToFile = [saveUrl URLByAppendingPathComponent:[strategy.strategyURL lastPathComponent]];
                             [strategy.strategyJsBody writeToURL:pathToFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
                             if (error) {
-                                BSLog(BSLOG_ERROR, @"Error saving strategy %@: %@", strategy, [error localizedDescription]);
+                                DDLogError(@"Error saving strategy %@: %@", strategy, [error localizedDescription]);
                             }
                         }
                     }
@@ -323,7 +323,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
             dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
         }
         else{
-            BSLog(BSLOG_ERROR, @"Error of creating of the queue group!");
+            DDLogError(@"Error of creating of the queue group!");
         }
         
         if (completion) {
@@ -359,7 +359,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         err = nil;
     }
     if (err) {
-        BSLog(BSLOG_ERROR, @"Error creating folder for downloading of a strategies: %@", err);
+        DDLogError(@"Error creating folder for downloading of a strategies: %@", err);
         return  nil;
     }
     

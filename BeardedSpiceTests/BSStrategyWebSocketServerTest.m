@@ -34,7 +34,7 @@
     XCTAssert(webSocketServer.tabsPort);
     
     if (webSocketServer.tabsPort) {
-        NSLog(@"Server started on %d port", webSocketServer.tabsPort);
+        DDLogInfo(@"Server started on %d port", webSocketServer.tabsPort);
     }
     
     [webSocketServer stopWithComletion:nil];

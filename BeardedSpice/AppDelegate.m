@@ -136,6 +136,8 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)awakeFromNib
 {
+    [BSSharedResources initLoggerFor:BS_BUNDLE_ID];
+    
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:26.0];
     [statusItem setMenu:statusMenu];
     
@@ -574,7 +576,7 @@ BOOL accessibilityApiEnabled = NO;
 
         return NO;
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -599,7 +601,7 @@ BOOL accessibilityApiEnabled = NO;
 // must be invoked not on main queue
 - (void)refreshTabs:(id) sender
 {
-    NSLog(@"Refreshing tabs...");
+    DDLogDebug(@"Refreshing tabs...");
     __weak typeof(self) wself = self;
     @autoreleasepool {
         
@@ -628,7 +630,7 @@ BOOL accessibilityApiEnabled = NO;
                             [playingTabs addObject:tab];
                     }
                 } @catch (NSException *exception) {
-                    BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+                    DDLogError(@"Exception occured: %@", exception);
                 }
             }
             if (![tabs containsObject:_activeApp.activeTab]) {
@@ -681,7 +683,7 @@ BOOL accessibilityApiEnabled = NO;
 
     NSDictionary *options = @{CFBridgingRelease(kAXTrustedCheckOptionPrompt): @(YES)};
     accessibilityApiEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef _Nullable)(options));
-    NSLog(@"AccessibilityApiEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
+    DDLogInfo(@"AccessibilityApiEnabled %@", (accessibilityApiEnabled ? @"YES":@"NO"));
 
     if (!accessibilityApiEnabled) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -693,7 +695,7 @@ BOOL accessibilityApiEnabled = NO;
 - (void)checkAXAPIEnabled{
 
     _AXAPIEnabled = AXIsProcessTrusted();
-    NSLog(@"AXAPIEnabled %@", (_AXAPIEnabled ? @"YES":@"NO"));
+    DDLogInfo(@"AXAPIEnabled %@", (_AXAPIEnabled ? @"YES":@"NO"));
     if (_AXAPIEnabled){
         NSAlert * alert = [NSAlert new];
         alert.alertStyle = NSAlertStyleCritical;
@@ -1143,7 +1145,7 @@ BOOL accessibilityApiEnabled = NO;
 
         [[_connectionToService remoteObjectProxy] setMediaKeysSupportedApps:keyTapBlackList];
     }
-    NSLog(@"Refresh Key Tab Black List.");
+    DDLogInfo(@"Refresh Key Tab Black List.");
 }
 
 - (void)setHeadphonesListener{

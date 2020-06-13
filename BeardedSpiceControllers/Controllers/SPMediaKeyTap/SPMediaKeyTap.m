@@ -1,6 +1,7 @@
 // Copyright (c) 2010 Spotify AB
 #import "SPMediaKeyTap.h"
 #import "NSObject+SPInvocationGrabbing.h" // https://gist.github.com/511181, in submodule
+#import "BSSharedResources.h"
 
 @interface SPMediaKeyTap ()
 -(BOOL)shouldInterceptMediaKeyEvents;
@@ -75,7 +76,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
                                                           tapEventCallback,
                                                           (__bridge void*)self);
         if (_eventPort == NULL) {
-            BSLog(BSLOG_ERROR, @"Can't initialize media key monitor");
+            DDLogError(@"Can't initialize media key monitor");
             return NO;
         }
 
@@ -210,7 +211,7 @@ static CGEventRef tapEventCallback2(CGEventTapProxy proxy, CGEventType type, CGE
        SPMediaKeyTap *self = (__bridge id)refcon;
 
     if(type == kCGEventTapDisabledByTimeout) {
-              NSLog(@"Media key event tap was disabled by timeout");
+              DDLogInfo(@"Media key event tap was disabled by timeout");
         @synchronized(self){
             if (self->_eventPort) {
                 CGEventTapEnable(self->_eventPort, TRUE);
@@ -226,7 +227,7 @@ static CGEventRef tapEventCallback2(CGEventTapProxy proxy, CGEventType type, CGE
               nsEvent = [NSEvent eventWithCGEvent:event];
        }
        @catch (NSException * e) {
-              NSLog(@"Strange CGEventType: %d: %@", type, e);
+              DDLogWarn(@"Strange CGEventType: %d: %@", type, e);
               assert(0);
               return event;
        }
@@ -298,7 +299,7 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 {
        if([_mediaKeyAppList count] == 0) return;
 
-       /*NSLog(@"--");
+       /*DDLogDebug(@"--");
        int i = 0;
        for (NSValue *psnv in _mediaKeyAppList) {
               ProcessSerialNumber psn; [psnv getValue:&psn];
@@ -307,7 +308,7 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
                      kProcessDictionaryIncludeAllInformationMask
               ) autorelease];
               NSString *bundleIdentifier = [processInfo objectForKey:(id)kCFBundleIdentifierKey];
-              NSLog(@"%d: %@", i++, bundleIdentifier);
+              DDLogDebug(@"%d: %@", i++, bundleIdentifier);
        }*/
 
     ProcessSerialNumber mySerial, topSerial;
@@ -330,7 +331,7 @@ NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
         [processInfo objectForKey:(id)kCFBundleIdentifierKey];
 
     if ([self.blackListBundleIdentifiers containsObject:bundleIdentifier]) {
-        NSLog(@"Media key event tap was activated by blacklist");
+        DDLogInfo(@"Media key event tap was activated by blacklist");
         [self setShouldInterceptMediaKeyEvents:YES];
         return;
     }

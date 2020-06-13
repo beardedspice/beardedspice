@@ -12,7 +12,7 @@
 #import "BSTrack.h"
 #import "NSString+Utils.h"
 
-#define ERROR_TRACE                         BSLog(BSLOG_ERROR, @"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
+#define ERROR_TRACE                         DDLogError(@"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
 
 #define APPID                  @"com.apple.Music"
 #define APPNAME                @"Music"
@@ -147,7 +147,7 @@
         }
         @catch (NSException *exception) {
 
-            NSLog(@"Error when calling [Music loved]: %@", exception);
+            DDLogError(@"Error when calling [Music loved]: %@", exception);
             ERROR_TRACE;
         }
     }
@@ -175,7 +175,7 @@
                 trackInfo.favorited = @(track.loved);
             }
             @catch (NSException *exception) {
-                NSLog(@"Error when calling [Music loved]: %@", exception);
+                DDLogError(@"Error when calling [Music loved]: %@", exception);
                 ERROR_TRACE;
             }
 

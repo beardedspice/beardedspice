@@ -42,7 +42,7 @@
     {
 #if DEBUG
         if (![properties isKindOfClass:[NSDictionary class]]) {
-            NSLog(@"DDHidElement properties is not a dictionary: %@ self: %@", properties, self);
+            DDLogError(@"DDHidElement properties is not a dictionary: %@ self: %@", properties, self);
         }
 #endif
         DDHidElement * element = [DDHidElement elementWithProperties: properties];

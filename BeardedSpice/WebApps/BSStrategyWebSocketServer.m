@@ -8,6 +8,7 @@
 
 #import "BSStrategyWebSocketServer.h"
 #import "BSTrack.h"
+#import "BSSharedResources.h"
 
 #import "NSString+Utils.h"
 #import "MediaStrategyRegistry.h"
@@ -137,7 +138,7 @@ static NSArray *tabClasses;
     
     if (server == _tabsServer) {
         
-        BSLog(BSLOG_INFO, @"Websocket Tab server started on port %d.", _tabsPort);
+        DDLogInfo(@"Websocket Tab server started on port %d.", _tabsPort);
         [self setAcceptersForSafari];
         [BSSharedResources setTabPort:_tabsPort];
     }
@@ -153,14 +154,14 @@ static NSArray *tabClasses;
 
 - (void)server:(PSWebSocketServer *)server didFailWithError:(NSError *)error {
     
-    BSLog(BSLOG_ERROR, @"(BSStrategyWebSocketServer) Server failed with error: %@", error);
+    DDLogError(@"(BSStrategyWebSocketServer) Server failed with error: %@", error);
 
     [self setStopServer:server];
 }
 
 - (void)serverDidStop:(PSWebSocketServer *)server {
     
-    BSLog(BSLOG_INFO, @"WebSocket server stoped.");
+    DDLogInfo(@"WebSocket server stoped.");
     
     [self setStopServer:server];
     
@@ -178,7 +179,7 @@ static NSArray *tabClasses;
 
 - (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
 
-    BSLog(BSLOG_DEBUG, @"%s. WebSocket [%p]", __FUNCTION__, webSocket);
+    DDLogDebug(@"%s. WebSocket [%p]", __FUNCTION__, webSocket);
 
     static dispatch_queue_t openSocketQueue;
     static dispatch_once_t onceToken;
@@ -197,12 +198,12 @@ static NSArray *tabClasses;
                         break;
                     }
                 }
-                BSLog(BSLOG_DEBUG, @"Tab Server creates new tab: %@", (tab == nil ? @"NO" : tab));
+                DDLogDebug(@"Tab Server creates new tab: %@", (tab == nil ? @"NO" : tab));
                 if (tab) {
                     [self->_tabs addObject:tab];
                 }
                 else {
-                    BSLog(BSLOG_ERROR, @"Can't create Tab object for socket: %@.\nClose it.", webSocket);
+                    DDLogError(@"Can't create Tab object for socket: %@.\nClose it.", webSocket);
                     [webSocket close];
                 }
             }
@@ -211,18 +212,18 @@ static NSArray *tabClasses;
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BSLog(BSLOG_DEBUG, @"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
+    DDLogDebug(@"%s\nWebSocket [%p]. Message: %@", __FUNCTION__, webSocket,
            ([message isKindOfClass:[NSData class]]
             ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
             : message));
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
-    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+    DDLogDebug(@"%s", __FUNCTION__);
 }
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
-    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+    DDLogDebug(@"%s", __FUNCTION__);
 }
 - (NSHTTPURLResponse *)server:(PSWebSocketServer *)server
    responseOnSimpleGetRequest:(NSURLRequest *)request
@@ -230,7 +231,7 @@ static NSArray *tabClasses;
                         trust:(SecTrustRef)trust
                  responseBody:(NSData *__autoreleasing *)responseBody {
     
-    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+    DDLogDebug(@"%s", __FUNCTION__);
 
     if ([request.HTTPMethod isEqualToString:@"GET"]) {
     }
@@ -396,7 +397,7 @@ static NSArray *tabClasses;
     NSError *error = NULL;
     SecIdentityRef identity = MYGetOrCreateAnonymousIdentity(BS_NAME, 3600 * 24 * 350, &error);
     if (error || identity == nil) {
-        BSLog(BSLOG_ERROR, @"Error occured when creating self signtl certificate: %@", error);
+        DDLogError(@"Error occured when creating self signtl certificate: %@", error);
         return NO;
     }
     _certs = @[(__bridge_transfer id)identity];
@@ -512,7 +513,7 @@ static NSArray *tabClasses;
         }
     }
     
-    BSLog(BSLOG_ERROR, @"Can't load \"%@\" file from app bundle", url.path);
+    DDLogError(@"Can't load \"%@\" file from app bundle", url.path);
     return nil;
 }
 

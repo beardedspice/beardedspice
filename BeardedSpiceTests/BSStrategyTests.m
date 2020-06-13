@@ -17,16 +17,12 @@ SHARED_EXAMPLES_BEGIN(BSMediaStrategyTestHelper)
 sharedExamplesFor(@"MediaStrategy", ^(NSDictionary *data) {
 
     __block NSString *strategyFileName = nil;
-    __block NSURL *path = nil;
-    __block NSURL *fileURL = nil;
     __block BSMediaStrategy *strategy = nil;
     //__block BSStrategyMockObject *mock = nil;
 
     beforeAll(^{
          strategyFileName = data[@"strategyName"];
-         path = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"MediaStrategies"];
-         fileURL = [[NSURL alloc] initWithString:strategyFileName relativeToURL:path];
-         strategy = [BSMediaStrategy mediaStrategyWithURL:fileURL error:nil];
+         strategy = data[@"strategy"];
          //mock = [[BSStrategyMockObject alloc] initWithStrategyName:strategyFileName];
     });
 
@@ -72,7 +68,7 @@ __block BSStrategyCache *cache = nil;
 
 describe(@"BSStrategyCache properly loads all strategies.", ^{
     cache = [BSStrategyCache new];
-    [cache loadStrategies];
+    [cache updateStrategiesFromSourceURL: [NSURL URLForBundleStrategies]];
 
     [[theValue([cache allKeys].count) should] beGreaterThan:theValue(0)];
 });
@@ -80,7 +76,7 @@ describe(@"BSStrategyCache properly loads all strategies.", ^{
 for (NSString *strategyName in [cache allKeys])
 {
     describe([NSString stringWithFormat:@"Test %@ for valid javascript", strategyName], ^{
-        itBehavesLike(@"MediaStrategy", @{ @"strategyName": strategyName });
+        itBehavesLike(@"MediaStrategy", @{ @"strategyName": strategyName, @"strategy": [cache strategyForFileName:strategyName] });
     });
     //break;
 }

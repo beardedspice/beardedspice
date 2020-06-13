@@ -73,7 +73,7 @@ static inline NSString *appSupportPath() {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL ret = [fileManager createDirectoryAtURL:self withIntermediateDirectories:YES attributes:nil error:&error];
     if (!ret || error)
-        NSLog(@"An error occured creating the path to %@: %@", self, [error localizedDescription]);
+        DDLogError(@"An error occured creating the path to %@: %@", self, [error localizedDescription]);
     return ret;
 }
 

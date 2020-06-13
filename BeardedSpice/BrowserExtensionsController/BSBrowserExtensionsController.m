@@ -76,12 +76,12 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
                                @autoreleasepool {
                                    if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
                                        [self installNativeMessagingComponents];
-                                       BSLog(BSLOG_INFO, @"ChromeExtensionMaintenance install result: %@", [ChromeExtensionMaintenance install] ? @"YES" : @"NO");
+                                       DDLogInfo(@"ChromeExtensionMaintenance install result: %@", [ChromeExtensionMaintenance install] ? @"YES" : @"NO");
                                        [self->_webSocketServer start];
                                    }
                                    else {
                                        [self uninstallNativeMessagingComponents];
-                                       BSLog(BSLOG_INFO, @"ChromeExtensionMaintenance uninstall result: %@", [ChromeExtensionMaintenance uninstall] ? @"YES" : @"NO");
+                                       DDLogInfo(@"ChromeExtensionMaintenance uninstall result: %@", [ChromeExtensionMaintenance uninstall] ? @"YES" : @"NO");
                                        [self->_webSocketServer stopWithComletion:nil];
                                    }
                                }
@@ -91,7 +91,7 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
             }
             if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
                 [self installNativeMessagingComponents];
-                BSLog(BSLOG_INFO, @"ChromeExtensionMaintenance install result: %@", [ChromeExtensionMaintenance install] ? @"YES" : @"NO");
+                DDLogInfo(@"ChromeExtensionMaintenance install result: %@", [ChromeExtensionMaintenance install] ? @"YES" : @"NO");
                 [self->_webSocketServer start];
             }
             self->_started = YES;
@@ -166,13 +166,13 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
 /// for supported browsers
 - (void)installNativeMessagingComponents {
     BOOL result = [ChromeNativeMessaging updateManifest];
-    BSLog(BSLOG_INFO, @"ChromeNativeMessaging install result: %@", result ? @"YES" : @"NO");
+    DDLogInfo(@"ChromeNativeMessaging install result: %@", result ? @"YES" : @"NO");
 }
 /// Remove manifests for native messaging app and so on
 /// for supported browsers
 - (void)uninstallNativeMessagingComponents {
     BOOL result = [ChromeNativeMessaging removeManifest];
-    BSLog(BSLOG_INFO, @"ChromeNativeMessaging uninstall result: %@", result ? @"YES" : @"NO");
+    DDLogInfo(@"ChromeNativeMessaging uninstall result: %@", result ? @"YES" : @"NO");
 }
 
 @end

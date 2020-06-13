@@ -13,7 +13,7 @@
 #endif
 
 #import "ConfigConstants.h"
-#import "BSLog.h"
+#import "BSSharedResources.h"
 
 #pragma mark - Macros for weak vars
 

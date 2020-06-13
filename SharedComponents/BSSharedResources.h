@@ -6,12 +6,15 @@
 //  Copyright © 2018  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 #import <Foundation/Foundation.h>
+#define LOG_LEVEL_DEF ddLogLevel
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 typedef void (^BSSListenerBlock)(void);
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark - BSSharedResources Constants
 
+extern DDLogLevel ddLogLevel;
 
 extern NSString *const BeardedSpicePlayPauseShortcut;
 extern NSString *const BeardedSpiceNextTrackShortcut;
@@ -50,6 +53,10 @@ extern NSString *const BeardieBrowserExtensionsFirstRun;
  Returns shared user defaults object.
  */
 @property (class, readonly) NSUserDefaults *sharedDefaults;
+
+/// Init logger for process.
+/// @param name Name of the folder where will be log files (use bundleId, product name and so on)
++ (void)initLoggerFor:(NSString *)name;
 
 /**
  Performs flush of the shared user defaults.

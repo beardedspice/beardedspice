@@ -65,7 +65,7 @@ dispatch_queue_t notificationQueue() {
         @try {
             result = _activeTab.title;
         } @catch (NSException *exception) {
-            BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+            DDLogError(@"Exception occured: %@", exception);
         }
         if ([NSString isNullOrEmpty:result]) {
             result = ((BSWebTabAdapter *)_activeTab).strategy.displayName;
@@ -96,7 +96,7 @@ dispatch_queue_t notificationQueue() {
     @try {
         return [_activeTab isPlaying];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
     return NO;
 }
@@ -105,11 +105,11 @@ dispatch_queue_t notificationQueue() {
 
 - (BOOL)updateActiveTab:(TabAdapter *)tab {
     @try {
-        BSLog(BSLOG_DEBUG, @"(AppDelegate - updateActiveTab) with tab %@", tab);
+        DDLogDebug(@"(AppDelegate - updateActiveTab) with tab %@", tab);
         
         if (![tab isEqual:_activeTab]) {
             BOOL needsActivated = NO;
-            BSLog(BSLOG_DEBUG, @"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, _activeTab);
+            DDLogDebug(@"(AppDelegate - updateActiveTab) tab %@ is different from %@", tab, _activeTab);
             if (_activeTab) {
                 [self.activeTab pause];
                 if ([self.activeTab frontmost]) {
@@ -124,14 +124,14 @@ dispatch_queue_t notificationQueue() {
             
             self.activeTab = tab;
             if (needsActivated) {
-                BSLog(BSLOG_DEBUG, @"Needs Activated %@", _activeTab);
+                DDLogDebug(@"Needs Activated %@", _activeTab);
                 [self activateTab];
             }
-            BSLog(BSLOG_DEBUG, @"Active tab set to %@", _activeTab);
+            DDLogDebug(@"Active tab set to %@", _activeTab);
         }
         return YES;
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
     return NO;
 }
@@ -140,7 +140,7 @@ dispatch_queue_t notificationQueue() {
     @try {
         [_activeTab pause];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -149,7 +149,7 @@ dispatch_queue_t notificationQueue() {
         [_activeTab activateApp];
         [_activeTab activateTab];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -157,7 +157,7 @@ dispatch_queue_t notificationQueue() {
     @try {
         [_activeTab toggleTab];
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -173,7 +173,7 @@ dispatch_queue_t notificationQueue() {
             [self showNotification];
         }
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -186,7 +186,7 @@ dispatch_queue_t notificationQueue() {
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -199,7 +199,7 @@ dispatch_queue_t notificationQueue() {
             && ![_activeTab frontmost])
             dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
 
@@ -211,7 +211,7 @@ dispatch_queue_t notificationQueue() {
             && [[_activeTab trackInfo] favorited])
             dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
 }
     
@@ -246,7 +246,7 @@ dispatch_queue_t notificationQueue() {
                     [invocation getReturnValue:&result];
                 }
             } @catch (NSException *exception) {
-                BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+                DDLogError(@"Exception occured: %@", exception);
             }
         }
     }
@@ -269,7 +269,7 @@ dispatch_queue_t notificationQueue() {
             @try {
                 [sself _showNotificationUsingFallback:useFallback];
             } @catch (NSException *exception) {
-                BSLog(BSLOG_DEBUG, @"(AppDelegate - showNotificationUsingFallback) Error showing notification: %@.", [exception description]);
+                DDLogDebug(@"(AppDelegate - showNotificationUsingFallback) Error showing notification: %@.", [exception description]);
             }
         }
     });
@@ -293,7 +293,7 @@ dispatch_queue_t notificationQueue() {
         NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
         [notifCenter removeDeliveredNotification:noti];
         [notifCenter deliverNotification:noti];
-        BSLog(BSLOG_DEBUG, @"Show Notification: %@", track);
+        DDLogDebug(@"Show Notification: %@", track);
     } else if (fallback) {
         [self showDefaultNotification];
     }
@@ -310,7 +310,7 @@ dispatch_queue_t notificationQueue() {
     [notifCenter removeDeliveredNotification:notification];
     [notifCenter deliverNotification:notification];
 
-    NSLog(@"Showing Default Notification");
+    DDLogWarn(@"Showing Default Notification");
 }
 
 @end

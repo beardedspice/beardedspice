@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CocoaLumberjack
 
 typealias ExchangeDictionary = [String: Any]
 
@@ -58,25 +59,25 @@ extension MessageProcessing {
     typealias RequestFunc = (ExchangeDictionary, @escaping (ExchangeDictionary)->Void)->Void
     
     private static let bundleIdCmd: RequestFunc = { (message, response) in
-        BSLog(BSLOG_DEBUG, "Bundle id connected app: \(bundleId)")
+        DDLogDebug("Bundle id connected app: \(bundleId)")
         response(responseDictionary(message, response: bundleId))
     }
     
     private static let acceptersCmd: RequestFunc = { (message, response) in
         BSSharedResources.accepters { (accepters) in
-            BSLog(BSLOG_DEBUG, "Accepters requested, dict count: \(String(describing: accepters?.count))")
+            DDLogDebug("Accepters requested, dict count: \(String(describing: accepters?.count))")
             response(responseDictionary(message, response: accepters ?? [:]))
         }
     }
     
     private static let portCmd: RequestFunc = { (message, response) in
-        BSLog(BSLOG_DEBUG, "Port requested, value: \(BSSharedResources.tabPort)")
+        DDLogDebug("Port requested, value: \(BSSharedResources.tabPort)")
         response(responseDictionary(message, response: BSSharedResources.tabPort))
     }
 
     private static let serverIsAliveCmd: RequestFunc = { (message, response) in
         let running = (NSRunningApplication.runningApplications(withBundleIdentifier: BS_BUNDLE_ID).count > 0) && BSSharedResources.tabPort > 0;
-        BSLog(BSLOG_DEBUG, "serverIsAlive requested, value: \(running)")
+        DDLogDebug("serverIsAlive requested, value: \(running)")
         response(responseDictionary(message, response: running))
     }
 }

@@ -120,7 +120,7 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
 
     ret = [self updateStrategiesFromSourceURL:customURL];
     if (!ret)
-        NSLog(@"Warning updating custom strategies. Reverting to official.");
+        DDLogWarn(@"Warning updating custom strategies. Reverting to official.");
 #endif
 
     return YES;
@@ -134,7 +134,7 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
     NSArray<NSString *> *elements = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:absPath error:&error];
     if (error)
     {
-        NSLog(@"Error updating strategies from URL (%@): %@", absPath, [error localizedDescription]);
+        DDLogError(@"Error updating strategies from URL (%@): %@", absPath, [error localizedDescription]);
         return NO;
     }
 

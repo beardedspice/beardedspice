@@ -12,25 +12,25 @@
 @implementation BeardedSpiceControllers
 
 - (void)setShortcuts:(NSDictionary <NSString*, MASShortcut *> *)shortcuts{
-    NSLog(@"setShortcuts");
+    DDLogInfo(@"setShortcuts");
     
     [[BSCService singleton] setShortcuts:shortcuts];
 }
 
 - (void)setMediaKeysSupportedApps:(NSArray <NSString *>*)bundleIds{
-    NSLog(@"setMediaKeysSupportedApps");
+    DDLogInfo(@"setMediaKeysSupportedApps");
     
     [[BSCService singleton] setMediaKeysSupportedApps:bundleIds];
 }
 
 - (void)setPhoneUnplugActionEnabled:(BOOL)enabled{
-    NSLog(@"setPhoneUnplugActionEnabled");
+    DDLogInfo(@"setPhoneUnplugActionEnabled");
     
     [[BSCService singleton] setPhoneUnplugActionEnabled:enabled];
 }
 
 - (void)setUsingAppleRemoteEnabled:(BOOL)enabled{
-    NSLog(@"setUsingAppleRemoteEnabled");
+    DDLogInfo(@"setUsingAppleRemoteEnabled");
     
     [[BSCService singleton] setUsingAppleRemoteEnabled:enabled];
 }

@@ -63,7 +63,7 @@
               [_invocation invoke];
        }
        @catch (NSException * e) {
-              NSLog(@"SPInvocationGrabber's target raised %@:\n\t%@\nInvocation was originally scheduled at:", e.name, e);
+              DDLogError(@"SPInvocationGrabber's target raised %@:\n\t%@\nInvocation was originally scheduled at:", e.name, e);
               [self printBacktrace];
               printf("\n");
               [e raise];

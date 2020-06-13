@@ -12,7 +12,7 @@
 #import "BSTrack.h"
 #import "NSString+Utils.h"
 
-#define ERROR_TRACE                         NSLog(@"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
+#define ERROR_TRACE                         DDLogError(@"Error trace - %s[%p]: %@", __FILE__, self, NSStringFromSelector(_cmd));
 
 #define APPID_ITUNES            @"com.apple.iTunes"
 #define APPNAME_ITUNES          @"iTunes"
@@ -145,7 +145,7 @@
         }
         @catch (NSException *exception) {
 
-            NSLog(@"Error when calling [iTunes loved]: %@", exception);
+            DDLogError(@"Error when calling [iTunes loved]: %@", exception);
             ERROR_TRACE;
         }
     }
@@ -173,7 +173,7 @@
                 track.favorited = @(iTrack.loved);
             }
             @catch (NSException *exception) {
-                NSLog(@"Error when calling [iTunes loved]: %@", exception);
+                DDLogError(@"Error when calling [iTunes loved]: %@", exception);
                 ERROR_TRACE;
             }
 

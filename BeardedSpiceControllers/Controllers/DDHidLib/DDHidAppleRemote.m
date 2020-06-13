@@ -248,7 +248,7 @@
 		}
 	}
     else
-		NSLog(@"Unknown button for cookiestring %@", cookieString);
+		DDLogError(@"Unknown button for cookiestring %@", cookieString);
 
 }
 

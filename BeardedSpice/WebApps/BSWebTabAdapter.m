@@ -43,7 +43,7 @@
             }
         }
     } @catch (NSException *exception) {
-        BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+        DDLogError(@"Exception occured: %@", exception);
     }
     return nil;
 }
@@ -127,12 +127,12 @@
     return _key;
 }
 - (BOOL)activateApp {
-    BSLog(BSLOG_DEBUG, @"Begin");
+    DDLogDebug(@"Begin");
     return [super activateApp];
 }
 
 - (BOOL)deactivateApp {
-    BSLog(BSLOG_DEBUG, @"Begin");
+    DDLogDebug(@"Begin");
     return [super deactivateApp];
 }
 
@@ -168,13 +168,13 @@
 }
 
 - (void)toggleTab {
-    BSLog(BSLOG_DEBUG, @"Begin");
+    DDLogDebug(@"Begin");
     BOOL result = [self deactivateTab];
     if (result) {
         [self deactivateApp];
     }
     if (! result) {
-        BSLog(BSLOG_DEBUG, @"Need activate");
+        DDLogDebug(@"Need activate");
 
         [self activateApp];
         [self activateTab];
@@ -186,7 +186,7 @@
     BOOL result = NO;
     NSDictionary *response = [self sendMessage:@"frontmost"];
     result = [response[@"result"] boolValue];
-    BSLog(BSLOG_DEBUG, @"Frontmost result: %d, %d", [super frontmost], result);
+    DDLogDebug(@"Frontmost result: %d, %d", [super frontmost], result);
     return [super frontmost] && result;
 }
 
@@ -229,25 +229,29 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<BSWebTabAdapter:%p> bundleId: %@, title: %@", self, self.application.bundleIdentifier, self.title];
+    @try {
+        return [NSString stringWithFormat:@"<%@:%p> bundleId: %@, title: %@", [self className], self, self.application.bundleIdentifier, self.title];
+    } @catch (NSException *exception) {
+        DDLogError(@"Exception occured: %@", exception);
+    }
 }
 
 #pragma mark PSWebSocketDelegate delegates
 
 - (void)webSocketDidOpen:(PSWebSocket *)webSocket {
-    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+    DDLogDebug(@"%s", __FUNCTION__);
 }
 
 - (void)webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     
-    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+    DDLogDebug(@"%s", __FUNCTION__);
     
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }
 
 - (void)webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     
-    BSLog(BSLOG_DEBUG, @"\nWebSocket [%p]. Message: %@", webSocket,
+    DDLogDebug(@"\nWebSocket [%p]. Message: %@", webSocket,
            ([message isKindOfClass:[NSData class]]
             ? [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding]
             : message));
@@ -273,10 +277,10 @@
                         [USE_STRONG(self) sendMessage:USE_STRONG(self)->_strategy.strategyJsBody];
                     }
                     else {
-                        BSLog(BSLOG_ERROR, @"Bad strategy: %@",strategyName);
+                        DDLogError(@"Bad strategy: %@",strategyName);
                     }
                 } @catch (NSException *exception) {
-                    BSLog(BSLOG_ERROR, @"Exception occured: %@", exception);
+                    DDLogError(@"Exception occured: %@", exception);
                 }
             });
             return;
@@ -288,21 +292,21 @@
 }
 - (void)webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
-    BSLog(BSLOG_DEBUG, @"WebSocket [%p]", webSocket);
+    DDLogDebug(@"WebSocket [%p]", webSocket);
 
     [BSStrategyWebSocketServer.singleton removeTab:self];
 }
 
 - (void)webSocketDidFlushInput:(PSWebSocket *)webSocket {
     
-//    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+//    DDLogDebug(@"%s", __FUNCTION__);
 }
 - (void)webSocketDidFlushOutput:(PSWebSocket *)webSocket {
     
-//    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+//    DDLogDebug(@"%s", __FUNCTION__);
 }
 - (BOOL)webSocket:(PSWebSocket *)webSocket evaluateServerTrust:(SecTrustRef)trust {
-//    BSLog(BSLOG_DEBUG, @"%s", __FUNCTION__);
+//    DDLogDebug(@"%s", __FUNCTION__);
     return NO;
 }
 

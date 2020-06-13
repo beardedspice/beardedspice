@@ -45,7 +45,7 @@
         if ([self.application frontmost] == NO) {
 
             BOOL result = [self.application activate];
-            BSLog(BSLOG_DEBUG, @"[self.application activate] = %d", result);
+            DDLogDebug(@"[self.application activate] = %d", result);
             return result;
         }
         self.application.wasActivated = NO;
@@ -59,7 +59,7 @@
         
         if (self.application.wasActivated && [self.application frontmost]) {
             BOOL result = ![self.application hide];
-            BSLog(BSLOG_DEBUG, @"![self.application hide] = %d", result);
+            DDLogDebug(@"![self.application hide] = %d", result);
             return ! result;
         }
         self.application.wasActivated = NO;

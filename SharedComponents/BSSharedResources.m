@@ -51,12 +51,22 @@ static NSUserDefaults *_sharedUserDefaults;
 
 static BSSListenerBlock _onAcceptersChangedBlock;
 static BSSListenerBlock _onTabPortChangedBlock;
+static NSURL *_logsDirectory;
+
+#ifdef DEBUG
+DDLogLevel ddLogLevel = DDLogLevelDebug;
+#else
+DDLogLevel ddLogLevel = DDLogLevelInfo;
+#endif
 
 + (void)initialize{
     
     if (self == [BSSharedResources class]) {
         
-        _containerFolderUrl = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:BS_GROUP];
+        _containerFolderUrl = [self directoryWithUrl:
+                                [NSFileManager.defaultManager containerURLForSecurityApplicationGroupIdentifier:BS_GROUP]
+                                                title:@"App Group"] ;
+        [self directoryWithUrl:[_containerFolderUrl URLByAppendingPathComponent:@"Library/Preferences/"] title:@"UserDefaults"];
         _sharedUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:BS_GROUP];
 
         // Registering standart Defaults
@@ -83,6 +93,29 @@ static BSSListenerBlock _onTabPortChangedBlock;
 + (NSUserDefaults *)sharedDefaults{
 
     return _sharedUserDefaults;
+}
+
++ (void)initLoggerFor:(NSString *)name {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *path = [@"Library/Logs/" stringByAppendingPathComponent:name];
+        NSURL *logsDirectory = [self directoryWithUrl:[[self sharedResuorcesURL] URLByAppendingPathComponent:path isDirectory:YES]
+                                          title:@"Logs"];
+        if (logsDirectory == nil) {
+                    [[NSException exceptionWithName:NSGenericException reason:@"Can't create logs directiory, find error in Console.app" userInfo:nil] raise];
+        }
+        DDLogFileManagerDefault *defaultLogFileManager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:[logsDirectory path]];
+
+       DDFileLogger *fileLogger = [[DDFileLogger alloc] initWithLogFileManager:defaultLogFileManager];
+        fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+        fileLogger.maximumFileSize = 1024*1024;
+
+        [DDLog addLogger:fileLogger];
+        [DDLog addLogger:[DDOSLogger sharedInstance]];
+        _logsDirectory = logsDirectory;
+    });
+
 }
 
 + (void)synchronizeSharedDefaults{
@@ -159,6 +192,24 @@ static BSSListenerBlock _onTabPortChangedBlock;
     *blockPtr = block;
 }
 
++ (NSURL *)directoryWithUrl:(NSURL *)url title:(NSString *)title {
+    NSError *err;
+    if (url) {
+        
+        if ([[NSFileManager defaultManager] createDirectoryAtURL:url
+                                     withIntermediateDirectories:YES
+                                                      attributes:nil
+                                                           error:&err])
+            return url;
+        
+        else {
+            NSString *msg = [NSString stringWithFormat:@"Cannot create %@ directory: %@", title ?: @"", [err localizedDescription]];
+            DDLogError(@"%@", msg);
+        }
+    }
+    return nil;
+}
+
 /////////////////////////////////////////////////////////////////////
 #pragma mark Storage methods (private)
 
@@ -172,7 +223,7 @@ static BSSListenerBlock _onTabPortChangedBlock;
     @autoreleasepool {
         if (_containerFolderUrl) {
             
-            NSURL *dataUrl = [_containerFolderUrl URLByAppendingPathComponent:relativePath];
+            NSURL *dataUrl = [self urlForRelativePath:relativePath];
             if (dataUrl) {
                 EHFileLocker *locker = [[EHFileLocker alloc] initWithPath:[dataUrl path]];
                 if ([locker lock]) {
@@ -199,7 +250,7 @@ static BSSListenerBlock _onTabPortChangedBlock;
     @autoreleasepool {
         if (_containerFolderUrl) {
             
-            NSURL *dataUrl = [_containerFolderUrl URLByAppendingPathComponent:relativePath];
+            NSURL *dataUrl = [self urlForRelativePath:relativePath];
             if (dataUrl) {
                 EHFileLocker *locker = [[EHFileLocker alloc] initWithPath:[dataUrl path]];
                 if ([locker lock]) {
@@ -229,7 +280,7 @@ static BSSListenerBlock _onTabPortChangedBlock;
                 NSError *err;
                 data  = [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:YES error:&err];
                 if (err) {
-                    BSLog(BSLOG_ERROR, @"Converting error %@ to archive: %@", obj, err);
+                    DDLogError(@"Converting error %@ to archive: %@", obj, err);
                 }
                 if (!data) {
                     data = [NSData data];
@@ -254,7 +305,7 @@ static BSSListenerBlock _onTabPortChangedBlock;
                 NSError *err;
                 result = [NSKeyedUnarchiver unarchivedObjectOfClass:aClass fromData:data error:&err];
                 if (err) {
-                    BSLog(BSLOG_ERROR, @"Converting error object from archive: %@", err);
+                    DDLogError(@"Converting error object from archive: %@", err);
                 }
             }
             if (completion) {
@@ -264,11 +315,14 @@ static BSSListenerBlock _onTabPortChangedBlock;
     });
 }
 
-- (NSString*) pathForRelativePath:(NSString*) relativePath {
-    
-    NSURL *dataUrl = [_containerFolderUrl URLByAppendingPathComponent:relativePath];
-    
-    return dataUrl.path;
++ (NSURL *) urlForRelativePath:(NSString*) relativePath {
+    static NSURL *cachesUrl;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cachesUrl = [self directoryWithUrl:[[self sharedResuorcesURL] URLByAppendingPathComponent:@"Library/Caches/" isDirectory:YES]
+                                          title:@"Caches"];
+    });
+    return [cachesUrl URLByAppendingPathComponent:relativePath];
 }
 
 /////////////////////////////////////////////////////////////////////

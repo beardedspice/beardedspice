@@ -8,6 +8,7 @@
 
 import Cocoa
 import SafariServices
+import CocoaLumberjack
 
 class GetExtensions: NSWindowController {
 
@@ -52,7 +53,7 @@ class GetExtensions: NSWindowController {
     
     @IBAction func clickOpenSafariPrefs(_ sender: Any) {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: BS_SAFARI_EXTENSION_BUNDLE_ID) { (error) in
-            BSLog(BSLOG_INFO, "Open Safari preferences result: \(String(describing: error))")
+            DDLogInfo("Open Safari preferences result: \(String(describing: error))")
             if error == nil {
                 DispatchQueue.main.async {
                     self.clickClose(sender)
@@ -64,7 +65,7 @@ class GetExtensions: NSWindowController {
     @IBAction func clickOpenChromeExtensionUrl(_ sender: Any) {
         if let url = URL(string: String(format: GetExtensions.CHROME_WEB_STORE_URL_FORMAT, BS_CHROME_EXTENSION_ID)) {
             let result = NSWorkspace.shared.open(url)
-            BSLog(BSLOG_INFO, "Open url to Chrome Web Store result: \(result)")
+            DDLogInfo("Open url to Chrome Web Store result: \(result)")
             if result {
                 DispatchQueue.main.async {
                     self.clickClose(sender)

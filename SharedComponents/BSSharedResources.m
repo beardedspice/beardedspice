@@ -55,9 +55,13 @@ static NSURL *_logsDirectory;
 
 #ifdef DEBUG
 DDLogLevel ddLogLevel = DDLogLevelDebug;
+DDLogLevel DDDefaultLogLevel = DDLogLevelDebug;
 #else
 DDLogLevel ddLogLevel = DDLogLevelInfo;
+DDLogLevel DDDefaultLogLevel = DDLogLevelInfo;
 #endif
+
+
 
 + (void)initialize{
     

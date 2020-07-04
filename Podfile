@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 project 'Beardie'
 
 target 'Beardie' do
-    pod 'CocoaLumberjack/Swift'
+    pod 'CocoaLumberjack/Swift', :modular_headers => true
     pod 'MASPreferences', '~> 1.3'
     pod 'MASShortcut', '~> 2.4.0'
     pod 'FMDB'
@@ -17,12 +17,9 @@ target 'Beardie' do
     end
 end
 
-target 'beardie-nm-connector' do
-  pod 'CocoaLumberjack/Swift'
-end
-
 abstract_target "Commons" do
-  pod 'CocoaLumberjack'
+  pod 'CocoaLumberjack/Swift', :modular_headers => true
+  target 'beardie-nm-connector'
   target 'BS-Extension'
   target 'BeardieControllers' do
       pod 'MASShortcut', '~> 2.4.0'

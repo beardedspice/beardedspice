@@ -13,9 +13,9 @@ XC_CONSTANT_HEADER_FILE = $(SRCROOT)/ConfigConstants.h
 XC_SPL = /
 
 BS_NAME = Beardie
-BS_COPYRIGHT = Copyright © 2019 Beardie. All rights reserved.
+BS_COPYRIGHT = Copyright © 2020 Beardie. All rights reserved.
 BS_VERSION = 3.0.3
-BS_BUILD = 56
+BS_BUILD = 57
 BS_HOMEPAGE = https:$(XC_SPL)/github.com/Stillness-2/beardie
 BS_UNSUPPORTED_STRATEGY_REPO_URL = https:$(XC_SPL)/github.com/beardedspice/BS-Strategies
 

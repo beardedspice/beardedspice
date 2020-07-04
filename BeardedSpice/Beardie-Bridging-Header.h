@@ -6,3 +6,4 @@
 #import "NSString+Utils.h"
 #import "BSNativeAppTabAdapter.h"
 #import "runningSBApplication.h"
+#import "BSSharedResources.h"

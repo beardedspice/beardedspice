@@ -80,4 +80,3 @@ BSSharedResources.initLogger(for: BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)
 // MARK: MAIN
 Main.listen()
 
-

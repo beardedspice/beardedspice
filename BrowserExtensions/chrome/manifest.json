@@ -39,8 +39,7 @@
         "nativeMessaging",
         "<all_urls>",
         "activeTab",
-        "storage",
-        "unlimitedStorage"
+        "storage"
     ],
     "web_accessible_resources": [
         "shared/*eventsController.js",

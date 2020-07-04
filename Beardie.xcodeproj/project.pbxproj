@@ -23,8 +23,8 @@
 		0BF06AE31C9513A800534083 /* BSStrategyVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */; };
 		0BF06AE51C9513A800534083 /* BSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF06AE01C9513A800534083 /* BSTrack.m */; };
 		0BF9CAE71CFFDB2F00E9986B /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002C1C8AD41A00BD29F5 /* NSString+Utils.m */; };
+		217A5408102A00D2C0304B47 /* libPods-beardie-nm-connector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E452F93FEE76948DDD44F2D /* libPods-beardie-nm-connector.a */; };
 		25D13F6F1E9A2F6400149554 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 25D13F6D1E9A2F6400149554 /* Localizable.stringsdict */; };
-		38A8DA221F0B0B5DFDEDA129 /* libPods-Commons-beardie-nm-connector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 882ED0D7312740188F900D07 /* libPods-Commons-beardie-nm-connector.a */; };
 		3E0E6AADA87D54BAAB99E86A /* libPods-Commons-BS-Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7A32AB055C553B88C3EF35 /* libPods-Commons-BS-Extension.a */; };
 		5E80769F1D58CE180002855D /* DowncastTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80769E1D58CE180002855D /* DowncastTabAdapter.m */; };
 		65063FEB233DE94E0015F558 /* DeezerTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65063FEA233DE94E0015F558 /* DeezerTabAdapter.m */; };
@@ -119,9 +119,6 @@
 		65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5670D1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m */; };
 		65E567111B76AE3A00AD2D46 /* BSPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567101B76AE3A00AD2D46 /* BSPreferencesWindowController.m */; };
 		65E567141B775C9300AD2D46 /* BSShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E567131B775C9300AD2D46 /* BSShortcutView.m */; };
-		65E58D3C24968BA900DB66DB /* SharedResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E58D3B24968BA900DB66DB /* SharedResources.swift */; };
-		65E58D3D24968BA900DB66DB /* SharedResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E58D3B24968BA900DB66DB /* SharedResources.swift */; };
-		65E58D3F24968BA900DB66DB /* SharedResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E58D3B24968BA900DB66DB /* SharedResources.swift */; };
 		65E58D4024968BA900DB66DB /* SharedResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E58D3B24968BA900DB66DB /* SharedResources.swift */; };
 		65E63AC4218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
@@ -301,6 +298,7 @@
 		0BF06ADE1C9513A800534083 /* BSStrategyVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSStrategyVersionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0BF06ADF1C9513A800534083 /* BSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTrack.h; sourceTree = "<group>"; };
 		0BF06AE01C9513A800534083 /* BSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTrack.m; sourceTree = "<group>"; };
+		0E452F93FEE76948DDD44F2D /* libPods-beardie-nm-connector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-beardie-nm-connector.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F70640AA530B57CAE19126 /* Pods-BeardedSpiceControllers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.release.xcconfig"; sourceTree = "<group>"; };
 		2276A4EDC9C2D1AAD937291D /* Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests/Pods-BeardedSpiceControllers-BeardedSpice-BeardedSpiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		26556AF2D5CB9528D18053CC /* Pods-Commons-beardie-nm-connector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Commons-beardie-nm-connector.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Commons-beardie-nm-connector/Pods-Commons-beardie-nm-connector.debug.xcconfig"; sourceTree = "<group>"; };
@@ -492,8 +490,6 @@
 		65E567121B775C9300AD2D46 /* BSShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSShortcutView.h; sourceTree = "<group>"; };
 		65E567131B775C9300AD2D46 /* BSShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSShortcutView.m; sourceTree = "<group>"; };
 		65E58D37249669EB00DB66DB /* libCocoaLumberjack-Core-Swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libCocoaLumberjack-Core-Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65E58D3924968BA900DB66DB /* BeardieControllers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeardieControllers-Bridging-Header.h"; sourceTree = "<group>"; };
-		65E58D3A24968BA900DB66DB /* BS-Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BS-Extension-Bridging-Header.h"; sourceTree = "<group>"; };
 		65E58D3B24968BA900DB66DB /* SharedResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResources.swift; sourceTree = "<group>"; };
 		65E63AC3218DAB3000C039B7 /* EHFileLocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHFileLocker.m; sourceTree = "<group>"; };
 		65E63AC6218DAB5A00C039B7 /* EHFileLocker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHFileLocker.h; sourceTree = "<group>"; };
@@ -521,7 +517,6 @@
 		717D81719E5A7FCD8EE92EA6 /* libPods-Beardie.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beardie.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D9F80F1D808FCD0081E4EE /* BSAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAppleScriptSupport.m; sourceTree = "<group>"; };
 		78D9F8111D808FD70081E4EE /* BeardieSuite.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BeardieSuite.sdef; sourceTree = "<group>"; };
-		882ED0D7312740188F900D07 /* libPods-Commons-beardie-nm-connector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Commons-beardie-nm-connector.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCCE0EAA511B629B4FCBAED /* Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeardieControllers-Beardie-BeardieTests/Pods-BeardieControllers-Beardie-BeardieTests.release.xcconfig"; sourceTree = "<group>"; };
 		91351FB7426B1A29959CEE4B /* Pods-BeardedSpiceControllers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeardedSpiceControllers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeardedSpiceControllers/Pods-BeardedSpiceControllers.debug.xcconfig"; sourceTree = "<group>"; };
 		9679332C1855173100A49AC7 /* Beardie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beardie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -577,7 +572,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38A8DA221F0B0B5DFDEDA129 /* libPods-Commons-beardie-nm-connector.a in Frameworks */,
+				217A5408102A00D2C0304B47 /* libPods-beardie-nm-connector.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,8 +775,6 @@
 				656A003F1C8B037A00BD29F5 /* BeardedSpiceControllersProtocol.h */,
 				656A00401C8B037A00BD29F5 /* BeardedSpiceHostAppProtocol.h */,
 				65E58D3B24968BA900DB66DB /* SharedResources.swift */,
-				65E58D3924968BA900DB66DB /* BeardieControllers-Bridging-Header.h */,
-				65E58D3A24968BA900DB66DB /* BS-Extension-Bridging-Header.h */,
 			);
 			path = SharedComponents;
 			sourceTree = "<group>";
@@ -1023,7 +1016,7 @@
 				313E430BA38EB3FE82296277 /* libPods-Beardie-BeardieTests.a */,
 				FE7A32AB055C553B88C3EF35 /* libPods-Commons-BS-Extension.a */,
 				2840AC35F709CA517D670D8E /* libPods-Commons-BeardieControllers.a */,
-				882ED0D7312740188F900D07 /* libPods-Commons-beardie-nm-connector.a */,
+				0E452F93FEE76948DDD44F2D /* libPods-beardie-nm-connector.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1581,7 +1574,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Commons-beardie-nm-connector-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-beardie-nm-connector-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1615,7 +1608,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E58D3F24968BA900DB66DB /* SharedResources.swift in Sources */,
 				6566ABE021890719008BEC2F /* BSSharedResources.m in Sources */,
 				65E63AC5218DAB3000C039B7 /* EHFileLocker.m in Sources */,
 				65384DA321874F810029D9E9 /* SafariExtensionHandler.m in Sources */,
@@ -1673,7 +1665,6 @@
 			files = (
 				0369231F1862936600E04DDB /* GeneralPreferencesViewController.m in Sources */,
 				65E6475A2385FFA000C6DC21 /* AmazonMusicTabAdapter.m in Sources */,
-				65E58D3C24968BA900DB66DB /* SharedResources.swift in Sources */,
 				0BF06AE51C9513A800534083 /* BSTrack.m in Sources */,
 				658D64461FA697A2004D1546 /* PSWebSocketUTF8Decoder.m in Sources */,
 				654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */,
@@ -1742,7 +1733,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E58D3D24968BA900DB66DB /* SharedResources.swift in Sources */,
 				6507A2FF1F485F8800775D14 /* BSStrategyWebSocketServerTest.m in Sources */,
 				0B1AF37F1CCE4D4C0021BBEA /* BSStrategyMockObject.m in Sources */,
 				0B1AF37E1CCE4D4C0021BBEA /* BSMediaStrategyTests.m in Sources */,
@@ -2024,9 +2014,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SharedComponents/BS-Extension-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2065,8 +2052,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SharedComponents/BS-Extension-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2164,7 +2149,7 @@
 		};
 		65E6E0572370AC7A009C9448 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26556AF2D5CB9528D18053CC /* Pods-Commons-beardie-nm-connector.debug.xcconfig */;
+			baseConfigurationReference = 2CCC5E5413A7EA7D84A6D255 /* Pods-beardie-nm-connector.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2195,7 +2180,7 @@
 		};
 		65E6E0582370AC7A009C9448 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58188F8B93FB4C1CD354EDE3 /* Pods-Commons-beardie-nm-connector.release.xcconfig */;
+			baseConfigurationReference = FD2D2BB3F2957ACFD2DAAA98 /* Pods-beardie-nm-connector.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

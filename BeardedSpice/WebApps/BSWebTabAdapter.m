@@ -86,6 +86,7 @@
         [self.tabSocket send:message];
     });
     if ([_actionLock waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:RESPONSE_TIMEPUT]] == NO) {
+        [_actionLock unlock];
         [[NSException exceptionWithName:TIMEOUT_WAS_REACHED reason:nil userInfo:nil] raise];
         _lastResponse = nil;
     }
@@ -234,6 +235,7 @@
     } @catch (NSException *exception) {
         DDLogError(@"Exception occured: %@", exception);
     }
+    return [NSString stringWithFormat:@"<%@:%p> bundleId: %@, title: none (TIMEOUT REACHED)", [self className], self, self.application.bundleIdentifier];
 }
 
 #pragma mark PSWebSocketDelegate delegates

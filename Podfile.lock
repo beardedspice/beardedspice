@@ -1,4 +1,6 @@
 PODS:
+  - CocoaLumberjack (3.6.1):
+    - CocoaLumberjack/Core (= 3.6.1)
   - CocoaLumberjack/Core (3.6.1)
   - CocoaLumberjack/Swift (3.6.1):
     - CocoaLumberjack/Core
@@ -11,6 +13,7 @@ PODS:
   - VCRURLConnection (0.2.5)
 
 DEPENDENCIES:
+  - CocoaLumberjack
   - CocoaLumberjack/Swift
   - FMDB
   - Kiwi (~> 3.0.0)
@@ -35,6 +38,6 @@ SPEC CHECKSUMS:
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   VCRURLConnection: 63be6f26a2f8222677294fc43a1d855e817cfd4e
 
-PODFILE CHECKSUM: b3f222e484e0f04872f8e02f9e20cca0b6475334
+PODFILE CHECKSUM: 78a4e18bb250924e3d2ac8a6f9e750bd5ce4709c
 
 COCOAPODS: 1.9.3

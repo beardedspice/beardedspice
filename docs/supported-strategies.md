@@ -15,7 +15,7 @@
 - Blitzr (blitzr.com*)
 - Brain.fm (brain.fm/app*)
 - Bugs Music (music.bugs.co.kr/newPlayer*)
-- Chorus (▶ * | Chorus.)
+- Chorus
 - Composed (play.composed.com*)
 - Coursera (coursera.org*)
 - Cozy Cloud (cozycloud.cc/#apps/cozy-music/*)
@@ -44,9 +44,9 @@
 - Listen.moe (https://listen.moe*)
 - ListenOnRepeat (listenonrepeat.com*)
 - Listeners Playlist (lp.anzi.kr) (lp.anzi.kr*)
-- Logitech Media Server (Logitech Media Server)
+- Logitech Media Server
 - Lynda (www.lynda.com*)
-- Madsonic (Madsonic*)
+- Madsonic
 - Mixcloud (www.mixcloud.com*)
 - MusicForProgramming (musicforprogramming.net/*)
 - MusicUnlimited (music.sonyentertainmentnetwork.com*)

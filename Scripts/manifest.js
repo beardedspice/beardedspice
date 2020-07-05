@@ -21,7 +21,7 @@ try {
                 const obj = eval(stg);
                 out[path.basename(el, STRATEGY_EXT)] = {'version': obj.version, 'name': obj.displayName};
                 mdOut += '- '+obj.displayName;
-                if (obj.accepts.method == 'predicateOnTab') {
+                if (obj.accepts.method == 'predicateOnTab' && obj.accepts.args.indexOf('URL') > -1) {
                     let list = [];
                     let item;
                     while ((item = re.exec(obj.accepts.format)) !== null) {

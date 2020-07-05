@@ -7,29 +7,18 @@
 //
 
 #import "BSStrategyVersionManager.h"
+#import "BSSharedResources.h"
 
 #import "MediaStrategyRegistry.h"
 #import "BSStrategyCache.h"
 #import "BSMediaStrategy.h"
 
-// This is the path format which requires a user/branch/filename for the target plist file.
-// release pathing that ONLY targets the official beardedspice master branch
-static NSString *const kBSVersionIndexURL = @"https://raw.githubusercontent.com/beardedspice/beardedspice/master/BeardedSpice/MediaStrategies/%@.%@";
-
-// This is the name of the version index plist to be downloaded.
-static NSString *const kBSIndexFileName = @"versions";
-
-
 NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
+NSString *const BSVMStrategyErrorDomain = @"BSVMStrategyErrorDomain";
 
 @interface BSStrategyVersionManager ()
 
-@property (nonatomic, strong) NSDate *lastUpdated;
-@property (nonatomic, strong) NSURL *versionURL;
 @property (nonatomic, strong) BSStrategyCache *strategyCache;
-
-- (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file;
-
 @end
 
 @implementation BSStrategyVersionManager
@@ -39,7 +28,6 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
     self = [super init];
     if (self)
     {
-        _versionURL = [self repositoryURLForFile:kBSIndexFileName ofType:@"plist"];
         _strategyCache = cache;
     }
     return self;
@@ -55,80 +43,66 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
     return [_strategyCache strategyForFileName:[mediaStrategy stringByAppendingString:@".js"]];
 }
 
-- (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file
-{
-    return [self repositoryURLForFile:file ofType:@"js"];
-}
-
-- (NSURL * _Nonnull)repositoryURLForFile:(NSString *)file ofType:(NSString *_Nonnull)type
-{
-    // target source for strategy version
-    NSString *path = [[NSString alloc] initWithFormat:kBSVersionIndexURL, file, type];
-
-    return [NSURL URLWithString:path];
-}
 
 #pragma mark - Network Operations
 
-- (void)performUpdateCheck
-{
-    __weak typeof(self) wself = self; // new pointer for self to avoid autoretain cycles
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
-        __strong typeof(wself) sself = wself;
-        [sself performSyncUpdateCheck];
-    });
-}
-
-- (NSUInteger)performSyncUpdateCheck
-{
-    self.lastUpdated = [NSDate date];
-    NSMutableDictionary<NSString *, NSNumber *> *newVersions = [[NSMutableDictionary alloc] initWithContentsOfURL:_versionURL];
-
-    __block NSUInteger foundNewVersions = 0;
-    dispatch_group_t group = dispatch_group_create();
-    if (group) {
-        
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
-        for (NSString *key in newVersions)
-        {
+- (void)updateStrategiesWithCompletion:(void (^)(NSArray<NSString *> *updatedNames, NSError *error))completion {
+    
+    ASSIGN_WEAK(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        ASSIGN_STRONG(self);
+        NSError *err;
+        NSDictionary<NSString *, NSDictionary *> *manifest = [USE_STRONG(self) manifestWithError:&err];
+        if (manifest == nil) {
+            if (completion) {
+                completion(nil, err);
+            }
+            return;
+        }
+        NSMutableArray<NSString *> *updatedNames = [NSMutableArray new];
+        dispatch_group_t group = dispatch_group_create();
+        if (group) {
             
-            long version = 0;
-            // we think that even custom strategy must be reloaded if new version arrived from backend server
-            BSMediaStrategy *strategy = [self mediaStrategy:key];
-            version = strategy.strategyVersion;
-            
-            long newVersion = [newVersions[key] longValue];
-            if (version >= newVersion) // greater than
-                continue;
-            
-            foundNewVersions++;
-            __weak typeof(self) wself = self; // new pointer for self to avoid autoretain cycles
-            dispatch_group_async(group, queue, ^{
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
+            for (NSString *key in manifest) {
                 
-                __strong typeof(wself) sself = wself;
-                BOOL ret = [sself performUpdateOfMediaStrategy:key];
-                if (!ret) // if the file failed to save/wasn't valid
-                    foundNewVersions--;
-            });
+                long version = 0;
+                
+                // we think that even custom strategy must be reloaded if new version arrived from backend server
+                BSMediaStrategy *strategy = [USE_STRONG(self) mediaStrategy:key];
+                version = strategy.strategyVersion;
+                
+                long newVersion = [manifest[key][@"version"] longValue];
+                if (version >= newVersion) // greater than
+                    continue;
+                
+                dispatch_group_async(group, queue, ^{
+                    ASSIGN_STRONG(self);
+                    if ([USE_STRONG(self) performUpdateOfMediaStrategy:key]) // if the file failed to save/wasn't valid
+                        [updatedNames addObject:manifest[key][@"name"]];
+                });
+                
+            }
             
+            dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            if (updatedNames.count) {
+                [USE_STRONG(self) notifyThatChanged];
+            }
+        }
+        else{
+            DDLogError(@"Error of creating of the queue group!");
         }
         
-        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-        if (foundNewVersions) {
-            [self notifyThatChanged];
+        if (completion) {
+            completion(updatedNames, nil);
         }
-    }
-    else{
-        DDLogError(@"Error of creating of the queue group!");
-    }
-
-    return foundNewVersions;
+    });
 }
 
 - (BOOL)performUpdateOfMediaStrategy:(NSString *)mediaStrategy
 {
     NSError *error = nil;
-    NSURL *pathURL = [self repositoryURLForFile:mediaStrategy];
+    NSURL *pathURL = [NSURL URLWithString:[NSString stringWithFormat:BS_STRATEGY_URL_FORMAT, mediaStrategy]];
     // download from remote repository
     BSMediaStrategy *newVersions = [BSMediaStrategy mediaStrategyWithURL:pathURL error:nil];
     if (!newVersions)
@@ -177,4 +151,41 @@ NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
          object:self];
     });
 }
+ 
+- (NSDictionary <NSString *, NSDictionary *> *)manifestWithError:(NSError **)error {
+    
+    NSURL *url = [NSURL URLWithString:BS_STRATEGY_JSON_URL];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    if (!data.length) {
+        NSError *err = [NSError errorWithDomain:BSVMStrategyErrorDomain
+                                           code:BSVMS_ERROR_MANIFEST_DOWNLOAD
+                                       userInfo:@{
+                                           NSLocalizedDescriptionKey: @"TODO: ERROR DESCR"
+                                       }];
+        DDLogError(@"Can't download manifest.json from: %@", BS_UNSUPPORTED_STRATEGY_JSON_URL);
+        if (error) {
+            *error = err;
+        }
+        return  nil;
+    }
+    NSError *err;
+    NSDictionary<NSString *, NSDictionary *> *manifest = [NSJSONSerialization JSONObjectWithData:data
+                                                                                         options:0
+                                                                                           error:&err];
+    if (manifest == nil) {
+        err = [NSError errorWithDomain:BSVMStrategyErrorDomain
+                                  code:BSVMS_ERROR_MANIFEST_PARSE
+                              userInfo:@{
+                                  NSUnderlyingErrorKey: err,
+                                  NSLocalizedDescriptionKey: @"TODO: ERROR DESCR"
+                              }];
+        DDLogError(@"Can't parse manifest.json from: %@", BS_UNSUPPORTED_STRATEGY_JSON_URL);
+        if (error) {
+            *error = err;
+        }
+    }
+    return manifest;
+}
+
+
 @end

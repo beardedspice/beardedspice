@@ -433,35 +433,36 @@ BOOL accessibilityApiEnabled = NO;
     // quietly exit because this shouldn't have happened...
     if (!item)
         return;
-
+    
     self.inUpdatingStrategiesState = YES;
     statusMenu.autoenablesItems = NO;
     item.title = BSLocalizedString(@"Checking...", @"Menu Titles");
-
+    
     BOOL checkFromMenu = (sender != self);
-    __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
-        __strong typeof(wself) sself = wself;
-
-        NSUInteger updateCount = [sself.versionManager performSyncUpdateCheck];
-        NSString *message = [NSString stringWithFormat:BSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updateCount];
-        
-        if (updateCount == 0){
-            if (checkFromMenu) {
-                [sself sendUpdateNotificationWithString:message];
+    ASSIGN_WEAK(self);
+    [_versionManager updateStrategiesWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ASSIGN_STRONG(self);
+            if (error && checkFromMenu) {
+                //TODO: display ALERT with error
             }
-        }
-        else
-        {
-            [sself refreshTabs:nil];
-            [sself sendUpdateNotificationWithString:message];
-        }
-
-        dispatch_sync(dispatch_get_main_queue(), ^{
+            else {
+                NSString *message = [NSString stringWithFormat:BSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updatedNames.count];
+                
+                if (updatedNames.count){
+                    [USE_STRONG(self) refreshTabs:nil];
+                    [USE_STRONG(self) sendUpdateNotificationWithString:message];
+                }
+                else if (checkFromMenu) {
+                    [USE_STRONG(self) sendUpdateNotificationWithString:message];
+                }
+                
+            }
+            
             item.title = BSLocalizedString(@"Check for Compatibility Updates", @"Menu Titles");
             self.inUpdatingStrategiesState = NO;
         });
-    });
+    }];
 }
 
 - (IBAction)openPreferences:(id)sender

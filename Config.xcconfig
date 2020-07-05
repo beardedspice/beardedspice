@@ -35,6 +35,8 @@ BS_CHROME_EXTENSION_ID                      = kcbddjdbhggfejihipchloknandfnkgb
 BS_STRATEGY_EXTENSION                       = bsstrategy
 
 //Backend services
+BS_STRATEGY_JSON_URL = https:$(XC_SPL)/raw.githubusercontent.com/Stillness-2/beardie/master/BeardedSpice/MediaStrategies/manifest.json
+BS_STRATEGY_URL_FORMAT = https:$(XC_SPL)/raw.githubusercontent.com/Stillness-2/beardie/master/BeardedSpice/MediaStrategies/%@.js
 BS_UNSUPPORTED_STRATEGY_JSON_URL = https:$(XC_SPL)/raw.githubusercontent.com/beardedspice/BS-Strategies/master/manifest.json
 BS_UNSUPPORTED_STRATEGY_URL_FORMAT = https:$(XC_SPL)/raw.githubusercontent.com/beardedspice/BS-Strategies/master/%@.$(BS_STRATEGY_EXTENSION)
 

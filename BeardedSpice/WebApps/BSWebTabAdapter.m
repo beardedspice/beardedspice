@@ -72,9 +72,13 @@
 }
 
 - (BOOL)notifyThatGlobalSettingsChanged {
-    
-    NSDictionary *response = [self sendMessage:@"settingsChanged"];
-    return [response[@"result"] boolValue];
+    @try {
+        NSDictionary *response = [self sendMessage:@"settingsChanged"];
+        return [response[@"result"] boolValue];
+    } @catch (NSException *exception) {
+        DDLogError(@"Exception occured: %@", exception);
+    }
+    return NO;
 }
 
 

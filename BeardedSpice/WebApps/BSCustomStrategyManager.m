@@ -186,22 +186,9 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
 - (void)updateCustomStrategiesFromUnsupportedRepoWithCompletion:(void (^)(NSArray<NSString *> *updatedNames, NSError *error))completion {
     ASSIGN_WEAK(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        
-        NSURL *url = [NSURL URLWithString:BS_UNSUPPORTED_STRATEGY_JSON_URL];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        if (!data.length) {
-            NSError *error = [NSError errorWithDomain:BSCStrategyErrorDomain
-                                                 code:BSCS_ERROR_MANIFEST_DOWNLOAD
-                                             userInfo:@{}];
-            if (completion) {
-                completion(nil, error);
-            }
-            return;
-        }
+        ASSIGN_STRONG(self);
         NSError *err;
-        NSDictionary<NSString *, NSDictionary *> *manifest = [NSJSONSerialization JSONObjectWithData:data
-                                                                                             options:0
-                                                                                               error:&err];
+        NSDictionary<NSString *, NSDictionary *> *manifest = [USE_STRONG(self) manifestWithError:&err];
         if (manifest == nil) {
             if (completion) {
                 completion(nil, err);
@@ -242,7 +229,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
             
             dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
             if (updatedNames.count) {
-                [self notifyThatChanged];
+                [USE_STRONG(self) notifyThatChanged];
             }
         }
         else{
@@ -272,21 +259,8 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
             return;
         }
         
-        NSURL *url = [NSURL URLWithString:BS_UNSUPPORTED_STRATEGY_JSON_URL];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        if (!data.length) {
-            NSError *error = [NSError errorWithDomain:BSCStrategyErrorDomain
-                                                 code:BSCS_ERROR_MANIFEST_DOWNLOAD
-                                             userInfo:@{}];
-            if (completion) {
-                completion(nil, error);
-            }
-            return;
-        }
         NSError *err;
-        NSDictionary<NSString *, NSDictionary *> *manifest = [NSJSONSerialization JSONObjectWithData:data
-                                                                                             options:0
-                                                                                               error:&err];
+        NSDictionary<NSString *, NSDictionary *> *manifest = [USE_STRONG(self) manifestWithError:&err];
         if (manifest == nil) {
             if (completion) {
                 completion(nil, err);
@@ -342,6 +316,41 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
          postNotificationName:BSCStrategyChangedNotification
          object:self];
     });
+}
+
+- (NSDictionary <NSString *, NSDictionary *> *)manifestWithError:(NSError **)error {
+    
+    NSURL *url = [NSURL URLWithString:BS_UNSUPPORTED_STRATEGY_JSON_URL];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    if (!data.length) {
+        NSError *err = [NSError errorWithDomain:BSCStrategyErrorDomain
+                                           code:BSCS_ERROR_MANIFEST_DOWNLOAD
+                                       userInfo:@{
+                                           NSLocalizedDescriptionKey: @"TODO: ERROR DESCR"
+                                       }];
+        DDLogError(@"Can't download manifest.json from: %@", BS_UNSUPPORTED_STRATEGY_JSON_URL);
+        if (error) {
+            *error = err;
+        }
+        return  nil;
+    }
+    NSError *err;
+    NSDictionary<NSString *, NSDictionary *> *manifest = [NSJSONSerialization JSONObjectWithData:data
+                                                                                         options:0
+                                                                                           error:&err];
+    if (manifest == nil) {
+        err = [NSError errorWithDomain:BSCStrategyErrorDomain
+                                             code:BSCS_ERROR_MANIFEST_PARSE
+                                         userInfo:@{
+                                                    NSUnderlyingErrorKey: err,
+                                                    NSLocalizedDescriptionKey: @"TODO: ERROR DESCR"
+                                         }];
+        DDLogError(@"Can't parse manifest.json from: %@", BS_UNSUPPORTED_STRATEGY_JSON_URL);
+        if (error) {
+            *error = err;
+        }
+    }
+    return manifest;
 }
 
 - (NSURL *)createExportFolder:(NSURL *)folderUrl {

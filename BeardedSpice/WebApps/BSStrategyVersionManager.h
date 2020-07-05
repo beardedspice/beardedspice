@@ -11,6 +11,13 @@
  */
 extern NSString *BSVMStrategyChangedNotification;
 
+extern NSString *const BSVMStrategyErrorDomain;
+/// Manifest for unsupported strategies does not contain data
+#define BSVMS_ERROR_MANIFEST_DOWNLOAD        100
+/// Manifest for unsupported strategies has invalid format
+#define BSVMS_ERROR_MANIFEST_PARSE           200
+
+
 @class BSStrategyCache;
 
 /**
@@ -21,8 +28,6 @@ extern NSString *BSVMStrategyChangedNotification;
  */
 @interface BSStrategyVersionManager : NSObject
 
-@property (nonatomic, strong, readonly) NSDate *lastUpdated;
-@property (nonatomic, strong, readonly) NSURL *versionURL;
 @property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
 
 /**
@@ -30,23 +35,11 @@ extern NSString *BSVMStrategyChangedNotification;
  */
 - (instancetype)initWithStrategyCache:(BSStrategyCache *)cache;
 
-///**
-// @param mediaStrategy The filename of the strategy template to check.
-// @return returns the version number for the version of the strategy found in the index plist (versions.plist)
-// */
-//- (long)versionForMediaStrategy:(NSString *)mediaStrategy;
-
 /**
  Downloads the versions.plist file from the target repository URL and checks if any new strategy template
  versions are marked as higher version than the currently loaded number.
  */
-- (void)performUpdateCheck;
-
-/**
- Performs the same function as performUpdateCheck
- @return returns the number of strategies that were updated.
- */
-- (NSUInteger)performSyncUpdateCheck;
+- (void)updateStrategiesWithCompletion:(void (^)(NSArray<NSString *> *updatedNames, NSError *error))completion;
 
 /**
  Subfunction of performUpdateCheck.

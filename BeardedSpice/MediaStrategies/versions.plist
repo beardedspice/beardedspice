@@ -116,6 +116,8 @@
 	<integer>1</integer>
 	<key>NRK</key>
 	<integer>1</integer>
+	<key>NTS Radio</key>
+	<integer>1</integer>
 	<key>Odnoklassniki</key>
 	<integer>1</integer>
 	<key>Overcast</key>

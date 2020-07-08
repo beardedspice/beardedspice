@@ -4,7 +4,7 @@
 //
 //
 //  Created by Grant Levene on 07/08/20
-//  Copyright (c) 2015-2019 GPL v3 http://www.gnu.org/licenses/gpl.html
+//  Copyright (c) 2015-2020 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
 BSStrategy = {
@@ -25,7 +25,11 @@ BSStrategy = {
             });
         }
 
-        document.dispatchEvent(new CustomEvent("ntsStopRadio"));
+        const radioPlayer = document.querySelector("audio");
+
+        if (radioPlayer) {
+            radioPlayer.pause();
+        }
     },
     toggle: function() {
         const mixcloudContent = document.getElementById("mixcloud-content");

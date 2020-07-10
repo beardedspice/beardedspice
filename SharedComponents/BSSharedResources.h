@@ -5,9 +5,17 @@
 //  Created by Roman Sokolov on 20.08.2018.
 //  Copyright © 2018  GPL v3 http://www.gnu.org/licenses/gpl.html
 //
+
 #define LOG_LEVEL_DEF ddLogLevel
+
+#ifdef DEBUG
+#define DD_LOG_LEVEL DDLogLevelDebug
+#else
+#define DD_LOG_LEVEL DDLogLevelInfo
+#endif
+
 #import <Foundation/Foundation.h>
-#import <CocoaLumberjack/CocoaLumberjack.h>
+@import CocoaLumberjack;
 
 typedef void (^BSSListenerBlock)(void);
 
@@ -15,7 +23,6 @@ typedef void (^BSSListenerBlock)(void);
 #pragma mark - BSSharedResources Constants
 
 extern DDLogLevel ddLogLevel;
-extern DDLogLevel DDDefaultLogLevel;
 
 extern NSString *const BeardedSpicePlayPauseShortcut;
 extern NSString *const BeardedSpiceNextTrackShortcut;

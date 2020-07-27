@@ -12,9 +12,6 @@
 #import "MediaStrategyRegistry.h"
 #import "BSVolumeControlProtocol.h"
 
-/// Delay displaying notification after changing favorited status of the current track.
-#define FAVORITED_DELAY         1.0
-
 /// Delay displaying notification after pressing next/previous track.
 #define CHANGE_TRACK_DELAY      2.0
 
@@ -52,7 +49,8 @@ static inline BOOL alwaysShowNotification() {
 - (void)favorite;
 
 - (void)showNotification;
-- (void)showNotificationUsingFallback:(BOOL)useFallback;
+- (void)showNotificationDelayedUsingFallback:(BOOL)useFallback;
+- (void)showNotificationNowUsingFallback:(BOOL)useFallback;
 - (void)showDefaultNotification;
 
 - (void)activateTab;

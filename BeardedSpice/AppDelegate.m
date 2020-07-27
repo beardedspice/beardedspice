@@ -294,7 +294,7 @@ BOOL accessibilityApiEnabled = NO;
     dispatch_async(_workingQueue, ^{
         __strong typeof(wself) sself = self;
         [sself autoSelectTabWithForceFocused:NO];
-        [sself.activeApp showNotificationUsingFallback:YES];
+        [sself.activeApp showNotificationNowUsingFallback:YES];
     });
 }
 

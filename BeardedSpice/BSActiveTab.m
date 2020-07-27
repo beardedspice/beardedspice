@@ -11,6 +11,7 @@
 #import "BSMediaStrategy.h"
 #import "BSTrack.h"
 #import "runningSBApplication.h"
+#import "EHExecuteBlockDelayed.h"
 
 // Create serial queue for notification
 // We need queue because track info may contain image,
@@ -184,7 +185,7 @@ dispatch_queue_t notificationQueue() {
             && [_activeTab showNotifications]
             && alwaysShowNotification()
             && ![_activeTab frontmost])
-            dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
+            [wself showNotificationDelayedUsingFallback:NO];
     } @catch (NSException *exception) {
         DDLogError(@"Exception occured: %@", exception);
     }
@@ -197,7 +198,7 @@ dispatch_queue_t notificationQueue() {
             && [_activeTab showNotifications]
             && alwaysShowNotification()
             && ![_activeTab frontmost])
-            dispatch_main_after(CHANGE_TRACK_DELAY, ^{ [wself showNotification]; });
+            [wself showNotificationDelayedUsingFallback:NO];
     } @catch (NSException *exception) {
         DDLogError(@"Exception occured: %@", exception);
     }
@@ -209,7 +210,7 @@ dispatch_queue_t notificationQueue() {
         if ([_activeTab favorite]
             && [_activeTab showNotifications]
             && [[_activeTab trackInfo] favorited])
-            dispatch_main_after(FAVORITED_DELAY, ^{ [wself showNotification]; });
+            [wself showNotificationDelayedUsingFallback:NO];
     } @catch (NSException *exception) {
         DDLogError(@"Exception occured: %@", exception);
     }
@@ -257,10 +258,10 @@ dispatch_queue_t notificationQueue() {
 #pragma mark - Notification logic
 
 - (void)showNotification {
-    [self showNotificationUsingFallback:NO];
+    [self showNotificationNowUsingFallback:NO];
 }
 
-- (void)showNotificationUsingFallback:(BOOL)useFallback {
+- (void)showNotificationNowUsingFallback:(BOOL)useFallback {
 
     __weak typeof(self) wself = self;
     dispatch_async(notificationQueue(), ^{
@@ -274,6 +275,30 @@ dispatch_queue_t notificationQueue() {
         }
     });
 }
+
+- (void)showNotificationDelayedUsingFallback:(BOOL)useFallback {
+    static EHExecuteBlockDelayed *delayedBlock;
+    static BOOL fallback = NO;
+    static dispatch_once_t onceToken;
+    ASSIGN_WEAK(self);
+    dispatch_once(&onceToken, ^{
+        delayedBlock = [[EHExecuteBlockDelayed alloc] initWithTimeout:CHANGE_TRACK_DELAY
+                                                               leeway:CHANGE_TRACK_DELAY queue:notificationQueue()
+                                                                block:^{
+            @autoreleasepool {
+                @try {
+                    ASSIGN_STRONG(self);
+                    [USE_STRONG(self) _showNotificationUsingFallback:fallback];
+                } @catch (NSException *exception) {
+                    DDLogDebug(@"(AppDelegate - showNotificationUsingFallback) Error showing notification: %@.", [exception description]);
+                }
+            }
+        }];
+    });
+    fallback = useFallback;
+    [delayedBlock executeOnceAfterCalm];
+}
+
 - (void)_showNotificationUsingFallback:(BOOL)fallback {
 
     BSTrack *track = nil;

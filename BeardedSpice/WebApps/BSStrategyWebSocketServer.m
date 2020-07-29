@@ -442,32 +442,33 @@ static NSArray *tabClasses;
             _tabsServer.delegateQueue = _workQueue;
             _tabsServer.delegate = self;
             
-            _oQueue = [NSOperationQueue new];
-            _oQueue.underlyingQueue = _tabsServer.delegateQueue;
             id observer = [[NSNotificationCenter defaultCenter]
                            addObserverForName:BSMediaStrategyRegistryChangedNotification
-                           object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
-                               
-                               [self setAcceptersForSafari];
-                               @synchronized (self) {
-                                   @autoreleasepool {
-                                       self->_enabledStrategiesJson = nil;
-                                       // notify only one tab for application
-                                       NSMutableSet *bundleIds = [NSMutableSet set];
-                                       for (BSWebTabAdapter *item in self->_tabs) {
-                                           NSString *bundleId = item.application.bundleIdentifier;
-                                           if (bundleId) {
-                                               if ([bundleIds containsObject:bundleId]) {
-                                                   continue;
-                                               }
-                                               if ([item notifyThatGlobalSettingsChanged]) {
-                                                   [bundleIds addObject:bundleId];
-                                               }
-                                           }
-                                       }
-                                   }
-                               }
-                           }];
+                           object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+                dispatch_async(self->_tabsServer.delegateQueue, ^{
+                    DDLogDebug(@"BSMediaStrategyRegistryChangedNotification observer");
+                    [self setAcceptersForSafari];
+                    @synchronized (self) {
+                        @autoreleasepool {
+                            self->_enabledStrategiesJson = nil;
+                            // notify only one tab for application
+                            NSMutableSet *bundleIds = [NSMutableSet set];
+                            for (BSWebTabAdapter *item in self->_tabs) {
+                                NSString *bundleId = item.application.bundleIdentifier;
+                                if (bundleId) {
+                                    if ([bundleIds containsObject:bundleId]) {
+                                        continue;
+                                    }
+                                    if ([item notifyThatGlobalSettingsChanged]) {
+                                        [bundleIds addObject:bundleId];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                });
+            }];
             if (observer) {
                 [_observers addObject:observer];
             }

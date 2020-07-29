@@ -114,8 +114,6 @@ BOOL accessibilityApiEnabled = NO;
     BSStrategyCache *strategyCache = [BSStrategyCache new];
     [strategyCache loadStrategies];
 
-    self.versionManager = [[BSStrategyVersionManager alloc] initWithStrategyCache:strategyCache];
-
     self.activeApp = [BSActiveTab new];
 
     // setup default media strategy
@@ -440,7 +438,7 @@ BOOL accessibilityApiEnabled = NO;
     
     BOOL checkFromMenu = (sender != self);
     ASSIGN_WEAK(self);
-    [_versionManager updateStrategiesWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
+    [BSStrategyVersionManager.singleton updateStrategiesWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             ASSIGN_STRONG(self);
             if (error && checkFromMenu) {

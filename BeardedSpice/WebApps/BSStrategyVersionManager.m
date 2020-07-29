@@ -16,35 +16,38 @@
 NSString *BSVMStrategyChangedNotification = @"BSVMStrategyChangedNotification";
 NSString *const BSVMStrategyErrorDomain = @"BSVMStrategyErrorDomain";
 
-@interface BSStrategyVersionManager ()
-
-@property (nonatomic, strong) BSStrategyCache *strategyCache;
-@end
-
 @implementation BSStrategyVersionManager
 
-- (instancetype)initWithStrategyCache:(BSStrategyCache *)cache
-{
-    self = [super init];
-    if (self)
-    {
-        _strategyCache = cache;
+static BSStrategyVersionManager *singletonStrategyVersionManager;
+
+/////////////////////////////////////////////////////////////////////
+#pragma mark - Initialize
+
++ (BSStrategyVersionManager *)singleton{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        singletonStrategyVersionManager = [BSStrategyVersionManager alloc];
+        singletonStrategyVersionManager = [singletonStrategyVersionManager init];
+    });
+    
+    return singletonStrategyVersionManager;
+    
+}
+
+- (id)init{
+    
+    if (singletonStrategyVersionManager != self) {
+        return nil;
     }
+    self = [super init];
+    
     return self;
 }
 
-#pragma mark - Version Accessors
-
-- (BSMediaStrategy *)mediaStrategy:(NSString *)mediaStrategy
-{
-    if (!mediaStrategy || !mediaStrategy.length)
-        return nil;
-
-    return [_strategyCache strategyForFileName:[mediaStrategy stringByAppendingString:@".js"]];
-}
-
-
-#pragma mark - Network Operations
+/////////////////////////////////////////////////////////////////////
+#pragma mark Network Operations (Public)
 
 - (void)updateStrategiesWithCompletion:(void (^)(NSArray<NSString *> *updatedNames, NSError *error))completion {
     
@@ -122,15 +125,15 @@ NSString *const BSVMStrategyErrorDomain = @"BSVMStrategyErrorDomain";
 
     if (!success)
         return NO;
-
-    NSError *err = [self.strategyCache updateStrategyWithURL:pathToFile];
+    BSStrategyCache *cache = [[MediaStrategyRegistry singleton] strategyCache];
+    NSError *err = [cache updateStrategyWithURL:pathToFile];
     if (!err) {
         return  YES;
     }
     
     if (err.code == BSSC_ERROR_STRATEGY_NOTFOUND) {
         
-        BSMediaStrategy *newStrategy = [self.strategyCache addStrategyWithURL:pathToFile];
+        BSMediaStrategy *newStrategy = [cache addStrategyWithURL:pathToFile];
         if (newStrategy) {
             
             [[MediaStrategyRegistry singleton] addAvailableMediaStrategy:newStrategy];
@@ -140,6 +143,18 @@ NSString *const BSVMStrategyErrorDomain = @"BSVMStrategyErrorDomain";
     
     return NO;
 }
+
+#pragma mark - Version Accessors
+
+- (BSMediaStrategy *)mediaStrategy:(NSString *)mediaStrategy
+{
+    if (!mediaStrategy || !mediaStrategy.length)
+        return nil;
+
+    return [MediaStrategyRegistry.singleton.strategyCache strategyForFileName:[mediaStrategy stringByAppendingString:@".js"]];
+}
+
+
 
 #pragma mark - Helper Methods
 

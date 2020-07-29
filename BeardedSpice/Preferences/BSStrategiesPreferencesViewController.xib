@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,14 +23,45 @@
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="500" height="573"/>
             <subviews>
+                <box boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6sh-qZ-67o">
+                    <rect key="frame" x="44" y="477" width="412" height="28"/>
+                    <view key="contentView" id="j1h-rB-gJg">
+                        <rect key="frame" x="1" y="1" width="410" height="26"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4J-Ni-CcF">
+                                <rect key="frame" x="20" y="2" width="370" height="22"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Filter" usesSingleLineMode="YES" bezelStyle="round" id="I4q-01-DtP">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <action selector="clickSearchField:" target="-2" id="Uka-1U-Yrl"/>
+                                </connections>
+                            </searchField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="i4J-Ni-CcF" secondAttribute="bottom" constant="2" id="J2n-YA-RnY"/>
+                            <constraint firstAttribute="trailing" secondItem="i4J-Ni-CcF" secondAttribute="trailing" constant="20" id="Lj4-tA-9mn"/>
+                            <constraint firstItem="i4J-Ni-CcF" firstAttribute="top" secondItem="j1h-rB-gJg" secondAttribute="top" constant="2" id="MQf-0e-3i7"/>
+                            <constraint firstItem="i4J-Ni-CcF" firstAttribute="leading" secondItem="j1h-rB-gJg" secondAttribute="leading" constant="20" id="bpr-Kl-l4k"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="8YG-Ly-jyG"/>
+                    </constraints>
+                    <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                    <color key="fillColor" name="alternatingContentBackgroundColor" catalog="System" colorSpace="catalog"/>
+                </box>
                 <scrollView horizontalCompressionResistancePriority="1000" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1v-BS-YGw">
                     <rect key="frame" x="44" y="278" width="412" height="200"/>
                     <clipView key="contentView" id="kCd-gv-NCo">
-                        <rect key="frame" x="1" y="1" width="410" height="198"/>
+                        <rect key="frame" x="1" y="1" width="395" height="198"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="GEG-vL-atM" userLabel="Strategies View">
-                                <rect key="frame" x="0.0" y="0.0" width="410" height="198"/>
+                                <rect key="frame" x="0.0" y="0.0" width="395" height="198"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="4" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +78,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </tableColumn>
-                                    <tableColumn identifier="name" editable="NO" width="350" minWidth="262" maxWidth="350" id="yy8-Wa-ZAL">
+                                    <tableColumn identifier="name" editable="NO" width="343" minWidth="262" maxWidth="350" id="yy8-Wa-ZAL">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,7 +117,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Km1-dq-voD">
-                        <rect key="frame" x="395" y="1" width="16" height="198"/>
+                        <rect key="frame" x="396" y="1" width="15" height="198"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -98,6 +129,12 @@
                     </buttonCell>
                     <connections>
                         <action selector="clickExport:" target="-2" id="sRD-Yo-sTd"/>
+                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowExport" id="ohl-it-00T">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="5i6-vh-4jl" name="enabled2" keyPath="values.InUpdatingStrategiesState" previousBinding="ohl-it-00T" id="fjL-g6-tGc">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -105,12 +142,6 @@
                                 <integer key="NSNotApplicablePlaceholder" value="1"/>
                                 <integer key="NSNullPlaceholder" value="1"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowExport" id="ohl-it-00T">
-                            <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
                             </dictionary>
                         </binding>
                         <outlet property="nextKeyView" destination="LuP-tH-8rX" id="tHh-gX-axh"/>
@@ -143,6 +174,12 @@
                     </buttonCell>
                     <connections>
                         <action selector="clickRemove:" target="-2" id="cUw-3g-6Dh"/>
+                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowRemove" id="j54-2v-8n1">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="5i6-vh-4jl" name="enabled2" keyPath="values.InUpdatingStrategiesState" previousBinding="j54-2v-8n1" id="8g4-p7-6Pw">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -152,45 +189,8 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.selectedRowAllowRemove" id="j54-2v-8n1">
-                            <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </button>
-                <box boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6sh-qZ-67o">
-                    <rect key="frame" x="44" y="477" width="412" height="28"/>
-                    <view key="contentView" id="j1h-rB-gJg">
-                        <rect key="frame" x="1" y="1" width="410" height="26"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4J-Ni-CcF">
-                                <rect key="frame" x="20" y="2" width="370" height="22"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Filter" usesSingleLineMode="YES" bezelStyle="round" id="I4q-01-DtP">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <action selector="clickSearchField:" target="-2" id="Uka-1U-Yrl"/>
-                                </connections>
-                            </searchField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="i4J-Ni-CcF" secondAttribute="bottom" constant="2" id="J2n-YA-RnY"/>
-                            <constraint firstAttribute="trailing" secondItem="i4J-Ni-CcF" secondAttribute="trailing" constant="20" id="Lj4-tA-9mn"/>
-                            <constraint firstItem="i4J-Ni-CcF" firstAttribute="top" secondItem="j1h-rB-gJg" secondAttribute="top" constant="2" id="MQf-0e-3i7"/>
-                            <constraint firstItem="i4J-Ni-CcF" firstAttribute="leading" secondItem="j1h-rB-gJg" secondAttribute="leading" constant="20" id="bpr-Kl-l4k"/>
-                        </constraints>
-                    </view>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="8YG-Ly-jyG"/>
-                    </constraints>
-                    <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                    <color key="fillColor" name="alternatingContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                </box>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="23b-fP-Ezk">
                     <rect key="frame" x="44" y="216" width="412" height="5"/>
                 </box>

@@ -11,8 +11,10 @@
 #import "BSStrategyCache.h"
 #import "TabAdapter.h"
 #import "EHCCache.h"
+#import "EHExecuteBlockDelayed.h"
 
 #define MAX_REGISTERED_CACHE            500
+#define NOTOFICATION_RELAX_TIMEOUT      2 //seconds
 
 NSString *BSMediaStrategyRegistryChangedNotification = @"BSMediaStrategyRegistryChangedNotification";
 
@@ -22,6 +24,9 @@ NSString *BSMediaStrategyRegistryChangedNotification = @"BSMediaStrategyRegistry
 @end
 
 @implementation MediaStrategyRegistry {
+    BOOL _massChanging;
+    BOOL _changed;
+    EHExecuteBlockDelayed *_notifyRelaxer;
 }
 
 static MediaStrategyRegistry *singletonMediaStrategyRegistry;
@@ -48,7 +53,20 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
         return nil;
     }
     self = [super init];
-
+    _massChanging = _changed = NO;
+    
+    _notifyRelaxer = [[EHExecuteBlockDelayed alloc] initWithTimeout:NOTOFICATION_RELAX_TIMEOUT
+                                                       leeway:NOTOFICATION_RELAX_TIMEOUT
+                                                        queue:dispatch_get_main_queue()
+                                                        block:^{
+        if (self->_massChanging) {
+            self->_changed = YES;
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+        }
+    }];
+    
     return self;
 }
 
@@ -76,21 +94,31 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Methods
+- (void)beginChangingAvailableMediaStrategies {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self->_massChanging = YES;
+    });
+}
+
+- (void)endChangingAvailableMediaStrategies {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self->_massChanging && self->_changed) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+        }
+        self->_massChanging = self->_changed = NO;
+    });
+}
 
 -(void) addAvailableMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies addObject:strategy];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
-    });
+    [_notifyRelaxer executeOnceAfterCalm];
 }
 
 -(void) removeAvailableMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
-    });
+    [_notifyRelaxer executeOnceAfterCalm];
 }
 
 @end

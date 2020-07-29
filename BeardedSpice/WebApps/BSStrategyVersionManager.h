@@ -28,12 +28,7 @@ extern NSString *const BSVMStrategyErrorDomain;
  */
 @interface BSStrategyVersionManager : NSObject
 
-@property (nonatomic, strong, readonly) BSStrategyCache *strategyCache;
-
-/**
- FIXME documentation about how strategyCache is the central point of ref
- */
-- (instancetype)initWithStrategyCache:(BSStrategyCache *)cache;
+@property (class, readonly) BSStrategyVersionManager *singleton;
 
 /**
  Downloads the versions.plist file from the target repository URL and checks if any new strategy template

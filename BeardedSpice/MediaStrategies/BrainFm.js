@@ -5,31 +5,38 @@
 //  Created by James Greenleaf on 03/05/16.
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
+//  Updated by Andy Chong (@andychongyz) on 14/10/20.
+//
+
 BSStrategy = {
   version: 1,
   displayName: "Brain.fm",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*brain.fm/app*'",
-    args: ["URL"]
+    args: ["URL"],
   },
   isPlaying: function () {
-    var p = document.querySelector('#play_button');
-    return p.classList.contains('tc_pause');
+    return document.querySelector("[class^='PlayControl__pause']") !== null;
   },
-  toggle: function () {document.querySelectorAll('#play_button')[0].click();},
+  toggle: function () {
+    document.querySelector("[class^='PlayControl__']").click();
+  },
   previous: function () {},
-  next: function () {return document.querySelectorAll('#skip_button')[0].click()},
+  next: function () {
+    return document.querySelector("[class^='Skip__skip']").click();
+  },
   pause: function () {
-    var p = document.querySelectorAll('#play_button')[0];
-    if(p.classList.contains('tc_pause')){
+    var p = document.querySelector("[class^='PlayControl__']");
+    if (document.querySelector("[class^='PlayControl__pause']") !== null) {
       p.click();
     }
   },
   favorite: function () {},
-  trackInfo: function (){
+  trackInfo: function () {
     return {
-      track: document.querySelector('#playing_title').textContent
-    }
-  }
-}
+      track: document.querySelectorAll("[class^='Controls__brainState']")[1]
+        .textContent,
+    };
+  },
+};

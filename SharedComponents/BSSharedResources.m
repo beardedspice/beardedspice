@@ -53,7 +53,8 @@ static BSSListenerBlock _onAcceptersChangedBlock;
 static BSSListenerBlock _onTabPortChangedBlock;
 static NSURL *_logsDirectory;
 
-DDLogLevel ddLogLevel = DD_LOG_LEVEL;
+
+DDLogLevel ddLogLevel = DDLogLevelDebug;
 
 + (void)initialize{
     

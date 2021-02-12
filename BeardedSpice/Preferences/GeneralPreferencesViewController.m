@@ -54,7 +54,7 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 
 - (NSString *)viewIdentifier
 {
-    return @"GeneralPreferences";
+    return [GeneralPreferencesViewController className];
 }
 
 - (NSImage *)toolbarItemImage
@@ -70,8 +70,8 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
 - (void)viewWillAppear{
 
     [self repairLaunchAtLogin];
-    self.enableBrowserExtensions.state = [[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled] ? NSControlStateValueOn : NSControlStateValueOff;
 }
+
 
 - (NSView *)initialKeyView{
 
@@ -127,7 +127,29 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
                             }];
     });
     NSButton *button = sender;
-    [[NSUserDefaults standardUserDefaults] setBool:(button.state == NSControlStateValueOn) forKey:BSWebSocketServerEnabled];
+    BOOL enabled = (button.state == NSControlStateValueOn);
+    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:BSWebSocketServerEnabled];
+    if (enabled && [[NSUserDefaults standardUserDefaults] boolForKey:BeardieBrowserExtensionsFirstRun]) {
+        
+        NSAlert *alert = [NSAlert new];
+        alert.alertStyle = NSAlertStyleWarning;
+        alert.messageText = BSLocalizedString(@"install-control-server-cert-title", @"");
+        alert.informativeText = BSLocalizedString(@"install-control-server-cert-text", @"");
+        [alert addButtonWithTitle:BSLocalizedString(@"continue-button-title", @"Button title")];
+        
+        [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"Button title")];
+        
+        // attach alert to window
+        [alert beginSheetModalForWindow:self.view.window
+                      completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSAlertFirstButtonReturn) {
+                [sendNotification executeOnceAfterCalm];
+                return;
+            }
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BSWebSocketServerEnabled];
+        }];
+        return;
+    }
     [sendNotification executeOnceAfterCalm];
 }
 
@@ -151,5 +173,10 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
         });
     });
 }
+
+- (void)displayWarningDialog {
+    
+}
+
 
 @end

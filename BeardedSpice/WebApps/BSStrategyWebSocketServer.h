@@ -33,7 +33,7 @@ extern NSString *const BSWebSocketServerStartedNotification;
 @property (nonatomic,readonly) uint16_t tabsPort;
 @property (nonatomic, readonly) BOOL started;
 
-- (void)start;
+- (BOOL)start;
 /**
  Stops server.
 

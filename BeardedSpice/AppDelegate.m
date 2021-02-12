@@ -156,7 +156,7 @@ BOOL accessibilityApiEnabled = NO;
     _browserExtensionsController = BSBrowserExtensionsController.singleton;
     [_browserExtensionsController start];
     
-    [self checkFirstRun];
+    [self firstRunInstall];
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
@@ -194,7 +194,28 @@ BOOL accessibilityApiEnabled = NO;
     return NSTerminateNow;
 }
 
-- (void)checkFirstRun {
+- (void)firstRunInstall {
+    if (accessibilityApiEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceFirstRun]) {
+        
+        NSAlert *alert = [NSAlert new];
+        alert.alertStyle = NSAlertStyleInformational;
+        alert.messageText = BSLocalizedString(@"fistrun-open-preference-title", @"");
+        alert.informativeText = BSLocalizedString(@"fistrun-open-preference-text", @"");
+        [alert addButtonWithTitle:BSLocalizedString(@"fistrun-open-preferences-button-title", @"Button title")];
+        
+        [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"Button title")];
+        
+        [APPDELEGATE windowWillBeVisible:alert];
+        
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            [self openPreferences:self];
+            [(BSPreferencesWindowController *)self.preferencesWindowController selectControllerWithIdentifier:GeneralPreferencesViewController.className];
+        };
+        
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];
+        [APPDELEGATE removeWindow:alert];
+
+    }
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardieBrowserExtensionsFirstRun]) {
         //when `first run` operations completed
         dispatch_block_t completion = ^(){[[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardieBrowserExtensionsFirstRun];};
@@ -470,8 +491,13 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (IBAction)clickAboutFromStatusMenu:(id)sender {
+    [self windowWillBeVisible:NSApp];
+
     [NSApp orderFrontStandardAboutPanel:sender];
-    [self windowWillBeVisible:NSApp.keyWindow];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self windowWillBeVisible:NSApp.keyWindow];
+        [self removeWindow:NSApp];
+    });
 }
 
 - (IBAction)exitApp:(id)sender
@@ -746,6 +772,11 @@ BOOL accessibilityApiEnabled = NO;
 
         NSString *title = BSLocalizedString(@"Preferences", @"Common title for Preferences window");
         _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+        
+        if (@available(macOS 11.0, *)) {
+            _preferencesWindowController.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+        }
+        
     }
     return _preferencesWindowController;
 }

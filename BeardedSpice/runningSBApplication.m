@@ -17,35 +17,6 @@
 
 static NSMutableDictionary *_sharedAppHandler;
 
-//+ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier {
-//    
-//    if (! processIdentifier) {
-//        return nil;
-//    }
-//    
-//    @synchronized(self) {
-//        @autoreleasepool {
-//            
-//            if (_sharedAppHandler == nil) {
-//                _sharedAppHandler = [NSMutableDictionary dictionary];
-//            }
-//            runningSBApplication *app = _sharedAppHandler[@(processIdentifier)];
-//            if (! (app && [app runningApplication])) {
-//                
-//                NSRunningApplication *runningApp = [NSRunningApplication runningApplicationWithProcessIdentifier:processIdentifier];
-//                if (runningApp) {
-//                    app = [runningSBApplication new];
-//                    app->_bundleIdentifier = runningApp.bundleIdentifier;
-//                    app->_processIdentifier = processIdentifier;
-//                    app->_sbApplication = [SBApplication applicationWithProcessIdentifier:processIdentifier];
-//                    _sharedAppHandler[@(processIdentifier)] = app;
-//                }
-//            }
-//            return app;
-//        }
-//    }
-//}
-
 + (instancetype)sharedApplicationForBundleIdentifier:(NSString *)bundleIdentifier {
     
     if ([NSString isNullOrEmpty:bundleIdentifier]) {

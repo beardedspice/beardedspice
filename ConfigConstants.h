@@ -1,7 +1,7 @@
 #define BS_UNSUPPORTED_STRATEGY_URL_FORMAT    @"https://raw.githubusercontent.com/beardedspice/BS-Strategies/master/%@.bsstrategy"
 #define BS_NAME    @"Beardie"
 #define BS_GROUP    @"5F2QV47DGC.com.calm-apps.mac.beardie"
-#define BS_BUILD    @"58"
+#define BS_BUILD    @"59"
 #define BS_TEAM    @"5F2QV47DGC"
 #define BS_SAFARI_TECHPREVIEW_ID    @"com.apple.SafariTechnologyPreview"
 #define BS_VERSION    @"3.0.3 alpha"

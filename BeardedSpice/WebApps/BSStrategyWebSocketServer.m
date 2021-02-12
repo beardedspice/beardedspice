@@ -83,18 +83,18 @@ static NSArray *tabClasses;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Public properties and methods
 
-- (void)start {
+- (BOOL)start {
     
     @synchronized (self) {
         
         if (self.started) {
-            return;
+            return YES;
         }
         
         if ([self loadCertificate]) {
             [self startTabServer];
         }
-        
+        return self.started;
     }
 }
 

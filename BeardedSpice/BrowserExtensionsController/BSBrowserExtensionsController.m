@@ -21,6 +21,7 @@
     dispatch_queue_t _workQueue;
     NSOperationQueue *_oQueue;
     BOOL _started;
+    BOOL _displayWarningDialog;
 }
 
 static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
@@ -77,7 +78,9 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
                                    if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
                                        [self installNativeMessagingComponents];
                                        DDLogInfo(@"ChromeExtensionMaintenance install result: %@", [ChromeExtensionMaintenance install] ? @"YES" : @"NO");
-                                       [self->_webSocketServer start];
+                                       if ([self->_webSocketServer start] == NO) {
+                                           [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BSWebSocketServerEnabled];
+                                       }
                                    }
                                    else {
                                        [self uninstallNativeMessagingComponents];
@@ -92,7 +95,9 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
             if ([[NSUserDefaults standardUserDefaults] boolForKey:BSWebSocketServerEnabled]) {
                 [self installNativeMessagingComponents];
                 DDLogInfo(@"ChromeExtensionMaintenance install result: %@", [ChromeExtensionMaintenance install] ? @"YES" : @"NO");
-                [self->_webSocketServer start];
+                if ([self->_webSocketServer start] == NO) {
+                    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BSWebSocketServerEnabled];
+                }
             }
             self->_started = YES;
         }
@@ -103,7 +108,7 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
     AppDelegate *app = (AppDelegate *)NSApp.delegate;
     BSPreferencesWindowController *windowController = (BSPreferencesWindowController *)app.preferencesWindowController;
     [app openPreferences:self];
-    [windowController selectControllerAtIndex:0];
+    [windowController selectControllerWithIdentifier:GeneralPreferencesViewController.className];
     dispatch_async(dispatch_get_main_queue(), ^{
         GetExtensions *dialog = [[GetExtensions alloc] initWithWindowNibName:@"GetExtensions"];
         [dialog beginSheetForWindow:windowController.window];
@@ -174,5 +179,6 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
     BOOL result = [ChromeNativeMessaging removeManifest];
     DDLogInfo(@"ChromeNativeMessaging uninstall result: %@", result ? @"YES" : @"NO");
 }
+
 
 @end

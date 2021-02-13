@@ -16,6 +16,7 @@
 @implementation BSNativeAppTabsController {
     
     NSArray <BSNativeAppTabAdapter *> *_tabs;
+    BOOL _cacheInvalidated;
     dispatch_queue_t _workQueue;
     NSOperationQueue *_oQueue;
     id _observer;
@@ -56,11 +57,13 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
         
         _oQueue = [NSOperationQueue new];
         _oQueue.underlyingQueue = _workQueue;
+        ASSIGN_WEAK(self);
         _observer = [[NSNotificationCenter defaultCenter]
                      addObserverForName:BSNativeAppTabsRegistryChangedNotification
                      object:nil queue:_oQueue usingBlock:^(NSNotification * _Nonnull note) {
-                         [self fillCache];
-                     }];
+            ASSIGN_STRONG(self);
+            [USE_STRONG(self) fillCache];
+        }];
     }
     
     return self;
@@ -81,7 +84,11 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
 #pragma mark Public properties and methods
 
 - (NSArray <BSNativeAppTabAdapter *> *)tabs {
+    
     @synchronized (self) {
+        if (self->_cacheInvalidated) {
+            [self fillCache];
+        }
         return [_tabs copy];
     }
 }
@@ -102,34 +109,36 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
 
 - (void)fillCache{
     dispatch_async(_workQueue, ^{
-        @autoreleasepool {
-            NSMutableArray *tabs = [NSMutableArray new];
-            BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-            for (Class nativeApp in [[NativeAppTabsRegistry singleton] enabledNativeAppClasses]) {
-                DDLogDebug(@"(BSNativeAppTabsController - fillCache) native app - %@", [nativeApp bundleId]);
-                runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
-                if (app) {
-                    BSNativeAppTabAdapter *tab = [nativeApp tabAdapterWithApplication:app];
-                    if (tab) {
-                        [tabs addObject:tab];
-                    }
-                    else {
-                        DDLogDebug(@"(BSNativeAppTabsController - fillCache) tab object did not create - %@", [nativeApp bundleId]);
-                    }
+
+    @autoreleasepool {
+        NSMutableArray *tabs = [NSMutableArray new];
+        BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
+        for (Class nativeApp in [[NativeAppTabsRegistry singleton] enabledNativeAppClasses]) {
+            DDLogDebug(@"(BSNativeAppTabsController - fillCache) native app - %@", [nativeApp bundleId]);
+            runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
+            if (app) {
+                BSNativeAppTabAdapter *tab = [nativeApp tabAdapterWithApplication:app];
+                if (tab) {
+                    [tabs addObject:tab];
                 }
                 else {
-                    DDLogDebug(@"(BSNativeAppTabsController - fillCache) app object did not create - %@", [nativeApp bundleId]);
-                }
-                if (timeout.reached) {
-                    DDLogDebug(@"(BSNativeAppTabsController - fillCache) timeout.reached");
-                    break;
+                    DDLogDebug(@"(BSNativeAppTabsController - fillCache) tab object did not create - %@", [nativeApp bundleId]);
                 }
             }
-            @synchronized(self) {
-                self->_tabs = [tabs copy];
-                DDLogDebug(@"(BSNativeAppTabsController - fillCache) cache count - %lu", (unsigned long)self->_tabs.count);
+            else {
+                DDLogDebug(@"(BSNativeAppTabsController - fillCache) app object did not create - %@", [nativeApp bundleId]);
+            }
+            if (timeout.reached) {
+                DDLogDebug(@"(BSNativeAppTabsController - fillCache) timeout.reached");
+                break;
             }
         }
+        @synchronized(self) {
+            self->_cacheInvalidated = timeout.reached;
+            self->_tabs = [tabs copy];
+            DDLogDebug(@"(BSNativeAppTabsController - fillCache) cache count - %lu", (unsigned long)self->_tabs.count);
+        }
+    }
     });
 }
 

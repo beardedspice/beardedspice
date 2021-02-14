@@ -104,7 +104,6 @@ static NSSet *_chromeBundleIds;
                 @synchronized (self) {
                     _application = nil;
                     _realBundleId = app.bundleIdentifier;
-                    [self sendMessage:[NSString stringWithFormat:@"{\"realBundleId\":\"%@\"}",  _realBundleId]];
                 }
                 [[NSWorkspace sharedWorkspace] removeObserver:self forKeyPath:@"frontmostApplication" context:&_realBundleId];
                 self.application.wasActivated = YES;

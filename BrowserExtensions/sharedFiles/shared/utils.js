@@ -133,7 +133,7 @@ var BSUtils = {
         if (typeof safari !== "undefined" && safari ) {
             return (window.navigator.standalone === true);
         } else if (typeof chrome !== "undefined" && chrome) {
-            return (window.matchMedia('(display-mode: standalone)').matches);
+            return !(window.matchMedia('(display-mode: browser)').matches);
         }
     },
 

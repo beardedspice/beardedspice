@@ -14,6 +14,7 @@
 #define BS_CONTROLLER_BUNDLE_ID    @"com.calm-apps.mac.beardie.controllers"
 #define BS_HOMEPAGE    @"https://github.com/Stillness-2/beardie"
 #define BS_NATIVE_MESSAGING_CONNECTOR_NAME    @"beardie-nm-connector"
+#define BS_CHROME_EXTENSION_ID_DEV    @"kfecbffboepnaccakdfaionjkemmmljp"
 #define BS_SAFARI_EXTENSION_BUNDLE_ID    @"com.calm-apps.mac.beardie.safari.extension"
 #define BS_COPYRIGHT    @"Copyright © 2020 Beardie. All rights reserved."
 #define BS_CHROME_EXTENSION_ID    @"kcbddjdbhggfejihipchloknandfnkgb"

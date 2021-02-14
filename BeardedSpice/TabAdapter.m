@@ -59,7 +59,7 @@
         
         if (self.application.wasActivated && [self.application frontmost]) {
             BOOL result = ![self.application hide];
-            DDLogDebug(@"![self.application hide] = %d", result);
+            DDLogDebug(@"%@ [self.application hide] = %d", self, !result);
             return ! result;
         }
         self.application.wasActivated = NO;

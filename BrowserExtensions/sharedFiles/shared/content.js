@@ -410,7 +410,7 @@ console.log("(BeardedSpice) Start injection script");
                         try {
                             var obj = JSON.parse(event.data);
                             if (obj.realBundleId != null) {
-                                bundleId = obj.realBundleId;
+                                bundleId = { "result": obj.realBundleId};
                                 console.log("(BeardedSpice) Real Bundle ID set on: %s", bundleId);
                                 _sendOk();
                                 break;

@@ -31,6 +31,8 @@ BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID     = com.calm_apps.mac.beardie.nm.conne
 BS_SAFARI_EXTENSION_BUNDLE_ID               = $(BS_BUNDLE_ID).safari.extension
 BS_CHROME_EXTENSION_ID                      = kcbddjdbhggfejihipchloknandfnkgb
 
+BS_CHROME_EXTENSION_ID_DEV                  = kfecbffboepnaccakdfaionjkemmmljp
+
 //File extension for javascript `strategy` file.
 BS_STRATEGY_EXTENSION                       = bsstrategy
 

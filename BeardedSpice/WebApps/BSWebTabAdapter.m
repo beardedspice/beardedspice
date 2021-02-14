@@ -191,7 +191,7 @@
     BOOL result = NO;
     NSDictionary *response = [self sendMessage:@"frontmost"];
     result = [response[@"result"] boolValue];
-    DDLogDebug(@"Frontmost result: %d, %d", [super frontmost], result);
+    DDLogDebug(@"Frontmost result for %@: %d, %d", self, [super frontmost], result);
     return [super frontmost] && result;
 }
 

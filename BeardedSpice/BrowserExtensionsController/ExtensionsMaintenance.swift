@@ -35,7 +35,8 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
         "path": "\(nmPath)",
         "type": "stdio",
         "allowed_origins": [
-        "chrome-extension://\(BS_CHROME_EXTENSION_ID)/"
+        "chrome-extension://\(BS_CHROME_EXTENSION_ID)/",
+        "chrome-extension://\(BS_CHROME_EXTENSION_ID_DEV)/"
         ]
         }
         """

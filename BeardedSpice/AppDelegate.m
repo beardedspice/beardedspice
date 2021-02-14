@@ -169,29 +169,57 @@ BOOL accessibilityApiEnabled = NO;
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender{
-
-    BSStrategyWebSocketServer *server = _browserExtensionsController.webSocketServer;
-    if (server.started) {
-        
-        [server stopWithComletion:^{
-            [sender terminate:self];
-        }];
-        return NSTerminateLater;
-    }
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] prepareForClosingConnectionWithCompletion:^{
-            [self->_connectionToService invalidate];
-            [sender replyToApplicationShouldTerminate:YES];
-        }];
-
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), _workingQueue, ^{
-            [self->_connectionToService invalidate];
-            [sender replyToApplicationShouldTerminate:YES];
-        });
-        return NSTerminateLater;
-    }
     
-    return NSTerminateNow;
+    DDLogInfo(@"App should terminate request.");
+    
+    static BOOL readyToTerminate = NO;
+    
+    if (readyToTerminate) {
+        return NSTerminateNow;
+    }
+    dispatch_block_t exitBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            readyToTerminate = YES;
+            [NSApp terminate:self];
+            DDLogInfo(@"App ready for terminating.");
+        });
+        
+    };
+    
+    dispatch_block_t stopControllerService = ^{
+        if (self->_connectionToService) {
+            [[self->_connectionToService remoteObjectProxy] prepareForClosingConnectionWithCompletion:^{
+                [self->_connectionToService invalidate];
+                exitBlock();
+            }];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), self->_workingQueue, ^{
+                [self->_connectionToService invalidate];
+                exitBlock();
+            });
+        }
+        else {
+            exitBlock();
+        }
+    };
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+        
+        //--------------------- Stop Services ---------------------------
+        BSStrategyWebSocketServer *server = self->_browserExtensionsController.webSocketServer;
+        if (server.started) {
+            
+            [server stopWithComletion:^{
+                stopControllerService();
+            }];
+        }
+        else {
+            stopControllerService();
+        }
+        
+    });
+    
+    return NSTerminateCancel;
 }
 
 - (void)firstRunInstall {
@@ -724,14 +752,16 @@ BOOL accessibilityApiEnabled = NO;
     if (_AXAPIEnabled){
         NSAlert * alert = [NSAlert new];
         alert.alertStyle = NSAlertStyleCritical;
-        alert.informativeText = BSLocalizedString(@"Once you enable access in System Preferences, you must restart BeardedSpice.", @"Explanation that we need to restart app");
-        alert.messageText = BSLocalizedString(@"You must restart BeardedSpice.", @"Title that we need to restart app");
-        [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Restart button")];
+        alert.informativeText = BSLocalizedString(@"universal-access-granted-dialog-text", @"Explanation that we need to restart app");
+        alert.messageText = BSLocalizedString(@"universal-access-granted-dialog-title", @"Title that we need to restart app");
+        [alert addButtonWithTitle:BSLocalizedString(@"universal-access-granted-dialog-restart-button-title", @"Restart button")];
+        [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"")];
 
         [self windowWillBeVisible:alert];
 
-        [alert runModal];
-
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            [self restartApp];
+        }
         [self removeWindow:alert];
     }
     else{
@@ -739,6 +769,23 @@ BOOL accessibilityApiEnabled = NO;
             [self checkAXAPIEnabled];
         });
     }
+}
+
+- (void)restartApp {
+    static NSTask *_watchdog;
+    
+    NSString *appPath = [[NSBundle mainBundle] builtInPlugInsPath];
+
+    pid_t pid = getpid();
+    NSString *thePid = [NSString stringWithFormat:@"%d", pid];
+    _watchdog = [NSTask launchedTaskWithLaunchPath:[appPath stringByAppendingPathComponent:BS_RESTARTER_NAME]
+                                                arguments:@[[[NSBundle mainBundle] bundlePath], thePid]];
+    
+    DDLogInfo(@"(AAMaintenanceProcedures) Watchdog started.");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSApplication sharedApplication] terminate:self];
+    });
+
 }
 
 - (void)setupSystemEventsCallback
@@ -845,14 +892,14 @@ BOOL accessibilityApiEnabled = NO;
         }
         else if (_AXAPIEnabled){
 
-            item = [statusMenu insertItemWithTitle:BSLocalizedString(@"You must restart BeardedSpice", @"Title on empty menu")
+            item = [statusMenu insertItemWithTitle:BSLocalizedString(@"menu-need-restart-title", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
                                                        atIndex:0];
         }
         else{
 
-            item = [statusMenu insertItemWithTitle:BSLocalizedString(@"No access to control of the keyboard", @"Title on empty menu")
+            item = [statusMenu insertItemWithTitle:BSLocalizedString(@"menu-no-access-title", @"Title on empty menu")
                                                         action:nil
                                                  keyEquivalent:@""
                                                        atIndex:0];

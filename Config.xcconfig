@@ -20,10 +20,15 @@ BS_HOMEPAGE = https:$(XC_SPL)/github.com/Stillness-2/beardie
 BS_UNSUPPORTED_STRATEGY_REPO_URL = https:$(XC_SPL)/github.com/beardedspice/BS-Strategies
 
 
-BS_BUNDLE_ID                                = com.calm-apps.mac.beardie
+BS_ORG_ID                                   = com.calm-apps.mac
+
+BS_BUNDLE_ID                                = $(BS_ORG_ID).beardie
 BS_CONTROLLER_BUNDLE_ID                     = $(BS_BUNDLE_ID).controllers
 
 BS_GROUP                                    = $(DEVELOPMENT_TEAM).$(BS_BUNDLE_ID)
+
+BS_RESTARTER_NAME                           = beardie_restarter
+BS_RESTARTER_BUNDLE_ID                      = $(BS_BUNDLE_ID).restarter
 
 BS_NATIVE_MESSAGING_CONNECTOR_NAME          = beardie-nm-connector
 BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID     = com.calm_apps.mac.beardie.nm.connector

@@ -48,6 +48,9 @@
 		65384DB221874F810029D9E9 /* BS-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65384D9E21874F810029D9E9 /* BS-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65384DBB2187BC5C0029D9E9 /* BSSharedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */; };
 		6539636723129FCE00590316 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6539636623129FCE00590316 /* shared */; };
+		653B09D225D98146005C5807 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653B09D125D98146005C5807 /* main.swift */; };
+		653B0A0025D98920005C5807 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
+		653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Wrappers */ = {isa = PBXBuildFile; fileRef = 653B09CF25D98146005C5807 /* beardie_restarter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
 		654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */; };
@@ -126,7 +129,7 @@
 		65E63ACC2190776200C039B7 /* EHLDeferBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63ACB2190776200C039B7 /* EHLDeferBlock.m */; };
 		65E6475A2385FFA000C6DC21 /* AmazonMusicTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E647582385FFA000C6DC21 /* AmazonMusicTabAdapter.m */; };
 		65E6E0552370AC7A009C9448 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6E0542370AC7A009C9448 /* main.swift */; };
-		65E6E05F237224E1009C9448 /* beardie-nm-connector in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65E6E0522370AC7A009C9448 /* beardie-nm-connector */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		65E6E05F237224E1009C9448 /* beardie-nm-connector in Copy NM Connector */ = {isa = PBXBuildFile; fileRef = 65E6E0522370AC7A009C9448 /* beardie-nm-connector */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		65EE289E1AB6003800EFC886 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */; };
 		65EE28A11AB6003B00EFC886 /* ShortcutsPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EE28A31AB6003B00EFC886 /* ShortcutsPreferencesView.xib */; };
 		65F294A6237C3F34008C1D71 /* BSTVTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F294A5237C3F34008C1D71 /* BSTVTabAdapter.m */; };
@@ -165,6 +168,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 65384D9D21874F810029D9E9;
 			remoteInfo = "Safari Extension";
+		};
+		653B09E725D986AB005C5807 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653B09CE25D98146005C5807;
+			remoteInfo = restarter;
 		};
 		656AFFF31C8ACDCF00BD29F5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -229,6 +239,26 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		653B09CD25D98146005C5807 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		653B0A2D25D9AD73005C5807 /* Copy Wrappers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Wrappers */,
+			);
+			name = "Copy Wrappers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6564BDB01B74BF9C007030D8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,14 +289,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		65E6E05E237224BE009C9448 /* CopyFiles */ = {
+		65E6E05E237224BE009C9448 /* Copy NM Connector */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				65E6E05F237224E1009C9448 /* beardie-nm-connector in CopyFiles */,
+				65E6E05F237224E1009C9448 /* beardie-nm-connector in Copy NM Connector */,
 			);
+			name = "Copy NM Connector";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -362,6 +393,9 @@
 		65384DB92187BC5C0029D9E9 /* BSSharedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSharedResources.h; sourceTree = "<group>"; };
 		65384DBA2187BC5C0029D9E9 /* BSSharedResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSharedResources.m; sourceTree = "<group>"; };
 		6539636623129FCE00590316 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
+		653B09CF25D98146005C5807 /* beardie_restarter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = beardie_restarter; sourceTree = BUILT_PRODUCTS_DIR; };
+		653B09D125D98146005C5807 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		653B0A0B25D98998005C5807 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
@@ -558,6 +592,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		653B09CC25D98146005C5807 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		656AFFE71C8ACDCF00BD29F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,6 +739,15 @@
 				65384DAF21874F810029D9E9 /* Safari_Extension.entitlements */,
 			);
 			path = "Safari Extension";
+			sourceTree = "<group>";
+		};
+		653B09D025D98146005C5807 /* restarter */ = {
+			isa = PBXGroup;
+			children = (
+				653B0A0B25D98998005C5807 /* Bridging-Header.h */,
+				653B09D125D98146005C5807 /* main.swift */,
+			);
+			path = restarter;
 			sourceTree = "<group>";
 		};
 		6557B48D1F6ADBC800295997 /* BrowserExtensionsController */ = {
@@ -976,6 +1026,7 @@
 				656AFFEB1C8ACDCF00BD29F5 /* BeardedSpiceControllers */,
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				65E6E0532370AC7A009C9448 /* beardie-nm-connector */,
+				653B09D025D98146005C5807 /* restarter */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
 				C5F7A2FBB1AC4C50850BCEEB /* Pods */,
@@ -994,6 +1045,7 @@
 				656AFFEA1C8ACDCF00BD29F5 /* BeardieControllers.xpc */,
 				65384D9E21874F810029D9E9 /* BS-Extension.appex */,
 				65E6E0522370AC7A009C9448 /* beardie-nm-connector */,
+				653B09CF25D98146005C5807 /* beardie_restarter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1204,6 +1256,23 @@
 			productReference = 65384D9E21874F810029D9E9 /* BS-Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		653B09CE25D98146005C5807 /* restarter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 653B09D525D98146005C5807 /* Build configuration list for PBXNativeTarget "restarter" */;
+			buildPhases = (
+				653B09CB25D98146005C5807 /* Sources */,
+				653B09CC25D98146005C5807 /* Frameworks */,
+				653B09CD25D98146005C5807 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = restarter;
+			productName = restarter;
+			productReference = 653B09CF25D98146005C5807 /* beardie_restarter */;
+			productType = "com.apple.product-type.tool";
+		};
 		656AFFE91C8ACDCF00BD29F5 /* BeardieControllers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 656AFFF81C8ACDCF00BD29F5 /* Build configuration list for PBXNativeTarget "BeardieControllers" */;
@@ -1254,12 +1323,14 @@
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
 				65384DB621874F810029D9E9 /* Embed App Extensions */,
-				65E6E05E237224BE009C9448 /* CopyFiles */,
+				653B0A2D25D9AD73005C5807 /* Copy Wrappers */,
+				65E6E05E237224BE009C9448 /* Copy NM Connector */,
 				FB9C467E90A69DD3E88791B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				653B09E825D986AB005C5807 /* PBXTargetDependency */,
 				65AA8294239D7EE0000442A2 /* PBXTargetDependency */,
 				65E6E05D23722470009C9448 /* PBXTargetDependency */,
 				65322924200415EB004CE66E /* PBXTargetDependency */,
@@ -1299,7 +1370,7 @@
 			attributes = {
 				CLASSPREFIX = BS;
 				DefaultBuildSystemTypeForWorkspace = Original;
-				LastSwiftUpdateCheck = 1110;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Roman Sokolov";
 				TargetAttributes = {
@@ -1325,6 +1396,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					653B09CE25D98146005C5807 = {
+						CreatedOnToolsVersion = 12.4;
+						ProvisioningStyle = Manual;
 					};
 					656AFFE91C8ACDCF00BD29F5 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1393,6 +1468,7 @@
 				65384D9D21874F810029D9E9 /* BS-Extension */,
 				65E6E0512370AC7A009C9448 /* beardie-nm-connector */,
 				65AA828F239D7E2F000442A2 /* prepare-build */,
+				653B09CE25D98146005C5807 /* restarter */,
 			);
 		};
 /* End PBXProject section */
@@ -1615,6 +1691,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		653B09CB25D98146005C5807 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				653B0A0025D98920005C5807 /* NSException+Utils.m in Sources */,
+				653B09D225D98146005C5807 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		656AFFE61C8ACDCF00BD29F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1757,6 +1842,11 @@
 			isa = PBXTargetDependency;
 			target = 65384D9D21874F810029D9E9 /* BS-Extension */;
 			targetProxy = 65384DB021874F810029D9E9 /* PBXContainerItemProxy */;
+		};
+		653B09E825D986AB005C5807 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653B09CE25D98146005C5807 /* restarter */;
+			targetProxy = 653B09E725D986AB005C5807 /* PBXContainerItemProxy */;
 		};
 		656AFFF41C8ACDCF00BD29F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2052,6 +2142,67 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_SAFARI_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		653B09D325D98146005C5807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_RESTARTER_BUNDLE_ID)";
+				PRODUCT_NAME = "$(BS_RESTARTER_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "restarter/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		653B09D425D98146005C5807 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_RESTARTER_BUNDLE_ID)";
+				PRODUCT_NAME = "$(BS_RESTARTER_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "restarter/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2445,6 +2596,15 @@
 			buildConfigurations = (
 				65384DB321874F810029D9E9 /* Debug */,
 				65384DB421874F810029D9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		653B09D525D98146005C5807 /* Build configuration list for PBXNativeTarget "restarter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				653B09D325D98146005C5807 /* Debug */,
+				653B09D425D98146005C5807 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

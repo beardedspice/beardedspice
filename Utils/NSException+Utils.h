@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSException (Utils)
 
 + (NSException *)argumentException:(NSString *)agrumentName;
@@ -34,3 +36,9 @@
 + (NSException *)notImplementedException;
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+/// Function is used for converting Objective C @try..@catch to NSException object.
+/// This is wrapper for Swift, because Swift doesn't catch Objective C exceptions.
+NSException * _Nullable tryBlock(void(^_Nonnull block)(void));

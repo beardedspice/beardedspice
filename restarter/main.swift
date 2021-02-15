@@ -40,15 +40,7 @@ class TerminationListener: NSObject {
     ) {
         if keyPath == "runningApplications" {
 
-            var notFound = true
-            for app in NSWorkspace.shared.runningApplications {
-
-                if app.processIdentifier == parentProcessId {
-                    notFound = false
-                    break
-                }
-            }
-            if notFound {
+            if NSRunningApplication(processIdentifier: parentProcessId) == nil {
                 relaunch()
             }
         }
@@ -58,10 +50,19 @@ class TerminationListener: NSObject {
         NSWorkspace.shared.launchApplication(executablePath)
         exit(0)
     }
+    
+    func listen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if NSRunningApplication(processIdentifier: self.parentProcessId) == nil {
+                self.relaunch()
+            }
+        }
+        NSApplication.shared.run()
+    }
 }
 
 autoreleasepool {
     
-    var listener = TerminationListener(executablePath: ProcessInfo.processInfo.arguments[1], parentProcessId: pid_t(ProcessInfo.processInfo.arguments[2]))
-    NSApplication.shared.run()
+    let listener = TerminationListener(executablePath: ProcessInfo.processInfo.arguments[1], parentProcessId: pid_t(ProcessInfo.processInfo.arguments[2]))
+    listener.listen()
 }

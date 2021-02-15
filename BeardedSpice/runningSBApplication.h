@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ScriptingBridge/ScriptingBridge.h>
 
-@interface runningSBApplication : NSObject{
-    
-}
+@interface runningSBApplication : NSObject
 
 //+ (instancetype)sharedApplicationForProcessIdentifier:(pid_t)processIdentifier;
 + (instancetype)sharedApplicationForBundleIdentifier:(NSString *)bundleIdentifier;

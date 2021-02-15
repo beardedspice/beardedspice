@@ -13,7 +13,11 @@
 #define COMMAND_TIMEOUT         3 // 0.3 second
 #define RAISING_WINDOW_DELAY    0.1 //0.1 second
 
-@implementation runningSBApplication
+@implementation runningSBApplication {
+    pid_t _processIdentifier;
+    NSRunningApplication *_runningApplicationForHide;
+    NSCondition *_lockForHide;
+}
 
 static NSMutableDictionary *_sharedAppHandler;
 
@@ -33,10 +37,13 @@ static NSMutableDictionary *_sharedAppHandler;
             if (! app) {
                 
                 app = [[runningSBApplication alloc] initWithApplication:nil bundleIdentifier:bundleIdentifier];
-                NSRunningApplication *runningApp = [app runningApplication];
+                NSRunningApplication *runningApp = [[NSRunningApplication runningApplicationsWithBundleIdentifier:bundleIdentifier] firstObject];
                 if (runningApp) {
-                    app->_sbApplication = [SBApplication applicationWithBundleIdentifier:bundleIdentifier];
+                    app->_processIdentifier = runningApp.processIdentifier;
+                    app->_sbApplication = [SBApplication applicationWithProcessIdentifier:app->_processIdentifier];
                     _sharedAppHandler[bundleIdentifier] = app;
+                    DDLogDebug(@"sharedApplicationForBundleIdentifier add: %@, %d", app->_bundleIdentifier, app->_processIdentifier);
+
                     return app;
                 }
             }
@@ -44,6 +51,7 @@ static NSMutableDictionary *_sharedAppHandler;
                 if ([app runningApplication]) {
                     return app;
                 }
+                DDLogDebug(@"sharedApplicationForBundleIdentifier remove: %@, %d", app->_bundleIdentifier, app->_processIdentifier);
                 [_sharedAppHandler removeObjectForKey:bundleIdentifier];
             }
             return nil;
@@ -58,6 +66,8 @@ static NSMutableDictionary *_sharedAppHandler;
         
         _sbApplication = application;
         _bundleIdentifier = bundleIdentifier;
+        _processIdentifier = 0;
+        _lockForHide = [NSCondition new];
         
         _sbApplication.timeout = COMMAND_TIMEOUT;
     }
@@ -91,12 +101,20 @@ static NSMutableDictionary *_sharedAppHandler;
 }
 
 - (BOOL)hide{
+    [self->_lockForHide lock];
     [EHSystemUtils callOnMainQueue:^{
-        NSRunningApplication *app = [self runningApplication];
-        self->_wasActivated = ! [app hide];
-        // because `hide` does not return right status we set result to YES
-        self->_wasActivated = NO;
+        self->_runningApplicationForHide = [self runningApplication];
+        [self->_runningApplicationForHide addObserver:self
+                                        forKeyPath:@"hidden"
+                                           options:NSKeyValueObservingOptionNew context:NULL];
+        [self->_runningApplicationForHide hide];
     }];
+    [self->_lockForHide waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:COMMAND_TIMEOUT]];
+    self->_wasActivated = ! self->_runningApplicationForHide.hidden;
+    [self->_runningApplicationForHide removeObserver:self forKeyPath:@"hidden"];
+    self->_runningApplicationForHide = nil;
+    [self->_lockForHide unlock];
+    
     return ! _wasActivated;
 }
 
@@ -156,6 +174,25 @@ static NSMutableDictionary *_sharedAppHandler;
 }
 
 /////////////////////////////////////////////////////////////////////////
+#pragma mark Observing properties
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if ([object isEqual:self->_runningApplicationForHide]) {
+        [self->_lockForHide lock];
+        if ([keyPath isEqualToString:@"hidden"]) {
+            NSNumber *val = change[NSKeyValueChangeNewKey];
+            if (val && [val boolValue]) {
+                [self->_lockForHide broadcast];
+            }
+        }
+        [self->_lockForHide unlock];
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
 #pragma mark Supporting actions in application menubar
 
 - (NSString *)menuBarItemNameForIndexPath:(NSIndexPath *)indexPath {
@@ -194,8 +231,7 @@ static NSMutableDictionary *_sharedAppHandler;
 #pragma mark Private methods
 
 - (NSRunningApplication *)runningApplication{
-    NSArray *appArray = self.bundleIdentifier ? [NSRunningApplication runningApplicationsWithBundleIdentifier:self.bundleIdentifier] : nil;
-    return [appArray firstObject];
+    return self->_processIdentifier ? [NSRunningApplication runningApplicationWithProcessIdentifier:self->_processIdentifier] : nil;
 }
 
 - (AXUIElementRef)copyMenuBarItemForIndexPath:(NSIndexPath *)indexPath{

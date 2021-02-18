@@ -16,6 +16,7 @@
 #import "AirfoilSatelliteTabAdapter.h"
 #import "TidalTabAdapter.h"
 #import "AmazonMusicTabAdapter.h"
+#import "QuodLibetTabAdapter.h"
 
 @implementation NativeAppTabRegistry
 
@@ -81,7 +82,8 @@ static NativeAppTabRegistry *singletonNativeAppTabRegistry;
         [DowncastTabAdapter class],
         [AirfoilSatelliteTabAdapter class],
         [TidalTabAdapter class],
-        [AmazonMusicTabAdapter class]
+        [AmazonMusicTabAdapter class],
+        [QuodLibetTabAdapter class]
     ];
 }
 

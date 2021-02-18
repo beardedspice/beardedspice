@@ -151,7 +151,7 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
         }
         
         _track = [BSTrack new];
-        NSString *basename;
+        NSString *filename;
 
         NSArray *lines = [current componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         for (NSString *line in lines) {
@@ -167,10 +167,7 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
                 } else if ([key isEqualToString:QL_TRACK_ALBUM]) {
                     _track.album = value;
                 } else if ([key isEqualToString:QL_TRACK_FILENAME]) {
-                    basename = [value lastPathComponent];
-                    if ([NSString isNullOrEmpty:basename]) {
-                        basename = value;
-                    }
+                    filename = value;
                 } else if ([key isEqualToString:QL_TRACK_LENGTH]) {
                     NSTimeInterval length = [value doubleValue];
                     NSTimeInterval position = length * _progress;
@@ -183,10 +180,14 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
         
         if ([NSString isNullOrEmpty:_track.track]) {
             // No title field for this track, fall back to basename.
-            // QuodLibet's "current" file is guaranteed to have a ~filename tag, so
-            // we can rely on `basename` being set. The format here, using the base
+            // QuodLibet's "current" file is guaranteed to have a ~filename tag, we can
+            // rely on that here. The output format here, using the base
             // filename with localised `[Unknown]` postfix, echoes how QL generates
             // a track title for such tracks.
+            NSString *basename = [filename lastPathComponent];
+            if ([NSString isNullOrEmpty:basename]) {
+                basename = filename;
+            }
             NSString *unknown = NSLocalizedString(@"Unknown", @"QuodLibetTabAdapter");
             _track.track = [NSString stringWithFormat:@"%@ [%@]", basename, unknown];
         }

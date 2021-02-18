@@ -62,7 +62,6 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
 @implementation QuodLibetTabAdapter{
     QuodLibetStatus _status;
     double _progress;
-    BSTrack *track;
 }
 
 - (id)init {
@@ -70,7 +69,6 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
     if (self) {
         _status = QuodLibetStatusUnknown;
         _progress = 0;
-        track = nil;
     }
     return self;
 }

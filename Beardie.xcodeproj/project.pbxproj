@@ -101,6 +101,7 @@
 		658D64451FA697A2004D1546 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D643B1FA69705004D1546 /* PSWebSocketServer.m */; };
 		658D64461FA697A2004D1546 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D643E1FA69705004D1546 /* PSWebSocketUTF8Decoder.m */; };
 		6590426523BACC2300890457 /* Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6590426423BACC2300890457 /* Processing.swift */; };
+		659643CF25DEE3E900A5D582 /* QuodLibetTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 659643CE25DEE3E900A5D582 /* QuodLibetTabAdapter.m */; };
 		65A57BC0239D846B0013476E /* EHFileLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E63AC3218DAB3000C039B7 /* EHFileLocker.m */; };
 		65A850161C8B065000D54C77 /* BSCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A850151C8B065000D54C77 /* BSCService.m */; };
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
@@ -487,6 +488,8 @@
 		6590426423BACC2300890457 /* Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processing.swift; sourceTree = "<group>"; };
 		6590428823BF3BB400890457 /* NM_Connector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NM_Connector.entitlements; sourceTree = "<group>"; };
 		6590428923BF853300890457 /* Icon-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-48.png"; sourceTree = "<group>"; };
+		659643CD25DEE3E900A5D582 /* QuodLibetTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuodLibetTabAdapter.h; sourceTree = "<group>"; };
+		659643CE25DEE3E900A5D582 /* QuodLibetTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuodLibetTabAdapter.m; sourceTree = "<group>"; };
 		659AA53F23CE63F200853B7B /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
 		659AA54023CE63FC00853B7B /* constants.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = constants.js; sourceTree = "<group>"; };
 		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
@@ -930,6 +933,8 @@
 				65063FEA233DE94E0015F558 /* DeezerTabAdapter.m */,
 				65E647592385FFA000C6DC21 /* AmazonMusicTabAdapter.h */,
 				65E647582385FFA000C6DC21 /* AmazonMusicTabAdapter.m */,
+				659643CD25DEE3E900A5D582 /* QuodLibetTabAdapter.h */,
+				659643CE25DEE3E900A5D582 /* QuodLibetTabAdapter.m */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -1765,6 +1770,7 @@
 				658D64411FA697A2004D1546 /* PSWebSocketDeflater.m in Sources */,
 				65C511721AED802B00EBA6A5 /* BSNativeAppTabAdapter.m in Sources */,
 				65E5670E1B76A07700AD2D46 /* BSMediaStrategyEnableButton.m in Sources */,
+				659643CF25DEE3E900A5D582 /* QuodLibetTabAdapter.m in Sources */,
 				658D64451FA697A2004D1546 /* PSWebSocketServer.m in Sources */,
 				65B1665E1ED2CCEC00646F9A /* BSStrategiesPreferencesViewController.m in Sources */,
 				651967C21AB3A0B200B48D3A /* iTunesTabAdapter.m in Sources */,

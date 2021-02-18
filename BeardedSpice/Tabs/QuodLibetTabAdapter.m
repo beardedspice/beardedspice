@@ -41,6 +41,7 @@ NSString *const NSSTRING_EMPTY  = @"";
 #define QL_TRACK_TITLE          @"title"
 #define QL_TRACK_ARTIST         @"artist"
 #define QL_TRACK_ALBUM          @"album"
+#define QL_TRACK_FILENAME       @"~filename"
 #define QL_TRACK_LENGTH         @"~#length"
 
 
@@ -150,6 +151,7 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
         }
         
         _track = [BSTrack new];
+        NSString *basename;
 
         NSArray *lines = [current componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         for (NSString *line in lines) {
@@ -164,6 +166,11 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
                     _track.artist = value;
                 } else if ([key isEqualToString:QL_TRACK_ALBUM]) {
                     _track.album = value;
+                } else if ([key isEqualToString:QL_TRACK_FILENAME]) {
+                    basename = [value lastPathComponent];
+                    if ([NSString isNullOrEmpty:basename]) {
+                        basename = value;
+                    }
                 } else if ([key isEqualToString:QL_TRACK_LENGTH]) {
                     NSTimeInterval length = [value doubleValue];
                     NSTimeInterval position = length * _progress;
@@ -174,6 +181,16 @@ static NSString * FormatNSTimeInterval(NSTimeInterval interval) {
             }
         }
         
+        if ([NSString isNullOrEmpty:_track.track]) {
+            // No title field for this track, fall back to basename.
+            // QuodLibet's "current" file is guaranteed to have a ~filename tag, so
+            // we can rely on `basename` being set. The format here, using the base
+            // filename with localised `[Unknown]` postfix, echoes how QL generates
+            // a track title for such tracks.
+            NSString *unknown = NSLocalizedString(@"Unknown", @"QuodLibetTabAdapter");
+            _track.track = [NSString stringWithFormat:@"%@ [%@]", basename, unknown];
+        }
+
         return _track;
     }
     return nil;

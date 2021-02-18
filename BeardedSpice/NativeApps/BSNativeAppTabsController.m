@@ -93,7 +93,7 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
     }
 }
 /////////////////////////////////////////////////////////////////////
-#pragma mark Private class
+#pragma mark Private
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object

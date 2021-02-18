@@ -6,11 +6,12 @@
 //  Copyright © 2019 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 
-#import "BSMusicTabAdapter.h"
+#import "BSNativeAppTabAdapter.h"
+#import "TV.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BSTVTabAdapter : BSMusicTabAdapter
+@interface BSTVTabAdapter : BSNativeAppTabAdapter
 
 @end
 

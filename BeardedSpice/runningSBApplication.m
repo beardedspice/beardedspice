@@ -48,7 +48,14 @@ static NSMutableDictionary *_sharedAppHandler;
                 }
             }
             else {
-                if ([app runningApplication]) {
+                BOOL result = [app runningApplication] != nil;
+                if (!result) {
+                    if (app->_processIdentifier && kill(app->_processIdentifier, 0) == 0) {
+                        DDLogDebug(@"sharedApplicationForBundleIdentifier 2 attempt: %@, %d", app->_bundleIdentifier, app->_processIdentifier);
+                        result = [app runningApplication] != nil;
+                    }
+                }
+                if (result) {
                     return app;
                 }
                 DDLogDebug(@"sharedApplicationForBundleIdentifier remove: %@, %d", app->_bundleIdentifier, app->_processIdentifier);
@@ -231,6 +238,7 @@ static NSMutableDictionary *_sharedAppHandler;
 #pragma mark Private methods
 
 - (NSRunningApplication *)runningApplication{
+    
     return self->_processIdentifier ? [NSRunningApplication runningApplicationWithProcessIdentifier:self->_processIdentifier] : nil;
 }
 

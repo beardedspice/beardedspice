@@ -32,7 +32,6 @@ static NSSet *_safariBundleIds;
 }
 
 - (BOOL)activateTab {
-    DDLogDebug(@"Begin");
     NSDictionary *response = [self sendMessage:@"activate"];
     
     return [response[@"result"] boolValue]
@@ -40,7 +39,6 @@ static NSSet *_safariBundleIds;
 }
 
 - (BOOL)deactivateTab {
-    DDLogDebug(@"Begin");
     if ([self frontmost]) {
         DDLogDebug(@"frontmost");
         if ([self isActivated]) {
@@ -56,7 +54,6 @@ static NSSet *_safariBundleIds;
 #pragma mark Private methods
 
 - (BOOL)windowMakefrontmostIfNeedFromResponse:(__unsafe_unretained NSDictionary *)response {
-    DDLogDebug(@"Begin");
     if (response && [response isKindOfClass:[NSDictionary class]]) {
         NSString *windowId = response[@"windowIdForMakeFrontmost"];
         

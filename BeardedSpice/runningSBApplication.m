@@ -48,12 +48,10 @@ static NSMutableDictionary *_sharedAppHandler;
                 }
             }
             else {
-                BOOL result = [app runningApplication] != nil;
+                BOOL result = (app->_processIdentifier && kill(app->_processIdentifier, 0) == 0);
                 if (!result) {
-                    if (app->_processIdentifier && kill(app->_processIdentifier, 0) == 0) {
-                        DDLogDebug(@"sharedApplicationForBundleIdentifier 2 attempt: %@, %d", app->_bundleIdentifier, app->_processIdentifier);
-                        result = [app runningApplication] != nil;
-                    }
+                    DDLogDebug(@"sharedApplicationForBundleIdentifier 2 attempt: %@, %d", app->_bundleIdentifier, app->_processIdentifier);
+                    result = [app runningApplication] != nil;
                 }
                 if (result) {
                     return app;

@@ -132,12 +132,10 @@
     return _key;
 }
 - (BOOL)activateApp {
-    DDLogDebug(@"Begin");
     return [super activateApp];
 }
 
 - (BOOL)deactivateApp {
-    DDLogDebug(@"Begin");
     return [super deactivateApp];
 }
 
@@ -173,7 +171,6 @@
 }
 
 - (void)toggleTab {
-    DDLogDebug(@"Begin");
     BOOL result = [self deactivateTab];
     if (result) {
         [self deactivateApp];

@@ -12,6 +12,7 @@
 #import "BSNativeAppTabAdapter.h"
 #import "BSTimeout.h"
 #import "BSSharedResources.h"
+#import "EHExecuteBlockDelayed.h"
 
 @implementation BSNativeAppTabsController {
     
@@ -108,38 +109,52 @@ static BSNativeAppTabsController *singletonBSNativeAppTabsController;
 }
 
 - (void)fillCache{
-    dispatch_async(_workQueue, ^{
-
-    @autoreleasepool {
-        NSMutableArray *tabs = [NSMutableArray new];
-        BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
-        for (Class nativeApp in [[NativeAppTabsRegistry singleton] enabledNativeAppClasses]) {
-            DDLogDebug(@"(BSNativeAppTabsController - fillCache) native app - %@", [nativeApp bundleId]);
-            runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
-            if (app) {
-                BSNativeAppTabAdapter *tab = [nativeApp tabAdapterWithApplication:app];
-                if (tab) {
-                    [tabs addObject:tab];
+    static dispatch_block_t fillBlock;
+    static EHExecuteBlockDelayed *slower;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fillBlock = ^{
+            
+            @autoreleasepool {
+                NSMutableArray *tabs = [NSMutableArray new];
+                BSTimeout *timeout = [BSTimeout timeoutWithInterval:COMMAND_EXEC_TIMEOUT];
+                for (Class nativeApp in [[NativeAppTabsRegistry singleton] enabledNativeAppClasses]) {
+                    DDLogDebug(@"(BSNativeAppTabsController - fillCache) native app - %@", [nativeApp bundleId]);
+                    runningSBApplication *app = [runningSBApplication sharedApplicationForBundleIdentifier:[nativeApp bundleId]];
+                    if (app) {
+                        BSNativeAppTabAdapter *tab = [nativeApp tabAdapterWithApplication:app];
+                        if (tab) {
+                            [tabs addObject:tab];
+                        }
+                        else {
+                            DDLogDebug(@"(BSNativeAppTabsController - fillCache) tab object did not create - %@", [nativeApp bundleId]);
+                        }
+                    }
+                    else {
+                        DDLogDebug(@"(BSNativeAppTabsController - fillCache) app object did not create - %@", [nativeApp bundleId]);
+                    }
+                    if (timeout.reached) {
+                        DDLogDebug(@"(BSNativeAppTabsController - fillCache) timeout.reached");
+                        break;
+                    }
                 }
-                else {
-                    DDLogDebug(@"(BSNativeAppTabsController - fillCache) tab object did not create - %@", [nativeApp bundleId]);
+                @synchronized(self) {
+                    self->_cacheInvalidated = timeout.reached;
+                    self->_tabs = [tabs copy];
+                    DDLogDebug(@"(BSNativeAppTabsController - fillCache) cache count - %lu", (unsigned long)self->_tabs.count);
                 }
             }
-            else {
-                DDLogDebug(@"(BSNativeAppTabsController - fillCache) app object did not create - %@", [nativeApp bundleId]);
-            }
-            if (timeout.reached) {
-                DDLogDebug(@"(BSNativeAppTabsController - fillCache) timeout.reached");
-                break;
-            }
-        }
-        @synchronized(self) {
-            self->_cacheInvalidated = timeout.reached;
-            self->_tabs = [tabs copy];
-            DDLogDebug(@"(BSNativeAppTabsController - fillCache) cache count - %lu", (unsigned long)self->_tabs.count);
-        }
-    }
+        };
+        
+        slower = [[EHExecuteBlockDelayed alloc] initWithTimeout:0.5 leeway:0.5 queue:_workQueue block:fillBlock];
     });
+    if (_cacheInvalidated) {
+        DDLogDebug(@"(BSNativeAppTabsController - fillCache) fill cache sync call");
+        dispatch_sync(_workQueue, fillBlock);
+    }
+    else {
+        [slower executeOnceAfterCalm];
+    }
 }
 
 @end

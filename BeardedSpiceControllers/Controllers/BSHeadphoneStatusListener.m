@@ -7,6 +7,7 @@
 //
 
 #import "BSHeadphoneStatusListener.h"
+#import "BSSharedResources.h"
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark - BSHeadphoneUnplugListener
@@ -52,7 +53,7 @@
 
             [USE_STRONG(self) removeCallbackForDevice];
             if ([USE_STRONG(self) getDefaultDevice]) {
-                [USE_STRONG(self) getCurrentSource];
+                USE_STRONG(self)->_changeSourceListenerBlock(1, &(USE_STRONG(self)->_sourceAddr));
                 [USE_STRONG(self) addCallbackForDevice];
             }
         };
@@ -134,7 +135,7 @@
         kAudioObjectPropertyElementMaster
     };
 
-    __block OSStatus result = 1;
+    __block OSStatus result = -1;
     ASSIGN_WEAK(self);
     dispatch_sync(_listenerQueue, ^{
         ASSIGN_STRONG(self);
@@ -189,7 +190,7 @@
 
         result = AudioObjectRemovePropertyListenerBlock(_defaultDevice, &_sourceAddr, _listenerQueue, _changeSourceListenerBlock);
     }
-    return !result;
+    return result == 0;
 }
 
 - (BOOL)getCurrentSource{

@@ -21,11 +21,6 @@ struct Main {
         // Read handler for stdin
         FileHandle.standardInput.readabilityHandler = { (fl: FileHandle) in
             let lenData = fl.readData(ofLength: 4)
-            //TODO: delete this
-            if lenData.count == 0 {
-                FileHandle.standardInput.readabilityHandler = nil
-            }
-            //------------------
             if lenData.count == MemoryLayout<UInt32>.size {
                 let len = Int(lenData.withUnsafeBytes { $0.load(as: UInt32.self) })
                 let requestData = fl.readData(ofLength: len)

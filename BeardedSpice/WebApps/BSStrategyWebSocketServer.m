@@ -19,6 +19,7 @@
 #import "BSBrowserExtensionsController.h"
 #import "runningSBApplication.h"
 #import "GeneralPreferencesViewController.h"
+#import "AppDelegate.h"
 
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.netinet;
@@ -29,10 +30,10 @@
 
 
 NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
+NSString *const BSWebSocketServerReloadWebPagesDialogHide = @"BSWebSocketServerReloadWebPagesDialogHide";
 
 @implementation BSStrategyWebSocketServer{
     
-    NSString *_enabledStrategiesJson;
     NSMutableArray *_observers;
     dispatch_queue_t _workQueue;
     NSOperationQueue *_oQueue;
@@ -139,7 +140,7 @@ static NSArray *tabClasses;
     if (server == _tabsServer) {
         
         DDLogInfo(@"Websocket Tab server started on port %d.", _tabsPort);
-        [self setAcceptersForSafari];
+        [self setAcceptersForExtensions];
         [BSSharedResources setTabPort:_tabsPort];
     }
     
@@ -296,30 +297,6 @@ static NSArray *tabClasses;
 }
 
 /**
- Constructs JSON with dictionary of the accept functions for enabled strategies.
-
- @return JSON in form {bsJsFunctions:function(){}, 'strategies': {strategyName:function(){}, strategyOtherName:function(){}...} }
-         or nil if error occurs.
- */
-- (NSString *)enabledStrategy {
-    
-    @synchronized (self) {
-        
-        if (_enabledStrategiesJson) {
-            return _enabledStrategiesJson;
-        }
-        
-        NSDictionary *result = [self enabledStrategyDictionary];
-        if (result) {
-            
-            NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"accepters": result} options:0 error:NULL];
-            _enabledStrategiesJson = data ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : nil;
-        }
-        
-        return _enabledStrategiesJson;
-    }
-}
-/**
  Constructs dictionary of the accept functions for enabled strategies.
  
  @return dictionary with {bsJsFunctions:function(){}, 'strategies': {strategyName:function(){}, strategyOtherName:function(){}...} }
@@ -364,33 +341,6 @@ static NSArray *tabClasses;
     
     return nil;
 }
-
-
-//- (void)sendStrategyAccepters {
-//    
-//    dispatch_async(self.server.delegateQueue, ^{
-//        
-//        NSData *message = [self enabledStrategy];
-//        for (PSWebSocket *webSocket in _webSockets) {
-//            [webSocket send:message];
-//        }
-//    });
-//}
-
-//- (void)removeTabWithSocket:(PSWebSocket *)webSocket {
-//
-//    __block BSWebTabAdapter *tab = nil;
-//    [_tabs enumerateObjectsUsingBlock:^(BSWebTabAdapter * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//        if ([obj.tabSocket isEqual:webSocket]) {
-//            tab = obj;
-//            *stop = YES;
-//        }
-//    }];
-//    if (tab) {
-//        [_tabs removeObject:tab];
-//    }
-//}
 
 - (BOOL)loadCertificate {
     
@@ -447,26 +397,26 @@ static NSArray *tabClasses;
                            object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
                 dispatch_async(self->_tabsServer.delegateQueue, ^{
                     DDLogDebug(@"BSMediaStrategyRegistryChangedNotification observer");
-                    [self setAcceptersForSafari];
-                    @synchronized (self) {
-                        @autoreleasepool {
-                            self->_enabledStrategiesJson = nil;
-                            // notify only one tab for application
-                            NSMutableSet *bundleIds = [NSMutableSet set];
-                            for (BSWebTabAdapter *item in self->_tabs) {
-                                NSString *bundleId = item.application.bundleIdentifier;
-                                if (bundleId) {
-                                    if ([bundleIds containsObject:bundleId]) {
-                                        continue;
-                                    }
-                                    if ([item notifyThatGlobalSettingsChanged]) {
-                                        [bundleIds addObject:bundleId];
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    [self setAcceptersForExtensions];
                     
+                    if ([NSUserDefaults.standardUserDefaults boolForKey:BSWebSocketServerReloadWebPagesDialogHide] == NO) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            NSAlert *alert = [NSAlert new];
+                            alert.alertStyle = NSAlertStyleInformational;
+                            alert.messageText = BSLocalizedString(@"alert-strategy-changed-title", @"");
+                            alert.informativeText = BSLocalizedString(@"alert-strategy-changed-text", @"");
+                            [alert addButtonWithTitle:BSLocalizedString(@"ok-button-title", @"Button title")];
+
+                            alert.showsSuppressionButton = YES;
+                            
+                            [APPDELEGATE windowWillBeVisible:alert];
+                            [alert runModal];
+                            if (alert.suppressionButton.state == NSControlStateValueOn) {
+                                [NSUserDefaults.standardUserDefaults setBool:YES forKey:BSWebSocketServerReloadWebPagesDialogHide];
+                            }
+                            [APPDELEGATE removeWindow:alert];
+                        });
+                    }
                 });
             }];
             if (observer) {
@@ -518,7 +468,7 @@ static NSArray *tabClasses;
     return nil;
 }
 
-- (void)setAcceptersForSafari {
+- (void)setAcceptersForExtensions {
     [BSSharedResources setAccepters:[self enabledStrategyDictionary] completion:nil];
 }
 

@@ -23,47 +23,6 @@ console.log("(BeardedSpice) Start injection script");
     injected.setAttribute("style", "display: none");
     (document.body || document.documentElement).appendChild(injected);
  
-    var checkPairingPage = document.querySelector('#X_BeardedSpice_Browser_BundleId');
-    if (checkPairingPage != null) {
-        console.log("(BeardedSpice) Detected pairing page");
-        BSUtils.sendMessageToGlobal("pairing", { "bundleId": checkPairingPage.textContent });
-        var messageEl = document.querySelector('#message');
-
-        var messagePairing = (document.querySelector('#messagePairing') &&
-                document.querySelector('#messagePairing').textContent) ||
-            "Pairing with BeardedSpice App...";
-
-        var messageSuccess = (document.querySelector('#messageSuccess') &&
-                document.querySelector('#messageSuccess').textContent) ||
-            "BeardedSpice App paired.";
-
-        var messageFailure = (document.querySelector('#messageFailure') &&
-                document.querySelector('#messageFailure').textContent) ||
-            "BeardedSpice App pairing failure.";
-
-        if (messageEl != null) {
-            messageEl.textContent = messagePairing;
-            checkPairingPage.textContent = "false";
-            var pairingInterval = setInterval(function() {
-                clearInterval(pairingInterval);
-                if (checkPairingPage.textContent == "true") {
-                    messageEl.textContent = messageSuccess;
-                } else {
-                    messageEl.textContent = messageFailure;
-                }
-            }, 3000);
-        }
-
-        BSUtils.handleMessageFromGlobal(function(event) {
-            console.log("(BeardedSpice) Pairing result obtained");
-            if (event.name == "pairing" && event.message.result) {
-                checkPairingPage.textContent = "true";
-            }
-        });
-
-        return;
-    }
-
     var injected = document.createElement("script");
     injected.setAttribute("type", "text/javascript");
     injected.textContent = "eval(\"var injected = document.createElement(\\\"div\\\");injected.setAttribute(\\\"id\\\", \\\"BSCheckCSPDiv\\\"); injected.setAttribute(\\\"style\\\", \\\"display: none\\\"); (document.body || document.documentElement).appendChild(injected);\");";
@@ -351,7 +310,7 @@ console.log("(BeardedSpice) Start injection script");
 
         socket.addEventListener('close', onSocketDisconnet);
 
-        // Listen for messages
+        // Listen for messages from Beardie Control Server
         socket.addEventListener('message', function(event) {
             console.log('(BeardedSpice) Message from server ', event.data);
             console.log('(BeardedSpice) State: ' + state.current.str);
@@ -420,12 +379,6 @@ console.log("(BeardedSpice) Start injection script");
                         }
                         state.set(state.inCommand);
                         switch (event.data) {
-                            case "settingsChanged":
-                                //sending request to extension and are not waiting of a response
-                                _send({'result': true});
-                                BSUtils.sendMessageToGlobal(event.data);
-                                state.set(state.ready);
-                                break;
                             case "bundleId":
                                 if (bundleId != null) { // if we hold localy bundleId, return it 
                                     _send(bundleId);

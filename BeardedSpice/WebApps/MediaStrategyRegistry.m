@@ -70,9 +70,11 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     return self;
 }
 
-- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache
+- (void)setUserDefaults:(NSString *)userDefaultsKey
 {
-    _strategyCache = cache;
+    _strategyCache = [BSStrategyCache new];
+    [_strategyCache loadStrategies];
+
     _availableStrategies = [NSMutableArray new];
 
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];

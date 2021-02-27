@@ -71,17 +71,6 @@
     return YES;
 }
 
-- (BOOL)notifyThatGlobalSettingsChanged {
-    @try {
-        NSDictionary *response = [self sendMessage:@"settingsChanged"];
-        return [response[@"result"] boolValue];
-    } @catch (NSException *exception) {
-        DDLogError(@"Exception occured: %@", exception);
-    }
-    return NO;
-}
-
-
 - (id)sendMessage:(id)message {
     id response;
     [_actionLock lock];

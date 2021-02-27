@@ -11,7 +11,7 @@
 @class BSMediaStrategy;
 
 /**
- FIXME
+ Used for notifying that custom strategies was modified.
  */
 extern NSString *BSCStrategyChangedNotification;
 

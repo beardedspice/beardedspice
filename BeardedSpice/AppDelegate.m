@@ -111,14 +111,11 @@ BOOL accessibilityApiEnabled = NO;
     // Application notifications
     [self setupSystemEventsCallback];
 
-    BSStrategyCache *strategyCache = [BSStrategyCache new];
-    [strategyCache loadStrategies];
-
     self.activeApp = [BSActiveTab new];
 
     // setup default media strategy
     MediaStrategyRegistry *registry = [MediaStrategyRegistry singleton];
-    [registry setUserDefaults:BeardedSpiceActiveControllers strategyCache:strategyCache];
+    [registry setUserDefaults:BeardedSpiceActiveControllers];
 
     [self shortcutsBind];
     [self newConnectionToControlService];

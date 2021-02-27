@@ -191,7 +191,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                                            @"(BSCustomStrategyManager) Title on message, "
                                                            @"when strategy export error occured."),
                                          strategy.displayName];
-                                        [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                                        [alert addButtonWithTitle:BSLocalizedString(@"ok-button-title", @"Ok button")];
                                         
                                         [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
                                         
@@ -288,7 +288,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                             alert.alertStyle = NSAlertStyleCritical;
                             alert.informativeText = error.localizedDescription;
                             alert.messageText = BSLocalizedString(@"preferences-strategies-unsupported-download-error-alert-message-text", @"");
-                            [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                            [alert addButtonWithTitle:BSLocalizedString(@"ok-button-title", @"Ok button")];
                             
                             [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
                             
@@ -395,7 +395,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                                        @"when strategy import error occured."),
                                      strategy.displayName];
                                 }
-                                [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                                [alert addButtonWithTitle:BSLocalizedString(@"ok-button-title", @"Ok button")];
                                 
                                 [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
                                     [self selectStrategy:replacedStrategy];
@@ -760,7 +760,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                                                         @"on message, when strategy "
                                                                         @"import error occured."),
                                      strategyName];
-                [alert addButtonWithTitle:BSLocalizedString(@"Ok", @"Ok button")];
+                [alert addButtonWithTitle:BSLocalizedString(@"ok-button-title", @"Ok button")];
                 
                 [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
                 [APPDELEGATE setInUpdatingStrategiesState:NO];
@@ -785,7 +785,7 @@ NSString *const StrategiesPreferencesViewController = @"StrategiesPreferencesVie
                                                        @"(BSCustomStrategyManager) Title on message, "
                                                        @"when strategy import error occured."),
                                      strategyName];
-                [alert addButtonWithTitle:BSLocalizedString(@"Ok",
+                [alert addButtonWithTitle:BSLocalizedString(@"ok-button-title",
                                                             @"Ok button")];
                 [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
                     [self selectStrategy:strategy];

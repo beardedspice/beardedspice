@@ -42,25 +42,6 @@ static SFSafariTab *_previousTabOnNewWindow;
     }
 }
 
-+ (void)resetAllTabs {
-    DDLogDebug(@"Reset all tabs invoked.");
-    [SFSafariApplication getAllWindowsWithCompletionHandler:^(NSArray<SFSafariWindow *> * _Nonnull windows) {
-        for (SFSafariWindow *window in windows) {
-            [window getAllTabsWithCompletionHandler:^(NSArray<SFSafariTab *> * _Nonnull tabs) {
-
-                for (SFSafariTab *tab in tabs) {
-                    [tab getPagesWithCompletionHandler:^(NSArray<SFSafariPage *> * _Nullable pages) {
-                        for (SFSafariPage *page in pages) {
-                            [page dispatchMessageToScriptWithName:@"reconnect"
-                                                         userInfo:@{@"result": @(YES)}];
-                        }
-                    }];
-                }
-            }];
-        }
-    }];
-}
-
 /// Finds window for tab
 /// @param completion Called on main thread
 - (void)findWindowForTab:(SFSafariTab *)tab completion:(void (^)(SFSafariWindow *window))completion {
@@ -98,9 +79,6 @@ static SFSafariTab *_previousTabOnNewWindow;
 - (void)messageReceivedFromContainingAppWithName:(NSString *)messageName
                                         userInfo:(NSDictionary<NSString *,id> *)userInfo {
     DDLogDebug(@"(BeardedSpice Control) received a message (%@) from app with userInfo (%@)", messageName, userInfo);
-    if ([messageName isEqualToString:@"settingsChanged"]) {
-        [SafariExtensionHandler resetAllTabs];
-    }
 }
 - (void)messageReceivedWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary *)userInfo {
     // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
@@ -147,10 +125,7 @@ static SFSafariTab *_previousTabOnNewWindow;
         if (properties.url) {
             @autoreleasepool {
                 
-                if ([messageName isEqualToString:@"settingsChanged"]) {
-                    [SafariExtensionHandler resetAllTabs];
-                }
-                else if ([messageName isEqualToString:@"accepters"]) {
+                if ([messageName isEqualToString:@"accepters"]) {
                     //request accepters
                     [BSSharedResources acceptersWithCompletion:^(NSDictionary *accepters) {
                         [page dispatchMessageToScriptWithName:@"accepters" userInfo:accepters ?: @{}];

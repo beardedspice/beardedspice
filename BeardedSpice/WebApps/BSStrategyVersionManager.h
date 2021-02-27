@@ -7,7 +7,7 @@
 //
 
 /**
- FIXME
+ Used for notifying that supported strategies was modified.
  */
 extern NSString *BSVMStrategyChangedNotification;
 

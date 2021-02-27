@@ -22,7 +22,7 @@ extern NSString *BSMediaStrategyRegistryChangedNotification;
 /**
  Resets registry.
  */
-- (void)setUserDefaults:(NSString *)userDefaultsKey strategyCache:(BSStrategyCache *)cache;
+- (void)setUserDefaults:(NSString *)userDefaultsKey;
 
 -(void) addAvailableMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) removeAvailableMediaStrategy:(BSMediaStrategy *) strategy;

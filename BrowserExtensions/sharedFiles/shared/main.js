@@ -41,13 +41,6 @@ var logError = function(ex) {
     }
 };
 
-var resetAllTabs = function() {
-    console.log("(BeardedSpice Control) Reset all tabs.");
-    BSUtils.forEachTabs(tab => {
-        BSUtils.sendMessageToTab(tab, "reconnect", { 'result': true });
-    });
-};
-
 function reconnectToNative(event) {
     console.info("(BeardedSpice Control) Attempt to reconnecting.");
 
@@ -111,9 +104,6 @@ function respondToMessage(theMessageEvent) {
 
             //request accepters
             switch (theMessageEvent.name) {
-                case "settingsChanged":
-                    resetAllTabs();
-                    break;
                 case "accepters":
                     nativePort.postMessage({'msg':'accepters', 'id': idForTarget(theMessageEvent.target)});
                     break;

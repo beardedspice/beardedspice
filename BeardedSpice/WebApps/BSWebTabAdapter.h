@@ -31,11 +31,4 @@
 /// @param message message an instance of NSData or NSString to send
 - (id)sendMessage:(id)message;
 
-/**
- Notifies controller through `receiver` (current tab) that global settings was changed.
-
- @return YES on success
- */
-- (BOOL)notifyThatGlobalSettingsChanged;
-
 @end

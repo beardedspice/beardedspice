@@ -52,6 +52,7 @@
 		653B0A0025D98920005C5807 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
 		653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Wrappers */ = {isa = PBXBuildFile; fileRef = 653B09CF25D98146005C5807 /* beardie_restarter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
+		654D044825EBC83200270533 /* UIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D044725EBC83200270533 /* UIController.swift */; };
 		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
 		654EC7DD1ED1909A006490F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */; };
 		6557B4901F6ADCA800295997 /* BSBrowserExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6557B48F1F6ADCA800295997 /* BSBrowserExtensionsController.m */; };
@@ -400,6 +401,7 @@
 		653BCACF1AB25DAC0034D27F /* ShortcutsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutsPreferencesViewController.h; sourceTree = "<group>"; };
 		653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutsPreferencesViewController.m; sourceTree = "<group>"; };
 		653F6FB11ECA441E00ACA294 /* BSVolumeControlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVolumeControlProtocol.h; sourceTree = "<group>"; };
+		654D044725EBC83200270533 /* UIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIController.swift; sourceTree = "<group>"; };
 		654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidalTabAdapter.h; sourceTree = "<group>"; };
 		654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidalTabAdapter.m; sourceTree = "<group>"; };
 		654EC7DC1ED1909A006490F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -1012,6 +1014,7 @@
 				65FBCE3C1EC0F98A004EFFC7 /* BSVolumeWindowController.h */,
 				65FBCE3D1EC0F98A004EFFC7 /* BSVolumeWindowController.m */,
 				65FBCE3E1EC0F98A004EFFC7 /* BSVolumeWindowController.xib */,
+				654D044725EBC83200270533 /* UIController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1777,6 +1780,7 @@
 				657BE28B1F95576C0051EC8E /* MYAnonymousIdentity.m in Sources */,
 				6507A3061F49A4E800775D14 /* BSPredicateToJS.m in Sources */,
 				9679333C1855173100A49AC7 /* main.m in Sources */,
+				654D044825EBC83200270533 /* UIController.swift in Sources */,
 				656A00351C8AD41A00BD29F5 /* NSString+Utils.m in Sources */,
 				657C77382379E31D00A55EFE /* BSNativeAppTabsController.m in Sources */,
 				653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */,
@@ -2310,6 +2314,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CCC5E5413A7EA7D84A6D255 /* Pods-beardie-nm-connector.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2341,6 +2346,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD2D2BB3F2957ACFD2DAAA98 /* Pods-beardie-nm-connector.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -39,6 +39,8 @@
 #import "BSWebTabAdapter.h"
 #import "BSNativeAppTabsController.h"
 
+#import "Beardie-Swift.h"
+
 #define VOLUME_RELAXING_TIMEOUT             2 //seconds
 
 NSString *const InUpdatingStrategiesState = @"InUpdatingStrategiesState";
@@ -98,8 +100,6 @@ BOOL accessibilityApiEnabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(receivedWillCloseWindow:) name: NSWindowWillCloseNotification object:nil];
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 
@@ -225,16 +225,16 @@ BOOL accessibilityApiEnabled = NO;
         
         [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"Button title")];
         
-        [APPDELEGATE windowWillBeVisible:alert];
-        
-        if ([alert runModal] == NSAlertFirstButtonReturn) {
-            [self openPreferences:self];
-            [(BSPreferencesWindowController *)self.preferencesWindowController selectControllerWithIdentifier:GeneralPreferencesViewController.className];
-        };
-        
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];
-        [APPDELEGATE removeWindow:alert];
+        [UIController windowWillBeVisible:alert completion:^{
+            if ([alert runModal] == NSAlertFirstButtonReturn) {
+                [self openPreferences:self];
+                [(BSPreferencesWindowController *)self.preferencesWindowController selectControllerWithIdentifier:GeneralPreferencesViewController.className];
+            };
+            
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BeardedSpiceFirstRun];
+            [UIController removeWindow:alert];
 
+        }];
     }
     if ([[NSUserDefaults standardUserDefaults] boolForKey:BeardieBrowserExtensionsFirstRun]) {
         //when `first run` operations completed
@@ -508,18 +508,18 @@ BOOL accessibilityApiEnabled = NO;
 
 - (IBAction)openPreferences:(id)sender
 {
-    [self windowWillBeVisible:self.preferencesWindowController.window];
-    [self.preferencesWindowController showWindow:self];
+    [UIController windowWillBeVisible:self.preferencesWindowController.window completion:^{
+        [self.preferencesWindowController showWindow:self];
+    }];
 }
 
 - (IBAction)clickAboutFromStatusMenu:(id)sender {
-    [self windowWillBeVisible:NSApp];
-
-    [NSApp orderFrontStandardAboutPanel:sender];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self windowWillBeVisible:NSApp.keyWindow];
-        [self removeWindow:NSApp];
-    });
+    [UIController windowWillBeVisible:NSApp completion:^{
+        [NSApp orderFrontStandardAboutPanel:sender];
+        [UIController windowWillBeVisible:NSApp.windows.lastObject completion:^{
+            [UIController removeWindow:NSApp];
+        }];
+    }];
 }
 
 - (IBAction)exitApp:(id)sender
@@ -537,49 +537,6 @@ BOOL accessibilityApiEnabled = NO;
             [wself setStatusMenuItemsStatus];
         });
     });
-}
-
-/////////////////////////////////////////////////////////////////////
-#pragma mark Windows control methods
-/////////////////////////////////////////////////////////////////////
-
--(void)windowWillBeVisible:(id)window{
-
-    if (window == nil)
-        return;
-
-    @synchronized(openedWindows) {
-
-        if (!openedWindows)
-            openedWindows = [NSMutableSet set];
-
-        if (!openedWindows.count) {
-            [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyRegular];
-        }
-        [self activateApp];
-        [openedWindows addObject:window];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSApplication sharedApplication] arrangeInFront:self];
-        });
-    }
-}
-
--(void)activateApp {
-    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-}
-
--(void)removeWindow:(id)obj {
-
-    if (obj == nil)
-        return;
-
-    @synchronized(openedWindows){
-
-        [openedWindows removeObject:obj];
-        if (![openedWindows count]){
-            [[NSApplication sharedApplication] setActivationPolicy:NSApplicationActivationPolicyAccessory];
-        }
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -751,12 +708,12 @@ BOOL accessibilityApiEnabled = NO;
         [alert addButtonWithTitle:BSLocalizedString(@"universal-access-granted-dialog-restart-button-title", @"Restart button")];
         [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"")];
 
-        [self windowWillBeVisible:alert];
-
-        if ([alert runModal] == NSAlertFirstButtonReturn) {
-            [self restartApp];
-        }
-        [self removeWindow:alert];
+        [UIController windowWillBeVisible:alert completion:^{
+            if ([alert runModal] == NSAlertFirstButtonReturn) {
+                [self restartApp];
+            }
+            [UIController removeWindow:alert];
+        }];
     }
     else{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(COMMAND_EXEC_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -952,11 +909,6 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////
-
-- (void)receivedWillCloseWindow:(NSNotification *)theNotification{
-    NSWindow *window = theNotification.object;
-    [self removeWindow:window];
-}
 
 - (void)receiveSleepNote:(NSNotification *)note
 {

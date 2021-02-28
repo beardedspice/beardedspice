@@ -19,7 +19,7 @@
 #import "BSBrowserExtensionsController.h"
 #import "runningSBApplication.h"
 #import "GeneralPreferencesViewController.h"
-#import "AppDelegate.h"
+#import "Beardie-Swift.h"
 
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.netinet;
@@ -409,12 +409,13 @@ static NSArray *tabClasses;
 
                             alert.showsSuppressionButton = YES;
                             
-                            [APPDELEGATE windowWillBeVisible:alert];
-                            [alert runModal];
-                            if (alert.suppressionButton.state == NSControlStateValueOn) {
-                                [NSUserDefaults.standardUserDefaults setBool:YES forKey:BSWebSocketServerReloadWebPagesDialogHide];
-                            }
-                            [APPDELEGATE removeWindow:alert];
+                            [UIController windowWillBeVisible:alert completion:^{
+                                [alert runModal];
+                                if (alert.suppressionButton.state == NSControlStateValueOn) {
+                                    [NSUserDefaults.standardUserDefaults setBool:YES forKey:BSWebSocketServerReloadWebPagesDialogHide];
+                                }
+                                [UIController removeWindow:alert];
+                            }];
                         });
                     }
                 });

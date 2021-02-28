@@ -45,10 +45,4 @@ extern BOOL accessibilityApiEnabled;
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)clickAboutFromStatusMenu:(id)sender;
 
-/////////////////////////////////////////////////////////////////////
-#pragma mark Windows control methods
-
--(void)windowWillBeVisible:(id)window;
--(void)removeWindow:(id)obj;
-
 @end

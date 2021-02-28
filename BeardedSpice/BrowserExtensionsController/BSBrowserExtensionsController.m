@@ -139,16 +139,17 @@ static BSBrowserExtensionsController *singletonBSBrowserExtensionsController;
             
             [alert addButtonWithTitle:BSLocalizedString(@"cancel-button-title", @"Button title")];
             
-            [APPDELEGATE windowWillBeVisible:alert];
-            
-            if ([alert runModal] == NSAlertFirstButtonReturn) {
-                [USE_STRONG(self) openGetExtensions];
-            };
-            if (USE_STRONG(completion)) {
-                USE_STRONG(completion)();
-            }
+            [UIController windowWillBeVisible:alert completion:^{
+                if ([alert runModal] == NSAlertFirstButtonReturn) {
+                    [USE_STRONG(self) openGetExtensions];
+                };
+                if (USE_STRONG(completion)) {
+                    USE_STRONG(completion)();
+                }
 
-            [APPDELEGATE removeWindow:alert];
+                [UIController removeWindow:alert];
+            }];
+            
         }
     };
     

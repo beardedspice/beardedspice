@@ -86,11 +86,6 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
-//    // Insert code here to initialize your application
-//    // Register defaults for the whitelist of apps that want to use media keys
-//    NSMutableDictionary *registeredDefaults = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//                        [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
-//                        nil];
 
     NSDictionary *appDefaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BeardedSpiceUserDefaults" ofType:@"plist"]];
     if (appDefaults)
@@ -494,7 +489,9 @@ BOOL accessibilityApiEnabled = NO;
                 NSString *message = [NSString stringWithFormat:BSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updatedNames.count];
                 
                 if (updatedNames.count){
-                    [USE_STRONG(self) refreshTabs:nil];
+//                    dispatch_async(USE_STRONG(self)->_workingQueue, ^{
+//                        [USE_STRONG(self) refreshTabs:nil];
+//                    })
                     [USE_STRONG(self) sendUpdateNotificationWithString:message];
                 }
                 else if (checkFromMenu) {

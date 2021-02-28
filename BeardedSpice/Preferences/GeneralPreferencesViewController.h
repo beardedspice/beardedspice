@@ -47,6 +47,7 @@ extern NSString *const BSWebSocketServerEnabled;
 - (IBAction)toggleAutoPause:(id)sender;
 - (IBAction)toggleUseRemote:(id)sender;
 - (IBAction)toggleWebSocketServer:(id)sender;
+- (IBAction)toggleHideMenuBar:(id)sender;
 - (IBAction)clickGetExtensions:(id)sender;
 
 @end

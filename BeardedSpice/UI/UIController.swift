@@ -70,8 +70,59 @@ class UIController: NSObject {
         }
     }
  
-    // MARK: Private
+    @objc static var statusBarMenu: StatusBarMenu?
     
+    // MARK: Private
     private static let openedWindows = NSMutableArray()
     private static let lk = NSLock()
+}
+
+@objcMembers
+class StatusBarMenu: NSObject {
+    
+    /// Hide staus item User Defaults key
+    static let BSHideStatusItem = "BSHideStatusItem"
+    
+    init(_ menu: NSMenu) {
+        self.menu = menu
+        self.statusItem = NSStatusBar.system.statusItem(withLength: self.length)
+        self.statusItem.menu = self.menu
+        self.statusItem.button?.image = NSImage(named: "beardie")
+        self.statusItem.isVisible = !UserDefaults.standard.bool(forKey: Self.BSHideStatusItem)
+    }
+    
+    func open() {
+        self.statusItem.isVisible = true
+        self.statusItem.button?.highlight(true)
+        self.opened = true
+        //TODO: check that we need "async after" on release version MacOS 11.3
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+            var point: NSPoint
+            if #available(macOS 11.0, *) {
+                point = NSPoint(x: -self.length, y: 29.0)
+            } else {
+                point = NSPoint(x: 0.0, y: 26.0)
+            }
+            self.statusItem.menu?.popUp(positioning: nil, at: point, in: self.statusItem.button)
+        }
+    }
+    
+    func didClose() {
+        if self.opened {
+            self.statusItem.button?.highlight(false)
+        }
+        self.updateVisibility()
+        self.opened = false
+    }
+    
+    func updateVisibility() {
+        self.statusItem.isVisible = !UserDefaults.standard.bool(forKey: Self.BSHideStatusItem)
+    }
+    
+    // MARK: Private
+    private let length = CGFloat(26.0)
+
+    private let menu: NSMenu
+    private let statusItem: NSStatusItem
+    private var opened = false
 }

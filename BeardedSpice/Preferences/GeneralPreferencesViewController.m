@@ -20,6 +20,7 @@
 #import "AppDelegate.h"
 #import "EHExecuteBlockDelayed.h"
 #import "BSBrowserExtensionsController.h"
+#import "Beardie-Swift.h"
 
 #define RELAXING_TIMEOUT                   3 //seconds
 
@@ -151,6 +152,10 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
         return;
     }
     [sendNotification executeOnceAfterCalm];
+}
+
+- (IBAction)toggleHideMenuBar:(id)sender {
+    [UIController.statusBarMenu updateVisibility];
 }
 
 - (IBAction)clickGetExtensions:(id)sender {

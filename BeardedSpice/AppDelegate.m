@@ -57,7 +57,6 @@ BOOL accessibilityApiEnabled = NO;
 @implementation AppDelegate {
     
     NSUInteger  statusMenuCount;
-    NSStatusItem *statusItem;
     
     NSMutableArray *playingTabs;
 
@@ -127,11 +126,8 @@ BOOL accessibilityApiEnabled = NO;
 - (void)awakeFromNib
 {
     [BSSharedResources initLoggerFor:BS_BUNDLE_ID];
-    
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:26.0];
-    [statusItem setMenu:statusMenu];
-    
-    statusItem.button.image = [NSImage imageNamed:@"beardie"];
+
+    UIController.statusBarMenu = [[StatusBarMenu alloc] init:statusMenu];
 
     // Get initial count of menu items
     statusMenuCount = statusMenu.itemArray.count;
@@ -214,6 +210,16 @@ BOOL accessibilityApiEnabled = NO;
     return NSTerminateCancel;
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+ 
+    if (NSApp.activationPolicy != NSApplicationActivationPolicyAccessory) {
+        return YES;
+    }
+    [UIController.statusBarMenu open];
+    
+    return NO;
+}
+
 - (void)firstRunInstall {
     if (accessibilityApiEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceFirstRun]) {
         
@@ -251,14 +257,20 @@ BOOL accessibilityApiEnabled = NO;
 /////////////////////////////////////////////////////////////////////////
 
 - (void)menuNeedsUpdate:(NSMenu *)menu{
-    __weak typeof(self) wself = self;
+    ASSIGN_WEAK(self);
     dispatch_async(_workingQueue, ^{
-        [wself autoSelectTabWithForceFocused:NO];
+        ASSIGN_STRONG(self);
+        [USE_STRONG(self) autoSelectTabWithForceFocused:NO];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [wself setStatusMenuItemsStatus];
+            [USE_STRONG(self) setStatusMenuItemsStatus];
         });
     });
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+    DDLogDebug(@"menuDidClose");
+    [UIController.statusBarMenu didClose];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {

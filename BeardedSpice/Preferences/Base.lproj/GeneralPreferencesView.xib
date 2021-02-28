@@ -16,10 +16,10 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="538" height="443"/>
+            <rect key="frame" x="0.0" y="0.0" width="538" height="471"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                    <rect key="frame" x="42" y="382" width="452" height="18"/>
+                    <rect key="frame" x="42" y="410" width="452" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="450" id="Rh1-k5-frK"/>
                     </constraints>
@@ -199,6 +199,31 @@
                         </binding>
                     </connections>
                 </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="RYG-F0-cji">
+                    <rect key="frame" x="42" y="382" width="452" height="18"/>
+                    <buttonCell key="cell" type="check" title="Hide menu bar icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XZL-fB-LPQ">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <connections>
+                            <binding destination="436" name="value" keyPath="values.BeardedSpiceShowProgress" id="LqX-bg-GPR">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                    <integer key="NSNullPlaceholder" value="0"/>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleHideMenuBar:" target="-2" id="6gY-H4-2Iy"/>
+                        <binding destination="436" name="value" keyPath="values.BSHideStatusItem" id="W0e-0a-T2e">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="721" firstAttribute="top" secondItem="1" secondAttribute="top" constant="44" id="731"/>
@@ -223,7 +248,7 @@
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="top" secondItem="351" secondAttribute="bottom" constant="12" id="TeL-2a-Q7O"/>
                 <constraint firstItem="721" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="44" id="TgI-Xp-wa2"/>
                 <constraint firstItem="351" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Tpc-oj-afU"/>
-                <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="12" id="VaT-xE-cCR"/>
+                <constraint firstItem="RYG-F0-cji" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="12" id="VNm-fD-CEA"/>
                 <constraint firstItem="jMA-R1-qrX" firstAttribute="top" secondItem="Pr1-bF-Zle" secondAttribute="bottom" constant="34" id="bOj-cd-NCr"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="top" secondItem="jMA-R1-qrX" secondAttribute="bottom" constant="12" id="bhG-eT-MrQ"/>
                 <constraint firstAttribute="trailing" secondItem="721" secondAttribute="trailing" constant="44" id="dfJ-Fs-TSR"/>
@@ -233,6 +258,9 @@
                 <constraint firstItem="765" firstAttribute="top" secondItem="D1C-WS-HOj" secondAttribute="bottom" constant="12" id="jej-1g-aRe"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="kqF-Rr-aDU"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="oao-bM-lRl"/>
+                <constraint firstItem="RYG-F0-cji" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="ohF-nG-gLk"/>
+                <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="RYG-F0-cji" secondAttribute="bottom" constant="12" id="pK6-Q6-oU0"/>
+                <constraint firstItem="RYG-F0-cji" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="phc-ec-NFE"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="leading" secondItem="baJ-gx-qRa" secondAttribute="leading" id="uBR-ZA-evg"/>
             </constraints>
             <connections>

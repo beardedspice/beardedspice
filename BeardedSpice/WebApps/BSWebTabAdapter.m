@@ -263,7 +263,7 @@
                 ASSIGN_STRONG(self);
                 @try {
                     //getting current strategy
-                    USE_STRONG(self)->_strategy = MediaStrategyRegistry.singleton.strategyCache.cache[strategyName];
+                    USE_STRONG(self)->_strategy = [MediaStrategyRegistry.singleton.strategyCache strategyForFileName:strategyName];
                     //sending to client
                     if (USE_STRONG(self)->_strategy.strategyJsBody) {
                         [USE_STRONG(self) sendMessage:USE_STRONG(self)->_strategy.strategyJsBody];

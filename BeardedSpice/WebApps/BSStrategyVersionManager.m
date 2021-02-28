@@ -135,8 +135,6 @@ static BSStrategyVersionManager *singletonStrategyVersionManager;
         
         BSMediaStrategy *newStrategy = [cache addStrategyWithURL:pathToFile];
         if (newStrategy) {
-            
-            [[MediaStrategyRegistry singleton] addAvailableMediaStrategy:newStrategy];
             return YES;
         }
     };

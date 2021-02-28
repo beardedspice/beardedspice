@@ -84,8 +84,6 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                 
                 BSMediaStrategy *newStrategy = [registry.strategyCache addStrategyWithURL:pathToFile];
                 if (newStrategy) {
-                    
-                    [registry addAvailableMediaStrategy:newStrategy];
                     error = nil;
                 }
             };
@@ -159,19 +157,13 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         
         BSStrategyCache *cache = [[MediaStrategyRegistry singleton] strategyCache];
         
-        [[MediaStrategyRegistry singleton] removeAvailableMediaStrategy:strategy];
-        [cache removeStrategyFromCache:strategy.fileName];
+        [cache removeStrategyFromCache:strategy];
 
         NSURL *alternativeURL = [[NSURL URLForSavedStrategies] URLByAppendingPathComponent:strategy.fileName];
         newStrategy = [cache addStrategyWithURL:alternativeURL];
         if (!newStrategy) {
             alternativeURL = [[NSURL URLForBundleStrategies] URLByAppendingPathComponent:strategy.fileName];
             newStrategy = [cache addStrategyWithURL:alternativeURL];
-        }
-        
-        if (newStrategy) {
-            
-            [[MediaStrategyRegistry singleton] addAvailableMediaStrategy:newStrategy];
         }
         
         // Good

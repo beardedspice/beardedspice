@@ -11,9 +11,21 @@
 extern NSString * _Nonnull BSStrategyCacheErrorDomain;
 #define BSSC_ERROR_STRATEGY_NOTFOUND            100
 
+@protocol BSStrategyCacheDelegateProtocol <NSObject>
+
+@required
+- (void)didChangeStrategy:(BSMediaStrategy *_Nonnull)strategy;
+- (void)didAddStrategy:(BSMediaStrategy *_Nonnull)strategy;
+- (void)didDeleteStrategy:(BSMediaStrategy *_Nonnull)strategy;
+
+@end
+
+
 @interface BSStrategyCache : NSObject
 
-@property (nonatomic, strong, readonly) NSMutableDictionary<NSString *, BSMediaStrategy *> * _Nonnull cache;
+- (instancetype _Nullable )initWithDelegate:(id<BSStrategyCacheDelegateProtocol> _Nonnull)delegate;
+
+@property (weak) id<BSStrategyCacheDelegateProtocol> _Nullable delegate;
 
 /**
  FIXME documentation about loading strategies and how they're cached
@@ -50,7 +62,7 @@ extern NSString * _Nonnull BSStrategyCacheErrorDomain;
 /**
  FIXME simple remove docs
  */
-- (void)removeStrategyFromCache:(NSString * _Nonnull)strategyName;
+- (void)removeStrategyFromCache:(BSMediaStrategy * _Nonnull)strategy;
 
 /**
  Fetches the loaded strategies for reuse and requerying without hitting the disk.

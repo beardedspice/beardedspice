@@ -5,14 +5,14 @@
 //  Created by Jose Falcon on 12/15/13.
 //  Copyright (c) 2013 Tyler Rhodes / Jose Falcon. All rights reserved.
 //
+#import "BSStrategyCache.h"
 
 @class BSMediaStrategy;
 @class TabAdapter;
-@class BSStrategyCache;
 
 extern NSString *BSMediaStrategyRegistryChangedNotification;
 
-@interface MediaStrategyRegistry : NSObject
+@interface MediaStrategyRegistry : NSObject <BSStrategyCacheDelegateProtocol>
 
 + (MediaStrategyRegistry *)singleton;
 

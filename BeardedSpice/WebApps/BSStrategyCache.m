@@ -19,6 +19,15 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
 
 @implementation BSStrategyCache
 
+- (instancetype)initWithDelegate:(id<BSStrategyCacheDelegateProtocol>)delegate {
+    if (delegate) {
+        self = [self init];
+        _delegate = delegate;
+        return self;
+    }
+    return nil;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -42,23 +51,25 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
     return [self.cache allValues];
 }
 
-- (void)removeStrategyFromCache:(NSString * _Nonnull)strategyName
+- (void)removeStrategyFromCache:(BSMediaStrategy * _Nonnull)strategy
 {
     __weak typeof(self) wself = self;
     dispatch_sync(_cacheSerialQueue, ^{
         // make a new strong pointer to this obj
         __strong typeof(wself) sself = wself;
-        [sself.cache removeObjectForKey:strategyName];
+        [sself.cache removeObjectForKey:strategy.fileName];
     });
+    [self.delegate didDeleteStrategy:strategy];
 }
 
 - (NSError *)updateStrategyWithURL:(NSURL * _Nonnull)strategyURL
 {
     
     __block NSError *result = nil;
+    __block BSMediaStrategy *strategy;
     dispatch_sync(_cacheSerialQueue, ^{
         NSString *fileName = [strategyURL lastPathComponent];
-        BSMediaStrategy *strategy = [_cache objectForKey:fileName];
+        strategy = [_cache objectForKey:fileName];
         if (strategy){
             // do not update strategy if it was loaded from custom folder already,
             // or update if path is equal
@@ -71,6 +82,9 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
         }
     });
     
+    if (result == nil) {
+        [self.delegate didChangeStrategy:strategy];
+    }
     return result;
 }
 
@@ -86,6 +100,9 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
         }
     });
     
+    if (result) {
+        [self.delegate didAddStrategy:result];
+    }
     return result;
 }
 

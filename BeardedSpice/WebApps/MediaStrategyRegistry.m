@@ -26,7 +26,6 @@ NSString *BSMediaStrategyRegistryChangedNotification = @"BSMediaStrategyRegistry
 @implementation MediaStrategyRegistry {
     BOOL _massChanging;
     BOOL _changed;
-    EHExecuteBlockDelayed *_notifyRelaxer;
 }
 
 static MediaStrategyRegistry *singletonMediaStrategyRegistry;
@@ -55,24 +54,15 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     self = [super init];
     _massChanging = _changed = NO;
     
-    _notifyRelaxer = [[EHExecuteBlockDelayed alloc] initWithTimeout:NOTOFICATION_RELAX_TIMEOUT
-                                                       leeway:NOTOFICATION_RELAX_TIMEOUT
-                                                        queue:dispatch_get_main_queue()
-                                                        block:^{
-        if (self->_massChanging) {
-            self->_changed = YES;
-        }
-        else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
-        }
-    }];
-    
     return self;
 }
 
 - (void)setUserDefaults:(NSString *)userDefaultsKey
 {
-    _strategyCache = [BSStrategyCache new];
+    [self beginChangingAvailableMediaStrategies];
+    
+    _strategyCache = [[BSStrategyCache alloc] initWithDelegate:self];
+    
     [_strategyCache loadStrategies];
 
     _availableStrategies = [NSMutableArray new];
@@ -80,18 +70,15 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userDefaultsKey];
 
     // enable strategies that are marked enabled or have no entry
-    for (NSString *fileName in _strategyCache.cache)
+    for (BSMediaStrategy *strategy in _strategyCache.allStrategies)
     {
-        BSMediaStrategy *strategy = _strategyCache.cache[fileName];
         NSNumber *enabled = [defaults objectForKey:[strategy displayName]];
         if (!enabled || [enabled boolValue]) {
             [_availableStrategies addObject:strategy];
         }
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
-    });
+    [self endChangingAvailableMediaStrategies];
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -114,13 +101,48 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
 -(void) addAvailableMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies addObject:strategy];
-    [_notifyRelaxer executeOnceAfterCalm];
+    [self notify];
 }
 
 -(void) removeAvailableMediaStrategy:(BSMediaStrategy *) strategy
 {
     [_availableStrategies removeObject:strategy];
-    [_notifyRelaxer executeOnceAfterCalm];
+    [self notify];
+}
+- (void)notify {
+    static EHExecuteBlockDelayed *notifyRelaxer;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        notifyRelaxer = [[EHExecuteBlockDelayed alloc] initWithTimeout:NOTOFICATION_RELAX_TIMEOUT
+                                                           leeway:NOTOFICATION_RELAX_TIMEOUT
+                                                            queue:dispatch_get_main_queue()
+                                                            block:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+        }];
+    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self->_massChanging) {
+            self->_changed = YES;
+        }
+        else {
+            [notifyRelaxer executeOnceAfterCalm];
+        }
+    });
+
+}
+/////////////////////////////////////////////////////////////////////
+#pragma mark BSStrategyCacheDelegateProtocol implementation
+
+- (void)didAddStrategy:(BSMediaStrategy * _Nonnull)strategy {
+    [self addAvailableMediaStrategy:strategy];
+}
+
+- (void)didChangeStrategy:(BSMediaStrategy * _Nonnull)strategy {
+    [self notify];
+}
+
+- (void)didDeleteStrategy:(BSMediaStrategy * _Nonnull)strategy {
+    [self removeAvailableMediaStrategy:strategy];
 }
 
 @end

@@ -399,7 +399,8 @@ static NSArray *tabClasses;
                     DDLogDebug(@"BSMediaStrategyRegistryChangedNotification observer");
                     [self setAcceptersForExtensions];
                     
-                    if ([NSUserDefaults.standardUserDefaults boolForKey:BSWebSocketServerReloadWebPagesDialogHide] == NO) {
+                    if ([note.userInfo[BSMediaStrategyRegistryChangedNotificationUserInfoKey_Silent] boolValue] == NO
+                        && [NSUserDefaults.standardUserDefaults boolForKey:BSWebSocketServerReloadWebPagesDialogHide] == NO) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             NSAlert *alert = [NSAlert new];
                             alert.alertStyle = NSAlertStyleInformational;

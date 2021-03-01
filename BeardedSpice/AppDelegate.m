@@ -491,6 +491,7 @@ BOOL accessibilityApiEnabled = NO;
     
     BOOL checkFromMenu = (sender != self);
     ASSIGN_WEAK(self);
+    [MediaStrategyRegistry.singleton beginChangingAvailableMediaStrategies];
     [BSStrategyVersionManager.singleton updateStrategiesWithCompletion:^(NSArray<NSString *> *updatedNames, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             ASSIGN_STRONG(self);
@@ -501,9 +502,6 @@ BOOL accessibilityApiEnabled = NO;
                 NSString *message = [NSString stringWithFormat:BSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updatedNames.count];
                 
                 if (updatedNames.count){
-//                    dispatch_async(USE_STRONG(self)->_workingQueue, ^{
-//                        [USE_STRONG(self) refreshTabs:nil];
-//                    })
                     [USE_STRONG(self) sendUpdateNotificationWithString:message];
                 }
                 else if (checkFromMenu) {
@@ -512,6 +510,7 @@ BOOL accessibilityApiEnabled = NO;
                 
             }
             
+            [MediaStrategyRegistry.singleton endChangingAvailableMediaStrategies: !checkFromMenu];
             item.title = BSLocalizedString(@"Check for Compatibility Updates", @"Menu Titles");
             self.inUpdatingStrategiesState = NO;
         });

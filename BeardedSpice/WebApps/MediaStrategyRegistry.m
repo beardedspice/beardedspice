@@ -17,6 +17,7 @@
 #define NOTOFICATION_RELAX_TIMEOUT      2 //seconds
 
 NSString *BSMediaStrategyRegistryChangedNotification = @"BSMediaStrategyRegistryChangedNotification";
+NSString *BSMediaStrategyRegistryChangedNotificationUserInfoKey_Silent = @"BSMediaStrategyRegistryChangedNotificationUserInfoKey_Silent";
 
 @interface MediaStrategyRegistry ()
 @property (nonatomic) NSMutableArray *availableStrategies;
@@ -78,7 +79,7 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
         }
     }
     
-    [self endChangingAvailableMediaStrategies];
+    [self endChangingAvailableMediaStrategies:YES];
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -89,10 +90,13 @@ static MediaStrategyRegistry *singletonMediaStrategyRegistry;
     });
 }
 
-- (void)endChangingAvailableMediaStrategies {
+- (void)endChangingAvailableMediaStrategies:(BOOL)silentNotify {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self->_massChanging && self->_changed) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BSMediaStrategyRegistryChangedNotification
+                                                                object:self
+                                                              userInfo:@{BSMediaStrategyRegistryChangedNotificationUserInfoKey_Silent: @(silentNotify)}
+             ];
         }
         self->_massChanging = self->_changed = NO;
     });

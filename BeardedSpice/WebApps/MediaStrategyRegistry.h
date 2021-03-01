@@ -11,6 +11,7 @@
 @class TabAdapter;
 
 extern NSString *BSMediaStrategyRegistryChangedNotification;
+extern NSString *BSMediaStrategyRegistryChangedNotificationUserInfoKey_Silent; // Value is NSNumber boolean object
 
 @interface MediaStrategyRegistry : NSObject <BSStrategyCacheDelegateProtocol>
 
@@ -23,6 +24,9 @@ extern NSString *BSMediaStrategyRegistryChangedNotification;
  Resets registry.
  */
 - (void)setUserDefaults:(NSString *)userDefaultsKey;
+
+- (void)beginChangingAvailableMediaStrategies;
+- (void)endChangingAvailableMediaStrategies:(BOOL)silentNotify;
 
 -(void) addAvailableMediaStrategy:(BSMediaStrategy *) strategy;
 -(void) removeAvailableMediaStrategy:(BSMediaStrategy *) strategy;

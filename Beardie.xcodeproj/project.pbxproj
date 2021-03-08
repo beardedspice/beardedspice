@@ -50,7 +50,7 @@
 		6539636723129FCE00590316 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6539636623129FCE00590316 /* shared */; };
 		653B09D225D98146005C5807 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653B09D125D98146005C5807 /* main.swift */; };
 		653B0A0025D98920005C5807 /* NSException+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A002A1C8AD41A00BD29F5 /* NSException+Utils.m */; };
-		653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Wrappers */ = {isa = PBXBuildFile; fileRef = 653B09CF25D98146005C5807 /* beardie_restarter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Restarter */ = {isa = PBXBuildFile; fileRef = 653B09CF25D98146005C5807 /* beardie_restarter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		653BCAD21AB25DAC0034D27F /* ShortcutsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653BCAD01AB25DAC0034D27F /* ShortcutsPreferencesViewController.m */; };
 		654D044825EBC83200270533 /* UIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D044725EBC83200270533 /* UIController.swift */; };
 		654EC7DB1ED0F33A006490F2 /* TidalTabAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */; };
@@ -108,6 +108,10 @@
 		65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F33ECB1855306A00E8F77E /* Carbon.framework */; };
 		65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E567071B76104300AD2D46 /* CoreAudio.framework */; };
 		65A8501D1C9330F800D54C77 /* BSCShortcutMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */; };
+		65AA48FC25F585A400D19C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA48FB25F585A400D19C60 /* AppDelegate.swift */; };
+		65AA490625F585A500D19C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AA490425F585A500D19C60 /* Main.storyboard */; };
+		65AA493325F61AB200D19C60 /* BeardieLaunchAtLogin.app in Copy Launch At Login */ = {isa = PBXBuildFile; fileRef = 65AA48F925F585A400D19C60 /* BeardieLaunchAtLogin.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		65AA494025F61C0C00D19C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967933471855173100A49AC7 /* Images.xcassets */; };
 		65AA828D239C349A000442A2 /* ExtensionsMaintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA828C239C349A000442A2 /* ExtensionsMaintenance.swift */; };
 		65ABBAA61D1EC7D000F882CE /* BSCustomStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */; };
 		65AD1ECE1FB242C900851F0B /* EHExecuteBlockDelayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 650781171FAF43E600A0902A /* EHExecuteBlockDelayed.m */; };
@@ -185,6 +189,13 @@
 			remoteGlobalIDString = 656AFFE91C8ACDCF00BD29F5;
 			remoteInfo = BeardedSpiceControllers;
 		};
+		65AA492A25F587BF00D19C60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967933241855173100A49AC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA48F825F585A400D19C60;
+			remoteInfo = BeardieLaunchAtLogin;
+		};
 		65AA8293239D7EE0000442A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 967933241855173100A49AC7 /* Project object */;
@@ -250,15 +261,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		653B0A2D25D9AD73005C5807 /* Copy Wrappers */ = {
+		653B0A2D25D9AD73005C5807 /* Copy Restarter */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Wrappers */,
+				653B0A3325D9ADBF005C5807 /* beardie_restarter in Copy Restarter */,
 			);
-			name = "Copy Wrappers";
+			name = "Copy Restarter";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6564BDB01B74BF9C007030D8 /* Embed Frameworks */ = {
@@ -280,6 +291,17 @@
 				656AFFF51C8ACDCF00BD29F5 /* BeardieControllers.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AA493225F61A9500D19C60 /* Copy Launch At Login */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				65AA493325F61AB200D19C60 /* BeardieLaunchAtLogin.app in Copy Launch At Login */,
+			);
+			name = "Copy Launch At Login";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		65E6E0502370AC7A009C9448 /* CopyFiles */ = {
@@ -499,6 +521,12 @@
 		65A850151C8B065000D54C77 /* BSCService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A8501B1C9330F800D54C77 /* BSCShortcutMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSCShortcutMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65A8501C1C9330F800D54C77 /* BSCShortcutMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSCShortcutMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65AA48F925F585A400D19C60 /* BeardieLaunchAtLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeardieLaunchAtLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65AA48FB25F585A400D19C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		65AA490525F585A500D19C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		65AA490725F585A500D19C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65AA490825F585A500D19C60 /* BeardieLaunchAtLogin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeardieLaunchAtLogin.entitlements; sourceTree = "<group>"; };
+		65AA495925F6251C00D19C60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		65AA828C239C349A000442A2 /* ExtensionsMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsMaintenance.swift; sourceTree = "<group>"; };
 		65AA829B239D8194000442A2 /* ConfigConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigConstants.h; sourceTree = "<group>"; };
 		65ABBAA41D1EC7D000F882CE /* BSCustomStrategyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCustomStrategyManager.h; sourceTree = "<group>"; };
@@ -611,6 +639,13 @@
 				65A8501A1C8DE9E000D54C77 /* CoreAudio.framework in Frameworks */,
 				65A850191C8DE9D900D54C77 /* Carbon.framework in Frameworks */,
 				FBE9FE79B60D8812B259A67D /* libPods-Commons-BeardieControllers.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AA48F625F585A400D19C60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,6 +1032,18 @@
 			path = submodules/PocketSocket/PocketSocket;
 			sourceTree = "<group>";
 		};
+		65AA48FA25F585A400D19C60 /* BeardieLaunchAtLogin */ = {
+			isa = PBXGroup;
+			children = (
+				65AA495925F6251C00D19C60 /* Bridging-Header.h */,
+				65AA48FB25F585A400D19C60 /* AppDelegate.swift */,
+				65AA490425F585A500D19C60 /* Main.storyboard */,
+				65AA490725F585A500D19C60 /* Info.plist */,
+				65AA490825F585A500D19C60 /* BeardieLaunchAtLogin.entitlements */,
+			);
+			path = BeardieLaunchAtLogin;
+			sourceTree = "<group>";
+		};
 		65E6E0532370AC7A009C9448 /* beardie-nm-connector */ = {
 			isa = PBXGroup;
 			children = (
@@ -1035,6 +1082,7 @@
 				967933531855173100A49AC7 /* BeardedSpiceTests */,
 				65E6E0532370AC7A009C9448 /* beardie-nm-connector */,
 				653B09D025D98146005C5807 /* restarter */,
+				65AA48FA25F585A400D19C60 /* BeardieLaunchAtLogin */,
 				9679332E1855173100A49AC7 /* Frameworks */,
 				9679332D1855173100A49AC7 /* Products */,
 				C5F7A2FBB1AC4C50850BCEEB /* Pods */,
@@ -1054,6 +1102,7 @@
 				65384D9E21874F810029D9E9 /* BS-Extension.appex */,
 				65E6E0522370AC7A009C9448 /* beardie-nm-connector */,
 				653B09CF25D98146005C5807 /* beardie_restarter */,
+				65AA48F925F585A400D19C60 /* BeardieLaunchAtLogin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1301,6 +1350,23 @@
 			productReference = 656AFFEA1C8ACDCF00BD29F5 /* BeardieControllers.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
+		65AA48F825F585A400D19C60 /* BeardieLaunchAtLogin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65AA490B25F585A500D19C60 /* Build configuration list for PBXNativeTarget "BeardieLaunchAtLogin" */;
+			buildPhases = (
+				65AA48F525F585A400D19C60 /* Sources */,
+				65AA48F625F585A400D19C60 /* Frameworks */,
+				65AA48F725F585A400D19C60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeardieLaunchAtLogin;
+			productName = BeardieLaunchAtLogin;
+			productReference = 65AA48F925F585A400D19C60 /* BeardieLaunchAtLogin.app */;
+			productType = "com.apple.product-type.application";
+		};
 		65E6E0512370AC7A009C9448 /* beardie-nm-connector */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65E6E0562370AC7A009C9448 /* Build configuration list for PBXNativeTarget "beardie-nm-connector" */;
@@ -1331,13 +1397,15 @@
 				6564BDB01B74BF9C007030D8 /* Embed Frameworks */,
 				656AFFF91C8ACDCF00BD29F5 /* Embed XPC Services */,
 				65384DB621874F810029D9E9 /* Embed App Extensions */,
-				653B0A2D25D9AD73005C5807 /* Copy Wrappers */,
+				653B0A2D25D9AD73005C5807 /* Copy Restarter */,
 				65E6E05E237224BE009C9448 /* Copy NM Connector */,
+				65AA493225F61A9500D19C60 /* Copy Launch At Login */,
 				FB9C467E90A69DD3E88791B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				65AA492B25F587BF00D19C60 /* PBXTargetDependency */,
 				653B09E825D986AB005C5807 /* PBXTargetDependency */,
 				65AA8294239D7EE0000442A2 /* PBXTargetDependency */,
 				65E6E05D23722470009C9448 /* PBXTargetDependency */,
@@ -1420,6 +1488,11 @@
 							};
 						};
 					};
+					65AA48F825F585A400D19C60 = {
+						CreatedOnToolsVersion = 12.4;
+						DevelopmentTeam = 5F2QV47DGC;
+						ProvisioningStyle = Manual;
+					};
 					65AA828F239D7E2F000442A2 = {
 						CreatedOnToolsVersion = 11.2.1;
 						DevelopmentTeam = 5F2QV47DGC;
@@ -1477,6 +1550,7 @@
 				65E6E0512370AC7A009C9448 /* beardie-nm-connector */,
 				65AA828F239D7E2F000442A2 /* prepare-build */,
 				653B09CE25D98146005C5807 /* restarter */,
+				65AA48F825F585A400D19C60 /* BeardieLaunchAtLogin */,
 			);
 		};
 /* End PBXProject section */
@@ -1494,6 +1568,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AA48F725F585A400D19C60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65AA494025F61C0C00D19C60 /* Images.xcassets in Resources */,
+				65AA490625F585A500D19C60 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1740,6 +1823,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65AA48F525F585A400D19C60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65AA48FC25F585A400D19C60 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65E6E04E2370AC7A009C9448 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1863,6 +1954,11 @@
 			target = 656AFFE91C8ACDCF00BD29F5 /* BeardieControllers */;
 			targetProxy = 656AFFF31C8ACDCF00BD29F5 /* PBXContainerItemProxy */;
 		};
+		65AA492B25F587BF00D19C60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AA48F825F585A400D19C60 /* BeardieLaunchAtLogin */;
+			targetProxy = 65AA492A25F587BF00D19C60 /* PBXContainerItemProxy */;
+		};
 		65AA8294239D7EE0000442A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 65AA828F239D7E2F000442A2 /* prepare-build */;
@@ -1910,6 +2006,14 @@
 				65EF97742364F7A7000CC845 /* en */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		65AA490425F585A500D19C60 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65AA490525F585A500D19C60 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		65EE28A01AB6003800EFC886 /* GeneralPreferencesView.xib */ = {
@@ -2255,6 +2359,71 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_CONTROLLER_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		65AA490925F585A500D19C60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = BeardieLaunchAtLogin/BeardieLaunchAtLogin.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = BeardieLaunchAtLogin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_LAUNCHER_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "BeardieLaunchAtLogin/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		65AA490A25F585A500D19C60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = BeardieLaunchAtLogin/BeardieLaunchAtLogin.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = BeardieLaunchAtLogin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_LAUNCHER_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeardieLaunchAtLogin/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2628,6 +2797,15 @@
 			buildConfigurations = (
 				656AFFF61C8ACDCF00BD29F5 /* Debug */,
 				656AFFF71C8ACDCF00BD29F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65AA490B25F585A500D19C60 /* Build configuration list for PBXNativeTarget "BeardieLaunchAtLogin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65AA490925F585A500D19C60 /* Debug */,
+				65AA490A25F585A500D19C60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

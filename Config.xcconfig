@@ -15,7 +15,7 @@ XC_SPL = /
 BS_NAME = Beardie
 BS_COPYRIGHT = Copyright © 2020 Beardie. All rights reserved.
 BS_VERSION = 3.0.6 alpha
-BS_BUILD = 63
+BS_BUILD = 64
 BS_HOMEPAGE = https:$(XC_SPL)/github.com/Stillness-2/beardie
 BS_UNSUPPORTED_STRATEGY_REPO_URL = https:$(XC_SPL)/github.com/beardedspice/BS-Strategies
 
@@ -24,6 +24,7 @@ BS_ORG_ID                                   = com.calm-apps.mac
 
 BS_BUNDLE_ID                                = $(BS_ORG_ID).beardie
 BS_CONTROLLER_BUNDLE_ID                     = $(BS_BUNDLE_ID).controllers
+BS_LAUNCHER_BUNDLE_ID                       = $(BS_BUNDLE_ID).launcher
 
 BS_GROUP                                    = $(DEVELOPMENT_TEAM).$(BS_BUNDLE_ID)
 

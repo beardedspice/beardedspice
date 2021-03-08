@@ -21,7 +21,9 @@
 #pragma mark Properties and public methods
 /////////////////////////////////////////////////////////////////////
 
-+ (BOOL)isLaunchAtStartup;
-+ (void)launchAtStartup:(BOOL)shouldBeLaunchAtLogin;
+@property (nonatomic)   BOOL startAtLogin;
+@property (copy, nonatomic, readonly)     NSString *identifier;
+
+-(id)initWithIdentifier:(NSString*)identifier;
 
 @end

@@ -39,6 +39,22 @@
                         </binding>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-Km-tli">
+                    <rect key="frame" x="42" y="382" width="452" height="18"/>
+                    <buttonCell key="cell" type="check" title="Hide menu bar icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cL2-zV-PFm">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleHideMenuBar:" target="-2" id="jle-Ep-lTc"/>
+                        <binding destination="436" name="value" keyPath="values.BSHideStatusItem" id="CiD-K2-j24">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="D1C-WS-HOj" userLabel="Check for Updates at Launch">
                     <rect key="frame" x="42" y="298" width="452" height="18"/>
                     <buttonCell key="cell" type="check" title="Check for Compatibility Updates at Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C81-eE-dH1">
@@ -199,38 +215,15 @@
                         </binding>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="RYG-F0-cji">
-                    <rect key="frame" x="42" y="382" width="452" height="18"/>
-                    <buttonCell key="cell" type="check" title="Hide menu bar icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XZL-fB-LPQ">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                        <connections>
-                            <binding destination="436" name="value" keyPath="values.BeardedSpiceShowProgress" id="LqX-bg-GPR">
-                                <dictionary key="options">
-                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                    <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                    <integer key="NSNullPlaceholder" value="0"/>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </buttonCell>
-                    <connections>
-                        <action selector="toggleHideMenuBar:" target="-2" id="6gY-H4-2Iy"/>
-                        <binding destination="436" name="value" keyPath="values.BSHideStatusItem" id="W0e-0a-T2e">
-                            <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="721" firstAttribute="top" secondItem="1" secondAttribute="top" constant="44" id="731"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="765" secondAttribute="leading" id="834"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="869"/>
                 <constraint firstItem="765" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="873"/>
+                <constraint firstItem="B9c-Km-tli" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="0BO-aa-yNf"/>
                 <constraint firstAttribute="bottom" secondItem="JrF-Rb-nGy" secondAttribute="bottom" constant="44" id="2YM-Z6-tOl"/>
+                <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="40" id="2qq-b5-7jV"/>
                 <constraint firstItem="JrF-Rb-nGy" firstAttribute="top" secondItem="WFb-ud-pGn" secondAttribute="bottom" constant="30" id="3Xv-dg-Rtk"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="3bJ-tB-9un"/>
                 <constraint firstItem="824" firstAttribute="top" secondItem="baJ-gx-qRa" secondAttribute="bottom" constant="12" id="3kh-XM-pWL"/>
@@ -245,10 +238,12 @@
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="leading" secondItem="351" secondAttribute="leading" id="JhK-r7-GqU"/>
                 <constraint firstItem="D1C-WS-HOj" firstAttribute="top" secondItem="824" secondAttribute="bottom" constant="12" id="MUF-fH-DxK"/>
                 <constraint firstItem="765" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Poh-pP-LAp"/>
+                <constraint firstItem="B9c-Km-tli" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="12" id="ReS-AP-gHV"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="top" secondItem="351" secondAttribute="bottom" constant="12" id="TeL-2a-Q7O"/>
                 <constraint firstItem="721" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="44" id="TgI-Xp-wa2"/>
                 <constraint firstItem="351" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="Tpc-oj-afU"/>
-                <constraint firstItem="RYG-F0-cji" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="12" id="VNm-fD-CEA"/>
+                <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="B9c-Km-tli" secondAttribute="bottom" constant="12" id="UN5-zM-Uva"/>
+                <constraint firstItem="B9c-Km-tli" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="b5T-BJ-c3w"/>
                 <constraint firstItem="jMA-R1-qrX" firstAttribute="top" secondItem="Pr1-bF-Zle" secondAttribute="bottom" constant="34" id="bOj-cd-NCr"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="top" secondItem="jMA-R1-qrX" secondAttribute="bottom" constant="12" id="bhG-eT-MrQ"/>
                 <constraint firstAttribute="trailing" secondItem="721" secondAttribute="trailing" constant="44" id="dfJ-Fs-TSR"/>
@@ -258,9 +253,6 @@
                 <constraint firstItem="765" firstAttribute="top" secondItem="D1C-WS-HOj" secondAttribute="bottom" constant="12" id="jej-1g-aRe"/>
                 <constraint firstItem="baJ-gx-qRa" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="kqF-Rr-aDU"/>
                 <constraint firstItem="WFb-ud-pGn" firstAttribute="leading" secondItem="hhj-Ic-mcP" secondAttribute="leading" id="oao-bM-lRl"/>
-                <constraint firstItem="RYG-F0-cji" firstAttribute="leading" secondItem="721" secondAttribute="leading" id="ohF-nG-gLk"/>
-                <constraint firstItem="baJ-gx-qRa" firstAttribute="top" secondItem="RYG-F0-cji" secondAttribute="bottom" constant="12" id="pK6-Q6-oU0"/>
-                <constraint firstItem="RYG-F0-cji" firstAttribute="trailing" secondItem="721" secondAttribute="trailing" id="phc-ec-NFE"/>
                 <constraint firstItem="hhj-Ic-mcP" firstAttribute="leading" secondItem="baJ-gx-qRa" secondAttribute="leading" id="uBR-ZA-evg"/>
             </constraints>
             <connections>

@@ -2,6 +2,7 @@
 #define BS_RESTARTER_BUNDLE_ID    @"com.calm-apps.mac.beardie.restarter"
 #define BS_NAME    @"Beardie"
 #define BS_GROUP    @"5F2QV47DGC.com.calm-apps.mac.beardie"
+#define BS_LAUNCHER_BUNDLE_ID    @"com.calm-apps.mac.beardie.launcher"
 #define BS_ORG_ID    @"com.calm-apps.mac"
 #define BS_BUILD    @"63"
 #define BS_TEAM    @"5F2QV47DGC"

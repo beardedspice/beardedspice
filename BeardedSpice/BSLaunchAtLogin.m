@@ -7,95 +7,86 @@
 //
 
 #import "BSLaunchAtLogin.h"
+#import <ServiceManagement/ServiceManagement.h>
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark - BSLaunchAtLogin
 /////////////////////////////////////////////////////////////////////
 
-@implementation BSLaunchAtLogin
+@implementation BSLaunchAtLogin {
+    NSURL    *_url;
+    BOOL _enabled;
+}
 
 /////////////////////////////////////////////////////////////////////
 #pragma mark Properties and public methods
 /////////////////////////////////////////////////////////////////////
 
-
-+ (BOOL)isLaunchAtStartup {
-    // See if the app is currently in LoginItems.
-    LSSharedFileListItemRef itemRef = [BSLaunchAtLogin itemRefInLoginItems];
-    // Store away that boolean.
-    BOOL isInList = itemRef != nil;
-    // Release the reference if it exists.
-    if (itemRef != nil) CFRelease(itemRef);
-    
-    return isInList;
+-(id)initWithIdentifier:(NSString*)identifier {
+    self = [self init];
+    if(self) {
+        _identifier = identifier;
+        [self startAtLogin];
+        DDLogInfo(@"Launcher '%@' %@ configured to start at login",
+              self.identifier, (_enabled ? @"is" : @"is not"));
+    }
+    return self;
 }
 
-+ (void)launchAtStartup:(BOOL)shouldBeLaunchAtLogin {
-    
-    BOOL launchAtSatrtup = [BSLaunchAtLogin isLaunchAtStartup];
-    
-    // Get the LoginItems list.
-    LSSharedFileListRef loginItemsRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    if (loginItemsRef == nil) return;
-    
-    if (shouldBeLaunchAtLogin) {
-        
-        if (!launchAtSatrtup){
-            
-            // Add the app to the LoginItems list.
-            CFURLRef appUrl = (__bridge CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-            LSSharedFileListItemRef itemRef = LSSharedFileListInsertItemURL(loginItemsRef, kLSSharedFileListItemLast, NULL, NULL, appUrl, NULL, NULL);
-            if (itemRef) CFRelease(itemRef);
-        }
-    }
-    else {
-        
-        if (launchAtSatrtup) {
-            
-            // Remove the app from the LoginItems list.
-            LSSharedFileListItemRef itemRef = [self itemRefInLoginItems];
-            LSSharedFileListItemRemove(loginItemsRef,itemRef);
-            if (itemRef != nil) CFRelease(itemRef);
-        }
-    }
-    CFRelease(loginItemsRef);
+-(void)setIdentifier:(NSString *)identifier {
+
 }
 
-/////////////////////////////////////////////////////////////////////
-#pragma mark Private methods
-/////////////////////////////////////////////////////////////////////
-
-+ (LSSharedFileListItemRef)itemRefInLoginItems {
-    LSSharedFileListItemRef itemRef = nil;
-    NSURL *itemUrl;
-    CFURLRef itemURL = nil;
+- (BOOL)startAtLogin {
+    if (!_identifier)
+        return NO;
     
-    // Get the app's URL.
-    NSURL *appUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-    // Get the LoginItems list.
-    LSSharedFileListRef loginItemsRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    if (loginItemsRef == nil) return nil;
-    // Iterate over the LoginItems.
-    NSArray *loginItems = (NSArray *)CFBridgingRelease(LSSharedFileListCopySnapshot(loginItemsRef, nil));
-    for (int currentIndex = 0; currentIndex < [loginItems count]; currentIndex++) {
-        // Get the current LoginItem and resolve its URL.
-        LSSharedFileListItemRef currentItemRef = (__bridge LSSharedFileListItemRef)[loginItems objectAtIndex:currentIndex];
-        if (LSSharedFileListItemResolve(currentItemRef, 0, &itemURL, NULL) == noErr) {
-            // Compare the URLs for the current LoginItem and the app.
-            itemUrl = CFBridgingRelease(itemURL);
-            if ([itemUrl isEqual:appUrl]) {
-                // Save the LoginItem reference.
-                itemRef = currentItemRef;
+    BOOL isEnabled  = NO;
+    
+    // the easy and sane method (SMJobCopyDictionary) can pose problems when sandboxed. -_-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    CFArrayRef  cfJobDicts = SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
+#pragma clang diagnostic pop
+    NSArray* jobDicts = CFBridgingRelease(cfJobDicts);
+    
+    if (jobDicts && [jobDicts count] > 0) {
+        for (NSDictionary* job in jobDicts) {
+            if ([_identifier isEqualToString:[job objectForKey:@"Label"]]) {
+                isEnabled = [[job objectForKey:@"OnDemand"] boolValue];
+                break;
             }
         }
-        
-        if (itemRef)
-            break;
     }
-    // Retain the LoginItem reference.
-    if (itemRef != nil) CFRetain(itemRef);
     
-    return itemRef;
+    if (isEnabled != _enabled) {
+        [self willChangeValueForKey:@"enabled"];
+        _enabled = isEnabled;
+        [self didChangeValueForKey:@"enabled"];
+    }
+    
+    return isEnabled;
+}
+
+- (void)setStartAtLogin:(BOOL)flag {
+    if (!_identifier)
+        return;
+    
+    [self willChangeValueForKey:@"startAtLogin"];
+    
+    if (!SMLoginItemSetEnabled((__bridge CFStringRef)_identifier, (flag) ? true : false)) {
+        DDLogError(@"SMLoginItemSetEnabled failed!");
+        
+    } else {
+        [self willChangeValueForKey:@"enabled"];
+        _enabled = flag;
+        [self didChangeValueForKey:@"enabled"];
+    }
+    
+    DDLogInfo(@"Launcher '%@' %@ configured to start at login",
+              self.identifier, (_enabled ? @"is" : @"is not"));
+    
+    [self didChangeValueForKey:@"startAtLogin"];
 }
 
 @end

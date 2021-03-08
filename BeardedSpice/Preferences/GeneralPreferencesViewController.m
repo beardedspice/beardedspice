@@ -89,8 +89,8 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
     // We launch Controller of the "Launch at Login" in concurrent queue,
     //because probability exists of hanging app on obtaining list of the login items.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-
-        [BSLaunchAtLogin launchAtStartup:shouldBeLaunchAtLogin];
+        BSLaunchAtLogin *loginItem = [[BSLaunchAtLogin alloc] initWithIdentifier:BS_LAUNCHER_BUNDLE_ID];
+        loginItem.startAtLogin = shouldBeLaunchAtLogin;
     });
 }
 
@@ -171,7 +171,8 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
     // We launch Controller of the "Launch at Login" in concurrent queue,
     //because probability exists of hanging app on obtaining list of the login items.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        BOOL val = [BSLaunchAtLogin isLaunchAtStartup];
+        BSLaunchAtLogin *loginItem = [[BSLaunchAtLogin alloc] initWithIdentifier:BS_LAUNCHER_BUNDLE_ID];
+        BOOL val = loginItem.startAtLogin;
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSUserDefaults standardUserDefaults] setBool:val forKey:BeardedSpiceLaunchAtLogin];
 

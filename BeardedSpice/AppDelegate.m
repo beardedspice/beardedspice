@@ -21,6 +21,7 @@
 #import "BSStrategiesPreferencesViewController.h"
 #import "NSString+Utils.h"
 #import "BSTimeout.h"
+#import "BSLaunchAtLogin.h"
 
 #import "BSActiveTab.h"
 
@@ -140,11 +141,20 @@ BOOL accessibilityApiEnabled = NO;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     
+    DDLogInfo(@"Info: %@", notification.userInfo);
     _nativeAppTabsController = BSNativeAppTabsController.singleton;
     _browserExtensionsController = BSBrowserExtensionsController.singleton;
     [_browserExtensionsController start];
-    
+
+    [self repairLaunchAtLogin];
     [self firstRunInstall];
+    
+    // Show preferences window on start if status bar item is hidden
+    if ([NSUserDefaults.standardUserDefaults boolForKey:StatusBarMenu.BSHideStatusItem]
+        && NSProcessInfo.processInfo.environment[BS_LAUNCHER_BUNDLE_ID] == nil ) {
+        [self openPreferences:self];
+    }
+
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename{
@@ -215,7 +225,12 @@ BOOL accessibilityApiEnabled = NO;
     if (NSApp.activationPolicy != NSApplicationActivationPolicyAccessory) {
         return YES;
     }
-    [UIController.statusBarMenu open];
+    if ([NSUserDefaults.standardUserDefaults boolForKey:StatusBarMenu.BSHideStatusItem]) {
+        [self openPreferences:self];
+    }
+    else {
+        [UIController.statusBarMenu open];
+    }
     
     return NO;
 }
@@ -917,6 +932,20 @@ BOOL accessibilityApiEnabled = NO;
     }
     _volumeButtonLastPressed = [NSDate date];
 }
+
+- (void)repairLaunchAtLogin {
+    
+    // We launch Controller of the "Launch at Login" in concurrent queue,
+    //because probability exists of hanging app on obtaining list of the login items.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        BSLaunchAtLogin *loginItem = [[BSLaunchAtLogin alloc] initWithIdentifier:BS_LAUNCHER_BUNDLE_ID];
+        BOOL st = [[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceLaunchAtLogin];
+        loginItem.startAtLogin = st;
+    });
+
+}
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark Notifications methods
 /////////////////////////////////////////////////////////////////////////

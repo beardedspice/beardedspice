@@ -19,8 +19,6 @@
 
 - (void)setPhoneUnplugActionEnabled:(BOOL)enabled;
 
-- (void)setUsingAppleRemoteEnabled:(BOOL)enabled;
-
 - (void)prepareForClosingConnectionWithCompletion:(void (^)(void))completion;
 
 @end

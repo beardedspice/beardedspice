@@ -20,9 +20,6 @@
 
 - (void)setPhoneUnplugActionEnabled:(BOOL)enabled;
 
-- (void)setUsingAppleRemoteEnabled:(BOOL)enabled;
-
-
 - (BOOL)addConnection:(NSXPCConnection *)connection;
 - (void)removeConnection:(NSXPCConnection *)connection;
 

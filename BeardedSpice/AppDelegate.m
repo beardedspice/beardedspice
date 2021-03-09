@@ -99,7 +99,6 @@ BOOL accessibilityApiEnabled = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: BSStrategiesPreferencesNativeAppChangedNoticiation object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesAutoPauseChangedNoticiation object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefChanged:) name: GeneralPreferencesUsingAppleRemoteChangedNoticiation object:nil];
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 
@@ -974,10 +973,6 @@ BOOL accessibilityApiEnabled = NO;
 
         [self setHeadphonesListener];
     }
-    else if ([name isEqualToString:GeneralPreferencesUsingAppleRemoteChangedNoticiation]) {
-
-        [self setAppleRemotes];
-    }
     else if ([name isEqualToString:BSStrategiesPreferencesNativeAppChangedNoticiation])
         [self refreshKeyTapBlackList];
 }
@@ -1138,7 +1133,6 @@ BOOL accessibilityApiEnabled = NO;
     [self resetShortcutsToControlService];
     [self refreshKeyTapBlackList];
     [self setHeadphonesListener];
-    [self setAppleRemotes];
 }
 
 - (void)resetShortcutsToControlService{
@@ -1215,13 +1209,6 @@ BOOL accessibilityApiEnabled = NO;
 
     if (_connectionToService) {
         [[_connectionToService remoteObjectProxy] setPhoneUnplugActionEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceRemoveHeadphonesAutopause]];
-    }
-}
-
-- (void)setAppleRemotes{
-
-    if (_connectionToService) {
-        [[_connectionToService remoteObjectProxy] setUsingAppleRemoteEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:BeardedSpiceUsingAppleRemote]];
     }
 }
 

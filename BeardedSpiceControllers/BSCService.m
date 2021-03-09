@@ -14,7 +14,6 @@
 //#include <IOKit/hid/IOHIDUsageTables.h>
 
 #import "SPMediaKeyTap.h"
-#import "DDHidAppleRemote.h"
 #import "DDHidAppleMikey.h"
 
 #import "EHSystemUtils.h"
@@ -33,7 +32,6 @@
     NSMutableDictionary *_shortcuts;
 
     BOOL _remoteControlDaemonEnabled;
-    BOOL _useAppleRemote;
     NSArray *_mediaKeysSupportedApps;
 
     dispatch_queue_t workingQueue;
@@ -154,67 +152,6 @@ static BSCService *bscSingleton;
         self->_hpuListener.enabled = enabled;
     });
 }
-
-
-- (void)setUsingAppleRemoteEnabled:(BOOL)enabled{
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        @autoreleasepool {
-
-            self->_useAppleRemote = enabled;
-
-            DDLogDebug(@"Reset Apple Remote");
-
-            if (self->_enabled && self->_useAppleRemote) {
-
-                @try {
-                    [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
-                }
-                @catch (NSException *exception) {
-                    DDLogError(@"Error when stopListenong on Apple Remotes: %@", exception);
-                }
-
-
-                @try {
-
-                    NSArray *appleRemotes = [DDHidAppleRemote allRemotes];
-                    self->_appleRemotes = [NSMutableArray arrayWithCapacity:appleRemotes.count];
-                    for (DDHidAppleRemote *item in appleRemotes) {
-
-                        @try {
-
-                            [item setDelegate:self];
-                            [item setListenInExclusiveMode:YES];
-                            [item startListening];
-
-                            [self->_appleRemotes addObject:item];
-#if DEBUG
-                            DDLogDebug(@"Apple Remote added - %@", item);
-#endif
-                        }
-                        @catch (NSException *exception) {
-
-                            DDLogError(@"Error when startListening on Apple Remote: %@, exception: %@", item, exception);
-                        }
-                    }
-                }
-                @catch (NSException *exception) {
-                    DDLogError(@"Error of the obtaining Apple Remotes divices: %@", [exception description]);
-                }
-            } else {
-
-                @try {
-                    [self->_appleRemotes makeObjectsPerformSelector:@selector(stopListening)];
-                }
-                @catch (NSException *exception) {
-                    DDLogError(@"Error when stopListenong on Apple Remotes: %@", exception);
-                }
-                self->_appleRemotes = nil;
-            }
-        }
-    });
-}
-
 
 - (BOOL)addConnection:(NSXPCConnection *)connection{
     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -341,58 +278,6 @@ static BSCService *bscSingleton;
                 [self catchCommandFromMiKeys];
             default:
                 DDLogDebug(@"Unknown key press seen x%X", usageId);
-        }
-    }
-}
-
-- (void) ddhidAppleRemoteButton: (DDHidAppleRemoteEventIdentifier) buttonIdentifier
-                    pressedDown: (BOOL) pressedDown{
-
-    if (pressedDown) {
-
-        switch (buttonIdentifier) {
-            case kDDHidRemoteButtonVolume_Plus:
-                [self sendMessagesToConnections:@selector(volumeUp)];
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Plus");
-                break;
-            case kDDHidRemoteButtonVolume_Minus:
-                [self sendMessagesToConnections:@selector(volumeDown)];
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonVolume_Minus");
-                break;
-            case kDDHidRemoteButtonMenu:
-                [self sendMessagesToConnections:@selector(playerNext)];
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu");
-                break;
-            case kDDHidRemoteButtonPlay:
-            case kDDHidRemoteButtonPlayPause:
-                [self sendMessagesToConnections:@selector(playPauseToggle)];
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay");
-                break;
-            case kDDHidRemoteButtonRight:
-                [self sendMessagesToConnections:@selector(nextTrack)];
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonRight");
-                break;
-            case kDDHidRemoteButtonLeft:
-                [self sendMessagesToConnections:@selector(previousTrack)];
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft");
-                break;
-            case kDDHidRemoteButtonRight_Hold:
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonRight_Hold");
-                break;
-            case kDDHidRemoteButtonMenu_Hold:
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonMenu_Hold");
-                break;
-            case kDDHidRemoteButtonLeft_Hold:
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonLeft_Hold");
-                break;
-            case kDDHidRemoteButtonPlay_Sleep:
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteButtonPlay_Sleep");
-                break;
-            case kDDHidRemoteControl_Switched:
-                DDLogDebug(@"Apple Remote keypress detected: kDDHidRemoteControl_Switched");
-                break;
-            default:
-                DDLogDebug(@"Apple Remote keypress detected: Unknown key press seen %d", buttonIdentifier);
         }
     }
 }
@@ -645,7 +530,6 @@ static BSCService *bscSingleton;
     if ([self refreshMediaKeys] == NO) {
         return NO;
     }
-    [self setUsingAppleRemoteEnabled:_useAppleRemote];
     return YES;
 }
 

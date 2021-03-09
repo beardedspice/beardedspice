@@ -14,7 +14,6 @@
 #pragma mark Notifications
 
 extern NSString *const GeneralPreferencesAutoPauseChangedNoticiation;
-extern NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation;
 extern NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiation;;
 
 /////////////////////////////////////////////////////////////////////////
@@ -22,7 +21,6 @@ extern NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiatio
 
 extern NSString *const BeardedSpiceAlwaysShowNotification;
 extern NSString *const BeardedSpiceRemoveHeadphonesAutopause;
-extern NSString *const BeardedSpiceUsingAppleRemote;
 extern NSString *const BeardedSpiceLaunchAtLogin;
 extern NSString *const BeardedSpiceUpdateAtLaunch;
 extern NSString *const BeardedSpiceShowProgress;
@@ -45,7 +43,6 @@ extern NSString *const BSWebSocketServerEnabled;
 
 - (IBAction)toggleLaunchAtStartup:(id)sender;
 - (IBAction)toggleAutoPause:(id)sender;
-- (IBAction)toggleUseRemote:(id)sender;
 - (IBAction)toggleWebSocketServer:(id)sender;
 - (IBAction)toggleHideMenuBar:(id)sender;
 - (IBAction)clickGetExtensions:(id)sender;

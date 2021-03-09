@@ -29,12 +29,6 @@
     [[BSCService singleton] setPhoneUnplugActionEnabled:enabled];
 }
 
-- (void)setUsingAppleRemoteEnabled:(BOOL)enabled{
-    DDLogInfo(@"setUsingAppleRemoteEnabled");
-    
-    [[BSCService singleton] setUsingAppleRemoteEnabled:enabled];
-}
-
 - (void)prepareForClosingConnectionWithCompletion:(void (^)(void))completion{
 
     [[BSCService singleton] removeConnection:_connection];

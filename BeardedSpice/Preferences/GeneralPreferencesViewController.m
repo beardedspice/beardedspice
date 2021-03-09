@@ -25,12 +25,10 @@
 #define RELAXING_TIMEOUT                   3 //seconds
 
 NSString *const GeneralPreferencesAutoPauseChangedNoticiation = @"GeneralPreferencesAutoPauseChangedNoticiation";
-NSString *const GeneralPreferencesUsingAppleRemoteChangedNoticiation = @"GeneralPreferencesUsingAppleRemoteChangedNoticiation";
 NSString *const GeneralPreferencesWebSocketServerEnabledChangedNoticiation = @"GeneralPreferencesWebSocketServerEnabledChangedNoticiation";
 
 NSString *const BeardedSpiceAlwaysShowNotification = @"BeardedSpiceAlwaysShowNotification";
 NSString *const BeardedSpiceRemoveHeadphonesAutopause = @"BeardedSpiceRemoveHeadphonesAutopause";
-NSString *const BeardedSpiceUsingAppleRemote = @"BeardedSpiceUsingAppleRemote";
 NSString *const BeardedSpiceLaunchAtLogin = @"BeardedSpiceLaunchAtLogin";
 NSString *const BeardedSpiceUpdateAtLaunch = @"BeardedSpiceUpdateAtLaunch";
 NSString *const BeardedSpiceShowProgress = @"BeardedSpiceShowProgress";
@@ -102,15 +100,6 @@ NSString *const BSWebSocketServerEnabled = @"BSWebSocketServerEnabled";
          object:self];
     });
 
-}
-
-- (IBAction)toggleUseRemote:(id)sender {
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:GeneralPreferencesUsingAppleRemoteChangedNoticiation
-         object:self];
-    });
 }
 
 - (IBAction)toggleWebSocketServer:(id)sender {

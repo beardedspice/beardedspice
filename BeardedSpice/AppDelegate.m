@@ -798,7 +798,7 @@ BOOL accessibilityApiEnabled = NO;
         _preferencesWindowController = [[BSPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
         
         if (@available(macOS 11.0, *)) {
-            _preferencesWindowController.window.toolbarStyle = NSWindowToolbarStyleExpanded;
+            _preferencesWindowController.window.toolbarStyle = NSWindowToolbarStylePreference;
         }
         
     }

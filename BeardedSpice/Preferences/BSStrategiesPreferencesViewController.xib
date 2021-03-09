@@ -78,7 +78,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </tableColumn>
-                                    <tableColumn identifier="name" editable="NO" width="322" minWidth="262" maxWidth="350" id="yy8-Wa-ZAL">
+                                    <tableColumn identifier="name" editable="NO" width="388" minWidth="388" maxWidth="388" id="yy8-Wa-ZAL">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>

@@ -207,10 +207,14 @@ dispatch_queue_t notificationQueue() {
 - (void)favorite {
     __weak typeof(self) wself = self;
     @try {
-        if ([_activeTab favorite]
-            && [_activeTab showNotifications]
+        if ([_activeTab favorite]) {
+            if ( [_activeTab showNotifications]
             && [[_activeTab trackInfo] favorited])
             [wself showNotificationDelayedUsingFallback:NO];
+        }
+        else {
+            [self showFavoriteNotSupportedNotification];
+        }
     } @catch (NSException *exception) {
         DDLogError(@"Exception occured: %@", exception);
     }
@@ -336,6 +340,20 @@ dispatch_queue_t notificationQueue() {
     [notifCenter deliverNotification:notification];
 
     DDLogWarn(@"Showing Default Notification");
+}
+
+- (void)showFavoriteNotSupportedNotification {
+    NSUserNotification *notification = [NSUserNotification new];
+
+    notification.identifier = kBSTrackNameIdentifier;
+    notification.title = [self displayName];
+    notification.informativeText = BSLocalizedString(@"favorite-not-supported", @"");
+
+    NSUserNotificationCenter *notifCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [notifCenter removeDeliveredNotification:notification];
+    [notifCenter deliverNotification:notification];
+
+    DDLogWarn(@"Showing FavoriteNotSupported Notification");
 }
 
 @end

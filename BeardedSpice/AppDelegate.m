@@ -289,6 +289,7 @@ BOOL accessibilityApiEnabled = NO;
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
     return YES;
+    // TODO: this is not working on macOS 11, notification, which sent frontmost app does not show
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification{
@@ -510,7 +511,10 @@ BOOL accessibilityApiEnabled = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             ASSIGN_STRONG(self);
             if (error && checkFromMenu) {
-                //TODO: display ALERT with error
+                [UIController windowWillBeVisible:error completion:^{
+                    [NSApp presentError:error];
+                    [UIController removeWindow:error];
+                }];
             }
             else {
                 NSString *message = [NSString stringWithFormat:BSLocalizedString(@"There were %u compatibility updates.", @"Notification Titles"), updatedNames.count];

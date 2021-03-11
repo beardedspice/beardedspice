@@ -318,7 +318,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
         NSError *err = [NSError errorWithDomain:BSCStrategyErrorDomain
                                            code:BSCS_ERROR_MANIFEST_DOWNLOAD
                                        userInfo:@{
-                                           NSLocalizedDescriptionKey: @"TODO: ERROR DESCR"
+                                           NSLocalizedDescriptionKey: BSLocalizedString(@"strategy-manager-obtain-manifest-error", @"")
                                        }];
         DDLogError(@"Can't download manifest.json from: %@", BS_UNSUPPORTED_STRATEGY_JSON_URL);
         if (error) {
@@ -335,7 +335,7 @@ static BSCustomStrategyManager *singletonCustomStrategyManager;
                                              code:BSCS_ERROR_MANIFEST_PARSE
                                          userInfo:@{
                                                     NSUnderlyingErrorKey: err,
-                                                    NSLocalizedDescriptionKey: @"TODO: ERROR DESCR"
+                                                    NSLocalizedDescriptionKey: BSLocalizedString(@"strategy-manager-obtain-manifest-error", @"")
                                          }];
         DDLogError(@"Can't parse manifest.json from: %@", BS_UNSUPPORTED_STRATEGY_JSON_URL);
         if (error) {

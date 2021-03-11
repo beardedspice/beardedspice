@@ -41,14 +41,13 @@ NSString *BSMediaStrategyErrorDomain = @"BSMediaStrategyErrorDomain";
     return self;
 }
 
-- (NSArray<NSString *> *)allKeys
-{
-    return [self.cache allKeys];
-}
-
 - (NSArray <BSMediaStrategy *> *)allStrategies{
     
-    return [self.cache allValues];
+    __block NSArray *result;
+    dispatch_sync(_cacheSerialQueue, ^{
+        result = [self.cache allValues];
+    });
+    return result;
 }
 
 - (void)removeStrategyFromCache:(BSMediaStrategy * _Nonnull)strategy

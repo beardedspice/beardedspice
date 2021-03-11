@@ -38,11 +38,6 @@ extern NSString * _Nonnull BSStrategyCacheErrorDomain;
 - (BOOL)updateStrategiesFromSourceURL:(NSURL * _Nonnull)path;
 
 /**
- FIXME documentation
- */
-- (NSArray<NSString *> * _Nonnull)allKeys;
-
-/**
  */
 - (NSArray <BSMediaStrategy *> * _Nonnull)allStrategies;
 

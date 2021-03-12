@@ -109,7 +109,7 @@
         TVTrack *track = [tv currentTrack];
         double duration = track.duration;
         double nextPos = tv.playerPosition + DELTA;
-        if (nextPos < duration) {
+        if (nextPos < duration || duration == 0) {
             tv.playerPosition = nextPos;
         }
         else {
@@ -140,7 +140,7 @@
 }
 
 - (BSTrack *)trackInfo{
-//
+    
 //    MusicApplication *music = (MusicApplication *)[self.application sbApplication];
 //    if (music) {
 //

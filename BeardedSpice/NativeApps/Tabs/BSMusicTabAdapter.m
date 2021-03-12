@@ -163,13 +163,21 @@
         if (track) {
             BSTrack *trackInfo = [BSTrack new];
 
-            trackInfo.track = track.name;
+            trackInfo.track = track.name ?: BSLocalizedString(@"apple-music-track-info-not-supported", @"");
             trackInfo.album = track.album;
             trackInfo.artist = track.artist;
 
             NSArray *artworks = [[track artworks] get];
             MusicArtwork *art = [artworks firstObject];
-            trackInfo.image = art.data;
+            id image = art.data;
+            if ([image isKindOfClass:[NSImage class]] == NO) {
+                image = nil;
+                NSData *data = [[art.rawData get] data];
+                if (data.length) {
+                    image = [[NSImage alloc] initWithData:data];
+                }
+            }
+            trackInfo.image = image;
 
             @try {
                 trackInfo.favorited = @(track.loved);

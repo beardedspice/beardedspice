@@ -21,6 +21,7 @@
 #import "EHExecuteBlockDelayed.h"
 
 #define MIKEY_REPEAT_TIMEOUT                0.6  //seconds
+#define RCD_SERVICE_PLIST                   @"/System/Library/LaunchAgents/com.apple.rcd.plist"
 
 @implementation BSCService{
 
@@ -158,6 +159,7 @@ static BSCService *bscSingleton;
 
         if (connection) {
             if (!_enabled) {
+                _enabled = YES;
                 [self rcdControl];
                 [self refreshShortcutMonitor];
                 _enabled = [self refreshAllControllers:nil];
@@ -503,8 +505,9 @@ static BSCService *bscSingleton;
         if ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"list"] output:&cliOutput] == 0) {
             _remoteControlDaemonEnabled = ( [cliOutput contains:@"com.apple.rcd" caseSensitive:YES]);
             if (_remoteControlDaemonEnabled) {
-                _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", @"-w", @"com.apple.rcd.plist"] output:nil] == 0);
-                DDLogDebug(@"rcdControl unload result: %d", _remoteControlDaemonEnabled);
+                _remoteControlDaemonEnabled = ([EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"unload", RCD_SERVICE_PLIST] output:&cliOutput] == 0
+                                               && [cliOutput containsString:@"error"] == NO);
+                DDLogDebug(@"rcdControl unload result: %@", (_remoteControlDaemonEnabled ? @"YES" : @"NO"));
             }
         }
     }
@@ -513,7 +516,7 @@ static BSCService *bscSingleton;
         DDLogDebug(@"rcdControl disable");
         if (_remoteControlDaemonEnabled) {
             DDLogDebug(@"rcdControl load");
-            [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", @"-w", @"/System/Library/LaunchAgents/com.apple.rcd.plist"] output:nil];
+            [EHSystemUtils cliUtil:@"/bin/launchctl" arguments:@[@"load", RCD_SERVICE_PLIST] output:nil];
         }
     }
 

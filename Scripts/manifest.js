@@ -39,6 +39,7 @@ try {
     });
     fs.writeFileSync(MANIFEST,JSON.stringify(out));
     fs.writeFileSync(SUPPORTED_STRSATEGIES_MD_FILE_PATH,mdOut);
+    console.log('Updated files successful');
 } catch (error) {
     console.error(error)
 }

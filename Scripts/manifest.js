@@ -20,16 +20,9 @@ try {
                 let stg = fs.readFileSync(STRATEGIES_PATH+el, 'utf8');
                 const obj = eval(stg);
                 out[path.basename(el, STRATEGY_EXT)] = {'version': obj.version, 'name': obj.displayName};
-                mdOut += '- '+obj.displayName;
-                if (obj.accepts.method == 'predicateOnTab' && obj.accepts.args.indexOf('URL') > -1) {
-                    let list = [];
-                    let item;
-                    while ((item = re.exec(obj.accepts.format)) !== null) {
-                        list.push(item[1]);
-                    }
-                if (list.length) {
-                        mdOut += ' ('+list.join(', ')+')';
-                    }
+                mdOut += '- **'+obj.displayName+'**';
+                if (obj.homepage) {
+                    mdOut += ' ('+obj.homepage+')';
                 }
                 mdOut +='\n';
             } catch (error) {

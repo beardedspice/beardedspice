@@ -1,0 +1,19 @@
+#define TIDAL_PAUSE_NAMES @[\
+@"Пауза",\
+@"Pause",\
+@"Pause",\
+@"Pause",\
+@"Pausa",\
+@"Pausa",\
+@"Pause",\
+@"Pauza",\
+@"Pausa",\
+@"Pause",\
+@"Pauza",\
+@"Pausa",\
+@"Pausa",\
+@"Premor",\
+@"Pauziraj",\
+@"Pausa",\
+@"Duraklat",\
+]

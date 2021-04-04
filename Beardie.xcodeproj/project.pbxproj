@@ -549,6 +549,8 @@
 		65C5116C1AED688800EBA6A5 /* Spotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		65C511701AED802B00EBA6A5 /* BSNativeAppTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNativeAppTabAdapter.h; sourceTree = "<group>"; };
 		65C511711AED802B00EBA6A5 /* BSNativeAppTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNativeAppTabAdapter.m; sourceTree = "<group>"; };
+		65C8DB9A2619B47D000E19B9 /* Tidal-Pause-Names.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tidal-Pause-Names.h"; sourceTree = "<group>"; };
+		65C8DB9B2619B47D000E19B9 /* extruct-pause-names.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "extruct-pause-names.sh"; sourceTree = "<group>"; };
 		65D57FCA1D02CBFE0016F270 /* MediaStrategies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MediaStrategies; sourceTree = "<group>"; };
 		65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-Config.xcconfig"; sourceTree = "<group>"; };
 		65E567071B76104300AD2D46 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -942,6 +944,7 @@
 		657C77362379D91600A55EFE /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				65C8DB992619B081000E19B9 /* Tidal */,
 				65A27DB325FA9AEB007C0CB7 /* Deezer */,
 				5E80769C1D58CE180002855D /* Downcast.h */,
 				5E80769D1D58CE180002855D /* DowncastTabAdapter.h */,
@@ -967,8 +970,6 @@
 				659B52C2238460A2005B73AB /* TV.h */,
 				65F294A4237C3F34008C1D71 /* BSTVTabAdapter.h */,
 				65F294A5237C3F34008C1D71 /* BSTVTabAdapter.m */,
-				654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */,
-				654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */,
 				65E647592385FFA000C6DC21 /* AmazonMusicTabAdapter.h */,
 				65E647582385FFA000C6DC21 /* AmazonMusicTabAdapter.m */,
 				659643CD25DEE3E900A5D582 /* QuodLibetTabAdapter.h */,
@@ -1054,6 +1055,17 @@
 				65AA490825F585A500D19C60 /* BeardieLaunchAtLogin.entitlements */,
 			);
 			path = BeardieLaunchAtLogin;
+			sourceTree = "<group>";
+		};
+		65C8DB992619B081000E19B9 /* Tidal */ = {
+			isa = PBXGroup;
+			children = (
+				65C8DB9A2619B47D000E19B9 /* Tidal-Pause-Names.h */,
+				654EC7D91ED0F33A006490F2 /* TidalTabAdapter.h */,
+				654EC7DA1ED0F33A006490F2 /* TidalTabAdapter.m */,
+				65C8DB9B2619B47D000E19B9 /* extruct-pause-names.sh */,
+			);
+			path = Tidal;
 			sourceTree = "<group>";
 		};
 		65E6E0532370AC7A009C9448 /* beardie-nm-connector */ = {

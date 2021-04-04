@@ -101,7 +101,8 @@ static NativeAppTabsRegistry *singletonNativeAppTabsRegistry;
         [BSMusicTabAdapter class],
         [BSTVTabAdapter class],
         [AmazonMusicTabAdapter class],
-        [QuodLibetTabAdapter class]
+        [QuodLibetTabAdapter class],
+        [TidalTabAdapter class]
     ];
 }
 

@@ -19,3 +19,5 @@ cat "$f" | python3 -c 'import sys, json; dict=(json.load(sys.stdin)); print("@\"
 done
 
 echo "]" >> "$OUTPUT"
+
+rm -R "$TMP_DIR"

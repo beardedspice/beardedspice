@@ -1,5 +1,3 @@
-//PREVENTS LOG OUTPUT
-//    console.log = function(){};
 
 const DELAY_TIMEOUT = 500; // milleseconds
 const RECONNECT_NATIVE_TIMEOUT = 10000; //milleseconds
@@ -36,13 +34,13 @@ var _clean = function() {
 
 var logError = function(ex) {
     if (typeof console !== 'undefined' && console.error) {
-        console.error('Error in BeardedSpice Control script');
-        console.error(ex);
+        BSError('Error in BeardedSpice Control script');
+        BSError(ex);
     }
 };
 
 function reconnectToNative(event) {
-    console.info("(BeardedSpice Control) Attempt to reconnecting.");
+    BSInfo("(BeardedSpice Control) Attempt to reconnecting.");
 
     _clean();
     connectToNative();
@@ -52,20 +50,20 @@ function reconnectToNative(event) {
 function connectToNative() {
     if (typeof chrome !== "undefined" && chrome && chrome.storage) {
         //CHROME
-        BSUtils.storageGet("nativeMesssageAppId", value => {
-            nativePort = chrome.runtime.connectNative(value);
+        if (BSConstants) {
+            nativePort = chrome.runtime.connectNative(BSConstants.BS_B_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID);
             nativePort.onMessage.addListener(respondToNativeMessage);
             nativePort.onDisconnect.addListener(function() {
-                console.log('(BeardedSpice Control) onSocketDisconnet');
+                BSLog('(BeardedSpice Control) onSocketDisconnet');
                 _clean();
                 timeoutObject = setTimeout(reconnectToNative, RECONNECT_NATIVE_TIMEOUT);
             });
-            });
+        }
     }
 }
 
 function respondToNativeMessage(msg){
-    console.log('(BeardedSpice Control) received from native: %o', msg);
+    BSLog('(BeardedSpice Control) received from native: %o', msg);
     var targetId = msg["id"];
     if (targetId.length > 0) {
         var target = callbackTargets[targetId];
@@ -99,7 +97,7 @@ function respondToMessage(theMessageEvent) {
         });
     };
     if (BSUtils.checkThatTabIsReal(theMessageEvent.target)) {
-        console.log('(BeardedSpice Control) respondToMessage event: ' + theMessageEvent.name + ' target: ' + theMessageEvent.target.title);
+        BSLog('(BeardedSpice Control) respondToMessage event: ' + theMessageEvent.name + ' target: ' + theMessageEvent.target.title);
         try {
 
             //request accepters
@@ -157,11 +155,7 @@ function respondToMessage(theMessageEvent) {
                         BSUtils.sendMessageToTab(theMessageEvent.target, "hide", { 'result': true });
                     });
                     break;
-                case "pairing":
-                    BSUtils.storageSet("hostBundleId", theMessageEvent.message.bundleId, () => {
-                        BSUtils.sendMessageToTab(theMessageEvent.target, "pairing", { 'result': true });
-                    });
-                    break;
+
                 default:
 
             }

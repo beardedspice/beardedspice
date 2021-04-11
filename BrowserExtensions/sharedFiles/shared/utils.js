@@ -1,20 +1,22 @@
-//PREVENTS LOG OUTPUT
-//console.log = function(){};
 (function(){
     if (typeof BSUtils !== "undefined" && BSUtils) {
         return;
     }
-    var _privateLog = console.log;
-    console.log = function () {
-        _privateLog.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
+
+    if (typeof BSConstants !== "undefined" && (BSConstants.BS_B_BUID_CONFIG == "Release")) {
+        //PREVENTS LOG OUTPUT
+        BSLog = function () { };
+    }
+    else {
+        BSLog = function () {
+            console.log.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
+        };
+    }
+    BSError = function () {
+        console.error.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
     };
-    var _privateError = console.error;
-    console.error = function () {
-        _privateError.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
-    };
-    var _privateInfo = console.info;
-    console.info = function () {
-        _privateInfo.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
+    BSInfo = function () {
+        console.info.apply(console, [`[${new Date().toISOString().replace("T", " ").replace(/\..+/, "")}]`+ [].shift.call(arguments), ...arguments])
     };
 })();
 
@@ -73,7 +75,7 @@ var BSUtils = {
     },
 
     getActiveTab: function(callback, forWindowWhereTab) {
-        console.log("(BeardedSpice) getActiveTab.");
+        BSLog("(BeardedSpice) getActiveTab.");
         if (typeof safari !== "undefined" && safari && safari.application) {
 
             var tab = forWindowWhereTab ? forWindowWhereTab.browserWindow.activeTab : safari.application.activeBrowserWindow.activeTab;
@@ -90,7 +92,7 @@ var BSUtils = {
     },
 
     setActiveTab: function(tab, withWindow, callback) {
-        console.log("(BeardedSpice) setActiveTab withWindow: %s, for tab %o", withWindow, tab);
+        BSLog("(BeardedSpice) setActiveTab withWindow: %s, for tab %o", withWindow, tab);
         if (typeof safari !== "undefined" && safari) {
             if (withWindow) tab.browserWindow.activate();
             tab.activate();
@@ -106,11 +108,11 @@ var BSUtils = {
     storageGet: function(name, callback) {
         if (typeof safari !== "undefined" && safari && safari.extension && safari.extension.settings) {
             var value = safari.extension.settings[name];
-            console.log("(BeardedSpice) storageGet name: %s, value: %o.",  name, value);
+            BSLog("(BeardedSpice) storageGet name: %s, value: %o.",  name, value);
             if (callback) callback(value);
         } else if (typeof chrome !== "undefined" && chrome && chrome.storage) {
             chrome.storage.local.get(name, function(items) {
-                console.log("(BeardedSpice) storageGet name: %s, value: %o.",  name, items);
+                BSLog("(BeardedSpice) storageGet name: %s, value: %o.",  name, items);
                 if (callback) callback(items[name]);
             });
         }
@@ -118,13 +120,13 @@ var BSUtils = {
 
     storageSet: function(name, value, callback) {
         if (typeof safari !== "undefined" && safari && safari.extension && safari.extension.settings) {
-            console.log("(BeardedSpice) storageSet name: %s value: %o.", name, value);
+            BSLog("(BeardedSpice) storageSet name: %s value: %o.", name, value);
             safari.extension.settings[name] = value;
             if (callback) callback();
         } else if (typeof chrome !== "undefined" && chrome && chrome.storage) {
             var val = {};
             val[name] = value;
-            console.log("(BeardedSpice) storageSet dict: %O", val);
+            BSLog("(BeardedSpice) storageSet dict: %O", val);
             chrome.storage.local.set( val, callback);
         }
     },
@@ -138,7 +140,7 @@ var BSUtils = {
     },
 
     sendMessageToGlobal: function(name, message) {
-        console.log("(BeardedSpice) sendMessageToGlobal name: %s, message: %o", name, message);
+        BSLog("(BeardedSpice) sendMessageToGlobal name: %s, message: %o", name, message);
         if (typeof safari !== "undefined" && safari && safari.extension) {
             safari.extension.dispatchMessage(name, message);
         } else if (typeof chrome !== "undefined" && chrome && chrome.runtime) {
@@ -164,7 +166,7 @@ var BSUtils = {
 
     sendMessageToTab: function(tab, name, message) {
 
-        console.log("(BeardedSpice) sendMessageToTab name: %s, message: %o", name, message);
+        BSLog("(BeardedSpice) sendMessageToTab name: %s, message: %o", name, message);
         if (typeof safari !== "undefined" && tab && tab.page) {
             tab.page.dispatchMessage(name, message);
         } else if (typeof chrome !== "undefined" && chrome && chrome.tabs && tab && tab.id) {
@@ -201,7 +203,7 @@ var BSUtils = {
         }
         injected.setAttribute("src", src);
         (document.head || document.documentElement).appendChild(injected);
-        console.log('(BeardedSpice) injectExtScript: ' + src);
+        BSLog('(BeardedSpice) injectExtScript: ' + src);
     },
 
     injectScript: function(script) {
@@ -210,7 +212,7 @@ var BSUtils = {
         injected.setAttribute("type", "text/javascript");
         injected.textContent = script;
         (document.head || document.documentElement).appendChild(injected);
-        console.log('(BeardedSpice) injectScript');
+        BSLog('(BeardedSpice) injectScript');
     },
 
     injectAccepters: function(code, parameters) {
@@ -233,20 +235,20 @@ var BSUtils = {
             "}" +
             "};";
         (document.head || document.documentElement).appendChild(injected);
-        console.log('(BeardedSpice) injectAccepters');
+        BSLog('(BeardedSpice) injectAccepters');
     },
 
     strategyCommand: function(strategy, command) {
-        console.log('(BeardedSpice) strategyCommand:');
-        console.log(strategy);
-        console.log(command);
+        BSLog('(BeardedSpice) strategyCommand:');
+        BSLog(strategy);
+        BSLog(command);
 
         var okResult = { 'result': true };
         try {
 
             if (strategy) {
 
-                console.log('(BeardedSpice) Strategy command obtained.');
+                BSLog('(BeardedSpice) Strategy command obtained.');
 
                 if (command == 'title') {
                     var title = window.document.title == "" ? window.location.href : window.document.title;
@@ -270,12 +272,16 @@ var BSUtils = {
                     return strategy.trackInfo();
                 } else if (command == 'isPlaying') {
                     return { 'result': strategy.isPlaying() };
+                } else if (command == 'onClick') {
+                    if (strategy.onClick) strategy.onClick();
+                    return okResult;
                 } else {
-                    console.error('(BeardedSpice) Strategy command not found.');
+                    BSError('(BeardedSpice) Strategy command not found.');
                     return { 'result': false };
                 }
             }
         } catch (ex) {
+            BSInfo('(BeardedSpice) command exception:' + ex);
             return { 'result': false };
         }
 

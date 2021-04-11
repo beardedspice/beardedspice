@@ -1,20 +1,17 @@
-//PREVENTS LOG OUTPUT
-//console.log = function(){};
-
-console.log("(BeardedSpice) Start injection script");
+BSLog("(BeardedSpice) Start injection script");
 
 (function() {
 
     if (window != window.top) {
-        console.log(window.top);
-        console.log("(BeardedSpice) Injection script stopped, because iframe");
+        BSLog(window.top);
+        BSLog("(BeardedSpice) Injection script stopped, because iframe");
         return;
     }
-    console.log("(BeardedSpice) Injection script running on top window");
+    BSLog("(BeardedSpice) Injection script running on top window");
 
     var checkInjectAlready = document.querySelector('#X_BeardedSpice_InjectAlready');
     if (checkInjectAlready != null) {
-        console.log("(BeardedSpice) Script already injected!");
+        BSLog("(BeardedSpice) Script already injected!");
          return;
     }
  
@@ -61,13 +58,13 @@ console.log("(BeardedSpice) Start injection script");
                 this.inCommandIntervalId = null;
             }
             if (st.val == state.inCommand.val) {
-                    console.log("(BeardedSpice) inCommand timeout ran");
+                    BSLog("(BeardedSpice) inCommand timeout ran");
                 this.inCommandIntervalId = setInterval(() => {
-                    console.log("(BeardedSpice) inCommand timeout reached");
+                    BSLog("(BeardedSpice) inCommand timeout reached");
                     state.set(state.ready);
                 }, 2000);
             }
-            console.log("(BeardedSpice) Set State to \"" + this.current.str + "\"");
+            BSLog("(BeardedSpice) Set State to \"" + this.current.str + "\"");
         },
         inCommandIntervalId: null
     }
@@ -84,14 +81,14 @@ console.log("(BeardedSpice) Start injection script");
 
     // Handle message from Global Extension Page
     var handleMessage = function(event) {
-        console.log(event.name);
-        console.log(event.message);
+        BSLog(event.name);
+        BSLog(event.message);
         if (event.name === 'serverIsAlive' 
             || event.name === 'reconnect') {
             
             if (handleMessage.intervalId) {
                 clearInterval(handleMessage.intervalId);
-                console.log("Cleared interval: " +handleMessage.intervalId);
+                BSLog("Cleared interval: " +handleMessage.intervalId);
                 handleMessage.intervalId = null
             }
             if (event.message["result"]) {
@@ -159,7 +156,7 @@ console.log("(BeardedSpice) Start injection script");
 
             if (socket) {
                 socket.send(JSON.stringify(obj));
-                console.log("(BeardedSpice) Socket send:" + JSON.stringify(obj));
+                BSLog("(BeardedSpice) Socket send:" + JSON.stringify(obj));
             }
         } catch (ex) {
             logError(ex);
@@ -170,8 +167,8 @@ console.log("(BeardedSpice) Start injection script");
 
     var logError = function(ex) {
         if (typeof console !== 'undefined' && console.error) {
-            console.error('Error in BeardedSpice script');
-            console.error(ex);
+            BSError('Error in BeardedSpice script');
+            BSError(ex);
         }
     };
 
@@ -183,7 +180,7 @@ console.log("(BeardedSpice) Start injection script");
             return;
         }
 
-        console.info("(BeardedSpice) Accepters run.");
+        BSInfo("(BeardedSpice) Accepters run.");
 
         try {
             var code = accepters.bsJsFunctions +
@@ -194,7 +191,7 @@ console.log("(BeardedSpice) Start injection script");
                 "if (bsAccepter()) {" +
                 "strategyName = val;" +
                 "strategyAccepterFunc = bsAccepter;" +
-                "console.info(\"(BeardedSpice) Strategy found: \" + strategyName + \".\");" +
+                "BSInfo(\"(BeardedSpice) Strategy found: \" + strategyName + \".\");" +
                 "return true;" +
                 "}" +
                 "return false;" +
@@ -203,11 +200,11 @@ console.log("(BeardedSpice) Start injection script");
 
             if (noCSP) {
                 BSUtils.injectAccepters(code, bsParameters);
-                console.log("(BeardedSpice) Accepters run: before delayedFunc.");
+                BSLog("(BeardedSpice) Accepters run: before delayedFunc.");
                 var intervalId = null;
                 var delayedFunc = function() {
                     BSEventClient.sendRequest({ "name": "accept" }, function(response) {
-                        console.log("(BeardedSpice) Accepters run: func delayedFunc.");
+                        BSLog("(BeardedSpice) Accepters run: func delayedFunc.");
 
                         strategyName = response.strategyName;
                         if (strategyName) {
@@ -222,10 +219,10 @@ console.log("(BeardedSpice) Start injection script");
                     }
                 }
                 intervalId = setInterval(delayedFunc, 1000);
-                console.log("(BeardedSpice) Accepters run: after setTimeout");
+                BSLog("(BeardedSpice) Accepters run: after setTimeout");
             } else {
                 eval(code);
-                console.log("(BeardedSpice) Accepters run: on CSP");
+                BSLog("(BeardedSpice) Accepters run: on CSP");
                 if (strategyName) {
                     state.set(state.accepted);
                     BSUtils.sendMessageToGlobal("port");
@@ -241,7 +238,7 @@ console.log("(BeardedSpice) Start injection script");
     };
 
     var serverIsAlive = function(event) {
-        console.info("(BeardedSpice) Attempt to connecting on new port.");
+        BSInfo("(BeardedSpice) Attempt to connecting on new port.");
         state.set(state.accepted);
         BSUtils.sendMessageToGlobal("port");
     };
@@ -252,7 +249,7 @@ console.log("(BeardedSpice) Start injection script");
             return;
         }
 
-        console.info("(BeardedSpice) Attempt to reconnecting.");
+        BSInfo("(BeardedSpice) Attempt to reconnecting.");
 
         state.set(state.reconnecting);
         if (socket) {
@@ -265,7 +262,7 @@ console.log("(BeardedSpice) Start injection script");
 
     // var connectTimeout = function(event) {
 
-    //     console.log("(BeardedSpice) Connection timeout.");
+    //     BSLog("(BeardedSpice) Connection timeout.");
     //     var _socket = socket;
     //     _clean();
     //     _socket.close();
@@ -278,7 +275,7 @@ console.log("(BeardedSpice) Start injection script");
         }
 
         var onSocketDisconnet = function(event) {
-            console.info('(BeardedSpice) onSocketDisconnet');
+            BSInfo('(BeardedSpice) onSocketDisconnet');
 
             if (state.current.val === state.reconnecting.val) {
                 return;
@@ -290,7 +287,7 @@ console.log("(BeardedSpice) Start injection script");
         };
 
         if (port == 0) {
-            console.info("(BeardedSpice) Port not specified.");
+            BSInfo("(BeardedSpice) Port not specified.");
             onSocketDisconnet();
             return;
         }
@@ -299,21 +296,21 @@ console.log("(BeardedSpice) Start injection script");
 
         // Create WebSocket connection.
         var url = 'wss://localhost:' + port;
-        console.info("(BeardedSpice) Try connect to '" + url + "'");
+        BSInfo("(BeardedSpice) Try connect to '" + url + "'");
 
         socket = new WebSocket(url);
 
         // Connection opened
         socket.addEventListener('open', function(event) {
-            console.info("(BeardedSpice) Socket open.");
+            BSInfo("(BeardedSpice) Socket open.");
         });
 
         socket.addEventListener('close', onSocketDisconnet);
 
         // Listen for messages from Beardie Control Server
         socket.addEventListener('message', function(event) {
-            console.log('(BeardedSpice) Message from server ', event.data);
-            console.log('(BeardedSpice) State: ' + state.current.str);
+            BSLog('(BeardedSpice) Message from server ', event.data);
+            BSLog('(BeardedSpice) State: ' + state.current.str);
                                 
             switch (state.current.val) {
                 case state.connecting.val:
@@ -351,8 +348,8 @@ console.log("(BeardedSpice) Start injection script");
                         try {
                             eval('var ' + event.data + ';');
                             if (BSStrategy) {
-                                console.log('(BeardedSpice) Strategy obtained.');
-                                console.log(BSStrategy);
+                                BSLog('(BeardedSpice) Strategy obtained.');
+                                BSLog(BSStrategy);
                                 strategy = BSStrategy;
                                 state.set(state.ready);
                                 _sendOk();
@@ -370,12 +367,12 @@ console.log("(BeardedSpice) Start injection script");
                             var obj = JSON.parse(event.data);
                             if (obj.realBundleId != null) {
                                 bundleId = { "result": obj.realBundleId};
-                                console.log("(BeardedSpice) Real Bundle ID set on: %s", bundleId);
+                                BSLog("(BeardedSpice) Real Bundle ID set on: %s", bundleId);
                                 _sendOk();
                                 break;
                             }
                         } catch (ex) { 
-                            console.log("(BeardedSpice) try simple command");
+                            BSLog("(BeardedSpice) try simple command");
                         }
                         state.set(state.inCommand);
                         switch (event.data) {
@@ -414,7 +411,7 @@ console.log("(BeardedSpice) Start injection script");
     };
 
     var onUrlChangedBy = function(event) {
-        console.log("(BeardedSpice) onUrlChangedBy");
+        BSLog("(BeardedSpice) onUrlChangedBy");
 
         bsParameters.URL = window.location.href;
 
@@ -423,7 +420,7 @@ console.log("(BeardedSpice) Start injection script");
             //check strategy validity
             if (noCSP) {
                 BSEventClient.sendRequest({ "name": "checkAccept" }, function(response) {
-                    console.log("(BeardedSpice) checkAccept run: %o", response);
+                    BSLog("(BeardedSpice) checkAccept run: %o", response);
 
                     if (response["result"]) {
                         //do nothing
@@ -443,7 +440,7 @@ console.log("(BeardedSpice) Start injection script");
     }
 
     window.addEventListener("popstate", function(event) {
-        console.log("(BeardedSpice) onPopstate.");
+        BSLog("(BeardedSpice) onPopstate.");
         setTimeout(function() {
             if (bsParameters.URL != window.location.href) {
                 return onUrlChangedBy(event);
@@ -452,15 +449,20 @@ console.log("(BeardedSpice) Start injection script");
     }, true);
 
     window.addEventListener("click", function(event) {
-        console.log("(BeardedSpice) onClick");
-        setTimeout(function() {
+        BSLog("(BeardedSpice) onClick");
+        if (noCSP) {
+            BSEventClient.sendRequest({ "name": "command", "args": "onClick" }, function(response) {});
+        } else {
+            BSUtils.strategyCommand(strategy, "onClick");
+        }
+        setTimeout(function () {
             if (bsParameters.URL != window.location.href) {
                 return onUrlChangedBy(event);
             }
         }, 1);
     }, true);
 
-    console.info("BeardedSpice Script Injected.");
+    BSInfo("BeardedSpice Script Injected.");
 
     BSUtils.handleMessageFromGlobal(handleMessage);
 

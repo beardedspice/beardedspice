@@ -27,9 +27,9 @@ var BSEventResponder = {
 
 BSEventResponder.listenRequest(function(request, sender, callback) {
 
-    // console.log("(BeardedSpice) BSEventResponder get request.");
-    // console.log(request);
-    // console.log(sender);
+    // BSLog("(BeardedSpice) BSEventResponder get request.");
+    // BSLog(request);
+    // BSLog(sender);
 
     switch (request.name) {
         case "accept":

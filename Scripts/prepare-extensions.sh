@@ -11,7 +11,6 @@ echo "Prepare browser extensions..."
 echo "================================================="
 
 EXTENSIONS="${SRCROOT}/BrowserExtensions"
-EXTENSIONS_BUILD="${SRCROOT}/build/extensions"
 EXTENSION_CHROME="${EXTENSIONS_BUILD}/Beardie.chrome"
 
 rm -Rf "${EXTENSIONS_BUILD}"
@@ -30,9 +29,8 @@ echo "Apply env vars to manifest.json"
 Template=$( cat "${EXTENSION_CHROME}/manifest.json" | sed "s/\"/\\\\\"/g" )
 eval "echo \"$Template\"" > "${EXTENSION_CHROME}/manifest.json" || exit 1
 
-echo "Apply env vars to constants.js"
-Template=$( cat "${EXTENSION_CHROME}/constants.js" | sed "s/\"/\\\\\"/g" )
-eval "echo \"$Template\"" > "${EXTENSION_CHROME}/constants.js" || exit 1
+echo "Copy constant.js to extension folder"
+cp -fpv "${XC_CONSTANT_JS_FILE}" "${EXTENSION_CHROME}/constants.js" || exit 1
 
 /usr/bin/ditto -c -k "$EXTENSION_CHROME" "${EXTENSION_CHROME}.zip"
 

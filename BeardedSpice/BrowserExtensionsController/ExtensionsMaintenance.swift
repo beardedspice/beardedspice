@@ -20,8 +20,8 @@ protocol NativeMessaging {
 @objc
 class ChromeNativeMessaging : NSObject, NativeMessaging {
     
-    static private let chromePath = NSString(string: "~/Library/Application Support/Google/Chrome/NativeMessagingHosts/\(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID).json").expandingTildeInPath
-    static private let chromiumPath = NSString(string: "~/Library/Application Support/Chromium/NativeMessagingHosts/\(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID).json").expandingTildeInPath
+    static private let chromePath = NSString(string: "~/Library/Application Support/Google/Chrome/NativeMessagingHosts/\(BS_B_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID).json").expandingTildeInPath
+    static private let chromiumPath = NSString(string: "~/Library/Application Support/Chromium/NativeMessagingHosts/\(BS_B_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID).json").expandingTildeInPath
 
     @objc
     static func updateManifest() -> Bool {
@@ -30,7 +30,7 @@ class ChromeNativeMessaging : NSObject, NativeMessaging {
         }
         let manifest = """
         {
-        "name": "\(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)",
+        "name": "\(BS_B_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)",
         "description": "Beardie connector",
         "path": "\(nmPath)",
         "type": "stdio",

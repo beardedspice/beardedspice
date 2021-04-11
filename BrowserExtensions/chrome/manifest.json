@@ -20,7 +20,7 @@
         {
             "matches": ["<all_urls>"],
             "run_at": "document_start",
-            "js": ["shared/utils.js"]
+            "js": ["constants.js", "shared/utils.js"]
         },
         {
             "matches": ["<all_urls>"],
@@ -43,6 +43,7 @@
     ],
     "web_accessible_resources": [
         "shared/*eventsController.js",
-        "/shared/utils.js"
+        "/shared/utils.js",
+        "constants.js"
     ]
 }

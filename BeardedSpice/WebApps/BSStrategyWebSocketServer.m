@@ -24,11 +24,6 @@
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.netinet;
 
-#define SAFARI_EXTENSION_PAIRING_FORMAT                @"https://localhost:%d/pairing.html?bundleId=%@"
-#define SAFARI_EXTENSION_PAIRING                       @"pairing.html"
-
-
-
 NSString *const BSWebSocketServerStartedNotification = @"BSWebSocketServerStartedNotification";
 NSString *const BSWebSocketServerReloadWebPagesDialogHide = @"BSWebSocketServerReloadWebPagesDialogHide";
 

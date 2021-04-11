@@ -262,11 +262,6 @@ static SFSafariTab *_previousTabOnNewWindow;
                         }
                     }
                 }
-                //                    else if ([messageName isEqualToString:@"pairing"]) {
-                //                        BSUtils.storageSet("hostBundleId", theMessageEvent.message.bundleId, () => {
-                //                            BSUtils.sendMessageToTab(theMessageEvent.target, "pairing", { 'result': true });
-                //                        });
-                //                        }
             }
         }
     }];

@@ -32,6 +32,10 @@
 		<array>
 			<dict>
 				<key>Script</key>
+				<string>constants.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
 				<string>shared/utils.js</string>
 			</dict>
 			<dict>

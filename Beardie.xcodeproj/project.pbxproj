@@ -515,7 +515,6 @@
 		659643CD25DEE3E900A5D582 /* QuodLibetTabAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuodLibetTabAdapter.h; sourceTree = "<group>"; };
 		659643CE25DEE3E900A5D582 /* QuodLibetTabAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuodLibetTabAdapter.m; sourceTree = "<group>"; };
 		659AA53F23CE63F200853B7B /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = main.html; sourceTree = "<group>"; };
-		659AA54023CE63FC00853B7B /* constants.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = constants.js; sourceTree = "<group>"; };
 		659B52C2238460A2005B73AB /* TV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TV.h; sourceTree = "<group>"; };
 		65A27DB425FA9C0A007C0CB7 /* extruct-pause-names.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "extruct-pause-names.sh"; sourceTree = "<group>"; };
 		65A27DBB25FAA47A007C0CB7 /* Deezer-Pause-Names.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Deezer-Pause-Names.h"; sourceTree = "<group>"; };
@@ -530,7 +529,6 @@
 		65AA490825F585A500D19C60 /* BeardieLaunchAtLogin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeardieLaunchAtLogin.entitlements; sourceTree = "<group>"; };
 		65AA495925F6251C00D19C60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		65AA828C239C349A000442A2 /* ExtensionsMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsMaintenance.swift; sourceTree = "<group>"; };
-		65AA829B239D8194000442A2 /* ConfigConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigConstants.h; sourceTree = "<group>"; };
 		65ABBAA41D1EC7D000F882CE /* BSCustomStrategyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCustomStrategyManager.h; sourceTree = "<group>"; };
 		65ABBAA51D1EC7D000F882CE /* BSCustomStrategyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCustomStrategyManager.m; sourceTree = "<group>"; };
 		65ABBAA81D1FDC5400F882CE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -767,7 +765,6 @@
 		6507C2742002D311003D4B1A /* chrome */ = {
 			isa = PBXGroup;
 			children = (
-				659AA54023CE63FC00853B7B /* constants.js */,
 				659AA53F23CE63F200853B7B /* main.html */,
 				6507C2782002D311003D4B1A /* manifest.json */,
 			);
@@ -1093,7 +1090,6 @@
 		967933231855173100A49AC7 = {
 			isa = PBXGroup;
 			children = (
-				65AA829B239D8194000442A2 /* ConfigConstants.h */,
 				65ABBAA81D1FDC5400F882CE /* Config.xcconfig */,
 				65D57FCF1D02E64F0016F270 /* Debug-Config.xcconfig */,
 				65E6E05923721DDC009C9448 /* Scripts */,
@@ -1326,6 +1322,7 @@
 				65384D9A21874F810029D9E9 /* Sources */,
 				65384D9B21874F810029D9E9 /* Frameworks */,
 				65384D9C21874F810029D9E9 /* Resources */,
+				657E11E12622314D0006B70B /* Copy Constants to extension */,
 			);
 			buildRules = (
 			);
@@ -1689,6 +1686,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		657E11E12622314D0006B70B /* Copy Constants to extension */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Constants to extension";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "\nRESOURCES=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\ncp -fpv \"${XC_CONSTANT_JS_FILE}\" \"$RESOURCES/constants.js\" || exit 1\n";
 		};
 		7421F436E416390AC07A4764 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2527,7 +2542,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_B_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
 				PRODUCT_NAME = "$(BS_NATIVE_MESSAGING_CONNECTOR_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2555,7 +2570,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BS_B_NATIVE_MESSAGING_CONNECTOR_BUNDLE_ID)";
 				PRODUCT_NAME = "$(BS_NATIVE_MESSAGING_CONNECTOR_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "beardie-nm-connector/Bridging-Header.h";
@@ -2593,10 +2608,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "$(BS_SIGN)";
+				CODE_SIGN_IDENTITY = "$(BSC_SIGN)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "$(BS_TEAM)";
+				DEVELOPMENT_TEAM = "$(BSC_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2650,11 +2665,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "$(BS_SIGN)";
+				CODE_SIGN_IDENTITY = "$(BSC_SIGN)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(BS_TEAM)";
+				DEVELOPMENT_TEAM = "$(BSC_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

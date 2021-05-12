@@ -1,5 +1,9 @@
 [![travis-ci](https://travis-ci.org/beardedspice/beardedspice.png)](https://travis-ci.org/beardedspice/beardedspice)
 
+# Before everything
+
+Read this conversation: [#899](https://github.com/beardedspice/beardedspice/issues/899)
+
 # Common Issues
 
 It's asked that anyone with an issue check the [Wiki Section](https://github.com/beardedspice/beardedspice/wiki) before posting a new issue.

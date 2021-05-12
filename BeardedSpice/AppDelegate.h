@@ -37,6 +37,7 @@ extern BOOL accessibilityApiEnabled;
     runningSBApplication *yandexBrowserApp;
     runningSBApplication *chromiumApp;
     runningSBApplication *vivaldiApp;
+    runningSBApplication *braveApp;
 
     runningSBApplication *safariApp;
     runningSBApplication *safariTPApp;

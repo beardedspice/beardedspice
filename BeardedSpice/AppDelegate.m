@@ -541,6 +541,12 @@ BOOL accessibilityApiEnabled = NO;
     if (timeout.reached) {
         return;
     }
+
+    braveApp = [self getRunningSBApplicationWithIdentifier:APPID_BRAVE];
+    if (timeout.reached) {
+        return;
+    }
+
     safariApp = [self getRunningSBApplicationWithIdentifier:APPID_SAFARI];
     if (timeout.reached) {
         return;
@@ -595,8 +601,10 @@ BOOL accessibilityApiEnabled = NO;
         result = [self setActiveTabShortcutForChrome:yandexBrowserApp];
     } else if (chromiumApp.frontmost) {
         result = [self setActiveTabShortcutForChrome:chromiumApp];
-    }else if (vivaldiApp.frontmost) {
+    } else if (vivaldiApp.frontmost) {
         result = [self setActiveTabShortcutForChrome:vivaldiApp];
+    }else if (braveApp.frontmost) {
+        result = [self setActiveTabShortcutForChrome:braveApp];
     } else if (safariApp.frontmost) {
         result = [self setActiveTabShortcutForSafari:safariApp];
     } else if (safariTPApp.frontmost) {
@@ -757,6 +765,7 @@ BOOL accessibilityApiEnabled = NO;
             [newItems addObjectsFromArray:[self refreshTabsForChrome:yandexBrowserApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:chromiumApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForChrome:vivaldiApp timeout:timeout]];
+            [newItems addObjectsFromArray:[self refreshTabsForChrome:braveApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForSafari:safariApp timeout:timeout]];
             [newItems addObjectsFromArray:[self refreshTabsForSafari:safariTPApp timeout:timeout]];
 

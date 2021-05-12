@@ -74,6 +74,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
  - [Safari](https://www.apple.com/safari/)
  - [Google Chrome](https://www.google.com/chrome/browser/desktop/)
  - [Vivaldi](https://vivaldi.com/)
+ - [Brave](https://brave.com/)
 
 
 ### Supported Sites

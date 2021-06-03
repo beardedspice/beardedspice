@@ -190,6 +190,8 @@
 	<integer>3</integer>
 	<key>WatchaPlay</key>
 	<integer>1</integer>
+	<key>WFUV</key>
+	<integer>1</integer>
 	<key>WonderFm</key>
 	<integer>2</integer>
 	<key>XboxMusic</key>

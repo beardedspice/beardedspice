@@ -15,31 +15,31 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function() {
-    return document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause');
+    return !!document.querySelector('.player-controls .svg-icon-pause');
   },
   toggle: function () {
-    document.querySelector('.control-play').click();
+    document.querySelector('.player-controls .svg-icon-play, .player-controls .svg-icon-pause').parentElement.click();
   },
   next: function () {
-    document.querySelector('.control-next').click();
+    document.querySelector('.player-controls .svg-icon-next').parentElement.click();
   },
   favorite: function (){
-    document.querySelector('div.player-actions span.icon-love').click();
+    document.querySelector('.track-actions .svg-icon-love-outline').parentElement.click();
   },
   previous: function () {
-    document.querySelector('.control-prev').click();
+    document.querySelector('.player-controls .svg-icon-prev').parentElement.click();
   },
   pause: function () {
-    if (document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause')) {
-      document.querySelector('.control-play').click();
+    if (document.querySelector('.player-controls .svg-icon-pause')) {
+      document.querySelector('.player-controls .svg-icon-pause').parentElement.click();
     }
   },
   trackInfo: function () {
     return {
-      "track": document.querySelector('#player-cover .player-track-title .player-track-link').innerText,
-      "artist": document.querySelector('#player-cover .player-track-artist .player-track-link').innerText,
-      "image": document.querySelector('#player-cover img').src,
-      "favorited": document.querySelector('.player-actions button .icon-love').classList.contains('active')
+      "track": document.querySelector('.track-title .track-link:nth-child(2)').innerText,
+      "artist": document.querySelector('.track-title .track-link').innerText,
+      "image": document.querySelector('.player-options .picture img').src.replace("28x28", "380x380"),
+      "favorited": document.querySelector('.track-actions .svg-icon-love-outline').classList.contains('is-active')
     };
   }
 }

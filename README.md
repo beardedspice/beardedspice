@@ -18,6 +18,32 @@ BeardedSpice allows you to control web based media players (Like *SoundCloud*, a
 ## How?
 All you need to do is just open your favorite [supported media site](#supported-sites) in either Chrome or Safari, then click on BeardedSpice's Menubar icon <img src="images/icon20x19.png" /> and select the website you want to control using your media keys.
 
+### Prerequirements
+
+#### Safari: 
+
+You must enable "Allow Javascript to run from Apple Events". To do this, follow these steps:
+
+  * `Safari > Preferences > Advanced. Check "Show Develop menu in menu bar."`
+
+  ![](https://i.imgur.com/h0A24i2.png)
+
+  * Develop > Allow Javascript to run from Apple Events. 
+
+![](https://i.imgur.com/jcEhHRA.png)
+
+  * Enter your password to change this setting on your machine. 
+
+#### **Chrome:** 
+
+You must enable "Allow Javascript to run from Apple Events". To do this, follow these steps:
+
+   - `View > Developer > Allow Javascript to run from Apple Events.`
+
+    ![](https://user-images.githubusercontent.com/5363/43353281-265616a8-91e9-11e8-9ef7-c809fe6f7245.png)
+
+   - Quit and restart beardedspice. 
+
 #### Interested in doing it with a keyboard-shortcut?
 We've got you covered, give the [Shortcuts section](#keyboard-shortcuts) a look below!
 

@@ -7,10 +7,11 @@
 //  Support for new UI added by Bret Martin on 2017-01-01
 //  Fix pause function in new UI by Andrew Ray on 2017-04-28
 //  Fix Tuner__Controls query by Paul Hoisington on 2017-06-23
+//  Minor fixes by Kunal Marwaha on 2018-06-27
 //  Copyright (c) 2013-2017 GPL v3 http://www.gnu.org/licenses/gpl.html
 //
 BSStrategy = {
-  version: 5,
+  version: 6,
   displayName: "Pandora",
   accepts: {
     method: "predicateOnTab",
@@ -19,8 +20,7 @@ BSStrategy = {
   },
   isPlaying: function () {
     if (document.querySelector('.Tuner__Controls') !== null) {
-      return
-        document
+      return document
           .querySelector('.Tuner__Control__Play__Button')
           .attributes['data-qa']
           .value === 'pause_button';
@@ -40,8 +40,15 @@ BSStrategy = {
   },
   next: function () {
     document.querySelector('.Tuner__Controls') !== null ?
-    document.querySelector('.Tuner__Control__Skip__Button').click() :
+    (document.querySelector('.Tuner__Control__Skip__Button')
+      || document.querySelector('.Tuner__Control__SkipForeward__Button')).click() :
     document.querySelector('.skipButton').click();
+  },
+  previous: function () {
+    document.querySelector('.Tuner__Control__SkipBack__Button')
+      ? document.querySelector('.Tuner__Control__SkipBack__Button').click()
+      : document.querySelector('.Tuner__Control__Replay__Button')
+        && document.querySelector('.Tuner__Control__Replay__Button').click();
   },
   pause: function () {
     if(document.querySelector('.Tuner__Controls') !== null) {
@@ -60,22 +67,23 @@ BSStrategy = {
   trackInfo: function () {
     if (document.querySelector('.Tuner__Controls') !== null) {
       return {
-        'track': document
-                   .querySelector('div.Tuner__Audio__TrackDetail__title')
+        'track': (document.querySelector('.Tuner__Audio__TrackDetail__title')
+                    || document.querySelector('.nowPlayingTopInfo__current__albumName')
+                    || {})
                    .innerText,
-        'artist': document
-                    .querySelector('div.Tuner__Audio__TrackDetail__artist')
+        'artist': (document.querySelector('.Tuner__Audio__TrackDetail__artist')
+                    || document.querySelector('.nowPlayingTopInfo__current__artistName')
+                    || {})
                     .innerText,
-        'album': document
-                   .querySelector('.nowPlayingTopInfo__current__albumName')
+        'album': (document.querySelector('.nowPlayingTopInfo__current__albumName') || {})
                    .innerText,
-        'image': document
-                   .querySelector('[data-qa=album_active_image]')
-                   .style['background-image']
-                   .slice(5, -2),
-        'favorited': document
-                       .querySelector('[data-qa=thumbs_up_button]')
-                       .classList.contains('ThumbUpButton--active')
+        'image': document.querySelector('[data-qa=album_active_image]')
+                  && document.querySelector('[data-qa=album_active_image]')
+                    .style['background-image']
+                    .slice(5, -2),
+        'favorited': document.querySelector('[data-qa=thumbs_up_button]')
+                    && document.querySelector('[data-qa=thumbs_up_button]')
+                        .classList.contains('ThumbUpButton--active')
       };
     } else {
       return {

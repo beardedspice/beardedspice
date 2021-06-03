@@ -91,6 +91,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Bop.fm](http://bop.fm)
 - [Brain.fm](https://brain.fm/)
 - [BugsMusic](http://www.bugs.co.kr)
+- [CastBox](https://castbox.fm)
 - [Chorus](http://wiki.xbmc.org/index.php?title=Add-on:Chorus)
 - [Coursera](https://www.coursera.org)
 - [Composed](https://www.composed.com/)

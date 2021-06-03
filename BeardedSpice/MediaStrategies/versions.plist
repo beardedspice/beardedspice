@@ -32,6 +32,8 @@
 	<integer>1</integer>
 	<key>BugsMusic</key>
 	<integer>1</integer>
+	<key>CastBox</key>
+	<integer>1</integer>
 	<key>Chorus</key>
 	<integer>1</integer>
 	<key>Composed</key>

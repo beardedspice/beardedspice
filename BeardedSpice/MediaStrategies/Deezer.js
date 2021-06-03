@@ -1,13 +1,12 @@
+//	
+//  Deezer.plist	
+//  BeardedSpice	
+//	
+//  Created by Greg Woodcock on 06/01/2015.	
+//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.	
 //
-//  Deezer.plist
-//  BeardedSpice
-//
-//  Created by Greg Woodcock on 06/01/2015.
-//  Copyright (c) 2015 Tyler Rhodes / Jose Falcon. All rights reserved.
-//
-
 BSStrategy = {
-  version: 3,
+  version: 4,
   displayName: "Deezer",
   accepts: {
     method: "predicateOnTab",
@@ -15,31 +14,37 @@ BSStrategy = {
     args: ["URL"]
   },
   isPlaying: function() {
-    return document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause');
+    return document.querySelector('.player-controls .svg-icon-play') == null;
   },
   toggle: function () {
-    document.querySelector('.control-play').click();
+    document.querySelector('.player-controls .svg-icon-play, .player-controls .svg-icon-pause').parentElement.click()
   },
   next: function () {
-    document.querySelector('.control-next').click();
+    document.querySelector('.player-controls .svg-icon-next').parentElement.click();
   },
-  favorite: function (){
-    document.querySelector('div.player-actions span.icon-love').click();
-  },
-  previous: function () {
-    document.querySelector('.control-prev').click();
-  },
-  pause: function () {
-    if (document.querySelector('.control-play .svg-icon').classList.contains('svg-icon-pause')) {
-      document.querySelector('.control-play').click();
+  favorite: function () {
+    if(!this.isFavorite()) {
+      document.querySelector('.track-actions .svg-icon-love-outline').parentElement.click()
     }
   },
+  previous: function () {
+    document.querySelector('.player-controls .svg-icon-prev').parentElement.click();
+  },
+  pause: function () {
+    if(el = document.querySelector('.player-controls .svg-icon-pause')){
+      el.parentElement.click()
+    }
+  },
+  isFavorite: function() {
+    return document.querySelector('.track-actions .svg-icon-love-outline').classList.contains('is-active')
+  },
   trackInfo: function () {
+    track_and_artist = document.querySelector('.track-title').innerText.replace(/^\s+|\s+$/g, '').split(" · ");
     return {
-      "track": document.querySelector('#player-cover .player-track-title .player-track-link').innerText,
-      "artist": document.querySelector('#player-cover .player-track-artist .player-track-link').innerText,
-      "image": document.querySelector('#player-cover img').src,
-      "favorited": document.querySelector('.player-actions button .icon-love').classList.contains('active')
+      "track": track_and_artist[0],
+      "artist": track_and_artist[1],
+      "image": null,
+      "favorited": this.isFavorite()
     };
   }
 }

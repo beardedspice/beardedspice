@@ -44,7 +44,7 @@
         // https://github.com/beardedspice/beardedspice/issues/257
 
         //Add the hack element
-        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){var id_hack='" HACK_NAME @"';if (document.getElementById(id_hack) === null){node = document.createElement('pre');node.id = id_hack;node.hidden = true; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id_hack).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", [javascript stringForSubstitutionInJavascriptPlaceholder]];
+        NSString *javascriptString =[NSString stringWithFormat:@"javascript:(function(){var id_hack='" HACK_NAME @"';if (document.getElementById(id_hack) === null){node = document.createElement('pre');node.id = id_hack;node.hidden = true; if (document.getElementsByTagName('body').length == 0) {document.getElementsByTagName('html')[0].appendChild(document.createElement('body'));}; document.getElementsByTagName('body')[0].appendChild(node);} document.getElementById(id_hack).innerText =  (function(){ var hackResult = %@; return JSON.stringify({'hackResult': hackResult}); })();})();", [javascript stringForSubstitutionInJavascriptPlaceholder]];
         //Get the result from the hack element
 
         [self.tab executeJavascript:[NSString stringWithFormat:@"window.location.assign(\"%@\");",javascriptString]];

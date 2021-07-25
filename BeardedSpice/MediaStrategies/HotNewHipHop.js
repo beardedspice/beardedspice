@@ -6,22 +6,22 @@
 //  Copyright © 2015 BeardedSpice. All rights reserved.
 //
 BSStrategy = {
-  version:1,
+  version:2,
   displayName:"HotNewHipHop",
   accepts: {
     method: "predicateOnTab",
     format:"%K LIKE[c] '*hotnewhiphop.com*'",
     args: ["URL"]
   },
-  isPlaying: function () { return document.getElementById('jp_audio_0').paused; },
+  isPlaying: function () { $('.jp-play:hidden').length },
   toggle: function () {
-    var player = document.getElementById('jp_audio_0');
-    if (player.paused) { player.play() }
-    else { player.pause() }
+    var isPlaying = $('.jp-play:hidden').length;
+    if (isPlaying) { $('.jp-pause').click(); }
+    else { $('.jp-play').click(); }
   },
   next: function () {$(".jp-next").click();},
   previous: function () {$(".jp-previous").click();},
-  pause: function () {$("#jquery_jplayer_playlist").jPlayer("pause");},
+  pause: function () {$('.jp-pause').click();},
   trackInfo: function () {
     var album = $('.mixtape-info-title')[0].innerText;
     var artist = $('.mixtape-info-artist')[0].innerText;

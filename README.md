@@ -96,6 +96,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [Composed](https://www.composed.com/)
 - [Cozy Cloud](https://cozy.io/en/) ([cozy-music](https://github.com/cozy-labs/cozy-music) application)
 - [Dailymotion](https://www.dailymotion.com)
+- [DatPiff](http://www.datpiff.com/)
 - [Deezer](http://deezer.com)
 - [Digitally Imported](http://www.di.fm/)
 - [focus@will](https://www.focusatwill.com)

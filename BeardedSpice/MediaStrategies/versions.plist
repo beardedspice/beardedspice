@@ -148,6 +148,8 @@
 	<integer>1</integer>
 	<key>Saavn</key>
 	<integer>2</integer>
+	<key>SanookMusic</key>
+	<integer>1</integer>
 	<key>ShufflerFm</key>
 	<integer>1</integer>
 	<key>SiriusXM</key>

@@ -3,19 +3,31 @@
 //  BeardedSpice
 //
 //  Created by Alvin Nguyen on 06/23/16.
+//  Updated by ToanPVN on 08/23/17.
 //
 BSStrategy = {
-  version: 1,
+  version: 2,
   displayName: "Zing MP3",
   accepts: {
     method: "predicateOnTab",
     format: "%K LIKE[c] '*mp3.zing.vn/*'",
     args: ["URL"]
   },
-toggle: function(){  if (document.querySelector('.jp-play').style.display === 'none') { document.querySelector('.jp-pause').click(); } else { document.querySelector('.jp-play').click();} },
-  previous: function(){ document.querySelector('.fn-prev').click(); },
-  next: function(){ document.querySelector('.fn-next').click(); },
-  pause: function(){ document.querySelector('.jp-pause').click(); },
+  isPlaying: function () { return document.querySelector('#zp-svg-play') == null; },
+  toggle: function(){ document.querySelector('.paused').click(); },
+  previous: function(){
+    var button_prev = document.querySelector('.zp-button-prev').getAttribute('style');
+    if (button_prev === null) {
+      document.querySelector('.zp-button-prev').click();
+    } else {
+      window.history.back();
+    } 
+  },
+  next: function(){ document.querySelector('.zp-button-next').click(); },
+  pause: function(){ 
+    if (document.querySelector('#zp-svg-play') == null) {
+      document.querySelector('.paused').click();
+    }},
   trackInfo: function () {
     return {
         'image': document.querySelector('.pthumb').getAttribute('src'),

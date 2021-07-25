@@ -80,6 +80,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [8Tracks](http://8tracks.com)
 - [22Tracks](http://22tracks.com)
 - [Amazon Music](https://www.amazon.com/gp/dmusic/cloudplayer/player)
+- [Amazon Prime Video](https://www.primevideo.com)
 - [Apple Developer](https://developer.apple.com/videos/)
 - [Audible](http://www.audible.com/)
 - [Audiomack](http://www.audiomack.com/)

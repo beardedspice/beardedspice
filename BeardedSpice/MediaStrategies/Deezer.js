@@ -24,7 +24,7 @@ BSStrategy = {
     document.querySelector('.control-next').click();
   },
   favorite: function (){
-    document.querySelector('div.player-actions span.icon-love').click();
+    document.querySelector('.player-actions button .svg-icon-love-outline').parentElement.click();
   },
   previous: function () {
     document.querySelector('.control-prev').click();
@@ -39,7 +39,7 @@ BSStrategy = {
       "track": document.querySelector('#player-cover .player-track-title .player-track-link').innerText,
       "artist": document.querySelector('#player-cover .player-track-artist .player-track-link').innerText,
       "image": document.querySelector('#player-cover img').src,
-      "favorited": document.querySelector('.player-actions button .icon-love').classList.contains('active')
+      "favorited": document.querySelector('.player-actions button .svg-icon-love-outline').classList.contains('is-active')
     };
   }
 }

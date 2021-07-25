@@ -146,6 +146,7 @@ From the preferences tab, uncheck any types of webpages that you don't want Bear
 - [STITCHER](http://www.stitcher.com/)
 - [Style Jukebox](http://play.stylejukebox.com/)
 - [Subsonic (personal media streamer)](http://www.subsonic.org/)
+- [Sunshine-Live](http://www.sunshine-live.de/)
 - [Synology](http://synology.com)
 - [TuneIn](http://tunein.com/)
 - [Twitch TV](http://www.twitch.tv/)
